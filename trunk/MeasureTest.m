@@ -23,11 +23,12 @@
 	[staff release];
 }
 
-- (void)setupSong{
+- (Song *)setupSong{
 	Song *song = [[[Song alloc] init] autorelease];
 	[staff setSong:song];
 	[song setStaffs:[NSMutableArray arrayWithObject:staff]];
 	[song setTimeSigs:[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4	bottom:4]]];	
+	return song;
 }
 
 - (void)testGetFirstNote{
@@ -167,7 +168,6 @@
 	[firstRest release];
 	[secondRest release];
 	[note release];
-	
 }
 
 - (void)testRemoveNote{
@@ -191,6 +191,52 @@
 	STAssertEqualObjects([[[measure getNotes] lastObject] getTieTo], [[secondMeasure getNotes] lastObject], @"Remove note didn't tie split notes.");
 	[firstRest release];
 	[firstNote release];
+	[secondNote release];
+}
+
+- (void)testTimeSignatureChangedMovesNotesToNextMeasure{
+	Song *song = [self setupSong];
+	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO];
+	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:NO];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
+	[song setTimeSignature:[TimeSignature timeSignatureWithTop:2 bottom:4] atIndex:0];
+	[measure timeSignatureChangedFrom:1.0 to:0.5 top:2 bottom:4];
+	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures resulting from time signature change.");
+	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Wrong number of notes left after time signature change.");
+	STAssertEquals([measure getTotalDuration], (float)0.5, @"Wrong total duration left in first measure.");
+	[firstRest release];
+	[secondRest release];
+}
+- (void)testTimeSignatureChangedGrabsNotesFromNextMeasure{
+	Song *song = [self setupSong];
+	Measure *secondMeasure = [staff addMeasure];
+	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO];
+	Rest *secondRest = [[Rest alloc] initWithDuration:1 dotted:NO];
+	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondRest]];
+	[song setTimeSignature:[TimeSignature timeSignatureWithTop:8 bottom:4] atIndex:0];
+	[measure timeSignatureChangedFrom:1.0 to:2.0 top:8 bottom:4];
+	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
+	STAssertEquals([measure getTotalDuration], (float)2.0, @"Wrong total duration left in first measure.");
+	STAssertEquals([[secondMeasure getNotes] count], (unsigned)0, @"Notes not removed from second measure."); 
+	[firstRest release];
+	[secondRest release];
+}
+- (void)testTimeSignatureChangedSplitsNotes{
+	Song *song = [self setupSong];
+	Measure *secondMeasure = [staff addMeasure];
+	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondNote]];
+	[song setTimeSignature:[TimeSignature timeSignatureWithTop:6 bottom:4] atIndex:0];
+	[measure timeSignatureChangedFrom:1.0 to:1.5 top:6 bottom:4];
+	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
+	STAssertEquals([measure getTotalDuration], (float)1.5, @"Wrong total duration left in first measure.");
+	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Wrong number of notes left in second measure.");
+	STAssertEquals([secondMeasure getTotalDuration], (float)0.5, @"Wrong total duration left in second measure.");
+	STAssertEqualObjects([[[measure getNotes] lastObject] getTieTo], [[secondMeasure getNotes] objectAtIndex:0], @"Change time signature didn't tie split notes.");
+	[firstRest release];
 	[secondNote release];
 }
 
