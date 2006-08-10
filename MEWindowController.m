@@ -191,6 +191,7 @@
 	if([self getMode] == MODE_NOTE){
 		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:[self getNoteModeDuration] dotted:[self getDotted] accidental:[self getAccidental]];
 		note = [measure addNotes:[NSArray arrayWithObject:note] atIndex:x];
+		measure = [staff getMeasureContainingNote:note];
 		if([tieToPrev state] == NSOnState){
 			[note setAccidental:NO_ACC];
 			Note *tie = [staff findPreviousNoteMatching:note inMeasure:measure atIndex:ceil(x)];

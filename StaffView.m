@@ -550,7 +550,8 @@
 	}
 	Note *tieFrom = [note getTieFrom];
 	if(tieFrom != nil){
-		float startX = [[noteX objectForKey:tieFrom] floatValue];
+		NSNumber *tieFromIndex = [NSNumber numberWithInt:tieFrom]; 
+		float startX = [[noteX objectForKey:tieFromIndex] floatValue];
 		NSBezierPath *tie = [NSBezierPath bezierPath];
 		[tie setLineWidth:2.0];
 		[tie moveToPoint:NSMakePoint(startX, body.origin.y + body.size.height)];
@@ -560,7 +561,7 @@
 		[tie stroke];
 	}
 	if([note getTieTo] != nil){
-		[noteX setObject:[NSNumber numberWithFloat:(body.origin.x+body.size.width)] forKey:note];
+		[noteX setObject:[NSNumber numberWithFloat:(body.origin.x+body.size.width)] forKey:[NSNumber numberWithInt:note]];
 	}
 	[[NSColor blackColor] set];
 }

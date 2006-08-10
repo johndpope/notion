@@ -75,22 +75,11 @@
 		accidental:accidental];
 }
 
-- (BOOL)isEqual:(id)obj{
+- (BOOL)isEqualTo:(id)obj{
 	return [obj isKindOfClass:[Note class]] &&
 		[obj getPitch] == pitch && [obj getOctave] == octave &&
 		[obj getDuration] == duration && [obj getDotted] == dotted &&
 		[obj getAccidental] == accidental;
-}
-
-- (unsigned)hash{
-	unsigned hash = octave * 7 * 17;
-	hash += pitch;
-	hash *= 17;
-	hash += duration;
-	hash *= 17;
-	hash += accidental + 1;
-	if(dotted) hash = 0 ^ hash;
-	return hash;
 }
 
 - (float)getEffectiveDuration{
