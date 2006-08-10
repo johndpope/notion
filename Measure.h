@@ -34,6 +34,8 @@
 
 - (id)initWithStaff:(Staff *)_staff;
 
+- (Staff *)getStaff;
+
 - (NSMutableArray *)getNotes;
 - (Note *)getFirstNote;
 - (void)setNotes:(NSMutableArray *)_notes;
@@ -63,6 +65,10 @@
 - (NSView *)getTimeSigPanel;
 
 - (Note *)findPreviousNoteMatching:(Note *)source atIndex:(int)index;
+
+- (float)getNoteStartDuration:(Note *)note;
+- (float)getNoteEndDuration:(Note *)note;
+- (int)getNumberOfNotesStartingAt:(float)startDuration endingAt:(float)endDuration;
 
 - (void)transposeBy:(int)tranposeAmount;
 
