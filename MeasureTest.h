@@ -34,12 +34,11 @@
 - (void)testSplitNoteOnAdd;
 - (void)testComplexSplitNoteOnAdd;
 
-- (void)testAddOneRestToEmptyMeasure;
-- (void)testAddOneRestToFullMeasure;
-- (void)testSplitRestOnAdd;
-- (void)testComplexSplitRestOnAdd;
-
 - (void)testRemoveNote;
 - (void)testRemoveNoteGrabsNotesFromNextMeasure;
+
+- (void)testTimeSignatureChangedMovesNotesToNextMeasure;
+- (void)testTimeSignatureChangedGrabsNotesFromNextMeasure;
+- (void)testTimeSignatureChangedSplitsNotes;
 
 @end
