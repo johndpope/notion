@@ -251,7 +251,7 @@
 	return [self getNoteStartDuration:note] + [note getEffectiveDuration];
 }
 
-- (int)getNumberOfNotesStartingAt:(float)startDuration endingAt:(float)endDuration{
+- (int)getNumberOfNotesStartingAfter:(float)startDuration before:(float)endDuration{
 	float duration = 0;
 	int count = 0;
 	NSEnumerator *notesEnum = [notes objectEnumerator];
