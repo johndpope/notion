@@ -88,6 +88,15 @@
 	return [measures lastObject];
 }
 
+- (Measure *)getMeasureBefore:(Measure *)measure{
+	int index = [measures indexOfObject:measure];
+	if(index > 0){
+		return [measures objectAtIndex:(index - 1)];
+	} else{
+		return nil;
+	}
+}
+
 - (Measure *)getMeasureAfter:(Measure *)measure{
 	int index = [measures indexOfObject:measure];
 	if(index + 1 < [measures count]){
@@ -100,6 +109,17 @@
 	}
 }
 
+- (Measure *)getMeasureContainingNote:(Note *)note{
+	NSEnumerator *measuresEnum = [measures objectEnumerator];
+	id measure;
+	while(measure = [measuresEnum nextObject]){
+		if([[measure getNotes] containsObject:note]){
+			return measure;
+		}
+	}
+	return nil;
+}
+
 - (void)cleanEmptyMeasures{
 	while([measures count] > 1 && [[measures lastObject] isEmpty]){
 		Measure *measure = [measures lastObject];
@@ -110,12 +130,22 @@
 }
 
 - (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure atIndex:(int)index{
-	Note *note = [measure findPreviousNoteMatching:source atIndex:index];
-	while(note == nil && measure != [measures objectAtIndex:0]){
-		measure = [measures objectAtIndex:([measures indexOfObject:measure]-1)];
-		note = [measure findPreviousNoteMatching:source atIndex:NSNotFound];
+	if([measure getFirstNote] == source){
+		Measure *prevMeasure = [[measure getStaff] getMeasureBefore:measure];
+		if(prevMeasure != nil){
+			Note *note = [[prevMeasure getNotes] lastObject];
+			if([note isEqualTo:source]){
+				return note;
+			}
+			return nil;
+		}
+	} else{
+		Note *note = [measure getNoteBefore:source];
+		if([note isEqualTo:source]){
+			return note;
+		}
+		return nil;
 	}
-	return note;
 }
 
 - (void)toggleClefAtMeasure:(Measure *)measure{

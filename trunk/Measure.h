@@ -64,7 +64,7 @@
 - (BOOL)isShowingTimeSigPanel;
 - (NSView *)getTimeSigPanel;
 
-- (Note *)findPreviousNoteMatching:(Note *)source atIndex:(int)index;
+- (Note *)getNoteBefore:(Note *)source;
 
 - (float)getNoteStartDuration:(Note *)note;
 - (float)getNoteEndDuration:(Note *)note;

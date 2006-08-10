@@ -71,6 +71,7 @@
 			note = nil;
 		}
 	}*/
+	note = [notes objectAtIndex:index];
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
 	while(totalDuration > maxDuration){
@@ -93,9 +94,9 @@
 			}
 		}
 		[notes removeLastObject];
-		[[staff getMeasureAfter:self] addNotes:_notes atIndex:0];
+		note = [[staff getMeasureAfter:self] addNotes:_notes atIndex:0];
 	}
-	return [notes objectAtIndex:index];
+	return note;
 }
 
 - (void)grabNotesFromNextMeasure{
@@ -230,14 +231,10 @@
 	return timeSigPanel;
 }
 
-- (Note *)findPreviousNoteMatching:(Note *)source atIndex:(int)index{
-	if(index == NSNotFound) index = [notes count];
-	index--;
-	while(index >= 0){
-		Note *note = [notes objectAtIndex:index];
-		if([note getOctave] == [source getOctave] &&
-			[note getPitch] == [source getPitch]) return note;
-		index--;
+- (Note *)getNoteBefore:(Note *)source{
+	int index = [notes indexOfObject:source];
+	if(index != NSNotFound && index > 0){
+		return [notes objectAtIndex:index-1];
 	}
 	return nil;
 }

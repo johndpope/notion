@@ -41,6 +41,8 @@
 
 - (Measure *)getLastMeasure;
 - (Measure *)getMeasureAfter:(Measure *)measure;
+- (Measure *)getMeasureBefore:(Measure *)measure;
+- (Measure *)getMeasureContainingNote:(Note *)note;
 - (void)cleanEmptyMeasures;
 
 - (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure atIndex:(int)index;
