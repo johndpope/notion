@@ -134,14 +134,14 @@
 	if([measure getFirstNote] == source){
 		Measure *prevMeasure = [[measure getStaff] getMeasureBefore:measure];
 		if(prevMeasure != nil){
-			Note *note = [[prevMeasure getNotes] lastObject];
+			NoteBase *note = [[prevMeasure getNotes] lastObject];
 			if([note isEqualTo:source]){
 				return note;
 			}
 		}
 		return nil;
 	} else{
-		Note *note = [measure getNoteBefore:source];
+		NoteBase *note = [measure getNoteBefore:source];
 		if([note isEqualTo:source]){
 			return note;
 		}

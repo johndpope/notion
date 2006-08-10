@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class Note;
+@class NoteBase;
 @class Clef;
 @class Staff;
 @class KeySignature;
@@ -36,9 +36,9 @@
 - (Staff *)getStaff;
 
 - (NSMutableArray *)getNotes;
-- (Note *)getFirstNote;
+- (NoteBase *)getFirstNote;
 - (void)setNotes:(NSMutableArray *)_notes;
-- (Note *)addNotes:(NSArray *)note atIndex:(float)index;
+- (NoteBase *)addNotes:(NSArray *)note atIndex:(float)index;
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp;
 
 - (float)getTotalDuration;
@@ -64,10 +64,10 @@
 - (BOOL)isShowingTimeSigPanel;
 - (NSView *)getTimeSigPanel;
 
-- (Note *)getNoteBefore:(Note *)source;
+- (NoteBase *)getNoteBefore:(NoteBase *)source;
 
-- (float)getNoteStartDuration:(Note *)note;
-- (float)getNoteEndDuration:(Note *)note;
+- (float)getNoteStartDuration:(NoteBase *)note;
+- (float)getNoteEndDuration:(NoteBase *)note;
 - (int)getNumberOfNotesStartingAt:(float)startDuration endingAt:(float)endDuration;
 
 - (void)transposeBy:(int)tranposeAmount;

@@ -12,6 +12,7 @@
 		7841FD7F0A0B073B00292132 /* MEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */; };
 		7841FD8C0A0B08B800292132 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD8B0A0B08B800292132 /* Song.m */; };
 		7841FDD80A0B1E3100292132 /* Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FDD70A0B1E3100292132 /* Measure.m */; };
+		784AFBB80A7F1C9A00832B7C /* NoteBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 784AFBB70A7F1C9A00832B7C /* NoteBase.m */; };
 		785EE9CF0A589031005ABDAB /* StaffHorizontalRulerComponent.nib in Resources */ = {isa = PBXBuildFile; fileRef = 785EE9CE0A589031005ABDAB /* StaffHorizontalRulerComponent.nib */; };
 		785EE9F60A5891DE005ABDAB /* qnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 785EE9F50A5891DE005ABDAB /* qnote.png */; };
 		785EEA530A58B430005ABDAB /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEA520A58B430005ABDAB /* TempoData.m */; };
@@ -86,6 +87,8 @@
 		7841FD8B0A0B08B800292132 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		7841FDD60A0B1E3100292132 /* Measure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Measure.h; sourceTree = "<group>"; };
 		7841FDD70A0B1E3100292132 /* Measure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measure.m; sourceTree = "<group>"; };
+		784AFBB60A7F1C9A00832B7C /* NoteBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBase.h; sourceTree = "<group>"; };
+		784AFBB70A7F1C9A00832B7C /* NoteBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBase.m; sourceTree = "<group>"; };
 		785EE9CE0A589031005ABDAB /* StaffHorizontalRulerComponent.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = StaffHorizontalRulerComponent.nib; sourceTree = "<group>"; };
 		785EE9F50A5891DE005ABDAB /* qnote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qnote.png; sourceTree = "<group>"; };
 		785EEA510A58B430005ABDAB /* TempoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempoData.h; sourceTree = "<group>"; };
@@ -307,6 +310,8 @@
 				785EEA520A58B430005ABDAB /* TempoData.m */,
 				786EBA460A7894E2009D63DD /* Rest.h */,
 				786EBA470A7894E2009D63DD /* Rest.m */,
+				784AFBB60A7F1C9A00832B7C /* NoteBase.h */,
+				784AFBB70A7F1C9A00832B7C /* NoteBase.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 				786EBA5A0A789651009D63DD /* RestDraw.m in Sources */,
 				786EBB6E0A7C7A36009D63DD /* MeasureDraw.m in Sources */,
 				786EBBA40A7C7C98009D63DD /* ClefDraw.m in Sources */,
+				784AFBB80A7F1C9A00832B7C /* NoteBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
