@@ -50,8 +50,8 @@
 }
 
 - (IBAction)deleteSelf:(id)sender{
-	[song removeStaff:self];
 	[rulerView removeFromSuperview];
+	[song removeStaff:self];
 }
 
 - (Clef *)getClefForMeasure:(Measure *)measure{
@@ -176,10 +176,10 @@
 }
 
 - (void)dealloc{
-	[super dealloc];
 	[measures release];
 	measures = nil;
 	song = nil;
+	[super dealloc];
 }
 
 @end

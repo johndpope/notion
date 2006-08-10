@@ -365,7 +365,6 @@
 }
 
 - (void)dealloc{
-	[super dealloc];
 	[clef release];
 	[keySig release];
 	[notes release];
@@ -374,6 +373,7 @@
 	keySig = nil;
 	notes = nil;
 	anim = nil;
+	[super dealloc];
 }
 
 @end

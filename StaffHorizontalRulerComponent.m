@@ -89,10 +89,10 @@
 }
 
 - (void)dealloc{
-	[super dealloc];
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center removeObserver:self];
 	[[self superview] removeTrackingRect:trackingRect];
+	[super dealloc];
 }
 
 @end
