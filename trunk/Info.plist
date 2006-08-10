@@ -12,9 +12,9 @@
 				<string>sstf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string></string>
+			<string>doc</string>
 			<key>CFBundleTypeName</key>
-			<string>MusicDocument</string>
+			<string>Señor Staff document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>SSTF</string>

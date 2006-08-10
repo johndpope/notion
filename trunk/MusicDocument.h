@@ -11,8 +11,7 @@
 #import "MEWindowController.h"
 @class Song;
 
-@interface MusicDocument : NSDocument
-{
+@interface MusicDocument : NSDocument{
 	MEWindowController *windowController;
 	Song *song;
 }

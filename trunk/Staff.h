@@ -16,7 +16,7 @@
 @class StaffVerticalRulerComponent;
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface Staff : NSObject {
+@interface Staff : NSObject <NSCoding> {
 	NSMutableArray *measures;
 	Song *song;
 	int channel;
@@ -25,6 +25,8 @@
 }
 
 - (id)initWithSong:(Song *)_song;
+
+- (void)setSong:(Song *)_song;
 
 - (NSMutableArray *)getMeasures;
 - (void)setMeasures:(NSMutableArray *)_measures;

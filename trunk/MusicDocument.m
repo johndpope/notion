@@ -42,21 +42,6 @@
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
 }
 
-- (NSData *)dataRepresentationOfType:(NSString *)aType
-{
-    // Insert code here to write your document from the given data.  You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
-    
-    // For applications targeted for Tiger or later systems, you should use the new Tiger API -dataOfType:error:.  In this case you can also choose to override -writeToURL:ofType:error:, -fileWrapperOfType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-
-    return nil;
-}
-
-- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType
-{
-    song = [[Song alloc] initWithData:data];
-	return song != nil;
-}
-
 - (Song *)getSong{
 	return song;
 }
@@ -67,5 +52,15 @@
 		song = [_song retain];
 	}
 }
+
+-(NSData *)dataRepresentationOfType:(NSString *)aType{
+	return [NSKeyedArchiver archivedDataWithRootObject:song];
+}
+
+-(BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType{
+	[self setSong:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+	return YES;
+}
+
 
 @end
