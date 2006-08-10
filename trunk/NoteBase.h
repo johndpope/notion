@@ -29,6 +29,8 @@
 
 - (void)transposeBy:(int)transposeAmount;
 
+- (void)prepareForDelete;
+
 - (NSArray *)removeDuration:(float)maxDuration;
 + (NoteBase *)tryToFill:(float)maxDuration copyingNote:(NoteBase *)src;
 
