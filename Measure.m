@@ -128,8 +128,7 @@
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp{
 	NoteBase *note = [notes objectAtIndex:floor(x)];
 	if(!temp){
-		[[note getTieTo] tieFrom:[note getTieFrom]];
-		[[note getTieFrom] tieTo:[note getTieTo]];
+		[note prepareForDelete];
 	}
 	[notes removeObjectAtIndex:floor(x)];
 	[self grabNotesFromNextMeasure];

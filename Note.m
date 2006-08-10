@@ -138,6 +138,11 @@
 	}
 }
 
+- (void)prepareForDelete{
+	[[self getTieTo] tieFrom:[self getTieFrom]];
+	[[self getTieFrom] tieTo:[self getTieTo]];
+}
+
 - (void)collapseOnTo:(Note *)note{
 	float effDuration = [self getEffectiveDuration];
 	float targetDuration = [note getEffectiveDuration];

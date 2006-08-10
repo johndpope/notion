@@ -42,6 +42,10 @@
 	[self doesNotRecognizeSelector:_cmd];
 }
 
+- (void)prepareForDelete{
+	
+}
+
 - (NSArray *)removeDuration:(float)maxDuration{
 	NSMutableArray *notes = [NSMutableArray arrayWithObject:self];
 	float remainingDuration = [self getEffectiveDuration] - maxDuration;

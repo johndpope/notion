@@ -32,6 +32,7 @@ static RestDraw *instance = nil;
 	NSImage *img = nil;
 	switch([note getDuration]){
 		case 1:
+			if(highlighted) [[NSColor redColor] set];
 			rect.origin.x = x;
 			rect.origin.y = middle - line * 2;
 			rect.size.height = line;
@@ -39,6 +40,7 @@ static RestDraw *instance = nil;
 			[NSBezierPath fillRect:rect];
 			break;
 		case 2:
+			if(highlighted) [[NSColor redColor] set];
 			rect.origin.x = x;
 			rect.origin.y = middle - line;
 			rect.size.height = line;
@@ -46,22 +48,38 @@ static RestDraw *instance = nil;
 			[NSBezierPath fillRect:rect];
 			break;
 		case 4:
-			img = [NSImage imageNamed:@"qrest.png"];
+			if(highlighted){
+				img = [NSImage imageNamed:@"qrest-over.png"];
+			} else{
+				img = [NSImage imageNamed:@"qrest.png"];
+			}
 			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
 						operation:NSCompositeSourceOver];
 			break;
 		case 8:
-			img = [NSImage imageNamed:@"erest.png"];
+			if(highlighted){
+				img = [NSImage imageNamed:@"erest-over.png"];
+			} else{
+				img = [NSImage imageNamed:@"erest.png"];
+			}
 			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
 						operation:NSCompositeSourceOver];
 			break;
 		case 16:
-			img = [NSImage imageNamed:@"srest.png"];
+			if(highlighted){
+				img = [NSImage imageNamed:@"srest-over.png"];
+			} else{
+				img = [NSImage imageNamed:@"srest.png"];
+			}
 			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
 						operation:NSCompositeSourceOver];
 			break;
 		case 32:
-			img = [NSImage imageNamed:@"trest.png"];
+			if(highlighted){
+				img = [NSImage imageNamed:@"trest-over.png"];
+			} else{
+				img = [NSImage imageNamed:@"trest.png"];
+			}
 			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
 						operation:NSCompositeSourceOver];
 			break;
