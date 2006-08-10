@@ -68,7 +68,7 @@
 
 - (float)getNoteStartDuration:(NoteBase *)note;
 - (float)getNoteEndDuration:(NoteBase *)note;
-- (int)getNumberOfNotesStartingAt:(float)startDuration endingAt:(float)endDuration;
+- (int)getNumberOfNotesStartingAfter:(float)startDuration before:(float)endDuration;
 
 - (void)transposeBy:(int)tranposeAmount;
 

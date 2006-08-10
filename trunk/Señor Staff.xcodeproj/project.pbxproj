@@ -17,6 +17,8 @@
 		785EE9F60A5891DE005ABDAB /* qnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 785EE9F50A5891DE005ABDAB /* qnote.png */; };
 		785EEA530A58B430005ABDAB /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEA520A58B430005ABDAB /* TempoData.m */; };
 		78683A1B0A0E8A72001DE5BB /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */; };
+		786A93F20A89822B0006F54C /* MeasureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A93F10A89822B0006F54C /* MeasureTest.m */; };
+		786A95510A899E7C0006F54C /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA470A7894E2009D63DD /* Rest.m */; };
 		786EB99F0A787985009D63DD /* NoteDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EB99E0A787985009D63DD /* NoteDraw.m */; };
 		786EBA480A7894E2009D63DD /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA470A7894E2009D63DD /* Rest.m */; };
 		786EBA5A0A789651009D63DD /* RestDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA590A789651009D63DD /* RestDraw.m */; };
@@ -109,6 +111,8 @@
 		785EEA520A58B430005ABDAB /* TempoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoData.m; sourceTree = "<group>"; };
 		78683A190A0E8A72001DE5BB /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
 		78683A1A0A0E8A72001DE5BB /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
+		786A93F00A89822B0006F54C /* MeasureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureTest.h; sourceTree = "<group>"; };
+		786A93F10A89822B0006F54C /* MeasureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureTest.m; sourceTree = "<group>"; };
 		786EB99D0A787985009D63DD /* NoteDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDraw.h; sourceTree = "<group>"; };
 		786EB99E0A787985009D63DD /* NoteDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDraw.m; sourceTree = "<group>"; };
 		786EBA460A7894E2009D63DD /* Rest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rest.h; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 			children = (
 				7883C7E00A86B05A000E97DE /* StaffTest.h */,
 				7883C7E10A86B05A000E97DE /* StaffTest.m */,
+				786A93F00A89822B0006F54C /* MeasureTest.h */,
+				786A93F10A89822B0006F54C /* MeasureTest.m */,
 			);
 			name = "Test cases";
 			sourceTree = "<group>";
@@ -541,6 +547,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7883C8F70A86B666000E97DE /* StaffTest.m in Sources */,
+				786A93F20A89822B0006F54C /* MeasureTest.m in Sources */,
+				786A95510A899E7C0006F54C /* Rest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
