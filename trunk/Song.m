@@ -164,9 +164,9 @@
 }
 
 - (void)dealloc{
-	[super dealloc];
 	[staffs release];
 	staffs = nil;
+	[super dealloc];
 }
 
 @end
