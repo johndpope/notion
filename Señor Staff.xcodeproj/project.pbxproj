@@ -16,6 +16,9 @@
 		785EE9F60A5891DE005ABDAB /* qnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 785EE9F50A5891DE005ABDAB /* qnote.png */; };
 		785EEA530A58B430005ABDAB /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEA520A58B430005ABDAB /* TempoData.m */; };
 		78683A1B0A0E8A72001DE5BB /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */; };
+		786EB99F0A787985009D63DD /* NoteDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EB99E0A787985009D63DD /* NoteDraw.m */; };
+		786EBA480A7894E2009D63DD /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA470A7894E2009D63DD /* Rest.m */; };
+		786EBA5A0A789651009D63DD /* RestDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA590A789651009D63DD /* RestDraw.m */; };
 		78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */; };
 		788321120A636D65003363D7 /* doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 788321110A636D64003363D7 /* doc.icns */; };
 		7883222C0A6608EF003363D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788322170A6608EF003363D7 /* SenTestingKit.framework */; };
@@ -87,10 +90,16 @@
 		785EEA520A58B430005ABDAB /* TempoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoData.m; sourceTree = "<group>"; };
 		78683A190A0E8A72001DE5BB /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
 		78683A1A0A0E8A72001DE5BB /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
+		786EB99D0A787985009D63DD /* NoteDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteDraw.h; sourceTree = "<group>"; };
+		786EB99E0A787985009D63DD /* NoteDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteDraw.m; sourceTree = "<group>"; };
+		786EBA460A7894E2009D63DD /* Rest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rest.h; sourceTree = "<group>"; };
+		786EBA470A7894E2009D63DD /* Rest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rest.m; sourceTree = "<group>"; };
+		786EBA580A789651009D63DD /* RestDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestDraw.h; sourceTree = "<group>"; };
+		786EBA590A789651009D63DD /* RestDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestDraw.m; sourceTree = "<group>"; };
 		78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffHorizontalRulerComponent.h; sourceTree = "<group>"; };
 		78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffHorizontalRulerComponent.m; sourceTree = "<group>"; };
 		788321110A636D64003363D7 /* doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc.icns; sourceTree = "<group>"; };
-		788322120A660876003363D7 /* Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Tests.framework; path = build/Debug/Tests.framework; sourceTree = "<group>"; };
+		788322120A660876003363D7 /* Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		788322130A660876003363D7 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		788322170A6608EF003363D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /System/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 		789BC2A20A1FFD2000597728 /* erest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erest.png; sourceTree = "<group>"; };
@@ -212,12 +221,11 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				786EB9990A7878DD009D63DD /* View */,
 				78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */,
 				7841FDD50A0B1E1E00292132 /* Model */,
 				2A37F4AEFDCFA73011CA2CEA /* MusicDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* MusicDocument.m */,
-				7841FD000A09CBC700292132 /* StaffView.h */,
-				7841FD010A09CBC700292132 /* StaffView.m */,
 				7841FD7D0A0B073B00292132 /* MEWindowController.h */,
 				7841FD7E0A0B073B00292132 /* MEWindowController.m */,
 				78E7F5FB0A353C5A008F8F40 /* StaffVerticalRuler.h */,
@@ -291,8 +299,23 @@
 				78E74F800A4DD402005A67E4 /* TimeSignature.m */,
 				785EEA510A58B430005ABDAB /* TempoData.h */,
 				785EEA520A58B430005ABDAB /* TempoData.m */,
+				786EBA460A7894E2009D63DD /* Rest.h */,
+				786EBA470A7894E2009D63DD /* Rest.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		786EB9990A7878DD009D63DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7841FD000A09CBC700292132 /* StaffView.h */,
+				7841FD010A09CBC700292132 /* StaffView.m */,
+				786EB99D0A787985009D63DD /* NoteDraw.h */,
+				786EB99E0A787985009D63DD /* NoteDraw.m */,
+				786EBA580A789651009D63DD /* RestDraw.h */,
+				786EBA590A789651009D63DD /* RestDraw.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		7883222E0A660909003363D7 /* Test cases */ = {
@@ -509,6 +532,9 @@
 				78E74F810A4DD402005A67E4 /* TimeSignature.m in Sources */,
 				785EEA530A58B430005ABDAB /* TempoData.m in Sources */,
 				78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */,
+				786EB99F0A787985009D63DD /* NoteDraw.m in Sources */,
+				786EBA480A7894E2009D63DD /* Rest.m in Sources */,
+				786EBA5A0A789651009D63DD /* RestDraw.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

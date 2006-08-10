@@ -8,6 +8,7 @@
 
 #import "Note.h"
 #import "KeySignature.h"
+@class NoteDraw;
 
 @implementation Note
 
@@ -19,16 +20,6 @@
 		duration = _duration;
 		dotted = _dotted;
 		accidental = _accidental;
-	}
-	return self;
-}
-
-- (id)initRestWithDuration:(int)_duration dotted:(BOOL)_dotted{
-	if(self = [super init]){
-		pitch = -1;
-		octave = -1;
-		duration = _duration;
-		dotted = _dotted;
 	}
 	return self;
 }
@@ -47,10 +38,6 @@
 }
 - (int)getAccidental{
 	return accidental;
-}
-
-- (BOOL)isRest{
-	return pitch == -1;
 }
 
 - (void)setDuration:(int)_duration{
@@ -90,7 +77,7 @@
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
 			accidentals:(NSMutableDictionary *)accidentals onChannel:(int)channel{
-	if(tieFrom != nil || [self isRest]) return 4.0 * [self getEffectiveDuration];
+	if(tieFrom != nil) return 4.0 * [self getEffectiveDuration];
 	MIDINoteMessage note;
 	note.channel = channel;
 	note.velocity = 100.00;
@@ -223,7 +210,10 @@
 		duration = 32;
 		dotted = NO;
 	} else return nil;
-	return [[[Note alloc] initWithPitch:[src getPitch] octave:[src getOctave] duration:duration dotted:dotted accidental:[src getAccidental]] autorelease];
+	Note *note = [[src copy] autorelease];
+	[note setDuration:duration];
+	[note setDotted:dotted];
+	return note;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{
@@ -253,6 +243,10 @@
 	tieTo = nil;
 	tieFrom = nil;
 	[super dealloc];
+}
+
+- (Class)getViewClass{
+	return [NoteDraw class];
 }
 
 @end
