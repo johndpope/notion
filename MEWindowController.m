@@ -18,6 +18,10 @@
 	[horizontalRuler setFrameSize:NSMakeSize([view frame].size.width, [horizontalRuler frame].size.height)];
 }
 
+- (void)mouseMoved:(NSEvent *)event{
+	[view mouseMoved:event];
+}
+
 - (IBAction)changeDuration:(id)sender{
 	[[view window] makeFirstResponder:view];
 	[self updateFeedbackDuration];
