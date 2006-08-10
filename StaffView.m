@@ -262,10 +262,7 @@
 - (void) awakeFromNib{
 	[[self window] setAcceptsMouseMovedEvents:true];
 	[self loadLocalFonts];
-	feedbackNote = [[Note alloc] init];
-	[feedbackNote setDuration:4];
-	[feedbackNote setDotted:NO];
-	[feedbackNote setAccidental:NO_ACC];
+	feedbackNote = [[Note alloc] initWithPitch:-1 octave:-1 duration:4 dotted:NO accidental:NO_ACC];
 	clefFeedback = [NSObject alloc];
 	keySigFeedback = [NSObject alloc];
 	timeSigFeedback = [NSObject alloc];

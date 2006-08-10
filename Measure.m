@@ -31,7 +31,7 @@
 	return notes;
 }
 
-- (Note *)getFirstNote{
+- (NoteBase *)getFirstNote{
 	return [notes objectAtIndex:0];
 }
 
@@ -52,26 +52,13 @@
 	return totalDuration;
 }
 
-- (Note *)addNotes:(NSArray *)_notes atIndex:(float)index{
+- (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index{
 	NSEnumerator *notesEnum = [_notes reverseObjectEnumerator];
-	Note *note;
+	NoteBase *note;
 	index = ceil(index);
 	while(note = [notesEnum nextObject]){
 		[notes insertObject:note atIndex:index];
 	}
-/*	while(![[notes lastObject] isEqual:note]){
-		Note *next = [notes objectAtIndex:(index+1.5)];
-		if([next isEqual:[note getTieTo]]){
-			[next collapseOnTo:note];
-			if([next getDuration] == 0){
-				[notes removeObject:next];
-			} else{
-				note = next;
-			}
-		} else{
-			note = nil;
-		}
-	}*/
 	if(index >= [notes count]) return nil;
 	note = [notes objectAtIndex:index];
 	float totalDuration = [self getTotalDuration];
@@ -84,9 +71,9 @@
 			float durationToFill = maxDuration - totalDuration;
 			_notes = [note removeDuration:(durationToFill)];
 			int index = [notes count] - 1;
-			Note *lastNote = note;
+			NoteBase *lastNote = note;
 			while(durationToFill > 0){
-				note = [Note tryToFill:durationToFill copyingNote:note];
+				note = [NoteBase tryToFill:durationToFill copyingNote:note];
 				[notes insertObject:note atIndex:index];
 				[note tieTo:lastNote];
 				[lastNote tieFrom:note];
@@ -108,12 +95,13 @@
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
 	while(totalDuration < maxDuration && ![nextMeasure isEmpty]){
 		float durationToFill = maxDuration - totalDuration;
-		Note *nextNote = [nextMeasure getFirstNote];
+		NoteBase *nextNote = [nextMeasure getFirstNote];
 		[nextMeasure removeNoteAtIndex:0 temporary:YES];
 		if([nextNote getEffectiveDuration] <= durationToFill){
 			[notes addObject:nextNote];
 			totalDuration += [nextNote getEffectiveDuration];
 		} else{
+			//TODO: move tie stuff on to Note?
 			NSMutableArray *_notes = [nextNote removeDuration:durationToFill];
 			[nextMeasure addNotes:_notes atIndex:0];
 			[nextMeasure grabNotesFromNextMeasure];
@@ -121,7 +109,7 @@
 			Note *note = nextNote;
 			Note *lastNote = note;
 			while(durationToFill > 0){
-				note = [Note tryToFill:durationToFill copyingNote:note];
+				note = [NoteBase tryToFill:durationToFill copyingNote:note];
 				[notes addObject:note];
 				[note tieTo:lastNote];
 				[note tieFrom:tieFrom];
@@ -138,7 +126,7 @@
 }
 
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp{
-	Note *note = [notes objectAtIndex:floor(x)];
+	NoteBase *note = [notes objectAtIndex:floor(x)];
 	if(!temp){
 		[[note getTieTo] tieFrom:[note getTieFrom]];
 		[[note getTieFrom] tieTo:[note getTieTo]];
@@ -242,7 +230,7 @@
 	return timeSigPanel;
 }
 
-- (Note *)getNoteBefore:(Note *)source{
+- (NoteBase *)getNoteBefore:(NoteBase *)source{
 	int index = [notes indexOfObject:source];
 	if(index != NSNotFound && index > 0){
 		return [notes objectAtIndex:index-1];
@@ -250,7 +238,7 @@
 	return nil;
 }
 
-- (float)getNoteStartDuration:(Note *)note{
+- (float)getNoteStartDuration:(NoteBase *)note{
 	float start = 0;
 	NSEnumerator *notesEnum = [notes objectEnumerator];
 	id currNote;
@@ -260,7 +248,7 @@
 	return start;
 }
 
-- (float)getNoteEndDuration:(Note *)note{
+- (float)getNoteEndDuration:(NoteBase *)note{
 	return [self getNoteStartDuration:note] + [note getEffectiveDuration];
 }
 

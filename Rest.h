@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Note.h"
+#import "NoteBase.h"
 
-@interface Rest : Note {
+@interface Rest : NoteBase <NSCopying> {
 
 }
 

@@ -69,12 +69,6 @@
 		[obj getAccidental] == accidental;
 }
 
-- (float)getEffectiveDuration{
-	float effDuration = 1.0 / (float)duration;
-	if(dotted) effDuration *= 1.5;
-	return effDuration;
-}
-
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
 			accidentals:(NSMutableDictionary *)accidentals onChannel:(int)channel{
 	if(tieFrom != nil) return 4.0 * [self getEffectiveDuration];
@@ -149,71 +143,6 @@
 	float targetDuration = [note getEffectiveDuration];
 	float totalDuration = effDuration + targetDuration;
 	//TODO: implement
-}
-
-- (NSArray *)removeDuration:(float)maxDuration{
-	NSMutableArray *notes = [NSMutableArray arrayWithObject:self];
-	float remainingDuration = [self getEffectiveDuration] - maxDuration;
-	Note *note = [Note tryToFill:remainingDuration copyingNote:self];
-	[self setDuration:[note getDuration]];
-	[self setDotted:[note getDotted]];
-	remainingDuration -= [self getEffectiveDuration];
-	Note *lastNote = self;
-	while(remainingDuration > 0){
-		note = [Note tryToFill:remainingDuration copyingNote:self];
-		[notes addObject:note];
-		[lastNote tieTo:note];
-		[note tieFrom:lastNote];
-		lastNote = note;
-		remainingDuration -= [note getEffectiveDuration];
-	}
-	return notes;
-}
-
-+ (Note *)tryToFill:(float)maxDuration copyingNote:(Note *)src{
-	int duration;
-	BOOL dotted;
-	if(maxDuration >= 1.5){
-		duration = 1;
-		dotted = YES;
-	} else if(maxDuration >= 1){
-		duration = 1;
-		dotted = NO;
-	} else if(maxDuration >= 0.75){
-		duration = 2;
-		dotted = YES;
-	} else if(maxDuration >= 0.5){
-		duration = 2;
-		dotted = NO;
-	} else if(maxDuration >= 0.325){
-		duration = 4;
-		dotted = YES;
-	} else if(maxDuration >= 0.25){
-		duration = 4;
-		dotted = NO;
-	} else if(maxDuration >= 0.1875){
-		duration = 8;
-		dotted = YES;
-	} else if(maxDuration >= 0.125){
-		duration = 8;
-		dotted = NO;
-	} else if(maxDuration >= 0.09375){
-		duration = 16;
-		dotted = YES;
-	} else if(maxDuration >= 0.0625){
-		duration = 16;
-		dotted = NO;
-	} else if(maxDuration >= 0.046875){
-		duration = 32;
-		dotted = YES;
-	} else if(maxDuration >= 0.03125){
-		duration = 32;
-		dotted = NO;
-	} else return nil;
-	Note *note = [[src copy] autorelease];
-	[note setDuration:duration];
-	[note setDotted:dotted];
-	return note;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{
