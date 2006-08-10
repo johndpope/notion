@@ -25,4 +25,6 @@
 - (int)getOctaveForPosition:(int)position;
 - (int)getTranspositionFrom:(Clef *)clef;
 
+- (Class)getViewClass;
+
 @end

@@ -12,18 +12,22 @@
 
 @implementation RestDraw
 
-static NSColor *mouseOverColor;
+static RestDraw *instance = nil;
 
-+(void)draw:(Note *)note atX:(float)x highlighted:(BOOL)highlighted
++(void)draw:(Note *)note atX:(NSNumber *)x highlighted:(BOOL)highlighted
    withClef:(Clef *)clef onMeasure:(NSRect)measure{
-	if(highlighted){
-		if(mouseOverColor == nil){
-			mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
-		}
-		[mouseOverColor set];
+	if(instance == nil){
+		instance = [[RestDraw alloc] init];
 	}
-	float line = measure.size.height / 8.0;
-	float middle = measure.origin.y + measure.size.height / 2.0;
+	[instance setNote:note];
+	[instance setX:[x floatValue]];
+	[instance setHighlighted:highlighted];
+	[instance setClef:clef];
+	[instance setMeasure:measure];
+	[instance draw];
+}
+
+-(void)doDraw{
 	NSRect rect;
 	NSImage *img = nil;
 	switch([note getDuration]){
@@ -69,7 +73,6 @@ static NSColor *mouseOverColor;
 		dotRect.size.width = dotRect.size.height = 4;
 		[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill]; 
 	}
-	[[NSColor blackColor] set];
 }
 
 @end

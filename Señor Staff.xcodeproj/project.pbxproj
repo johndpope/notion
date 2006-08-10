@@ -19,6 +19,8 @@
 		786EB99F0A787985009D63DD /* NoteDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EB99E0A787985009D63DD /* NoteDraw.m */; };
 		786EBA480A7894E2009D63DD /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA470A7894E2009D63DD /* Rest.m */; };
 		786EBA5A0A789651009D63DD /* RestDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA590A789651009D63DD /* RestDraw.m */; };
+		786EBB6E0A7C7A36009D63DD /* MeasureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */; };
+		786EBBA40A7C7C98009D63DD /* ClefDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBBA30A7C7C98009D63DD /* ClefDraw.m */; };
 		78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */; };
 		788321120A636D65003363D7 /* doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 788321110A636D64003363D7 /* doc.icns */; };
 		7883222C0A6608EF003363D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788322170A6608EF003363D7 /* SenTestingKit.framework */; };
@@ -96,6 +98,10 @@
 		786EBA470A7894E2009D63DD /* Rest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rest.m; sourceTree = "<group>"; };
 		786EBA580A789651009D63DD /* RestDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestDraw.h; sourceTree = "<group>"; };
 		786EBA590A789651009D63DD /* RestDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestDraw.m; sourceTree = "<group>"; };
+		786EBB6C0A7C7A36009D63DD /* MeasureDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureDraw.h; sourceTree = "<group>"; };
+		786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureDraw.m; sourceTree = "<group>"; };
+		786EBBA20A7C7C98009D63DD /* ClefDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefDraw.h; sourceTree = "<group>"; };
+		786EBBA30A7C7C98009D63DD /* ClefDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefDraw.m; sourceTree = "<group>"; };
 		78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffHorizontalRulerComponent.h; sourceTree = "<group>"; };
 		78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffHorizontalRulerComponent.m; sourceTree = "<group>"; };
 		788321110A636D64003363D7 /* doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc.icns; sourceTree = "<group>"; };
@@ -314,6 +320,10 @@
 				786EB99E0A787985009D63DD /* NoteDraw.m */,
 				786EBA580A789651009D63DD /* RestDraw.h */,
 				786EBA590A789651009D63DD /* RestDraw.m */,
+				786EBB6C0A7C7A36009D63DD /* MeasureDraw.h */,
+				786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */,
+				786EBBA20A7C7C98009D63DD /* ClefDraw.h */,
+				786EBBA30A7C7C98009D63DD /* ClefDraw.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -535,6 +545,8 @@
 				786EB99F0A787985009D63DD /* NoteDraw.m in Sources */,
 				786EBA480A7894E2009D63DD /* Rest.m in Sources */,
 				786EBA5A0A789651009D63DD /* RestDraw.m in Sources */,
+				786EBB6E0A7C7A36009D63DD /* MeasureDraw.m in Sources */,
+				786EBBA40A7C7C98009D63DD /* ClefDraw.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

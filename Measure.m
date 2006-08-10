@@ -11,6 +11,7 @@
 #import "Clef.h"
 #import "Staff.h"
 #import "TimeSignature.h"
+@class MeasureDraw;
 
 @implementation Measure
 
@@ -398,6 +399,10 @@
 	notes = nil;
 	anim = nil;
 	[super dealloc];
+}
+
+- (Class)getViewClass{
+	return [MeasureDraw class];
 }
 
 @end

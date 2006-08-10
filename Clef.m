@@ -7,7 +7,7 @@
 //
 
 #import "Clef.h"
-
+@class ClefDraw;
 
 @implementation Clef
 
@@ -22,7 +22,7 @@
 + (Clef *)trebleClef{
 	static Clef *treble;
 	if(treble == nil){
-		treble = [[Clef alloc] initWithPitchOffset:2 withOctaveOffset:4];
+		treble = [[[Clef alloc] initWithPitchOffset:2 withOctaveOffset:4] retain];
 	}
 	return treble;
 }
@@ -30,7 +30,7 @@
 + (Clef *)bassClef{
 	static Clef *bass;
 	if(bass == nil){
-		bass = [[Clef alloc] initWithPitchOffset:4 withOctaveOffset:2];
+		bass = [[[Clef alloc] initWithPitchOffset:4 withOctaveOffset:2] retain];
 	}
 	return bass;
 }
@@ -61,6 +61,10 @@
 
 - (int)getTranspositionFrom:(Clef *)clef{
 	return ([self getOctaveForPosition:0] - [clef getOctaveForPosition:0]) * 7;
+}
+
+- (Class)getViewClass{
+	return [ClefDraw class];
 }
 
 @end

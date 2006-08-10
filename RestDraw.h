@@ -7,14 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "NoteDraw.h"
 @class Note;
 @class Clef;
 
-@interface RestDraw : NSObject {
+@interface RestDraw : NoteDraw {
 
 }
 
-+(void)draw:(Note *)note atX:(float)x highlighted:(BOOL)highlighted
++(void)draw:(Note *)note atX:(NSNumber *)x highlighted:(BOOL)highlighted
    withClef:(Clef *)clef onMeasure:(NSRect)measure;
 
 @end
