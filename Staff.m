@@ -10,6 +10,7 @@
 #import "Measure.h"
 #import "Clef.h"
 #import "KeySignature.h"
+#import "TimeSignature.h"
 
 @implementation Staff
 
@@ -20,9 +21,13 @@
 		[firstMeasure setKeySignature:[KeySignature getSignatureWithFlats:0]];
 		[firstMeasure setTimeSignature:[TimeSignature timeSignatureWithTop:4 bottom:4]];
 		measures = [[NSMutableArray arrayWithObject:firstMeasure] retain];
-		song = [_song retain];
+		song = _song;
 	}
 	return self;
+}
+
+- (void)setSong:(Song *)_song{
+	song = _song;
 }
 
 - (NSMutableArray *)getMeasures{
@@ -157,10 +162,22 @@
 
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder{
+	[coder encodeObject:measures forKey:@"measures"];
+	[coder encodeInt:channel forKey:@"channel"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder{
+	if(self = [super init]){
+		[self setMeasures:[coder decodeObjectForKey:@"measures"]];
+		channel = [coder decodeIntForKey:@"channel"];
+	}
+	return self;
+}
+
 - (void)dealloc{
 	[super dealloc];
 	[measures release];
-	[song release];
 	measures = nil;
 	song = nil;
 }

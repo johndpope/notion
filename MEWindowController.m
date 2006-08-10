@@ -12,11 +12,6 @@
 @implementation MEWindowController
 
 - (void)windowDidLoad{
-	Song *song = [[self document] getSong];
-	[song addObserver:self forKeyPath:@"staffs" options:NSKeyValueObservingOptionNew context:nil];
-	[song addObserver:self forKeyPath:@"tempoData" options:NSKeyValueObservingOptionNew context:nil];
-	[view setController:self];
-	[view setSong:song];
 	[self updateFeedbackDuration];
 	[view setFrameSize:[view calculateBounds].size];
 	[verticalRuler setFrameSize:NSMakeSize([verticalRuler frame].size.width, [view frame].size.height)];
@@ -59,12 +54,11 @@
 
 - (IBAction)addStaff:(id)sender{
 	Staff *staff = [[[self document] getSong] addStaff];
-	[self setupStaff:staff];
+	[self placeRulerComponents];
 }
 
 - (void)setupStaff:(Staff *)staff{
 	[self addVerticalRulerComponentFor:staff];
-	[self placeRulerComponents];
 	[view setNeedsDisplay:YES];
 }
 
@@ -139,16 +133,16 @@
 }
 
 - (void)awakeFromNib{
+	Song *song = [[self document] getSong];
+	[song addObserver:self forKeyPath:@"staffs" options:NSKeyValueObservingOptionNew context:nil];
+	[song addObserver:self forKeyPath:@"tempoData" options:NSKeyValueObservingOptionNew context:nil];
+	[view setController:self];
+	[view setSong:song];
 	[devicePopup buildMenu:kMIDIEndpointMenuDestinations opts:(kMIDIEndpointMenuOpt_SortByName | kMIDIEndpointMenuOpt_CanSelectNone)];
 	[[scrollView contentView] setPostsBoundsChangedNotifications:YES];
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(boundsDidChangeNotification:) name:NSViewBoundsDidChangeNotification
 		object:[scrollView contentView]];
-	NSEnumerator *staffs = [[[[self document] getSong] staffs] objectEnumerator];
-	id staff;
-	while(staff = [staffs nextObject]){
-		[self addVerticalRulerComponentFor:staff];
-	}
 	[self placeRulerComponents];
 	
 }
@@ -199,7 +193,7 @@
 			[note tieFrom:tie];
 			[tie tieTo:note];
 		}
-		if([measure isFull]) [staff getMeasureAfter:measure];		
+		if([measure isFull]) [staff getMeasureAfter:measure];
 	} else if([self getMode] == MODE_POINT){
 		if(onClef){
 			[staff toggleClefAtMeasure:measure];

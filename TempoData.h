@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class StaffHorizontalRulerComponent;
 
-@interface TempoData : NSObject {
+@interface TempoData : NSObject <NSCoding> {
 	float tempo;
 	IBOutlet StaffHorizontalRulerComponent *tempoPanel;
 	IBOutlet NSTextField *tempoText;

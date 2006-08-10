@@ -237,4 +237,33 @@
 	return [[[Note alloc] initWithPitch:[src getPitch] octave:[src getOctave] duration:duration dotted:dotted accidental:[src getAccidental]] autorelease];
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder{
+	[coder encodeInt:duration forKey:@"duration"];
+	[coder encodeBool:dotted forKey:@"dotted"];
+	[coder encodeInt:octave forKey:@"octave"];
+	[coder encodeInt:pitch forKey:@"pitch"];
+	[coder encodeInt:accidental forKey:@"accidental"];
+	[coder encodeObject:tieTo forKey:@"tieTo"];
+	[coder encodeObject:tieFrom forKey:@"tieFrom"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder{
+	if(self = [super init]){
+		duration = [coder decodeIntForKey:@"duration"];
+		dotted = [coder decodeBoolForKey:@"dotted"];
+		octave = [coder decodeIntForKey:@"octave"];
+		pitch = [coder decodeIntForKey:@"pitch"];
+		accidental = [coder decodeIntForKey:@"accidental"];
+		[self tieTo:[coder decodeObjectForKey:@"tieTo"]];
+		[self tieFrom:[coder decodeObjectForKey:@"tieFrom"]];
+	}
+	return self;
+}
+
+- (void)dealloc{
+	tieTo = nil;
+	tieFrom = nil;
+	[super dealloc];
+}
+
 @end

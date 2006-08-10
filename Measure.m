@@ -314,6 +314,56 @@
 	return pos - initPos;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder{
+	[coder encodeObject:staff forKey:@"staff"];
+	if(clef == [Clef trebleClef]){
+		[coder encodeObject:@"treble" forKey:@"clef"];
+	}
+	if(clef == [Clef bassClef]){
+		[coder encodeObject:@"bass" forKey:@"clef"];
+	}
+	if(keySig != nil){
+		[coder encodeInt:[keySig getNumFlats] forKey:@"keySigFlats"];
+		[coder encodeInt:[keySig getNumSharps] forKey:@"keySigSharps"];
+		if([keySig getNumFlats] == 0 && [keySig getNumSharps] == 0){
+			[coder encodeBool:YES forKey:@"keySigC"];
+		}
+	}
+	if(timeSig != nil){
+		[coder encodeInt:[timeSig getTop] forKey:@"timeSigTop"];
+		[coder encodeInt:[timeSig getBottom] forKey:@"timeSigBottom"];
+	}
+	[coder encodeObject:notes forKey:@"notes"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder{
+	if(self = [super init]){
+		staff = [coder decodeObjectForKey:@"staff"];
+		id deClef = [coder decodeObjectForKey:@"clef"];
+		if([deClef isEqualToString:@"treble"]){
+			[self setClef:[Clef trebleClef]];
+		} else if([deClef isEqualToString:@"bass"]){
+			[self setClef:[Clef bassClef]];
+		}
+		int flats = [coder decodeIntForKey:@"keySigFlats"];
+		int sharps = [coder decodeIntForKey:@"keySigSharps"];
+		if(flats > 0){
+			[self setKeySignature:[KeySignature getSignatureWithFlats:flats]];
+		} else if(sharps > 0){
+			[self setKeySignature:[KeySignature getSignatureWithSharps:sharps]];
+		} else if([coder decodeBoolForKey:@"keySigC"]){
+			[self setKeySignature:[KeySignature getSignatureWithFlats:0]];
+		}
+		int top = [coder decodeIntForKey:@"timeSigTop"];
+		int bottom = [coder decodeIntForKey:@"timeSigBottom"];
+		if(top > 0 && bottom > 0){
+			[self setTimeSignature:[TimeSignature timeSignatureWithTop:top bottom:bottom]];
+		}
+		[self setNotes:[coder decodeObjectForKey:@"notes"]];
+	}
+	return self;
+}
+
 - (void)dealloc{
 	[super dealloc];
 	[clef release];

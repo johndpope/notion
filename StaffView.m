@@ -228,14 +228,13 @@
 											   &fontCount );
 				
 				if( err != noErr || fontCount < 1 )
-					return NULL;
+					return;
 				
 				NSString *fontName;
 				err = ATSFontGetPostScriptName(
 											   fontRefs[0],
 											   kATSOptionFlagsDefault,
 											   &fontName);
-				int i=0;
 			}
 		}
 	}

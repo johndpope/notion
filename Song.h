@@ -10,7 +10,7 @@
 #import <CoreMidi/CoreMidi.h>
 @class Staff;
 
-@interface Song : NSObject {
+@interface Song : NSObject <NSCoding>{
 	NSMutableArray *staffs;
 	NSMutableArray *tempoData;
 }
@@ -21,6 +21,7 @@
 - (Staff *)addStaff;
 
 - (NSMutableArray *)tempoData;
+- (void)setTempoData:(NSMutableArray *)_tempoData;
 - (float)getTempoAt:(int)measureIndex;
 
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint;

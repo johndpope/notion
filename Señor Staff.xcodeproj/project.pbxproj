@@ -17,6 +17,7 @@
 		785EEA530A58B430005ABDAB /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEA520A58B430005ABDAB /* TempoData.m */; };
 		78683A1B0A0E8A72001DE5BB /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */; };
 		78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */; };
+		788321120A636D65003363D7 /* doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 788321110A636D64003363D7 /* doc.icns */; };
 		789BC2A60A1FFD2000597728 /* erest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A20A1FFD2000597728 /* erest.png */; };
 		789BC2A70A1FFD2000597728 /* qrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A30A1FFD2000597728 /* qrest.png */; };
 		789BC2A80A1FFD2000597728 /* srest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A40A1FFD2000597728 /* srest.png */; };
@@ -87,6 +88,7 @@
 		78683A1A0A0E8A72001DE5BB /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
 		78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffHorizontalRulerComponent.h; sourceTree = "<group>"; };
 		78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffHorizontalRulerComponent.m; sourceTree = "<group>"; };
+		788321110A636D64003363D7 /* doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc.icns; sourceTree = "<group>"; };
 		789BC2A20A1FFD2000597728 /* erest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erest.png; sourceTree = "<group>"; };
 		789BC2A30A1FFD2000597728 /* qrest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrest.png; sourceTree = "<group>"; };
 		789BC2A40A1FFD2000597728 /* srest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = srest.png; sourceTree = "<group>"; };
@@ -189,7 +191,6 @@
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				78E7F7AA0A3543FE008F8F40 /* VerticalRuler-Info.plist */,
 			);
-			comments = "- get mouse moved events when text box has focus\n- link time signatures across multiple staffs\n- chords\n- save/load\n\n- triplets\n- undo\n- drum measures\n- allow MIDI playback to be stopped\n- consolidate auto-split notes\n- icons for UI\n\n- multiple selection\n- drag notes up/down\n- copy/paste\n- show MIDI playback head in staff view\n\n- key signatures\n  - allow transposition when editing\n- multiple lines of notes\n";
 			name = "Music Editor";
 			sourceTree = "<group>";
 		};
@@ -230,6 +231,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				788321110A636D64003363D7 /* doc.icns */,
 				789C1CB70A524DA900572AA8 /* sstaff.icns */,
 				78E759D30A4F73A7005A67E4 /* musicato.ttf */,
 				78E7F7E50A354F79008F8F40 /* StaffVerticalRulerComponent.nib */,
@@ -321,6 +323,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "Señor Staff" */;
 			buildPhases = (
+				788321360A636E66003363D7 /* Rez */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
@@ -383,10 +386,21 @@
 				789C1CB80A524DA900572AA8 /* sstaff.icns in Resources */,
 				785EE9CF0A589031005ABDAB /* StaffHorizontalRulerComponent.nib in Resources */,
 				785EE9F60A5891DE005ABDAB /* qnote.png in Resources */,
+				788321120A636D65003363D7 /* doc.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		788321360A636E66003363D7 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D15AC300486D014006FF6A4 /* Sources */ = {

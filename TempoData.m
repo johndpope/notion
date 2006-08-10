@@ -62,4 +62,15 @@
 	[self refreshTempo];
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder{
+	[coder encodeFloat:tempo forKey:@"tempo"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder{
+	if(self = [super init]){
+		[self setTempo:[coder decodeFloatForKey:@"tempo"]];
+	}
+	return self;
+}
+
 @end

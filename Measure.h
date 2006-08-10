@@ -14,7 +14,7 @@
 @class TimeSignature;
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface Measure : NSObject {
+@interface Measure : NSObject <NSCoding> {
 	Staff *staff;
 	Clef *clef;
 	KeySignature *keySig;

@@ -16,7 +16,7 @@
 
 - (id)init{
 	if((self = [super init])){
-		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:240]] retain];
+		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120]] retain];
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
 	}
 	return self;
@@ -27,10 +27,12 @@
 }
 
 - (void)setStaffs:(NSMutableArray *)_staffs{
+	[self willChangeValueForKey:@"staffs"];
 	if(![staffs isEqual:_staffs]){
 		[staffs release];
 		staffs = [_staffs retain];
 	}
+	[self didChangeValueForKey:@"staffs"];
 }
 
 - (Staff *)addStaff{
@@ -45,8 +47,8 @@
 	if([staffs count] == 0){
 		[self addStaff];
 	}
-	[self didChangeValueForKey:@"staffs"];
 	[self refreshTempoData];
+	[self didChangeValueForKey:@"staffs"];
 }
 
 - (float)getTempoAt:(int)measureIndex{
@@ -80,6 +82,13 @@
 
 - (NSMutableArray *)tempoData{
 	return tempoData;
+}
+
+- (void)setTempoData:(NSMutableArray *)_tempoData{
+	if(![tempoData isEqual:_tempoData]){
+		[tempoData release];
+		tempoData = [_tempoData retain];
+	}
 }
 
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint{
@@ -134,6 +143,24 @@
 		return;
 	}
 
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder{
+	[coder encodeObject:staffs forKey:@"staffs"];
+	[coder encodeObject:tempoData forKey:@"tempoData"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder{
+	if(self = [super init]){
+		[self setStaffs:[coder decodeObjectForKey:@"staffs"]];
+		NSEnumerator *staffEnum = [staffs objectEnumerator];
+		id staff;
+		while(staff = [staffEnum nextObject]){
+			[staff setSong:self];
+		}
+		[self setTempoData:[coder decodeObjectForKey:@"tempoData"]];
+	}
+	return self;
 }
 
 - (void)dealloc{
