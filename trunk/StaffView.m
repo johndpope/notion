@@ -662,7 +662,7 @@
 		index += 0.5;
 		x -= 12;
 		if(x <= 0) break;
-		x -= [self calcNoteWidth:note] + [self minNoteSpacing] - 12;
+		x -= [self calcNoteDisplayWidth:note inMeasure:measure] + [self minNoteSpacing] - 12;
 		index += 0.5;
 	}
 	return index;
@@ -685,7 +685,7 @@
 		NSEnumerator *notes = [[measure getNotes] objectEnumerator];
 		id note = [notes nextObject];
 		while(index >= 1 && note){
-			x += [self calcNoteWidth:note] + [self minNoteSpacing];
+			x += [self calcNoteDisplayWidth:note inMeasure:measure] + [self minNoteSpacing];
 			note = [notes nextObject];
 			index -= 1;
 		}
@@ -694,9 +694,9 @@
 			x -= [self minNoteSpacing];
 		} else if(index > 0){
 			if(note == [[measure getNotes] lastObject]){
-				x += [self calcNoteWidth:note] + [self minNoteSpacing];
+				x += [self calcNoteDisplayWidth:note inMeasure:measure] + [self minNoteSpacing];
 			} else{
-				x += [self calcNoteWidth:note] / 2;
+				x += [self calcNoteDisplayWidth:note inMeasure:measure] / 2;
 			}
 		}
 	}
