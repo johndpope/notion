@@ -9,6 +9,7 @@
 #import "Staff.h"
 #import "Measure.h"
 #import "Clef.h"
+#import "Song.h"
 #import "KeySignature.h"
 #import "TimeSignature.h"
 
@@ -19,7 +20,6 @@
 		Measure *firstMeasure = [[Measure alloc] initWithStaff:self];
 		[firstMeasure setClef:[Clef trebleClef]];
 		[firstMeasure setKeySignature:[KeySignature getSignatureWithFlats:0]];
-		[firstMeasure setTimeSignature:[TimeSignature timeSignatureWithTop:4 bottom:4]];
 		measures = [[NSMutableArray arrayWithObject:firstMeasure] retain];
 		song = _song;
 	}
@@ -75,13 +75,12 @@
 }
 
 - (TimeSignature *)getTimeSignatureForMeasure:(Measure *)measure{
+	return [song getTimeSignatureAt:[measures indexOfObject:measure]];
+}
+
+- (TimeSignature *)getEffectiveTimeSignatureForMeasure:(Measure *)measure{
 	int index = [measures indexOfObject:measure];
-	while([measure getTimeSignature] == nil){
-		if(index == 0) return [TimeSignature getSignatureWithTop:4 bottom:4];
-		index--;
-		measure = [measures objectAtIndex:index];
-	}
-	return [measure getTimeSignature];
+	return [song getEffectiveTimeSignatureAt:index];
 }
 
 - (Measure *)getLastMeasure{
@@ -104,6 +103,7 @@
 	} else{
 		measure = [[Measure alloc] initWithStaff:self];
 		[measures addObject:measure];
+		[song refreshTimeSigs];
 		[song refreshTempoData];
 		return measure;
 	}
@@ -126,6 +126,7 @@
 		[measure keySigClose:nil];
 		[measures removeLastObject];
 	}
+	[song refreshTimeSigs];
 	[song refreshTempoData];
 }
 
@@ -137,8 +138,8 @@
 			if([note isEqualTo:source]){
 				return note;
 			}
-			return nil;
 		}
+		return nil;
 	} else{
 		Note *note = [measure getNoteBefore:source];
 		if([note isEqualTo:source]){
@@ -166,6 +167,19 @@
 			if([measure getClef] != nil) break;
 			[measure transposeBy:transposeAmount];
 		}
+	}
+}
+
+- (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom{
+	[song timeSigChangedAtIndex:[measures indexOfObject:measure]
+		top:(int)top bottom:(int)bottom];
+}
+
+- (void)cleanPanels{
+	NSEnumerator *measureEnum = [measures objectEnumerator];
+	id measure;
+	while(measure = [measureEnum nextObject]){
+		[measure cleanPanels];
 	}
 }
 

@@ -10,6 +10,7 @@
 #import "Staff.h"
 #import "Measure.h"
 #import "TempoData.h"
+#import "TimeSignature.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 @implementation Song
@@ -18,6 +19,7 @@
 	if((self = [super init])){
 		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120]] retain];
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
+		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
 	}
 	return self;
 }
@@ -44,9 +46,11 @@
 - (void)removeStaff:(Staff *)staff{
 	[self willChangeValueForKey:@"staffs"];
 	[staffs removeObject:staff];
+	[staff cleanPanels];
 	if([staffs count] == 0){
 		[self addStaff];
 	}
+	[self refreshTimeSigs];
 	[self refreshTempoData];
 	[self didChangeValueForKey:@"staffs"];
 }
@@ -88,6 +92,67 @@
 	if(![tempoData isEqual:_tempoData]){
 		[tempoData release];
 		tempoData = [_tempoData retain];
+	}
+}
+
+- (NSMutableArray *)timeSigs{
+	return timeSigs;
+}
+
+- (void)setTimeSigs:(NSMutableArray *)_timeSigs{
+	if(![timeSigs isEqual:_timeSigs]){
+		[timeSigs release];
+		timeSigs = [_timeSigs retain];
+	}
+}
+
+- (void)setTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
+	[timeSigs replaceObjectAtIndex:measureIndex withObject:sig];
+}
+
+- (TimeSignature *)getTimeSignatureAt:(int)measureIndex{
+	return [timeSigs objectAtIndex:measureIndex];
+}
+
+- (TimeSignature *)getEffectiveTimeSignatureAt:(int)measureIndex{
+	while([[self getTimeSignatureAt:measureIndex] isKindOfClass:[NSNull class]]){
+		if(measureIndex == 0) return [TimeSignature timeSignatureWithTop:4 bottom:4];
+		measureIndex--;
+	}
+	return [self getTimeSignatureAt:measureIndex];
+}
+
+- (void)refreshTimeSigs{
+	[self willChangeValueForKey:@"timeSigs"];
+	int numMeasures = 0;
+	NSEnumerator *staffEnum = [staffs objectEnumerator];
+	id staff;
+	while(staff = [staffEnum nextObject]){
+		if([[staff getMeasures] count] > numMeasures){
+			numMeasures = [[staff getMeasures] count];
+		}
+	}
+	while([timeSigs count] < numMeasures){
+		[timeSigs addObject:[NSNull null]];
+	}
+	while([timeSigs count] > numMeasures){
+		[timeSigs removeLastObject];
+	}
+	[self didChangeValueForKey:@"timeSigs"];
+}
+
+- (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom{
+	float oldTotal = [[self getEffectiveTimeSignatureAt:measureIndex] getMeasureDuration];
+	TimeSignature *sig = [TimeSignature timeSignatureWithTop:top bottom:bottom];
+	[self setTimeSignature:sig atIndex:measureIndex];
+	float newTotal = [sig getMeasureDuration];
+	NSEnumerator *staffsEnum = [staffs objectEnumerator];
+	id staff;
+	while(staff = [staffsEnum nextObject]){
+		if([[staff getMeasures] count] > measureIndex){
+			[[[staff getMeasures] objectAtIndex:measureIndex] timeSignatureChangedFrom:oldTotal
+				to:newTotal top:top bottom:bottom];
+		}
 	}
 }
 
@@ -148,6 +213,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:staffs forKey:@"staffs"];
 	[coder encodeObject:tempoData forKey:@"tempoData"];
+	[coder encodeObject:timeSigs forKey:@"timeSigs"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
@@ -159,6 +225,17 @@
 			[staff setSong:self];
 		}
 		[self setTempoData:[coder decodeObjectForKey:@"tempoData"]];
+		[self refreshTimeSigs];
+		NSArray *_sigs = [coder decodeObjectForKey:@"timeSigs"];
+		NSEnumerator *sigsEnum = [_sigs objectEnumerator];
+		id sig;
+		int index = 0;
+		while(sig = [sigsEnum nextObject]){
+			if(![sig isKindOfClass:[NSNull class]]){
+				[self setTimeSignature:[TimeSignature timeSignatureWithTop:[sig getTop] bottom:[sig getBottom]] atIndex:index];
+			}
+			index++;
+		}
 	}
 	return self;
 }
