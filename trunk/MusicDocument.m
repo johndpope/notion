@@ -1,0 +1,71 @@
+//
+//  MusicDocument.m
+//  Music Editor
+//
+//  Created by Konstantine Prevas on 5/3/06.
+//  Copyright __MyCompanyName__ 2006 . All rights reserved.
+//
+
+#import "MusicDocument.h"
+
+@implementation MusicDocument
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+    
+        // Add your subclass-specific initialization here.
+        // If an error occurs here, send a [self release] message and return nil.
+    
+    }
+    return self;
+}
+
+- (id)initWithType:(NSString *)typeName error:(NSError **)outError{
+	self = [super initWithType:typeName error:outError];
+	if(self){
+		[self setSong:[[Song alloc] init]];
+	}
+	return self;
+}
+
+- (void)makeWindowControllers
+{
+	windowController = [[MEWindowController alloc] initWithWindowNibName:@"MusicDocument"];
+	[self addWindowController:windowController];
+}
+
+- (void)windowControllerDidLoadNib:(NSWindowController *) aController
+{
+    [super windowControllerDidLoadNib:aController];
+    // Add any code here that needs to be executed once the windowController has loaded the document's window.
+}
+
+- (NSData *)dataRepresentationOfType:(NSString *)aType
+{
+    // Insert code here to write your document from the given data.  You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
+    
+    // For applications targeted for Tiger or later systems, you should use the new Tiger API -dataOfType:error:.  In this case you can also choose to override -writeToURL:ofType:error:, -fileWrapperOfType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
+
+    return nil;
+}
+
+- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType
+{
+    song = [[Song alloc] initWithData:data];
+	return song != nil;
+}
+
+- (Song *)getSong{
+	return song;
+}
+
+- (void)setSong:(Song *)_song{
+	if(![song isEqual:_song]){
+		[song release];
+		song = [_song retain];
+	}
+}
+
+@end

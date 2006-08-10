@@ -1,0 +1,14 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {setChannel = id; }; 
+            CLASS = Staff; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {channelButton = NSPopUpButton; rulerView = StaffVerticalRulerComponent; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = StaffVerticalRulerComponent; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}

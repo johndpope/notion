@@ -1,0 +1,43 @@
+{
+    IBClasses = (
+        {CLASS = CAMIDIEndpointMenu; LANGUAGE = ObjC; SUPERCLASS = NSPopUpButton; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addStaff = id; 
+                changeAccidental = id; 
+                changeDotted = id; 
+                changeDuration = id; 
+                playSong = id; 
+            }; 
+            CLASS = MEWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                devicePopup = CAMIDIEndpointMenu; 
+                dotted = NSButton; 
+                flat = NSButton; 
+                mode = NSMatrix; 
+                natural = NSButton; 
+                scrollView = NSScrollView; 
+                sharp = NSButton; 
+                tieToPrev = NSButton; 
+                verticalRuler = NSView; 
+                verticalRulerScroll = NSScrollView; 
+                view = StaffView; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = MusicDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }, 
+        {CLASS = NonScrollableScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
+        {CLASS = Song; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = StaffVerticalRuler; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = StaffVerticalRulerComponent; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {staff = Staff; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = StaffView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+    ); 
+    IBVersion = 1; 
+}
