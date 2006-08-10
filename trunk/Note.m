@@ -104,25 +104,25 @@
 	return 4.0 * [self getEffectiveDuration];
 }
 
-- (void)tieTo:(Note *)note{
+- (void)tieTo:(NoteBase *)note{
 	if(![tieTo isEqual:note]){
 		[tieTo release];
 		tieTo = [note retain];
 	}
 }
 
-- (Note *)getTieTo{
+- (NoteBase *)getTieTo{
 	return tieTo;
 }
 
-- (void)tieFrom:(Note *)note{
+- (void)tieFrom:(NoteBase *)note{
 	if(![tieFrom isEqual:note]){
 		[tieFrom release];
 		tieFrom = [note retain];
 	}
 }
 
-- (Note *)getTieFrom{
+- (NoteBase *)getTieFrom{
 	return tieFrom;
 }
 
