@@ -39,8 +39,6 @@
 - (Song *)getSong;
 - (void)setSong:(Song*)song;
 
-- (id)initWithFrame:(NSRect)frame;
-
 - (void)drawRect:(NSRect)rect;
 - (BOOL)isOpaque;
 
@@ -74,7 +72,6 @@
 
 - (void)drawStaff:(Staff *)staff y:(float)y;
 - (void)drawMeasure:(Measure *)measure x:(float)x top:(float)y base:(float)baseY height:(float)height lineHeight:(float)line withClef:(Clef *)clef;
-- (void)drawNote:(Note *)note x:(float)x y:(float)y measure:(NSRect)measure lineHeight:(float)line withClef:(Clef *)clef;
 
 - (void)setFeedbackNoteDuration:(int)_duration;
 - (void)setFeedbackNoteDotted:(BOOL)_dotted;

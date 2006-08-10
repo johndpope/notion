@@ -84,4 +84,6 @@
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	onChannel:(int)channel;
 
+- (Class)getViewClass;
+
 @end

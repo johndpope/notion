@@ -13,6 +13,7 @@
 #import "Measure.h"
 #import "Note.h"
 #import "NoteDraw.h"
+#import "MeasureDraw.h"
 #import "Clef.h"
 #import "TimeSignature.h"
 
@@ -233,14 +234,6 @@
 	return 10.0;
 }
 
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-	
-    }
-    return self;
-}
-
 - (void)loadLocalFonts{
 	NSString *fontsFolder;    
 	if ((fontsFolder = [[NSBundle mainBundle] resourcePath])) {
@@ -254,21 +247,13 @@
 																	NULL, kATSOptionFlagsDefault, &container);
 				ATSFontRef fontRefs[100];
 				ItemCount  fontCount;
-				err = ATSFontFindFromContainer(
-											   container,
-											   kATSOptionFlagsDefault,
-											   100,
-											   fontRefs,
-											   &fontCount );
+				err = ATSFontFindFromContainer(container, kATSOptionFlagsDefault, 100, fontRefs, &fontCount );
 				
 				if( err != noErr || fontCount < 1 )
 					return;
 				
 				NSString *fontName;
-				err = ATSFontGetPostScriptName(
-											   fontRefs[0],
-											   kATSOptionFlagsDefault,
-											   &fontName);
+				err = ATSFontGetPostScriptName(fontRefs[0], kATSOptionFlagsDefault, &fontName);
 			}
 		}
 	}
@@ -284,7 +269,6 @@
 	clefFeedback = [NSObject alloc];
 	keySigFeedback = [NSObject alloc];
 	timeSigFeedback = [NSObject alloc];
-	mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
 }
 
 - (void)drawRect:(NSRect)rect {
@@ -317,131 +301,37 @@
 }
 
 - (void)drawMeasure:(Measure *)measure x:(float)x top:(float)y base:(float)baseY height:(float)height lineHeight:(float)line withClef:(Clef *)clef{
-	int i;
 	NSRect bounds;
 	bounds.origin.x = x;
 	bounds.origin.y = y + 50;
 	bounds.size.height = height - 100;
 	bounds.size.width = [self calcMeasureWidth:measure];
 	if([self needsToDrawRect:bounds]){
-		[NSBezierPath strokeRect:bounds];
-		for(i=1; i<=3; i++){
-			NSPoint point1, point2;
-			point1.x = bounds.origin.x;
-			point2.x = bounds.origin.x + bounds.size.width;
-			point1.y = point2.y = bounds.origin.y + i * bounds.size.height / 4;
-			[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
-		}
-		
-		if([measure getClef] != nil){
-			NSImage *clef;
-			NSPoint clefLoc;
-			clefLoc.x = x;
-			if([measure getClef] == [Clef trebleClef]){
-				if(measure == feedbackMeasure && clefFeedback == mouseOver){
-					clef = [NSImage imageNamed:@"treble over.png"];
-				} else{
-					clef = [NSImage imageNamed:@"treble.png"];
-				}
-				clefLoc.y = baseY + 20;
-			} else if([measure getClef] == [Clef bassClef]){
-				if(measure == feedbackMeasure && clefFeedback == mouseOver){
-					clef = [NSImage imageNamed:@"bass over.png"];
-				} else{
-					clef = [NSImage imageNamed:@"bass.png"];
-				}
-				clefLoc.y = baseY - 7;
-			}
-			[clef compositeToPoint:clefLoc operation:NSCompositeSourceOver];
-		} else if(mouseOver == clefFeedback && measure == feedbackMeasure){
-			NSImage *clefIns;
-			if([measure getEffectiveClef] == [Clef trebleClef]){
-				clefIns = [NSImage imageNamed:@"clefins_bass.png"];
-			} else{
-				clefIns = [NSImage imageNamed:@"clefins_treble.png"];
-			}
-			[clefIns compositeToPoint:NSMakePoint(x, bounds.origin.y) operation:NSCompositeSourceOver];
-		}
-		
-		if([measure hasTimeSignature]){
-			NSPoint accLoc;
-			accLoc.x = x + [self calcClefWidth:measure];
-			TimeSignature *sig = [measure getTimeSignature];
-			accLoc.y = baseY - line * 18;
-			NSMutableDictionary *atts = [NSMutableDictionary dictionary];
-			[atts setObject:[NSFont fontWithName:@"Musicator" size:160] forKey:NSFontAttributeName];
-			if(measure == feedbackMeasure && mouseOver == timeSigFeedback){
-				[atts setObject:[NSColor redColor] forKey:NSForegroundColorAttributeName];
-			} else{
-				[atts setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
-			}
-			[[NSString stringWithFormat:@"%d", [sig getBottom]] drawAtPoint:accLoc withAttributes:atts];
-			accLoc.y -= line * 4;
-			[[NSString stringWithFormat:@"%d", [sig getTop]] drawAtPoint:accLoc withAttributes:atts];			
-			[[NSColor blackColor] set];
-		} else if(mouseOver == timeSigFeedback && measure == feedbackMeasure /*&&
-					![measure isShowingTimeSigPanel]*/){
-			NSImage *sigIns = [NSImage imageNamed:@"timesig_insert.png"];
-			[sigIns compositeToPoint:NSMakePoint(x + [self calcClefWidth:measure], bounds.origin.y) operation:NSCompositeSourceOver];			
-		}
-		
-		if([measure getKeySignature] != nil && ([[measure getKeySignature] getNumSharps] > 0 || [[measure getKeySignature] getNumFlats] > 0)){
-			NSPoint accLoc;
-			accLoc.x = x + [self calcClefWidth:measure] + [self calcTimeSignatureWidth:measure];
-			NSEnumerator *sharps = [[[measure getKeySignature] getSharps] objectEnumerator];
-			NSNumber *sharp;
-			NSImage *sharpImg;
-			if(mouseOver == keySigFeedback && measure == feedbackMeasure){
-				sharpImg = [NSImage imageNamed:@"sharp over.png"];
-			} else{
-				sharpImg = [NSImage imageNamed:@"sharp.png"];
-			}
-			while(sharp = [sharps nextObject]){
-				int sharpLoc = [sharp intValue];
-				accLoc.y = baseY - line * sharpLoc + 7.0;
-				[sharpImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
-				accLoc.x += 10.0;
-			}
-			NSEnumerator *flats = [[[measure getKeySignature] getFlats] objectEnumerator];
-			NSNumber *flat;
-			NSImage *flatImg;
-			if(mouseOver == keySigFeedback && measure == feedbackMeasure){
-				flatImg = [NSImage imageNamed:@"flat over.png"];
-			} else{
-				flatImg = [NSImage imageNamed:@"flat.png"];
-			}
-			while(flat = [flats nextObject]){
-				int flatLoc = [flat intValue];
-				accLoc.y = baseY - line * flatLoc + 3.0;
-				[flatImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
-				accLoc.x += 10.0;
-			}
-		} else if(mouseOver == keySigFeedback && measure == feedbackMeasure &&
-					![measure isShowingKeySigPanel]){
-			NSImage *sigIns = [NSImage imageNamed:@"keysig_insert.png"];
-			[sigIns compositeToPoint:NSMakePoint(x + [self calcClefWidth:measure] + [self calcTimeSignatureWidth:measure], bounds.origin.y) operation:NSCompositeSourceOver];			
-		}
-		
+		[[measure getViewClass] draw:measure withBounds:bounds base:[NSNumber numberWithFloat:baseY]
+						lineHeight:[NSNumber numberWithFloat:line] clefWidth:[NSNumber numberWithFloat:[self calcClefWidth:measure]]
+						timeSigWidth:[NSNumber numberWithFloat:[self calcTimeSignatureWidth:measure]]
+						mouseOverClef:(measure == feedbackMeasure && clefFeedback == mouseOver)
+						mouseOverTimeSig:(measure == feedbackMeasure && timeSigFeedback == mouseOver)
+						mouseOverKeySig:(measure == feedbackMeasure && keySigFeedback == mouseOver)];
+
 		NSEnumerator *notes = [[measure getNotes] objectEnumerator];
 		id note;
 		x += [self calcMeasureNoteAreaStart:measure] + [self minNoteSpacing];
 		while(note = [notes nextObject]){
-			[self drawNote:note x:x y:baseY measure:bounds lineHeight:line withClef:clef];
+			[[note getViewClass] draw:note atX:[NSNumber numberWithFloat:x] highlighted:(note == mouseOver)
+							 withClef:clef onMeasure:bounds];
 			x += [self calcNoteDisplayWidth:note inMeasure:measure] + [self minNoteSpacing];
 		}
 		if(measure == feedbackMeasure && [feedbackNote getDuration] > 0){
 			[[NSColor blueColor] set];
 			x = [self getXForIndex:feedbackX forStaff:feedbackStaff forMeasure:measure];
-			[self drawNote:feedbackNote x:x y:baseY measure:bounds lineHeight:line withClef:clef];
+			[[feedbackNote getViewClass] draw:feedbackNote atX:[NSNumber numberWithFloat:x] highlighted:NO
+							 withClef:clef onMeasure:bounds];
 			[[NSColor blackColor] set];
 		}
 	}
 }
 
-- (void)drawNote:(Note *)note x:(float)x y:(float)y measure:(NSRect)measure lineHeight:(float)line withClef:(Clef *)clef{
-	[[note getViewClass] draw:note atX:x highlighted:(note == mouseOver)
-					 withClef:clef onMeasure:measure];
-}
 
 - (int)getOctaveAtY:(float)y forStaff:(Staff *)staff staffTop:(float)staffTop forMeasure:(Measure *)measure{
 	int position = ([self calcStaffBase:staff fromTop:staffTop] - y + ([self calcStaffLineHeight:staff] / 2)) / [self calcStaffLineHeight:staff];
@@ -642,13 +532,11 @@
 	[clefFeedback release];
 	[keySigFeedback release];
 	[timeSigFeedback release];
-	[mouseOverColor release];
 	song = nil;
 	feedbackNote = nil;
 	clefFeedback = nil;
 	keySigFeedback = nil;
 	timeSigFeedback = nil;
-	mouseOverColor = nil;
 	[super dealloc];
 }
 

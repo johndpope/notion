@@ -14,6 +14,28 @@
 
 static NSMutableDictionary *noteX = nil;
 static NSColor *mouseOverColor;
+static NoteDraw *instance = nil;
+
+-(void)setNote:(Note *)_note{
+	note = _note;
+}
+
+-(void)setX:(float)_x{
+	x = _x;
+}
+
+-(void)setHighlighted:(BOOL)_highlighted{
+	highlighted = _highlighted;
+}
+
+-(void)setClef:(Clef *)_clef{
+	clef = _clef;
+}
+
+-(void)setMeasure:(NSRect)_measure{
+	measure = _measure;
+}
+
 
 +(void)resetAccidentals{
 	if(noteX == nil){
@@ -22,8 +44,20 @@ static NSColor *mouseOverColor;
 	[noteX removeAllObjects];
 }
 
-+(void)draw:(Note *)note atX:(float)x highlighted:(BOOL)highlighted
++(void)draw:(Note *)note atX:(NSNumber *)x highlighted:(BOOL)highlighted
 		withClef:(Clef *)clef onMeasure:(NSRect)measure{
+	if(instance == nil){
+		instance = [[NoteDraw alloc] init];
+	}
+	[instance setNote:note];
+	[instance setX:[x floatValue]];
+	[instance setHighlighted:highlighted];
+	[instance setClef:clef];
+	[instance setMeasure:measure];
+	[instance draw];
+}
+
+-(void)draw{
 	if(highlighted){
 		if(mouseOverColor == nil){
 			mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
@@ -33,28 +67,31 @@ static NSColor *mouseOverColor;
 	if(noteX == nil){
 		noteX = [[NSMutableDictionary dictionary] retain];
 	}
-	NSRect body;
-	float line = measure.size.height / 8.0;
-	float middle = measure.origin.y + measure.size.height / 2.0;
+	line = measure.size.height / 8.0;
+	middle = measure.origin.y + measure.size.height / 2.0;
+	[self doDraw];
+	[[NSColor blackColor] set];
+}
+
+-(void)doDraw{
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
 	body.origin.x = x;
 	body.size.width = 12;
 	body.size.height = 12;
 	body.origin.y = measure.origin.y + measure.size.height - line * position - 6;
-	[NoteDraw drawExtraStaffLinesForPosition:position withBody:body lineHeight:line];
+	[self drawExtraStaffLinesForPosition:position];
 	[NSBezierPath setDefaultLineWidth:1.5];
-	[NoteDraw drawNote:note withBody:body];
+	[self drawNote];
 	if([note getDuration] >= 2){
-		[NoteDraw drawStemForNote:note withBody:body stemUpwards:(body.origin.y + body.size.height <= middle)];
+		[self drawStemWithUpwards:(body.origin.y + body.size.height <= middle)];
 	}
 	[NSBezierPath setDefaultLineWidth:1.0];
-	[NoteDraw drawDotForNote:note withBody:body];
-	[NoteDraw drawAccidentalForNote:note withBody:body highlighted:highlighted];
-	[NoteDraw drawTieForNote:note withBody:body];
-	[[NSColor blackColor] set];
+	[self drawDot];
+	[self drawAccidental];
+	[self drawTie];
 }
 
-+(void)drawExtraStaffLinesForPosition:(int)position withBody:(NSRect)body lineHeight:(float)line{
+-(void)drawExtraStaffLinesForPosition:(int)position{
 	float lineY = body.origin.y + body.size.height/2;
 	if(position < -1){
 		int i = position;
@@ -84,7 +121,7 @@ static NSColor *mouseOverColor;
 	}	
 }
 
-+(void)drawNote:(Note *)note withBody:(NSRect)body{
+-(void)drawNote{
 	if([note getDuration] >= 4){
 		[[NSBezierPath bezierPathWithOvalInRect:body] fill];
 	} else{
@@ -92,7 +129,7 @@ static NSColor *mouseOverColor;
 	}	
 }
 
-+(void)drawStemForNote:(Note *)note withBody:(NSRect)body stemUpwards:(BOOL)up{
+-(void)drawStemWithUpwards:(BOOL)up{
 	NSPoint point1, point2;
 	point1.y = body.origin.y + (body.size.height / 2);
 	if(up){
@@ -123,7 +160,7 @@ static NSColor *mouseOverColor;
 	}	
 }
 
-+(void)drawDotForNote:(Note *)note withBody:(NSRect)body{
+-(void)drawDot{
 	if([note getDotted]){
 		NSRect dotRect;
 		dotRect.origin.x = body.origin.x + body.size.width;
@@ -133,7 +170,7 @@ static NSColor *mouseOverColor;
 	}	
 }
 
-+(void)drawAccidentalForNote:(Note *)note withBody:(NSRect)body highlighted:(BOOL)highlighted{
+-(void)drawAccidental{
 	if([note getAccidental] != NO_ACC && [note getTieFrom] == nil){
 		NSImage *acc;
 		if([note getAccidental] == FLAT){
@@ -161,7 +198,7 @@ static NSColor *mouseOverColor;
 	}	
 }
 
-+(void)drawTieForNote:(Note *)note withBody:(NSRect)body{
+-(void)drawTie{
 	Note *tieFrom = [note getTieFrom];
 	if(tieFrom != nil){
 		NSNumber *tieFromIndex = [NSNumber numberWithInt:tieFrom]; 
