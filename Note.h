@@ -36,11 +36,6 @@ static int FLAT = -1;
 - (void)setPitch:(int)_pitch;
 - (void)setAccidental:(int)_accidental;
 
-- (void)tieTo:(Note *)note;
-- (Note *)getTieTo;
-- (void)tieFrom:(Note *)note;
-- (Note *)getTieFrom;
-
 - (void)collapseOnTo:(Note *)note;
 
 @end

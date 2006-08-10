@@ -34,6 +34,11 @@
 - (NSArray *)removeDuration:(float)maxDuration;
 + (NoteBase *)tryToFill:(float)maxDuration copyingNote:(NoteBase *)src;
 
+- (void)tieTo:(NoteBase *)note;
+- (NoteBase *)getTieTo;
+- (void)tieFrom:(NoteBase *)note;
+- (NoteBase *)getTieFrom;
+
 - (Class)getViewClass;
 
 @end

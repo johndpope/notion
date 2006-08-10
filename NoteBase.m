@@ -111,6 +111,24 @@
 	return note;
 }
 
+// -- tie methods - do nothing by default
+
+- (void)tieTo:(NoteBase *)note{
+	
+}
+
+- (NoteBase *)getTieTo{
+	return nil;
+}
+
+- (void)tieFrom:(NoteBase *)note{
+	
+}
+
+- (NoteBase *)getTieFrom{
+	return nil;
+}
+
 - (Class)getViewClass{
 	[self doesNotRecognizeSelector:_cmd];
 	return [NSObject class];
