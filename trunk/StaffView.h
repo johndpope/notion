@@ -81,5 +81,7 @@
 
 - (void)setFeedbackNoteDuration:(int)_duration;
 - (void)setFeedbackNoteDotted:(BOOL)_dotted;
+- (void)setFeedbackNoteAccidental:(int)_accidental;
+- (void)updateFeedback:(NSEvent *)event;
 
 @end

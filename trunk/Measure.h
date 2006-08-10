@@ -18,7 +18,6 @@
 	Staff *staff;
 	Clef *clef;
 	KeySignature *keySig;
-	TimeSignature *timeSig;
 	NSMutableArray *notes;
 	NSViewAnimation *anim;
 	
@@ -55,8 +54,9 @@
 - (void)setKeySignature:(KeySignature *)_sig;
 
 - (TimeSignature *)getTimeSignature;
+- (BOOL)hasTimeSignature;
 - (TimeSignature *)getEffectiveTimeSignature;
-- (void)setTimeSignature:(TimeSignature *)_sig;
+- (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal top:(int)top bottom:(int)bottom;
 
 - (BOOL)isShowingKeySigPanel;
 - (NSView *)getKeySigPanel;
@@ -78,6 +78,8 @@
 - (IBAction)timeSigTopChanged:(id)sender;
 - (IBAction)timeSigBottomChanged:(id)sender;
 - (IBAction)timeSigClose:(id)sender;
+
+- (void)cleanPanels;
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	onChannel:(int)channel;

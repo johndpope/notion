@@ -3,11 +3,11 @@
 #include <CoreMIDI/MIDIServices.h>
 #import "CAMIDIEndpointMenu2.h"
 
-@class Song;
-@class TempoData;
 @class StaffRuler;
 @class StaffVerticalRuler;
-#include "Note.h"
+#import "Note.h"
+#import "Song.h"
+#import "TempoData.h"
 
 @implementation MEWindowController
 
@@ -57,7 +57,7 @@
 }
 
 - (IBAction)addStaff:(id)sender{
-	Staff *staff = [[[self document] getSong] addStaff];
+	[[[self document] getSong] addStaff];
 	[self placeRulerComponents];
 }
 
@@ -68,15 +68,17 @@
 
 - (void)placeRulerComponents{
 	NSEnumerator *staffs = [[[[self document] getSong] staffs] objectEnumerator];
-	id staff;
+	id staff, longest = nil;
 	while(staff = [staffs nextObject]){
+		if(longest == nil || [[staff getMeasures] count] > [[longest getMeasures] count]){
+			longest = staff;
+		}
 		if([staff rulerView] == nil){
 			[self setupStaff:staff];
 		}
 		[[staff rulerView] setFrameOrigin:NSMakePoint(0, [view calcStaffBase:staff fromTop:[view calcStaffTop:staff]] -
 													[view calcStaffLineHeight:staff] * 5.0)];
 	}
-	staff = [[[[self document] getSong] staffs] objectAtIndex:0];
 	NSEnumerator *tempos = [[[[self document] getSong] tempoData] objectEnumerator];
 	id tempo;
 	int i=0;
@@ -84,7 +86,7 @@
 		if([tempo tempoPanel] == nil){
 			[self addHorizontalRulerComponentFor:tempo];
 		}
-		[[tempo tempoPanel] setFrameOrigin:NSMakePoint([view getXForMeasure:[[staff getMeasures] objectAtIndex:i] forStaff:staff], 1)];
+		[[tempo tempoPanel] setFrameOrigin:NSMakePoint([view getXForMeasure:[[longest getMeasures] objectAtIndex:i] forStaff:longest], 1)];
 		i++;
 	}
 	[view setFrameSize:[view calculateBounds].size];

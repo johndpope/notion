@@ -71,6 +71,7 @@
 			note = nil;
 		}
 	}*/
+	if(index >= [notes count]) return nil;
 	note = [notes objectAtIndex:index];
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
@@ -193,18 +194,27 @@
 }
 
 - (TimeSignature *)getTimeSignature{
-	return timeSig;
-}
-
-- (TimeSignature *)getEffectiveTimeSignature{
 	return [staff getTimeSignatureForMeasure:self];
 }
 
-- (void)setTimeSignature:(TimeSignature *)_sig{
-	if(![timeSig isEqual:_sig]){
-		[timeSig release];
-		timeSig = [_sig retain];
+- (BOOL)hasTimeSignature{
+	return ![[self getTimeSignature] isKindOfClass:[NSNull class]];
+}
+
+- (TimeSignature *)getEffectiveTimeSignature{
+	return [staff getEffectiveTimeSignatureForMeasure:self];
+}
+
+- (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal top:(int)top bottom:(int)bottom{
+	if(newTotal < oldTotal){
+		[self addNotes:[NSArray array] atIndex:0];
+	} else{
+		[self grabNotesFromNextMeasure];
 	}
+	[timeSigTopStep setIntValue:top];
+	[timeSigTopText setIntValue:top];
+	[timeSigBottom selectItemWithTitle:[NSString stringWithFormat:@"%d", bottom]];
+	[[timeSigPanel superview] setNeedsDisplay:YES];
 }
 
 - (BOOL)isShowingKeySigPanel{
@@ -296,21 +306,8 @@
 
 - (IBAction)keySigClose:(id)sender{
 	[keySigPanel setHidden:YES withFade:YES blocking:(sender != nil)];
-	[keySigPanel removeFromSuperview];
-}
-
-- (void)timeSigChanged{
-	float oldSigTotal = [[self getEffectiveTimeSignature] getMeasureDuration];
-	TimeSignature *sig = [TimeSignature timeSignatureWithTop:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
-	if(![timeSig isEqual:sig]){
-		[self setTimeSignature:sig];
-		float newSigTotal = [sig getMeasureDuration];
-		if(newSigTotal < oldSigTotal){
-			[self addNotes:[NSArray array] atIndex:0];
-		} else{
-			[self grabNotesFromNextMeasure];
-		}
-		[[timeSigPanel superview] setNeedsDisplay:YES];
+	if([keySigPanel superview] != nil){
+		[keySigPanel removeFromSuperview];
 	}
 }
 
@@ -319,16 +316,23 @@
 	if(value < 1) value = 1;
 	[timeSigTopStep setIntValue:value];
 	[timeSigTopText setIntValue:value];
-	[self timeSigChanged];
+	[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
 }
 
 - (IBAction)timeSigBottomChanged:(id)sender{
-	[self timeSigChanged];
+	[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
 }
 
 - (IBAction)timeSigClose:(id)sender{
 	[timeSigPanel setHidden:YES withFade:YES blocking:(sender != nil)];
-	[timeSigPanel removeFromSuperview];
+	if([timeSigPanel superview] != nil){
+		[timeSigPanel removeFromSuperview];
+	}
+}
+
+- (void)cleanPanels{
+	[self timeSigClose:nil];
+	[self keySigClose:nil];
 }
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos onChannel:(int)channel{
@@ -358,10 +362,6 @@
 			[coder encodeBool:YES forKey:@"keySigC"];
 		}
 	}
-	if(timeSig != nil){
-		[coder encodeInt:[timeSig getTop] forKey:@"timeSigTop"];
-		[coder encodeInt:[timeSig getBottom] forKey:@"timeSigBottom"];
-	}
 	[coder encodeObject:notes forKey:@"notes"];
 }
 
@@ -382,11 +382,6 @@
 			[self setKeySignature:[KeySignature getSignatureWithSharps:sharps]];
 		} else if([coder decodeBoolForKey:@"keySigC"]){
 			[self setKeySignature:[KeySignature getSignatureWithFlats:0]];
-		}
-		int top = [coder decodeIntForKey:@"timeSigTop"];
-		int bottom = [coder decodeIntForKey:@"timeSigBottom"];
-		if(top > 0 && bottom > 0){
-			[self setTimeSignature:[TimeSignature timeSignatureWithTop:top bottom:bottom]];
 		}
 		[self setNotes:[coder decodeObjectForKey:@"notes"]];
 	}

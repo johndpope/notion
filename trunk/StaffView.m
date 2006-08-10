@@ -363,7 +363,7 @@
 			[clefIns compositeToPoint:NSMakePoint(x, bounds.origin.y) operation:NSCompositeSourceOver];
 		}
 		
-		if([measure getTimeSignature] != nil){
+		if([measure hasTimeSignature]){
 			NSPoint accLoc;
 			accLoc.x = x + [self calcClefWidth:measure];
 			TimeSignature *sig = [measure getTimeSignature];

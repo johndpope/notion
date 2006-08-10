@@ -38,6 +38,7 @@
 - (Clef *)getClefForMeasure:(Measure *)measure;
 - (KeySignature *)getKeySignatureForMeasure:(Measure *)measure;
 - (TimeSignature *)getTimeSignatureForMeasure:(Measure *)measure;
+- (TimeSignature *)getEffectiveTimeSignatureForMeasure:(Measure *)measure;
 
 - (Measure *)getLastMeasure;
 - (Measure *)getMeasureAfter:(Measure *)measure;
@@ -47,7 +48,10 @@
 
 - (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure atIndex:(int)index;
 
+- (void)cleanPanels;
+
 - (void)toggleClefAtMeasure:(Measure *)measure;
+- (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom;
 
 - (void)addTrackToMIDISequence:(MusicSequence *)musicSequence;
 
