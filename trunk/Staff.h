@@ -46,7 +46,7 @@
 - (Measure *)getMeasureContainingNote:(Note *)note;
 - (void)cleanEmptyMeasures;
 
-- (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure atIndex:(int)index;
+- (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure;
 
 - (void)cleanPanels;
 

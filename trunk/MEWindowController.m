@@ -197,7 +197,7 @@
 		measure = [staff getMeasureContainingNote:note];
 		if([tieToPrev state] == NSOnState){
 			[note setAccidental:NO_ACC];
-			Note *tie = [staff findPreviousNoteMatching:note inMeasure:measure atIndex:ceil(x)];
+			Note *tie = [staff findPreviousNoteMatching:note inMeasure:measure];
 			[note tieFrom:tie];
 			[tie tieTo:note];
 		}
