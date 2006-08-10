@@ -96,16 +96,20 @@
 	}
 }
 
+- (Measure *)addMeasure{
+	Measure *measure = [[Measure alloc] initWithStaff:self];
+	[measures addObject:measure];
+	[song refreshTimeSigs];
+	[song refreshTempoData];
+	return measure;
+}
+
 - (Measure *)getMeasureAfter:(Measure *)measure{
 	int index = [measures indexOfObject:measure];
 	if(index + 1 < [measures count]){
 		return [measures objectAtIndex:(index + 1)];
 	} else{
-		measure = [[Measure alloc] initWithStaff:self];
-		[measures addObject:measure];
-		[song refreshTimeSigs];
-		[song refreshTempoData];
-		return measure;
+		return [self addMeasure];
 	}
 }
 
@@ -130,7 +134,7 @@
 	[song refreshTempoData];
 }
 
-- (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure atIndex:(int)index{
+- (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure{
 	if([measure getFirstNote] == source){
 		Measure *prevMeasure = [[measure getStaff] getMeasureBefore:measure];
 		if(prevMeasure != nil){
