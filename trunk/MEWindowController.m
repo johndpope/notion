@@ -6,6 +6,7 @@
 @class StaffRuler;
 @class StaffVerticalRuler;
 #import "Note.h"
+#import "Rest.h"
 #import "Song.h"
 #import "TempoData.h"
 
@@ -231,7 +232,7 @@
 		[measure removeNoteAtIndex:x temporary:NO];
 		return YES;
 	} else if([self getMode] == MODE_NOTE && [[event characters] isEqualToString:@" "]){
-		[measure addNotes:[NSArray arrayWithObject:[[Note alloc] initRestWithDuration:[self getNoteModeDuration] dotted:[self getDotted]]] atIndex:x];
+		[measure addNotes:[NSArray arrayWithObject:[[Rest alloc] initWithDuration:[self getNoteModeDuration] dotted:[self getDotted]]] atIndex:x];
 		if([measure isFull]) [staff getMeasureAfter:measure];
 		return YES;
 	}

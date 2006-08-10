@@ -12,6 +12,7 @@
 #import "Staff.h"
 #import "Measure.h"
 #import "Note.h"
+#import "NoteDraw.h"
 #import "Clef.h"
 #import "TimeSignature.h"
 
@@ -287,7 +288,7 @@
 }
 
 - (void)drawRect:(NSRect)rect {
-	noteX = [[NSMutableDictionary alloc] init];
+	[NoteDraw resetAccidentals];
 	NSEnumerator *staffs = [[song staffs] objectEnumerator];
 	id staff;
 	NSAffineTransform *xform = [NSAffineTransform transform];
@@ -300,7 +301,6 @@
 	}
 	[xform invert];
 	[xform concat];
-	[noteX release];
 }
 
 - (void)drawStaff:(Staff *)staff y:(float)y{
@@ -425,193 +425,22 @@
 		NSEnumerator *notes = [[measure getNotes] objectEnumerator];
 		id note;
 		x += [self calcMeasureNoteAreaStart:measure] + [self minNoteSpacing];
-		float middle = bounds.origin.y + (bounds.size.height / 2);
 		while(note = [notes nextObject]){
-			[self drawNote:note x:x y:baseY measureMiddle:middle lineHeight:line withClef:clef];
+			[self drawNote:note x:x y:baseY measure:bounds lineHeight:line withClef:clef];
 			x += [self calcNoteDisplayWidth:note inMeasure:measure] + [self minNoteSpacing];
 		}
 		if(measure == feedbackMeasure && [feedbackNote getDuration] > 0){
 			[[NSColor blueColor] set];
 			x = [self getXForIndex:feedbackX forStaff:feedbackStaff forMeasure:measure];
-			[self drawNote:feedbackNote x:x y:baseY measureMiddle:middle lineHeight:line withClef:clef];
+			[self drawNote:feedbackNote x:x y:baseY measure:bounds lineHeight:line withClef:clef];
 			[[NSColor blackColor] set];
 		}
 	}
 }
 
-- (void)drawNote:(Note *)note x:(float)x y:(float)y measureMiddle:(float)middle lineHeight:(float)line withClef:(Clef *)clef{
-	if(note == mouseOver) [mouseOverColor set];
-	if([note isRest]){
-		[self drawRest:note x:x measureMiddle:middle lineHeight:line];
-		[[NSColor blackColor] set];
-		return;
-	}
-	NSRect body;
-	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
-	body.origin.x = x;
-	body.size.width = 12;
-	body.size.height = 12;
-	body.origin.y = y - line * position - 6;
-	float lineY = body.origin.y + body.size.height/2;
-	if(position < -1){
-		int i = position;
-		if(abs(position) % 2 == 1){
-			lineY -= line;
-			i++;
-		}
-		while(i < 0){
-			[NSBezierPath strokeLineFromPoint:NSMakePoint(body.origin.x - 5, lineY)
-				toPoint:NSMakePoint(body.origin.x + body.size.width + 5, lineY)];
-			lineY -= line * 2;
-			i += 2;
-		}
-	}
-	if(position > 9){
-		int i = position;
-		if(abs(position) % 2 == 1){
-			lineY += line;
-			i--;
-		}
-		while(i > 8){
-			[NSBezierPath strokeLineFromPoint:NSMakePoint(body.origin.x - 5, lineY)
-				toPoint:NSMakePoint(body.origin.x + body.size.width + 5, lineY)];
-			lineY += line * 2;
-			i -= 2;
-		}
-	}
-	[NSBezierPath setDefaultLineWidth:1.5];
-	if([note getDuration] >= 4){
-		[[NSBezierPath bezierPathWithOvalInRect:body] fill];
-	} else{
-		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
-	}
-	if([note getDuration] >= 2){
-		NSPoint point1, point2;
-		point1.y = body.origin.y + (body.size.height / 2);
-		if(body.origin.y + body.size.height <= middle){
-			point1.x = point2.x = body.origin.x + 0.5;
-			point2.y = point1.y + 30;
-		} else{
-			point1.x = point2.x = body.origin.x + body.size.width - 0.5;
-			point2.y = point1.y - 30;
-		}
-		[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
-		int i;
-		if(body.origin.y + body.size.height <= middle){
-			point1.x -= 7;
-			point1.y = point2.y - 7;
-		} else{
-			point1.x += 7;
-			point1.y = point2.y + 7;
-		}		
-		for(i=8; i<=[note getDuration]; i*=2){
-			[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
-			if(body.origin.y + body.size.height <= middle){
-				point1.y -= 5;
-				point2.y -= 5;
-			} else{
-				point1.y += 5;
-				point2.y += 5;
-			}
-		}
-	}
-	[NSBezierPath setDefaultLineWidth:1.0];
-	if([note getDotted]){
-		NSRect dotRect;
-		dotRect.origin.x = body.origin.x + body.size.width;
-		dotRect.origin.y = body.origin.y + body.size.height - 4;
-		dotRect.size.width = dotRect.size.height = 4;
-		[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill]; 
-	}
-	if([note getAccidental] != NO_ACC && [note getTieFrom] == nil){
-		NSImage *acc;
-		if([note getAccidental] == FLAT){
-			if(note == mouseOver){
-				acc = [NSImage imageNamed:@"flat over.png"];
-			} else{
-				acc = [NSImage imageNamed:@"flat.png"];
-			}
-		} else if([note getAccidental] == SHARP){
-			if(note == mouseOver){
-				acc = [NSImage imageNamed:@"sharp over.png"];
-			} else{
-				acc = [NSImage imageNamed:@"sharp.png"];
-			}
-		} else if([note getAccidental] == NATURAL){
-			if(note == mouseOver){
-				acc = [NSImage imageNamed:@"natural over.png"];
-			} else{
-				acc = [NSImage imageNamed:@"natural.png"];
-			}
-		} else{
-			NSAssert(NO, @"bad accidental value");
-		}
-		[acc compositeToPoint:NSMakePoint(body.origin.x - 10, body.origin.y + 5) operation:NSCompositeSourceOver];
-	}
-	Note *tieFrom = [note getTieFrom];
-	if(tieFrom != nil){
-		NSNumber *tieFromIndex = [NSNumber numberWithInt:tieFrom]; 
-		float startX = [[noteX objectForKey:tieFromIndex] floatValue];
-		NSBezierPath *tie = [NSBezierPath bezierPath];
-		[tie setLineWidth:2.0];
-		[tie moveToPoint:NSMakePoint(startX, body.origin.y + body.size.height)];
-		[tie curveToPoint:NSMakePoint(body.origin.x, body.origin.y + body.size.height)
-			controlPoint1:NSMakePoint((body.origin.x + startX) / 2, body.origin.y + body.size.height + 10)
-			controlPoint2:NSMakePoint((body.origin.x + startX) / 2, body.origin.y + body.size.height + 10)];
-		[tie stroke];
-	}
-	if([note getTieTo] != nil){
-		[noteX setObject:[NSNumber numberWithFloat:(body.origin.x+body.size.width)] forKey:[NSNumber numberWithInt:note]];
-	}
-	[[NSColor blackColor] set];
-}
-
-- (void)drawRest:(Note*)note x:(float)x measureMiddle:(float)middle lineHeight:(float)line{
-	NSRect rect;
-	NSImage *img = nil;
-	switch([note getDuration]){
-		case 1:
-			rect.origin.x = x;
-			rect.origin.y = middle - line * 2;
-			rect.size.height = line;
-			rect.size.width = 15;
-			[NSBezierPath fillRect:rect];
-			break;
-		case 2:
-			rect.origin.x = x;
-			rect.origin.y = middle - line;
-			rect.size.height = line;
-			rect.size.width = 15;
-			[NSBezierPath fillRect:rect];
-			break;
-		case 4:
-			img = [NSImage imageNamed:@"qrest.png"];
-			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
-				operation:NSCompositeSourceOver];
-			break;
-		case 8:
-			img = [NSImage imageNamed:@"erest.png"];
-			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
-				operation:NSCompositeSourceOver];
-			break;
-		case 16:
-			img = [NSImage imageNamed:@"srest.png"];
-			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
-				operation:NSCompositeSourceOver];
-			break;
-		case 32:
-			img = [NSImage imageNamed:@"trest.png"];
-			[img compositeToPoint:NSMakePoint(x, middle + [img size].height / 2)
-				operation:NSCompositeSourceOver];
-			break;
-	}
-	if([note getDotted]){
-		NSRect dotRect;
-		dotRect.origin.x = x + (img != nil ? [img size].width : 17);
-		dotRect.origin.y = (img != nil ? middle + 10 : middle);
-		dotRect.size.width = dotRect.size.height = 4;
-		[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill]; 
-	}
+- (void)drawNote:(Note *)note x:(float)x y:(float)y measure:(NSRect)measure lineHeight:(float)line withClef:(Clef *)clef{
+	[[note getViewClass] draw:note atX:x highlighted:(note == mouseOver)
+					 withClef:clef onMeasure:measure];
 }
 
 - (int)getOctaveAtY:(float)y forStaff:(Staff *)staff staffTop:(float)staffTop forMeasure:(Measure *)measure{

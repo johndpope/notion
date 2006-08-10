@@ -28,14 +28,12 @@ static int FLAT = -1;
 
 - (id)initWithPitch:(int)_pitch octave:(int)_octave 
 	duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental;
-- (id)initRestWithDuration:(int)_duration dotted:(BOOL)_dotted;
 		
 - (int)getDuration;
 - (BOOL)getDotted;
 - (int)getPitch;
 - (int)getOctave;
 - (int)getAccidental;
-- (BOOL)isRest;
 
 - (float)getEffectiveDuration;
 
@@ -59,5 +57,7 @@ static int FLAT = -1;
 - (void)collapseOnTo:(Note *)note;
 - (NSArray *)removeDuration:(float)maxDuration;
 + (Note *)tryToFill:(float)maxDuration copyingNote:(Note *)src;
+
+- (Class)getViewClass;
 
 @end
