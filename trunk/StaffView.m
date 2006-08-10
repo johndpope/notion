@@ -121,7 +121,8 @@
 	return currY;
 }
 
-- (float)calcMeasureWidth:(Measure *)measure{
+- (float)calcSingleMeasureWidth:(Measure *)measure{
+	if(measure == nil) return 0;
 	float width = [self minNoteSpacing];
 	NSEnumerator *notes = [[measure getNotes] objectEnumerator];
 	id note;
@@ -131,6 +132,20 @@
 	if(width < 150.0) width = 150.0;
 	width += [self calcMeasureNoteAreaStart:measure];
 	return width;
+}
+
+- (float)calcMeasureWidth:(Measure *)measure{
+	float max = 0;
+	int index = [[[measure getStaff] getMeasures] indexOfObject:measure];
+	NSEnumerator *staffs = [[song staffs] objectEnumerator];
+	id staff;
+	while(staff = [staffs nextObject]){
+		if([[staff getMeasures] count] > index){
+			float width = [self calcSingleMeasureWidth:[[staff getMeasures] objectAtIndex:index]];
+			if(width > max) max = width;
+		}
+	}
+	return max;
 }
 
 - (float)keySignatureWidth:(KeySignature *)sig{
@@ -169,6 +184,24 @@
 
 - (float)calcNoteWidth:(Note *)note{
 	return (72.0 / [note getDuration]) * ([note getDotted] ? 1.5 : 1);
+}
+
+- (float) calcNoteDisplayWidth: (Note *)note inMeasure:(Measure *)measure{
+	float width = [self calcNoteWidth:note];
+	float noteStart = [measure getNoteStartDuration:note];
+	float noteEnd = [measure getNoteEndDuration:note];
+	int measureIndex = [[[measure getStaff] getMeasures] indexOfObject:measure];
+	NSEnumerator *staffs = [[song staffs] objectEnumerator];
+	int max = 0;
+	id staff;
+	while(staff = [staffs nextObject]){
+		if([[staff getMeasures] count] > measureIndex){
+			Measure *measure = [[staff getMeasures] objectAtIndex:measureIndex];
+			int numNotes = [measure getNumberOfNotesStartingAt:noteStart endingAt:noteEnd];
+			if(numNotes > max) max = numNotes;
+		}
+	}
+	return width + max * [self minNoteSpacing];
 }
 
 - (float)staffSpacing{
@@ -395,7 +428,7 @@
 		float middle = bounds.origin.y + (bounds.size.height / 2);
 		while(note = [notes nextObject]){
 			[self drawNote:note x:x y:baseY measureMiddle:middle lineHeight:line withClef:clef];
-			x += [self calcNoteWidth:note] + [self minNoteSpacing];
+			x += [self calcNoteDisplayWidth:note inMeasure:measure] + [self minNoteSpacing];
 		}
 		if(measure == feedbackMeasure && [feedbackNote getDuration] > 0){
 			[[NSColor blueColor] set];

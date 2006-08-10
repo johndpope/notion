@@ -22,6 +22,10 @@
 	return self;
 }
 
+- (Staff *)getStaff{
+	return staff;
+}
+
 - (NSMutableArray *)getNotes{
 	return notes;
 }
@@ -236,6 +240,34 @@
 		index--;
 	}
 	return nil;
+}
+
+- (float)getNoteStartDuration:(Note *)note{
+	float start = 0;
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id currNote;
+	while((currNote = [notesEnum nextObject]) && currNote != note){
+		start += [currNote getEffectiveDuration];
+	}
+	return start;
+}
+
+- (float)getNoteEndDuration:(Note *)note{
+	return [self getNoteStartDuration:note] + [note getEffectiveDuration];
+}
+
+- (int)getNumberOfNotesStartingAt:(float)startDuration endingAt:(float)endDuration{
+	float duration = 0;
+	int count = 0;
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id currNote;
+	while((currNote = [notesEnum nextObject]) && duration < endDuration){
+		if(duration > startDuration){
+			count++;
+		}
+		duration += [currNote getEffectiveDuration];
+	}
+	return count;
 }
 
 - (void)transposeBy:(int)transposeAmount{
