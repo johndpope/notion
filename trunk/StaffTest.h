@@ -3,7 +3,7 @@
 //  Señor Staff
 //
 //  Created by Konstantine Prevas on 8/6/06.
-//  Copyright (c) 2006 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2006 Konstantine Prevas. All rights reserved.
 //
 
 #import <SenTestingKit/SenTestingKit.h>

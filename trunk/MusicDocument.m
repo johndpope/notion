@@ -3,7 +3,7 @@
 //  Music Editor
 //
 //  Created by Konstantine Prevas on 5/3/06.
-//  Copyright __MyCompanyName__ 2006 . All rights reserved.
+//  Copyright Konstantine Prevas 2006 . All rights reserved.
 //
 
 #import "MusicDocument.h"

@@ -3,7 +3,7 @@
 //  Music Editor
 //
 //  Created by Konstantine Prevas on 5/16/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.
+//  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
 #import "KeySignature.h"
