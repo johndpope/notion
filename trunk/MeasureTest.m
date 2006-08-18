@@ -170,6 +170,70 @@
 	[note release];
 }
 
+- (void)testInsertIntoTieOnAdd{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
+	[firstNote tieTo:secondNote];
+	[secondNote tieFrom:firstNote];
+	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	STAssertEqualObjects([firstNote getTieTo], thirdNote, @"Tie not adjusted when adding note between tied notes.");
+	STAssertEqualObjects([secondNote getTieFrom], thirdNote, @"Tie not adjusted when adding note between tied notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];	
+}
+
+- (void)testBreakTieOnAddWithinMeasure{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
+	[firstNote tieTo:secondNote];
+	[secondNote tieFrom:firstNote];
+	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	STAssertNil([firstNote getTieTo], @"Tie not broken when adding note between tied notes.");
+	STAssertNil([secondNote getTieFrom], @"Tie not broken when adding note between tied notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+}
+
+- (void)testBreakTieOnAddAtEndOfMeasure{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
+	[firstNote tieTo:secondNote];
+	[secondNote tieFrom:firstNote];
+	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	STAssertNil([firstNote getTieTo], @"Tie not broken when adding note between tied notes.");
+	STAssertNil([secondNote getTieTo], @"Tie not broken when adding note between tied notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];	
+}
+
+- (void)testBreakTieOnAddAtBeginningOfMeasure{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	[[staff getLastMeasure] addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
+	[firstNote tieTo:secondNote];
+	[secondNote tieFrom:firstNote];
+	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	STAssertNil([firstNote getTieTo], @"Tie not broken when adding note between tied notes.");
+	STAssertNil([secondNote getTieTo], @"Tie not broken when adding note between tied notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];	
+}
+
 - (void)testRemoveNote{
 	Note *note = [[Note alloc] init];
 	[measure setNotes:[NSMutableArray arrayWithObject:note]];

@@ -56,6 +56,31 @@
 	NSEnumerator *notesEnum = [_notes reverseObjectEnumerator];
 	NoteBase *note;
 	index = ceil(index);
+	
+	// break tie if necessary
+	Note *prevNote = nil, *nextNote = nil;
+	if(index-1 >= 0){
+		prevNote = [notes objectAtIndex:index-1];
+		nextNote = [prevNote getTieTo];
+	} else if(index < [notes count]){
+		nextNote = [notes objectAtIndex:index];
+		prevNote = [nextNote getTieFrom];		
+	}
+	if(prevNote != nil && nextNote != nil){
+		if([prevNote isEqualTo:[_notes objectAtIndex:0]]){
+			[prevNote tieTo:[_notes objectAtIndex:0]];
+			[[_notes objectAtIndex:0] tieFrom:prevNote];
+		} else{
+			[prevNote tieTo:nil];
+		}
+		if([nextNote isEqualTo:[_notes lastObject]]){
+			[[_notes lastObject] tieTo:nextNote];
+			[nextNote tieFrom:[_notes lastObject]];
+		} else{
+			[nextNote tieFrom:nil];
+		}
+	}
+	
 	while(note = [notesEnum nextObject]){
 		[notes insertObject:note atIndex:index];
 	}
