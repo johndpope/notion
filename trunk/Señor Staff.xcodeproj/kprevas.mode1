@@ -347,7 +347,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>62 55 1377 823 0 0 1440 878 </string>
+						<string>63 55 1377 823 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -377,7 +377,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>784A1DF00A8F1181002C37A5</string>
+										<string>78F5D8620A92CB8900D55260</string>
 										<key>history</key>
 										<array>
 											<string>786A93740A8864F80006F54C</string>
@@ -395,7 +395,7 @@
 											<string>786A96390A89AE8E0006F54C</string>
 											<string>784A1DEB0A8F1181002C37A5</string>
 											<string>784A1DEC0A8F1181002C37A5</string>
-											<string>784A1DED0A8F1181002C37A5</string>
+											<string>784A1DF50A901A86002C37A5</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -411,8 +411,6 @@
 											<string>786A94E80A899C0A0006F54C</string>
 											<string>786A959D0A89A44F0006F54C</string>
 											<string>786A959E0A89A44F0006F54C</string>
-											<string>784A1DEE0A8F1181002C37A5</string>
-											<string>784A1DEF0A8F1181002C37A5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -426,7 +424,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1169, 777}}</string>
 								<key>RubberWindowFrame</key>
-								<string>62 55 1377 823 0 0 1440 878 </string>
+								<string>63 55 1377 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -446,7 +444,7 @@
 								<key>Frame</key>
 								<string>{{0, 782}, {1169, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>62 55 1377 823 0 0 1440 878 </string>
+								<string>63 55 1377 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -470,9 +468,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>784A1DF10A8F1181002C37A5</string>
+				<string>78F5D8600A92CB5F00D55260</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>784A1DF20A8F1181002C37A5</string>
+				<string>78F5D8610A92CB5F00D55260</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -591,7 +589,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>177148289.99793699</real>
+	<real>177392472.498548</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -606,13 +604,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>788317EF0A617516003363D7</string>
-		<string>7841FD130A09CEAA00292132</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/kprevas/Señor Staff/trunk/Señor Staff.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>62 55 1377 823 0 0 1440 878 </string>
+	<string>63 55 1377 823 0 0 1440 878 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

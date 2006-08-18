@@ -13,6 +13,7 @@
 		7841FD8C0A0B08B800292132 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD8B0A0B08B800292132 /* Song.m */; };
 		7841FDD80A0B1E3100292132 /* Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FDD70A0B1E3100292132 /* Measure.m */; };
 		784AFBB80A7F1C9A00832B7C /* NoteBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 784AFBB70A7F1C9A00832B7C /* NoteBase.m */; };
+		784E44080A957C2500BE86EF /* NoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 784E44070A957C2500BE86EF /* NoteTest.m */; };
 		785EE9CF0A589031005ABDAB /* StaffHorizontalRulerComponent.nib in Resources */ = {isa = PBXBuildFile; fileRef = 785EE9CE0A589031005ABDAB /* StaffHorizontalRulerComponent.nib */; };
 		785EE9F60A5891DE005ABDAB /* qnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 785EE9F50A5891DE005ABDAB /* qnote.png */; };
 		785EEA530A58B430005ABDAB /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEA520A58B430005ABDAB /* TempoData.m */; };
@@ -106,6 +107,8 @@
 		7841FDD70A0B1E3100292132 /* Measure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measure.m; sourceTree = "<group>"; };
 		784AFBB60A7F1C9A00832B7C /* NoteBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBase.h; sourceTree = "<group>"; };
 		784AFBB70A7F1C9A00832B7C /* NoteBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBase.m; sourceTree = "<group>"; };
+		784E44060A957C2500BE86EF /* NoteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTest.h; sourceTree = "<group>"; };
+		784E44070A957C2500BE86EF /* NoteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTest.m; sourceTree = "<group>"; };
 		785EE9CE0A589031005ABDAB /* StaffHorizontalRulerComponent.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = StaffHorizontalRulerComponent.nib; sourceTree = "<group>"; };
 		785EE9F50A5891DE005ABDAB /* qnote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qnote.png; sourceTree = "<group>"; };
 		785EEA510A58B430005ABDAB /* TempoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempoData.h; sourceTree = "<group>"; };
@@ -368,6 +371,8 @@
 				786A93F10A89822B0006F54C /* MeasureTest.m */,
 				78BDB83A0A8AE15D00323E8A /* SongTest.h */,
 				78BDB83B0A8AE15D00323E8A /* SongTest.m */,
+				784E44060A957C2500BE86EF /* NoteTest.h */,
+				784E44070A957C2500BE86EF /* NoteTest.m */,
 			);
 			name = "Test cases";
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				786A93F20A89822B0006F54C /* MeasureTest.m in Sources */,
 				786A95510A899E7C0006F54C /* Rest.m in Sources */,
 				78BDB83C0A8AE15D00323E8A /* SongTest.m in Sources */,
+				784E44080A957C2500BE86EF /* NoteTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
