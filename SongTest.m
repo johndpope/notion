@@ -14,7 +14,7 @@
 @implementation SongTest
 
 - (void) setUp{
-	song = [[Song alloc] init];
+	song = [[Song alloc] initWithDocument:nil];
 }
 - (void) tearDown{
 	[song release];

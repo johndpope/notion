@@ -26,8 +26,16 @@
 	return self;
 }
 
+- (NSUndoManager *)undoManager{
+	return [[song document] undoManager];
+}
+
 - (void)setSong:(Song *)_song{
 	song = _song;
+}
+
+- (Song *)getSong{
+	return song;
 }
 
 - (NSMutableArray *)getMeasures{
@@ -98,10 +106,24 @@
 
 - (Measure *)addMeasure{
 	Measure *measure = [[Measure alloc] initWithStaff:self];
-	[measures addObject:measure];
+	[self addMeasure:measure];
 	[song refreshTimeSigs];
 	[song refreshTempoData];
 	return measure;
+}
+
+- (void)addMeasure:(Measure *)measure{
+	if(![measures containsObject:measure]){
+		[[[self undoManager] prepareWithInvocationTarget:self] removeMeasure:measure];
+		[measures addObject:measure];
+	}
+}
+
+- (void)removeMeasure:(Measure *)measure{
+	if([measures containsObject:measure]){
+		[[[self undoManager] prepareWithInvocationTarget:self] addMeasure:measure];
+		[measures removeObject:measure];		
+	}
 }
 
 - (Measure *)getMeasureAfter:(Measure *)measure{
@@ -128,7 +150,7 @@
 	while([measures count] > 1 && [[measures lastObject] isEmpty]){
 		Measure *measure = [measures lastObject];
 		[measure keySigClose:nil];
-		[measures removeLastObject];
+		[self removeMeasure:measure];
 	}
 	[song refreshTimeSigs];
 	[song refreshTempoData];
@@ -139,14 +161,14 @@
 		Measure *prevMeasure = [[measure getStaff] getMeasureBefore:measure];
 		if(prevMeasure != nil){
 			NoteBase *note = [[prevMeasure getNotes] lastObject];
-			if([note isEqualTo:source]){
+			if([note pitchMatches:source]){
 				return note;
 			}
 		}
 		return nil;
 	} else{
 		NoteBase *note = [measure getNoteBefore:source];
-		if([note isEqualTo:source]){
+		if([note pitchMatches:source]){
 			return note;
 		}
 		return nil;

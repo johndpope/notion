@@ -13,15 +13,24 @@
 @implementation Note
 
 - (id)initWithPitch:(int)_pitch octave:(int)_octave 
-	duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental{
+	duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)_staff{
 	if(self = [super init]){
 		pitch = _pitch;
 		octave = _octave;
 		duration = _duration;
 		dotted = _dotted;
 		accidental = _accidental;
+		staff = _staff;
 	}
 	return self;
+}
+
+- (NSUndoManager *)undoManager{
+	return [[[[self getStaff] getSong] document] undoManager];
+}
+
+- (Staff *)getStaff{
+	return staff;
 }
 
 - (int)getDuration{
@@ -59,7 +68,7 @@
 - (id)copyWithZone:(NSZone *)zone{
 	return [[Note allocWithZone:zone] initWithPitch:pitch
 		octave:octave duration:duration dotted:dotted
-		accidental:accidental];
+		accidental:accidental onStaff:staff];
 }
 
 - (BOOL)isEqualTo:(id)obj{
@@ -67,6 +76,11 @@
 		[obj getPitch] == pitch && [obj getOctave] == octave &&
 		[obj getDuration] == duration && [obj getDotted] == dotted &&
 		[obj getAccidental] == accidental;
+}
+
+- (BOOL)pitchMatches:(Note *)note{
+	return [note getPitch] == pitch && [note getOctave] == octave &&
+		[note getAccidental] == accidental;
 }
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
@@ -105,6 +119,7 @@
 }
 
 - (void)tieTo:(NoteBase *)note{
+	[[[self undoManager] prepareWithInvocationTarget:self] tieTo:tieTo];
 	if(![tieTo isEqual:note]){
 		[tieTo release];
 		tieTo = [note retain];
@@ -116,6 +131,7 @@
 }
 
 - (void)tieFrom:(NoteBase *)note{
+	[[[self undoManager] prepareWithInvocationTarget:self] tieFrom:tieFrom];
 	if(![tieFrom isEqual:note]){
 		[tieFrom release];
 		tieFrom = [note retain];

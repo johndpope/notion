@@ -15,13 +15,18 @@
 
 @implementation Song
 
-- (id)init{
+- (id)initWithDocument:(MusicDocument *)_doc{
 	if((self = [super init])){
+		doc = _doc;
 		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120]] retain];
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
 	}
 	return self;
+}
+
+- (MusicDocument *)document{
+	return doc;
 }
 
 - (NSMutableArray *)staffs{

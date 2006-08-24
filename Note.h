@@ -10,6 +10,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "KeySignature.h"
 #import "NoteBase.h"
+@class Staff;
 
 static int NO_ACC = -100;
 static int SHARP = 1;
@@ -23,11 +24,15 @@ static int FLAT = -1;
 	
 	Note *tieTo;
 	Note *tieFrom;
+	
+	Staff *staff;
 }
 
 - (id)initWithPitch:(int)_pitch octave:(int)_octave 
-	duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental;
+		   duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)staff;
 		
+- (Staff *)getStaff;
+
 - (int)getPitch;
 - (int)getOctave;
 - (int)getAccidental;
@@ -35,6 +40,8 @@ static int FLAT = -1;
 - (void)setOctave:(int)_octave;
 - (void)setPitch:(int)_pitch;
 - (void)setAccidental:(int)_accidental;
+
+- (BOOL)pitchMatches:(Note *)note;
 
 - (void)collapseOnTo:(Note *)note;
 

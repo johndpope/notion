@@ -56,7 +56,7 @@
 - (void) testGetEffectiveTimeSignatureForMeasureWhenMeasureHasEffectiveTimeSignature{
 	Measure *measure = [staff getLastMeasure];
 	TimeSignature *timeSig = [TimeSignature alloc];
-	Song *song = [[Song alloc] init];
+	Song *song = [[Song alloc] initWithDocument:nil];
 	NSMutableArray *timeSigs = [NSMutableArray array];
 	[timeSigs addObject:timeSig];
 	[song setTimeSigs:timeSigs];
@@ -70,7 +70,7 @@
 	Measure *firstMeasure = [staff getLastMeasure];
 	Measure *secondMeasure = [staff addMeasure];
 	TimeSignature *timeSig = [TimeSignature alloc];
-	Song *song = [[Song alloc] init];
+	Song *song = [[Song alloc] initWithDocument:nil];
 	NSMutableArray *timeSigs = [NSMutableArray array];
 	[timeSigs addObject:[NSNull null]];
 	[timeSigs addObject:timeSig];
@@ -160,28 +160,37 @@
 
 - (void) testFindPreviousNoteMatchingInSameMeasure{
 	Measure *measure = [staff getLastMeasure];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	STAssertEqualObjects([staff findPreviousNoteMatching:secondNote inMeasure:measure], firstNote, @"Wrong note returned.");
 	[firstNote release];
 	[secondNote release];
 }
+- (void) testFindPreviousNoteMatchingWithDifferentDuration{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:YES accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	STAssertEqualObjects([staff findPreviousNoteMatching:secondNote inMeasure:measure], firstNote, @"Wrong note returned.");
+	[firstNote release];
+	[secondNote release];	
+}
 - (void) testFindPreviousNoteMatchingInPreviousMeasure{
 	Measure *firstMeasure = [staff getLastMeasure];
 	Measure *secondMeasure = [staff addMeasure];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	[firstMeasure setNotes:[NSMutableArray arrayWithObject:firstNote]];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondNote]];
+	[firstMeasure setNotes:[NSMutableArray arrayWithObject:firstNote]];
 	STAssertEqualObjects([staff findPreviousNoteMatching:secondNote inMeasure:secondMeasure], firstNote, @"Wrong note returned.");
 	[firstNote release];
 	[secondNote release];
 }
 - (void) testFindPreviousNoteMatchingWhenNoSuchNoteExists{
 	Measure *measure = [staff getLastMeasure];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	STAssertNil([staff findPreviousNoteMatching:secondNote inMeasure:measure], @"Wrong note returned.");
 	[firstNote release];
@@ -189,9 +198,9 @@
 }
 - (void) testFindPreviousNoteMatchingDoesntReturnNonContiguousNote{
 	Measure *measure = [staff getLastMeasure];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
 	STAssertNil([staff findPreviousNoteMatching:thirdNote inMeasure:measure], @"Wrong note returned.");
 	[firstNote release];

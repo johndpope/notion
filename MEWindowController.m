@@ -17,7 +17,7 @@
 	[view setFrameSize:[view calculateBounds].size];
 	[verticalRuler setFrameSize:NSMakeSize([verticalRuler frame].size.width, [view frame].size.height)];
 	[horizontalRuler setFrameSize:NSMakeSize([view frame].size.width, [horizontalRuler frame].size.height)];
-}
+}	
 
 - (void)mouseMoved:(NSEvent *)event{
 	[view mouseMoved:event];
@@ -150,6 +150,7 @@
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(boundsDidChangeNotification:) name:NSViewBoundsDidChangeNotification
 		object:[scrollView contentView]];
+	[center addObserver:self selector:@selector(modelChanged:) name:@"modelChanged" object:nil];
 	[self placeRulerComponents];
 	
 }
@@ -159,6 +160,10 @@
 	[verticalRuler setNeedsDisplay:YES];
 	[[horizontalRulerScroll contentView] scrollToPoint:NSMakePoint([[scrollView contentView] bounds].origin.x, 0)];
 	[horizontalRuler setNeedsDisplay:YES];
+}
+
+- (void) modelChanged:(NSNotification *)notification{
+	[view setNeedsDisplay:YES];
 }
 
 - (int)getMode{
@@ -192,8 +197,8 @@
 				atPitch:(int)pitch atOctave:(int)octave atXIndex:(float)x 
 				onClef:(BOOL)onClef onKeySig:(BOOL)onKeySig onTimeSig:(BOOL)onTimeSig button:(int)button{
 	if([self getMode] == MODE_NOTE){
-		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:[self getNoteModeDuration] dotted:[self getDotted] accidental:[self getAccidental]];
-		note = [measure addNotes:[NSArray arrayWithObject:note] atIndex:x];
+		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:[self getNoteModeDuration] dotted:[self getDotted] accidental:[self getAccidental] onStaff:staff];
+		note = [measure addNote:note atIndex:x];
 		measure = [staff getMeasureContainingNote:note];
 		if([tieToPrev state] == NSOnState){
 			[note setAccidental:NO_ACC];
@@ -229,10 +234,11 @@
 		[self updateFeedbackDuration];
 		return YES;
 	} else if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
+		[[[self document] undoManager] setActionName:@"deleting note"];
 		[measure removeNoteAtIndex:x temporary:NO];
 		return YES;
 	} else if([self getMode] == MODE_NOTE && [[event characters] isEqualToString:@" "]){
-		[measure addNotes:[NSArray arrayWithObject:[[Rest alloc] initWithDuration:[self getNoteModeDuration] dotted:[self getDotted]]] atIndex:x];
+		[measure addNote:[[Rest alloc] initWithDuration:[self getNoteModeDuration] dotted:[self getDotted]] atIndex:x];
 		if([measure isFull]) [staff getMeasureAfter:measure];
 		return YES;
 	}

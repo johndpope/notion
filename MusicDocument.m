@@ -25,7 +25,7 @@
 - (id)initWithType:(NSString *)typeName error:(NSError **)outError{
 	self = [super initWithType:typeName error:outError];
 	if(self){
-		[self setSong:[[Song alloc] init]];
+		[self setSong:[[Song alloc] initWithDocument:self]];
 	}
 	return self;
 }
