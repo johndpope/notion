@@ -27,6 +27,14 @@
 	return staff;
 }
 
+- (NSUndoManager *)undoManager{
+	return [[[[self getStaff] getSong] document] undoManager];
+}
+
+- (void)sendChangeNotification{
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
+}
+
 - (NSMutableArray *)getNotes{
 	return notes;
 }
@@ -35,10 +43,16 @@
 	return [notes objectAtIndex:0];
 }
 
+- (void)prepUndo{
+	[[[self undoManager] prepareWithInvocationTarget:self] setNotes:[NSMutableArray arrayWithArray:notes]];	
+}
+
 - (void)setNotes:(NSMutableArray *)_notes{
+	[self prepUndo];
 	if(![notes isEqual:_notes]){
 		[notes release];
 		notes = [_notes retain];
+		[staff cleanEmptyMeasures];
 	}
 }
 
@@ -50,6 +64,13 @@
 		totalDuration += [note getEffectiveDuration];
 	}
 	return totalDuration;
+}
+
+- (NoteBase *)addNote:(NoteBase *)_note atIndex:(float)index{
+	[self prepUndo];
+	Note *note = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index];
+	[self sendChangeNotification];
+	return note;
 }
 
 - (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index{
@@ -85,7 +106,7 @@
 		[notes insertObject:note atIndex:index];
 	}
 	if(index >= [notes count]) return nil;
-	note = [notes objectAtIndex:index];
+	Note *rtn = [notes objectAtIndex:index];
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
 	while(totalDuration > maxDuration){
@@ -98,19 +119,22 @@
 			int index = [notes count] - 1;
 			NoteBase *lastNote = note;
 			while(durationToFill > 0){
-				note = [NoteBase tryToFill:durationToFill copyingNote:note];
-				[notes insertObject:note atIndex:index];
-				[note tieTo:lastNote];
-				[lastNote tieFrom:note];
-				lastNote = note;
-				totalDuration += [note getEffectiveDuration];
-				durationToFill -= [note getEffectiveDuration];
+				Note *fill = [NoteBase tryToFill:durationToFill copyingNote:note];
+				[notes insertObject:fill atIndex:index];
+				[fill tieTo:lastNote];
+				[lastNote tieFrom:fill];
+				lastNote = fill;
+				totalDuration += [fill getEffectiveDuration];
+				durationToFill -= [fill getEffectiveDuration];
 			}
 		}
 		[notes removeLastObject];
-		note = [[staff getMeasureAfter:self] addNotes:_notes atIndex:0];
+		Measure *nextMeasure = [staff getMeasureAfter:self];
+		[nextMeasure prepUndo];
+		[nextMeasure addNotes:_notes atIndex:0];
+		if(note == rtn) rtn = [notes lastObject];
 	}
-	return note;
+	return rtn;
 }
 
 - (void)grabNotesFromNextMeasure{
@@ -151,7 +175,11 @@
 }
 
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp{
+	[self prepUndo];
 	NoteBase *note = [notes objectAtIndex:floor(x)];
+	if(!temp){
+		[[[self undoManager] prepareWithInvocationTarget:self] addNote:[note retain] atIndex:x];
+	}
 	if(!temp){
 		[note prepareForDelete];
 	}
@@ -159,6 +187,7 @@
 	[self grabNotesFromNextMeasure];
 	if(!temp){
 		[staff cleanEmptyMeasures];
+		[self sendChangeNotification];
 	}
 }
 

@@ -27,6 +27,7 @@
 - (id)initWithSong:(Song *)_song;
 
 - (void)setSong:(Song *)_song;
+- (Song *)getSong;
 
 - (NSMutableArray *)getMeasures;
 - (void)setMeasures:(NSMutableArray *)_measures;

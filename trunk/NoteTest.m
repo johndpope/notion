@@ -12,7 +12,7 @@
 @implementation NoteTest
 
 - (void)setUp{
-	note = [[Note alloc] initWithPitch:4 octave:3 duration:2 dotted:YES accidental:SHARP];
+	note = [[Note alloc] initWithPitch:4 octave:3 duration:2 dotted:YES accidental:SHARP onStaff:nil];
 }
 - (void)tearDown{
 	[note release];

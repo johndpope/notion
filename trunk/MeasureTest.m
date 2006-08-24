@@ -12,6 +12,7 @@
 #import "Staff.h"
 #import "Rest.h"
 #import "TimeSignature.h"
+#import "MusicDocument.h"
 
 @implementation MeasureTest
 
@@ -24,7 +25,7 @@
 }
 
 - (Song *)setupSong{
-	Song *song = [[[Song alloc] init] autorelease];
+	Song *song = [[[Song alloc] initWithDocument:nil] autorelease];
 	[staff setSong:song];
 	[song setStaffs:[NSMutableArray arrayWithObject:staff]];
 	[song setTimeSigs:[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4	bottom:4]]];	
@@ -117,18 +118,26 @@
 
 - (void)testAddOneNoteToEmptyMeasure{
 	[self setupSong];
-	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
-	[measure addNotes:[NSArray arrayWithObject:note] atIndex:0];
+	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:note atIndex:0];
 	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Wrong number of notes in measure after adding one.");
 	STAssertEqualObjects([[measure getNotes] objectAtIndex:0], note, @"Wrong first note after adding one.");
+	[note release];
+}
+- (void)testAddNoteReturnsNote{
+	[self setupSong];
+	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	note = [measure addNote:note atIndex:0];
+	STAssertNotNil(note, @"nil returned from adding note.");
+	STAssertEqualObjects([[measure getNotes] objectAtIndex:0], note, @"Wrong note returned after adding one.");
 	[note release];
 }
 - (void)testAddOneNoteToFullMeasure{
 	[self setupSong];
 	Rest *rest = [[Rest alloc] initWithDuration:1 dotted:NO];
 	[measure setNotes:[NSMutableArray arrayWithObject:rest]];
-	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];	
-	[measure addNotes:[NSArray arrayWithObject:note] atIndex:0.5];
+	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];	
+	[measure addNote:note atIndex:0.5];
 	STAssertFalse([[measure getNotes] containsObject:note], @"Note added to already full measure.");
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures after auto-create triggered.");
 	STAssertTrue([[[staff getLastMeasure] getNotes] containsObject:note], @"Note not added to next measure.");
@@ -139,8 +148,9 @@
 	[self setupSong];
 	Rest *rest = [[Rest alloc] initWithDuration:2 dotted:YES];
 	[measure setNotes:[NSMutableArray arrayWithObject:rest]];
-	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC];	
-	[measure addNotes:[NSArray arrayWithObject:note] atIndex:1];
+	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];	
+	Note *rtn = [measure addNote:note atIndex:1];
+	STAssertEqualObjects(rtn, [[measure getNotes] lastObject], @"Wrong note returned from addNote.");
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures after auto-create triggered.");
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Half of note not left behind during split add.");
 	STAssertEquals([[[measure getNotes] lastObject] getDuration], (int)4, @"Note added to first measure is wrong duration.");
@@ -155,8 +165,8 @@
 	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO];
 	Rest *secondRest = [[Rest alloc] initWithDuration:4 dotted:YES];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
-	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:YES accidental:NO_ACC];	
-	[measure addNotes:[NSArray arrayWithObject:note] atIndex:2];
+	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:YES accidental:NO_ACC onStaff:staff];	
+	[measure addNote:note atIndex:2];
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures after auto-create triggered.");
 	STAssertEquals([[measure getNotes] count], (unsigned)3, @"Part of note not left behind during split add.");
 	STAssertEquals([[[measure getNotes] lastObject] getDuration], (int)8, @"Note added to first measure is wrong duration.");
@@ -172,13 +182,13 @@
 
 - (void)testInsertIntoTieOnAdd{
 	[self setupSong];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
-	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
-	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	[measure addNote:thirdNote atIndex:0.5];
 	STAssertEqualObjects([firstNote getTieTo], thirdNote, @"Tie not adjusted when adding note between tied notes.");
 	STAssertEqualObjects([secondNote getTieFrom], thirdNote, @"Tie not adjusted when adding note between tied notes.");
 	[firstNote release];
@@ -188,13 +198,13 @@
 
 - (void)testBreakTieOnAddWithinMeasure{
 	[self setupSong];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC];
-	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
-	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	[measure addNote:thirdNote atIndex:0.5];
 	STAssertNil([firstNote getTieTo], @"Tie not broken when adding note between tied notes.");
 	STAssertNil([secondNote getTieFrom], @"Tie not broken when adding note between tied notes.");
 	[firstNote release];
@@ -204,13 +214,13 @@
 
 - (void)testBreakTieOnAddAtEndOfMeasure{
 	[self setupSong];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
-	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	[measure addNote:thirdNote atIndex:0.5];
 	STAssertNil([firstNote getTieTo], @"Tie not broken when adding note between tied notes.");
 	STAssertNil([secondNote getTieTo], @"Tie not broken when adding note between tied notes.");
 	[firstNote release];
@@ -220,13 +230,13 @@
 
 - (void)testBreakTieOnAddAtBeginningOfMeasure{
 	[self setupSong];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[[staff getLastMeasure] addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:0];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
-	[measure addNotes:[NSArray arrayWithObject:thirdNote] atIndex:0.5];
+	[measure addNote:thirdNote atIndex:0.5];
 	STAssertNil([firstNote getTieTo], @"Tie not broken when adding note between tied notes.");
 	STAssertNil([secondNote getTieTo], @"Tie not broken when adding note between tied notes.");
 	[firstNote release];
@@ -244,8 +254,8 @@
 - (void)testRemoveNoteGrabsNotesFromNextMeasure{
 	[self setupSong];
 	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO];
-	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, firstNote, nil]];
 	Measure *secondMeasure = [staff addMeasure];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondNote]];
@@ -276,8 +286,8 @@
 	Measure *secondMeasure = [staff addMeasure];
 	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO];
 	Rest *secondRest = [[Rest alloc] initWithDuration:1 dotted:NO];
-	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondRest]];
+	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:8 bottom:4] atIndex:0];
 	[measure timeSignatureChangedFrom:1.0 to:2.0 top:8 bottom:4];
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
@@ -290,9 +300,9 @@
 	Song *song = [self setupSong];
 	Measure *secondMeasure = [staff addMeasure];
 	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC];
-	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondNote]];
+	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:6 bottom:4] atIndex:0];
 	[measure timeSignatureChangedFrom:1.0 to:1.5 top:6 bottom:4];
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
@@ -302,6 +312,99 @@
 	STAssertEqualObjects([[[measure getNotes] lastObject] getTieTo], [[secondMeasure getNotes] objectAtIndex:0], @"Change time signature didn't tie split notes.");
 	[firstRest release];
 	[secondNote release];
+}
+
+
+// ----- undo/redo tests -----
+
+- (void)setUpUndoTest{
+	doc = [[MusicDocument alloc] init];
+	mgr = [[NSUndoManager alloc] init];
+	[doc setUndoManager:mgr];
+	song = [[Song alloc] initWithDocument:doc];
+	staff = [[song staffs] lastObject];
+	measure = [staff getLastMeasure];
+}
+
+- (void)tearDownUndoTest{
+	[song release];
+	[mgr release];
+	[doc release];	
+}
+
+- (void)testUndoRedoAddNote{
+	[self setUpUndoTest];
+	[mgr beginUndoGrouping];
+	Rest *note = [[Rest alloc] initWithDuration:1 dotted:NO];
+	[measure addNote:note atIndex:0];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([[measure getNotes] count], (unsigned)0, @"Failed to undo adding note.");
+	[mgr redo];
+	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Failed to redo adding note.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoAddNoteUndoesCorrectNote{
+	[self setUpUndoTest];
+	Rest *firstNote = [[Rest alloc] initWithDuration:2 dotted:NO];
+	[measure addNote:firstNote atIndex:0];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	Rest *secondNote = [[Rest alloc] initWithDuration:2 dotted:NO];
+	[measure addNote:secondNote atIndex:0.5];
+	[mgr undo];
+	STAssertTrue([[measure getNotes] containsObject:firstNote], @"Wrong note removed when undoing add note.");
+	STAssertFalse([[measure getNotes] containsObject:secondNote], @"Correct note not removed when undoing add note.");
+	[firstNote release];
+	[secondNote release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoAddNoteRestoresBrokenTie{
+	[self setUpUndoTest];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:firstNote atIndex:0];
+	[measure addNote:secondNote atIndex:0.5];
+	[firstNote tieTo:secondNote];
+	[secondNote tieFrom:firstNote];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[measure addNote:thirdNote atIndex:0.5];
+	[mgr undo];
+	STAssertEqualObjects([firstNote getTieTo], secondNote, @"Undoing add note didn't restore broken tie.");
+	STAssertEqualObjects([secondNote getTieFrom], firstNote, @"Undoing add note didn't restore broken tie.");
+	[mgr redo];
+	STAssertNil([firstNote getTieTo], @"Redoing add note didn't re-break tie.");
+	STAssertNil([secondNote getTieFrom], @"Redoing add note didn't re-break tie.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoRedoAddSplitNote{
+	[self setUpUndoTest];
+	Rest *firstNote = [[Rest alloc] initWithDuration:2 dotted:YES];
+	[measure addNote:firstNote atIndex:0];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:secondNote atIndex:0.5];
+	Note *tieSource = [[measure getNotes] lastObject];
+	[mgr undo];
+	STAssertEquals([[staff getMeasures] count], (unsigned)1, @"Wrong number of measures left after undoing add of an auto-split note.");
+	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Wrong number of notes left in measure after undoing add of an auto-split note.");
+	[mgr redo];
+	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures left after redoing add of an auto-split note.");
+	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left in measure after redoing add of an auto-split note.");
+	STAssertNotNil([tieSource getTieTo], @"Auto-split note no longer tied after redoing add.");
+	[firstNote release];
+	[secondNote release];
+	[self tearDownUndoTest];
 }
 
 @end

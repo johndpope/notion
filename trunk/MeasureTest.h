@@ -9,10 +9,16 @@
 #import <SenTestingKit/SenTestingKit.h>
 @class Measure;
 @class Staff;
+@class MusicDocument;
+@class NSUndoManager;
+@class Song;
 
 @interface MeasureTest : SenTestCase {
 	Measure *measure;
 	Staff *staff;
+	MusicDocument *doc;
+	NSUndoManager *mgr;
+	Song *song;
 }
 
 - (void)testGetFirstNote;

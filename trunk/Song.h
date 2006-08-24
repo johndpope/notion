@@ -10,12 +10,19 @@
 #import <CoreMidi/CoreMidi.h>
 @class Staff;
 @class TimeSignature;
+@class MusicDocument;
 
 @interface Song : NSObject <NSCoding>{
+	MusicDocument *doc;
+	
 	NSMutableArray *staffs;
 	NSMutableArray *tempoData;
 	NSMutableArray *timeSigs;
 }
+
+- (id)initWithDocument:(MusicDocument *)_doc;
+
+- (MusicDocument *)document;
 
 - (NSMutableArray *)staffs;
 
