@@ -146,6 +146,7 @@
 - (void)grabNotesFromNextMeasure{
 	if([staff getLastMeasure] == self) return;
 	Measure *nextMeasure = [staff getMeasureAfter:self];
+	[nextMeasure prepUndo];
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
 	while(totalDuration < maxDuration && ![nextMeasure isEmpty]){
@@ -183,9 +184,6 @@
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp{
 	[self prepUndo];
 	NoteBase *note = [notes objectAtIndex:floor(x)];
-	if(!temp){
-		[[[self undoManager] prepareWithInvocationTarget:self] addNote:[note retain] atIndex:x tieToPrev:NO];
-	}
 	if(!temp){
 		[note prepareForDelete];
 	}
