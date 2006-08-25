@@ -13,8 +13,4 @@
 	Note *note;
 }
 
-- (void) testGetEffectiveDuration;
-
-- (void) testRemoveDuration;
-
 @end

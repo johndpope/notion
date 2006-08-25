@@ -38,7 +38,7 @@
 - (NSMutableArray *)getNotes;
 - (NoteBase *)getFirstNote;
 - (void)setNotes:(NSMutableArray *)_notes;
-- (NoteBase *)addNote:(NoteBase *)_note atIndex:(float)index;
+- (void)addNote:(NoteBase *)_note atIndex:(float)index tieToPrev:(BOOL)tieToPrev;
 - (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index;
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp;
 

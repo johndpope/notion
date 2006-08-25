@@ -13,31 +13,4 @@
 	Staff *staff;
 }
 
-- (void) testGetClefForMeasureWhenMeasureHasClef;
-- (void) testGetClefForMeasureWhenPreviousMeasureHasClef;
-
-- (void) testGetKeySignatureForMeasureWhenMeasureHasKeySignature;
-- (void) testGetKeySignatureForMeasureWhenPreviousMeasureHasKeySignature;
-
-- (void) testGetEffectiveTimeSignatureForMeasureWhenMeasureHasEffectiveTimeSignature;
-- (void) testGetEffectiveTimeSignatureForMeasureWhenPreviousMeasureHasEffectiveTimeSignature;
-
-- (void) testGetLastMeasure;
-
-- (void) testGetMeasureAfter;
-- (void) testGetMeasureAfterCreatesNewMeasure;
-
-- (void) testGetMeasureBefore;
-- (void) testGetMeasureBeforeFirstMeasure;
-
-- (void) testGetMeasureContainingNote;
-
-- (void) testCleanEmptyMeasures;
-
-- (void) testFindPreviousNoteMatchingInSameMeasure;
-- (void) testFindPreviousNoteMatchingInPreviousMeasure;
-- (void) testFindPreviousNoteMatchingWhenNoSuchNoteExists;
-- (void) testFindPreviousNoteMatchingDoesntReturnNonContiguousNote;
-
-
 @end
