@@ -107,8 +107,6 @@
 - (Measure *)addMeasure{
 	Measure *measure = [[Measure alloc] initWithStaff:self];
 	[self addMeasure:measure];
-	[song refreshTimeSigs];
-	[song refreshTempoData];
 	return measure;
 }
 
@@ -116,6 +114,8 @@
 	if(![measures containsObject:measure]){
 		[[[self undoManager] prepareWithInvocationTarget:self] removeMeasure:measure];
 		[measures addObject:measure];
+		[song refreshTimeSigs];
+		[song refreshTempoData];
 	}
 }
 
@@ -123,6 +123,8 @@
 	if([measures containsObject:measure]){
 		[[[self undoManager] prepareWithInvocationTarget:self] addMeasure:measure];
 		[measures removeObject:measure];		
+		[song refreshTimeSigs];
+		[song refreshTempoData];
 	}
 }
 

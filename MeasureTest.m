@@ -442,4 +442,41 @@
 	[self tearDownUndoTest];
 }
 
+- (void)testUndoRedoRemoveNote{
+	[self setUpUndoTest];
+	Note *note = [[Note alloc] init];
+	[measure setNotes:[NSMutableArray arrayWithObject:note]];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[measure removeNoteAtIndex:0 temporary:NO];
+	[mgr undo];
+	STAssertTrue([[measure getNotes] containsObject:note], @"Undoing remove note failed.");
+	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Wrong number of notes in measure after undoing remove note.");
+	[mgr redo];
+	STAssertFalse([[measure getNotes] containsObject:note], @"Redoing remove note failed.");
+	STAssertEquals([[measure getNotes] count], (unsigned)0, @"Wrong number of notes in measure after redoing remove note.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoRedoRemoveNoteTwoMeasures{
+	[self setUpUndoTest];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObject:firstNote]];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:secondNote atIndex:0.5 tieToPrev:NO];
+	Measure *secondMeasure = [staff getMeasureContainingNote:secondNote];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[secondMeasure removeNoteAtIndex:0 temporary:NO];
+	[mgr undo];
+	STAssertTrue([[secondMeasure getNotes] containsObject:secondNote], @"Undoing remove note failed.");
+	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Wrong number of notes in measure after undoing remove note.");
+	[mgr redo];
+	STAssertEquals([[staff getMeasures] count], (unsigned)1, @"Wrong number of measures left after redoing remove note.");
+	[firstNote release];
+	[secondNote release];
+	[self tearDownUndoTest];	
+}
+
 @end
