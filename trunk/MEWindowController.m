@@ -198,15 +198,7 @@
 				onClef:(BOOL)onClef onKeySig:(BOOL)onKeySig onTimeSig:(BOOL)onTimeSig button:(int)button{
 	if([self getMode] == MODE_NOTE){
 		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:[self getNoteModeDuration] dotted:[self getDotted] accidental:[self getAccidental] onStaff:staff];
-		note = [measure addNote:note atIndex:x];
-		measure = [staff getMeasureContainingNote:note];
-		if([tieToPrev state] == NSOnState){
-			[note setAccidental:NO_ACC];
-			Note *tie = [staff findPreviousNoteMatching:note inMeasure:measure];
-			[note tieFrom:tie];
-			[tie tieTo:note];
-		}
-		if([measure isFull]) [staff getMeasureAfter:measure];
+		[measure addNote:note atIndex:x tieToPrev:([tieToPrev state] == NSOnState)];
 	} else if([self getMode] == MODE_POINT){
 		if(onClef){
 			[staff toggleClefAtMeasure:measure];
@@ -238,7 +230,7 @@
 		[measure removeNoteAtIndex:x temporary:NO];
 		return YES;
 	} else if([self getMode] == MODE_NOTE && [[event characters] isEqualToString:@" "]){
-		[measure addNote:[[Rest alloc] initWithDuration:[self getNoteModeDuration] dotted:[self getDotted]] atIndex:x];
+		[measure addNote:[[Rest alloc] initWithDuration:[self getNoteModeDuration] dotted:[self getDotted]] atIndex:x tieToPrev:NO];
 		if([measure isFull]) [staff getMeasureAfter:measure];
 		return YES;
 	}

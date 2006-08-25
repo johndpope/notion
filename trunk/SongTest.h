@@ -13,13 +13,4 @@
 	Song *song;
 }
 
-- (void) testRefreshTempoDataRemovesTempoData;
-- (void) testRefreshTempoDataAddsTempoData;
-
-- (void) testGetEffectiveTimeSigForMeasureWithTimeSig;
-- (void) testGetEffectiveTimeSigForMeasureWithoutTimeSig;
-
-- (void) testRefreshTimeSigsRemovesTimeSigs;
-- (void) testRefreshTimeSigsAddsTimeSigs;
-
 @end

@@ -21,30 +21,4 @@
 	Song *song;
 }
 
-- (void)testGetFirstNote;
-
-- (void)testGetTotalDuration;
-
-- (void)testIsEmpty;
-- (void)testIsFull;
-
-- (void)testGetNoteBefore;
-- (void)testGetNoteBeforeFirstNote;
-
-- (void)testGetNoteStartDuration;
-- (void)testGetNoteEndDuration;
-- (void)testGetNumberOfNotesStartingAfter;
-
-- (void)testAddOneNoteToEmptyMeasure;
-- (void)testAddOneNoteToFullMeasure;
-- (void)testSplitNoteOnAdd;
-- (void)testComplexSplitNoteOnAdd;
-
-- (void)testRemoveNote;
-- (void)testRemoveNoteGrabsNotesFromNextMeasure;
-
-- (void)testTimeSignatureChangedMovesNotesToNextMeasure;
-- (void)testTimeSignatureChangedGrabsNotesFromNextMeasure;
-- (void)testTimeSignatureChangedSplitsNotes;
-
 @end
