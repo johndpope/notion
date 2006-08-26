@@ -60,4 +60,58 @@
 	STAssertEquals([[song timeSigs] count], (unsigned)2, @"Wrong number of time signatures created.");	
 }
 
+// ----- undo/redo tests -----
+
+- (void)setUpUndoTest{
+	doc = [[MusicDocument alloc] init];
+	mgr = [[NSUndoManager alloc] init];
+	[doc setUndoManager:mgr];
+	[song release];
+	song = [[Song alloc] initWithDocument:doc];
+	staff = [[song staffs] lastObject];
+}
+
+- (void)tearDownUndoTest{
+	[mgr release];
+	[doc release];	
+}
+
+- (void) testUndoRedoAddStaff{
+	[self setUpUndoTest];
+	Staff *secondStaff = [song addStaff];
+	[mgr undo];
+	STAssertEquals([[song staffs] count], (unsigned)1, @"Wrong number of staffs after undoing add.");
+	STAssertEqualObjects([[song staffs] lastObject], staff, @"Wrong staff left after undoing add.");
+	[mgr redo];
+	STAssertEquals([[song staffs] count], (unsigned)2, @"Wrong number of staffs after redoing add.");
+	STAssertEqualObjects([[song staffs] lastObject], secondStaff, @"Wrong last staff after redoing add.");
+	[self tearDownUndoTest];
+}
+- (void) testUndoRedoRemoveStaff{
+	[self setUpUndoTest];
+	Staff *secondStaff = [song addStaff];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[song removeStaff:secondStaff];
+	[mgr undo];
+	STAssertEquals([[song staffs] count], (unsigned)2, @"Wrong number of staffs after undoing remove.");
+	STAssertEqualObjects([[song staffs] lastObject], secondStaff, @"Wrong last staff after undoing remove.");
+	[mgr redo];
+	STAssertEquals([[song staffs] count], (unsigned)1, @"Wrong number of staffs after redoing remove.");
+	STAssertEqualObjects([[song staffs] lastObject], staff, @"Wrong staff left after redoing remove.");
+	[self tearDownUndoTest];
+}
+- (void) testUndoRedoRemoveLastStaff{
+	[self setUpUndoTest];
+	[song removeStaff:staff];
+	Staff *newStaff = [[song staffs] lastObject];
+	[mgr undo];
+	STAssertEquals([[song staffs] count], (unsigned)1, @"Wrong number of staffs after undoing remove.");
+	STAssertEqualObjects([[song staffs] lastObject], staff, @"Wrong staff left after undoing remove.");
+	[mgr redo];
+	STAssertEquals([[song staffs] count], (unsigned)1, @"Wrong number of staffs after redoing remove.");
+	STAssertEqualObjects([[song staffs] lastObject], newStaff, @"Wrong staff left after redoing remove.");
+	[self tearDownUndoTest];
+}
+
 @end

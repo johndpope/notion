@@ -76,6 +76,8 @@
 		}
 		if([staff rulerView] == nil){
 			[self setupStaff:staff];
+		} else if(![[verticalRuler subviews] containsObject:[staff rulerView]]){
+			[verticalRuler addSubview:[staff rulerView]];
 		}
 		[[staff rulerView] setFrameOrigin:NSMakePoint(0, [view calcStaffBase:staff fromTop:[view calcStaffTop:staff]] -
 													[view calcStaffLineHeight:staff] * 5.0)];
