@@ -25,6 +25,10 @@
 	return self;
 }
 
+- (NSUndoManager *)undoManager{
+	return [doc undoManager];
+}
+
 - (MusicDocument *)document{
 	return doc;
 }
@@ -33,7 +37,18 @@
 	return staffs;
 }
 
+- (void)prepUndo{
+	[[[self undoManager] prepareWithInvocationTarget:self] setStaffsAndRefresh:[NSMutableArray arrayWithArray:staffs]];
+}
+
+- (void)setStaffsAndRefresh:(NSMutableArray *)_staffs{
+	[self setStaffs:_staffs];
+	[self refreshTimeSigs];
+	[self refreshTempoData];
+}
+
 - (void)setStaffs:(NSMutableArray *)_staffs{
+	[self prepUndo];
 	[self willChangeValueForKey:@"staffs"];
 	if(![staffs isEqual:_staffs]){
 		[staffs release];
@@ -43,17 +58,26 @@
 }
 
 - (Staff *)addStaff{
+	[self prepUndo];
+	Staff *staff = [self doAddStaff];
+	[self refreshTimeSigs];
+	[self refreshTempoData];
+	return staff;
+}
+
+- (Staff *)doAddStaff{
 	Staff *staff = [[Staff alloc] initWithSong:self];
 	[staffs addObject:staff];
 	return staff;
 }
 
 - (void)removeStaff:(Staff *)staff{
+	[self prepUndo];
 	[self willChangeValueForKey:@"staffs"];
 	[staffs removeObject:staff];
 	[staff cleanPanels];
 	if([staffs count] == 0){
-		[self addStaff];
+		[self doAddStaff];
 	}
 	[self refreshTimeSigs];
 	[self refreshTempoData];
