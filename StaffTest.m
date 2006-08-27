@@ -207,4 +207,47 @@
 	[secondNote release];
 }
 
+// ----- undo/redo tests -----
+
+- (void)setUpUndoTest{
+	doc = [[MusicDocument alloc] init];
+	mgr = [[NSUndoManager alloc] init];
+	[doc setUndoManager:mgr];
+	song = [[Song alloc] initWithDocument:doc];
+	staff = [[song staffs] lastObject];
+	measure = [staff getLastMeasure];
+}
+
+- (void)tearDownUndoTest{
+	[song release];
+	[mgr release];
+	[doc release];	
+}
+
+- (void)testUndoRedoToggleClef{
+	[self setUpUndoTest];
+	Measure *secondMeasure = [staff addMeasure];
+	Measure *thirdMeasure = [staff addMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	[secondMeasure addNote:secondNote atIndex:0 tieToPrev:NO];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	[thirdMeasure addNote:thirdNote atIndex:0 tieToPrev:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[staff toggleClefAtMeasure:secondMeasure];
+	[mgr undo];
+	STAssertNil([secondMeasure getClef], @"Failed to undo toggling clef.");
+	STAssertEquals([secondNote getPitch], [firstNote getPitch], @"Note in toggled measure not de-transposed after undoing clef toggle.");
+	STAssertEquals([thirdNote getPitch], [firstNote getPitch], @"Note in following measure not de-transposed after undoing clef toggle.");
+	[mgr redo];
+	STAssertNotNil([secondMeasure getClef], @"Failed to redo toggling clef.");
+	STAssertEquals([secondNote getPitch], [firstNote getPitch], @"Note in toggled measure not re-transposed after redoing clef toggle.");
+	STAssertEquals([thirdNote getPitch], [firstNote getPitch], @"Note in following measure not re-transposed after redoing clef toggle.");
+	[firstNote release];
+	[secondNote release];
+	[self tearDownUndoTest];
+}
+
 @end

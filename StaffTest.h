@@ -8,9 +8,16 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 @class Staff;
+@class MusicDocument;
+@class Song;
+@class Measure;
 
 @interface StaffTest : SenTestCase {
+	Measure *measure;
 	Staff *staff;
+	MusicDocument *doc;
+	NSUndoManager *mgr;
+	Song *song;
 }
 
 @end
