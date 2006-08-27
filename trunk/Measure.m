@@ -219,6 +219,7 @@
 
 - (void)setClef:(Clef *)_clef{
 	if(![clef isEqual:_clef]){
+		[[[self undoManager] prepareWithInvocationTarget:self] setClef:clef];
 		[clef release];
 		clef = [_clef retain];
 	}
