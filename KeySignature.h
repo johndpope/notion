@@ -12,14 +12,15 @@
 @interface KeySignature : NSObject {
 	int pitches[7];
 	int sharps, flats;
+	BOOL minor;
 }
 
 + (id)getMajorSignatureAtIndexFromA:(int)index;
 + (id)getMinorSignatureAtIndexFromA:(int)index;
-+ (id)getSignatureWithSharps:(int)sharps;
-+ (id)getSignatureWithFlats:(int)flats;
++ (id)getSignatureWithSharps:(int)sharps minor:(BOOL)_minor;
++ (id)getSignatureWithFlats:(int)flats minor:(BOOL)_minor;
 
-- (id)initWithPitches:(int *)_pitches sharps:(int)_sharps flats:(int)_flats;
+- (id)initWithPitches:(int *)_pitches sharps:(int)_sharps flats:(int)_flats minor:(BOOL)_minor;
 
 - (int)getPitchAtPosition:(int)position;
 - (int)getAccidentalAtPosition:(int)position;
@@ -28,5 +29,8 @@
 - (int)getNumFlats;
 - (NSArray *)getSharps;
 - (NSArray *)getFlats;
+
+- (int)getIndexFromA;
+- (BOOL)isMinor;	
 
 @end

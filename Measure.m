@@ -235,8 +235,11 @@
 
 - (void)setKeySignature:(KeySignature *)_sig{
 	if(![keySig isEqual:_sig]){
+		[[[self undoManager] prepareWithInvocationTarget:self] setKeySignature:keySig];
 		[keySig release];
 		keySig = [_sig retain];
+		[self updateKeySigPanel];
+		[self sendChangeNotification];
 	}
 }
 
@@ -358,6 +361,18 @@
 	}
 }
 
+- (void)updateKeySigPanel{
+	int index;
+	BOOL minor;
+	KeySignature *sig = [self getEffectiveKeySignature];
+	[keySigLetter selectItemAtIndex:[sig getIndexFromA]];
+	if([sig isMinor]){
+		[keySigMajMin selectItemAtIndex:1];
+	} else{
+		[keySigMajMin selectItemAtIndex:0];
+	}
+}
+
 - (IBAction)timeSigTopChanged:(id)sender{
 	int value = [sender intValue];
 	if(value < 1) value = 1;
@@ -405,6 +420,7 @@
 	if(keySig != nil){
 		[coder encodeInt:[keySig getNumFlats] forKey:@"keySigFlats"];
 		[coder encodeInt:[keySig getNumSharps] forKey:@"keySigSharps"];
+		[coder encodeBool:[keySig isMinor] forKey:@"keySigMinor"];
 		if([keySig getNumFlats] == 0 && [keySig getNumSharps] == 0){
 			[coder encodeBool:YES forKey:@"keySigC"];
 		}
@@ -423,12 +439,13 @@
 		}
 		int flats = [coder decodeIntForKey:@"keySigFlats"];
 		int sharps = [coder decodeIntForKey:@"keySigSharps"];
+		BOOL minor = [coder decodeBoolForKey:@"keySigMinor"];
 		if(flats > 0){
-			[self setKeySignature:[KeySignature getSignatureWithFlats:flats]];
+			[self setKeySignature:[KeySignature getSignatureWithFlats:flats minor:minor]];
 		} else if(sharps > 0){
-			[self setKeySignature:[KeySignature getSignatureWithSharps:sharps]];
+			[self setKeySignature:[KeySignature getSignatureWithSharps:sharps minor:minor]];
 		} else if([coder decodeBoolForKey:@"keySigC"]){
-			[self setKeySignature:[KeySignature getSignatureWithFlats:0]];
+			[self setKeySignature:[KeySignature getSignatureWithFlats:0 minor:NO]];
 		}
 		[self setNotes:[coder decodeObjectForKey:@"notes"]];
 	}
