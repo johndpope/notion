@@ -323,9 +323,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>31</integer>
-									<integer>27</integer>
-									<integer>10</integer>
+									<integer>41</integer>
+									<integer>29</integer>
+									<integer>12</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -367,7 +367,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Measure.m</string>
+								<string>KeySigTest.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -375,11 +375,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Measure.m</string>
+										<string>KeySigTest.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>786400A80AA262A00015A0AC</string>
+										<string>7864018E0AA27FB90015A0AC</string>
 										<key>history</key>
 										<array>
 											<string>786A94AD0A8999830006F54C</string>
@@ -399,25 +399,29 @@
 											<string>789039930A9934D30034F61B</string>
 											<string>7864FBF30A9D65440015A0AC</string>
 											<string>7864FC4D0A9D6CD10015A0AC</string>
-											<string>7864FCD60A9D86AD0015A0AC</string>
-											<string>7864FDD20A9EADF80015A0AC</string>
 											<string>7864FEA50A9EB07F0015A0AC</string>
 											<string>7864FF3F0A9FEA420015A0AC</string>
 											<string>7864FF850A9FEE2E0015A0AC</string>
 											<string>7864FF870A9FEE2E0015A0AC</string>
 											<string>7864FF880A9FEE2E0015A0AC</string>
 											<string>7864FFAD0AA260040015A0AC</string>
-											<string>7864FFAE0AA260040015A0AC</string>
 											<string>7864FFAF0AA260040015A0AC</string>
 											<string>7864FFB00AA260040015A0AC</string>
 											<string>7864FFB10AA260040015A0AC</string>
 											<string>7864FFB30AA260040015A0AC</string>
 											<string>7864FFB40AA260040015A0AC</string>
-											<string>7864006B0AA2603D0015A0AC</string>
 											<string>786400930AA2621F0015A0AC</string>
 											<string>786400940AA2621F0015A0AC</string>
 											<string>786400950AA2621F0015A0AC</string>
-											<string>786400910AA262190015A0AC</string>
+											<string>786400B00AA269A10015A0AC</string>
+											<string>786400B10AA269A10015A0AC</string>
+											<string>786400B20AA269A10015A0AC</string>
+											<string>786401210AA27B4C0015A0AC</string>
+											<string>786401370AA27C6C0015A0AC</string>
+											<string>7864014E0AA27D4E0015A0AC</string>
+											<string>786401820AA27F7C0015A0AC</string>
+											<string>7864018B0AA27FB90015A0AC</string>
+											<string>7864018C0AA27FB90015A0AC</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -456,6 +460,23 @@
 											<string>786400970AA2621F0015A0AC</string>
 											<string>786400980AA2621F0015A0AC</string>
 											<string>786400990AA2621F0015A0AC</string>
+											<string>786400B50AA269A10015A0AC</string>
+											<string>786400B70AA269A10015A0AC</string>
+											<string>786400B90AA269A10015A0AC</string>
+											<string>786400CB0AA26D300015A0AC</string>
+											<string>786400CC0AA26D300015A0AC</string>
+											<string>786400CD0AA26D300015A0AC</string>
+											<string>786401240AA27B4C0015A0AC</string>
+											<string>786401250AA27B4C0015A0AC</string>
+											<string>786401260AA27B4C0015A0AC</string>
+											<string>7864013B0AA27C6C0015A0AC</string>
+											<string>7864013C0AA27C6C0015A0AC</string>
+											<string>7864013D0AA27C6C0015A0AC</string>
+											<string>786401500AA27D4E0015A0AC</string>
+											<string>786401510AA27D4E0015A0AC</string>
+											<string>786401600AA27DB70015A0AC</string>
+											<string>786401840AA27F7C0015A0AC</string>
+											<string>7864018D0AA27FB90015A0AC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -634,7 +655,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>178414240.39102799</real>
+	<real>178421689.97217101</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -649,6 +670,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>788317EF0A617516003363D7</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>7864009D0AA262440015A0AC</string>
 		<string>7841FD130A09CEAA00292132</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
@@ -881,12 +904,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TempoData.m</string>
+										<string>KeySignature.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -907,8 +932,6 @@
 							<string>312pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -944,8 +967,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>7864FF0B0A9ED5B90015A0AC</string>
-				<string>7864FF0C0A9ED5B90015A0AC</string>
+				<string>786400F30AA279CE0015A0AC</string>
+				<string>786400F40AA279CE0015A0AC</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1190,7 +1213,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>788317EF0A617516003363D7</string>
-				<string>7864FD710A9D8C500015A0AC</string>
+				<string>7864018A0AA27F9D0015A0AC</string>
 				<string>1C78EAB2065D492600B07095</string>
 				<string>1CD052920623707200166675</string>
 			</array>

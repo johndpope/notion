@@ -479,4 +479,16 @@
 	[self tearDownUndoTest];	
 }
 
+- (void)testUndoRedoSetKeySig{
+	[self setUpUndoTest];
+	KeySignature *orig = [measure getKeySignature];
+	KeySignature *new = [KeySignature getSignatureWithFlats:4 minor:NO];
+	[measure setKeySignature:new];
+	[mgr undo];
+	STAssertEquals([measure getKeySignature], orig, @"Failed to undo changing key signature.");
+	[mgr redo];
+	STAssertEquals([measure getKeySignature], new, @"Failed to redo changing key signature.");
+	[self tearDownUndoTest];
+}
+
 @end

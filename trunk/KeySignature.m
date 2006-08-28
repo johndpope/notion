@@ -28,10 +28,10 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		if(flats == -1){
 			return nil;
 		} else{
-			return [KeySignature getSignatureWithFlats:flats];
+			return [KeySignature getSignatureWithFlats:flats minor:NO];
 		}
 	} else{
-		return [KeySignature getSignatureWithSharps:sharps];
+		return [KeySignature getSignatureWithSharps:sharps minor:NO];
 	}
 }
 
@@ -42,18 +42,58 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		if(flats == -1){
 			return nil;
 		} else{
-			return [KeySignature getSignatureWithFlats:flats];
+			return [KeySignature getSignatureWithFlats:flats minor:YES];
 		}
 	} else{
-		return [KeySignature getSignatureWithSharps:sharps];
+		return [KeySignature getSignatureWithSharps:sharps minor:YES];
 	}
 }
 
-+ (id)getSignatureWithSharps:(int)sharps{
-	static NSMutableDictionary *cachedSharps;
-	if(nil == cachedSharps){
-		cachedSharps = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
+- (int)getIndexFromA{
+	int i;
+	if(sharps != 0){
+		if(!minor){
+			for(i=0; i<18; i++){
+				if(majorSharps[i] == sharps) return i;
+			}			
+		} else{
+			for(i=0; i<18; i++){
+				if(minorSharps[i] == sharps) return i;
+			}			
+		}
+		return 0;
+	} else if(flats != 0){
+		if(!minor){
+			for(i=0; i<18; i++){
+				if(majorFlats[i] == flats) return i;
+			}
+		} else{
+			for(i=0; i<18; i++){
+				if(minorFlats[i] == flats) return i;
+			}			
+		}
+		return 0;
+	} else if(minor){
+		return 0;
+	} else{
+		return 5;
 	}
+}
+
+- (BOOL)isMinor{
+	return minor;
+}
+
++ (id)getSignatureWithSharps:(int)sharps minor:(BOOL)_minor{
+	static NSMutableDictionary *cachedMajorSharps;
+	static NSMutableDictionary *cachedMinorSharps;
+	if(nil == cachedMajorSharps){
+		cachedMajorSharps = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
+	}
+	if(nil == cachedMinorSharps){
+		cachedMinorSharps = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
+	}
+	NSMutableDictionary *cachedSharps = _minor ? cachedMinorSharps : cachedMajorSharps;
 	id sig = [cachedSharps objectForKey:[[[NSNumber alloc] initWithInt:sharps] autorelease]];
 	if(nil == sig){
 		int pitches[7];
@@ -64,17 +104,22 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		for(i=0; i<sharps; i++){
 			pitches[sharpLocs[i]]++;		
 		}
-		sig = [[[KeySignature alloc] initWithPitches:pitches sharps:sharps flats:0] autorelease];
+		sig = [[[KeySignature alloc] initWithPitches:pitches sharps:sharps flats:0 minor:_minor] autorelease];
 		[cachedSharps setObject:sig forKey:[[[NSNumber alloc] initWithInt:sharps] autorelease]];
 	}
 	return sig;
 }
 
-+ (id)getSignatureWithFlats:(int)flats{
-	static NSMutableDictionary *cachedFlats;
-	if(nil == cachedFlats){
-		cachedFlats = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
++ (id)getSignatureWithFlats:(int)flats minor:(BOOL)_minor{
+	static NSMutableDictionary *cachedMajorFlats;
+	static NSMutableDictionary *cachedMinorFlats;
+	if(nil == cachedMajorFlats){
+		cachedMajorFlats = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
 	}
+	if(nil == cachedMinorFlats){
+		cachedMinorFlats = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
+	}
+	NSMutableDictionary *cachedFlats = _minor ? cachedMinorFlats : cachedMajorFlats;
 	id sig = [cachedFlats objectForKey:[[[NSNumber alloc] initWithInt:flats] autorelease]];
 	if(nil == sig){
 		int pitches[7];
@@ -85,7 +130,7 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		for(i=0; i<flats; i++){
 			pitches[flatLocs[i]]--;		
 		}
-		sig = [[[KeySignature alloc] initWithPitches:pitches sharps:0 flats:flats] autorelease];
+		sig = [[[KeySignature alloc] initWithPitches:pitches sharps:0 flats:flats minor:_minor] autorelease];
 		[cachedFlats setObject:sig forKey:[[[NSNumber alloc] initWithInt:flats] autorelease]];
 	}
 	return sig;
@@ -127,7 +172,7 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 	return flatsArray;
 }
 
-- (id)initWithPitches:(int *)_pitches sharps:(int)_sharps flats:(int)_flats{
+- (id)initWithPitches:(int *)_pitches sharps:(int)_sharps flats:(int)_flats minor:(BOOL)_minor{
 	if(self = [super init]){
 		int i;
 		for(i=0; i<7; i++){
@@ -135,6 +180,7 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		}
 		sharps = _sharps;
 		flats = _flats;
+		minor = _minor;
 	}
 	return self;
 }

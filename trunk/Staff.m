@@ -19,7 +19,7 @@
 	if((self = [super init])){
 		Measure *firstMeasure = [[Measure alloc] initWithStaff:self];
 		[firstMeasure setClef:[Clef trebleClef]];
-		[firstMeasure setKeySignature:[KeySignature getSignatureWithFlats:0]];
+		[firstMeasure setKeySignature:[KeySignature getSignatureWithFlats:0 minor:NO]];
 		measures = [[NSMutableArray arrayWithObject:firstMeasure] retain];
 		song = _song;
 	}
@@ -75,7 +75,7 @@
 - (KeySignature *)getKeySignatureForMeasure:(Measure *)measure{
 	int index = [measures indexOfObject:measure];
 	while([measure getKeySignature] == nil){
-		if(index == 0) return [KeySignature getSignatureWithSharps:0];
+		if(index == 0) return [KeySignature getSignatureWithSharps:0 minor:NO];
 		index--;
 		measure = [measures objectAtIndex:index];
 	}
