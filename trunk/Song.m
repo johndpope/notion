@@ -136,6 +136,7 @@
 }
 
 - (void)setTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
+	[[[self undoManager] prepareWithInvocationTarget:self] setTimeSignature:[timeSigs objectAtIndex:measureIndex] atIndex:measureIndex];
 	[timeSigs replaceObjectAtIndex:measureIndex withObject:sig];
 }
 
@@ -171,7 +172,8 @@
 }
 
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom{
-	float oldTotal = [[self getEffectiveTimeSignatureAt:measureIndex] getMeasureDuration];
+	TimeSignature *oldEffSig = [self getEffectiveTimeSignatureAt:measureIndex];
+	float oldTotal = [oldEffSig getMeasureDuration];
 	TimeSignature *sig = [TimeSignature timeSignatureWithTop:top bottom:bottom];
 	[self setTimeSignature:sig atIndex:measureIndex];
 	float newTotal = [sig getMeasureDuration];
