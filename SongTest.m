@@ -10,6 +10,8 @@
 #import "Song.h"
 #import "Staff.h"
 #import "TempoData.h"
+#import "TimeSignature.h"
+#import "Note.h"
 
 @implementation SongTest
 
@@ -111,6 +113,82 @@
 	[mgr redo];
 	STAssertEquals([[song staffs] count], (unsigned)1, @"Wrong number of staffs after redoing remove.");
 	STAssertEqualObjects([[song staffs] lastObject], newStaff, @"Wrong staff left after redoing remove.");
+	[self tearDownUndoTest];
+}
+
+- (void) testUndoRedoSetTimeSig{
+	[self setUpUndoTest];
+	Measure *measure = [staff getLastMeasure];
+	Measure *secondMeasure = [staff addMeasure];
+	Measure *thirdMeasure = [staff addMeasure];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[song timeSigChangedAtIndex:1 top:3 bottom:4];
+	[mgr undo];
+	STAssertEquals([[measure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Previous measure affected by undoing time signature change.");
+	STAssertEquals([[secondMeasure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Failed to undo time signature change.");
+	STAssertEquals([[thirdMeasure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Following measure not affected by undoing time signature change.");
+	[mgr redo];
+	STAssertEquals([[measure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Previous measure affected by redoing time signature change.");
+	STAssertEquals([[secondMeasure getEffectiveTimeSignature] getMeasureDuration], (float)0.75, @"Failed to redo time signature change.");
+	STAssertEquals([[thirdMeasure getEffectiveTimeSignature] getMeasureDuration], (float)0.75, @"Following measure not affected by redoing time signature change.");
+	[self tearDownUndoTest];
+}
+- (void) testUndoRedoSetTimeSigPreservesNotesWhenShrinking{
+	[self setUpUndoTest];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
+	[measure addNote:secondNote atIndex:0.5 tieToPrev:NO];
+	[measure addNote:thirdNote atIndex:1.5 tieToPrev:NO];
+	[measure addNote:fourthNote atIndex:2.5 tieToPrev:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[song timeSigChangedAtIndex:0 top:3 bottom:4];
+	[mgr undo];
+	STAssertTrue([[measure getNotes] containsObject:firstNote], @"Lost note not regained after undoing time signature change.");
+	STAssertTrue([[measure getNotes] containsObject:secondNote], @"Lost note not regained after undoing time signature change.");
+	STAssertTrue([[measure getNotes] containsObject:thirdNote], @"Lost note not regained after undoing time signature change.");
+	STAssertTrue([[measure getNotes] containsObject:fourthNote], @"Lost note not regained after undoing time signature change.");
+	[mgr redo];
+	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures after redoing time signature change.");	
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+	[self tearDownUndoTest];
+}
+- (void) testUndoRedoSetTimeSigPreservesNotesWhenGrowing{
+	[self setUpUndoTest];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
+	[measure addNote:secondNote atIndex:0.5 tieToPrev:NO];
+	[measure addNote:thirdNote atIndex:1.5 tieToPrev:NO];
+	[measure addNote:fourthNote atIndex:2.5 tieToPrev:NO];
+	Measure *secondMeasure = [staff getLastMeasure];
+	Note *fifthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[secondMeasure addNote:fifthNote atIndex:0 tieToPrev:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[song timeSigChangedAtIndex:0 top:5 bottom:4];
+	[mgr undo];
+	STAssertFalse([[measure getNotes] containsObject:fifthNote], @"Grabbed note not relinquished after undoing time signature change.");
+	STAssertTrue([[secondMeasure getNotes] containsObject:fifthNote], @"Lost note not regained after undoing time signature change.");
+	[mgr redo];
+	STAssertFalse([[secondMeasure getNotes] containsObject:fifthNote], @"Lost note not lost again after redoing time signature change.");
+	STAssertTrue([[measure getNotes] containsObject:fifthNote], @"Note not grabbed again after redoing time signature change.");	
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+	[fifthNote release];
 	[self tearDownUndoTest];
 }
 

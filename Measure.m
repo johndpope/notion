@@ -112,12 +112,16 @@
 		[notes insertObject:note atIndex:index];
 	}
 	if(index >= [notes count]) return nil;
-	Note *rtn = [notes objectAtIndex:index];
+	NoteBase *rtn = [notes objectAtIndex:index];
+	return [self refreshNotes:rtn];
+}
+
+- (NoteBase *)refreshNotes:(NoteBase *)rtn{
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
 	while(totalDuration > maxDuration){
-		note = [notes lastObject];
-		_notes = [NSMutableArray arrayWithObject:note];
+		Note *note = [notes lastObject];
+		NSMutableArray *_notes = [NSMutableArray arrayWithObject:note];
 		totalDuration -= [note getEffectiveDuration];
 		if(totalDuration < maxDuration){
 			float durationToFill = maxDuration - totalDuration;
@@ -257,8 +261,10 @@
 
 - (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal top:(int)top bottom:(int)bottom{
 	if(newTotal < oldTotal){
-		[self addNotes:[NSArray array] atIndex:0];
+		[self prepUndo];
+		[self refreshNotes:nil];
 	} else{
+		[self prepUndo];
 		[self grabNotesFromNextMeasure];
 	}
 	[timeSigTopStep setIntValue:top];
