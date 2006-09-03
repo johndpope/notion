@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class Note;
 @class Clef;
-@class StaffView;
+@class ScoreView;
 
 @interface NoteDraw : NSObject {
 	Note *note;
