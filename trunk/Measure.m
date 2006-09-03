@@ -226,6 +226,7 @@
 		[[[self undoManager] prepareWithInvocationTarget:self] setClef:clef];
 		[clef release];
 		clef = [_clef retain];
+		[self sendChangeNotification];
 	}
 }
 
