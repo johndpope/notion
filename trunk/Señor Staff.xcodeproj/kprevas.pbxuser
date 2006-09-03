@@ -159,17 +159,17 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 179006482;
-			PBXWorkspaceStateSaveDate = 179006482;
+			PBXPerProjectTemplateStateSaveDate = 179007841;
+			PBXWorkspaceStateSaveDate = 179007841;
 		};
 		perUserProjectItems = {
-			78124F7D0AAB6C2D00D20E98 /* PBXTextBookmark */ = 78124F7D0AAB6C2D00D20E98 /* PBXTextBookmark */;
-			78124FDF0AAB6CD500D20E98 /* PBXTextBookmark */ = 78124FDF0AAB6CD500D20E98 /* PBXTextBookmark */;
-			78124FE40AAB705A00D20E98 /* PBXTextBookmark */ = 78124FE40AAB705A00D20E98 /* PBXTextBookmark */;
-			78124FE50AAB705A00D20E98 /* PBXTextBookmark */ = 78124FE50AAB705A00D20E98 /* PBXTextBookmark */;
-			78124FE60AAB705A00D20E98 /* PBXTextBookmark */ = 78124FE60AAB705A00D20E98 /* PBXTextBookmark */;
-			78124FE70AAB705A00D20E98 /* PBXTextBookmark */ = 78124FE70AAB705A00D20E98 /* PBXTextBookmark */;
-			78124FE80AAB705A00D20E98 /* PBXTextBookmark */ = 78124FE80AAB705A00D20E98 /* PBXTextBookmark */;
+			78124F7D0AAB6C2D00D20E98 = 78124F7D0AAB6C2D00D20E98 /* PBXTextBookmark */;
+			78124FDF0AAB6CD500D20E98 = 78124FDF0AAB6CD500D20E98 /* PBXTextBookmark */;
+			78124FE40AAB705A00D20E98 = 78124FE40AAB705A00D20E98 /* PBXTextBookmark */;
+			78124FE50AAB705A00D20E98 = 78124FE50AAB705A00D20E98 /* PBXTextBookmark */;
+			78124FE60AAB705A00D20E98 = 78124FE60AAB705A00D20E98 /* PBXTextBookmark */;
+			78124FE70AAB705A00D20E98 = 78124FE70AAB705A00D20E98 /* PBXTextBookmark */;
+			78124FE80AAB705A00D20E98 = 78124FE80AAB705A00D20E98 /* PBXTextBookmark */;
 			784E44810A95809300BE86EF = 784E44810A95809300BE86EF /* PBXTextBookmark */;
 			784E44880A95809300BE86EF = 784E44880A95809300BE86EF /* PBXTextBookmark */;
 			784E44890A95809300BE86EF = 784E44890A95809300BE86EF /* PBXTextBookmark */;
@@ -378,6 +378,13 @@
 		vrLen = 3361;
 		vrLoc = 5807;
 	};
+	78124F850AAB6C6500D20E98 /* ScoreView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1287, 7574}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {1122, 745}}";
+		};
+	};
 	78124FDF0AAB6CD500D20E98 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 78BDB83B0A8AE15D00323E8A /* SongTest.m */;
@@ -546,12 +553,6 @@
 		name = StaffView.m;
 		path = "/Users/kprevas/Señor Staff/trunk/StaffView.m";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1287, 7574}}";
-			sepNavSelRange = "{6904, 13}";
-			sepNavVisRect = "{{0, 3541}, {1122, 745}}";
-			sepNavWindowFrame = "{{526, 163}, {787, 706}}";
-		};
 	};
 	7841FD4A0A09D45100292132 /* XCBreakpointsBucket */ = {
 		isa = XCBreakpointsBucket;

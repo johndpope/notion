@@ -56,9 +56,11 @@
 	dotted = _dotted;
 }
 - (void)setOctave:(int)_octave{
+	[[[self undoManager] prepareWithInvocationTarget:self] setOctave:octave];
 	octave = _octave;
 }
 - (void)setPitch:(int)_pitch{
+	[[[self undoManager] prepareWithInvocationTarget:self] setPitch:pitch];
 	pitch = _pitch;
 }
 - (void)setAccidental:(int)_accidental{
@@ -143,6 +145,8 @@
 }
 
 - (void)transposeBy:(int)transposeAmount{
+	[[[self undoManager] prepareWithInvocationTarget:self] setPitch:pitch];
+	[[[self undoManager] prepareWithInvocationTarget:self] setOctave:octave];
 	pitch += transposeAmount;
 	while(pitch >= 7){
 		pitch -= 7;
