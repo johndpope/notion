@@ -1,12 +1,12 @@
 //
-//  StaffView.m
+//  ScoreView.m
 //  Music Editor
 //
 //  Created by Konstantine Prevas on 5/3/06.
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import "StaffView.h"
+#import "ScoreView.h"
 #import "MEWindowController.h"
 #import "Song.h"
 #import "Staff.h"
@@ -17,7 +17,7 @@
 #import "Clef.h"
 #import "TimeSignature.h"
 
-@implementation StaffView
+@implementation ScoreView
 
 - (void)setController:(MEWindowController *)_controller{
 	if(![controller isEqual:_controller]){

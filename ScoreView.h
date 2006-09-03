@@ -1,5 +1,5 @@
 //
-//  StaffView.h
+//  ScoreView.h
 //  Music Editor
 //
 //  Created by Konstantine Prevas on 5/3/06.
@@ -16,7 +16,7 @@
 @class TimeSignature;
 @class MEWindowController;
 
-@interface StaffView : NSView {
+@interface ScoreView : NSView {
 	MEWindowController *controller;
 	
 	id mouseOver;

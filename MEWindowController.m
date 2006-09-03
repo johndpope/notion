@@ -1,5 +1,5 @@
 #import "MEWindowController.h"
-#import "StaffView.h"
+#import "ScoreView.h"
 #include <CoreMIDI/MIDIServices.h>
 #import "CAMIDIEndpointMenu2.h"
 

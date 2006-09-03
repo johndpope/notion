@@ -1,7 +1,7 @@
 /* MEWindowController */
 
 #import <Cocoa/Cocoa.h>
-@class StaffView;
+@class ScoreView;
 @class TempoData;
 @class CAMIDIEndpointMenu;
 #import "Staff.h"
@@ -12,7 +12,7 @@ const int MODE_NOTE = 1;
 
 @interface MEWindowController : NSWindowController
 {
-	IBOutlet StaffView *view;
+	IBOutlet ScoreView *view;
 	IBOutlet CAMIDIEndpointMenu *devicePopup;
 	IBOutlet NSMatrix *mode;
 	IBOutlet NSButton *dotted;

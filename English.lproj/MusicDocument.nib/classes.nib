@@ -31,6 +31,17 @@
         }, 
         {CLASS = MusicDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }, 
         {CLASS = NonScrollableScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
+        {
+            CLASS = ScoreView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                clefFeedback = id; 
+                keySigFeedback = id; 
+                mouseOver = id; 
+                timeSigFeedback = id; 
+            }; 
+            SUPERCLASS = NSView; 
+        }, 
         {CLASS = Song; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = StaffVerticalRuler; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {

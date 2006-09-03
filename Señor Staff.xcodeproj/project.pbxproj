@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7841FD020A09CBC700292132 /* StaffView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD010A09CBC700292132 /* StaffView.m */; };
+		78124F860AAB6C6500D20E98 /* ScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */; };
 		7841FD2E0A09D29B00292132 /* MusicDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7841FD2C0A09D29B00292132 /* MusicDocument.nib */; };
 		7841FD7F0A0B073B00292132 /* MEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */; };
 		7841FD8C0A0B08B800292132 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD8B0A0B08B800292132 /* Song.m */; };
@@ -97,8 +97,8 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Music Editor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Music Editor_Prefix.pch"; sourceTree = "<group>"; };
-		7841FD000A09CBC700292132 /* StaffView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffView.h; sourceTree = "<group>"; };
-		7841FD010A09CBC700292132 /* StaffView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffView.m; sourceTree = "<group>"; };
+		78124F840AAB6C6500D20E98 /* ScoreView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScoreView.h; sourceTree = "<group>"; };
+		78124F850AAB6C6500D20E98 /* ScoreView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScoreView.m; sourceTree = "<group>"; };
 		7841FD2D0A09D29B00292132 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MusicDocument.nib; sourceTree = "<group>"; };
 		7841FD7D0A0B073B00292132 /* MEWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MEWindowController.h; sourceTree = "<group>"; };
 		7841FD7E0A0B073B00292132 /* MEWindowController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MEWindowController.m; sourceTree = "<group>"; };
@@ -351,8 +351,8 @@
 		786EB9990A7878DD009D63DD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7841FD000A09CBC700292132 /* StaffView.h */,
-				7841FD010A09CBC700292132 /* StaffView.m */,
+				78124F840AAB6C6500D20E98 /* ScoreView.h */,
+				78124F850AAB6C6500D20E98 /* ScoreView.m */,
 				786EB99D0A787985009D63DD /* NoteDraw.h */,
 				786EB99E0A787985009D63DD /* NoteDraw.m */,
 				786EBA580A789651009D63DD /* RestDraw.h */,
@@ -576,7 +576,6 @@
 			files = (
 				8D15AC310486D014006FF6A4 /* MusicDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				7841FD020A09CBC700292132 /* StaffView.m in Sources */,
 				7841FD7F0A0B073B00292132 /* MEWindowController.m in Sources */,
 				7841FD8C0A0B08B800292132 /* Song.m in Sources */,
 				7841FDD80A0B1E3100292132 /* Measure.m in Sources */,
@@ -599,6 +598,7 @@
 				786EBB6E0A7C7A36009D63DD /* MeasureDraw.m in Sources */,
 				786EBBA40A7C7C98009D63DD /* ClefDraw.m in Sources */,
 				784AFBB80A7F1C9A00832B7C /* NoteBase.m in Sources */,
+				78124F860AAB6C6500D20E98 /* ScoreView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
