@@ -86,5 +86,6 @@
 	onChannel:(int)channel;
 
 - (Class)getViewClass;
+- (Class)getControllerClass;
 
 @end

@@ -29,6 +29,8 @@
 		78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */; };
 		788321120A636D65003363D7 /* doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 788321110A636D64003363D7 /* doc.icns */; };
 		7883C8F70A86B666000E97DE /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7883C7E10A86B05A000E97DE /* StaffTest.m */; };
+		788707840AAD00850057D6DD /* MeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788707830AAD00850057D6DD /* MeasureController.m */; };
+		788707BE0AAD04660057D6DD /* TempoDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 788707BD0AAD04660057D6DD /* TempoDataTest.m */; };
 		789BC2A60A1FFD2000597728 /* erest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A20A1FFD2000597728 /* erest.png */; };
 		789BC2A70A1FFD2000597728 /* qrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A30A1FFD2000597728 /* qrest.png */; };
 		789BC2A80A1FFD2000597728 /* srest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A40A1FFD2000597728 /* srest.png */; };
@@ -138,6 +140,10 @@
 		7883C7E00A86B05A000E97DE /* StaffTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffTest.h; sourceTree = "<group>"; };
 		7883C7E10A86B05A000E97DE /* StaffTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffTest.m; sourceTree = "<group>"; };
 		7883C8990A86B5A5000E97DE /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		788707820AAD00850057D6DD /* MeasureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureController.h; sourceTree = "<group>"; };
+		788707830AAD00850057D6DD /* MeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureController.m; sourceTree = "<group>"; };
+		788707BC0AAD04660057D6DD /* TempoDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempoDataTest.h; sourceTree = "<group>"; };
+		788707BD0AAD04660057D6DD /* TempoDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoDataTest.m; sourceTree = "<group>"; };
 		789BC2A20A1FFD2000597728 /* erest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erest.png; sourceTree = "<group>"; };
 		789BC2A30A1FFD2000597728 /* qrest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrest.png; sourceTree = "<group>"; };
 		789BC2A40A1FFD2000597728 /* srest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = srest.png; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				788707780AAD005C0057D6DD /* Controller */,
 				786EB9990A7878DD009D63DD /* View */,
 				78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */,
 				7841FDD50A0B1E1E00292132 /* Model */,
@@ -378,8 +385,19 @@
 				784E44070A957C2500BE86EF /* NoteTest.m */,
 				786401290AA27B8B0015A0AC /* KeySigTest.h */,
 				7864012A0AA27B8B0015A0AC /* KeySigTest.m */,
+				788707BC0AAD04660057D6DD /* TempoDataTest.h */,
+				788707BD0AAD04660057D6DD /* TempoDataTest.m */,
 			);
 			name = "Test cases";
+			sourceTree = "<group>";
+		};
+		788707780AAD005C0057D6DD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				788707820AAD00850057D6DD /* MeasureController.h */,
+				788707830AAD00850057D6DD /* MeasureController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */ = {
@@ -567,6 +585,7 @@
 				78BDB83C0A8AE15D00323E8A /* SongTest.m in Sources */,
 				784E44080A957C2500BE86EF /* NoteTest.m in Sources */,
 				7864012B0AA27B8B0015A0AC /* KeySigTest.m in Sources */,
+				788707BE0AAD04660057D6DD /* TempoDataTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +618,7 @@
 				786EBBA40A7C7C98009D63DD /* ClefDraw.m in Sources */,
 				784AFBB80A7F1C9A00832B7C /* NoteBase.m in Sources */,
 				78124F860AAB6C6500D20E98 /* ScoreView.m in Sources */,
+				788707840AAD00850057D6DD /* MeasureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

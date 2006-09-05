@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 @class StaffHorizontalRulerComponent;
+@class Song;
 
 @interface TempoData : NSObject <NSCoding> {
 	float tempo;
 	IBOutlet StaffHorizontalRulerComponent *tempoPanel;
 	IBOutlet NSTextField *tempoText;
+	Song *song;
 }
 
 - (float) tempo;
@@ -20,8 +22,8 @@
 
 - (BOOL) empty;
 
-- (id) initWithTempo:(float)_tempo;
-- (id) initEmpty;
+- (id) initWithTempo:(float)_tempo withSong:(Song *)song;
+- (id) initEmptyWithSong:(Song *)song;
 
 - (NSView *)tempoPanel;
 - (void) removePanel;

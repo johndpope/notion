@@ -12,6 +12,7 @@
 #import "Staff.h"
 #import "TimeSignature.h"
 @class MeasureDraw;
+@class MeasureController;
 
 @implementation Measure
 
@@ -476,6 +477,10 @@
 
 - (Class)getViewClass{
 	return [MeasureDraw class];
+}
+
+- (Class)getControllerClass{
+	return [MeasureController class];
 }
 
 @end
