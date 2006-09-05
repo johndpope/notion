@@ -18,7 +18,7 @@
 - (id)initWithDocument:(MusicDocument *)_doc{
 	if((self = [super init])){
 		doc = _doc;
-		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120]] retain];
+		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120 withSong:self]] retain];
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
 	}
@@ -103,7 +103,7 @@
 		}
 	}
 	while([tempoData count] < numMeasures){
-		[tempoData addObject:[[TempoData alloc] initEmpty]];
+		[tempoData addObject:[[TempoData alloc] initEmptyWithSong:self]];
 	}
 	while([tempoData count] > numMeasures){
 		TempoData *tempo = [tempoData lastObject];

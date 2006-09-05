@@ -23,6 +23,7 @@
 - (id)initWithDocument:(MusicDocument *)_doc;
 
 - (MusicDocument *)document;
+- (NSUndoManager *)undoManager;
 
 - (NSMutableArray *)staffs;
 
