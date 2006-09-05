@@ -343,6 +343,7 @@
 }
 
 - (IBAction)keySigChanged:(id)sender{
+	[[self undoManager] setActionName:@"changing key signature"];
 	KeySignature *newSig;
 	if([[[keySigMajMin selectedItem] title] isEqual:@"major"]){
 		newSig = [KeySignature getMajorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
@@ -381,6 +382,7 @@
 }
 
 - (IBAction)timeSigTopChanged:(id)sender{
+	[[self undoManager] setActionName:@"changing time signature"];
 	int value = [sender intValue];
 	if(value < 1) value = 1;
 	[timeSigTopStep setIntValue:value];
@@ -389,6 +391,7 @@
 }
 
 - (IBAction)timeSigBottomChanged:(id)sender{
+	[[self undoManager] setActionName:@"changing time signature"];
 	[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
 }
 

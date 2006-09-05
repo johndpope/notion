@@ -199,10 +199,12 @@
 				atPitch:(int)pitch atOctave:(int)octave atXIndex:(float)x 
 				onClef:(BOOL)onClef onKeySig:(BOOL)onKeySig onTimeSig:(BOOL)onTimeSig button:(int)button{
 	if([self getMode] == MODE_NOTE){
+		[[[self document] undoManager] setActionName:@"adding note"];
 		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:[self getNoteModeDuration] dotted:[self getDotted] accidental:[self getAccidental] onStaff:staff];
 		[measure addNote:note atIndex:x tieToPrev:([tieToPrev state] == NSOnState)];
 	} else if([self getMode] == MODE_POINT){
 		if(onClef){
+			[[[self document] undoManager] setActionName:@"changing clef"];
 			[staff toggleClefAtMeasure:measure];
 		} else if(onTimeSig){
 			[self showTimeSigPanelFor:measure onStaff:staff];
