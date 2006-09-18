@@ -30,7 +30,7 @@
 	<key>CFBundleIconFile</key>
 	<string>sstaff</string>
 	<key>CFBundleIdentifier</key>
-	<string>info.gusprevas.SeñorStaff</string>
+	<string>com.gusprevas.SeñorStaff</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

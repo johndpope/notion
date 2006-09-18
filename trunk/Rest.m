@@ -7,14 +7,15 @@
 //
 
 #import "Rest.h"
-@class RestDraw;
+#import "RestDraw.h";
 
 @implementation Rest
 
-- (id)initWithDuration:(int)_duration dotted:(BOOL)_dotted{
+- (id)initWithDuration:(int)_duration dotted:(BOOL)_dotted onStaff:(Staff *)_staff{
 	if(self = [super init]){
 		duration = _duration;
 		dotted = _dotted;
+		staff = _staff;
 	}
 	return self;
 }
@@ -24,14 +25,14 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone{
-	return [[Rest allocWithZone:zone] initWithDuration:duration dotted:dotted];
+	return [[Rest allocWithZone:zone] initWithDuration:duration dotted:dotted onStaff:staff];
 }
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
 			accidentals:(NSMutableDictionary *)accidentals onChannel:(int)channel{
 	return 4.0 * [self getEffectiveDuration];
 }
-	
+
 - (Class)getViewClass{
 	return [RestDraw class];
 }

@@ -35,6 +35,8 @@
 
 - (Staff *)getStaff;
 
+- (NSUndoManager *)undoManager;
+
 - (NSMutableArray *)getNotes;
 - (NoteBase *)getFirstNote;
 - (void)setNotes:(NSMutableArray *)_notes;

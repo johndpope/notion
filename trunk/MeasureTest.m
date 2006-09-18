@@ -42,8 +42,8 @@
 }
 
 - (void)testGetTotalDuration{
-	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES];
+	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
 	STAssertEquals([measure getTotalDuration], (float)1.0, @"Wrong total duration returned.");
 	[firstRest release];
@@ -62,8 +62,8 @@
 - (void)testIsFull{
 	[self setupSong];
 	STAssertFalse([measure isFull], @"isFull returned true for empty measure.");
-	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:NO];
+	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
 	STAssertFalse([measure isFull], @"isFull returned true for half-full measure.");
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
@@ -90,24 +90,24 @@
 }
 
 - (void)testGetNoteStartDuration{
-	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES];
+	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
 	STAssertEquals([measure getNoteStartDuration:secondRest], [firstRest getEffectiveDuration], @"Wrong start duration returned.");
 	[firstRest release];
 	[secondRest release];
 }
 - (void)testGetNoteEndDuration{
-	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES];
+	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
 	STAssertEquals([measure getNoteEndDuration:secondRest], [firstRest getEffectiveDuration] + [secondRest getEffectiveDuration], @"Wrong end duration returned.");
 	[firstRest release];
 	[secondRest release];	
 }
 - (void)testGetNumberOfNotesStartingAfter{
-	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES];
+	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
 	STAssertEquals([measure getNumberOfNotesStartingAfter:0.0 before:0.25], (int)0, @"Wrong number of notes in time span.");
 	STAssertEquals([measure getNumberOfNotesStartingAfter:0.0 before:0.26], (int)1, @"Wrong number of notes in time span.");
@@ -126,7 +126,7 @@
 }
 - (void)testAddOneNoteToFullMeasure{
 	[self setupSong];
-	Rest *rest = [[Rest alloc] initWithDuration:1 dotted:NO];
+	Rest *rest = [[Rest alloc] initWithDuration:1 dotted:NO onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObject:rest]];
 	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];	
 	[measure addNote:note atIndex:0.5 tieToPrev:NO];
@@ -138,7 +138,7 @@
 }
 - (void)testSplitNoteOnAdd{
 	[self setupSong];
-	Rest *rest = [[Rest alloc] initWithDuration:2 dotted:YES];
+	Rest *rest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObject:rest]];
 	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure addNote:note atIndex:0.5 tieToPrev:NO];
@@ -153,8 +153,8 @@
 }
 - (void)testComplexSplitNoteOnAdd{
 	[self setupSong];
-	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:4 dotted:YES];
+	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:4 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
 	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:YES accidental:NO_ACC onStaff:staff];	
 	[measure addNote:note atIndex:2 tieToPrev:NO];
@@ -288,7 +288,7 @@
 }
 - (void)testRemoveNoteGrabsNotesFromNextMeasure{
 	[self setupSong];
-	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO];
+	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, firstNote, nil]];
@@ -305,8 +305,8 @@
 
 - (void)testTimeSignatureChangedMovesNotesToNextMeasure{
 	Song *song = [self setupSong];
-	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:NO];
+	Rest *firstRest = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:2 bottom:4] atIndex:0];
 	[measure timeSignatureChangedFrom:1.0 to:0.5 top:2 bottom:4];
@@ -319,8 +319,8 @@
 - (void)testTimeSignatureChangedGrabsNotesFromNextMeasure{
 	Song *song = [self setupSong];
 	Measure *secondMeasure = [staff addMeasure];
-	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO];
-	Rest *secondRest = [[Rest alloc] initWithDuration:1 dotted:NO];
+	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO onStaff:staff];
+	Rest *secondRest = [[Rest alloc] initWithDuration:1 dotted:NO onStaff:staff];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondRest]];
 	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:8 bottom:4] atIndex:0];
@@ -334,7 +334,7 @@
 - (void)testTimeSignatureChangedSplitsNotes{
 	Song *song = [self setupSong];
 	Measure *secondMeasure = [staff addMeasure];
-	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO];
+	Rest *firstRest = [[Rest alloc] initWithDuration:1 dotted:NO onStaff:staff];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondNote]];
 	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
@@ -370,7 +370,7 @@
 - (void)testUndoRedoAddNote{
 	[self setUpUndoTest];
 	[mgr beginUndoGrouping];
-	Rest *note = [[Rest alloc] initWithDuration:1 dotted:NO];
+	Rest *note = [[Rest alloc] initWithDuration:1 dotted:NO onStaff:staff];
 	[measure addNote:note atIndex:0 tieToPrev:NO];
 	[mgr endUndoGrouping];
 	[mgr undo];
@@ -383,11 +383,11 @@
 
 - (void)testUndoAddNoteUndoesCorrectNote{
 	[self setUpUndoTest];
-	Rest *firstNote = [[Rest alloc] initWithDuration:2 dotted:NO];
+	Rest *firstNote = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
 	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
 	[mgr endUndoGrouping];
 	[mgr beginUndoGrouping];
-	Rest *secondNote = [[Rest alloc] initWithDuration:2 dotted:NO];
+	Rest *secondNote = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
 	[measure addNote:secondNote atIndex:0.5 tieToPrev:NO];
 	[mgr undo];
 	STAssertTrue([[measure getNotes] containsObject:firstNote], @"Wrong note removed when undoing add note.");
@@ -423,7 +423,7 @@
 
 - (void)testUndoRedoAddSplitNote{
 	[self setUpUndoTest];
-	Rest *firstNote = [[Rest alloc] initWithDuration:2 dotted:YES];
+	Rest *firstNote = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
 	[mgr endUndoGrouping];
 	[mgr beginUndoGrouping];

@@ -18,9 +18,10 @@
 		785EE9F60A5891DE005ABDAB /* qnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 785EE9F50A5891DE005ABDAB /* qnote.png */; };
 		785EEA530A58B430005ABDAB /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EEA520A58B430005ABDAB /* TempoData.m */; };
 		7864012B0AA27B8B0015A0AC /* KeySigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7864012A0AA27B8B0015A0AC /* KeySigTest.m */; };
+		7865F0480AB333C200678461 /* StaffDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865F0470AB333C200678461 /* StaffDraw.m */; };
+		7865F5A80AB4E10B00678461 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865F5970AB4E10B00678461 /* AudioToolbox.framework */; };
 		78683A1B0A0E8A72001DE5BB /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */; };
 		786A93F20A89822B0006F54C /* MeasureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A93F10A89822B0006F54C /* MeasureTest.m */; };
-		786A95510A899E7C0006F54C /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA470A7894E2009D63DD /* Rest.m */; };
 		786EB99F0A787985009D63DD /* NoteDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EB99E0A787985009D63DD /* NoteDraw.m */; };
 		786EBA480A7894E2009D63DD /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA470A7894E2009D63DD /* Rest.m */; };
 		786EBA5A0A789651009D63DD /* RestDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA590A789651009D63DD /* RestDraw.m */; };
@@ -31,11 +32,22 @@
 		7883C8F70A86B666000E97DE /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7883C7E10A86B05A000E97DE /* StaffTest.m */; };
 		788707840AAD00850057D6DD /* MeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788707830AAD00850057D6DD /* MeasureController.m */; };
 		788707BE0AAD04660057D6DD /* TempoDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 788707BD0AAD04660057D6DD /* TempoDataTest.m */; };
+		788708310AAD08F50057D6DD /* StaffController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788708300AAD08F50057D6DD /* StaffController.m */; };
+		7887091D0AAD0D690057D6DD /* NoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7887091C0AAD0D690057D6DD /* NoteController.m */; };
+		788709460AAD0F010057D6DD /* ClefController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788709450AAD0F010057D6DD /* ClefController.m */; };
+		788709490AAD0F0C0057D6DD /* TimeSignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788709480AAD0F0C0057D6DD /* TimeSignatureController.m */; };
+		7887094C0AAD0F170057D6DD /* KeySignatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7887094B0AAD0F170057D6DD /* KeySignatureController.m */; };
+		78870A090AAD172A0057D6DD /* ScoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78870A080AAD172A0057D6DD /* ScoreController.m */; };
 		789BC2A60A1FFD2000597728 /* erest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A20A1FFD2000597728 /* erest.png */; };
 		789BC2A70A1FFD2000597728 /* qrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A30A1FFD2000597728 /* qrest.png */; };
 		789BC2A80A1FFD2000597728 /* srest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A40A1FFD2000597728 /* srest.png */; };
 		789BC2A90A1FFD2000597728 /* trest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A50A1FFD2000597728 /* trest.png */; };
 		789C1CB80A524DA900572AA8 /* sstaff.icns in Resources */ = {isa = PBXBuildFile; fileRef = 789C1CB70A524DA900572AA8 /* sstaff.icns */; };
+		78B439740ABCBFE70068C522 /* ClefTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B439730ABCBFE70068C522 /* ClefTarget.m */; };
+		78B43AB80ABCCC630068C522 /* TimeSigTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43AB70ABCCC630068C522 /* TimeSigTarget.m */; };
+		78B43ABD0ABCCCA20068C522 /* KeySigTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43ABC0ABCCCA20068C522 /* KeySigTarget.m */; };
+		78B43D150ABE4DB10068C522 /* TimeSignatureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */; };
+		78B43D5A0ABE4F980068C522 /* KeySignatureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43D590ABE4F980068C522 /* KeySignatureDraw.m */; };
 		78BDB83C0A8AE15D00323E8A /* SongTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BDB83B0A8AE15D00323E8A /* SongTest.m */; };
 		78DF755F0A42728F0058CF89 /* keysig_insert.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DF755E0A42728F0058CF89 /* keysig_insert.png */; };
 		78DF75A60A4273D20058CF89 /* flat over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DF75A30A4273D20058CF89 /* flat over.png */; };
@@ -118,6 +130,9 @@
 		785EEA520A58B430005ABDAB /* TempoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoData.m; sourceTree = "<group>"; };
 		786401290AA27B8B0015A0AC /* KeySigTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySigTest.h; sourceTree = "<group>"; };
 		7864012A0AA27B8B0015A0AC /* KeySigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySigTest.m; sourceTree = "<group>"; };
+		7865F0460AB333C200678461 /* StaffDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffDraw.h; sourceTree = "<group>"; };
+		7865F0470AB333C200678461 /* StaffDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffDraw.m; sourceTree = "<group>"; };
+		7865F5970AB4E10B00678461 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		78683A190A0E8A72001DE5BB /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
 		78683A1A0A0E8A72001DE5BB /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
 		786A93F00A89822B0006F54C /* MeasureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureTest.h; sourceTree = "<group>"; };
@@ -144,11 +159,33 @@
 		788707830AAD00850057D6DD /* MeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureController.m; sourceTree = "<group>"; };
 		788707BC0AAD04660057D6DD /* TempoDataTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempoDataTest.h; sourceTree = "<group>"; };
 		788707BD0AAD04660057D6DD /* TempoDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoDataTest.m; sourceTree = "<group>"; };
+		7887082F0AAD08F50057D6DD /* StaffController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffController.h; sourceTree = "<group>"; };
+		788708300AAD08F50057D6DD /* StaffController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffController.m; sourceTree = "<group>"; };
+		7887091B0AAD0D690057D6DD /* NoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteController.h; sourceTree = "<group>"; };
+		7887091C0AAD0D690057D6DD /* NoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteController.m; sourceTree = "<group>"; };
+		788709440AAD0F010057D6DD /* ClefController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefController.h; sourceTree = "<group>"; };
+		788709450AAD0F010057D6DD /* ClefController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefController.m; sourceTree = "<group>"; };
+		788709470AAD0F0C0057D6DD /* TimeSignatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignatureController.h; sourceTree = "<group>"; };
+		788709480AAD0F0C0057D6DD /* TimeSignatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureController.m; sourceTree = "<group>"; };
+		7887094A0AAD0F170057D6DD /* KeySignatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySignatureController.h; sourceTree = "<group>"; };
+		7887094B0AAD0F170057D6DD /* KeySignatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySignatureController.m; sourceTree = "<group>"; };
+		78870A070AAD172A0057D6DD /* ScoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreController.h; sourceTree = "<group>"; };
+		78870A080AAD172A0057D6DD /* ScoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreController.m; sourceTree = "<group>"; };
 		789BC2A20A1FFD2000597728 /* erest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erest.png; sourceTree = "<group>"; };
 		789BC2A30A1FFD2000597728 /* qrest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrest.png; sourceTree = "<group>"; };
 		789BC2A40A1FFD2000597728 /* srest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = srest.png; sourceTree = "<group>"; };
 		789BC2A50A1FFD2000597728 /* trest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trest.png; sourceTree = "<group>"; };
 		789C1CB70A524DA900572AA8 /* sstaff.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sstaff.icns; sourceTree = "<group>"; };
+		78B439720ABCBFE70068C522 /* ClefTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefTarget.h; sourceTree = "<group>"; };
+		78B439730ABCBFE70068C522 /* ClefTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefTarget.m; sourceTree = "<group>"; };
+		78B43AB60ABCCC630068C522 /* TimeSigTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSigTarget.h; sourceTree = "<group>"; };
+		78B43AB70ABCCC630068C522 /* TimeSigTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSigTarget.m; sourceTree = "<group>"; };
+		78B43ABB0ABCCCA20068C522 /* KeySigTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySigTarget.h; sourceTree = "<group>"; };
+		78B43ABC0ABCCCA20068C522 /* KeySigTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySigTarget.m; sourceTree = "<group>"; };
+		78B43D130ABE4DB10068C522 /* TimeSignatureDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignatureDraw.h; sourceTree = "<group>"; };
+		78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureDraw.m; sourceTree = "<group>"; };
+		78B43D580ABE4F980068C522 /* KeySignatureDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySignatureDraw.h; sourceTree = "<group>"; };
+		78B43D590ABE4F980068C522 /* KeySignatureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySignatureDraw.m; sourceTree = "<group>"; };
 		78BDB83A0A8AE15D00323E8A /* SongTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTest.h; sourceTree = "<group>"; };
 		78BDB83B0A8AE15D00323E8A /* SongTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTest.m; sourceTree = "<group>"; };
 		78DF755E0A42728F0058CF89 /* keysig_insert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keysig_insert.png; sourceTree = "<group>"; };
@@ -215,6 +252,7 @@
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				78E82A700A18027500DA31A3 /* CoreMIDI.framework in Frameworks */,
 				78E82A770A18028000DA31A3 /* CoreAudio.framework in Frameworks */,
+				7865F5A80AB4E10B00678461 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +271,7 @@
 		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7865F5970AB4E10B00678461 /* AudioToolbox.framework */,
 				78E82A760A18028000DA31A3 /* CoreAudio.framework */,
 				78E82A6F0A18027500DA31A3 /* CoreMIDI.framework */,
 				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
@@ -275,8 +314,6 @@
 				7841FDD50A0B1E1E00292132 /* Model */,
 				2A37F4AEFDCFA73011CA2CEA /* MusicDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* MusicDocument.m */,
-				7841FD7D0A0B073B00292132 /* MEWindowController.h */,
-				7841FD7E0A0B073B00292132 /* MEWindowController.m */,
 				78E7F5FB0A353C5A008F8F40 /* StaffVerticalRuler.h */,
 				78E7F5FC0A353C5A008F8F40 /* StaffVerticalRuler.m */,
 				78E7F7B20A354672008F8F40 /* StaffVerticalRulerComponent.h */,
@@ -368,6 +405,12 @@
 				786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */,
 				786EBBA20A7C7C98009D63DD /* ClefDraw.h */,
 				786EBBA30A7C7C98009D63DD /* ClefDraw.m */,
+				7865F0460AB333C200678461 /* StaffDraw.h */,
+				7865F0470AB333C200678461 /* StaffDraw.m */,
+				78B43D130ABE4DB10068C522 /* TimeSignatureDraw.h */,
+				78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */,
+				78B43D580ABE4F980068C522 /* KeySignatureDraw.h */,
+				78B43D590ABE4F980068C522 /* KeySignatureDraw.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -394,8 +437,28 @@
 		788707780AAD005C0057D6DD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7841FD7D0A0B073B00292132 /* MEWindowController.h */,
+				7841FD7E0A0B073B00292132 /* MEWindowController.m */,
 				788707820AAD00850057D6DD /* MeasureController.h */,
 				788707830AAD00850057D6DD /* MeasureController.m */,
+				7887082F0AAD08F50057D6DD /* StaffController.h */,
+				788708300AAD08F50057D6DD /* StaffController.m */,
+				7887091B0AAD0D690057D6DD /* NoteController.h */,
+				7887091C0AAD0D690057D6DD /* NoteController.m */,
+				788709440AAD0F010057D6DD /* ClefController.h */,
+				788709450AAD0F010057D6DD /* ClefController.m */,
+				788709470AAD0F0C0057D6DD /* TimeSignatureController.h */,
+				788709480AAD0F0C0057D6DD /* TimeSignatureController.m */,
+				7887094A0AAD0F170057D6DD /* KeySignatureController.h */,
+				7887094B0AAD0F170057D6DD /* KeySignatureController.m */,
+				78870A070AAD172A0057D6DD /* ScoreController.h */,
+				78870A080AAD172A0057D6DD /* ScoreController.m */,
+				78B439720ABCBFE70068C522 /* ClefTarget.h */,
+				78B439730ABCBFE70068C522 /* ClefTarget.m */,
+				78B43AB60ABCCC630068C522 /* TimeSigTarget.h */,
+				78B43AB70ABCCC630068C522 /* TimeSigTarget.m */,
+				78B43ABB0ABCCCA20068C522 /* KeySigTarget.h */,
+				78B43ABC0ABCCCA20068C522 /* KeySigTarget.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -581,7 +644,6 @@
 			files = (
 				7883C8F70A86B666000E97DE /* StaffTest.m in Sources */,
 				786A93F20A89822B0006F54C /* MeasureTest.m in Sources */,
-				786A95510A899E7C0006F54C /* Rest.m in Sources */,
 				78BDB83C0A8AE15D00323E8A /* SongTest.m in Sources */,
 				784E44080A957C2500BE86EF /* NoteTest.m in Sources */,
 				7864012B0AA27B8B0015A0AC /* KeySigTest.m in Sources */,
@@ -619,6 +681,18 @@
 				784AFBB80A7F1C9A00832B7C /* NoteBase.m in Sources */,
 				78124F860AAB6C6500D20E98 /* ScoreView.m in Sources */,
 				788707840AAD00850057D6DD /* MeasureController.m in Sources */,
+				788708310AAD08F50057D6DD /* StaffController.m in Sources */,
+				7887091D0AAD0D690057D6DD /* NoteController.m in Sources */,
+				788709460AAD0F010057D6DD /* ClefController.m in Sources */,
+				788709490AAD0F0C0057D6DD /* TimeSignatureController.m in Sources */,
+				7887094C0AAD0F170057D6DD /* KeySignatureController.m in Sources */,
+				78870A090AAD172A0057D6DD /* ScoreController.m in Sources */,
+				7865F0480AB333C200678461 /* StaffDraw.m in Sources */,
+				78B439740ABCBFE70068C522 /* ClefTarget.m in Sources */,
+				78B43AB80ABCCC630068C522 /* TimeSigTarget.m in Sources */,
+				78B43ABD0ABCCCA20068C522 /* KeySigTarget.m in Sources */,
+				78B43D150ABE4DB10068C522 /* TimeSignatureDraw.m in Sources */,
+				78B43D5A0ABE4F980068C522 /* KeySignatureDraw.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,9 +802,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "Señor Staff";
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
+				ZERO_LINK = NO;
 			};
 			name = Debug;
 		};
@@ -745,6 +820,7 @@
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "Music Editor";
 				WRAPPER_EXTENSION = app;
 			};

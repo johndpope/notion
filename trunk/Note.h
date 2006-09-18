@@ -25,14 +25,11 @@ static int FLAT = -1;
 	Note *tieTo;
 	Note *tieFrom;
 	
-	Staff *staff;
 }
 
 - (id)initWithPitch:(int)_pitch octave:(int)_octave 
 		   duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)staff;
 		
-- (Staff *)getStaff;
-
 - (int)getPitch;
 - (int)getOctave;
 - (int)getAccidental;

@@ -9,10 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import <AudioToolbox/AudioToolbox.h>
 @class KeySignature;
+@class Staff;
 
 @interface NoteBase : NSObject {
 	int duration;
 	BOOL dotted;
+
+	Staff *staff;
 }
 
 - (int)getDuration;
@@ -20,6 +23,9 @@
 
 - (void)setDuration:(int)_duration;
 - (void)setDotted:(BOOL)_dotted;
+
+- (Staff *)getStaff;
+- (NSUndoManager *)undoManager;
 
 - (float)getEffectiveDuration;
 
@@ -40,5 +46,6 @@
 - (NoteBase *)getTieFrom;
 
 - (Class)getViewClass;
+- (Class)getControllerClass;
 
 @end

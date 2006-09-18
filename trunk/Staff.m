@@ -12,6 +12,8 @@
 #import "Song.h"
 #import "KeySignature.h"
 #import "TimeSignature.h"
+@class StaffDraw;
+@class StaffController;
 
 @implementation Staff
 
@@ -252,6 +254,13 @@
 	measures = nil;
 	song = nil;
 	[super dealloc];
+}
+
+- (Class)getViewClass{
+	return [StaffDraw class];
+}
+- (Class)getControllerClass{
+	return [StaffController class];
 }
 
 @end

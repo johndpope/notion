@@ -8,11 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 @class Clef;
+@class Measure;
 
 @interface ClefDraw : NSObject {
 
 }
 
-+(void)draw:(Clef *)clef atX:(NSNumber *)x base:(NSNumber *)baseY highlighted:(BOOL)highlighted;
++(void)draw:(Clef *)clef inMeasure:(Measure *)measure isTarget:(BOOL)isTarget;
 
 @end

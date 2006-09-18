@@ -7,43 +7,34 @@
 //
 
 #import "RestDraw.h"
-#import "Note.h"
-@class Clef;
+#import "NoteController.h"
+#import "StaffController.h"
+#import "MeasureController.h"
+#import "NoteBase.h"
 
 @implementation RestDraw
 
-static RestDraw *instance = nil;
-
-+(void)draw:(Note *)note atX:(NSNumber *)x highlighted:(BOOL)highlighted
-   withClef:(Clef *)clef onMeasure:(NSRect)measure{
-	if(instance == nil){
-		instance = [[RestDraw alloc] init];
-	}
-	[instance setNote:note];
-	[instance setX:[x floatValue]];
-	[instance setHighlighted:highlighted];
-	[instance setClef:clef];
-	[instance setMeasure:measure];
-	[instance draw];
-}
-
--(void)doDraw{
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure isTarget:(BOOL)highlighted{
+	float x = [NoteController xOf:note inMeasure:measure];
+	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
+	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
+	float middle = measureBounds.origin.y + measureBounds.size.height / 2.0;
 	NSRect rect;
 	NSImage *img = nil;
 	switch([note getDuration]){
 		case 1:
 			if(highlighted) [[NSColor redColor] set];
 			rect.origin.x = x;
-			rect.origin.y = middle - line * 2;
-			rect.size.height = line;
+			rect.origin.y = middle - lineHeight * 2;
+			rect.size.height = lineHeight;
 			rect.size.width = 15;
 			[NSBezierPath fillRect:rect];
 			break;
 		case 2:
 			if(highlighted) [[NSColor redColor] set];
 			rect.origin.x = x;
-			rect.origin.y = middle - line;
-			rect.size.height = line;
+			rect.origin.y = middle - lineHeight;
+			rect.size.height = lineHeight;
 			rect.size.width = 15;
 			[NSBezierPath fillRect:rect];
 			break;
@@ -90,7 +81,7 @@ static RestDraw *instance = nil;
 		dotRect.origin.y = (img != nil ? middle + 10 : middle);
 		dotRect.size.width = dotRect.size.height = 4;
 		[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill]; 
-	}
+	}	
 }
 
 @end

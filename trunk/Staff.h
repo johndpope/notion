@@ -56,4 +56,7 @@
 
 - (void)addTrackToMIDISequence:(MusicSequence *)musicSequence;
 
+- (Class)getViewClass;
+- (Class)getControllerClass;
+
 @end

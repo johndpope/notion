@@ -7,7 +7,7 @@
 //
 
 #import "NoteBase.h"
-
+#import "NoteController.h"
 
 @implementation NoteBase
 
@@ -23,6 +23,14 @@
 }
 - (void)setDotted:(BOOL)_dotted{
 	dotted = _dotted;
+}
+
+- (Staff *)getStaff{
+	return staff;
+}
+
+- (NSUndoManager *)undoManager{
+	return [[[[self getStaff] getSong] document] undoManager];
 }
 
 - (float)getEffectiveDuration{
@@ -132,6 +140,10 @@
 - (Class)getViewClass{
 	[self doesNotRecognizeSelector:_cmd];
 	return [NSObject class];
+}
+
+- (Class)getControllerClass{
+	return [NoteController class];
 }
 
 @end
