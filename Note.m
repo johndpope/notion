@@ -25,14 +25,6 @@
 	return self;
 }
 
-- (NSUndoManager *)undoManager{
-	return [[[[self getStaff] getSong] document] undoManager];
-}
-
-- (Staff *)getStaff{
-	return staff;
-}
-
 - (int)getDuration{
 	return duration;
 }

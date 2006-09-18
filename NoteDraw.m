@@ -7,6 +7,10 @@
 //
 
 #import "NoteDraw.h"
+#import "NoteController.h"
+#import "StaffController.h"
+#import "MeasureController.h"
+#import "Measure.h"
 #import "Note.h"
 #import "Clef.h"
 
@@ -14,28 +18,6 @@
 
 static NSMutableDictionary *noteX = nil;
 static NSColor *mouseOverColor;
-static NoteDraw *instance = nil;
-
--(void)setNote:(Note *)_note{
-	note = _note;
-}
-
--(void)setX:(float)_x{
-	x = _x;
-}
-
--(void)setHighlighted:(BOOL)_highlighted{
-	highlighted = _highlighted;
-}
-
--(void)setClef:(Clef *)_clef{
-	clef = _clef;
-}
-
--(void)setMeasure:(NSRect)_measure{
-	measure = _measure;
-}
-
 
 +(void)resetAccidentals{
 	if(noteX == nil){
@@ -44,54 +26,7 @@ static NoteDraw *instance = nil;
 	[noteX removeAllObjects];
 }
 
-+(void)draw:(Note *)note atX:(NSNumber *)x highlighted:(BOOL)highlighted
-		withClef:(Clef *)clef onMeasure:(NSRect)measure{
-	if(instance == nil){
-		instance = [[NoteDraw alloc] init];
-	}
-	[instance setNote:note];
-	[instance setX:[x floatValue]];
-	[instance setHighlighted:highlighted];
-	[instance setClef:clef];
-	[instance setMeasure:measure];
-	[instance draw];
-}
-
--(void)draw{
-	if(highlighted){
-		if(mouseOverColor == nil){
-			mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
-		}
-		[mouseOverColor set];
-	}
-	if(noteX == nil){
-		noteX = [[NSMutableDictionary dictionary] retain];
-	}
-	line = measure.size.height / 8.0;
-	middle = measure.origin.y + measure.size.height / 2.0;
-	[self doDraw];
-	[[NSColor blackColor] set];
-}
-
--(void)doDraw{
-	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
-	body.origin.x = x;
-	body.size.width = 12;
-	body.size.height = 12;
-	body.origin.y = measure.origin.y + measure.size.height - line * position - 6;
-	[self drawExtraStaffLinesForPosition:position];
-	[NSBezierPath setDefaultLineWidth:1.5];
-	[self drawNote];
-	if([note getDuration] >= 2){
-		[self drawStemWithUpwards:(body.origin.y + body.size.height <= middle)];
-	}
-	[NSBezierPath setDefaultLineWidth:1.0];
-	[self drawDot];
-	[self drawAccidental];
-	[self drawTie];
-}
-
--(void)drawExtraStaffLinesForPosition:(int)position{
++(void)drawExtraStaffLinesForPosition:(int)position withBody:(NSRect)body lineHeight:(float)line{
 	float lineY = body.origin.y + body.size.height/2;
 	if(position < -1){
 		int i = position;
@@ -121,15 +56,7 @@ static NoteDraw *instance = nil;
 	}	
 }
 
--(void)drawNote{
-	if([note getDuration] >= 4){
-		[[NSBezierPath bezierPathWithOvalInRect:body] fill];
-	} else{
-		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
-	}	
-}
-
--(void)drawStemWithUpwards:(BOOL)up{
++(void)drawStemForNote:(Note *)note withBody:(NSRect)body upwards:(BOOL)up{
 	NSPoint point1, point2;
 	point1.y = body.origin.y + (body.size.height / 2);
 	if(up){
@@ -160,17 +87,15 @@ static NoteDraw *instance = nil;
 	}	
 }
 
--(void)drawDot{
-	if([note getDotted]){
-		NSRect dotRect;
-		dotRect.origin.x = body.origin.x + body.size.width;
-		dotRect.origin.y = body.origin.y + body.size.height - 4;
-		dotRect.size.width = dotRect.size.height = 4;
-		[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill]; 
-	}	
++(void)drawDotForBody:(NSRect)body{
+	NSRect dotRect;
+	dotRect.origin.x = body.origin.x + body.size.width;
+	dotRect.origin.y = body.origin.y + body.size.height - 4;
+	dotRect.size.width = dotRect.size.height = 4;
+	[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill]; 
 }
 
--(void)drawAccidental{
++(void)drawAccidentalForNote:(Note *)note withBody:(NSRect)body isTarget:(BOOL)highlighted{
 	if([note getAccidental] != NO_ACC && [note getTieFrom] == nil){
 		NSImage *acc;
 		if([note getAccidental] == FLAT){
@@ -198,7 +123,7 @@ static NoteDraw *instance = nil;
 	}	
 }
 
--(void)drawTie{
++(void)drawTieForNote:(Note *)note withBody:(NSRect)body{
 	Note *tieFrom = [note getTieFrom];
 	if(tieFrom != nil){
 		NSNumber *tieFromIndex = [NSNumber numberWithInt:tieFrom]; 
@@ -214,6 +139,45 @@ static NoteDraw *instance = nil;
 	if([note getTieTo] != nil){
 		[noteX setObject:[NSNumber numberWithFloat:(body.origin.x+body.size.width)] forKey:[NSNumber numberWithInt:note]];
 	}	
+}
+
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted{
+	if(highlighted){
+		if(mouseOverColor == nil){
+			mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
+		}
+		[mouseOverColor set];
+	}
+	if(noteX == nil){
+		noteX = [[NSMutableDictionary dictionary] retain];
+	}
+	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
+	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
+	float middle = measureBounds.origin.y + measureBounds.size.height / 2.0;
+	Clef *clef = [measure getEffectiveClef];
+	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
+	NSRect body;
+	body.origin.x = [MeasureController xOfIndex:index inMeasure:measure];
+	body.size.width = 12;
+	body.size.height = 12;
+	body.origin.y = measureBounds.origin.y + measureBounds.size.height - lineHeight * position - 6;
+	[self drawExtraStaffLinesForPosition:position withBody:body lineHeight:lineHeight];
+	[NSBezierPath setDefaultLineWidth:1.5];
+	if([note getDuration] >= 4){
+		[[NSBezierPath bezierPathWithOvalInRect:body] fill];
+	} else{
+		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
+	}	
+	if([note getDuration] >= 2){
+		[self drawStemForNote:note withBody:body upwards:(body.origin.y + body.size.height <= middle)];
+	}
+	[NSBezierPath setDefaultLineWidth:1.0];
+	if([note getDotted]){
+		[self drawDotForBody:body];		
+	}
+	[self drawAccidentalForNote:note withBody:body isTarget:highlighted];
+	[self drawTieForNote:note withBody:body];
+	[[NSColor blackColor] set];	
 }
 
 @end

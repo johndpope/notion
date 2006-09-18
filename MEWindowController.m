@@ -9,11 +9,15 @@
 #import "Rest.h"
 #import "Song.h"
 #import "TempoData.h"
+#import "ScoreController.h"
+#import "StaffController.h"
+#import "MeasureController.h"
+#import "TimeSignatureController.h"
+#import "ClefController.h"
 
 @implementation MEWindowController
 
 - (void)windowDidLoad{
-	[self updateFeedbackDuration];
 	[view setFrameSize:[view calculateBounds].size];
 	[verticalRuler setFrameSize:NSMakeSize([verticalRuler frame].size.width, [view frame].size.height)];
 	[horizontalRuler setFrameSize:NSMakeSize([view frame].size.width, [horizontalRuler frame].size.height)];
@@ -25,12 +29,10 @@
 
 - (IBAction)changeDuration:(id)sender{
 	[[view window] makeFirstResponder:view];
-	[self updateFeedbackDuration];
 }
 
 - (IBAction)changeDotted:(id)sender{
 	[[view window] makeFirstResponder:view];
-	[self updateFeedbackDotted];
 }
 
 - (IBAction)changeAccidental:(id)sender{
@@ -38,19 +40,6 @@
 	if(sharp != sender) [sharp setState:NSOffState];
 	if(flat != sender) [flat setState:NSOffState];
 	if(natural != sender) [natural setState:NSOffState];
-	[self updateFeedbackAccidental];
-}
-
-- (void)updateFeedbackDuration{
-	[view setFeedbackNoteDuration:[self getNoteModeDuration]];
-}
-
-- (void)updateFeedbackDotted{
-	[view setFeedbackNoteDotted:[self getDotted]];
-}
-
-- (void)updateFeedbackAccidental{
-	[view setFeedbackNoteAccidental:[self getAccidental]];
 }
 
 - (IBAction)playSong:(id)sender{
@@ -79,8 +68,8 @@
 		} else if(![[verticalRuler subviews] containsObject:[staff rulerView]]){
 			[verticalRuler addSubview:[staff rulerView]];
 		}
-		[[staff rulerView] setFrameOrigin:NSMakePoint(0, [view calcStaffBase:staff fromTop:[view calcStaffTop:staff]] -
-													[view calcStaffLineHeight:staff] * 5.0)];
+		[[staff rulerView] setFrameOrigin:NSMakePoint(0, [StaffController baseOf:staff] -
+													  [StaffController lineHeightOf:staff] * 3.0)];
 	}
 	NSEnumerator *tempos = [[[[self document] getSong] tempoData] objectEnumerator];
 	id tempo;
@@ -89,7 +78,7 @@
 		if([tempo tempoPanel] == nil){
 			[self addHorizontalRulerComponentFor:tempo];
 		}
-		[[tempo tempoPanel] setFrameOrigin:NSMakePoint([view getXForMeasure:[[longest getMeasures] objectAtIndex:i] forStaff:longest], 1)];
+		[[tempo tempoPanel] setFrameOrigin:NSMakePoint([MeasureController xOf:[[longest getMeasures] objectAtIndex:i]], 1)];
 		i++;
 	}
 	[view setFrameSize:[view calculateBounds].size];
@@ -111,34 +100,6 @@
 	if([NSBundle loadNibNamed:@"StaffVerticalRulerComponent" owner:staff]){
 		[verticalRuler addSubview:[staff rulerView]];
 	}
-}
-
-- (void)showKeySigPanelFor:(Measure *)measure onStaff:(Staff *)staff{
-	NSView *keySigPanel = [measure getKeySigPanel];
-	if([keySigPanel superview] == nil){
-		[view addSubview:keySigPanel];
-		float x, y;
-		x = [view getXForMeasure:measure forStaff:staff] + [view calcClefWidth:measure] + [view calcTimeSignatureWidth:measure];
-		y = [view calcStaffTop:staff];
-		[keySigPanel setFrameOrigin:NSMakePoint(x, y)];
-		[keySigPanel setHidden:NO withFade:YES blocking:NO];
-	}
-	if([measure isShowingTimeSigPanel]) [measure timeSigClose:nil];
-	[view setNeedsDisplay:YES];
-}
-
-- (void)showTimeSigPanelFor:(Measure *)measure onStaff:(Staff *)staff{
-	NSView *timeSigPanel = [measure getTimeSigPanel];
-	if([timeSigPanel superview] == nil){
-		[view addSubview:timeSigPanel];
-		float x, y;
-		x = [view getXForMeasure:measure forStaff:staff] + [view calcClefWidth:measure];
-		y = [view calcStaffTop:staff];
-		[timeSigPanel setFrameOrigin:NSMakePoint(x, y)];
-		[timeSigPanel setHidden:NO withFade:YES blocking:NO];
-	}
-	if([measure isShowingKeySigPanel]) [measure keySigClose:nil];
-	[view setNeedsDisplay:YES];
 }
 
 - (void)awakeFromNib{
@@ -168,13 +129,23 @@
 	[view setNeedsDisplay:YES];
 }
 
-- (int)getMode{
+- (NSDictionary *)getMode{
+	NSMutableDictionary *modeDict = [NSMutableDictionary dictionary];
+	[modeDict setObject:[NSNumber numberWithInt:[self getPointerMode]] forKey:@"pointerMode"];
+	[modeDict setObject:[NSNumber numberWithInt:[self getNoteModeDuration]] forKey:@"duration"];
+	[modeDict setObject:[NSNumber numberWithInt:[self getAccidental]] forKey:@"accidental"];
+	[modeDict setObject:[NSNumber numberWithBool:[self getDotted]] forKey:@"dotted"];
+	[modeDict setObject:[NSNumber numberWithBool:([tieToPrev state] == NSOnState)] forKey:@"tieToPrev"];
+	return modeDict;
+}
+
+- (int)getPointerMode{
 	if([mode selectedColumn] == 0) return MODE_POINT;
 	return MODE_NOTE;
 }
 
 - (int)getNoteModeDuration{
-	if([self getMode] == MODE_POINT) return 0;
+	if([self getPointerMode] == MODE_POINT) return 0;
 	int i = [mode selectedColumn];
 	int duration = 1;
 	while(i > 1){
@@ -188,6 +159,10 @@
 	return [dotted state] == NSOnState;
 }
 
+- (BOOL)isTieToPrev{
+	return [tieToPrev state] == NSOnState;
+}
+
 - (int)getAccidental{
 	if([flat state] == NSOnState) return FLAT;
 	if([sharp state] == NSOnState) return SHARP;
@@ -195,50 +170,43 @@
 	return NO_ACC;
 }
 
-- (void)clickedAtLocation:(NSPoint)location onStaff:(Staff *)staff onMeasure:(Measure *)measure
-				atPitch:(int)pitch atOctave:(int)octave atXIndex:(float)x 
-				onClef:(BOOL)onClef onKeySig:(BOOL)onKeySig onTimeSig:(BOOL)onTimeSig button:(int)button{
-	if([self getMode] == MODE_NOTE){
-		[[[self document] undoManager] setActionName:@"adding note"];
-		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:[self getNoteModeDuration] dotted:[self getDotted] accidental:[self getAccidental] onStaff:staff];
-		[measure addNote:note atIndex:x tieToPrev:([tieToPrev state] == NSOnState)];
-	} else if([self getMode] == MODE_POINT){
-		if(onClef){
-			[[[self document] undoManager] setActionName:@"changing clef"];
-			[staff toggleClefAtMeasure:measure];
-		} else if(onTimeSig){
-			[self showTimeSigPanelFor:measure onStaff:staff];
-		} else if(onKeySig){
-			[self showKeySigPanelFor:measure onStaff:staff];
-		}
+- (id)targetAt:(NSPoint)location{
+	id modeDict = [self getMode];
+	id song = [[self document] getSong];
+	return [ScoreController targetAtLocation:location inSong:song mode:modeDict];	
+}
+
+- (void)clickedAtLocation:(NSPoint)location withEvent:(NSEvent *)event{
+	id modeDict = [self getMode];
+	id song = [[self document] getSong];
+	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict];
+	if([[target getControllerClass] respondsToSelector:@selector(handleMouseClick:at:on:mode:view:)]){
+		[[target getControllerClass] handleMouseClick:event at:location on:target mode:modeDict view:view];		
 	}
 }
 
-- (BOOL)keyPressed:(NSEvent *)event onStaff:(Staff *)staff onMeasure:(Measure *)measure atXIndex:(float)x{
-	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSLeftArrowFunctionKey]].location != NSNotFound){
-		int row = [mode selectedRow];
-		int col = [mode selectedColumn]-1;
-		if(col < 0) col = 0;
-		[mode selectCellAtRow:row column:col];
-		[self updateFeedbackDuration];
-		return YES;
-	} else if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSRightArrowFunctionKey]].location != NSNotFound){
-		int row = [mode selectedRow];
-		int col = [mode selectedColumn]+1;
-		if(col > [mode numberOfColumns]-1) col = [mode numberOfColumns]-1;
-		[mode selectCellAtRow:row column:col];
-		[self updateFeedbackDuration];
-		return YES;
-	} else if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
-		[[[self document] undoManager] setActionName:@"deleting note"];
-		[measure removeNoteAtIndex:x temporary:NO];
-		return YES;
-	} else if([self getMode] == MODE_NOTE && [[event characters] isEqualToString:@" "]){
-		[measure addNote:[[Rest alloc] initWithDuration:[self getNoteModeDuration] dotted:[self getDotted]] atIndex:x tieToPrev:NO];
-		if([measure isFull]) [staff getMeasureAfter:measure];
-		return YES;
+- (BOOL)keyPressedAtLocation:(NSPoint)location withEvent:(NSEvent *)event{
+	id modeDict = [self getMode];
+	id song = [[self document] getSong];
+	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict];
+	BOOL handled = [[target getControllerClass] respondsToSelector:@selector(handleKeyPress:at:on:mode:view:)] &&
+		[[target getControllerClass] handleKeyPress:event at:location on:target mode:modeDict view:view];
+	if(!handled){
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSLeftArrowFunctionKey]].location != NSNotFound){
+			int row = [mode selectedRow];
+			int col = [mode selectedColumn]-1;
+			if(col < 0) col = 0;
+			[mode selectCellAtRow:row column:col];
+			return YES;
+		} else if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSRightArrowFunctionKey]].location != NSNotFound){
+			int row = [mode selectedRow];
+			int col = [mode selectedColumn]+1;
+			if(col > [mode numberOfColumns]-1) col = [mode numberOfColumns]-1;
+			[mode selectCellAtRow:row column:col];
+			return YES;
+		}		
 	}
-	return NO;
+	return handled;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

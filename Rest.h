@@ -13,4 +13,6 @@
 
 }
 
+- (id)initWithDuration:(int)_duration dotted:(BOOL)_dotted onStaff:(Staff *)_staff;
+
 @end

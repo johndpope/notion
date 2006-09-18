@@ -1,0 +1,25 @@
+//
+//  NoteController.h
+//  Señor Staff
+//
+//  Created by Konstantine Prevas on 9/4/06.
+//  Copyright 2006 Konstantine Prevas. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+@class NoteBase;
+@class Measure;
+@class ScoreView;
+
+@interface NoteController : NSObject {
+
+}
+
++ (float) widthOf:(NoteBase *)note;
++ (float) widthOf:(NoteBase *)note inMeasure:(Measure *)measure;
+
++ (float) xOf:(NoteBase *)note inMeasure:(Measure *)measure;
+
++ (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view;
+
+@end

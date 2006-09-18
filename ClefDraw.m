@@ -8,29 +8,44 @@
 
 #import "ClefDraw.h"
 #import "Clef.h"
+#import "StaffController.h"
+#import "MeasureController.h"
+#import "Measure.h"
 
 @implementation ClefDraw
 
-+(void)draw:(Clef *)clef atX:(NSNumber *)x base:(NSNumber *)baseY highlighted:(BOOL)highlighted{
-	NSImage *img;
-	NSPoint clefLoc;
-	clefLoc.x = [x floatValue];
-	if(clef == [Clef trebleClef]){
-		if(highlighted){
-			img = [NSImage imageNamed:@"treble over.png"];
-		} else{
-			img = [NSImage imageNamed:@"treble.png"];
++(void)draw:(Clef *)clef inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
+	if(clef != nil){
+		NSImage *img;
+		NSPoint clefLoc;
+		float baseY = [StaffController baseOf:[measure getStaff]];
+		clefLoc.x = [MeasureController xOf:measure];
+		if(clef == [Clef trebleClef]){
+			if(isTarget){
+				img = [NSImage imageNamed:@"treble over.png"];
+			} else{
+				img = [NSImage imageNamed:@"treble.png"];
+			}
+			clefLoc.y = baseY + 20;
+		} else if(clef == [Clef bassClef]){
+			if(isTarget){
+				img = [NSImage imageNamed:@"bass over.png"];
+			} else{
+				img = [NSImage imageNamed:@"bass.png"];
+			}
+			clefLoc.y = baseY - 7;
 		}
-		clefLoc.y = [baseY floatValue] + 20;
-	} else if(clef == [Clef bassClef]){
-		if(highlighted){
-			img = [NSImage imageNamed:@"bass over.png"];
+		[img compositeToPoint:clefLoc operation:NSCompositeSourceOver];
+	} else if(isTarget){
+		NSRect bounds = [MeasureController innerBoundsOf:measure];
+		NSImage *clefIns;
+		if([measure getEffectiveClef] == [Clef trebleClef]){
+			clefIns = [NSImage imageNamed:@"clefins_bass.png"];
 		} else{
-			img = [NSImage imageNamed:@"bass.png"];
+			clefIns = [NSImage imageNamed:@"clefins_treble.png"];
 		}
-		clefLoc.y = [baseY floatValue] - 7;
+		[clefIns compositeToPoint:NSMakePoint(bounds.origin.x, bounds.origin.y) operation:NSCompositeSourceOver];		
 	}
-	[img compositeToPoint:clefLoc operation:NSCompositeSourceOver];
 }
 
 @end

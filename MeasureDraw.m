@@ -7,71 +7,26 @@
 //
 
 #import "MeasureDraw.h"
+#import "NoteDraw.h"
+#import "TimeSignatureDraw.h"
+#import "ClefDraw.h"
+#import "MEWindowController.h"
+#import "MeasureController.h"
 #import "Measure.h"
+#import "Staff.h"
+#import "StaffController.h"
+#import "ClefController.h"
+#import "TimeSignatureController.h"
+#import "TimeSignature.h"
+#import "ClefTarget.h"
+#import "KeySigTarget.h"
+#import "TimeSigTarget.h"
 #import "Clef.h"
 
 @implementation MeasureDraw
 
-static MeasureDraw *instance = nil;
-
--(void)setMeasure:(Measure *)_measure{
-	measure = _measure;
-}
-
--(void)setBounds:(NSRect)_bounds{
-	bounds = _bounds;
-}
-
--(void)setBase:(float)_baseY{
-	baseY = _baseY;
-}
-
--(void)setMouseOverClef:(BOOL)_mouseOverClef{
-	mouseOverClef = _mouseOverClef;
-}
-
--(void)setMouseOverTimeSig:(BOOL)_mouseOverTimeSig{
-	mouseOverTimeSig = _mouseOverTimeSig;
-}
-
--(void)setMouseOverKeySig:(BOOL)_mouseOverKeySig{
-	mouseOverKeySig = _mouseOverKeySig;
-}
-
--(void)setLineHeight:(float)_lineHeight{
-	lineHeight = _lineHeight;
-}
-
--(void)setClefWidth:(float)_clefWidth{
-	clefWidth = _clefWidth;
-}
-
--(void)setTimeSigWidth:(float)_timeSigWidth{
-	timeSigWidth = _timeSigWidth;
-}
-
-+(void)draw:(Measure *)_measure withBounds:(NSRect)_bounds base:(NSNumber *)_baseY
-		lineHeight:(NSNumber *)_lineHeight clefWidth:(NSNumber *)_clefWidth
-		timeSigWidth:(NSNumber *)_timeSigWidth
-		mouseOverClef:(BOOL)_mouseOverClef
-		mouseOverTimeSig:(BOOL)_mouseOverTimeSig
-		mouseOverKeySig:(BOOL)_mouseOverKeySig{
-	if(instance == nil){
-		instance = [[MeasureDraw alloc] init];
-	}
-	[instance setMeasure:_measure];
-	[instance setBounds:_bounds];
-	[instance setBase:[_baseY floatValue]];
-	[instance setMouseOverClef:_mouseOverClef];
-	[instance setMouseOverTimeSig:_mouseOverTimeSig];
-	[instance setMouseOverKeySig:_mouseOverKeySig];
-	[instance setLineHeight:[_lineHeight floatValue]];
-	[instance setClefWidth:[_clefWidth floatValue]];
-	[instance setTimeSigWidth:[_timeSigWidth floatValue]];
-	[instance draw];	
-}
-
--(void)draw{
++(void)draw:(Measure *)measure target:(id)target targetLocation:(NSPoint)location mode:(NSDictionary *)mode{
+	NSRect bounds = [MeasureController innerBoundsOf:measure];
 	[NSBezierPath strokeRect:bounds];
 	int i;
 	for(i=1; i<=3; i++){
@@ -82,62 +37,33 @@ static MeasureDraw *instance = nil;
 		[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
 	}
 	
-	[self drawClef:[measure getClef]];
-	
-	TimeSignature *timeSig = nil;
-	if([measure hasTimeSignature]){
-		timeSig = [measure getTimeSignature];
+	[self drawClef:[measure getClef] inMeasure:measure isTarget:([target isKindOfClass:[ClefTarget class]] && [target measure] == measure)];
+	[TimeSignatureDraw drawTimeSig:[measure getTimeSignature] inMeasure:measure isTarget:([target isKindOfClass:[TimeSigTarget class]] && [target measure] == measure)];
+	[self drawKeySig:[measure getKeySignature] inMeasure:measure isTarget:([target isKindOfClass:[KeySigTarget class]] && [target measure] == measure)];
+	[self drawNotesInMeasure:measure target:(id)target];
+	if([[mode objectForKey:@"pointerMode"] intValue] == MODE_NOTE && target == measure){
+		[self drawFeedbackNoteInMeasure:measure targetLocation:location mode:mode];
 	}
-	[self drawTimeSig:timeSig];
-	
-	[self drawKeySig:[measure getKeySignature]];
 }
 
--(void)drawClef:(Clef *)clef{
-	if(clef != nil){
-		[[clef getViewClass] draw:clef atX:[NSNumber numberWithFloat:bounds.origin.x] base:[NSNumber numberWithFloat:baseY] 
-					  highlighted:mouseOverClef];
-	} else if(mouseOverClef){
-		NSImage *clefIns;
-		if([measure getEffectiveClef] == [Clef trebleClef]){
-			clefIns = [NSImage imageNamed:@"clefins_bass.png"];
-		} else{
-			clefIns = [NSImage imageNamed:@"clefins_treble.png"];
-		}
-		[clefIns compositeToPoint:NSMakePoint(bounds.origin.x, bounds.origin.y) operation:NSCompositeSourceOver];
-	}	
++(void)drawClef:(Clef *)clef inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
+	Class *viewClass = (clef == nil) ? [ClefDraw class] : [clef getViewClass];
+	[viewClass draw:clef inMeasure:measure isTarget:isTarget];
 }
 
--(void)drawTimeSig:(TimeSignature *)sig{
-	if(sig != nil){
-		NSPoint accLoc;
-		accLoc.x = bounds.origin.x + clefWidth;
-		accLoc.y = baseY - lineHeight * 18;
-		NSMutableDictionary *atts = [NSMutableDictionary dictionary];
-		[atts setObject:[NSFont fontWithName:@"Musicator" size:160] forKey:NSFontAttributeName];
-		if(mouseOverTimeSig){
-			[atts setObject:[NSColor redColor] forKey:NSForegroundColorAttributeName];
-		} else{
-			[atts setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
-		}
-		[[NSString stringWithFormat:@"%d", [sig getBottom]] drawAtPoint:accLoc withAttributes:atts];
-		accLoc.y -= lineHeight * 4;
-		[[NSString stringWithFormat:@"%d", [sig getTop]] drawAtPoint:accLoc withAttributes:atts];			
-		[[NSColor blackColor] set];
-	} else if(mouseOverTimeSig){
-		NSImage *sigIns = [NSImage imageNamed:@"timesig_insert.png"];
-		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + clefWidth, bounds.origin.y) operation:NSCompositeSourceOver];			
-	}	
-}
-
--(void)drawKeySig:(KeySignature *)sig{
++(void)drawKeySig:(KeySignature *)sig inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
+	NSRect bounds = [MeasureController innerBoundsOf:measure];
+	float baseY = [StaffController baseOf:[measure getStaff]];
+	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
+	float clefWidth = [ClefController widthOf:[measure getClef]];
+	float timeSigWidth = [TimeSignatureController widthOf:[measure getTimeSignature]];
 	if(sig != nil && ([sig getNumSharps] > 0 || [sig getNumFlats] > 0)){
 		NSPoint accLoc;
 		accLoc.x = bounds.origin.x + clefWidth + timeSigWidth;
 		NSEnumerator *sharps = [[sig getSharps] objectEnumerator];
 		NSNumber *sharp;
 		NSImage *sharpImg;
-		if(mouseOverKeySig){
+		if(isTarget){
 			sharpImg = [NSImage imageNamed:@"sharp over.png"];
 		} else{
 			sharpImg = [NSImage imageNamed:@"sharp.png"];
@@ -151,7 +77,7 @@ static MeasureDraw *instance = nil;
 		NSEnumerator *flats = [[sig getFlats] objectEnumerator];
 		NSNumber *flat;
 		NSImage *flatImg;
-		if(mouseOverKeySig){
+		if(isTarget){
 			flatImg = [NSImage imageNamed:@"flat over.png"];
 		} else{
 			flatImg = [NSImage imageNamed:@"flat.png"];
@@ -162,10 +88,32 @@ static MeasureDraw *instance = nil;
 			[flatImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
 			accLoc.x += 10.0;
 		}
-	} else if(mouseOverKeySig && ![measure isShowingKeySigPanel]){
+	} else if(isTarget && ![measure isShowingKeySigPanel]){
 		NSImage *sigIns = [NSImage imageNamed:@"keysig_insert.png"];
 		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + clefWidth + timeSigWidth, bounds.origin.y) operation:NSCompositeSourceOver];			
 	}	
+}
+
++(void)drawNotesInMeasure:(Measure *)measure target:(id)target{
+	NSEnumerator *notes = [[measure getNotes] objectEnumerator];
+	id note;
+	while(note = [notes nextObject]){
+		[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] isTarget:(note == target)];
+	}
+}
+
++(void)drawFeedbackNoteInMeasure:(Measure *)measure targetLocation:(NSPoint)location mode:(NSDictionary *)mode{
+	[[NSColor blueColor] set];
+	location.x -= [MeasureController xOf:measure];
+	location.y -= [MeasureController boundsOf:measure].origin.y;
+	Note *feedbackNote = [[[Note alloc] initWithPitch:[MeasureController pitchAt:location inMeasure:measure]
+											   octave:[MeasureController octaveAt:location inMeasure:measure]
+											 duration:[[mode objectForKey:@"duration"] intValue]
+											   dotted:[[mode objectForKey:@"dotted"] boolValue]
+										   accidental:[[mode objectForKey:@"accidental"] intValue]
+											  onStaff:[measure getStaff]]
+		autorelease];
+	[NoteDraw draw:feedbackNote inMeasure:measure atIndex:[MeasureController indexAt:location inMeasure:measure] isTarget:NO];
 }
 
 @end
