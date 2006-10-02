@@ -34,8 +34,8 @@
 }
 
 - (float)getEffectiveDuration{
-	float effDuration = 1.0 / (float)duration;
-	if(dotted) effDuration *= 1.5;
+	float effDuration = 1.0 / (float)[self getDuration];
+	if([self getDotted]) effDuration *= 1.5;
 	return effDuration;
 }
 

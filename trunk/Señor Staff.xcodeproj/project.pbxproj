@@ -49,6 +49,7 @@
 		78B43D150ABE4DB10068C522 /* TimeSignatureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */; };
 		78B43D5A0ABE4F980068C522 /* KeySignatureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43D590ABE4F980068C522 /* KeySignatureDraw.m */; };
 		78BDB83C0A8AE15D00323E8A /* SongTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BDB83B0A8AE15D00323E8A /* SongTest.m */; };
+		78C52F350ACF4D6C006B5727 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C52F340ACF4D6C006B5727 /* Chord.m */; };
 		78DF755F0A42728F0058CF89 /* keysig_insert.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DF755E0A42728F0058CF89 /* keysig_insert.png */; };
 		78DF75A60A4273D20058CF89 /* flat over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DF75A30A4273D20058CF89 /* flat over.png */; };
 		78DF75A70A4273D20058CF89 /* natural over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78DF75A40A4273D20058CF89 /* natural over.png */; };
@@ -75,6 +76,9 @@
 		78EB67C10A2583490069784F /* sharp.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EB67BE0A2583490069784F /* sharp.png */; };
 		78F2DB230A33B3BE0052DB2C /* clefins_bass.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F2DB210A33B3BE0052DB2C /* clefins_bass.png */; };
 		78F2DB240A33B3BE0052DB2C /* clefins_treble.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F2DB220A33B3BE0052DB2C /* clefins_treble.png */; };
+		78F7816C0AD0780A009EDC26 /* ChordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7816B0AD0780A009EDC26 /* ChordTest.m */; };
+		78F783890AD0822D009EDC26 /* Chomp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F783820AD0822D009EDC26 /* Chomp.framework */; };
+		78F783ED0AD084DD009EDC26 /* Chomp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F783820AD0822D009EDC26 /* Chomp.framework */; };
 		78F8BBBB0A830A6900A2788D /* erest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB70A830A6900A2788D /* erest-over.png */; };
 		78F8BBBC0A830A6900A2788D /* qrest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB80A830A6900A2788D /* qrest-over.png */; };
 		78F8BBBD0A830A6900A2788D /* srest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB90A830A6900A2788D /* srest-over.png */; };
@@ -99,6 +103,19 @@
 			remoteInfo = "Señor Staff";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		78F783DB0AD08478009EDC26 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				78F783ED0AD084DD009EDC26 /* Chomp.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -188,6 +205,8 @@
 		78B43D590ABE4F980068C522 /* KeySignatureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySignatureDraw.m; sourceTree = "<group>"; };
 		78BDB83A0A8AE15D00323E8A /* SongTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTest.h; sourceTree = "<group>"; };
 		78BDB83B0A8AE15D00323E8A /* SongTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTest.m; sourceTree = "<group>"; };
+		78C52F330ACF4D6C006B5727 /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
+		78C52F340ACF4D6C006B5727 /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
 		78DF755E0A42728F0058CF89 /* keysig_insert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keysig_insert.png; sourceTree = "<group>"; };
 		78DF75A30A4273D20058CF89 /* flat over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat over.png"; sourceTree = "<group>"; };
 		78DF75A40A4273D20058CF89 /* natural over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "natural over.png"; sourceTree = "<group>"; };
@@ -223,6 +242,9 @@
 		78EB67BE0A2583490069784F /* sharp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharp.png; sourceTree = "<group>"; };
 		78F2DB210A33B3BE0052DB2C /* clefins_bass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clefins_bass.png; sourceTree = "<group>"; };
 		78F2DB220A33B3BE0052DB2C /* clefins_treble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clefins_treble.png; sourceTree = "<group>"; };
+		78F7816A0AD0780A009EDC26 /* ChordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTest.h; sourceTree = "<group>"; };
+		78F7816B0AD0780A009EDC26 /* ChordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordTest.m; sourceTree = "<group>"; };
+		78F783820AD0822D009EDC26 /* Chomp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chomp.framework; sourceTree = "<group>"; };
 		78F8BBB70A830A6900A2788D /* erest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erest-over.png"; sourceTree = "<group>"; };
 		78F8BBB80A830A6900A2788D /* qrest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrest-over.png"; sourceTree = "<group>"; };
 		78F8BBB90A830A6900A2788D /* srest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "srest-over.png"; sourceTree = "<group>"; };
@@ -253,6 +275,7 @@
 				78E82A700A18027500DA31A3 /* CoreMIDI.framework in Frameworks */,
 				78E82A770A18028000DA31A3 /* CoreAudio.framework in Frameworks */,
 				7865F5A80AB4E10B00678461 /* AudioToolbox.framework in Frameworks */,
+				78F783890AD0822D009EDC26 /* Chomp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +382,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78F783820AD0822D009EDC26 /* Chomp.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
@@ -388,6 +412,8 @@
 				786EBA470A7894E2009D63DD /* Rest.m */,
 				784AFBB60A7F1C9A00832B7C /* NoteBase.h */,
 				784AFBB70A7F1C9A00832B7C /* NoteBase.m */,
+				78C52F330ACF4D6C006B5727 /* Chord.h */,
+				78C52F340ACF4D6C006B5727 /* Chord.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -430,6 +456,8 @@
 				7864012A0AA27B8B0015A0AC /* KeySigTest.m */,
 				788707BC0AAD04660057D6DD /* TempoDataTest.h */,
 				788707BD0AAD04660057D6DD /* TempoDataTest.m */,
+				78F7816A0AD0780A009EDC26 /* ChordTest.h */,
+				78F7816B0AD0780A009EDC26 /* ChordTest.m */,
 			);
 			name = "Test cases";
 			sourceTree = "<group>";
@@ -534,6 +562,7 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
+				78F783DB0AD08478009EDC26 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -648,6 +677,7 @@
 				784E44080A957C2500BE86EF /* NoteTest.m in Sources */,
 				7864012B0AA27B8B0015A0AC /* KeySigTest.m in Sources */,
 				788707BE0AAD04660057D6DD /* TempoDataTest.m in Sources */,
+				78F7816C0AD0780A009EDC26 /* ChordTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +723,7 @@
 				78B43ABD0ABCCCA20068C522 /* KeySigTarget.m in Sources */,
 				78B43D150ABE4DB10068C522 /* TimeSignatureDraw.m in Sources */,
 				78B43D5A0ABE4F980068C522 /* KeySignatureDraw.m in Sources */,
+				78C52F350ACF4D6C006B5727 /* Chord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +827,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -816,6 +852,11 @@
 					ppc,
 					i386,
 				);
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
