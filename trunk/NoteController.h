@@ -20,6 +20,6 @@
 
 + (float) xOf:(NoteBase *)note inMeasure:(Measure *)measure;
 
-+ (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view;
++ (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view;
 
 @end
