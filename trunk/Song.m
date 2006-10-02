@@ -24,14 +24,6 @@
 		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120 withSong:self]] retain];
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
-
-		int i;
-		Chord *chord = [[Chord alloc] initWithStaff:[staffs objectAtIndex:0]];
-		for(i=1; i<6; i+=2){
-			[chord addNote:[[Note alloc] initWithPitch:i octave:4 duration:4 dotted:YES accidental:NO_ACC onStaff:[staffs objectAtIndex:0]]];
-		}
-		[[[[staffs objectAtIndex:0] getMeasures] objectAtIndex:0] addNote:chord atIndex:0 tieToPrev:NO];
-		
 	}
 	return self;
 }
