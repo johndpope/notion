@@ -79,6 +79,10 @@
 		78F7816C0AD0780A009EDC26 /* ChordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7816B0AD0780A009EDC26 /* ChordTest.m */; };
 		78F783890AD0822D009EDC26 /* Chomp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F783820AD0822D009EDC26 /* Chomp.framework */; };
 		78F783ED0AD084DD009EDC26 /* Chomp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F783820AD0822D009EDC26 /* Chomp.framework */; };
+		78F785930AD09A0B009EDC26 /* ChordDraw.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F785910AD09A0B009EDC26 /* ChordDraw.h */; };
+		78F785940AD09A0B009EDC26 /* ChordDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */; };
+		78F785970AD09A1B009EDC26 /* ChordController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F785950AD09A1B009EDC26 /* ChordController.h */; };
+		78F785980AD09A1B009EDC26 /* ChordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F785960AD09A1B009EDC26 /* ChordController.m */; };
 		78F8BBBB0A830A6900A2788D /* erest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB70A830A6900A2788D /* erest-over.png */; };
 		78F8BBBC0A830A6900A2788D /* qrest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB80A830A6900A2788D /* qrest-over.png */; };
 		78F8BBBD0A830A6900A2788D /* srest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB90A830A6900A2788D /* srest-over.png */; };
@@ -112,6 +116,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				78F783ED0AD084DD009EDC26 /* Chomp.framework in CopyFiles */,
+				78F785930AD09A0B009EDC26 /* ChordDraw.h in CopyFiles */,
+				78F785970AD09A1B009EDC26 /* ChordController.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +251,10 @@
 		78F7816A0AD0780A009EDC26 /* ChordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTest.h; sourceTree = "<group>"; };
 		78F7816B0AD0780A009EDC26 /* ChordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordTest.m; sourceTree = "<group>"; };
 		78F783820AD0822D009EDC26 /* Chomp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chomp.framework; sourceTree = "<group>"; };
+		78F785910AD09A0B009EDC26 /* ChordDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordDraw.h; sourceTree = "<group>"; };
+		78F785920AD09A0B009EDC26 /* ChordDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordDraw.m; sourceTree = "<group>"; };
+		78F785950AD09A1B009EDC26 /* ChordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordController.h; sourceTree = "<group>"; };
+		78F785960AD09A1B009EDC26 /* ChordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordController.m; sourceTree = "<group>"; };
 		78F8BBB70A830A6900A2788D /* erest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erest-over.png"; sourceTree = "<group>"; };
 		78F8BBB80A830A6900A2788D /* qrest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrest-over.png"; sourceTree = "<group>"; };
 		78F8BBB90A830A6900A2788D /* srest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "srest-over.png"; sourceTree = "<group>"; };
@@ -437,6 +447,8 @@
 				78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */,
 				78B43D580ABE4F980068C522 /* KeySignatureDraw.h */,
 				78B43D590ABE4F980068C522 /* KeySignatureDraw.m */,
+				78F785910AD09A0B009EDC26 /* ChordDraw.h */,
+				78F785920AD09A0B009EDC26 /* ChordDraw.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -487,6 +499,8 @@
 				78B43AB70ABCCC630068C522 /* TimeSigTarget.m */,
 				78B43ABB0ABCCCA20068C522 /* KeySigTarget.h */,
 				78B43ABC0ABCCCA20068C522 /* KeySigTarget.m */,
+				78F785950AD09A1B009EDC26 /* ChordController.h */,
+				78F785960AD09A1B009EDC26 /* ChordController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -724,6 +738,8 @@
 				78B43D150ABE4DB10068C522 /* TimeSignatureDraw.m in Sources */,
 				78B43D5A0ABE4F980068C522 /* KeySignatureDraw.m in Sources */,
 				78C52F350ACF4D6C006B5727 /* Chord.m in Sources */,
+				78F785940AD09A0B009EDC26 /* ChordDraw.m in Sources */,
+				78F785980AD09A1B009EDC26 /* ChordController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

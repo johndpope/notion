@@ -8,6 +8,8 @@
 
 #import "Chord.h"
 #import <Chomp/Chomp.h>
+@class ChordDraw;
+@class ChordController;
 
 @implementation Chord
 
@@ -122,11 +124,11 @@
 }
 
 - (Class)getViewClass{
-//	return [ChordDraw class];
+	return [ChordDraw class];
 }
 
 - (Class)getControllerClass{
-//	return [ChordController class];
+	return [ChordController class];
 }
 
 - (void)dealloc{
