@@ -71,7 +71,7 @@
 }
 
 - (void)transposeBy:(int)transposeAmount{
-	[[notes transposeBy] transposeAmount];
+	[[notes do] transposeBy:transposeAmount];
 }
 
 - (void)prepareForDelete{

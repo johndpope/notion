@@ -730,6 +730,12 @@
 			78F786400AD0A0AE009EDC26 /* PBXTextBookmark */ = 78F786400AD0A0AE009EDC26 /* PBXTextBookmark */;
 			78F786410AD0A0AE009EDC26 /* PBXTextBookmark */ = 78F786410AD0A0AE009EDC26 /* PBXTextBookmark */;
 			78F786420AD0A0AE009EDC26 /* PBXTextBookmark */ = 78F786420AD0A0AE009EDC26 /* PBXTextBookmark */;
+			78F786430AD102FA009EDC26 /* PBXTextBookmark */ = 78F786430AD102FA009EDC26 /* PBXTextBookmark */;
+			78F786490AD386D6009EDC26 /* PBXTextBookmark */ = 78F786490AD386D6009EDC26 /* PBXTextBookmark */;
+			78F7864C0AD38A47009EDC26 /* PBXTextBookmark */ = 78F7864C0AD38A47009EDC26 /* PBXTextBookmark */;
+			78F7864D0AD38A47009EDC26 /* PBXTextBookmark */ = 78F7864D0AD38A47009EDC26 /* PBXTextBookmark */;
+			78F7864E0AD38A47009EDC26 /* PBXTextBookmark */ = 78F7864E0AD38A47009EDC26 /* PBXTextBookmark */;
+			78F7864F0AD38A47009EDC26 /* PBXTextBookmark */ = 78F7864F0AD38A47009EDC26 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 7841FCF40A09C4DB00292132 /* Source Control */;
 		userBuildSettings = {
@@ -1056,7 +1062,7 @@
 	7841FD8B0A0B08B800292132 /* Song.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 3976}}";
-			sepNavSelRange = "{732, 0}";
+			sepNavSelRange = "{142, 0}";
 			sepNavVisRect = "{{0, 0}, {1069, 745}}";
 			sepNavWindowFrame = "{{363, 106}, {562, 694}}";
 		};
@@ -3191,9 +3197,9 @@
 	};
 	78C52F340ACF4D6C006B5727 /* Chord.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1330, 1974}}";
-			sepNavSelRange = "{226, 0}";
-			sepNavVisRect = "{{0, 0}, {1330, 311}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 1974}}";
+			sepNavSelRange = "{1730, 0}";
+			sepNavVisRect = "{{0, 565}, {1069, 745}}";
 			sepNavWindowFrame = "{{101, 94}, {630, 758}}";
 		};
 	};
@@ -3282,7 +3288,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 117";
 		rLen = 0;
-		rLoc = 2899;
+		rLoc = 2902;
 		rType = 0;
 		vrLen = 1059;
 		vrLoc = 1196;
@@ -3432,7 +3438,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 129";
 		rLen = 0;
-		rLoc = 2908;
+		rLoc = 2911;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 1724;
@@ -3442,7 +3448,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: removeDuration:";
 		rLen = 0;
-		rLoc = 2257;
+		rLoc = 2260;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 1002;
@@ -3492,7 +3498,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: removeDuration:";
 		rLen = 0;
-		rLoc = 2257;
+		rLoc = 2260;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 442;
@@ -3522,7 +3528,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 117";
 		rLen = 0;
-		rLoc = 2899;
+		rLoc = 2902;
 		rType = 0;
 		vrLen = 1341;
 		vrLoc = 645;
@@ -3739,7 +3745,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 94";
 		rLen = 0;
-		rLoc = 2797;
+		rLoc = 2800;
 		rType = 0;
 		vrLen = 370;
 		vrLoc = 1121;
@@ -3837,7 +3843,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 94";
 		rLen = 0;
-		rLoc = 2797;
+		rLoc = 2800;
 		rType = 0;
 		vrLen = 370;
 		vrLoc = 1121;
@@ -4045,7 +4051,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 90";
 		rLen = 0;
-		rLoc = 2490;
+		rLoc = 2493;
 		rType = 0;
 		vrLen = 693;
 		vrLoc = 1202;
@@ -4095,7 +4101,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = getTieTo;
 		rLen = 8;
-		rLoc = 2308;
+		rLoc = 2311;
 		rType = 0;
 		vrLen = 685;
 		vrLoc = 587;
@@ -4115,7 +4121,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = getTieTo;
 		rLen = 8;
-		rLoc = 2308;
+		rLoc = 2311;
 		rType = 0;
 		vrLen = 687;
 		vrLoc = 585;
@@ -4135,7 +4141,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = getTieTo;
 		rLen = 8;
-		rLoc = 2308;
+		rLoc = 2311;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -4195,7 +4201,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 79";
 		rLen = 0;
-		rLoc = 2563;
+		rLoc = 2566;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -4285,7 +4291,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 90";
 		rLen = 0;
-		rLoc = 2490;
+		rLoc = 2493;
 		rType = 0;
 		vrLen = 693;
 		vrLoc = 1202;
@@ -4305,7 +4311,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 90";
 		rLen = 0;
-		rLoc = 2428;
+		rLoc = 2431;
 		rType = 0;
 		vrLen = 667;
 		vrLoc = 1202;
@@ -4442,7 +4448,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 90";
 		rLen = 0;
-		rLoc = 2428;
+		rLoc = 2431;
 		rType = 0;
 		vrLen = 786;
 		vrLoc = 634;
@@ -4452,7 +4458,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 90";
 		rLen = 0;
-		rLoc = 2428;
+		rLoc = 2431;
 		rType = 0;
 		vrLen = 667;
 		vrLoc = 1202;
@@ -4482,7 +4488,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 90";
 		rLen = 0;
-		rLoc = 2428;
+		rLoc = 2431;
 		rType = 0;
 		vrLen = 786;
 		vrLoc = 634;
@@ -5474,7 +5480,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 78";
 		rLen = 0;
-		rLoc = 2254;
+		rLoc = 2257;
 		rType = 0;
 		vrLen = 835;
 		vrLoc = 1101;
@@ -5514,7 +5520,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 70";
 		rLen = 0;
-		rLoc = 1744;
+		rLoc = 1747;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 521;
@@ -5524,7 +5530,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 70";
 		rLen = 0;
-		rLoc = 1744;
+		rLoc = 1747;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 521;
@@ -5544,7 +5550,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 70";
 		rLen = 0;
-		rLoc = 1744;
+		rLoc = 1747;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 521;
@@ -5554,7 +5560,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 70";
 		rLen = 0;
-		rLoc = 1744;
+		rLoc = 1747;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 521;
@@ -5564,7 +5570,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 70";
 		rLen = 0;
-		rLoc = 1744;
+		rLoc = 1747;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 521;
@@ -6197,7 +6203,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 79";
 		rLen = 0;
-		rLoc = 2254;
+		rLoc = 2257;
 		rType = 0;
 		vrLen = 925;
 		vrLoc = 1006;
@@ -6207,7 +6213,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 79";
 		rLen = 0;
-		rLoc = 2254;
+		rLoc = 2257;
 		rType = 0;
 		vrLen = 925;
 		vrLoc = 1006;
@@ -6305,7 +6311,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 86";
 		rLen = 0;
-		rLoc = 2253;
+		rLoc = 2256;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 1140;
@@ -6325,7 +6331,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 86";
 		rLen = 0;
-		rLoc = 2253;
+		rLoc = 2256;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 1140;
@@ -6345,7 +6351,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 88";
 		rLen = 0;
-		rLoc = 2256;
+		rLoc = 2259;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 1140;
@@ -6373,9 +6379,9 @@
 	};
 	78F785960AD09A1B009EDC26 /* ChordController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1069, 745}}";
-			sepNavSelRange = "{424, 0}";
-			sepNavVisRect = "{{0, 0}, {1069, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1330, 574}}";
+			sepNavSelRange = "{1260, 0}";
+			sepNavVisRect = "{{0, 263}, {1330, 311}}";
 		};
 	};
 	78F7859F0AD09AA4009EDC26 /* PBXTextBookmark */ = {
@@ -6421,7 +6427,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 129";
 		rLen = 0;
-		rLoc = 2797;
+		rLoc = 2800;
 		rType = 0;
 		vrLen = 677;
 		vrLoc = 2189;
@@ -6481,7 +6487,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 129";
 		rLen = 0;
-		rLoc = 2797;
+		rLoc = 2800;
 		rType = 0;
 		vrLen = 677;
 		vrLoc = 2189;
@@ -7401,6 +7407,66 @@
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 0;
+	};
+	78F786430AD102FA009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785960AD09A1B009EDC26 /* ChordController.m */;
+		name = "ChordController.m: 38";
+		rLen = 0;
+		rLoc = 1260;
+		rType = 0;
+		vrLen = 846;
+		vrLoc = 422;
+	};
+	78F786490AD386D6009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785960AD09A1B009EDC26 /* ChordController.m */;
+		name = "ChordController.m: 38";
+		rLen = 0;
+		rLoc = 1260;
+		rType = 0;
+		vrLen = 846;
+		vrLoc = 422;
+	};
+	78F7864C0AD38A47009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
+		name = "Song.m: 8";
+		rLen = 0;
+		rLoc = 142;
+		rType = 0;
+		vrLen = 1243;
+		vrLoc = 0;
+	};
+	78F7864D0AD38A47009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
+		name = "Chord.m: 131";
+		rLen = 0;
+		rLoc = 2800;
+		rType = 0;
+		vrLen = 868;
+		vrLoc = 2032;
+	};
+	78F7864E0AD38A47009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
+		name = "Song.m: 8";
+		rLen = 0;
+		rLoc = 142;
+		rType = 0;
+		vrLen = 1243;
+		vrLoc = 0;
+	};
+	78F7864F0AD38A47009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
+		name = "Chord.m: 74";
+		rLen = 0;
+		rLoc = 1730;
+		rType = 0;
+		vrLen = 1389;
+		vrLoc = 908;
 	};
 	78FA8CC60A0ECC0F00A37E39 /* Note.h */ = {
 		uiCtxt = {
