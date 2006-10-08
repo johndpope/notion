@@ -12,6 +12,7 @@
 #import "ScoreController.h"
 #import "StaffController.h"
 #import "NoteController.h"
+#import "ChordController.h"
 #import "ClefController.h"
 #import "KeySignatureController.h"
 #import "TimeSignatureController.h"
@@ -173,6 +174,10 @@
 	return location;
 }
 
++ (BOOL)isOverNote:(NoteBase *)note at:(NSPoint)location inMeasure:(Measure *)measure{
+	return [self pitchAt:location inMeasure:measure] == [note getPitch] && [self octaveAt:location inMeasure:measure] == [note getOctave];
+}
+
 + (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode{
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 	if(pointerMode == MODE_POINT){
@@ -190,12 +195,14 @@
 		return measure;
 	}
 	float index = [self indexAt:location inMeasure:measure];
-	if(index == floor(index) || fabs(index - floor(index)) < 0.25){
+	if(fabs(index - floor(index)) < 0.25){
 		//on a note
 		NoteBase *note = [[measure getNotes] objectAtIndex:index];
-		if(pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ([self pitchAt:location inMeasure:measure] != [note getPitch] ||
-																	  [self octaveAt:location inMeasure:measure] != [note getOctave])){
+		if(pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ![self isOverNote:note at:location inMeasure:measure]){
 			//above or below a note in add note mode, want to create a chord
+			return measure;
+		}
+		if(pointerMode == MODE_NOTE && [note isKindOfClass:[Chord class]] && ![ChordController isOverNote:location inChord:note inMeasure:measure]){
 			return measure;
 		}
 		return note;

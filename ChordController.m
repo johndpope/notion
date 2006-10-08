@@ -27,6 +27,17 @@
 	return [MeasureController xOfIndex:[[measure getNotes] indexOfObject:chord] inMeasure:measure];
 }
 
++ (BOOL)isOverNote:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure{
+	NSEnumerator *notes = [[chord getNotes] objectEnumerator];
+	id note;
+	while(note = [notes nextObject]){
+		if([MeasureController isOverNote:note at:location inMeasure:measure]){
+			return YES;
+		}
+	}
+	return NO;
+}
+
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Chord *)chord mode:(NSDictionary *)mode view:(ScoreView *)view{
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		[[chord undoManager] setActionName:@"deleting note"];

@@ -7,6 +7,7 @@
 //
 
 #import "ChordTest.h"
+#import "Measure.h"
 #import "Note.h"
 
 @implementation ChordTest
@@ -54,7 +55,7 @@
 	staff = [[song staffs] lastObject];
 	[chord setStaff:staff];
 	measure = [staff getLastMeasure];
-	[measure addNote:chord atIndex:0 tieToPrev:NO];
+	[measure addNote:chord atIndex:-0.5 tieToPrev:NO];
 }
 
 - (void)tearDownUndoTest{

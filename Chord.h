@@ -15,7 +15,7 @@
 }
 
 - (id)initWithStaff:(Staff *)_staff;
-- (id)initWithStaff:(Staff *)_staff withNotes:(NSArray *)_notes;
+- (id)initWithStaff:(Staff *)_staff withNotes:(NSMutableArray *)_notes;
 
 - (NSArray *)getNotes;
 
