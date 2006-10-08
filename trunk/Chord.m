@@ -40,6 +40,11 @@
 	return [[Chord allocWithZone:zone] initWithStaff:staff withNotes:notes copyItems:YES];
 }
 
+- (void)setStaff:(Staff *)_staff{
+	[super setStaff:_staff];
+	[[notes do] setStaff:_staff];
+}
+
 - (int)getDuration{
 	if([notes count] > 0){
 		return [[notes objectAtIndex:0] getDuration];
@@ -108,7 +113,20 @@
 	return notes;
 }
 
+- (void) setNotes:(NSMutableArray *)_notes{
+	[self prepUndo];
+	if(![notes isEqual:_notes]){
+		[notes release];
+		notes = [_notes retain];
+	}
+}
+
+- (void)prepUndo{
+	[[[self undoManager] prepareWithInvocationTarget:self] setNotes:[NSMutableArray arrayWithArray:notes]];	
+}
+
 - (void)addNote:(NoteBase *)note{
+	[self prepUndo];
 	[notes addObject:note];
 }
 
