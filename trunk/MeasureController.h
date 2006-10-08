@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 @class Measure;
+@class NoteBase;
 @class ScoreView;
 
 @interface MeasureController : NSObject {
@@ -33,6 +34,8 @@
 + (BOOL) isOverTimeSig:(NSPoint)location inMeasure:(Measure *)measure;
 
 + (BOOL) isOverKeySig:(NSPoint)location inMeasure:(Measure *)measure;
+
++ (BOOL)isOverNote:(NoteBase *)note at:(NSPoint)location inMeasure:(Measure *)measure;
 
 + (NSPoint) keySigPanelLocationFor:(Measure *)measure;
 + (NSPoint) timeSigPanelLocationFor:(Measure *)measure;

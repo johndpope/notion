@@ -229,11 +229,11 @@
 	Measure *secondMeasure = [staff addMeasure];
 	Measure *thirdMeasure = [staff addMeasure];
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
-	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
+	[measure addNote:firstNote atIndex:-0.5 tieToPrev:NO];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
-	[secondMeasure addNote:secondNote atIndex:0 tieToPrev:NO];
+	[secondMeasure addNote:secondNote atIndex:-0.5 tieToPrev:NO];
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
-	[thirdMeasure addNote:thirdNote atIndex:0 tieToPrev:NO];
+	[thirdMeasure addNote:thirdNote atIndex:-0.5 tieToPrev:NO];
 	[mgr endUndoGrouping];
 	int origPitch = [secondNote getPitch];
 	int origOctave = [secondNote getOctave];

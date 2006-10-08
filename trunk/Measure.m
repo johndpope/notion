@@ -8,6 +8,7 @@
 
 #import "Measure.h"
 #import "Note.h"
+#import "Chord.h"
 #import "Clef.h"
 #import "Staff.h"
 #import "TimeSignature.h"
@@ -70,14 +71,20 @@
 
 - (void)addNote:(NoteBase *)_note atIndex:(float)index tieToPrev:(BOOL)tieToPrev{
 	[self prepUndo];
-	Note *note = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index];
-	Measure *measure = [staff getMeasureContainingNote:note];
-	if(tieToPrev){
-		Note *tie = [staff findPreviousNoteMatching:note inMeasure:measure];
-		[note tieFrom:tie];
-		[tie tieTo:note];
+	if(fabs(index - round(index)) < 0.25){
+		[[self undoManager] setActionName:@"changing note to chord"];
+		[self addNote:_note toChordAtIndex:index];
+		return;
+	} else{
+		Note *note = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index];
+		Measure *measure = [staff getMeasureContainingNote:note];
+		if(tieToPrev){
+			Note *tie = [staff findPreviousNoteMatching:note inMeasure:measure];
+			[note tieFrom:tie];
+			[tie tieTo:note];
+		}
+		if([measure isFull]) [staff getMeasureAfter:measure];
 	}
-	if([measure isFull]) [staff getMeasureAfter:measure];
 }
 
 - (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index{
@@ -162,7 +169,6 @@
 			[notes addObject:nextNote];
 			totalDuration += [nextNote getEffectiveDuration];
 		} else{
-			//TODO: move tie stuff on to Note?
 			NSMutableArray *_notes = [nextNote removeDuration:durationToFill];
 			[nextMeasure addNotes:_notes atIndex:0];
 			[nextMeasure grabNotesFromNextMeasure];
@@ -197,6 +203,17 @@
 	if(!temp){
 		[staff cleanEmptyMeasures];
 		[self sendChangeNotification];
+	}
+}
+
+- (void)addNote:(NoteBase *)newNote toChordAtIndex:(float)index{
+	NoteBase *note = [notes objectAtIndex:index];
+	if([note isKindOfClass:[Chord class]]){
+		[note addNote:newNote];
+	} else{
+		NSMutableArray *chordNotes = [NSMutableArray arrayWithObjects:note, newNote, nil];
+		Chord *chord = [[[Chord alloc] initWithStaff:staff withNotes:chordNotes] autorelease];
+		[notes replaceObjectAtIndex:index withObject:chord];
 	}
 }
 

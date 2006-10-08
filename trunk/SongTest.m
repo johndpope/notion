@@ -9,6 +9,7 @@
 #import "SongTest.h"
 #import "Song.h"
 #import "Staff.h"
+#import "Measure.h"
 #import "TempoData.h"
 #import "TimeSignature.h"
 #import "Note.h"
@@ -141,7 +142,7 @@
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
+	[measure addNote:firstNote atIndex:-0.5 tieToPrev:NO];
 	[measure addNote:secondNote atIndex:0.5 tieToPrev:NO];
 	[measure addNote:thirdNote atIndex:1.5 tieToPrev:NO];
 	[measure addNote:fourthNote atIndex:2.5 tieToPrev:NO];
@@ -168,13 +169,13 @@
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	[measure addNote:firstNote atIndex:0 tieToPrev:NO];
+	[measure addNote:firstNote atIndex:-0.5 tieToPrev:NO];
 	[measure addNote:secondNote atIndex:0.5 tieToPrev:NO];
 	[measure addNote:thirdNote atIndex:1.5 tieToPrev:NO];
 	[measure addNote:fourthNote atIndex:2.5 tieToPrev:NO];
 	Measure *secondMeasure = [staff getLastMeasure];
 	Note *fifthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	[secondMeasure addNote:fifthNote atIndex:0 tieToPrev:NO];
+	[secondMeasure addNote:fifthNote atIndex:-0.5 tieToPrev:NO];
 	[mgr endUndoGrouping];
 	[mgr beginUndoGrouping];
 	[song timeSigChangedAtIndex:0 top:5 bottom:4];

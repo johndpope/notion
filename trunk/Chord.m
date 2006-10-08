@@ -21,10 +21,10 @@
 	return self;
 }
 
-- (id)initWithStaff:(Staff *)_staff withNotes:(NSArray *)_notes{
+- (id)initWithStaff:(Staff *)_staff withNotes:(NSMutableArray *)_notes{
 	if(self = [super init]){
 		staff = _staff;
-		notes = [_notes copy];
+		notes = [[NSMutableArray arrayWithArray:_notes] retain];
 	}
 	return self;
 }
@@ -32,7 +32,7 @@
 - (id)initWithStaff:(Staff *)_staff withNotes:(NSArray *)_notes copyItems:(BOOL)_copyItems{
 	if(self = [super init]){
 		staff = _staff;
-		notes = [[[NSArray alloc] initWithArray:_notes copyItems:_copyItems] retain];
+		notes = [[[NSMutableArray alloc] initWithArray:_notes copyItems:_copyItems] retain];
 	}
 }
 
@@ -98,7 +98,7 @@
 }
 
 - (NoteBase *)getTieTo{
-
+	return nil;
 }
 
 - (void)tieFrom:(NoteBase *)note{
@@ -106,7 +106,7 @@
 }
 
 - (NoteBase *)getTieFrom{
-
+	return nil;
 }
 
 - (NSArray *)getNotes{
