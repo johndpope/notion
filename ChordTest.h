@@ -8,8 +8,18 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 @class Chord;
+@class Measure;
+@class Staff;
+@class MusicDocument;
+@class NSUndoManager;
+@class Song;
 
 @interface ChordTest : SenTestCase {
+	Measure *measure;
+	Staff *staff;
+	MusicDocument *doc;
+	NSUndoManager *mgr;
+	Song *song;
 	Chord *chord;
 }
 

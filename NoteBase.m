@@ -29,6 +29,10 @@
 	return staff;
 }
 
+- (void)setStaff:(Staff *)_staff{
+	staff = _staff;
+}
+
 - (NSUndoManager *)undoManager{
 	return [[[[self getStaff] getSong] document] undoManager];
 }

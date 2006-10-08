@@ -25,6 +25,7 @@
 - (void)setDotted:(BOOL)_dotted;
 
 - (Staff *)getStaff;
+- (void)setStaff:(Staff *)_staff;
 - (NSUndoManager *)undoManager;
 
 - (float)getEffectiveDuration;

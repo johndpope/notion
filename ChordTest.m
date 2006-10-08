@@ -44,4 +44,36 @@
 	STAssertEquals([[[array objectAtIndex:0] getNotes] count], (unsigned)3, @"Wrong number of notes in split off chord.");
 }
 
+// undo/redo tests
+
+- (void)setUpUndoTest{
+	doc = [[MusicDocument alloc] init];
+	mgr = [[NSUndoManager alloc] init];
+	[doc setUndoManager:mgr];
+	song = [[Song alloc] initWithDocument:doc];
+	staff = [[song staffs] lastObject];
+	[chord setStaff:staff];
+	measure = [staff getLastMeasure];
+	[measure addNote:chord atIndex:0 tieToPrev:NO];
+}
+
+- (void)tearDownUndoTest{
+	[song release];
+	[mgr release];
+	[doc release];	
+}
+
+- (void) testUndoRedoAddNote{
+	[self setUpUndoTest];
+	[mgr beginUndoGrouping];
+	Note *note = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:YES accidental:NO_ACC onStaff:staff];
+	[chord addNote:note];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([[chord getNotes] count], (unsigned)3, @"Failed to undo adding note to chord");
+	[mgr redo];
+	STAssertEquals([[chord getNotes] count], (unsigned)4, @"Failed to redo adding note to chord");
+	[self tearDownUndoTest];
+}
+
 @end
