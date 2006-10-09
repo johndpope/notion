@@ -211,6 +211,8 @@
 	if([note isKindOfClass:[Chord class]]){
 		[note addNote:newNote];
 	} else{
+		[newNote setDuration:[note getDuration]];
+		[newNote setDotted:[note getDotted]];
 		NSMutableArray *chordNotes = [NSMutableArray arrayWithObjects:note, newNote, nil];
 		Chord *chord = [[[Chord alloc] initWithStaff:staff withNotes:chordNotes] autorelease];
 		[notes replaceObjectAtIndex:index withObject:chord];
