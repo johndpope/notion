@@ -7,6 +7,7 @@
 //
 
 #import "ChordTest.h"
+#import "Chord.h"
 #import "Measure.h"
 #import "Note.h"
 

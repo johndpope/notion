@@ -132,6 +132,10 @@
 
 - (void)addNote:(NoteBase *)note{
 	[self prepUndo];
+	if([self getDuration] != 0){
+		[note setDuration:[self getDuration]];		
+		[note setDotted:[self getDotted]];
+	}
 	[notes addObject:note];
 	[self sendChangeNotification];
 }
