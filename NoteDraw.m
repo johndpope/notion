@@ -26,6 +26,12 @@ static NSColor *mouseOverColor;
 	[noteX removeAllObjects];
 }
 
++(BOOL)isStemUpwards:(Note *)note inMeasure:(Measure *)measure{
+	Clef *clef = [measure getEffectiveClef];
+	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
+	return position <= 4;
+}
+
 +(void)drawExtraStaffLinesForPosition:(int)position withBody:(NSRect)body lineHeight:(float)line{
 	float lineY = body.origin.y + body.size.height/2;
 	if(position < -1){
@@ -59,7 +65,7 @@ static NSColor *mouseOverColor;
 +(void)drawStemForNote:(Note *)note withBody:(NSRect)body upwards:(BOOL)up{
 	NSPoint point1, point2;
 	point1.y = body.origin.y + (body.size.height / 2);
-	if(up){
+	if(!up){
 		point1.x = point2.x = body.origin.x + 0.5;
 		point2.y = point1.y + 30;
 	} else{
@@ -68,7 +74,7 @@ static NSColor *mouseOverColor;
 	}
 	[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
 	int i;
-	if(up){
+	if(!up){
 		point1.x -= 7;
 		point1.y = point2.y - 7;
 	} else{
@@ -77,7 +83,7 @@ static NSColor *mouseOverColor;
 	}		
 	for(i=8; i<=[note getDuration]; i*=2){
 		[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
-		if(up){
+		if(!up){
 			point1.y -= 5;
 			point2.y -= 5;
 		} else{
@@ -142,6 +148,12 @@ static NSColor *mouseOverColor;
 }
 
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted{
+	[self draw:note inMeasure:measure atIndex:index isTarget:highlighted isOffset:NO 
+		isInChordWithOffset:NO stemUpwards:[self isStemUpwards:note inMeasure:measure]];
+}
+
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted
+   isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards{
 	if(highlighted){
 		if(mouseOverColor == nil){
 			mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
@@ -163,21 +175,41 @@ static NSColor *mouseOverColor;
 	body.origin.y = measureBounds.origin.y + measureBounds.size.height - lineHeight * position - 6;
 	[self drawExtraStaffLinesForPosition:position withBody:body lineHeight:lineHeight];
 	[NSBezierPath setDefaultLineWidth:1.5];
+	if(offset){
+		if(stemUpwards){
+			body.origin.x += 12;			
+		} else{
+			body.origin.x -= 12;
+		}
+	}
 	if([note getDuration] >= 4){
 		[[NSBezierPath bezierPathWithOvalInRect:body] fill];
 	} else{
 		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
-	}	
+	}
+	if(offset){
+		if(stemUpwards){
+			body.origin.x -= 12;			
+		} else{
+			body.origin.x += 12;
+		}
+	}
 	if([note getDuration] >= 2){
-		[self drawStemForNote:note withBody:body upwards:(body.origin.y + body.size.height <= middle)];
+		[self drawStemForNote:note withBody:body upwards:stemUpwards];
 	}
 	[NSBezierPath setDefaultLineWidth:1.0];
+	if(hasOffset && stemUpwards){
+		body.origin.x += 12;
+	}
 	if([note getDotted]){
 		[self drawDotForBody:body];		
 	}
 	[self drawAccidentalForNote:note withBody:body isTarget:highlighted];
+	if(hasOffset && stemUpwards){
+		body.origin.x -= 12;
+	}
 	[self drawTieForNote:note withBody:body];
-	[[NSColor blackColor] set];	
+	[[NSColor blackColor] set];		
 }
 
 @end

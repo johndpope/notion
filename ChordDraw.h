@@ -14,6 +14,8 @@
 
 }
 
++ (BOOL)isStemUpwards:(Chord *)chord inMeasure:(Measure *)measure;
+
 +(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted;
 
 @end

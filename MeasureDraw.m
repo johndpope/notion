@@ -23,6 +23,8 @@
 #import "TimeSigTarget.h"
 #import "Clef.h"
 
+@class Chord;
+
 @implementation MeasureDraw
 
 +(void)draw:(Measure *)measure target:(id)target targetLocation:(NSPoint)location mode:(NSDictionary *)mode{
@@ -113,7 +115,17 @@
 										   accidental:[[mode objectForKey:@"accidental"] intValue]
 											  onStaff:[measure getStaff]]
 		autorelease];
-	[NoteDraw draw:feedbackNote inMeasure:measure atIndex:[MeasureController indexAt:location inMeasure:measure] isTarget:NO];
+	float index = [MeasureController indexAt:location inMeasure:measure];
+	if(index - fabs(index - round(index)) < 0.25 && [[measure getNotes] count] > ceil(index)){
+		id note = [[measure getNotes] objectAtIndex:index];
+		if([[note getViewClass] respondsToSelector:@selector(isStemUpwards:inMeasure:)]){
+			BOOL stemUpwards = [[note getViewClass] isStemUpwards:note inMeasure:measure];
+			[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index isTarget:NO isOffset:NO
+						  isInChordWithOffset:NO stemUpwards:stemUpwards];
+			return;
+		}
+	}
+	[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index isTarget:NO];
 }
 
 @end
