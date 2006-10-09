@@ -83,6 +83,7 @@
 		78F785940AD09A0B009EDC26 /* ChordDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */; };
 		78F785970AD09A1B009EDC26 /* ChordController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F785950AD09A1B009EDC26 /* ChordController.h */; };
 		78F785980AD09A1B009EDC26 /* ChordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F785960AD09A1B009EDC26 /* ChordController.m */; };
+		78F78B520ADA1109009EDC26 /* ChordDrawTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */; };
 		78F8BBBB0A830A6900A2788D /* erest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB70A830A6900A2788D /* erest-over.png */; };
 		78F8BBBC0A830A6900A2788D /* qrest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB80A830A6900A2788D /* qrest-over.png */; };
 		78F8BBBD0A830A6900A2788D /* srest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB90A830A6900A2788D /* srest-over.png */; };
@@ -255,6 +256,8 @@
 		78F785920AD09A0B009EDC26 /* ChordDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordDraw.m; sourceTree = "<group>"; };
 		78F785950AD09A1B009EDC26 /* ChordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordController.h; sourceTree = "<group>"; };
 		78F785960AD09A1B009EDC26 /* ChordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordController.m; sourceTree = "<group>"; };
+		78F78B500ADA1109009EDC26 /* ChordDrawTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordDrawTest.h; sourceTree = "<group>"; };
+		78F78B510ADA1109009EDC26 /* ChordDrawTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordDrawTest.m; sourceTree = "<group>"; };
 		78F8BBB70A830A6900A2788D /* erest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erest-over.png"; sourceTree = "<group>"; };
 		78F8BBB80A830A6900A2788D /* qrest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrest-over.png"; sourceTree = "<group>"; };
 		78F8BBB90A830A6900A2788D /* srest-over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "srest-over.png"; sourceTree = "<group>"; };
@@ -470,6 +473,8 @@
 				788707BD0AAD04660057D6DD /* TempoDataTest.m */,
 				78F7816A0AD0780A009EDC26 /* ChordTest.h */,
 				78F7816B0AD0780A009EDC26 /* ChordTest.m */,
+				78F78B500ADA1109009EDC26 /* ChordDrawTest.h */,
+				78F78B510ADA1109009EDC26 /* ChordDrawTest.m */,
 			);
 			name = "Test cases";
 			sourceTree = "<group>";
@@ -692,6 +697,7 @@
 				7864012B0AA27B8B0015A0AC /* KeySigTest.m in Sources */,
 				788707BE0AAD04660057D6DD /* TempoDataTest.m in Sources */,
 				78F7816C0AD0780A009EDC26 /* ChordTest.m in Sources */,
+				78F78B520ADA1109009EDC26 /* ChordDrawTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
