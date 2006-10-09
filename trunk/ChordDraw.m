@@ -48,6 +48,7 @@
 			}			
 		}
 	}
+	return NO;
 }
 
 +(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index target:(id)target{

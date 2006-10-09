@@ -13,7 +13,7 @@
 		activeExecutable = 7841FCEE0A09C4D600292132 /* Señor Staff */;
 		activeTarget = 7883C8980A86B5A5000E97DE /* Tests */;
 		addToTargets = (
-			8D15AC270486D014006FF6A4 /* Señor Staff */,
+			7883C8980A86B5A5000E97DE /* Tests */,
 		);
 		breakpoints = (
 			78DF74850A426F3B0058CF89 /* malloc_printf */,
@@ -38,14 +38,15 @@
 			78F787600AD9B21A009EDC26 /* MeasureController.m:205 */,
 			78F7883A0AD9B539009EDC26 /* Measure.m:79 */,
 			78F788880AD9BF2B009EDC26 /* NoteDraw.m:69 */,
-			78F7890B0AD9C620009EDC26 /* ChordDraw.m:54 */,
-			78F789660AD9CA54009EDC26 /* ChordDraw.m:65 */,
+			78F7890B0AD9C620009EDC26 /* ChordDraw.m:55 */,
+			78F789660AD9CA54009EDC26 /* ChordDraw.m:66 */,
 			78F7898D0AD9CF38009EDC26 /* ChordDraw.m:18 */,
 			78F789E70AD9E2F1009EDC26 /* ChordDraw.m:32 */,
 			78F78AA70AD9FDFA009EDC26 /* MeasureController.m:208 */,
 			78F78AB60AD9FE9A009EDC26 /* ScoreView.m:145 */,
 			78F78B180ADA03DB009EDC26 /* Measure.m:223 */,
 			78F78B400ADA06ED009EDC26 /* ChordController.m:49 */,
+			78F78B7D0ADA14CB009EDC26 /* ChordDrawTest.m:33 */,
 		);
 		breakpointsGroup = 7841FD4A0A09D45100292132 /* XCBreakpointsBucket */;
 		codeSenseManager = 7841FCF50A09C4DB00292132 /* Code sense */;
@@ -1001,6 +1002,70 @@
 			78F78B4B0ADA084F009EDC26 /* PBXTextBookmark */ = 78F78B4B0ADA084F009EDC26 /* PBXTextBookmark */;
 			78F78B4C0ADA0850009EDC26 /* PBXTextBookmark */ = 78F78B4C0ADA0850009EDC26 /* PBXTextBookmark */;
 			78F78B4D0ADA0850009EDC26 /* PBXTextBookmark */ = 78F78B4D0ADA0850009EDC26 /* PBXTextBookmark */;
+			78F78B4E0ADA0F2C009EDC26 /* PBXTextBookmark */ = 78F78B4E0ADA0F2C009EDC26 /* PBXTextBookmark */;
+			78F78B4F0ADA0F2C009EDC26 /* PBXTextBookmark */ = 78F78B4F0ADA0F2C009EDC26 /* PBXTextBookmark */;
+			78F78B600ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B600ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B610ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B610ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B620ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B620ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B630ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B630ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B640ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B640ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B650ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B650ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B660ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B660ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B670ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B670ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B680ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B680ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B690ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B690ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B6A0ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B6A0ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B6B0ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B6B0ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B6C0ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B6C0ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B6D0ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B6D0ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B6E0ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B6E0ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B6F0ADA140F009EDC26 /* PBXTextBookmark */ = 78F78B6F0ADA140F009EDC26 /* PBXTextBookmark */;
+			78F78B710ADA1481009EDC26 /* PBXTextBookmark */ = 78F78B710ADA1481009EDC26 /* PBXTextBookmark */;
+			78F78B720ADA1481009EDC26 /* PBXTextBookmark */ = 78F78B720ADA1481009EDC26 /* PBXTextBookmark */;
+			78F78B730ADA1483009EDC26 /* PBXTextBookmark */ = 78F78B730ADA1483009EDC26 /* PBXTextBookmark */;
+			78F78B740ADA1483009EDC26 /* PBXTextBookmark */ = 78F78B740ADA1483009EDC26 /* PBXTextBookmark */;
+			78F78B7A0ADA14BD009EDC26 /* PBXTextBookmark */ = 78F78B7A0ADA14BD009EDC26 /* PBXTextBookmark */;
+			78F78B7B0ADA14BD009EDC26 /* PBXTextBookmark */ = 78F78B7B0ADA14BD009EDC26 /* PBXTextBookmark */;
+			78F78B7E0ADA14D4009EDC26 /* PBXTextBookmark */ = 78F78B7E0ADA14D4009EDC26 /* PBXTextBookmark */;
+			78F78B7F0ADA14D4009EDC26 /* PBXTextBookmark */ = 78F78B7F0ADA14D4009EDC26 /* PBXTextBookmark */;
+			78F78B800ADA14D4009EDC26 /* PBXTextBookmark */ = 78F78B800ADA14D4009EDC26 /* PBXTextBookmark */;
+			78F78B810ADA14D4009EDC26 /* PBXTextBookmark */ = 78F78B810ADA14D4009EDC26 /* PBXTextBookmark */;
+			78F78B820ADA14D4009EDC26 /* PBXTextBookmark */ = 78F78B820ADA14D4009EDC26 /* PBXTextBookmark */;
+			78F78B840ADA1512009EDC26 /* PBXTextBookmark */ = 78F78B840ADA1512009EDC26 /* PBXTextBookmark */;
+			78F78B8A0ADA153E009EDC26 /* PBXTextBookmark */ = 78F78B8A0ADA153E009EDC26 /* PBXTextBookmark */;
+			78F78B8B0ADA153E009EDC26 /* PBXTextBookmark */ = 78F78B8B0ADA153E009EDC26 /* PBXTextBookmark */;
+			78F78B8C0ADA153F009EDC26 /* PBXTextBookmark */ = 78F78B8C0ADA153F009EDC26 /* PBXTextBookmark */;
+			78F78B8D0ADA153F009EDC26 /* PBXTextBookmark */ = 78F78B8D0ADA153F009EDC26 /* PBXTextBookmark */;
+			78F78B8E0ADA153F009EDC26 /* PBXTextBookmark */ = 78F78B8E0ADA153F009EDC26 /* PBXTextBookmark */;
+			78F78B8F0ADA153F009EDC26 /* PBXTextBookmark */ = 78F78B8F0ADA153F009EDC26 /* PBXTextBookmark */;
+			78F78B900ADA153F009EDC26 /* PBXTextBookmark */ = 78F78B900ADA153F009EDC26 /* PBXTextBookmark */;
+			78F78B920ADA1544009EDC26 /* PBXTextBookmark */ = 78F78B920ADA1544009EDC26 /* PBXTextBookmark */;
+			78F78B930ADA1544009EDC26 /* PBXTextBookmark */ = 78F78B930ADA1544009EDC26 /* PBXTextBookmark */;
+			78F78B940ADA1544009EDC26 /* PBXTextBookmark */ = 78F78B940ADA1544009EDC26 /* PBXTextBookmark */;
+			78F78B950ADA1544009EDC26 /* PBXTextBookmark */ = 78F78B950ADA1544009EDC26 /* PBXTextBookmark */;
+			78F78B960ADA1544009EDC26 /* PBXTextBookmark */ = 78F78B960ADA1544009EDC26 /* PBXTextBookmark */;
+			78F78B970ADA1544009EDC26 /* PBXTextBookmark */ = 78F78B970ADA1544009EDC26 /* PBXTextBookmark */;
+			78F78B980ADA1545009EDC26 /* PBXTextBookmark */ = 78F78B980ADA1545009EDC26 /* PBXTextBookmark */;
+			78F78B9A0ADA1549009EDC26 /* PBXTextBookmark */ = 78F78B9A0ADA1549009EDC26 /* PBXTextBookmark */;
+			78F78B9B0ADA1549009EDC26 /* PBXTextBookmark */ = 78F78B9B0ADA1549009EDC26 /* PBXTextBookmark */;
+			78F78B9C0ADA1549009EDC26 /* PBXTextBookmark */ = 78F78B9C0ADA1549009EDC26 /* PBXTextBookmark */;
+			78F78B9D0ADA1549009EDC26 /* PBXTextBookmark */ = 78F78B9D0ADA1549009EDC26 /* PBXTextBookmark */;
+			78F78B9E0ADA1549009EDC26 /* PBXTextBookmark */ = 78F78B9E0ADA1549009EDC26 /* PBXTextBookmark */;
+			78F78B9F0ADA1549009EDC26 /* PBXTextBookmark */ = 78F78B9F0ADA1549009EDC26 /* PBXTextBookmark */;
+			78F78BA00ADA154A009EDC26 /* PBXTextBookmark */ = 78F78BA00ADA154A009EDC26 /* PBXTextBookmark */;
+			78F78BA10ADA155D009EDC26 /* PBXTextBookmark */ = 78F78BA10ADA155D009EDC26 /* PBXTextBookmark */;
+			78F78BA20ADA155D009EDC26 /* PBXTextBookmark */ = 78F78BA20ADA155D009EDC26 /* PBXTextBookmark */;
+			78F78BA30ADA155E009EDC26 /* PBXTextBookmark */ = 78F78BA30ADA155E009EDC26 /* PBXTextBookmark */;
+			78F78BA40ADA155E009EDC26 /* PBXTextBookmark */ = 78F78BA40ADA155E009EDC26 /* PBXTextBookmark */;
+			78F78BA50ADA1560009EDC26 /* PBXTextBookmark */ = 78F78BA50ADA1560009EDC26 /* PBXTextBookmark */;
+			78F78BA60ADA1560009EDC26 /* PBXTextBookmark */ = 78F78BA60ADA1560009EDC26 /* PBXTextBookmark */;
+			78F78BAA0ADA1587009EDC26 /* PBXTextBookmark */ = 78F78BAA0ADA1587009EDC26 /* PBXTextBookmark */;
+			78F78BAB0ADA1587009EDC26 /* PBXTextBookmark */ = 78F78BAB0ADA1587009EDC26 /* PBXTextBookmark */;
+			78F78BB20ADA15E1009EDC26 /* PBXTextBookmark */ = 78F78BB20ADA15E1009EDC26 /* PBXTextBookmark */;
+			78F78BB30ADA15E1009EDC26 /* PBXTextBookmark */ = 78F78BB30ADA15E1009EDC26 /* PBXTextBookmark */;
+			78F78BB40ADA15E1009EDC26 /* PBXTextBookmark */ = 78F78BB40ADA15E1009EDC26 /* PBXTextBookmark */;
+			78F78BB50ADA15E1009EDC26 /* PBXTextBookmark */ = 78F78BB50ADA15E1009EDC26 /* PBXTextBookmark */;
+			78F78BB60ADA15E1009EDC26 /* PBXTextBookmark */ = 78F78BB60ADA15E1009EDC26 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 7841FCF40A09C4DB00292132 /* Source Control */;
 		userBuildSettings = {
@@ -1278,14 +1343,15 @@
 			78F787600AD9B21A009EDC26 /* MeasureController.m:205 */,
 			78F7883A0AD9B539009EDC26 /* Measure.m:79 */,
 			78F788880AD9BF2B009EDC26 /* NoteDraw.m:69 */,
-			78F7890B0AD9C620009EDC26 /* ChordDraw.m:54 */,
-			78F789660AD9CA54009EDC26 /* ChordDraw.m:65 */,
+			78F7890B0AD9C620009EDC26 /* ChordDraw.m:55 */,
+			78F789660AD9CA54009EDC26 /* ChordDraw.m:66 */,
 			78F7898D0AD9CF38009EDC26 /* ChordDraw.m:18 */,
 			78F789E70AD9E2F1009EDC26 /* ChordDraw.m:32 */,
 			78F78AA70AD9FDFA009EDC26 /* MeasureController.m:208 */,
 			78F78AB60AD9FE9A009EDC26 /* ScoreView.m:145 */,
 			78F78B180ADA03DB009EDC26 /* Measure.m:223 */,
 			78F78B400ADA06ED009EDC26 /* ChordController.m:49 */,
+			78F78B7D0ADA14CB009EDC26 /* ChordDrawTest.m:33 */,
 		);
 	};
 	7841FD7D0A0B073B00292132 /* MEWindowController.h */ = {
@@ -1917,15 +1983,15 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 938}}";
 			sepNavSelRange = "{1362, 0}";
-			sepNavVisRect = "{{0, 123}, {1069, 745}}";
+			sepNavVisRect = "{{0, 193}, {1069, 745}}";
 			sepNavWindowFrame = "{{535, 153}, {787, 706}}";
 		};
 	};
 	78683A1A0A0E8A72001DE5BB /* Staff.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 3962}}";
-			sepNavSelRange = "{3584, 56}";
-			sepNavVisRect = "{{0, 1763}, {1069, 745}}";
+			sepNavSelRange = "{310, 22}";
+			sepNavVisRect = "{{0, 84}, {1069, 745}}";
 			sepNavWindowFrame = "{{535, 153}, {787, 706}}";
 		};
 	};
@@ -1961,7 +2027,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1315, 8050}}";
 			sepNavSelRange = "{22996, 0}";
-			sepNavVisRect = "{{0, 5123}, {1069, 745}}";
+			sepNavVisRect = "{{0, 70}, {1069, 745}}";
 			sepNavWindowFrame = "{{124, 73}, {630, 758}}";
 		};
 	};
@@ -2185,7 +2251,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = libSystem.B.dylib;
-		modificationTime = 182060752.853996;
+		modificationTime = 182064336.362821;
 		state = 2;
 		symbolName = szone_error;
 	};
@@ -2198,7 +2264,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 182060752.85742;
+		modificationTime = 182064336.366788;
 		state = 1;
 		symbolName = "- [NSZombie release]";
 	};
@@ -2211,7 +2277,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 182060752.860617;
+		modificationTime = 182064336.370843;
 		state = 1;
 		symbolName = "- [NSZombie retain]";
 	};
@@ -2224,7 +2290,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 182060752.864095;
+		modificationTime = 182064336.37464;
 		state = 1;
 		symbolName = "- [NSZombie methodSignatureForSelector:]";
 	};
@@ -2237,7 +2303,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 182060752.867557;
+		modificationTime = 182064336.378364;
 		state = 1;
 		symbolName = "- [NSZombie respondsToSelector:]";
 	};
@@ -2250,7 +2316,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 182060752.870953;
+		modificationTime = 182064336.382158;
 		state = 1;
 		symbolName = "- [NSZombie class]";
 	};
@@ -2648,7 +2714,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = Foundation;
-		modificationTime = 182060755.328801;
+		modificationTime = 182064339.363721;
 		state = 1;
 		symbolName = "-[NSObject doesNotRecognizeSelector:]";
 	};
@@ -3262,9 +3328,9 @@
 	};
 	78C52F340ACF4D6C006B5727 /* Chord.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1069, 2394}}";
-			sepNavSelRange = "{2113, 0}";
-			sepNavVisRect = "{{0, 1333}, {1069, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1330, 2394}}";
+			sepNavSelRange = "{2804, 0}";
+			sepNavVisRect = "{{0, 1518}, {1330, 338}}";
 			sepNavWindowFrame = "{{101, 94}, {630, 758}}";
 		};
 	};
@@ -3305,9 +3371,9 @@
 		breakpointStyle = 1;
 		continueAfterActions = 0;
 		delayBeforeContinue = 0;
-		hitCount = 1;
+		hitCount = 2;
 		location = libSystem.B.dylib;
-		modificationTime = 182060752.847153;
+		modificationTime = 182064406.196515;
 		state = 1;
 		symbolName = malloc_printf;
 	};
@@ -3368,7 +3434,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = Foundation;
-		modificationTime = 182060755.275349;
+		modificationTime = 182064339.306804;
 		state = 1;
 		symbolName = "- [NSException raise]";
 	};
@@ -3473,9 +3539,9 @@
 	};
 	78F7816B0AD0780A009EDC26 /* ChordTest.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1069, 1316}}";
-			sepNavSelRange = "{2664, 0}";
-			sepNavVisRect = "{{0, 571}, {1069, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1330, 1316}}";
+			sepNavSelRange = "{1814, 0}";
+			sepNavVisRect = "{{0, 776}, {1330, 338}}";
 		};
 	};
 	78F781B50AD07B2D009EDC26 /* PBXTextBookmark */ = {
@@ -3645,7 +3711,7 @@
 		hitCount = 1;
 		lineNumber = 36;
 		location = Tests;
-		modificationTime = 182060752.764706;
+		modificationTime = 182064336.243435;
 		state = 2;
 	};
 	78F784730AD088F5009EDC26 /* NoteBase.m:22 */ = {
@@ -3660,7 +3726,7 @@
 		hitCount = 1;
 		lineNumber = 22;
 		location = "Señor Staff";
-		modificationTime = 182060752.771365;
+		modificationTime = 182064401.819807;
 		state = 1;
 	};
 	78F784750AD088FA009EDC26 /* Note.m:45 */ = {
@@ -3675,7 +3741,7 @@
 		hitCount = 1;
 		lineNumber = 45;
 		location = "Señor Staff";
-		modificationTime = 182060752.776138;
+		modificationTime = 182064336.253753;
 		state = 2;
 	};
 	78F784970AD08AAF009EDC26 /* PBXTextBookmark */ = {
@@ -3707,9 +3773,9 @@
 	};
 	78F785920AD09A0B009EDC26 /* ChordDraw.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1330, 1022}}";
-			sepNavSelRange = "{1987, 0}";
-			sepNavVisRect = "{{0, 684}, {1330, 338}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1330, 1036}}";
+			sepNavSelRange = "{1486, 0}";
+			sepNavVisRect = "{{0, 380}, {1330, 338}}";
 		};
 	};
 	78F785950AD09A1B009EDC26 /* ChordController.h */ = {
@@ -3722,7 +3788,7 @@
 	78F785960AD09A1B009EDC26 /* ChordController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 798}}";
-			sepNavSelRange = "{952, 0}";
+			sepNavSelRange = "{302, 0}";
 			sepNavVisRect = "{{0, 39}, {1069, 745}}";
 		};
 	};
@@ -3811,7 +3877,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 18";
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -3881,7 +3947,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 14";
 		rLen = 0;
-		rLoc = 1504;
+		rLoc = 1516;
 		rType = 0;
 		vrLen = 313;
 		vrLoc = 0;
@@ -3921,7 +3987,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 18";
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -4028,7 +4094,7 @@
 		hitCount = 1;
 		lineNumber = 25;
 		location = "Señor Staff";
-		modificationTime = 182060752.781475;
+		modificationTime = 182064336.258972;
 		state = 2;
 	};
 	78F786000AD09ECB009EDC26 /* Measure.m:129 */ = {
@@ -4043,7 +4109,7 @@
 		hitCount = 1;
 		lineNumber = 129;
 		location = "Señor Staff";
-		modificationTime = 182060752.786125;
+		modificationTime = 182064336.264233;
 		state = 2;
 	};
 	78F786170AD09FBA009EDC26 /* PBXTextBookmark */ = {
@@ -4208,8 +4274,8 @@
 		hitCount = 1;
 		lineNumber = 121;
 		location = "Señor Staff";
-		modificationTime = 182060752.790318;
-		state = 1;
+		modificationTime = 182064411.302663;
+		state = 2;
 	};
 	78F7866C0AD99177009EDC26 /* Chord.m:134 */ = {
 		isa = PBXFileBreakpoint;
@@ -4223,7 +4289,7 @@
 		hitCount = 1;
 		lineNumber = 134;
 		location = "Señor Staff";
-		modificationTime = 182060752.795717;
+		modificationTime = 182064336.275485;
 		state = 2;
 	};
 	78F786700AD99198009EDC26 /* PBXTextBookmark */ = {
@@ -4738,7 +4804,7 @@
 		hitCount = 1;
 		lineNumber = 74;
 		location = "Señor Staff";
-		modificationTime = 182060752.800248;
+		modificationTime = 182064336.282433;
 		state = 2;
 	};
 	78F786F60AD9AEC8009EDC26 /* PBXTextBookmark */ = {
@@ -4793,7 +4859,7 @@
 		hitCount = 1;
 		lineNumber = 173;
 		location = Tests;
-		modificationTime = 182060752.804446;
+		modificationTime = 182064336.28732;
 		state = 2;
 	};
 	78F787130AD9AF9D009EDC26 /* ChordTest.m:68 */ = {
@@ -4808,8 +4874,8 @@
 		hitCount = 1;
 		lineNumber = 68;
 		location = Tests;
-		modificationTime = 182060755.201162;
-		state = 1;
+		modificationTime = 182064336.292783;
+		state = 2;
 	};
 	78F787140AD9AFA8009EDC26 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -4973,7 +5039,7 @@
 		hitCount = 1;
 		lineNumber = 205;
 		location = "Señor Staff";
-		modificationTime = 182060752.812856;
+		modificationTime = 182064336.297693;
 		state = 2;
 	};
 	78F787720AD9B2EB009EDC26 /* PBXTextBookmark */ = {
@@ -5380,7 +5446,7 @@
 		hitCount = 1;
 		lineNumber = 79;
 		location = "Señor Staff";
-		modificationTime = 182060752.816552;
+		modificationTime = 182064336.302462;
 		state = 2;
 	};
 	78F7883B0AD9B53F009EDC26 /* PBXTextBookmark */ = {
@@ -5668,7 +5734,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 18";
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -5705,7 +5771,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 18";
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 524;
 		vrLoc = 0;
@@ -5812,7 +5878,7 @@
 		hitCount = 1;
 		lineNumber = 69;
 		location = "Señor Staff";
-		modificationTime = 182060752.819982;
+		modificationTime = 182064336.306885;
 		state = 2;
 	};
 	78F788890AD9BF2E009EDC26 /* PBXTextBookmark */ = {
@@ -6047,7 +6113,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 26";
 		rLen = 0;
-		rLoc = 1477;
+		rLoc = 1489;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 0;
@@ -6167,7 +6233,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 26";
 		rLen = 0;
-		rLoc = 1477;
+		rLoc = 1489;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 0;
@@ -6575,7 +6641,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 34";
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6665,7 +6731,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = draw;
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6682,7 +6748,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = draw;
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6717,7 +6783,7 @@
 		vrLen = 2053;
 		vrLoc = 4229;
 	};
-	78F7890B0AD9C620009EDC26 /* ChordDraw.m:54 */ = {
+	78F7890B0AD9C620009EDC26 /* ChordDraw.m:55 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -6727,9 +6793,9 @@
 		fileReference = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		functionName = "+draw:inMeasure:atIndex:isTarget:";
 		hitCount = 1;
-		lineNumber = 54;
+		lineNumber = 55;
 		location = "Señor Staff";
-		modificationTime = 182060752.823334;
+		modificationTime = 182064336.311141;
 		state = 2;
 	};
 	78F7890C0AD9C622009EDC26 /* PBXTextBookmark */ = {
@@ -6757,7 +6823,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = draw;
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6767,7 +6833,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = draw;
 		rLen = 0;
-		rLoc = 2160;
+		rLoc = 2172;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6817,7 +6883,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6827,7 +6893,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6857,7 +6923,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6877,7 +6943,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -6887,7 +6953,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 0;
@@ -6897,7 +6963,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 0;
@@ -6987,7 +7053,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 0;
@@ -6997,7 +7063,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 31";
 		rLen = 0;
-		rLoc = 1843;
+		rLoc = 1855;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 0;
@@ -7027,7 +7093,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 33";
 		rLen = 0;
-		rLoc = 2101;
+		rLoc = 2113;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 0;
@@ -7037,7 +7103,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 26";
 		rLen = 0;
-		rLoc = 1476;
+		rLoc = 1488;
 		rType = 0;
 		vrLen = 669;
 		vrLoc = 306;
@@ -7057,7 +7123,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 33";
 		rLen = 0;
-		rLoc = 2101;
+		rLoc = 2113;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 0;
@@ -7067,7 +7133,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 26";
 		rLen = 0;
-		rLoc = 1476;
+		rLoc = 1488;
 		rType = 0;
 		vrLen = 669;
 		vrLoc = 306;
@@ -7114,7 +7180,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 33";
 		rLen = 0;
-		rLoc = 2101;
+		rLoc = 2113;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 0;
@@ -7134,7 +7200,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 33";
 		rLen = 0;
-		rLoc = 2101;
+		rLoc = 2113;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 0;
@@ -7184,7 +7250,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 26";
 		rLen = 0;
-		rLoc = 1476;
+		rLoc = 1488;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 306;
@@ -7194,7 +7260,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 26";
 		rLen = 0;
-		rLoc = 1476;
+		rLoc = 1488;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 306;
@@ -7214,7 +7280,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 32";
 		rLen = 0;
-		rLoc = 1912;
+		rLoc = 1924;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 306;
@@ -7244,7 +7310,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 32";
 		rLen = 0;
-		rLoc = 1912;
+		rLoc = 1924;
 		rType = 0;
 		vrLen = 696;
 		vrLoc = 306;
@@ -7284,7 +7350,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 32";
 		rLen = 0;
-		rLoc = 1912;
+		rLoc = 1924;
 		rType = 0;
 		vrLen = 702;
 		vrLoc = 306;
@@ -7299,7 +7365,7 @@
 		vrLen = 1569;
 		vrLoc = 3772;
 	};
-	78F789660AD9CA54009EDC26 /* ChordDraw.m:65 */ = {
+	78F789660AD9CA54009EDC26 /* ChordDraw.m:66 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -7309,9 +7375,9 @@
 		fileReference = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		functionName = "+draw:inMeasure:atIndex:target:";
 		hitCount = 1;
-		lineNumber = 65;
+		lineNumber = 66;
 		location = "Señor Staff";
-		modificationTime = 182060752.826794;
+		modificationTime = 182064336.315417;
 		state = 2;
 	};
 	78F789680AD9CA62009EDC26 /* PBXTextBookmark */ = {
@@ -7519,7 +7585,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 34";
 		rLen = 0;
-		rLoc = 2101;
+		rLoc = 2113;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 0;
@@ -7566,7 +7632,7 @@
 		hitCount = 1;
 		lineNumber = 18;
 		location = "Señor Staff";
-		modificationTime = 182060752.830252;
+		modificationTime = 182064336.319659;
 		state = 2;
 	};
 	78F7898F0AD9CF40009EDC26 /* PBXTextBookmark */ = {
@@ -8039,7 +8105,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 54";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1093;
 		vrLoc = 607;
@@ -8059,7 +8125,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 571;
@@ -8166,7 +8232,7 @@
 		hitCount = 1;
 		lineNumber = 32;
 		location = "Señor Staff";
-		modificationTime = 182060752.833707;
+		modificationTime = 182064336.323618;
 		state = 2;
 	};
 	78F789E80AD9E2F2009EDC26 /* PBXTextBookmark */ = {
@@ -8204,7 +8270,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 571;
@@ -8224,7 +8290,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 571;
@@ -8264,7 +8330,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 571;
@@ -8284,7 +8350,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 571;
@@ -8304,7 +8370,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 571;
@@ -8374,7 +8440,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 571;
@@ -8404,7 +8470,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 58";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 571;
@@ -8434,7 +8500,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 67";
 		rLen = 0;
-		rLoc = 2093;
+		rLoc = 2105;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 383;
@@ -8484,7 +8550,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 67";
 		rLen = 0;
-		rLoc = 2093;
+		rLoc = 2105;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 383;
@@ -8514,7 +8580,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 66";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 571;
@@ -8574,7 +8640,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 66";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 571;
@@ -8594,7 +8660,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 66";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 571;
@@ -8614,7 +8680,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 66";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 571;
@@ -8631,7 +8697,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 66";
 		rLen = 0;
-		rLoc = 2057;
+		rLoc = 2069;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 571;
@@ -9156,7 +9222,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 67";
 		rLen = 0;
-		rLoc = 2093;
+		rLoc = 2105;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 383;
@@ -9226,7 +9292,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 67";
 		rLen = 0;
-		rLoc = 2093;
+		rLoc = 2105;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 383;
@@ -9246,7 +9312,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 65";
 		rLen = 0;
-		rLoc = 1987;
+		rLoc = 1999;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9276,7 +9342,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 65";
 		rLen = 0;
-		rLoc = 1987;
+		rLoc = 1999;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9296,7 +9362,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 65";
 		rLen = 0;
-		rLoc = 1987;
+		rLoc = 1999;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9436,7 +9502,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 65";
 		rLen = 0;
-		rLoc = 1987;
+		rLoc = 1999;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9446,7 +9512,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 65";
 		rLen = 0;
-		rLoc = 1987;
+		rLoc = 1999;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9456,7 +9522,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "ChordDraw.m: 65";
 		rLen = 0;
-		rLoc = 1987;
+		rLoc = 1999;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9473,7 +9539,7 @@
 		hitCount = 1;
 		lineNumber = 208;
 		location = "Señor Staff";
-		modificationTime = 182060752.836821;
+		modificationTime = 182064336.327518;
 		state = 2;
 	};
 	78F78AA80AD9FDFD009EDC26 /* PBXTextBookmark */ = {
@@ -9481,7 +9547,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:(target == note || target == self)";
 		rLen = 111;
-		rLoc = 1879;
+		rLoc = 1891;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9491,7 +9557,7 @@
 		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
 		name = "[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:(target == note || target == self)";
 		rLen = 111;
-		rLoc = 1879;
+		rLoc = 1891;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 383;
@@ -9548,7 +9614,7 @@
 		hitCount = 1;
 		lineNumber = 145;
 		location = "Señor Staff";
-		modificationTime = 182060786.85768;
+		modificationTime = 182064401.986331;
 		state = 1;
 	};
 	78F78AB70AD9FE9B009EDC26 /* PBXTextBookmark */ = {
@@ -10128,7 +10194,7 @@
 		functionName = "-removeNote:fromChordAtIndex:";
 		hitCount = 1;
 		lineNumber = 223;
-		modificationTime = 182060752.843389;
+		modificationTime = 182064336.335085;
 		state = 2;
 	};
 	78F78B1C0ADA0481009EDC26 /* PBXTextBookmark */ = {
@@ -10373,7 +10439,7 @@
 		hitCount = 1;
 		lineNumber = 49;
 		location = "Señor Staff";
-		modificationTime = 182060790.410438;
+		modificationTime = 182064402.088614;
 		state = 1;
 	};
 	78F78B410ADA06F0009EDC26 /* PBXTextBookmark */ = {
@@ -10457,6 +10523,673 @@
 		vrLoc = 5676;
 	};
 	78F78B4D0ADA0850009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B4E0ADA0F2C009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B4F0ADA0F2C009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B500ADA1109009EDC26 /* ChordDrawTest.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 745}}";
+			sepNavSelRange = "{296, 0}";
+			sepNavVisRect = "{{0, 0}, {1069, 745}}";
+		};
+	};
+	78F78B510ADA1109009EDC26 /* ChordDrawTest.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 1414}}";
+			sepNavSelRange = "{4473, 0}";
+			sepNavVisRect = "{{0, 669}, {1069, 745}}";
+		};
+	};
+	78F78B600ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785960AD09A1B009EDC26 /* ChordController.m */;
+		name = "ChordController.m: 15";
+		rLen = 0;
+		rLoc = 302;
+		rType = 0;
+		vrLen = 1736;
+		vrLoc = 25;
+	};
+	78F78B610ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F7816B0AD0780A009EDC26 /* ChordTest.m */;
+		name = "ChordTest.m: 89";
+		rLen = 0;
+		rLoc = 2664;
+		rType = 0;
+		vrLen = 1772;
+		vrLoc = 936;
+	};
+	78F78B620ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F7816A0AD0780A009EDC26 /* ChordTest.h */;
+		name = "ChordTest.h: 16";
+		rLen = 0;
+		rLoc = 288;
+		rType = 0;
+		vrLen = 438;
+		vrLoc = 0;
+	};
+	78F78B630ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B500ADA1109009EDC26 /* ChordDrawTest.h */;
+		name = "ChordDrawTest.h: measure";
+		rLen = 0;
+		rLoc = 296;
+		rType = 0;
+		vrLen = 305;
+		vrLoc = 0;
+	};
+	78F78B640ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78683A190A0E8A72001DE5BB /* Staff.h */;
+		name = "Staff.h: getChordContainingNote:";
+		rLen = 0;
+		rLoc = 1362;
+		rType = 0;
+		vrLen = 1482;
+		vrLoc = 240;
+	};
+	78F78B650ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */;
+		name = "@implementation Staff";
+		rLen = 22;
+		rLoc = 310;
+		rType = 0;
+		vrLen = 1075;
+		vrLoc = 140;
+	};
+	78F78B660ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
+		name = "[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:(target == note || target == chord)";
+		rLen = 111;
+		rLoc = 1891;
+		rType = 0;
+		vrLen = 1788;
+		vrLoc = 383;
+	};
+	78F78B670ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 30";
+		rLen = 0;
+		rLoc = 784;
+		rType = 0;
+		vrLen = 727;
+		vrLoc = 0;
+	};
+	78F78B680ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785960AD09A1B009EDC26 /* ChordController.m */;
+		name = "ChordController.m: 15";
+		rLen = 0;
+		rLoc = 302;
+		rType = 0;
+		vrLen = 1736;
+		vrLoc = 25;
+	};
+	78F78B690ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
+		name = "[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:(target == note || target == chord)";
+		rLen = 111;
+		rLoc = 1891;
+		rType = 0;
+		vrLen = 1788;
+		vrLoc = 383;
+	};
+	78F78B6A0ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F7816B0AD0780A009EDC26 /* ChordTest.m */;
+		name = "ChordTest.m: 89";
+		rLen = 0;
+		rLoc = 2664;
+		rType = 0;
+		vrLen = 1772;
+		vrLoc = 936;
+	};
+	78F78B6B0ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F7816A0AD0780A009EDC26 /* ChordTest.h */;
+		name = "ChordTest.h: 16";
+		rLen = 0;
+		rLoc = 288;
+		rType = 0;
+		vrLen = 438;
+		vrLoc = 0;
+	};
+	78F78B6C0ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B500ADA1109009EDC26 /* ChordDrawTest.h */;
+		name = "ChordDrawTest.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 243;
+		vrLoc = 0;
+	};
+	78F78B6D0ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B500ADA1109009EDC26 /* ChordDrawTest.h */;
+		name = "ChordDrawTest.h: measure";
+		rLen = 0;
+		rLoc = 296;
+		rType = 0;
+		vrLen = 305;
+		vrLoc = 0;
+	};
+	78F78B6E0ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */;
+		name = "[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:(target == note || target == chord)";
+		rLen = 111;
+		rLoc = 1891;
+		rType = 0;
+		vrLen = 1788;
+		vrLoc = 383;
+	};
+	78F78B6F0ADA140F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 36";
+		rLen = 0;
+		rLoc = 1235;
+		rType = 0;
+		vrLen = 1178;
+		vrLoc = 0;
+	};
+	78F78B710ADA1481009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B720ADA1481009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B730ADA1483009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B740ADA1483009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B7A0ADA14BD009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B7B0ADA14BD009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B7D0ADA14CB009EDC26 /* ChordDrawTest.m:33 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		fileReference = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		functionName = "-testTopNoteOfChordIsOffset";
+		hitCount = 1;
+		lineNumber = 33;
+		location = Tests;
+		modificationTime = 182064412.791528;
+		state = 1;
+	};
+	78F78B7E0ADA14D4009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786A93F10A89822B0006F54C /* MeasureTest.m */;
+		name = "MeasureTest.m: 407";
+		rLen = 0;
+		rLoc = 22996;
+		rType = 0;
+		vrLen = 1759;
+		vrLoc = 85;
+	};
+	78F78B7F0ADA14D4009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 36";
+		rLen = 0;
+		rLoc = 1235;
+		rType = 0;
+		vrLen = 1178;
+		vrLoc = 0;
+	};
+	78F78B800ADA14D4009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 36";
+		rLen = 0;
+		rLoc = 1235;
+		rType = 0;
+		vrLen = 1178;
+		vrLoc = 0;
+	};
+	78F78B810ADA14D4009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786A93F10A89822B0006F54C /* MeasureTest.m */;
+		name = "MeasureTest.m: 407";
+		rLen = 0;
+		rLoc = 22996;
+		rType = 0;
+		vrLen = 1759;
+		vrLoc = 85;
+	};
+	78F78B820ADA14D4009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 20";
+		rLen = 0;
+		rLoc = 425;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 0;
+	};
+	78F78B840ADA1512009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 20";
+		rLen = 0;
+		rLoc = 425;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 0;
+	};
+	78F78B8A0ADA153E009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B8B0ADA153E009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B8C0ADA153F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B8D0ADA153F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B8E0ADA153F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B8F0ADA153F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B900ADA153F009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 20";
+		rLen = 0;
+		rLoc = 425;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 0;
+	};
+	78F78B920ADA1544009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B930ADA1544009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B940ADA1544009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B950ADA1544009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B960ADA1544009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B970ADA1544009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B980ADA1545009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 20";
+		rLen = 0;
+		rLoc = 425;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 0;
+	};
+	78F78B9A0ADA1549009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B9B0ADA1549009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B9C0ADA1549009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B9D0ADA1549009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78B9E0ADA1549009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78B9F0ADA1549009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78BA00ADA154A009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: 20";
+		rLen = 0;
+		rLoc = 425;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 0;
+	};
+	78F78BA10ADA155D009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78BA20ADA155D009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78BA30ADA155E009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78BA40ADA155E009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78BA50ADA1560009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78BA60ADA1560009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78BAA0ADA1587009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78BAB0ADA1587009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: isOverNote:at:inMeasure:";
+		rLen = 0;
+		rLoc = 6119;
+		rType = 0;
+		vrLen = 1223;
+		vrLoc = 6219;
+	};
+	78F78BB20ADA15E1009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78BB30ADA15E1009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: redefinition of '-[ChordDrawTest testTopNoteOfChordSpanningOctaveIsOffset]'";
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		rLen = 1;
+		rLoc = 63;
+		rType = 1;
+	};
+	78F78BB40ADA15E1009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: 236";
+		rLen = 0;
+		rLoc = 6843;
+		rType = 0;
+		vrLen = 734;
+		vrLoc = 5676;
+	};
+	78F78BB50ADA15E1009EDC26 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */;
+		name = "ChordDrawTest.m: testBottomNoteOfDownwardStemChordIsOffset";
+		rLen = 0;
+		rLoc = 2769;
+		rType = 0;
+		vrLen = 1236;
+		vrLoc = 2265;
+	};
+	78F78BB60ADA15E1009EDC26 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
 		name = "MeasureController.m: isOverNote:at:inMeasure:";
