@@ -83,6 +83,10 @@
 	[[notes do] prepareForDelete];
 }
 
+- (void)sendChangeNotification{
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
+}
+
 - (NSArray *)removeDuration:(float)maxDuration{
 	NSArray *removedNotes = [[notes collect] removeDuration:maxDuration];
 	NSMutableArray *removedChords = [[NSMutableArray arrayWithCapacity:[removedNotes count]] autorelease];
@@ -119,6 +123,7 @@
 		[notes release];
 		notes = [_notes retain];
 	}
+	[self sendChangeNotification];
 }
 
 - (void)prepUndo{
@@ -128,6 +133,13 @@
 - (void)addNote:(NoteBase *)note{
 	[self prepUndo];
 	[notes addObject:note];
+	[self sendChangeNotification];
+}
+
+- (void)removeNote:(NoteBase *)note{
+	[self prepUndo];
+	[notes removeObject:note];
+	[self sendChangeNotification];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

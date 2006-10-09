@@ -43,7 +43,9 @@
 - (void)addNote:(NoteBase *)_note atIndex:(float)index tieToPrev:(BOOL)tieToPrev;
 - (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index;
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp;
+
 - (void)addNote:(NoteBase *)newNote toChordAtIndex:(float)index;
+- (void)removeNote:(NoteBase *)note fromChordAtIndex:(float)index;
 
 - (float)getTotalDuration;
 - (BOOL)isEmpty;

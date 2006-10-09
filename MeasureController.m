@@ -178,7 +178,7 @@
 	return [self pitchAt:location inMeasure:measure] == [note getPitch] && [self octaveAt:location inMeasure:measure] == [note getOctave];
 }
 
-+ (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode{
++ (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 	if(pointerMode == MODE_POINT){
 		if([self isOverClef:location inMeasure:measure]){
@@ -204,6 +204,9 @@
 		}
 		if(pointerMode == MODE_NOTE && [note isKindOfClass:[Chord class]] && ![ChordController isOverNote:location inChord:note inMeasure:measure]){
 			return measure;
+		}
+		if([note isKindOfClass:[Chord class]] && ([event modifierFlags] & NSAlternateKeyMask)){
+			return [[note getControllerClass] noteAt:location inChord:note inMeasure:measure];
 		}
 		return note;
 	} else{

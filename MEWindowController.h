@@ -40,7 +40,7 @@ static const int MODE_NOTE = 1;
 - (void)addVerticalRulerComponentFor:(Staff *)staff;
 - (void)addHorizontalRulerComponentFor:(TempoData *)tempo;
 
-- (id)targetAt:(NSPoint)location;
+- (id)targetAt:(NSPoint)location withEvent:(NSEvent *)event;
 
 - (void)clickedAtLocation:(NSPoint)location withEvent:(NSEvent *)event;
 - (BOOL)keyPressedAtLocation:(NSPoint)location withEvent:(NSEvent *)event;

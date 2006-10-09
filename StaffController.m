@@ -71,10 +71,10 @@
 	return [[staff getMeasures] lastObject];	
 }
 
-+ (id)targetAtLocation:(NSPoint)location inStaff:(Staff *)staff mode:(NSDictionary *)mode{
++ (id)targetAtLocation:(NSPoint)location inStaff:(Staff *)staff mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
 	Measure *measure = [self measureAtX:location.x inStaff:staff];
 	location.x -= [MeasureController xOf:measure];
-	return [MeasureController targetAtLocation:location inMeasure:measure mode:mode];
+	return [MeasureController targetAtLocation:location inMeasure:measure mode:mode withEvent:(NSEvent *)event];
 }
 
 @end

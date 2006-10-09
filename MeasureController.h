@@ -40,7 +40,7 @@
 + (NSPoint) keySigPanelLocationFor:(Measure *)measure;
 + (NSPoint) timeSigPanelLocationFor:(Measure *)measure;
 
-+ (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(int)mode;
++ (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(int)mode withEvent:(NSEvent *)event;
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view;
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view;
 

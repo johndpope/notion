@@ -8,6 +8,7 @@
 
 #import "ChordController.h"
 #import "Chord.h"
+#import "Measure.h"
 #import "NoteBase.h"
 #import "MeasureController.h"
 
@@ -28,14 +29,18 @@
 }
 
 + (BOOL)isOverNote:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure{
+	return [self noteAt:location inChord:chord inMeasure:measure] != nil;
+}
+
++ (NoteBase *)noteAt:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure{
 	NSEnumerator *notes = [[chord getNotes] objectEnumerator];
 	id note;
 	while(note = [notes nextObject]){
 		if([MeasureController isOverNote:note at:location inMeasure:measure]){
-			return YES;
+			return note;
 		}
 	}
-	return NO;
+	return nil;
 }
 
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Chord *)chord mode:(NSDictionary *)mode view:(ScoreView *)view{

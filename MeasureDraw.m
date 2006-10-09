@@ -100,7 +100,7 @@
 	NSEnumerator *notes = [[measure getNotes] objectEnumerator];
 	id note;
 	while(note = [notes nextObject]){
-		[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] isTarget:(note == target)];
+		[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] target:target];
 	}
 }
 
@@ -125,7 +125,7 @@
 			return;
 		}
 	}
-	[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index isTarget:NO];
+	[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index target:nil];
 }
 
 @end

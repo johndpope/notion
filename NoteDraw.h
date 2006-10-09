@@ -18,7 +18,7 @@
 
 +(BOOL)isStemUpwards:(NoteBase *)note inMeasure:(Measure *)measure;
 
-+(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted;
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target;
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted
    isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards;
 

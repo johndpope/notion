@@ -120,9 +120,9 @@
 	[self setNeedsDisplay:YES];
 }
 
-- (void)updateFeedback{
+- (void)updateFeedback:(NSEvent *)event{
 	if([self mouse:mouseLocation inRect:[self frame]]){
-		mouseOver = [controller targetAt:mouseLocation];
+		mouseOver = [controller targetAt:mouseLocation withEvent:event];
 		[self setNeedsDisplay:YES];
 	}	
 }
@@ -132,13 +132,13 @@
 	[controller clickedAtLocation:mouseLocation withEvent:event];
 	[self setFrameSize:[self calculateBounds].size];
 	[self setNeedsDisplay:YES];
-	[self updateFeedback];
+	[self updateFeedback:event];
 }
 
 - (void)mouseMoved:(NSEvent *)event{
 	[self setFrameSize:[self calculateBounds].size];
 	mouseLocation = [self convertPoint:[event locationInWindow] fromView:nil];
-	[self updateFeedback];
+	[self updateFeedback:event];
 }
 
 - (void)keyDown:(NSEvent *)event{
@@ -147,7 +147,11 @@
 	}
 	[self setFrameSize:[self calculateBounds].size];
 	[self setNeedsDisplay:YES];
-	[self updateFeedback];
+	[self updateFeedback:event];
+}
+
+- (void)flagsChanged:(NSEvent *)event{
+	[self updateFeedback:event];
 }
 
 - (BOOL)isFlipped{

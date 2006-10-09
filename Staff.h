@@ -11,7 +11,9 @@
 @class KeySignature;
 @class TimeSignature;
 @class Measure;
+@class NoteBase;
 @class Note;
+@class Chord;
 @class Song;
 @class StaffVerticalRulerComponent;
 #import <AudioToolbox/AudioToolbox.h>
@@ -44,8 +46,10 @@
 - (Measure *)getLastMeasure;
 - (Measure *)getMeasureAfter:(Measure *)measure;
 - (Measure *)getMeasureBefore:(Measure *)measure;
-- (Measure *)getMeasureContainingNote:(Note *)note;
 - (void)cleanEmptyMeasures;
+
+- (Measure *)getMeasureContainingNote:(NoteBase *)note;
+- (Chord *)getChordContainingNote:(NoteBase *)note;
 
 - (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure;
 

@@ -14,7 +14,8 @@
 
 @implementation RestDraw
 
-+(void)draw:(NoteBase *)note inMeasure:(Measure *)measure isTarget:(BOOL)highlighted{
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure target:(id)target{
+	BOOL highlighted = (target == self);
 	float x = [NoteController xOf:note inMeasure:measure];
 	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
 	NSRect measureBounds = [MeasureController innerBoundsOf:measure];

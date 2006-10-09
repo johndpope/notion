@@ -23,6 +23,6 @@
 
 + (Measure *)measureAtX:(float)x inStaff:(Staff *)staff;
 
-+ (id)targetAtLocation:(NSPoint)location inStaff:(Staff *)staff mode:(NSDictionary *)mode;
++ (id)targetAtLocation:(NSPoint)location inStaff:(Staff *)staff mode:(NSDictionary *)mode withEvent:(NSEvent *)event;
 
 @end
