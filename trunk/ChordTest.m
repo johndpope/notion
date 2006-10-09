@@ -77,4 +77,17 @@
 	[self tearDownUndoTest];
 }
 
+- (void) testUndoRedoRemoveNote{
+	[self setUpUndoTest];
+	[mgr beginUndoGrouping];
+	Note *note = [[chord getNotes] objectAtIndex:1];
+	[chord removeNote:note];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([[chord getNotes] count], (unsigned)3, @"Failed to undo removing note from chord");
+	[mgr redo];
+	STAssertEquals([[chord getNotes] count], (unsigned)2, @"Failed to redo removing note from chord");
+	[self tearDownUndoTest];
+}
+
 @end

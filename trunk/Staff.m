@@ -139,12 +139,28 @@
 	}
 }
 
-- (Measure *)getMeasureContainingNote:(Note *)note{
+- (Measure *)getMeasureContainingNote:(NoteBase *)note{
 	NSEnumerator *measuresEnum = [measures objectEnumerator];
 	id measure;
 	while(measure = [measuresEnum nextObject]){
 		if([[measure getNotes] containsObject:note]){
 			return measure;
+		}
+	}
+	return nil;
+}
+
+- (Chord *)getChordContainingNote:(NoteBase *)noteToFind{
+	NSEnumerator *measuresEnum = [measures objectEnumerator];
+	id measure;
+	while(measure = [measuresEnum nextObject]){
+		NSEnumerator *notes = [[measure getNotes] objectEnumerator];
+		id note;
+		while(note = [notes nextObject]){
+			if([note isKindOfClass:[Chord class]] &&
+			   [[note getNotes] containsObject:noteToFind]){
+				return note;
+			}			
 		}
 	}
 	return nil;

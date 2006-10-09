@@ -20,6 +20,6 @@
 
 + (Staff *)staffAt:(NSPoint)location inSong:(Song *)song;
 
-+ (id)targetAtLocation:(NSPoint)location inSong:(Song *)song mode:(NSDictionary *)mode;
++ (id)targetAtLocation:(NSPoint)location inSong:(Song *)song mode:(NSDictionary *)mode withEvent:(NSEvent *)event;
 
 @end

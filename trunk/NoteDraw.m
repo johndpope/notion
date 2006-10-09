@@ -147,8 +147,8 @@ static NSColor *mouseOverColor;
 	}	
 }
 
-+(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted{
-	[self draw:note inMeasure:measure atIndex:index isTarget:highlighted isOffset:NO 
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target{
+	[self draw:note inMeasure:measure atIndex:index isTarget:(target == note) isOffset:NO 
 		isInChordWithOffset:NO stemUpwards:[self isStemUpwards:note inMeasure:measure]];
 }
 

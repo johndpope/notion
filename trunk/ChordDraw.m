@@ -50,7 +50,7 @@
 	}
 }
 
-+(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted{
++(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index target:(id)target{
 	NSEnumerator *notes = [[chord getNotes] objectEnumerator];
 	id note;
 	BOOL hasOffset = NO;
@@ -62,7 +62,7 @@
 	}
 	notes = [[chord getNotes] objectEnumerator];
 	while(note = [notes nextObject]){
-		[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:highlighted 
+		[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:(target == note || target == chord) 
 						 isOffset:[self isOffset:note inChord:chord inMeasure:measure]
 			  isInChordWithOffset:hasOffset
 					  stemUpwards:[self isStemUpwards:chord inMeasure:measure]];

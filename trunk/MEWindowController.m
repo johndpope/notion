@@ -170,16 +170,16 @@
 	return NO_ACC;
 }
 
-- (id)targetAt:(NSPoint)location{
+- (id)targetAt:(NSPoint)location withEvent:(NSEvent *)event{
 	id modeDict = [self getMode];
 	id song = [[self document] getSong];
-	return [ScoreController targetAtLocation:location inSong:song mode:modeDict];	
+	return [ScoreController targetAtLocation:location inSong:song mode:modeDict withEvent:(NSEvent *)event];	
 }
 
 - (void)clickedAtLocation:(NSPoint)location withEvent:(NSEvent *)event{
 	id modeDict = [self getMode];
 	id song = [[self document] getSong];
-	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict];
+	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict withEvent:(NSEvent *)event];
 	if([[target getControllerClass] respondsToSelector:@selector(handleMouseClick:at:on:mode:view:)]){
 		[[target getControllerClass] handleMouseClick:event at:location on:target mode:modeDict view:view];		
 	}
@@ -188,7 +188,7 @@
 - (BOOL)keyPressedAtLocation:(NSPoint)location withEvent:(NSEvent *)event{
 	id modeDict = [self getMode];
 	id song = [[self document] getSong];
-	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict];
+	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict withEvent:(NSEvent *)event];
 	BOOL handled = [[target getControllerClass] respondsToSelector:@selector(handleKeyPress:at:on:mode:view:)] &&
 		[[target getControllerClass] handleKeyPress:event at:location on:target mode:modeDict view:view];
 	if(!handled){

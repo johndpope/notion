@@ -391,6 +391,45 @@
 	[fourthNote release];
 }
 
+- (void)testRemoveNoteFromThreeNoteChord{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:2 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Chord *chord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObjects:secondNote, thirdNote, fourthNote, nil]];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, chord, nil]];
+	[measure removeNote:thirdNote fromChordAtIndex:1];
+	NoteBase *newSecondNote = [[measure getNotes] objectAtIndex:1];
+	STAssertTrue([newSecondNote isKindOfClass:[Chord class]], @"Destroyed chord while removing note.");
+	STAssertEquals([[newSecondNote getNotes] count], (unsigned)2, @"Wrong number of notes in chord.");
+	STAssertTrue([[newSecondNote getNotes] containsObject:secondNote], @"Existing note not maintained in chord.");
+	STAssertFalse([[newSecondNote getNotes] containsObject:thirdNote], @"Note not removed from chord.");
+	STAssertTrue([[newSecondNote getNotes] containsObject:fourthNote], @"Existing note not maintained in chord.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+	[chord release];
+}
+
+- (void)testRemoveNoteChangesChordToNote{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Chord *chord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObjects:secondNote, thirdNote, nil]];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, chord, nil]];
+	[measure removeNote:thirdNote fromChordAtIndex:1];
+	NoteBase *newSecondNote = [[measure getNotes] objectAtIndex:1];
+	STAssertFalse([newSecondNote isKindOfClass:[Chord class]], @"Removing next-to-last note from chord didn't change to single note.");
+	STAssertEqualObjects(newSecondNote, secondNote, @"Removing next-to-last note from chord left wrong note behind.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[chord release];
+}
+
 // ----- undo/redo tests -----
 
 - (void)setUpUndoTest{

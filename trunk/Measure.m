@@ -217,6 +217,28 @@
 	}
 }
 
+- (void)removeNote:(NoteBase *)note fromChordAtIndex:(float)index{
+	NoteBase *chord = [notes objectAtIndex:index];
+	if([chord isKindOfClass:[Chord class]]){
+		if([[chord getNotes] containsObject:note]){
+			if([[chord getNotes] count] > 2){
+				[chord removeNote:note];
+			} else{
+				Note *otherNote = nil;
+				NSEnumerator *chordNotes = [[chord getNotes] objectEnumerator];
+				while(otherNote = [chordNotes nextObject]){
+					if(otherNote != note){
+						[notes replaceObjectAtIndex:index withObject:otherNote];
+						break;
+					}
+				}
+			}
+		}
+	} else{
+		[self removeNoteAtIndex:index temporary:NO];
+	}
+}
+
 - (BOOL)isEmpty{
 	return [notes count] == 0;
 }

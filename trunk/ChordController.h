@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 @class Chord;
+@class NoteBase;
 @class Measure;
 @class ScoreView;
 
@@ -21,6 +22,7 @@
 + (float) xOf:(Chord *)chord inMeasure:(Measure *)measure;
 
 + (BOOL)isOverNote:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure;
++ (NoteBase *)noteAt:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure;
 
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Chord *)chord mode:(NSDictionary *)mode view:(ScoreView *)view;
 

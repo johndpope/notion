@@ -37,10 +37,10 @@
 	return [[song staffs] lastObject];
 }
 
-+ (id) targetAtLocation:(NSPoint)location inSong:(Song *)song mode:(NSDictionary *)mode{
++ (id) targetAtLocation:(NSPoint)location inSong:(Song *)song mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
 	Staff *staff = [self staffAt:location inSong:song];
 	location.y -= [StaffController boundsOf:staff].origin.y;
-	return [StaffController targetAtLocation:location inStaff:staff mode:mode];	
+	return [StaffController targetAtLocation:location inStaff:staff mode:mode withEvent:(NSEvent *)event];	
 }
 
 @end

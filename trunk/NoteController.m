@@ -10,6 +10,7 @@
 #import "ScoreController.h"
 #import "MeasureController.h"
 #import "NoteBase.h"
+#import "Chord.h"
 #import "Measure.h"
 
 @implementation NoteController
@@ -44,8 +45,16 @@
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		[[note undoManager] setActionName:@"deleting note"];
 		Measure *measure = [[note getStaff] getMeasureContainingNote:note];
-		[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:note] temporary:NO];
-		return YES;
+		if(measure != nil){
+			[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:note] temporary:NO];
+			return YES;			
+		}
+		Chord *chord = [[note getStaff] getChordContainingNote:note];
+		measure = [[note getStaff] getMeasureContainingNote:chord];
+		if(measure != nil){
+			[measure removeNote:note fromChordAtIndex:[[measure getNotes] indexOfObject:chord]];
+			return YES;
+		}
 	}
 	return NO;
 }

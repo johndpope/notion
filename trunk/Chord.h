@@ -20,5 +20,6 @@
 - (NSArray *)getNotes;
 
 - (void)addNote:(NoteBase *)note;
+- (void)removeNote:(NoteBase *)note;
 
 @end
