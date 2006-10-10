@@ -142,6 +142,11 @@
 - (void)setTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
 	[[[self undoManager] prepareWithInvocationTarget:self] setTimeSignature:[timeSigs objectAtIndex:measureIndex] atIndex:measureIndex];
 	[timeSigs replaceObjectAtIndex:measureIndex withObject:sig];
+	NSEnumerator *staffsEnum = [staffs objectEnumerator];
+	id staff;
+	while(staff = [staffsEnum nextObject]){
+		[[[staff getMeasures] objectAtIndex:measureIndex] updateTimeSigPanel];
+	}	
 }
 
 - (TimeSignature *)getTimeSignatureAt:(int)measureIndex{
@@ -176,17 +181,18 @@
 }
 
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom{
+	TimeSignature *sig = [TimeSignature timeSignatureWithTop:top bottom:bottom];
 	TimeSignature *oldEffSig = [self getEffectiveTimeSignatureAt:measureIndex];
 	float oldTotal = [oldEffSig getMeasureDuration];
-	TimeSignature *sig = [TimeSignature timeSignatureWithTop:top bottom:bottom];
 	[self setTimeSignature:sig atIndex:measureIndex];
+	sig = [self getEffectiveTimeSignatureAt:measureIndex];
 	float newTotal = [sig getMeasureDuration];
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
 	id staff;
 	while(staff = [staffsEnum nextObject]){
 		if([[staff getMeasures] count] > measureIndex){
 			[[[staff getMeasures] objectAtIndex:measureIndex] timeSignatureChangedFrom:oldTotal
-				to:newTotal top:top bottom:bottom];
+																					to:newTotal top:[sig getTop] bottom:[sig getBottom]];
 		}
 	}
 }

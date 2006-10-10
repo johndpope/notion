@@ -69,6 +69,7 @@
 
 - (BOOL)isShowingTimeSigPanel;
 - (NSView *)getTimeSigPanel;
+- (void)updateTimeSigPanel;
 
 - (NoteBase *)getNoteBefore:(NoteBase *)source;
 
