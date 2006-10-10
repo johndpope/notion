@@ -12,6 +12,7 @@
 #import "TempoData.h"
 #import "TimeSignature.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <Chomp/Chomp.h>
 
 #import "Chord.h"
 #import "Note.h"
@@ -247,7 +248,8 @@
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:staffs forKey:@"staffs"];
 	[coder encodeObject:tempoData forKey:@"tempoData"];
-	[coder encodeObject:timeSigs forKey:@"timeSigs"];
+	NSArray *timeSigsToCode = [[TimeSignature collectSelf] asNSNumberArray:[timeSigs each]];
+	[coder encodeObject:timeSigsToCode forKey:@"timeSigs"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
@@ -259,24 +261,20 @@
 			[staff setSong:self];
 		}
 		[self setTempoData:[coder decodeObjectForKey:@"tempoData"]];
-		[self refreshTimeSigs];
 		NSArray *_sigs = [coder decodeObjectForKey:@"timeSigs"];
-		NSEnumerator *sigsEnum = [_sigs objectEnumerator];
-		id sig;
-		int index = 0;
-		while(sig = [sigsEnum nextObject]){
-			if(![sig isKindOfClass:[NSNull class]]){
-				[self setTimeSignature:[TimeSignature timeSignatureWithTop:[sig getTop] bottom:[sig getBottom]] atIndex:index];
-			}
-			index++;
-		}
+		timeSigs = [[[TimeSignature collectSelf] fromNSNumberArray:[_sigs each]] retain];
+		[self refreshTimeSigs];
 	}
 	return self;
 }
 
 - (void)dealloc{
 	[staffs release];
+	[tempoData release];
+	[timeSigs release];
 	staffs = nil;
+	tempoData = nil;
+	timeSigs = nil;
 	[super dealloc];
 }
 
