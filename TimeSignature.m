@@ -25,6 +25,11 @@
 	return sig;
 }
 
++(id)fromNSNumberArray:(NSArray *)array{
+	if([array isEqual:[NSNull null]]) return [NSNull null];
+	return [self timeSignatureWithTop:[[array objectAtIndex:0] intValue] bottom:[[array objectAtIndex:1] intValue]];
+}
+
 -(id)initWithTop:(int)_top bottom:(int)_bottom{
 	if(self = [super init]){
 		top = _top;
@@ -43,6 +48,13 @@
 
 -(float)getMeasureDuration{
 	return (float)top/(float)bottom;
+}
+
++(NSArray *)asNSNumberArray:(id)sig{
+	if([sig isEqual:[NSNull null]]){
+		return nil;
+	}
+	return [NSArray arrayWithObjects:[NSNumber numberWithInt:[sig getTop]], [NSNumber numberWithInt:[sig getBottom]], nil];
 }
 
 @end

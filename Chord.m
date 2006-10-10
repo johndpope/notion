@@ -152,7 +152,7 @@
 
 - (id)initWithCoder:(NSCoder *)coder{
 	if(self = [super init]){
-		notes = [coder decodeObjectForKey:@"notes"];
+		[self setNotes:[coder decodeObjectForKey:@"notes"]];
 	}
 	return self;
 }

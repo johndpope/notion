@@ -22,4 +22,7 @@
 -(int)getBottom;
 -(float)getMeasureDuration;
 
++(NSArray *)asNSNumberArray:(id)sig;
++(id)fromNSNumberArray:(NSArray *)array;
+
 @end

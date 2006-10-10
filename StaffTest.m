@@ -63,7 +63,6 @@
 	[staff setSong:song];
 	STAssertEqualObjects([staff getEffectiveTimeSignatureForMeasure:measure], timeSig, @"Wrong time signature returned.");
 	[timeSig release];
-	[timeSigs release];
 	[song release];
 }
 - (void) testGetEffectiveTimeSignatureForMeasureWhenPreviousMeasureHasEffectiveTimeSignature{
@@ -78,7 +77,6 @@
 	[staff setSong:song];
 	STAssertEqualObjects([staff getEffectiveTimeSignatureForMeasure:secondMeasure], timeSig, @"Wrong time signature returned.");
 	[timeSig release];
-	[timeSigs release];
 	[song release];
 }
 
