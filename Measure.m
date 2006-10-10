@@ -302,6 +302,16 @@
 	return [staff getEffectiveTimeSignatureForMeasure:self];
 }
 
+- (void)updateTimeSigPanel{
+	TimeSignature *sig = [self getEffectiveTimeSignature];
+	int top = [sig getTop];
+	int bottom = [sig getBottom];
+	[timeSigTopStep setIntValue:top];
+	[timeSigTopText setIntValue:top];
+	[timeSigBottom selectItemWithTitle:[NSString stringWithFormat:@"%d", bottom]];
+	[[timeSigPanel superview] setNeedsDisplay:YES];
+}
+
 - (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal top:(int)top bottom:(int)bottom{
 	if(newTotal < oldTotal){
 		[self prepUndo];
@@ -310,10 +320,7 @@
 		[self prepUndo];
 		[self grabNotesFromNextMeasure];
 	}
-	[timeSigTopStep setIntValue:top];
-	[timeSigTopText setIntValue:top];
-	[timeSigBottom selectItemWithTitle:[NSString stringWithFormat:@"%d", bottom]];
-	[[timeSigPanel superview] setNeedsDisplay:YES];
+	[self updateTimeSigPanel];
 }
 
 - (BOOL)isShowingKeySigPanel{

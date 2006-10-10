@@ -113,6 +113,7 @@
 	NSView *timeSigPanel = [measure getTimeSigPanel];
 	if([timeSigPanel superview] == nil){
 		[self addSubview:timeSigPanel];
+		[measure updateTimeSigPanel];
 		[timeSigPanel setFrameOrigin:[MeasureController timeSigPanelLocationFor:measure]];
 		[timeSigPanel setHidden:NO withFade:YES blocking:NO];
 	}
