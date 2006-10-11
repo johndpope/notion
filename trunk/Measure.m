@@ -444,6 +444,10 @@
 	[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
 }
 
+- (void)timeSigDelete{
+	[staff timeSigDeletedAtMeasure:self];
+}
+
 - (IBAction)timeSigClose:(id)sender{
 	[timeSigPanel setHidden:YES withFade:YES blocking:(sender != nil)];
 	if([timeSigPanel superview] != nil){

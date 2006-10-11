@@ -63,6 +63,20 @@
 	STAssertEquals([[song timeSigs] count], (unsigned)2, @"Wrong number of time signatures created.");	
 }
 
+- (void) testDeleteTimeSig{
+	[[[song staffs] lastObject] addMeasure];
+	Measure *measure = [[[[song staffs] lastObject] getMeasures] objectAtIndex:1];
+	[song refreshTimeSigs];
+	[song setTimeSignature:[TimeSignature timeSignatureWithTop:7 bottom:8] atIndex:1];
+	TimeSignature *sig = [measure getEffectiveTimeSignature];
+	STAssertEquals([sig getTop], 7, @"Setting time signature failed.");
+	STAssertEquals([sig getBottom], 8, @"Setting time signature failed.");
+	[song timeSigDeletedAtIndex:1];
+	sig = [measure getEffectiveTimeSignature];
+	STAssertEquals([sig getTop], 4, @"Deleting time signature failed.");
+	STAssertEquals([sig getBottom], 4, @"Deleting time signature failed.");	
+}
+
 // ----- undo/redo tests -----
 
 - (void)setUpUndoTest{

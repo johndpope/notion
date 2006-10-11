@@ -140,7 +140,22 @@
 }
 
 - (void)setTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
-	[[[self undoManager] prepareWithInvocationTarget:self] setTimeSignature:[timeSigs objectAtIndex:measureIndex] atIndex:measureIndex];
+	TimeSignature *oldEffSig = [self getEffectiveTimeSignatureAt:measureIndex];
+	float oldTotal = [oldEffSig getMeasureDuration];
+	[self doSetTimeSignature:sig atIndex:measureIndex];
+	sig = [self getEffectiveTimeSignatureAt:measureIndex];
+	float newTotal = [sig getMeasureDuration];
+	NSEnumerator *staffsEnum = [staffs objectEnumerator];
+	id staff;
+	while(staff = [staffsEnum nextObject]){
+		if([[staff getMeasures] count] > measureIndex){
+			[[[staff getMeasures] objectAtIndex:measureIndex] timeSignatureChangedFrom:oldTotal
+																					to:newTotal top:[sig getTop] bottom:[sig getBottom]];
+		}
+	}	
+}
+- (void)doSetTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
+	[[[self undoManager] prepareWithInvocationTarget:self] doSetTimeSignature:[timeSigs objectAtIndex:measureIndex] atIndex:measureIndex];
 	[timeSigs replaceObjectAtIndex:measureIndex withObject:sig];
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
 	id staff;
@@ -182,19 +197,11 @@
 
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom{
 	TimeSignature *sig = [TimeSignature timeSignatureWithTop:top bottom:bottom];
-	TimeSignature *oldEffSig = [self getEffectiveTimeSignatureAt:measureIndex];
-	float oldTotal = [oldEffSig getMeasureDuration];
 	[self setTimeSignature:sig atIndex:measureIndex];
-	sig = [self getEffectiveTimeSignatureAt:measureIndex];
-	float newTotal = [sig getMeasureDuration];
-	NSEnumerator *staffsEnum = [staffs objectEnumerator];
-	id staff;
-	while(staff = [staffsEnum nextObject]){
-		if([[staff getMeasures] count] > measureIndex){
-			[[[staff getMeasures] objectAtIndex:measureIndex] timeSignatureChangedFrom:oldTotal
-																					to:newTotal top:[sig getTop] bottom:[sig getBottom]];
-		}
-	}
+}
+
+- (void)timeSigDeletedAtIndex:(int)measureIndex{
+	[self setTimeSignature:[NSNull null] atIndex:measureIndex];	
 }
 
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint{

@@ -19,4 +19,11 @@
 	[view showTimeSigPanelFor:[sig measure]];
 }
 
++ (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(TimeSigTarget *)sig mode:(NSDictionary *)mode view:(ScoreView *)view{
+	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
+		[[[sig measure] undoManager] setActionName:@"deleting time signature"];
+		[[sig measure] timeSigDelete];
+	}
+}
+
 @end

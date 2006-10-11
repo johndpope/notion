@@ -57,6 +57,7 @@
 
 - (void)toggleClefAtMeasure:(Measure *)measure;
 - (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom;
+- (void)timeSigDeletedAtMeasure:(Measure *)measure;
 
 - (void)addTrackToMIDISequence:(MusicSequence *)musicSequence;
 
