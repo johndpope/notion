@@ -63,6 +63,7 @@
 - (BOOL)hasTimeSignature;
 - (TimeSignature *)getEffectiveTimeSignature;
 - (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal top:(int)top bottom:(int)bottom;
+- (void)timeSigDelete;
 
 - (BOOL)isShowingKeySigPanel;
 - (NSView *)getKeySigPanel;

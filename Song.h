@@ -43,6 +43,7 @@
 - (TimeSignature *)getEffectiveTimeSignatureAt:(int)measureIndex;
 - (void)refreshTimeSigs;
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom;
+- (void)timeSigDeletedAtIndex:(int)measureIndex;
 
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint;
 

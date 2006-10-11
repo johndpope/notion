@@ -221,6 +221,14 @@
 		top:(int)top bottom:(int)bottom];
 }
 
+- (void)timeSigDeletedAtMeasure:(Measure *)measure{
+	if(measure != [measures objectAtIndex:0]){
+		[song timeSigDeletedAtIndex:[measures indexOfObject:measure]];		
+	} else{
+		[[self undoManager] 
+	}
+}
+
 - (void)cleanPanels{
 	NSEnumerator *measureEnum = [measures objectEnumerator];
 	id measure;
