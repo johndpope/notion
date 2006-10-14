@@ -58,28 +58,23 @@
 	
 }
 
-- (NSArray *)removeDuration:(float)maxDuration{
-	NSMutableArray *notes = [NSMutableArray arrayWithObject:self];
+- (NSArray *)subtractDuration:(float)maxDuration{
+	NSMutableArray *remainingNotes = [NSMutableArray array];
 	float remainingDuration = [self getEffectiveDuration] - maxDuration;
-	NoteBase *note = [NoteBase tryToFill:remainingDuration copyingNote:self];
-	[self setDuration:[note getDuration]];
-	[self setDotted:[note getDotted]];
-	remainingDuration -= [self getEffectiveDuration];
-	NoteBase *lastNote = self;
+	NoteBase *lastNote = nil;
 	while(remainingDuration > 0){
-		note = [NoteBase tryToFill:remainingDuration copyingNote:self];
-		[notes addObject:note];
-		[lastNote tieTo:note];
-		[note tieFrom:lastNote];
-		lastNote = note;
-		remainingDuration -= [note getEffectiveDuration];
+		NoteBase *newNote = [self copy];
+		[newNote tryToFill:remainingDuration];
+		remainingDuration -= [newNote getEffectiveDuration];
+		[remainingNotes addObject:newNote];
+		[lastNote tieTo:newNote];
+		[newNote tieFrom:lastNote];
+		lastNote = newNote;
 	}
-	return notes;
+	return remainingNotes;
 }
 
-+ (NoteBase *)tryToFill:(float)maxDuration copyingNote:(NoteBase *)src{
-	int duration;
-	BOOL dotted;
+- (void)tryToFill:(float)maxDuration{
 	if(maxDuration >= 1.5){
 		duration = 1;
 		dotted = YES;
@@ -116,11 +111,7 @@
 	} else if(maxDuration >= 0.03125){
 		duration = 32;
 		dotted = NO;
-	} else return nil;
-	NoteBase *note = [[src copy] autorelease];
-	[note setDuration:duration];
-	[note setDotted:dotted];
-	return note;
+	}
 }
 
 // -- tie methods - do nothing by default

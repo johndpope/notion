@@ -76,12 +76,12 @@
 		[self addNote:_note toChordAtIndex:index];
 		return;
 	} else{
-		Note *note = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index];
-		Measure *measure = [staff getMeasureContainingNote:note];
+		Note *firstAddedNote = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index];
+		Measure *measure = [staff getMeasureContainingNote:firstAddedNote];
 		if(tieToPrev){
-			Note *tie = [staff findPreviousNoteMatching:note inMeasure:measure];
-			[note tieFrom:tie];
-			[tie tieTo:note];
+			Note *tie = [staff findPreviousNoteMatching:firstAddedNote inMeasure:measure];
+			[firstAddedNote tieFrom:tie];
+			[tie tieTo:firstAddedNote];
 		}
 		if([measure isFull]) [staff getMeasureAfter:measure];
 	}
@@ -125,33 +125,55 @@
 }
 
 - (NoteBase *)refreshNotes:(NoteBase *)rtn{
+	NoteBase *firstNoteAdded = rtn;
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
+	NSMutableArray *notesToPush = [NSMutableArray array];
+	//	while we have too many notes
 	while(totalDuration > maxDuration){
-		Note *note = [notes lastObject];
-		NSMutableArray *_notes = [NSMutableArray arrayWithObject:note];
-		totalDuration -= [note getEffectiveDuration];
-		if(totalDuration < maxDuration){
-			float durationToFill = maxDuration - totalDuration;
-			_notes = [note removeDuration:(durationToFill)];
-			int index = [notes count] - 1;
-			NoteBase *lastNote = note;
-			while(durationToFill > 0){
-				Note *fill = [NoteBase tryToFill:durationToFill copyingNote:note];
-				[notes insertObject:fill atIndex:index];
-				[fill tieTo:lastNote];
-				[lastNote tieFrom:fill];
-				if(rtn == lastNote) rtn = fill;
-				lastNote = fill;
-				totalDuration += [fill getEffectiveDuration];
-				durationToFill -= [fill getEffectiveDuration];
+		float toRemove = totalDuration - maxDuration;
+		NoteBase *lastNote = [notes lastObject];
+//			if the last note is longer than we need to remove
+		if([lastNote getEffectiveDuration] > toRemove){
+//				remove the last note
+			[notes removeLastObject];
+//				get a note which is as close as possible to (but still less than) the amount we need to remove
+			NoteBase *noteToPush = [lastNote copy];
+			[noteToPush tryToFill:toRemove];
+//				get an array of notes resulting from removing that note from the original note
+			NSArray *remainingNotes = [lastNote subtractDuration:[noteToPush getEffectiveDuration]];
+//				tie the last of those notes to the note we're adding
+			[[remainingNotes lastObject] tieTo:noteToPush];
+			[noteToPush tieFrom:[remainingNotes lastObject]];
+//				add the last note to the next measure
+			[notesToPush insertObject:noteToPush atIndex:0];
+//				tie the last note to whatever the old note was tied to
+			[noteToPush tieTo:[lastNote getTieTo]];
+			[[lastNote getTieTo] tieFrom:noteToPush];
+//				tie the first note from whatever the old note was tied from
+			[[remainingNotes objectAtIndex:0] tieFrom:[lastNote getTieFrom]];
+			[[lastNote getTieFrom] tieTo:[remainingNotes objectAtIndex:0]];
+//				add the array of notes to this measure
+			[notes addObjectsFromArray:remainingNotes];
+//				if we just removed the first note added, update the pointer
+			if(lastNote == rtn){
+				rtn = [remainingNotes objectAtIndex:0];
 			}
+		} else {
+//				remove the last note
+			[notes removeLastObject];
+//				add it to the next measure
+			[notesToPush insertObject:lastNote atIndex:0];
 		}
-		[notes removeLastObject];
+		totalDuration = [self getTotalDuration];
+	}
+	
+	if([notesToPush count] > 0){
 		Measure *nextMeasure = [staff getMeasureAfter:self];
 		[nextMeasure prepUndo];
-		[nextMeasure addNotes:_notes atIndex:0];
+		[nextMeasure addNotes:notesToPush atIndex: 0];
 	}
+	
 	return rtn;
 }
 
@@ -167,28 +189,21 @@
 		[nextMeasure removeNoteAtIndex:0 temporary:YES];
 		if([nextNote getEffectiveDuration] <= durationToFill){
 			[notes addObject:nextNote];
-			totalDuration += [nextNote getEffectiveDuration];
 		} else{
-			NSMutableArray *_notes = [nextNote removeDuration:durationToFill];
-			[nextMeasure addNotes:_notes atIndex:0];
+			NoteBase *noteToAdd = [nextNote copy];
+			[noteToAdd tryToFill:durationToFill];
+			NSArray *remainingNotes = [nextNote subtractDuration:[noteToAdd getEffectiveDuration]];
+			[nextMeasure addNotes:remainingNotes atIndex:0];
 			[nextMeasure grabNotesFromNextMeasure];
-			Note *tieFrom = [nextNote getTieFrom];
-			Note *note = nextNote;
-			Note *lastNote = note;
-			while(durationToFill > 0){
-				note = [NoteBase tryToFill:durationToFill copyingNote:note];
-				[notes addObject:note];
-				[note tieTo:lastNote];
-				[note tieFrom:tieFrom];
-				[tieFrom tieTo:note];
-				tieFrom = nil;
-				[lastNote tieFrom:note];
-				lastNote = note;
-				totalDuration += [note getEffectiveDuration];
-				durationToFill -= [note getEffectiveDuration];			
-			}
-			totalDuration = [self getTotalDuration];
+			[noteToAdd tieFrom:[nextNote getTieFrom]];
+			[[nextNote getTieFrom] tieTo:noteToAdd];
+			[noteToAdd tieTo:[remainingNotes objectAtIndex:0]];
+			[[remainingNotes objectAtIndex:0] tieFrom:noteToAdd];
+			[[remainingNotes lastObject] tieTo:[nextNote getTieTo]];
+			[[nextNote getTieTo] tieFrom:[remainingNotes lastObject]];
+			[notes addObject:noteToAdd];
 		}
+		totalDuration = [self getTotalDuration];
 	}
 }
 
