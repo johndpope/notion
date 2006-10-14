@@ -38,8 +38,8 @@
 
 - (void)prepareForDelete;
 
-- (NSArray *)removeDuration:(float)maxDuration;
-+ (NoteBase *)tryToFill:(float)maxDuration copyingNote:(NoteBase *)src;
+- (NSArray *)subtractDuration:(float)maxDuration;
+- (void)tryToFill:(float)maxDuration;
 
 - (void)tieTo:(NoteBase *)note;
 - (NoteBase *)getTieTo;

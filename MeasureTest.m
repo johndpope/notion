@@ -163,8 +163,8 @@
 	STAssertEquals([[measure getNotes] count], (unsigned)3, @"Part of note not left behind during split add.");
 	STAssertEquals([[[measure getNotes] lastObject] getDuration], (int)8, @"Note added to first measure is wrong duration.");
 	STAssertEquals([[[staff getLastMeasure] getNotes] count], (unsigned)2, @"Wrong number of notes added to next measure.");
-	STAssertEquals([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getDuration], (int)2, @"First note added to second measure is wrong duration.");
-	STAssertEquals([[[[staff getLastMeasure] getNotes] lastObject] getDuration], (int)8, @"Second note added to second measure is wrong duration.");
+	STAssertEquals([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getDuration], (int)8, @"First note added to second measure is wrong duration.");
+	STAssertEquals([[[[staff getLastMeasure] getNotes] lastObject] getDuration], (int)2, @"Second note added to second measure is wrong duration.");
 	STAssertEqualObjects([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getTieFrom], [[measure getNotes] lastObject], @"Auto-split note not tied.");
 	STAssertEqualObjects([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getTieTo], [[[staff getLastMeasure] getNotes] lastObject], @"Second part of complex auto-split not tied.");
 	[firstRest release];

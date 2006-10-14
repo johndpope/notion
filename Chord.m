@@ -87,14 +87,18 @@
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
 }
 
-- (NSArray *)removeDuration:(float)maxDuration{
-	NSArray *removedNotes = [[notes collect] removeDuration:maxDuration];
-	NSMutableArray *removedChords = [[NSMutableArray arrayWithCapacity:[removedNotes count]] autorelease];
+- (NSArray *)subtractDuration:(float)maxDuration{
+	NSArray *remainingNotes = [[notes collect] subtractDuration:maxDuration];
+	NSMutableArray *remainingChords = [[NSMutableArray arrayWithCapacity:[remainingNotes count]] autorelease];
 	int i;
-	for(i=0; i<[[removedNotes objectAtIndex:0] count]; i++){
-		[removedChords addObject:[[[Chord alloc] initWithStaff:staff withNotes:[[removedNotes collect] objectAtIndex:i]] autorelease]];
+	for(i=0; i<[[remainingNotes objectAtIndex:0] count]; i++){
+		[remainingChords addObject:[[[Chord alloc] initWithStaff:staff withNotes:[[remainingNotes collect] objectAtIndex:i]] autorelease]];
 	}
-	return removedChords;
+	return remainingChords;
+}
+
+- (void)tryToFill:(float)maxDuration{
+	[[notes do] tryToFill:maxDuration];
 }
 
 - (void)tieTo:(NoteBase *)note{

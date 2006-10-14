@@ -176,6 +176,28 @@
 	[fourthNote release];
 	[self tearDownUndoTest];
 }
+- (void) testUndoChangingTimeSigDoesntLoseNotes{
+	[self setUpUndoTest];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure addNote:firstNote atIndex:-0.5 tieToPrev:NO];
+	[measure addNote:secondNote atIndex:0.5 tieToPrev:NO];
+	[measure addNote:thirdNote atIndex:1.5 tieToPrev:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[song timeSigChangedAtIndex:0 top:4 bottom:8];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[song timeSigChangedAtIndex:0 top:5 bottom:8];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[song timeSigChangedAtIndex:0 top:6 bottom:8];
+	[mgr undo];
+	[mgr undo];
+	STAssertEquals([[staff getLastMeasure] getTotalDuration], (float)0.25, @"Notes not preserved after undoing time signature change.");
+}
 - (void) testUndoRedoSetTimeSigPreservesNotesWhenGrowing{
 	[self setUpUndoTest];
 	Measure *measure = [staff getLastMeasure];

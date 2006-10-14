@@ -21,6 +21,8 @@
 		dotted = _dotted;
 		accidental = _accidental;
 		staff = _staff;
+		tieTo = nil;
+		tieFrom = nil;
 	}
 	return self;
 }
