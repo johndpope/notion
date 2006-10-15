@@ -116,7 +116,7 @@
 											  onStaff:[measure getStaff]]
 		autorelease];
 	float index = [MeasureController indexAt:location inMeasure:measure];
-	if(index - fabs(index - round(index)) < 0.25 && [[measure getNotes] count] > ceil(index)){
+	if(((int)(index * 2)) % 2 == 0 && [[measure getNotes] count] > ceil(index)){
 		id note = [[measure getNotes] objectAtIndex:index];
 		if([[note getViewClass] respondsToSelector:@selector(isStemUpwards:inMeasure:)]){
 			BOOL stemUpwards = [[note getViewClass] isStemUpwards:note inMeasure:measure];

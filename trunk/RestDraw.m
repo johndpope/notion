@@ -14,15 +14,15 @@
 
 @implementation RestDraw
 
-+(void)draw:(NoteBase *)note inMeasure:(Measure *)measure target:(id)target{
-	BOOL highlighted = (target == self);
-	float x = [NoteController xOf:note inMeasure:measure];
++(void)draw:(NoteBase *)rest inMeasure:(Measure *)measure atIndex:(float)index target:(id)target{
+	BOOL highlighted = (target == rest);
+	float x = [NoteController xOf:rest inMeasure:measure];
 	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
 	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
 	float middle = measureBounds.origin.y + measureBounds.size.height / 2.0;
 	NSRect rect;
 	NSImage *img = nil;
-	switch([note getDuration]){
+	switch([rest getDuration]){
 		case 1:
 			if(highlighted) [[NSColor redColor] set];
 			rect.origin.x = x;
@@ -76,7 +76,7 @@
 						operation:NSCompositeSourceOver];
 			break;
 	}
-	if([note getDotted]){
+	if([rest getDotted]){
 		NSRect dotRect;
 		dotRect.origin.x = x + (img != nil ? [img size].width : 17);
 		dotRect.origin.y = (img != nil ? middle + 10 : middle);
