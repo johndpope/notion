@@ -195,7 +195,7 @@
 		return measure;
 	}
 	float index = [self indexAt:location inMeasure:measure];
-	if(fabs(index - floor(index)) < 0.25){
+	if(((int)(index * 2)) % 2 == 0){
 		//on a note
 		NoteBase *note = [[measure getNotes] objectAtIndex:index];
 		if(pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ![self isOverNote:note at:location inMeasure:measure]){

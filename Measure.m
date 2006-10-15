@@ -71,7 +71,7 @@
 
 - (void)addNote:(NoteBase *)_note atIndex:(float)index tieToPrev:(BOOL)tieToPrev{
 	[self prepUndo];
-	if(fabs(index - round(index)) < 0.25){
+	if(((int)(index * 2)) % 2 == 0){
 		[[self undoManager] setActionName:@"changing note to chord"];
 		[self addNote:_note toChordAtIndex:index];
 		return;
