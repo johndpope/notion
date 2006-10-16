@@ -17,6 +17,8 @@
 #import "Chord.h"
 #import "Note.h"
 
+static MusicPlayer musicPlayer;
+
 @implementation Song
 
 - (id)initWithDocument:(MusicDocument *)_doc{
@@ -237,7 +239,6 @@
 			[NSException raise:@"setMIDIEndpoint" format:@"Can't set midi endpoint for music sequence"];
 	}
 	
-	MusicPlayer musicPlayer;
 	if (NewMusicPlayer(&musicPlayer) != noErr) {
 		NSLog(@"Cannot create music player.");
 		return;
@@ -256,6 +257,13 @@
 		return;
 	}
 
+}
+
+- (void)stopPlaying{
+	if (MusicPlayerStop(musicPlayer) != noErr) {
+		NSLog(@"Cannot start music player.");
+		return;
+	}
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

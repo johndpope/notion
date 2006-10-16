@@ -31,6 +31,7 @@ static const int MODE_NOTE = 1;
 - (BOOL)isTieToPrev;
 
 - (IBAction)playSong:(id)sender;
+- (IBAction)stopSong:(id)sender;
 - (IBAction)changeDuration:(id)sender;
 - (IBAction)changeDotted:(id)sender;
 - (IBAction)changeAccidental:(id)sender;
