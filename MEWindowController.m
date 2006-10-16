@@ -46,6 +46,10 @@
 	[[[self document] getSong] playToEndpoint:[devicePopup selectedEndpoint]];
 }
 
+- (IBAction)stopSong:(id)sender{
+	[[[self document] getSong] stopPlaying];
+}
+
 - (IBAction)addStaff:(id)sender{
 	[[[self document] getSong] addStaff];
 	[self placeRulerComponents];

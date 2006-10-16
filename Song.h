@@ -46,5 +46,6 @@
 - (void)timeSigDeletedAtIndex:(int)measureIndex;
 
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint;
+- (void)stopPlaying;
 
 @end

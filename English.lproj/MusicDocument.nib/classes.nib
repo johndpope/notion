@@ -9,6 +9,7 @@
                 changeDotted = id; 
                 changeDuration = id; 
                 playSong = id; 
+                stopSong = id; 
             }; 
             CLASS = MEWindowController; 
             LANGUAGE = ObjC; 
@@ -25,7 +26,7 @@
                 tieToPrev = NSButton; 
                 verticalRuler = NSView; 
                 verticalRulerScroll = NSScrollView; 
-                view = StaffView; 
+                view = ScoreView; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 
