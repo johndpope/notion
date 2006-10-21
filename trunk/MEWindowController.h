@@ -13,7 +13,6 @@ static const int MODE_NOTE = 1;
 @interface MEWindowController : NSWindowController
 {
 	IBOutlet ScoreView *view;
-	IBOutlet CAMIDIEndpointMenu *devicePopup;
 	IBOutlet NSMatrix *mode;
 	IBOutlet NSButton *dotted;
 	IBOutlet NSButton *flat, *sharp, *natural;

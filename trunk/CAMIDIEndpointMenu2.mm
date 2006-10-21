@@ -41,6 +41,7 @@
 =============================================================================*/
 
 #import "CAMIDIEndpointMenu2.h"
+#import <Chomp/Chomp.h>
 #include <vector>
 
 class MIDIEndpointInfoMgr {
@@ -134,12 +135,16 @@ static void NotifyProc(const MIDINotification *message, void *refCon)
 	mSelectedUniqueID = 0;
 }
 
-- (id)initWithFrame: (NSRect)frame
+- (id)initWithTitle: (NSString *)title
 {
-    self = [super initWithFrame: frame];
+    self = [super initWithTitle: title];
     if (self)
 		[self _init];
     return self;
+}
+
+- (void)awakeFromNib{
+	[[[self itemArray] do] setAction:@selector(endpointChanged:)];
 }
 
 - (void)dealloc
@@ -161,8 +166,9 @@ static void NotifyProc(const MIDINotification *message, void *refCon)
 	if (!mInited)
 		[self _init];
 	
+	OSStatus status;
 	if (gClient == NULL)
-		MIDIClientCreate(CFSTR(""), NotifyProc, NULL, &gClient);
+		status = MIDIClientCreate(CFSTR(""), NotifyProc, NULL, &gClient);
 	if (gMIDIEndpoints == NULL)
 		gMIDIEndpoints = new MIDIEndpointInfoMgr;
 	
@@ -207,15 +213,17 @@ static NSString *UniqueTitle(NSString *name, NSMutableDictionary *previousTitles
 		NSString *newItemTitle = UniqueTitle(name, previousTitles);
 		// see if that collides with any previous item -- base class requires unique titles
 		
-		[self addItemWithTitle: newItemTitle]; // cast from CFString
+		NSMenuItem *item = [self addItemWithTitle:newItemTitle action:@selector(endpointChanged:) keyEquivalent:@""]; // cast from CFString
 		if (ei->mUniqueID == mSelectedUniqueID) {
-			[self selectItemAtIndex: itemsToKeep + i];
+			[item setState:NSOnState];
 			[self syncSelectedName];
 			foundSelection = true;
+		} else {
+			[item setState:NSOffState];
 		}
 	}
 	if (!foundSelection)
-		[self selectItemAtIndex: 0];
+		[[self itemAtIndex:0] setState:NSOnState];
 	[previousTitles release];
 }
 
@@ -250,7 +258,8 @@ static NSString *UniqueTitle(NSString *name, NSMutableDictionary *previousTitles
 	mSelectedUniqueID = uniqueID;
 	int itemsToIgnore = (mOptions & kMIDIEndpointMenuOpt_CanSelectNone) ? 1 : 0;
 	if (uniqueID == kMIDIInvalidUniqueID && itemsToIgnore == 1) {
-		[self selectItemAtIndex: 0];
+		[self clearAll];
+		[[self itemAtIndex: 0] setState:NSOnState];
 		[self syncSelectedName];
 		return YES;
 	}
@@ -260,12 +269,28 @@ static NSString *UniqueTitle(NSString *name, NSMutableDictionary *previousTitles
 	for (int i = 0; i < n; ++i) {
 		MIDIEndpointInfoMgr::EndpointInfo *ei = &eil[i];
 		if (ei->mUniqueID == uniqueID) {
-			[self selectItemAtIndex: itemsToIgnore + i];
+			[self clearAll];
+			[[self itemAtIndex:itemsToIgnore + i] setState:NSOnState];
 			[self syncSelectedName];
 			return YES;
 		}
 	}
 	return NO;
+}
+
+- (void) clearAll{
+	[[[self itemArray] do] setState:NSOffState];
+}
+
+- (int) indexOfSelectedItem{
+	int i;
+	for(i=0; i < [self numberOfItems] && [[self itemAtIndex:i] state] != NSOnState; i++);
+	return i;
+}
+
+- (void) endpointChanged:(id)sender{
+	[self clearAll];
+	[sender setState:NSOnState];
 }
 
 @end

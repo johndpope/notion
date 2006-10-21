@@ -65,7 +65,7 @@ enum {
 	kMIDIEndpointMenuOpt_CanSelectNone					= 0x80000000
 };
 
-@interface CAMIDIEndpointMenu : NSPopUpButton {
+@interface CAMIDIEndpointMenu : NSMenu {
 	BOOL			mInited;
 	int				mType;
 	int				mOptions;
@@ -84,5 +84,11 @@ enum {
 
 - (BOOL)selectUniqueID: (MIDIUniqueID)uniqueID;
 	// returns YES if the item exists
+
+- (void) clearAll;
+
+- (int) indexOfSelectedItem;
+
+- (void) endpointChanged:(id)sender;
 
 @end
