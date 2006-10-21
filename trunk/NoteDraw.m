@@ -7,6 +7,7 @@
 //
 
 #import "NoteDraw.h"
+#import "StaffDraw.h"
 #import "NoteController.h"
 #import "StaffController.h"
 #import "MeasureController.h"
@@ -26,7 +27,7 @@ static NSColor *mouseOverColor;
 	[noteX removeAllObjects];
 }
 
-+(BOOL)isStemUpwards:(Note *)note inMeasure:(Measure *)measure{
++(BOOL)isStemUpwards:(NoteBase *)note inMeasure:(Measure *)measure{
 	Clef *clef = [measure getEffectiveClef];
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
 	return position <= 4;
@@ -142,8 +143,10 @@ static NSColor *mouseOverColor;
 			controlPoint2:NSMakePoint((body.origin.x + startX) / 2, body.origin.y + body.size.height + 10)];
 		[tie stroke];
 	}
-	if([note getTieTo] != nil){
+	Note *tieTo = [note getTieTo];
+	if(tieTo != nil){
 		[noteX setObject:[NSNumber numberWithFloat:(body.origin.x+body.size.width)] forKey:[NSNumber numberWithInt:note]];
+		[StaffDraw mustDraw:[[tieTo getStaff] getMeasureContainingNote:tieTo]];
 	}	
 }
 
