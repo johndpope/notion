@@ -43,7 +43,7 @@
 }
 
 - (IBAction)playSong:(id)sender{
-	[[[self document] getSong] playToEndpoint:[devicePopup selectedEndpoint]];
+	[[[self document] getSong] playToEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];
 }
 
 - (IBAction)stopSong:(id)sender{
@@ -112,7 +112,7 @@
 	[song addObserver:self forKeyPath:@"tempoData" options:NSKeyValueObservingOptionNew context:nil];
 	[view setController:self];
 	[view setSong:song];
-	[devicePopup buildMenu:kMIDIEndpointMenuDestinations opts:(kMIDIEndpointMenuOpt_SortByName | kMIDIEndpointMenuOpt_CanSelectNone)];
+	[[[[NSApp mainMenu] itemWithTag:1] submenu] buildMenu:kMIDIEndpointMenuDestinations opts:(kMIDIEndpointMenuOpt_SortByName | kMIDIEndpointMenuOpt_CanSelectNone)];
 	[[scrollView contentView] setPostsBoundsChangedNotifications:YES];
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(boundsDidChangeNotification:) name:NSViewBoundsDidChangeNotification
