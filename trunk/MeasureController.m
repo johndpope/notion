@@ -215,6 +215,10 @@
 	}
 }
 
++ (void)scrollView:(NSView *)view toShowMeasure:(Measure *)measure{
+	[view scrollRectToVisible:NSInsetRect([self boundsOf:measure], -30, -30)];
+}
+
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
 	location.x -= [self xOf:measure];
 	location.y -= [self boundsOf:measure].origin.y;
@@ -229,6 +233,7 @@
 		int octave = [self octaveAt:location inMeasure:measure];
 		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:duration dotted:dotted accidental:accidental onStaff:[measure getStaff]];
 		[measure addNote:note atIndex:[self indexAt:location inMeasure:measure] tieToPrev:tieToPrev];
+		[self scrollView:view toShowMeasure:[[note getStaff] getMeasureContainingNote:note]];
 	}
 }
 
@@ -239,8 +244,10 @@
 	int duration = [[mode objectForKey:@"duration"] intValue];
 	BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
 	if(pointerMode == MODE_NOTE && [[event characters] isEqualToString:@" "]){
-		[measure addNote:[[Rest alloc] initWithDuration:duration dotted:dotted onStaff:[measure getStaff]] atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];
+		Rest *rest = [[Rest alloc] initWithDuration:duration dotted:dotted onStaff:[measure getStaff]];
+		[measure addNote:rest atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];
 		if([measure isFull]) [[measure getStaff] getMeasureAfter:measure];
+		[self scrollView:view toShowMeasure:[[rest getStaff] getMeasureContainingNote:rest]];
 		return YES;
 	}
 	return NO;
