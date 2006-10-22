@@ -18,6 +18,8 @@
 - (void) setTempo:(float)_tempo{
 	[[[song undoManager] prepareWithInvocationTarget:self] setTempo:tempo];
 	tempo = _tempo;
+	if(tempo == 0) tempo = -1;
+	[self refreshTempo];
 }
 
 - (BOOL) empty{
@@ -61,9 +63,7 @@
 
 - (IBAction)tempoChanged:(id)sender{
 	[[song undoManager] setActionName:@"changing tempo"];
-	tempo = [sender floatValue];
-	if(tempo == 0) tempo = -1;
-	[self refreshTempo];
+	[self setTempo:[sender floatValue]];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{
