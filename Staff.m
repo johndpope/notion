@@ -143,8 +143,12 @@
 	NSEnumerator *measuresEnum = [measures objectEnumerator];
 	id measure;
 	while(measure = [measuresEnum nextObject]){
-		if([[measure getNotes] containsObject:note]){
-			return measure;
+		int i;
+		for(i=0; i<[[measure getNotes] count]; i++){
+			NoteBase *currNote = [[measure getNotes] objectAtIndex:i];
+			if(currNote == note || ([currNote isKindOfClass:[Chord class]] && [[currNote getNotes] containsObject:note])){
+				return measure;
+			}
 		}
 	}
 	return nil;
