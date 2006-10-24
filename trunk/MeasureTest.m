@@ -163,8 +163,8 @@
 	STAssertEquals([[measure getNotes] count], (unsigned)3, @"Part of note not left behind during split add.");
 	STAssertEquals([[[measure getNotes] lastObject] getDuration], (int)8, @"Note added to first measure is wrong duration.");
 	STAssertEquals([[[staff getLastMeasure] getNotes] count], (unsigned)2, @"Wrong number of notes added to next measure.");
-	STAssertEquals([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getDuration], (int)8, @"First note added to second measure is wrong duration.");
-	STAssertEquals([[[[staff getLastMeasure] getNotes] lastObject] getDuration], (int)2, @"Second note added to second measure is wrong duration.");
+	STAssertEquals([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getDuration], (int)2, @"First note added to second measure is wrong duration.");
+	STAssertEquals([[[[staff getLastMeasure] getNotes] lastObject] getDuration], (int)8, @"Second note added to second measure is wrong duration.");
 	STAssertEqualObjects([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getTieFrom], [[measure getNotes] lastObject], @"Auto-split note not tied.");
 	STAssertEqualObjects([[[[staff getLastMeasure] getNotes] objectAtIndex:0] getTieTo], [[[staff getLastMeasure] getNotes] lastObject], @"Second part of complex auto-split not tied.");
 	[firstRest release];
@@ -177,7 +177,7 @@
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:-0.5];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
 	[measure addNote:thirdNote atIndex:0.5 tieToPrev:NO];
@@ -193,7 +193,7 @@
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:-0.5];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
 	[measure addNote:thirdNote atIndex:0.5 tieToPrev:NO];
@@ -209,7 +209,7 @@
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
-	[measure addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:-0.5];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
 	[measure addNote:thirdNote atIndex:0.5 tieToPrev:NO];
@@ -225,7 +225,7 @@
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
-	[[staff getLastMeasure] addNotes:[NSArray arrayWithObjects:firstNote, secondNote, nil] atIndex:-0.5];
+	[[staff getLastMeasure] setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	[firstNote tieTo:secondNote];
 	[secondNote tieFrom:firstNote];
 	[measure addNote:thirdNote atIndex:0.5 tieToPrev:NO];
@@ -430,6 +430,116 @@
 	[chord release];
 }
 
+- (void)testRefreshNotesConsolidatesTiedNotes{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[secondNote tieTo:thirdNote];
+	[thirdNote tieFrom:secondNote];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	Measure *secondMeasure = [staff addMeasure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
+	[measure refreshNotes:firstNote];
+	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on refresh.");
+	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)1, @"Consolidated note has wrong duration.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+}
+
+- (void)testRefreshNotesMaintainsTieFromPartiallyConsolidatedNote{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:YES accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[secondNote tieTo:thirdNote];
+	[thirdNote tieFrom:secondNote];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	Measure *secondMeasure = [staff addMeasure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
+	[measure refreshNotes:firstNote];
+	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on refresh.");
+	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)0.75, @"Consolidated note has wrong duration.");
+	STAssertNotNil([[[secondMeasure getNotes] objectAtIndex:0] getTieFrom], @"Partially consolidated note did not maintain tie from previous measure.");
+	STAssertEquals([[[[secondMeasure getNotes] objectAtIndex:0] getTieFrom] getEffectiveDuration], (float)0.25, @"Remaining note after consolidation has wrong duration.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+}
+
+- (void)testRefreshNotesWithIncompleteConsolidation{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:YES accidental:NO_ACC onStaff:staff];
+	[secondNote tieTo:thirdNote];
+	[thirdNote tieFrom:secondNote];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	Measure *secondMeasure = [staff addMeasure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
+	[measure refreshNotes:firstNote];
+	STAssertEquals([[secondMeasure getNotes] count], (unsigned)2, @"Failed to consolidate tied notes correctly on refresh.");
+	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)0.75, @"Consolidated note has wrong duration.");
+	STAssertNotNil([[[secondMeasure getNotes] objectAtIndex:0] getTieTo], @"Note lost on incomplete consolidation.");
+	STAssertEquals([[[[secondMeasure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.125, @"Remaining note after consolidation has wrong duration.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+}
+
+- (void)testGrabNotesConsolidatesTiedNotes{
+	[self setupSong];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[secondNote tieTo:thirdNote];
+	[thirdNote tieFrom:secondNote];
+	[measure setNotes:[NSMutableArray arrayWithObject:secondNote]];
+	Measure *secondMeasure = [staff addMeasure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
+	[measure grabNotesFromNextMeasure];
+	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on grab.");
+	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)1, @"Consolidated note has wrong duration.");
+	[secondNote release];
+	[thirdNote release];
+}
+
+- (void)testGrabNotesMaintainsTieFromPartiallyConsolidatedNote{
+	[self setupSong];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:YES accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[secondNote tieTo:thirdNote];
+	[thirdNote tieFrom:secondNote];
+	[measure setNotes:[NSMutableArray arrayWithObject:secondNote]];
+	Measure *secondMeasure = [staff addMeasure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
+	[measure grabNotesFromNextMeasure];
+	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on grab.");
+	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)1, @"Consolidated note has wrong duration.");
+	STAssertNotNil([[[measure getNotes] objectAtIndex:0] getTieTo], @"Partially consolidated note did not maintain tie to next measure.");
+	STAssertEquals([[[[measure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.25, @"Remaining note after consolidation has wrong duration.");
+	[secondNote release];
+	[thirdNote release];
+}
+
+- (void)testGrabNotesWithIncompleteConsolidation{
+	[self setupSong];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:YES accidental:NO_ACC onStaff:staff];
+	[secondNote tieTo:thirdNote];
+	[thirdNote tieFrom:secondNote];
+	[measure setNotes:[NSMutableArray arrayWithObject:secondNote]];
+	Measure *secondMeasure = [staff addMeasure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
+	[measure grabNotesFromNextMeasure];
+	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Failed to consolidate tied notes correctly on grab.");
+	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)0.75, @"Consolidated note has wrong duration.");
+	STAssertNotNil([[[measure getNotes] objectAtIndex:0] getTieTo], @"Note lost on incomplete consolidation.");
+	STAssertEquals([[[[measure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.125, @"Remaining note after consolidation has wrong duration.");
+	[secondNote release];
+	[thirdNote release];	
+}
+
 // ----- undo/redo tests -----
 
 - (void)setUpUndoTest{
@@ -568,6 +678,37 @@
 	STAssertEquals([measure getKeySignature], orig, @"Failed to undo changing key signature.");
 	[mgr redo];
 	STAssertEquals([measure getKeySignature], new, @"Failed to redo changing key signature.");
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoAddNoteConsolidatesSplitNote{
+	[self setUpUndoTest];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObject:firstNote]];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[measure addNote:secondNote atIndex:-0.5 tieToPrev:NO];
+	[mgr undo];
+	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Failed to consolidate notes on undo.");
+	[firstNote release];
+	[secondNote release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoRemoveNoteConsolidatesSplitNote{
+	[self setUpUndoTest];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:1 dotted:NO accidental:NO_ACC onStaff:staff];
+	Measure *secondMeasure = [staff addMeasure];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[measure removeNoteAtIndex:0 temporary:NO];
+	[mgr undo];
+	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Failed to consolidate notes on undo.");
 	[self tearDownUndoTest];
 }
 

@@ -6,6 +6,7 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
+#import <Chomp/Chomp.h>
 #import "Measure.h"
 #import "Note.h"
 #import "Chord.h"
@@ -76,7 +77,7 @@
 		[self addNote:_note toChordAtIndex:index];
 		return;
 	} else{
-		Note *firstAddedNote = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index];
+		Note *firstAddedNote = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index consolidate:NO];
 		Measure *measure = [staff getMeasureContainingNote:firstAddedNote];
 		if(tieToPrev){
 			Note *tie = [staff findPreviousNoteMatching:firstAddedNote inMeasure:measure];
@@ -87,7 +88,7 @@
 	}
 }
 
-- (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index{
+- (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index consolidate:(BOOL)consolidate{
 	NSEnumerator *notesEnum = [_notes reverseObjectEnumerator];
 	NoteBase *note;
 	index = ceil(index);
@@ -101,7 +102,7 @@
 		nextNote = [notes objectAtIndex:index];
 		prevNote = [nextNote getTieFrom];		
 	}
-	if(prevNote != nil && nextNote != nil){
+	if(prevNote != nil && nextNote != nil && ![_notes containsObject:prevNote] && ![_notes containsObject:nextNote]){
 		if([prevNote isEqualTo:[_notes objectAtIndex:0]]){
 			[prevNote tieTo:[_notes objectAtIndex:0]];
 			[[_notes objectAtIndex:0] tieFrom:prevNote];
@@ -116,16 +117,61 @@
 		}
 	}
 	
+	NoteBase *lastNoteAdded = nil;
 	while(note = [notesEnum nextObject]){
-		[notes insertObject:note atIndex:index];
+		if(consolidate && [note getTieFrom] != nil && [notes containsObject:[note getTieFrom]]){
+			[self consolidateNote:note];
+		} else{
+			[notes insertObject:note atIndex:index];
+			lastNoteAdded = note;
+		}
+	}
+	if(consolidate && [lastNoteAdded getTieTo] != nil && [notes containsObject:[lastNoteAdded getTieTo]]){
+		[notes removeObject:[lastNoteAdded getTieTo]];
+		[self consolidateNote:[lastNoteAdded getTieTo]];
 	}
 	if(index >= [notes count]) return nil;
 	NoteBase *rtn = [notes objectAtIndex:index];
 	return [self refreshNotes:rtn];
 }
 
+- (void)consolidateNote:(NoteBase *)note{
+	NoteBase *oldNote = [note getTieFrom];
+	int index = [notes indexOfObject:oldNote];
+	NoteBase *noteToAdd = [note copy];
+	float targetDuration = [oldNote getEffectiveDuration] + [note getEffectiveDuration];
+	[noteToAdd tryToFill:targetDuration];
+
+	NSMutableArray *remainingNotes = [NSMutableArray array];
+	float totalDuration = [noteToAdd getEffectiveDuration];
+	NoteBase *lastNote = noteToAdd;
+	while(totalDuration < targetDuration){
+		NoteBase *additionalNote = [lastNote copy];
+		[additionalNote tryToFill:(targetDuration - totalDuration)];
+		[lastNote tieTo:additionalNote];
+		[additionalNote tieFrom:lastNote];
+		lastNote = additionalNote;
+		totalDuration += [additionalNote getEffectiveDuration];
+		[remainingNotes addObject:additionalNote];
+	}
+	
+	[noteToAdd tieFrom:[oldNote getTieFrom]];
+	[[oldNote getTieFrom] tieTo:noteToAdd];
+	
+	if([remainingNotes count] > 0){		
+		[[remainingNotes lastObject] tieTo:[note getTieTo]];
+		[[note getTieTo] tieFrom:[remainingNotes lastObject]];
+	
+		[notes insertObjects:remainingNotes atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index + 1, [remainingNotes count])]];
+	} else {
+		[[note getTieTo] tieFrom:noteToAdd];
+		[noteToAdd tieTo:[note getTieTo]];
+	}
+	
+	[notes replaceObjectAtIndex:index withObject:noteToAdd];
+}
+
 - (NoteBase *)refreshNotes:(NoteBase *)rtn{
-	NoteBase *firstNoteAdded = rtn;
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
 	NSMutableArray *notesToPush = [NSMutableArray array];
@@ -171,7 +217,7 @@
 	if([notesToPush count] > 0){
 		Measure *nextMeasure = [staff getMeasureAfter:self];
 		[nextMeasure prepUndo];
-		[nextMeasure addNotes:notesToPush atIndex: 0];
+		[nextMeasure addNotes:notesToPush atIndex:0 consolidate:YES];
 	}
 	
 	return rtn;
@@ -187,13 +233,14 @@
 		float durationToFill = maxDuration - totalDuration;
 		NoteBase *nextNote = [nextMeasure getFirstNote];
 		[nextMeasure removeNoteAtIndex:0 temporary:YES];
+		NoteBase *noteToAdd;
 		if([nextNote getEffectiveDuration] <= durationToFill){
-			[notes addObject:nextNote];
+			noteToAdd = nextNote;
 		} else{
-			NoteBase *noteToAdd = [nextNote copy];
+			noteToAdd = [nextNote copy];
 			[noteToAdd tryToFill:durationToFill];
 			NSArray *remainingNotes = [nextNote subtractDuration:[noteToAdd getEffectiveDuration]];
-			[nextMeasure addNotes:remainingNotes atIndex:0];
+			[nextMeasure addNotes:remainingNotes atIndex:0 consolidate:YES];
 			[nextMeasure grabNotesFromNextMeasure];
 			[noteToAdd tieFrom:[nextNote getTieFrom]];
 			[[nextNote getTieFrom] tieTo:noteToAdd];
@@ -201,7 +248,11 @@
 			[[remainingNotes objectAtIndex:0] tieFrom:noteToAdd];
 			[[remainingNotes lastObject] tieTo:[nextNote getTieTo]];
 			[[nextNote getTieTo] tieFrom:[remainingNotes lastObject]];
-			[notes addObject:noteToAdd];
+		}
+		if([noteToAdd getTieFrom] != nil && [notes containsObject:[noteToAdd getTieFrom]]){
+			[self consolidateNote:noteToAdd];
+		} else{
+			[notes addObject:noteToAdd];				
 		}
 		totalDuration = [self getTotalDuration];
 	}
