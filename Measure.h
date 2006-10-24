@@ -41,7 +41,7 @@
 - (NoteBase *)getFirstNote;
 - (void)setNotes:(NSMutableArray *)_notes;
 - (void)addNote:(NoteBase *)_note atIndex:(float)index tieToPrev:(BOOL)tieToPrev;
-- (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index;
+- (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index consolidate:(BOOL)consolidate;
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp;
 
 - (void)addNote:(NoteBase *)newNote toChordAtIndex:(float)index;
