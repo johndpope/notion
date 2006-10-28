@@ -224,6 +224,9 @@
 	location.y -= [self boundsOf:measure].origin.y;
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 	int duration = [[mode objectForKey:@"duration"] intValue];
+	if([[mode objectForKey:@"triplet"] boolValue]){
+		duration = duration * 3 / 2;
+	}
 	BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
 	int accidental = [[mode objectForKey:@"accidental"] intValue];
 	BOOL tieToPrev = [[mode objectForKey:@"tieToPrev"] boolValue];

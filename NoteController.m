@@ -44,16 +44,19 @@
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view{
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		[[note undoManager] setActionName:@"deleting note"];
-		Measure *measure = [[note getStaff] getMeasureContainingNote:note];
-		if(measure != nil){
-			[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:note] temporary:NO];
-			return YES;			
-		}
 		Chord *chord = [[note getStaff] getChordContainingNote:note];
-		measure = [[note getStaff] getMeasureContainingNote:chord];
-		if(measure != nil){
-			[measure removeNote:note fromChordAtIndex:[[measure getNotes] indexOfObject:chord]];
-			return YES;
+		if(chord == nil){
+			Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+			if(measure != nil){
+				[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:note] temporary:NO];
+				return YES;			
+			}			
+		} else {
+			Measure *measure = [[note getStaff] getMeasureContainingNote:chord];
+			if(measure != nil){
+				[measure removeNote:note fromChordAtIndex:[[measure getNotes] indexOfObject:chord]];
+				return YES;
+			}			
 		}
 	}
 	return NO;

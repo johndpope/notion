@@ -72,7 +72,7 @@
 			  onChannel:(int)channel{
 	[[notes do] addToMIDITrack:musicTrack atPosition:pos withKeySignature:sig 
 				   accidentals:accidentals onChannel:channel];
-	return 4.0 * [self getEffectiveDuration];
+	return 4.0 * [self getEffectiveDuration] / 3;
 }
 
 - (void)transposeBy:(int)transposeAmount{

@@ -81,14 +81,14 @@
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
 			accidentals:(NSMutableDictionary *)accidentals onChannel:(int)channel{
-	if(tieFrom != nil) return 4.0 * [self getEffectiveDuration];
+	if(tieFrom != nil) return 4.0 * [self getEffectiveDuration] / 3;
 	MIDINoteMessage note;
 	note.channel = channel;
 	note.velocity = 100.00;
-	note.duration = 4.0 * [self getEffectiveDuration];
+	note.duration = 4.0 * [self getEffectiveDuration] / 3;
 	Note *tie = tieTo;
 	while(tie != nil){
-		note.duration += 4.0 * [tie getEffectiveDuration];
+		note.duration += 4.0 * [tie getEffectiveDuration] / 3;
 		tie = [tie getTieTo];
 	}
 	note.note = octave * 12 + [keySig getPitchAtPosition:pitch];
@@ -111,7 +111,7 @@
 	if (MusicTrackNewMIDINoteEvent(*musicTrack, pos, &note) != noErr) {
 		NSLog(@"Cannot add note to track.");
     }
-	return 4.0 * [self getEffectiveDuration];
+	return 4.0 * [self getEffectiveDuration] / 3;
 }
 
 - (void)tieTo:(NoteBase *)note{

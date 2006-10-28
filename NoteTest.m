@@ -19,33 +19,40 @@
 }
 
 - (void) testGetEffectiveDuration{
-	STAssertEquals([note getEffectiveDuration], (float)0.75, @"Wrong duration returned for note.");
+	STAssertEquals([note getEffectiveDuration], (float)2.25, @"Wrong duration returned for note.");
 }
 
 - (void) testBasicTryToFill{
-	[note tryToFill:0.5];
-	STAssertEquals([note getEffectiveDuration], (float)0.5, @"Wrong duration when trying to fill.");
+	[note tryToFill:1.5];
+	STAssertEquals([note getEffectiveDuration], (float)1.5, @"Wrong duration when trying to fill.");
 }
 
 - (void) testComplexTryToFill{
-	[note tryToFill:0.293847];
-	STAssertEquals([note getEffectiveDuration], (float)0.25, @"Wrong duration when trying to fill.");
+	[note tryToFill:0.793847];
+	STAssertEquals([note getEffectiveDuration], (float)0.75, @"Wrong duration when trying to fill.");
 }
 
 - (void) testSubtractDurationReturningSingleNote{
-	NSArray *array = [note subtractDuration:0.25];
+	NSArray *array = [note subtractDuration:0.75];
 	STAssertEquals([array count], (unsigned)1, @"Wrong number of notes returned after subtracting duration.");
-	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration], (float)0.5, @"Wrong duration left after subtracting duration.");
-	STAssertEquals([note getEffectiveDuration], (float)0.75, @"Original note object modified during subtract duration.");
+	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration], (float)1.5, @"Wrong duration left after subtracting duration.");
+	STAssertEquals([note getEffectiveDuration], (float)2.25, @"Original note object modified during subtract duration.");
 }
 
 - (void) testSubtractDurationReturningMultipleNotes{
-	NSArray *array = [note subtractDuration:0.125];
+	NSArray *array = [note subtractDuration:0.375];
 	STAssertEquals([array count], (unsigned)2, @"Wrong number of notes returned after subtracting duration.");
 	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration] + [[array objectAtIndex:1] getEffectiveDuration],
-				   (float)0.625, @"Wrong duration left after subtracting duration.");
-	STAssertEquals([note getEffectiveDuration], (float)0.75, @"Original note object modified during subtract duration.");
+				   (float)1.875, @"Wrong duration left after subtracting duration.");
+	STAssertEquals([note getEffectiveDuration], (float)2.25, @"Original note object modified during subtract duration.");
 	STAssertEqualObjects([[array objectAtIndex:0] getTieTo], [array objectAtIndex:1], @"Notes returned from subtracting duration not tied together.");
+}
+
+- (void) testIsTriplet{
+	STAssertFalse([note isTriplet], @"Non-triplet note pretending to be triplet.");
+	Note *secondNote = [[Note alloc] initWithPitch:4 octave:3 duration:6 dotted:NO accidental:NO_ACC onStaff:nil];
+	STAssertTrue([secondNote isTriplet], @"Triplet note pretending not to be triplet.");
+	[secondNote release];
 }
 
 @end

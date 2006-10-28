@@ -35,6 +35,10 @@
 	[[view window] makeFirstResponder:view];
 }
 
+- (IBAction)changeTriplet:(id)sender{
+	[[view window] makeFirstResponder:view];
+}
+
 - (IBAction)changeAccidental:(id)sender{
 	[[view window] makeFirstResponder:view];
 	if(sharp != sender) [sharp setState:NSOffState];
@@ -43,6 +47,7 @@
 }
 
 - (IBAction)playSong:(id)sender{
+	[[[self document] getSong] stopPlaying];
 	[[[self document] getSong] playToEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];
 }
 
@@ -138,8 +143,9 @@
 	[modeDict setObject:[NSNumber numberWithInt:[self getPointerMode]] forKey:@"pointerMode"];
 	[modeDict setObject:[NSNumber numberWithInt:[self getNoteModeDuration]] forKey:@"duration"];
 	[modeDict setObject:[NSNumber numberWithInt:[self getAccidental]] forKey:@"accidental"];
-	[modeDict setObject:[NSNumber numberWithBool:[self getDotted]] forKey:@"dotted"];
-	[modeDict setObject:[NSNumber numberWithBool:([tieToPrev state] == NSOnState)] forKey:@"tieToPrev"];
+	[modeDict setObject:[NSNumber numberWithBool:[self isDotted]] forKey:@"dotted"];
+	[modeDict setObject:[NSNumber numberWithBool:[self isTriplet]] forKey:@"triplet"];
+	[modeDict setObject:[NSNumber numberWithBool:[self isTieToPrev]] forKey:@"tieToPrev"];
 	return modeDict;
 }
 
@@ -159,8 +165,12 @@
 	return duration;
 }
 
-- (BOOL)getDotted{
+- (BOOL)isDotted{
 	return [dotted state] == NSOnState;
+}
+
+- (BOOL)isTriplet{
+	return [triplet state] == NSOnState;
 }
 
 - (BOOL)isTieToPrev{
