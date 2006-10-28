@@ -230,7 +230,11 @@ static MusicPlayer musicPlayer;
 			MusicTrackNewExtendedTempoEvent(tempoTrack, time, [tempo tempo]);
 			currTempo = [tempo tempo];
 		}
-		time += [[[[staffs objectAtIndex:0] getMeasures] objectAtIndex:i] getTotalDuration] * 4;
+		int j = 0;
+		while([[[staffs objectAtIndex:j] getMeasures] count] <= i){
+			j++;
+		}
+		time += [[[[staffs objectAtIndex:j] getMeasures] objectAtIndex:i] getTotalDuration] * 4 / 3;
 		i++;
 	}
 	

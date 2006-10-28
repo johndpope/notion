@@ -190,6 +190,9 @@ static NSColor *mouseOverColor;
 	} else{
 		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
 	}
+	if([note isTriplet]){
+		[@"3" drawAtPoint:NSMakePoint(body.origin.x, body.origin.y + body.size.height) withAttributes:nil];
+	}
 	if(offset){
 		if(stemUpwards){
 			body.origin.x -= 12;			

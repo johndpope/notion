@@ -46,7 +46,7 @@
 	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
 	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
-	STAssertEquals([measure getTotalDuration], (float)1.0, @"Wrong total duration returned.");
+	STAssertEquals([measure getTotalDuration], (float)3.0, @"Wrong total duration returned.");
 	[firstRest release];
 	[secondRest release];
 }
@@ -110,9 +110,9 @@
 	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
 	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
-	STAssertEquals([measure getNumberOfNotesStartingAfter:0.0 before:0.25], (int)0, @"Wrong number of notes in time span.");
-	STAssertEquals([measure getNumberOfNotesStartingAfter:0.0 before:0.26], (int)1, @"Wrong number of notes in time span.");
-	STAssertEquals([measure getNumberOfNotesStartingAfter:-0.1 before:0.26], (int)2, @"Wrong number of notes in time span.");
+	STAssertEquals([measure getNumberOfNotesStartingAfter:0.0 before:0.75], (int)0, @"Wrong number of notes in time span.");
+	STAssertEquals([measure getNumberOfNotesStartingAfter:0.0 before:0.76], (int)1, @"Wrong number of notes in time span.");
+	STAssertEquals([measure getNumberOfNotesStartingAfter:-0.1 before:0.76], (int)2, @"Wrong number of notes in time span.");
 	[firstRest release];
 	[secondRest release];	
 }
@@ -313,7 +313,7 @@
 	[measure timeSignatureChangedFrom:1.0 to:0.5 top:2 bottom:4];
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures resulting from time signature change.");
 	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Wrong number of notes left after time signature change.");
-	STAssertEquals([measure getTotalDuration], (float)0.5, @"Wrong total duration left in first measure.");
+	STAssertEquals([measure getTotalDuration], (float)1.5, @"Wrong total duration left in first measure.");
 	[firstRest release];
 	[secondRest release];
 }
@@ -327,7 +327,7 @@
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:8 bottom:4] atIndex:0];
 	[measure timeSignatureChangedFrom:1.0 to:2.0 top:8 bottom:4];
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
-	STAssertEquals([measure getTotalDuration], (float)2.0, @"Wrong total duration left in first measure.");
+	STAssertEquals([measure getTotalDuration], (float)6.0, @"Wrong total duration left in first measure.");
 	STAssertEquals([[secondMeasure getNotes] count], (unsigned)0, @"Notes not removed from second measure."); 
 	[firstRest release];
 	[secondRest release];
@@ -342,9 +342,9 @@
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:6 bottom:4] atIndex:0];
 	[measure timeSignatureChangedFrom:1.0 to:1.5 top:6 bottom:4];
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
-	STAssertEquals([measure getTotalDuration], (float)1.5, @"Wrong total duration left in first measure.");
+	STAssertEquals([measure getTotalDuration], (float)4.5, @"Wrong total duration left in first measure.");
 	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Wrong number of notes left in second measure.");
-	STAssertEquals([secondMeasure getTotalDuration], (float)0.5, @"Wrong total duration left in second measure.");
+	STAssertEquals([secondMeasure getTotalDuration], (float)1.5, @"Wrong total duration left in second measure.");
 	STAssertEqualObjects([[[measure getNotes] lastObject] getTieTo], [[secondMeasure getNotes] objectAtIndex:0], @"Change time signature didn't tie split notes.");
 	[firstRest release];
 	[secondNote release];
@@ -442,7 +442,7 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
 	[measure refreshNotes:firstNote];
 	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on refresh.");
-	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)1, @"Consolidated note has wrong duration.");
+	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)3, @"Consolidated note has wrong duration.");
 	[firstNote release];
 	[secondNote release];
 	[thirdNote release];
@@ -460,9 +460,9 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
 	[measure refreshNotes:firstNote];
 	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on refresh.");
-	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)0.75, @"Consolidated note has wrong duration.");
+	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)2.25, @"Consolidated note has wrong duration.");
 	STAssertNotNil([[[secondMeasure getNotes] objectAtIndex:0] getTieFrom], @"Partially consolidated note did not maintain tie from previous measure.");
-	STAssertEquals([[[[secondMeasure getNotes] objectAtIndex:0] getTieFrom] getEffectiveDuration], (float)0.25, @"Remaining note after consolidation has wrong duration.");
+	STAssertEquals([[[[secondMeasure getNotes] objectAtIndex:0] getTieFrom] getEffectiveDuration], (float)0.75, @"Remaining note after consolidation has wrong duration.");
 	[firstNote release];
 	[secondNote release];
 	[thirdNote release];
@@ -480,9 +480,9 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
 	[measure refreshNotes:firstNote];
 	STAssertEquals([[secondMeasure getNotes] count], (unsigned)2, @"Failed to consolidate tied notes correctly on refresh.");
-	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)0.75, @"Consolidated note has wrong duration.");
+	STAssertEquals([[[secondMeasure getNotes] objectAtIndex:0] getEffectiveDuration], (float)2.25, @"Consolidated note has wrong duration.");
 	STAssertNotNil([[[secondMeasure getNotes] objectAtIndex:0] getTieTo], @"Note lost on incomplete consolidation.");
-	STAssertEquals([[[[secondMeasure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.125, @"Remaining note after consolidation has wrong duration.");
+	STAssertEquals([[[[secondMeasure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.375, @"Remaining note after consolidation has wrong duration.");
 	[firstNote release];
 	[secondNote release];
 	[thirdNote release];
@@ -499,7 +499,7 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
 	[measure grabNotesFromNextMeasure];
 	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on grab.");
-	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)1, @"Consolidated note has wrong duration.");
+	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)3, @"Consolidated note has wrong duration.");
 	[secondNote release];
 	[thirdNote release];
 }
@@ -515,9 +515,9 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
 	[measure grabNotesFromNextMeasure];
 	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Failed to consolidate tied notes on grab.");
-	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)1, @"Consolidated note has wrong duration.");
+	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)3, @"Consolidated note has wrong duration.");
 	STAssertNotNil([[[measure getNotes] objectAtIndex:0] getTieTo], @"Partially consolidated note did not maintain tie to next measure.");
-	STAssertEquals([[[[measure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.25, @"Remaining note after consolidation has wrong duration.");
+	STAssertEquals([[[[measure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.75, @"Remaining note after consolidation has wrong duration.");
 	[secondNote release];
 	[thirdNote release];
 }
@@ -533,9 +533,9 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:thirdNote]];
 	[measure grabNotesFromNextMeasure];
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Failed to consolidate tied notes correctly on grab.");
-	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)0.75, @"Consolidated note has wrong duration.");
+	STAssertEquals([[[measure getNotes] objectAtIndex:0] getEffectiveDuration], (float)2.25, @"Consolidated note has wrong duration.");
 	STAssertNotNil([[[measure getNotes] objectAtIndex:0] getTieTo], @"Note lost on incomplete consolidation.");
-	STAssertEquals([[[[measure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.125, @"Remaining note after consolidation has wrong duration.");
+	STAssertEquals([[[[measure getNotes] objectAtIndex:0] getTieTo] getEffectiveDuration], (float)0.375, @"Remaining note after consolidation has wrong duration.");
 	[secondNote release];
 	[thirdNote release];	
 }

@@ -38,9 +38,13 @@
 }
 
 - (float)getEffectiveDuration{
-	float effDuration = 1.0 / (float)[self getDuration];
+	float effDuration = 3.0 / (float)[self getDuration];
 	if([self getDotted]) effDuration *= 1.5;
 	return effDuration;
+}
+
+- (BOOL)isTriplet{
+	return duration % 3 == 0;
 }
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
@@ -75,41 +79,56 @@
 }
 
 - (void)tryToFill:(float)maxDuration{
-	if(maxDuration >= 1.5){
+	if(maxDuration >= 4.5){
 		duration = 1;
 		dotted = YES;
-	} else if(maxDuration >= 1){
+	} else if(maxDuration >= 3){
 		duration = 1;
 		dotted = NO;
+	} else if(maxDuration >= 2.25){
+		duration = 2;
+		dotted = YES;
+	} else if(maxDuration >= 1.5){
+		duration = 2;
+		dotted = NO;
+	} else if(maxDuration >= 1.0){
+		duration = 3;
+		dotted = NO;
+	} else if(maxDuration >= 0.975){
+		duration = 4;
+		dotted = YES;
 	} else if(maxDuration >= 0.75){
-		duration = 2;
-		dotted = YES;
+		duration = 4;
+		dotted = NO;
 	} else if(maxDuration >= 0.5){
-		duration = 2;
+		duration = 6;
 		dotted = NO;
-	} else if(maxDuration >= 0.325){
-		duration = 4;
+	} else if(maxDuration >= 0.5625){
+		duration = 8;
 		dotted = YES;
+	} else if(maxDuration >= 0.375){
+		duration = 8;
+		dotted = NO;
 	} else if(maxDuration >= 0.25){
-		duration = 4;
+		duration = 12;
 		dotted = NO;
+	} else if(maxDuration >= 0.28125){
+		duration = 16;
+		dotted = YES;
 	} else if(maxDuration >= 0.1875){
-		duration = 8;
-		dotted = YES;
+		duration = 16;
+		dotted = NO;
 	} else if(maxDuration >= 0.125){
-		duration = 8;
+		duration = 24;
 		dotted = NO;
+	} else if(maxDuration >= 0.140625){
+		duration = 32;
+		dotted = YES;
 	} else if(maxDuration >= 0.09375){
-		duration = 16;
-		dotted = YES;
-	} else if(maxDuration >= 0.0625){
-		duration = 16;
+		duration = 32;
 		dotted = NO;
-	} else if(maxDuration >= 0.046875){
-		duration = 32;
-		dotted = YES;
-	} else if(maxDuration >= 0.03125){
-		duration = 32;
+	} else if(maxDuration >= 0.0625){
+		duration = 48;
 		dotted = NO;
 	}
 }

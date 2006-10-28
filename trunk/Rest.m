@@ -30,7 +30,7 @@
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
 			accidentals:(NSMutableDictionary *)accidentals onChannel:(int)channel{
-	return 4.0 * [self getEffectiveDuration];
+	return 4.0 * [self getEffectiveDuration] / 3;
 }
 
 - (Class)getViewClass{

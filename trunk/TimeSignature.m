@@ -47,7 +47,7 @@
 }
 
 -(float)getMeasureDuration{
-	return (float)top/(float)bottom;
+	return (float)(top * 3)/(float)bottom;
 }
 
 +(NSArray *)asNSNumberArray:(id)sig{

@@ -8,6 +8,7 @@
                 changeAccidental = id; 
                 changeDotted = id; 
                 changeDuration = id; 
+                changeTriplet = id; 
                 playSong = id; 
                 stopSong = id; 
             }; 
@@ -24,6 +25,7 @@
                 scrollView = NSScrollView; 
                 sharp = NSButton; 
                 tieToPrev = NSButton; 
+                triplet = NSButton; 
                 verticalRuler = NSView; 
                 verticalRulerScroll = NSScrollView; 
                 view = ScoreView; 

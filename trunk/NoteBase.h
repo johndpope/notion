@@ -30,6 +30,8 @@
 
 - (float)getEffectiveDuration;
 
+- (BOOL)isTriplet;
+
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
 			  onChannel:(int)channel;

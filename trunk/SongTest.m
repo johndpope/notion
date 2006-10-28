@@ -140,13 +140,13 @@
 	[mgr beginUndoGrouping];
 	[song timeSigChangedAtIndex:1 top:3 bottom:4];
 	[mgr undo];
-	STAssertEquals([[measure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Previous measure affected by undoing time signature change.");
-	STAssertEquals([[secondMeasure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Failed to undo time signature change.");
-	STAssertEquals([[thirdMeasure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Following measure not affected by undoing time signature change.");
+	STAssertEquals([[measure getEffectiveTimeSignature] getMeasureDuration], (float)3.0, @"Previous measure affected by undoing time signature change.");
+	STAssertEquals([[secondMeasure getEffectiveTimeSignature] getMeasureDuration], (float)3.0, @"Failed to undo time signature change.");
+	STAssertEquals([[thirdMeasure getEffectiveTimeSignature] getMeasureDuration], (float)3.0, @"Following measure not affected by undoing time signature change.");
 	[mgr redo];
-	STAssertEquals([[measure getEffectiveTimeSignature] getMeasureDuration], (float)1.0, @"Previous measure affected by redoing time signature change.");
-	STAssertEquals([[secondMeasure getEffectiveTimeSignature] getMeasureDuration], (float)0.75, @"Failed to redo time signature change.");
-	STAssertEquals([[thirdMeasure getEffectiveTimeSignature] getMeasureDuration], (float)0.75, @"Following measure not affected by redoing time signature change.");
+	STAssertEquals([[measure getEffectiveTimeSignature] getMeasureDuration], (float)3.0, @"Previous measure affected by redoing time signature change.");
+	STAssertEquals([[secondMeasure getEffectiveTimeSignature] getMeasureDuration], (float)2.25, @"Failed to redo time signature change.");
+	STAssertEquals([[thirdMeasure getEffectiveTimeSignature] getMeasureDuration], (float)2.25, @"Following measure not affected by redoing time signature change.");
 	[self tearDownUndoTest];
 }
 - (void) testUndoRedoSetTimeSigPreservesNotesWhenShrinking{
@@ -196,7 +196,7 @@
 	[song timeSigChangedAtIndex:0 top:6 bottom:8];
 	[mgr undo];
 	[mgr undo];
-	STAssertEquals([[staff getLastMeasure] getTotalDuration], (float)0.25, @"Notes not preserved after undoing time signature change.");
+	STAssertEquals([[staff getLastMeasure] getTotalDuration], (float)0.75, @"Notes not preserved after undoing time signature change.");
 }
 - (void) testUndoRedoSetTimeSigPreservesNotesWhenGrowing{
 	[self setUpUndoTest];

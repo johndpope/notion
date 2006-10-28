@@ -30,41 +30,41 @@
 }
 
 - (void) testGetEffectiveDuration{
-	STAssertEquals([chord getEffectiveDuration], (float)0.75, @"Wrong duration returned for chord.");
+	STAssertEquals([chord getEffectiveDuration], (float)2.25, @"Wrong duration returned for chord.");
 }
 
 - (void) testSetDuration{
 	[(NoteBase *)chord setDuration:4];
-	STAssertEquals([chord getEffectiveDuration], (float)0.375, @"Setting chord duration failed.");
+	STAssertEquals([chord getEffectiveDuration], (float)1.125, @"Setting chord duration failed.");
 	[(NoteBase *)chord setDuration:2];
 }
 
 - (void) testTryToFill{
 	Chord *chordCopy = [chord copy];
-	[chordCopy tryToFill:0.786356];
-	STAssertEquals([chordCopy getEffectiveDuration], (float)0.75, @"Chord failed to fill duration.");
+	[chordCopy tryToFill:2.286356];
+	STAssertEquals([chordCopy getEffectiveDuration], (float)2.25, @"Chord failed to fill duration.");
 	[chordCopy release];
 }
 
 - (void) testSubtractDurationReturningSingleChord{
-	NSArray *array = [chord subtractDuration:0.25];
+	NSArray *array = [chord subtractDuration:0.75];
 	STAssertEquals([array count], (unsigned)1, @"Wrong number of chords returned after subtracting duration.");
 	STAssertTrue([[array objectAtIndex:0] isKindOfClass:[Chord class]], @"Chord not returned when subtracting duration from chord.");
 	STAssertEquals([[[array objectAtIndex:0] getNotes] count], (unsigned)3, @"Wrong number of notes in returned chord.");
-	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration], (float)0.5, @"Wrong duration left after subtracting duration.");
-	STAssertEquals([chord getEffectiveDuration], (float)0.75, @"Original chord object modified during subtract duration.");
+	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration], (float)1.5, @"Wrong duration left after subtracting duration.");
+	STAssertEquals([chord getEffectiveDuration], (float)2.25, @"Original chord object modified during subtract duration.");
 }
 
 - (void) testSubtractDurationReturningMultipleChords{
-	NSArray *array = [chord subtractDuration:0.125];
+	NSArray *array = [chord subtractDuration:0.375];
 	STAssertEquals([array count], (unsigned)2, @"Wrong number of chords returned after subtracting duration.");
 	STAssertTrue([[array objectAtIndex:0] isKindOfClass:[Chord class]], @"Chord note returned when subtracting duration from chord.");
 	STAssertEquals([[[array objectAtIndex:0] getNotes] count], (unsigned)3, @"Wrong number of notes in returned chord.");
 	STAssertTrue([[array objectAtIndex:1] isKindOfClass:[Chord class]], @"Chord note returned when subtracting duration from chord.");
 	STAssertEquals([[[array objectAtIndex:1] getNotes] count], (unsigned)3, @"Wrong number of notes in returned chord.");
 	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration] + [[array objectAtIndex:1] getEffectiveDuration],
-				   (float)0.625, @"Wrong duration left after subtracting duration.");
-	STAssertEquals([chord getEffectiveDuration], (float)0.75, @"Original chord object modified during subtract duration.");
+				   (float)1.875, @"Wrong duration left after subtracting duration.");
+	STAssertEquals([chord getEffectiveDuration], (float)2.25, @"Original chord object modified during subtract duration.");
 	//STAssertEqualObjects([[array objectAtIndex:0] getTieTo], [array objectAtIndex:1], @"Notes returned from subtracting duration not tied together.");
 }
 
