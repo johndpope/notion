@@ -47,6 +47,39 @@
 	return duration % 3 == 0;
 }
 
+- (BOOL)isPartOfFullTriplet{
+	return [self getContainingTriplet] != nil;
+}
+
+- (NSArray *)getContainingTriplet{
+	// find first triplet note in sequence leading up to this note
+	NoteBase *curr = self;
+	NoteBase *prev;
+	for(prev = [staff noteBefore:curr]; prev != nil && [prev isTriplet]; prev = [staff noteBefore:curr]){
+		curr = prev;
+	}
+	BOOL foundSelf = NO;
+	float tripletDuration = 0;
+	NSMutableArray *triplet = [NSMutableArray array];
+	// try to construct a full triplet
+	while([curr isTriplet]){
+		if(curr == self){
+			foundSelf = YES;
+		}
+		[triplet addObject:curr];
+		tripletDuration += [curr getEffectiveDuration];
+		if(((int)(3.0/tripletDuration)) % 3 != 0){ // full triplet completed
+			if(foundSelf){
+				return triplet;
+			}
+			[triplet removeAllObjects];
+			tripletDuration = 0;
+		}
+		curr = [staff noteAfter:curr];
+	}
+	return nil;	
+}
+
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
 			  onChannel:(int)channel{

@@ -191,7 +191,12 @@ static NSColor *mouseOverColor;
 		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
 	}
 	if([note isTriplet]){
-		[@"3" drawAtPoint:NSMakePoint(body.origin.x, body.origin.y + body.size.height) withAttributes:nil];
+		if([note isPartOfFullTriplet]){
+			
+		} else {
+			float threeY = stemUpwards ? body.origin.y + body.size.height : body.origin.y - body.size.height - 2;
+			[@"3" drawAtPoint:NSMakePoint(body.origin.x + 2, threeY) withAttributes:nil];
+		}
 	}
 	if(offset){
 		if(stemUpwards){

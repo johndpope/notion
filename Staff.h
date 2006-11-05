@@ -52,6 +52,8 @@
 - (Chord *)getChordContainingNote:(NoteBase *)note;
 
 - (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure;
+- (NoteBase *)noteBefore:(NoteBase *)note;
+- (NoteBase *)noteAfter:(NoteBase *)note;
 
 - (void)cleanPanels;
 

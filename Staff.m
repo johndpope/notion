@@ -199,6 +199,40 @@
 	}
 }
 
+- (NoteBase *)noteBefore:(NoteBase *)note{
+	NSEnumerator *measureEnum = [measures objectEnumerator];
+	id measure;
+	while((measure = [measureEnum nextObject]) && ![[measure getNotes] containsObject:note]);
+	if(measure != nil){
+		if([measure getFirstNote] == note){
+			if(measure == [measures objectAtIndex:0]){
+				return nil;
+			}
+			return [[[measures objectAtIndex:([measures indexOfObject:measure] - 1)] getNotes] lastObject];
+		} else{
+			return [[measure getNotes] objectAtIndex:([[measure getNotes] indexOfObject:note] - 1)];
+		}
+	}
+	return nil;
+}
+
+- (NoteBase *)noteAfter:(NoteBase *)note{
+	NSEnumerator *measureEnum = [measures objectEnumerator];
+	id measure;
+	while((measure = [measureEnum nextObject]) && ![[measure getNotes] containsObject:note]);
+	if(measure != nil){
+		if([[measure getNotes] lastObject] == note){
+			if(measure == [measures lastObject]){
+				return nil;
+			}
+			return [[[measures objectAtIndex:([measures indexOfObject:measure] + 1)] getNotes] objectAtIndex:0];
+		} else{
+			return [[measure getNotes] objectAtIndex:([[measure getNotes] indexOfObject:note] + 1)];
+		}
+	}
+	return nil;
+}
+
 - (void)toggleClefAtMeasure:(Measure *)measure{
 	Clef *oldClef = [measure getClef];
 	if(oldClef != nil && measure != [measures objectAtIndex:0]){
