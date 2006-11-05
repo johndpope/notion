@@ -8,6 +8,8 @@
 
 #import "NoteTest.h"
 #import "Note.h"
+#import "Staff.h"
+#import "Measure.h"
 
 @implementation NoteTest
 
@@ -53,6 +55,172 @@
 	Note *secondNote = [[Note alloc] initWithPitch:4 octave:3 duration:6 dotted:NO accidental:NO_ACC onStaff:nil];
 	STAssertTrue([secondNote isTriplet], @"Triplet note pretending not to be triplet.");
 	[secondNote release];
+}
+
+- (void) testNotesInSimpleTripletArePartOfFullTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	STAssertTrue([firstNote isPartOfFullTriplet], @"Simple triplet note not part of triplet.");
+	STAssertTrue([secondNote isPartOfFullTriplet], @"Simple triplet note not part of triplet.");
+	STAssertTrue([thirdNote isPartOfFullTriplet], @"Simple triplet note not part of triplet.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[staff release];
+}
+
+- (void) testGetContainingTripletOnSimpleTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	NSArray *triplet = [firstNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"First note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"First note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"First note's containing triplet doesn't include third note.");
+	triplet = [secondNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Second note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Second note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Second note's containing triplet doesn't include third note.");
+	triplet = [thirdNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Third note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Third note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Third note's containing triplet doesn't include third note.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[staff release];
+}
+
+- (void) testNotesInComplexTripletArePartOfFullTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:3 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	STAssertTrue([firstNote isPartOfFullTriplet], @"Complex triplet note not part of triplet.");
+	STAssertTrue([secondNote isPartOfFullTriplet], @"Complex triplet note not part of triplet.");
+	STAssertTrue([thirdNote isPartOfFullTriplet], @"Complex triplet note not part of triplet.");	
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[staff release];
+}
+
+- (void) testGetContainingTripletOnComplexTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:3 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	NSArray *triplet = [firstNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"First note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"First note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"First note's containing triplet doesn't include third note.");
+	triplet = [secondNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Second note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Second note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Second note's containing triplet doesn't include third note.");
+	triplet = [thirdNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Third note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Third note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Third note's containing triplet doesn't include third note.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[staff release];
+}
+
+- (void) testIsolatedTripletNoteIsNotPartOfFullTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	STAssertFalse([firstNote isPartOfFullTriplet], @"Isolated triplet note pretending to be part of triplet.");
+	[firstNote release];
+	[secondNote release];
+	[staff release];
+}
+
+- (void) testGetContainingTripletOnIsolatedTripletNote{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	STAssertNil([firstNote getContainingTriplet], @"Isolated triplet note returns containing triplet.");
+	[firstNote release];
+	[secondNote release];
+	[staff release];
+}
+
+- (void) testIsolatedTripletNoteAfterTripletIsNotPartOfFullTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];	
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	STAssertFalse([fourthNote isPartOfFullTriplet], @"Isolated triplet note pretending to be part of triplet.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+	[staff release];
+}
+
+- (void) testGetContainingTripletOnIsolatedTripletNoteAfterTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];	
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	STAssertNil([fourthNote getContainingTriplet], @"Isolated triplet note returns containing triplet.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+	[staff release];
+}
+
+- (void) testNonTripletNoteIsNotPartOfFullTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	STAssertFalse([thirdNote isPartOfFullTriplet], @"Non-triplet note pretending to be part of triplet.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[staff release];
+}
+
+- (void) testGetContainingTripletOnNonTripletNote{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	STAssertNil([thirdNote getContainingTriplet], @"Non-triplet note returns containing triplet.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[staff release];
 }
 
 @end

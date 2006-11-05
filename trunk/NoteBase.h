@@ -31,6 +31,8 @@
 - (float)getEffectiveDuration;
 
 - (BOOL)isTriplet;
+- (BOOL)isPartOfFullTriplet;
+- (NSArray *)getContainingTriplet;
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
