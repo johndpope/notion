@@ -225,7 +225,11 @@
 			if(measure == [measures lastObject]){
 				return nil;
 			}
-			return [[[measures objectAtIndex:([measures indexOfObject:measure] + 1)] getNotes] objectAtIndex:0];
+			Measure *nextMeasure = [measures objectAtIndex:([measures indexOfObject:measure] + 1)];
+			if([[nextMeasure getNotes] count] == 0){
+				return nil;
+			}
+			return [[nextMeasure getNotes] objectAtIndex:0];
 		} else{
 			return [[measure getNotes] objectAtIndex:([[measure getNotes] indexOfObject:note] + 1)];
 		}

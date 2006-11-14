@@ -68,7 +68,13 @@
 		}
 		[triplet addObject:curr];
 		tripletDuration += [curr getEffectiveDuration];
-		if(((int)(3.0/tripletDuration)) % 3 != 0){ // full triplet completed
+		// tripletDuration / 3.0 gives the "real" effective duration
+		// reciprocal of that is the denominator of the duration
+		// a full triplet has been completed if the denominator is a power of 2.
+		float denom = 3.0 / tripletDuration;
+		int denomAsInt = (int)denom;
+		if((denom - floor(denom) < 0.005) &&
+		   (denomAsInt & (denomAsInt - 1)) == 0){
 			if(foundSelf){
 				return triplet;
 			}

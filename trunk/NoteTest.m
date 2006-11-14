@@ -139,6 +139,53 @@
 	[staff release];
 }
 
+- (void) testGetContainingTripletOnAnotherComplexTriplet{
+	Staff *staff = [[Staff alloc] initWithSong:nil];
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fifthNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, fifthNote, nil]];
+	NSArray *triplet = [firstNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"First note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"First note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"First note's containing triplet doesn't include third note.");
+	STAssertTrue([triplet containsObject:fourthNote], @"First note's containing triplet doesn't include fourth note.");
+	STAssertTrue([triplet containsObject:fifthNote], @"First note's containing triplet doesn't include fifth note.");
+	triplet = [secondNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Second note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Second note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Second note's containing triplet doesn't include third note.");
+	STAssertTrue([triplet containsObject:fourthNote], @"Second note's containing triplet doesn't include fourth note.");
+	STAssertTrue([triplet containsObject:fifthNote], @"Second note's containing triplet doesn't include fifth note.");
+	triplet = [thirdNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Third note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Third note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Third note's containing triplet doesn't include third note.");
+	STAssertTrue([triplet containsObject:fourthNote], @"Third note's containing triplet doesn't include fourth note.");
+	STAssertTrue([triplet containsObject:fifthNote], @"Third note's containing triplet doesn't include fifth note.");
+	triplet = [fourthNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Fourth note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Fourth note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Fourth note's containing triplet doesn't include third note.");
+	STAssertTrue([triplet containsObject:fourthNote], @"Fourth note's containing triplet doesn't include fourth note.");
+	STAssertTrue([triplet containsObject:fifthNote], @"Fourth note's containing triplet doesn't include fifth note.");
+	triplet = [fifthNote getContainingTriplet];
+	STAssertTrue([triplet containsObject:firstNote], @"Fifth note's containing triplet doesn't include first note.");
+	STAssertTrue([triplet containsObject:secondNote], @"Fifth note's containing triplet doesn't include second note.");
+	STAssertTrue([triplet containsObject:thirdNote], @"Fifth note's containing triplet doesn't include third note.");
+	STAssertTrue([triplet containsObject:fourthNote], @"Fifth note's containing triplet doesn't include fourth note.");
+	STAssertTrue([triplet containsObject:fifthNote], @"Fifth note's containing triplet doesn't include fifth note.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+	[fifthNote release];
+	[staff release];
+}
+
 - (void) testIsolatedTripletNoteIsNotPartOfFullTriplet{
 	Staff *staff = [[Staff alloc] initWithSong:nil];
 	Measure *measure = [staff getLastMeasure];
