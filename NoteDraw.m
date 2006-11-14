@@ -18,19 +18,46 @@
 @implementation NoteDraw
 
 static NSMutableDictionary *noteX = nil;
+static NSMutableArray *drawnTriplets = nil;
 static NSColor *mouseOverColor;
 
 +(void)resetAccidentals{
 	if(noteX == nil){
 		noteX = [[NSMutableDictionary dictionary] retain];
 	}
+	if(drawnTriplets == nil) {
+		drawnTriplets = [[NSMutableArray array] retain];
+	}
 	[noteX removeAllObjects];
+	[drawnTriplets removeAllObjects];
 }
 
 +(BOOL)isStemUpwards:(NoteBase *)note inMeasure:(Measure *)measure{
 	Clef *clef = [measure getEffectiveClef];
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
 	return position <= 4;
+}
+
++ (NSRect)bodyRectFor:(NoteBase *)note atIndex:(float)index inMeasure:(Measure *)measure{
+	NSRect body;
+	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
+	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
+	Clef *clef = [measure getEffectiveClef];
+	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
+	body.origin.x = [MeasureController xOfIndex:index inMeasure:measure];
+	body.size.width = 12;
+	body.size.height = 12;
+	body.origin.y = measureBounds.origin.y + measureBounds.size.height - lineHeight * position - 6;
+	return body;
+}
+
++ (float) topOf:(NoteBase *)note inMeasure:(Measure *)measure{
+	NSRect body = [self bodyRectFor:note atIndex:0 inMeasure:measure];
+	float top = body.origin.y;
+	if([self isStemUpwards:note inMeasure:measure]){
+		top -= 30;
+	}
+	return top;
 }
 
 +(void)drawExtraStaffLinesForPosition:(int)position withBody:(NSRect)body lineHeight:(float)line{
@@ -147,7 +174,32 @@ static NSColor *mouseOverColor;
 	if(tieTo != nil){
 		[noteX setObject:[NSNumber numberWithFloat:(body.origin.x+body.size.width)] forKey:[NSNumber numberWithInt:note]];
 		[StaffDraw mustDraw:[[tieTo getStaff] getMeasureContainingNote:tieTo]];
-	}	
+	}
+}
+
++ (void) drawTriplet:(NoteBase *)note{
+	if([drawnTriplets containsObject:note]){
+		return;
+	}
+	NSArray *notesToDraw = [note getContainingTriplet];
+	float top = -1;
+	NSEnumerator *notesEnum = [notesToDraw objectEnumerator];
+	id noteToDraw;
+	while(noteToDraw = [notesEnum nextObject]){
+		float thisTop = [[noteToDraw getViewClass] topOf:noteToDraw inMeasure:[[noteToDraw getStaff] getMeasureContainingNote:noteToDraw]];
+		if(top == -1 || top > thisTop){
+			top = thisTop;
+		}
+	}
+	top -= 15;
+	NoteBase *firstNote = [notesToDraw objectAtIndex:0];
+	NoteBase *lastNote = [notesToDraw lastObject];
+	float startX = [NoteController xOf:firstNote inMeasure:[[firstNote getStaff] getMeasureContainingNote:firstNote]];
+	float endX = [NoteController xOf:lastNote inMeasure:[[lastNote getStaff] getMeasureContainingNote:lastNote]] + 12;
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(startX, top) toPoint:NSMakePoint(endX, top)];
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(startX, top) toPoint:NSMakePoint(startX, top + 5)];
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(endX, top) toPoint:NSMakePoint(endX, top + 5)];
+	[drawnTriplets addObjectsFromArray:notesToDraw];
 }
 
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target{
@@ -171,11 +223,7 @@ static NSColor *mouseOverColor;
 	float middle = measureBounds.origin.y + measureBounds.size.height / 2.0;
 	Clef *clef = [measure getEffectiveClef];
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
-	NSRect body;
-	body.origin.x = [MeasureController xOfIndex:index inMeasure:measure];
-	body.size.width = 12;
-	body.size.height = 12;
-	body.origin.y = measureBounds.origin.y + measureBounds.size.height - lineHeight * position - 6;
+	NSRect body = [self bodyRectFor:note atIndex:index inMeasure:measure];
 	[self drawExtraStaffLinesForPosition:position withBody:body lineHeight:lineHeight];
 	[NSBezierPath setDefaultLineWidth:1.5];
 	if(offset){
@@ -191,11 +239,11 @@ static NSColor *mouseOverColor;
 		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
 	}
 	if([note isTriplet]){
-		if([note isPartOfFullTriplet]){
-			
-		} else {
+		if(![note isPartOfFullTriplet]){
 			float threeY = stemUpwards ? body.origin.y + body.size.height : body.origin.y - body.size.height - 2;
 			[@"3" drawAtPoint:NSMakePoint(body.origin.x + 2, threeY) withAttributes:nil];
+		} else{
+			[self drawTriplet:note];
 		}
 	}
 	if(offset){
@@ -220,7 +268,7 @@ static NSColor *mouseOverColor;
 		body.origin.x -= 12;
 	}
 	[self drawTieForNote:note withBody:body];
-	[[NSColor blackColor] set];		
+	[[NSColor blackColor] set];
 }
 
 @end

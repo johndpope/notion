@@ -82,7 +82,21 @@
 		dotRect.origin.y = (img != nil ? middle + 10 : middle);
 		dotRect.size.width = dotRect.size.height = 4;
 		[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill]; 
-	}	
+	}
+	if([rest isTriplet]){
+		if(![rest isPartOfFullTriplet]){
+			
+		} else{
+			[NoteDraw drawTriplet:rest];
+		}
+	}
+}
+
++ (float) topOf:(NoteBase *)note inMeasure:(Measure *)measure{
+	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
+	float middle = measureBounds.origin.y + measureBounds.size.height / 2.0;
+	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
+	return middle - lineHeight * 4;
 }
 
 @end
