@@ -10,7 +10,7 @@
 
 
 @interface NonScrollableScrollView : NSScrollView {
-
+	IBOutlet NSView *owner;
 }
 
 @end

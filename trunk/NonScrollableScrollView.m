@@ -12,6 +12,7 @@
 @implementation NonScrollableScrollView
 
 - (void)scrollWheel:(NSEvent *)event{
+	[owner scrollWheel:event];
 }
 
 @end

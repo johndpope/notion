@@ -9,14 +9,15 @@
                 changeDotted = id; 
                 changeDuration = id; 
                 changeTriplet = id; 
-                playSong = id; 
-                stopSong = id; 
             }; 
             CLASS = MEWindowController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                devicePopup = CAMIDIEndpointMenu; 
+                accidentalView = NSView; 
+                auxNoteControlView = NSView; 
                 dotted = NSButton; 
+                duration = NSPopUpButton; 
+                durationView = NSView; 
                 flat = NSButton; 
                 horizontalRuler = NSView; 
                 horizontalRulerScroll = NSScrollView; 
@@ -30,10 +31,15 @@
                 verticalRulerScroll = NSScrollView; 
                 view = ScoreView; 
             }; 
-            SUPERCLASS = NSWindowController; 
+            SUPERCLASS = ToolbarHelperController; 
         }, 
         {CLASS = MusicDocument; LANGUAGE = ObjC; SUPERCLASS = NSDocument; }, 
-        {CLASS = NonScrollableScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
+        {
+            CLASS = NonScrollableScrollView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {owner = NSView; }; 
+            SUPERCLASS = NSScrollView; 
+        }, 
         {
             CLASS = ScoreView; 
             LANGUAGE = ObjC; 
@@ -53,7 +59,12 @@
             OUTLETS = {staff = Staff; }; 
             SUPERCLASS = NSView; 
         }, 
-        {CLASS = StaffView; LANGUAGE = ObjC; SUPERCLASS = NSView; }
+        {CLASS = StaffView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            CLASS = ToolbarHelperController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSWindowController; 
+        }
     ); 
     IBVersion = 1; 
 }
