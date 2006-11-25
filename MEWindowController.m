@@ -112,19 +112,40 @@
 }
 
 - (void)awakeFromNib{
-	Song *song = [[self document] getSong];
-	[song addObserver:self forKeyPath:@"staffs" options:NSKeyValueObservingOptionNew context:nil];
-	[song addObserver:self forKeyPath:@"tempoData" options:NSKeyValueObservingOptionNew context:nil];
-	[view setController:self];
-	[view setSong:song];
-	[[[[NSApp mainMenu] itemWithTag:1] submenu] buildMenu:kMIDIEndpointMenuDestinations opts:(kMIDIEndpointMenuOpt_SortByName | kMIDIEndpointMenuOpt_CanSelectNone)];
-	[[scrollView contentView] setPostsBoundsChangedNotifications:YES];
-	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-	[center addObserver:self selector:@selector(boundsDidChangeNotification:) name:NSViewBoundsDidChangeNotification
-		object:[scrollView contentView]];
-	[center addObserver:self selector:@selector(modelChanged:) name:@"modelChanged" object:nil];
-	[self placeRulerComponents];
-	
+	if(!didAwakeFromNib){
+		didAwakeFromNib = YES;
+		Song *song = [[self document] getSong];
+		[song addObserver:self forKeyPath:@"staffs" options:NSKeyValueObservingOptionNew context:nil];
+		[song addObserver:self forKeyPath:@"tempoData" options:NSKeyValueObservingOptionNew context:nil];
+		[view setController:self];
+		[view setSong:song];
+		[[[[NSApp mainMenu] itemWithTag:1] submenu] buildMenu:kMIDIEndpointMenuDestinations opts:(kMIDIEndpointMenuOpt_SortByName | kMIDIEndpointMenuOpt_CanSelectNone)];
+		[[scrollView contentView] setPostsBoundsChangedNotifications:YES];
+		NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+		[center addObserver:self selector:@selector(boundsDidChangeNotification:) name:NSViewBoundsDidChangeNotification
+			object:[scrollView contentView]];
+		[center addObserver:self selector:@selector(modelChanged:) name:@"modelChanged" object:nil];
+		[self placeRulerComponents];
+		[self addToolbarItemWithImage:[NSImage imageNamed:@"play.png"] identifier:@"play" label:@"Play" 
+							  paletteLabel:@"Play" toolTip:@"Begin MIDI playback" target:self 
+							   action:@selector(playSong:) keyEquiv:@"\r" isDefault:YES];
+		[self addToolbarItemWithImage:[NSImage imageNamed:@"stop.png"] identifier:@"stop" label:@"Stop" 
+							  paletteLabel:@"Stop" toolTip:@"Stop MIDI playback" target:self 
+							   action:@selector(stopSong:) keyEquiv:@"\033" isDefault:YES];
+		[self addToolbarSeparator];
+
+		[self addToolbarFlexibleSpace];
+		[self addToolbarItemWithView:durationView identifier:@"duration" label:@"Duration" paletteLabel:@"Note duration" toolTip:nil 
+							  target:self action:nil isDefault:YES];
+		[self addToolbarItemWithView:auxNoteControlView identifier:@"notecontrol" label:nil paletteLabel:@"Note controls" toolTip:nil 
+							  target:self action:nil isDefault:YES];
+		[self addToolbarItemWithView:accidentalView identifier:@"accidental" label:@"Accidentals" paletteLabel:@"Accidentals" toolTip:nil
+							  target:self action:nil isDefault:YES];
+		
+		[[view window] setToolbar:[self initToolbarWithIdentifier:@"toolbar" customizable:NO]];
+		
+		[self insertPopupImages:duration];
+	}
 }
 
 - (void) boundsDidChangeNotification:(NSNotification *)notification{
@@ -150,13 +171,13 @@
 }
 
 - (int)getPointerMode{
-	if([mode selectedColumn] == 0) return MODE_POINT;
+	if([duration selectedTag] == 0) return MODE_POINT;
 	return MODE_NOTE;
 }
 
 - (int)getNoteModeDuration{
 	if([self getPointerMode] == MODE_POINT) return 0;
-	int i = [mode selectedColumn];
+	int i = [duration selectedTag];
 	int duration = 1;
 	while(i > 1){
 		duration *= 2;
@@ -200,6 +221,9 @@
 }
 
 - (BOOL)keyPressedAtLocation:(NSPoint)location withEvent:(NSEvent *)event{
+	if([self handleToolbarKeystroke:event]){
+		return YES;
+	}
 	id modeDict = [self getMode];
 	id song = [[self document] getSong];
 	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict withEvent:(NSEvent *)event];
@@ -207,16 +231,14 @@
 		[[target getControllerClass] handleKeyPress:event at:location on:target mode:modeDict view:view];
 	if(!handled){
 		if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSLeftArrowFunctionKey]].location != NSNotFound){
-			int row = [mode selectedRow];
-			int col = [mode selectedColumn]-1;
-			if(col < 0) col = 0;
-			[mode selectCellAtRow:row column:col];
+			int sel = [duration selectedTag];
+			if(sel > 0) sel--;
+			[duration selectItemWithTag:sel];
 			return YES;
 		} else if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSRightArrowFunctionKey]].location != NSNotFound){
-			int row = [mode selectedRow];
-			int col = [mode selectedColumn]+1;
-			if(col > [mode numberOfColumns]-1) col = [mode numberOfColumns]-1;
-			[mode selectCellAtRow:row column:col];
+			int sel = [duration selectedTag];
+			if(sel < [duration numberOfItems] - 1) sel++;
+			[duration selectItemWithTag:sel];
 			return YES;
 		}		
 	}

@@ -6,15 +6,21 @@
 @class CAMIDIEndpointMenu;
 #import "Staff.h"
 #import "Measure.h"
+#import "ToolbarHelperController.h"
 
 static const int MODE_POINT = 0;
 static const int MODE_NOTE = 1;
 
-@interface MEWindowController : NSWindowController
+@interface MEWindowController : ToolbarHelperController
 {
+	BOOL didAwakeFromNib;
 	IBOutlet ScoreView *view;
 	IBOutlet NSMatrix *mode;
+	IBOutlet NSPopUpButton *duration;
 	IBOutlet NSButton *dotted;
+	IBOutlet NSView *durationView;
+	IBOutlet NSView *accidentalView;
+	IBOutlet NSView *auxNoteControlView;
 	IBOutlet NSButton *flat, *sharp, *natural;
 	IBOutlet NSButton *triplet;
 	IBOutlet NSButton *tieToPrev;
@@ -30,8 +36,6 @@ static const int MODE_NOTE = 1;
 - (BOOL)isDotted;
 - (BOOL)isTieToPrev;
 
-- (IBAction)playSong:(id)sender;
-- (IBAction)stopSong:(id)sender;
 - (IBAction)changeDuration:(id)sender;
 - (IBAction)changeTriplet:(id)sender;
 - (IBAction)changeDotted:(id)sender;

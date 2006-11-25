@@ -202,6 +202,11 @@ static NSString *UniqueTitle(NSString *name, NSMutableDictionary *previousTitles
 	while ([self numberOfItems] > itemsToKeep)
 		[self removeItemAtIndex: itemsToKeep];
 
+	for (int i = 0; i < itemsToKeep; i++){
+		[[self itemAtIndex:i] setTarget:self];
+		[[self itemAtIndex:i] setAction:@selector(endpointChanged:)];
+	}
+	
 	MIDIEndpointInfoMgr::EndpointInfoList &eil = (mType == kMIDIEndpointMenuSources) ? gMIDIEndpoints->Sources() : gMIDIEndpoints->Destinations();
 	
 	NSMutableDictionary *previousTitles = [[NSMutableDictionary alloc] init];

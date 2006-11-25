@@ -3,7 +3,7 @@
 //  Señor Staff
 //
 //  Created by Konstantine Prevas on 10/1/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.
+//  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
