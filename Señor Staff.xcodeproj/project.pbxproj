@@ -41,6 +41,7 @@
 		787A93570B1A421A006FD236 /* NSPopUpButton+Images.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */; };
 		787A93580B1A421A006FD236 /* NSPopUpButton+Images.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */; };
 		787A938D0B1A439A006FD236 /* qnote_t.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A938C0B1A439A006FD236 /* qnote_t.png */; };
+		787A93CB0B1A4FE7006FD236 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 787A93CA0B1A4FE7006FD236 /* LICENSE */; };
 		78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */; };
 		788321120A636D65003363D7 /* doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 788321110A636D64003363D7 /* doc.icns */; };
 		7883C8F70A86B666000E97DE /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7883C7E10A86B05A000E97DE /* StaffTest.m */; };
@@ -203,6 +204,7 @@
 		787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPopUpButton+Images.h"; sourceTree = "<group>"; };
 		787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPopUpButton+Images.m"; sourceTree = "<group>"; };
 		787A938C0B1A439A006FD236 /* qnote_t.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qnote_t.png; sourceTree = "<group>"; };
+		787A93CA0B1A4FE7006FD236 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffHorizontalRulerComponent.h; sourceTree = "<group>"; };
 		78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffHorizontalRulerComponent.m; sourceTree = "<group>"; };
 		788321110A636D64003363D7 /* doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc.icns; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				78DF76710A45F2020058CF89 /* KeySigPanel.nib */,
 				78E758E40A4E4D2A005A67E4 /* TimeSigPanel.nib */,
 				785EE9CE0A589031005ABDAB /* StaffHorizontalRulerComponent.nib */,
+				787A93CA0B1A4FE7006FD236 /* LICENSE */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				787A921C0B17DE67006FD236 /* wnote.png in Resources */,
 				787A92520B17E5E8006FD236 /* pointer.png in Resources */,
 				787A938D0B1A439A006FD236 /* qnote_t.png in Resources */,
+				787A93CB0B1A4FE7006FD236 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
