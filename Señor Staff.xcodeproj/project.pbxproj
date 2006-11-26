@@ -32,14 +32,15 @@
 		786EBBA40A7C7C98009D63DD /* ClefDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBBA30A7C7C98009D63DD /* ClefDraw.m */; };
 		787A91550B159992006FD236 /* dotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A91540B159992006FD236 /* dotted.png */; };
 		787A91570B159A66006FD236 /* tietoprev.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A91560B159A66006FD236 /* tietoprev.png */; };
-		787A919E0B17D94A006FD236 /* MEWindowController+PopupImages.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 787A919C0B17D94A006FD236 /* MEWindowController+PopupImages.h */; };
-		787A919F0B17D94A006FD236 /* MEWindowController+PopupImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A919D0B17D94A006FD236 /* MEWindowController+PopupImages.m */; };
 		787A92130B17DE67006FD236 /* enote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A92080B17DE67006FD236 /* enote.png */; };
 		787A92150B17DE67006FD236 /* hnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A920A0B17DE67006FD236 /* hnote.png */; };
 		787A92180B17DE67006FD236 /* snote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A920D0B17DE67006FD236 /* snote.png */; };
 		787A921A0B17DE67006FD236 /* tnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A920F0B17DE67006FD236 /* tnote.png */; };
 		787A921C0B17DE67006FD236 /* wnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A92110B17DE67006FD236 /* wnote.png */; };
 		787A92520B17E5E8006FD236 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A92510B17E5E8006FD236 /* pointer.png */; };
+		787A93570B1A421A006FD236 /* NSPopUpButton+Images.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */; };
+		787A93580B1A421A006FD236 /* NSPopUpButton+Images.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */; };
+		787A938D0B1A439A006FD236 /* qnote_t.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A938C0B1A439A006FD236 /* qnote_t.png */; };
 		78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */; };
 		788321120A636D65003363D7 /* doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 788321110A636D64003363D7 /* doc.icns */; };
 		7883C8F70A86B666000E97DE /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7883C7E10A86B05A000E97DE /* StaffTest.m */; };
@@ -135,7 +136,7 @@
 				78F785930AD09A0B009EDC26 /* ChordDraw.h in CopyFiles */,
 				78F785970AD09A1B009EDC26 /* ChordController.h in CopyFiles */,
 				7813C38F0B11692100CE7F59 /* ToolbarHelperController.h in CopyFiles */,
-				787A919E0B17D94A006FD236 /* MEWindowController+PopupImages.h in CopyFiles */,
+				787A93570B1A421A006FD236 /* NSPopUpButton+Images.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,14 +194,15 @@
 		786EBBA30A7C7C98009D63DD /* ClefDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefDraw.m; sourceTree = "<group>"; };
 		787A91540B159992006FD236 /* dotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotted.png; sourceTree = "<group>"; };
 		787A91560B159A66006FD236 /* tietoprev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tietoprev.png; sourceTree = "<group>"; };
-		787A919C0B17D94A006FD236 /* MEWindowController+PopupImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MEWindowController+PopupImages.h"; sourceTree = "<group>"; };
-		787A919D0B17D94A006FD236 /* MEWindowController+PopupImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MEWindowController+PopupImages.m"; sourceTree = "<group>"; };
 		787A92080B17DE67006FD236 /* enote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enote.png; sourceTree = "<group>"; };
 		787A920A0B17DE67006FD236 /* hnote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hnote.png; sourceTree = "<group>"; };
 		787A920D0B17DE67006FD236 /* snote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snote.png; sourceTree = "<group>"; };
 		787A920F0B17DE67006FD236 /* tnote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tnote.png; sourceTree = "<group>"; };
 		787A92110B17DE67006FD236 /* wnote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wnote.png; sourceTree = "<group>"; };
 		787A92510B17E5E8006FD236 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
+		787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPopUpButton+Images.h"; sourceTree = "<group>"; };
+		787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPopUpButton+Images.m"; sourceTree = "<group>"; };
+		787A938C0B1A439A006FD236 /* qnote_t.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qnote_t.png; sourceTree = "<group>"; };
 		78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffHorizontalRulerComponent.h; sourceTree = "<group>"; };
 		78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffHorizontalRulerComponent.m; sourceTree = "<group>"; };
 		788321110A636D64003363D7 /* doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc.icns; sourceTree = "<group>"; };
@@ -392,6 +394,8 @@
 				78DF77D50A48DF0F0058CF89 /* NSView+Fade.m */,
 				78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */,
 				78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */,
+				787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */,
+				787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -540,8 +544,6 @@
 				78F785960AD09A1B009EDC26 /* ChordController.m */,
 				7813C38D0B11692100CE7F59 /* ToolbarHelperController.h */,
 				789324BE0B116FB300E2DEF2 /* ToolbarHelperController.m */,
-				787A919C0B17D94A006FD236 /* MEWindowController+PopupImages.h */,
-				787A919D0B17D94A006FD236 /* MEWindowController+PopupImages.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -560,6 +562,7 @@
 		78F2DB200A33B39E0052DB2C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				787A938C0B1A439A006FD236 /* qnote_t.png */,
 				787A92510B17E5E8006FD236 /* pointer.png */,
 				787A92080B17DE67006FD236 /* enote.png */,
 				787A920A0B17DE67006FD236 /* hnote.png */,
@@ -712,6 +715,7 @@
 				787A921A0B17DE67006FD236 /* tnote.png in Resources */,
 				787A921C0B17DE67006FD236 /* wnote.png in Resources */,
 				787A92520B17E5E8006FD236 /* pointer.png in Resources */,
+				787A938D0B1A439A006FD236 /* qnote_t.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,7 +809,7 @@
 				78F785940AD09A0B009EDC26 /* ChordDraw.m in Sources */,
 				78F785980AD09A1B009EDC26 /* ChordController.m in Sources */,
 				789324BF0B116FB300E2DEF2 /* ToolbarHelperController.m in Sources */,
-				787A919F0B17D94A006FD236 /* MEWindowController+PopupImages.m in Sources */,
+				787A93580B1A421A006FD236 /* NSPopUpButton+Images.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

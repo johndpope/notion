@@ -1,18 +1,18 @@
 //
-//  MEWindowController+PopupImages.m
+//  NSPopUpButton+Images.m
 //  Señor Staff
 //
-//  Created by Konstantine Prevas on 11/24/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.
+//  Created by Konstantine Prevas on 11/26/06.
+//  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import "MEWindowController+PopupImages.h"
+#import "NSPopUpButton+Images.h"
 
 
-@implementation MEWindowController (PopupImages)
+@implementation NSPopUpButton(Images)
 
-- (void)insertPopupImages:(NSPopUpButton *)popup{
-	NSEnumerator *items = [[popup itemArray] objectEnumerator];
+- (void)insertImages{
+	NSEnumerator *items = [[self itemArray] objectEnumerator];
 	id item;
 	while(item = [items nextObject]){
 		NSString *title = [item title];
