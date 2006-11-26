@@ -883,6 +883,19 @@
 			787A93B20B1A4A64006FD236 /* PBXTextBookmark */ = 787A93B20B1A4A64006FD236 /* PBXTextBookmark */;
 			787A93B30B1A4A64006FD236 /* PBXTextBookmark */ = 787A93B30B1A4A64006FD236 /* PBXTextBookmark */;
 			787A93B40B1A4A72006FD236 /* PBXTextBookmark */ = 787A93B40B1A4A72006FD236 /* PBXTextBookmark */;
+			787A93B50B1A4A84006FD236 /* PBXTextBookmark */ = 787A93B50B1A4A84006FD236 /* PBXTextBookmark */;
+			787A93B60B1A4A84006FD236 /* PBXTextBookmark */ = 787A93B60B1A4A84006FD236 /* PBXTextBookmark */;
+			787A93B70B1A4AA0006FD236 /* PBXTextBookmark */ = 787A93B70B1A4AA0006FD236 /* PBXTextBookmark */;
+			787A93B80B1A4AA0006FD236 /* PBXTextBookmark */ = 787A93B80B1A4AA0006FD236 /* PBXTextBookmark */;
+			787A93B90B1A4AA0006FD236 /* PBXTextBookmark */ = 787A93B90B1A4AA0006FD236 /* PBXTextBookmark */;
+			787A93BC0B1A4B3B006FD236 /* PBXTextBookmark */ = 787A93BC0B1A4B3B006FD236 /* PBXTextBookmark */;
+			787A93BD0B1A4B3B006FD236 /* PBXTextBookmark */ = 787A93BD0B1A4B3B006FD236 /* PBXTextBookmark */;
+			787A93BE0B1A4B3C006FD236 /* PBXTextBookmark */ = 787A93BE0B1A4B3C006FD236 /* PBXTextBookmark */;
+			787A93BF0B1A4B3C006FD236 /* PBXTextBookmark */ = 787A93BF0B1A4B3C006FD236 /* PBXTextBookmark */;
+			787A93C00B1A4B3C006FD236 /* PBXTextBookmark */ = 787A93C00B1A4B3C006FD236 /* PBXTextBookmark */;
+			787A93C10B1A4B3C006FD236 /* PBXTextBookmark */ = 787A93C10B1A4B3C006FD236 /* PBXTextBookmark */;
+			787A93C20B1A4B3C006FD236 /* PBXTextBookmark */ = 787A93C20B1A4B3C006FD236 /* PBXTextBookmark */;
+			787A93C30B1A4B3C006FD236 /* PBXTextBookmark */ = 787A93C30B1A4B3C006FD236 /* PBXTextBookmark */;
 			788707DB0AAD057C0057D6DD = 788707DB0AAD057C0057D6DD /* PBXTextBookmark */;
 			788707E90AAD057C0057D6DD = 788707E90AAD057C0057D6DD /* PBXTextBookmark */;
 			788707EC0AAD057C0057D6DD = 788707EC0AAD057C0057D6DD /* PBXTextBookmark */;
@@ -7897,14 +7910,14 @@
 	787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 745}}";
-			sepNavSelRange = "{234, 0}";
+			sepNavSelRange = "{30, 0}";
 			sepNavVisRect = "{{0, 0}, {1069, 745}}";
 		};
 	};
 	787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 745}}";
-			sepNavSelRange = "{251, 0}";
+			sepNavSelRange = "{30, 0}";
 			sepNavVisRect = "{{0, 0}, {1069, 745}}";
 		};
 	};
@@ -8040,7 +8053,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: 14";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8050,7 +8063,7 @@
 		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
 		name = "NSPopUpButton+Images.m: 12";
 		rLen = 0;
-		rLoc = 202;
+		rLoc = 351;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 0;
@@ -8080,7 +8093,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: 14";
 		rLen = 0;
-		rLoc = 241;
+		rLoc = 390;
 		rType = 0;
 		vrLen = 252;
 		vrLoc = 0;
@@ -8090,7 +8103,7 @@
 		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
 		name = "NSPopUpButton+Images.m: 12";
 		rLen = 0;
-		rLoc = 202;
+		rLoc = 351;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 0;
@@ -8100,7 +8113,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: 14";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8110,7 +8123,7 @@
 		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
 		name = "NSPopUpButton+Images.m: insertImages";
 		rLen = 0;
-		rLoc = 248;
+		rLoc = 397;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 0;
@@ -8220,7 +8233,7 @@
 		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
 		name = "NSPopUpButton+Images.m: insertImages";
 		rLen = 0;
-		rLoc = 251;
+		rLoc = 400;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 0;
@@ -8230,7 +8243,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: insertImages";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8240,7 +8253,7 @@
 		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
 		name = "NSPopUpButton+Images.m: insertImages";
 		rLen = 0;
-		rLoc = 251;
+		rLoc = 400;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 0;
@@ -8250,7 +8263,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: insertImages";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8260,7 +8273,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: insertImages";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8350,7 +8363,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: insertImages";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8360,7 +8373,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: insertImages";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8390,7 +8403,7 @@
 		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
 		name = "NSPopUpButton+Images.h: insertImages";
 		rLen = 0;
-		rLoc = 234;
+		rLoc = 383;
 		rType = 0;
 		vrLen = 248;
 		vrLoc = 0;
@@ -8604,6 +8617,136 @@
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 3797;
+	};
+	787A93B50B1A4A84006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78E7F5FB0A353C5A008F8F40 /* StaffVerticalRuler.h */;
+		name = "StaffVerticalRuler.h: 19";
+		rLen = 0;
+		rLoc = 417;
+		rType = 0;
+		vrLen = 417;
+		vrLoc = 0;
+	};
+	787A93B60B1A4A84006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "MEWindowController.m: 145";
+		rLen = 0;
+		rLoc = 5455;
+		rType = 0;
+		vrLen = 2046;
+		vrLoc = 3598;
+	};
+	787A93B70B1A4AA0006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 789324BE0B116FB300E2DEF2 /* ToolbarHelperController.m */;
+		name = "ToolbarHelperController.m: 157";
+		rLen = 0;
+		rLoc = 4955;
+		rType = 0;
+		vrLen = 1453;
+		vrLoc = 3797;
+	};
+	787A93B80B1A4AA0006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 789324BE0B116FB300E2DEF2 /* ToolbarHelperController.m */;
+		name = "ToolbarHelperController.m: 157";
+		rLen = 0;
+		rLoc = 4955;
+		rType = 0;
+		vrLen = 1453;
+		vrLoc = 3797;
+	};
+	787A93B90B1A4AA0006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
+		name = "NSPopUpButton+Images.h: 8";
+		rLen = 0;
+		rLoc = 116;
+		rType = 0;
+		vrLen = 285;
+		vrLoc = 0;
+	};
+	787A93BC0B1A4B3B006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78E7F5FB0A353C5A008F8F40 /* StaffVerticalRuler.h */;
+		name = "StaffVerticalRuler.h: 19";
+		rLen = 0;
+		rLoc = 417;
+		rType = 0;
+		vrLen = 417;
+		vrLoc = 0;
+	};
+	787A93BD0B1A4B3B006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "MEWindowController.m: 145";
+		rLen = 0;
+		rLoc = 5455;
+		rType = 0;
+		vrLen = 2046;
+		vrLoc = 3598;
+	};
+	787A93BE0B1A4B3C006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
+		name = "NSPopUpButton+Images.h: 3";
+		rLen = 0;
+		rLoc = 30;
+		rType = 0;
+		vrLen = 397;
+		vrLoc = 0;
+	};
+	787A93BF0B1A4B3C006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
+		name = "NSPopUpButton+Images.m: 3";
+		rLen = 0;
+		rLoc = 30;
+		rType = 0;
+		vrLen = 1527;
+		vrLoc = 0;
+	};
+	787A93C00B1A4B3C006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
+		name = "NSPopUpButton+Images.h: 6";
+		rLen = 228;
+		rLoc = 80;
+		rType = 0;
+		vrLen = 413;
+		vrLoc = 0;
+	};
+	787A93C10B1A4B3C006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
+		name = "NSPopUpButton+Images.m: 3";
+		rLen = 0;
+		rLoc = 30;
+		rType = 0;
+		vrLen = 1527;
+		vrLoc = 0;
+	};
+	787A93C20B1A4B3C006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */;
+		name = "NSPopUpButton+Images.h: 3";
+		rLen = 0;
+		rLoc = 30;
+		rType = 0;
+		vrLen = 397;
+		vrLoc = 0;
+	};
+	787A93C30B1A4B3C006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */;
+		name = "NSPopUpButton+Images.m: 3";
+		rLen = 0;
+		rLoc = 30;
+		rType = 0;
+		vrLen = 1527;
+		vrLoc = 0;
 	};
 	78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {
 		uiCtxt = {
