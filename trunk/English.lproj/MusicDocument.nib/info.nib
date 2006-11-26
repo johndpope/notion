@@ -8,10 +8,8 @@
 	<dict>
 		<key>118</key>
 		<string>686 460 181 94 0 0 1440 878 </string>
-		<key>129</key>
-		<string>674 570 95 68 0 0 1440 878 </string>
 		<key>142</key>
-		<string>676 693 221 76 0 0 1440 878 </string>
+		<string>677 694 296 76 0 0 1440 878 </string>
 	</dict>
 	<key>IBFramework Version</key>
 	<string>446.1</string>
@@ -19,7 +17,6 @@
 	<array>
 		<integer>5</integer>
 		<integer>118</integer>
-		<integer>129</integer>
 		<integer>142</integer>
 	</array>
 	<key>IBSystem Version</key>

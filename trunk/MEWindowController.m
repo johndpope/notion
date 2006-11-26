@@ -137,14 +137,12 @@
 		[self addToolbarFlexibleSpace];
 		[self addToolbarItemWithView:durationView identifier:@"duration" label:@"Duration" paletteLabel:@"Note duration" toolTip:nil 
 							  target:self action:nil isDefault:YES];
-		[self addToolbarItemWithView:auxNoteControlView identifier:@"notecontrol" label:nil paletteLabel:@"Note controls" toolTip:nil 
-							  target:self action:nil isDefault:YES];
 		[self addToolbarItemWithView:accidentalView identifier:@"accidental" label:@"Accidentals" paletteLabel:@"Accidentals" toolTip:nil
 							  target:self action:nil isDefault:YES];
 		
 		[[view window] setToolbar:[self initToolbarWithIdentifier:@"toolbar" customizable:NO]];
 		
-		[self insertPopupImages:duration];
+		[duration insertImages];
 	}
 }
 

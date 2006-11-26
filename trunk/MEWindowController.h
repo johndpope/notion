@@ -15,12 +15,10 @@ static const int MODE_NOTE = 1;
 {
 	BOOL didAwakeFromNib;
 	IBOutlet ScoreView *view;
-	IBOutlet NSMatrix *mode;
 	IBOutlet NSPopUpButton *duration;
 	IBOutlet NSButton *dotted;
 	IBOutlet NSView *durationView;
 	IBOutlet NSView *accidentalView;
-	IBOutlet NSView *auxNoteControlView;
 	IBOutlet NSButton *flat, *sharp, *natural;
 	IBOutlet NSButton *triplet;
 	IBOutlet NSButton *tieToPrev;
