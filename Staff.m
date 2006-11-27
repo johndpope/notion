@@ -277,6 +277,26 @@
 	}
 }
 
+- (IBAction)soloPressed:(id)sender{
+	if([sender state] == NSOnState){
+		[muteButton setState:NSOffState];
+	}
+	[song soloPressed:([sender state] == NSOnState) onStaff:self];
+}
+
+- (void)muteSoloEnabled:(BOOL)enabled{
+	[muteButton setEnabled:enabled];
+	[soloButton setEnabled:enabled];
+}
+
+- (BOOL)isMute{
+	return [muteButton state] == NSOnState;
+}
+
+- (BOOL)isSolo{
+	return [soloButton state] == NSOnState;
+}
+
 - (void)addTrackToMIDISequence:(MusicSequence *)musicSequence{
 	MusicTrack musicTrack;
 	if (MusicSequenceNewTrack(*musicSequence, &musicTrack) != noErr) {

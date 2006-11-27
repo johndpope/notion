@@ -952,7 +952,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				KEEP_PRIVATE_EXTERNS = YES;
-				PRODUCT_NAME = "Music Editor";
+				PRODUCT_NAME = "Señor Staff";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

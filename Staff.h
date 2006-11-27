@@ -24,6 +24,8 @@
 	int channel;
 	IBOutlet StaffVerticalRulerComponent *rulerView;
 	IBOutlet NSPopUpButton *channelButton;
+	IBOutlet NSButton *muteButton;
+	IBOutlet NSButton *soloButton;
 }
 
 - (id)initWithSong:(Song *)_song;
@@ -60,6 +62,12 @@
 - (void)toggleClefAtMeasure:(Measure *)measure;
 - (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom;
 - (void)timeSigDeletedAtMeasure:(Measure *)measure;
+
+- (IBAction)soloPressed:(id)sender;
+- (void)muteSoloEnabled:(BOOL)enabled;
+
+- (BOOL)isMute;
+- (BOOL)isSolo;
 
 - (void)addTrackToMIDISequence:(MusicSequence *)musicSequence;
 
