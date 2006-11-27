@@ -206,6 +206,11 @@ static MusicPlayer musicPlayer;
 	[self setTimeSignature:[NSNull null] atIndex:measureIndex];	
 }
 
+- (void)soloPressed:(BOOL)solo onStaff:(Staff *)staff{
+	[[staffs do] muteSoloEnabled:(!solo)];
+	[staff muteSoloEnabled:YES];
+}
+
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint{
 	MusicSequence musicSequence;
 	if (NewMusicSequence(&musicSequence) != noErr)
@@ -213,7 +218,12 @@ static MusicPlayer musicPlayer;
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
 	id staff;
 	while(staff = [staffsEnum nextObject]){
-		[staff addTrackToMIDISequence:&musicSequence];
+		if(![staff isMute]){
+			[staff addTrackToMIDISequence:&musicSequence];			
+		}
+		if([staff isSolo]){
+			break;
+		}
 	}
 	
 	MusicTrack tempoTrack;

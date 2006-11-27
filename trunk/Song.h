@@ -45,6 +45,8 @@
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom;
 - (void)timeSigDeletedAtIndex:(int)measureIndex;
 
+- (void)soloPressed:(BOOL)solo onStaff:(Staff *)staff;
+
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint;
 - (void)stopPlaying;
 

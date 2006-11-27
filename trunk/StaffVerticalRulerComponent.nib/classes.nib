@@ -2,10 +2,15 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {deleteSelf = id; setChannel = id; }; 
+            ACTIONS = {deleteSelf = id; setChannel = id; soloPressed = id; }; 
             CLASS = Staff; 
             LANGUAGE = ObjC; 
-            OUTLETS = {channelButton = NSPopUpButton; rulerView = StaffVerticalRulerComponent; }; 
+            OUTLETS = {
+                channelButton = NSPopUpButton; 
+                muteButton = NSButton; 
+                rulerView = StaffVerticalRulerComponent; 
+                soloButton = NSButton; 
+            }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = StaffVerticalRulerComponent; LANGUAGE = ObjC; SUPERCLASS = NSView; }
