@@ -14,7 +14,9 @@
 #import "Staff.h"
 #import "TimeSignature.h"
 @class MeasureDraw;
+@class DrumMeasureDraw;
 @class MeasureController;
+@class DrumMeasureController;
 
 @implementation Measure
 
@@ -594,10 +596,16 @@
 }
 
 - (Class)getViewClass{
+	if([staff isDrums]){
+		return [DrumMeasureDraw class];
+	}
 	return [MeasureDraw class];
 }
 
 - (Class)getControllerClass{
+	if([staff isDrums]){
+		return [DrumMeasureController class];
+	}
 	return [MeasureController class];
 }
 
