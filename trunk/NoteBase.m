@@ -43,6 +43,10 @@
 	return effDuration;
 }
 
+- (BOOL)canBeInChord{
+	return YES;
+}
+
 - (BOOL)isTriplet{
 	return duration % 3 == 0;
 }

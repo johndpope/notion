@@ -30,6 +30,8 @@
 
 - (float)getEffectiveDuration;
 
+- (BOOL)canBeInChord;
+
 - (BOOL)isTriplet;
 - (BOOL)isPartOfFullTriplet;
 - (NSArray *)getContainingTriplet;

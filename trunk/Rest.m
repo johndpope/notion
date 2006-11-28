@@ -33,6 +33,10 @@
 	return 4.0 * [self getEffectiveDuration] / 3;
 }
 
+- (BOOL)canBeInChord{
+	return NO;
+}
+
 - (Class)getViewClass{
 	return [RestDraw class];
 }
