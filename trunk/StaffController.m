@@ -25,7 +25,7 @@
 	NSEnumerator *measures = [[staff getMeasures] objectEnumerator];
 	id measure;
 	while(measure = [measures nextObject]){
-		width += [MeasureController widthOf:measure];
+		width += [[measure getControllerClass] widthOf:measure];
 	}
 	return width;	
 }
@@ -64,7 +64,7 @@
 	id measure;
 	float currX = [ScoreController xInset];
 	while(measure = [measures nextObject]){
-		float measureWidth = [MeasureController widthOf:measure];
+		float measureWidth = [[measure getControllerClass] widthOf:measure];
 		if(currX + measureWidth > x) return measure;
 		currX += measureWidth;
 	}
@@ -73,8 +73,9 @@
 
 + (id)targetAtLocation:(NSPoint)location inStaff:(Staff *)staff mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
 	Measure *measure = [self measureAtX:location.x inStaff:staff];
-	location.x -= [MeasureController xOf:measure];
-	return [MeasureController targetAtLocation:location inMeasure:measure mode:mode withEvent:(NSEvent *)event];
+	float measureX = (float)[[measure getControllerClass] xOf:measure];
+	location.x -= measureX;
+	return [[measure getControllerClass] targetAtLocation:location inMeasure:measure mode:mode withEvent:(NSEvent *)event];
 }
 
 @end

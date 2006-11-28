@@ -32,6 +32,10 @@
 	return [[song document] undoManager];
 }
 
+- (void)sendChangeNotification{
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
+}
+
 - (void)setSong:(Song *)_song{
 	song = _song;
 }
@@ -55,8 +59,13 @@
 	return rulerView;
 }
 
+- (BOOL)isDrums{
+	return channel == 9;
+}
+
 - (IBAction)setChannel:(id)sender{
-	channel = [[channelButton titleOfSelectedItem] intValue] - 1;
+	channel = [channelButton selectedTag] - 1;
+	[self sendChangeNotification];
 }
 
 - (IBAction)deleteSelf:(id)sender{

@@ -10,7 +10,6 @@
 		78124F860AAB6C6500D20E98 /* ScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */; };
 		7813C3880B1168E300CE7F59 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7813C3870B1168E300CE7F59 /* stop.png */; };
 		7813C38A0B1168FE00CE7F59 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 7813C3890B1168FE00CE7F59 /* play.png */; };
-		7813C38F0B11692100CE7F59 /* ToolbarHelperController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7813C38D0B11692100CE7F59 /* ToolbarHelperController.h */; };
 		7841FD2E0A09D29B00292132 /* MusicDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7841FD2C0A09D29B00292132 /* MusicDocument.nib */; };
 		7841FD7F0A0B073B00292132 /* MEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */; };
 		7841FD8C0A0B08B800292132 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD8B0A0B08B800292132 /* Song.m */; };
@@ -38,10 +37,13 @@
 		787A921A0B17DE67006FD236 /* tnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A920F0B17DE67006FD236 /* tnote.png */; };
 		787A921C0B17DE67006FD236 /* wnote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A92110B17DE67006FD236 /* wnote.png */; };
 		787A92520B17E5E8006FD236 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A92510B17E5E8006FD236 /* pointer.png */; };
-		787A93570B1A421A006FD236 /* NSPopUpButton+Images.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */; };
 		787A93580B1A421A006FD236 /* NSPopUpButton+Images.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */; };
 		787A938D0B1A439A006FD236 /* qnote_t.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A938C0B1A439A006FD236 /* qnote_t.png */; };
 		787A93CB0B1A4FE7006FD236 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 787A93CA0B1A4FE7006FD236 /* LICENSE */; };
+		787A94EE0B1AA7C9006FD236 /* DrumMeasureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A94EC0B1AA7C9006FD236 /* DrumMeasureDraw.m */; };
+		787A95410B1AA991006FD236 /* DrumMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A953F0B1AA991006FD236 /* DrumMeasureController.m */; };
+		787A95FA0B1BE389006FD236 /* Chomp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787A95F30B1BE389006FD236 /* Chomp.framework */; };
+		787A96520B1BE6E9006FD236 /* Chomp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 787A95F30B1BE389006FD236 /* Chomp.framework */; };
 		78830F7E0A60841A003363D7 /* StaffHorizontalRulerComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */; };
 		788321120A636D65003363D7 /* doc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 788321110A636D64003363D7 /* doc.icns */; };
 		7883C8F70A86B666000E97DE /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7883C7E10A86B05A000E97DE /* StaffTest.m */; };
@@ -94,11 +96,7 @@
 		78F2DB230A33B3BE0052DB2C /* clefins_bass.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F2DB210A33B3BE0052DB2C /* clefins_bass.png */; };
 		78F2DB240A33B3BE0052DB2C /* clefins_treble.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F2DB220A33B3BE0052DB2C /* clefins_treble.png */; };
 		78F7816C0AD0780A009EDC26 /* ChordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F7816B0AD0780A009EDC26 /* ChordTest.m */; };
-		78F783890AD0822D009EDC26 /* Chomp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F783820AD0822D009EDC26 /* Chomp.framework */; };
-		78F783ED0AD084DD009EDC26 /* Chomp.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F783820AD0822D009EDC26 /* Chomp.framework */; };
-		78F785930AD09A0B009EDC26 /* ChordDraw.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F785910AD09A0B009EDC26 /* ChordDraw.h */; };
 		78F785940AD09A0B009EDC26 /* ChordDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F785920AD09A0B009EDC26 /* ChordDraw.m */; };
-		78F785970AD09A1B009EDC26 /* ChordController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78F785950AD09A1B009EDC26 /* ChordController.h */; };
 		78F785980AD09A1B009EDC26 /* ChordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F785960AD09A1B009EDC26 /* ChordController.m */; };
 		78F78B520ADA1109009EDC26 /* ChordDrawTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F78B510ADA1109009EDC26 /* ChordDrawTest.m */; };
 		78F8BBBB0A830A6900A2788D /* erest-over.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F8BBB70A830A6900A2788D /* erest-over.png */; };
@@ -133,11 +131,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				78F783ED0AD084DD009EDC26 /* Chomp.framework in CopyFiles */,
-				78F785930AD09A0B009EDC26 /* ChordDraw.h in CopyFiles */,
-				78F785970AD09A1B009EDC26 /* ChordController.h in CopyFiles */,
-				7813C38F0B11692100CE7F59 /* ToolbarHelperController.h in CopyFiles */,
-				787A93570B1A421A006FD236 /* NSPopUpButton+Images.h in CopyFiles */,
+				787A96520B1BE6E9006FD236 /* Chomp.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +199,11 @@
 		787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPopUpButton+Images.m"; sourceTree = "<group>"; };
 		787A938C0B1A439A006FD236 /* qnote_t.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qnote_t.png; sourceTree = "<group>"; };
 		787A93CA0B1A4FE7006FD236 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		787A94EB0B1AA7C9006FD236 /* DrumMeasureDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumMeasureDraw.h; sourceTree = "<group>"; };
+		787A94EC0B1AA7C9006FD236 /* DrumMeasureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumMeasureDraw.m; sourceTree = "<group>"; };
+		787A953E0B1AA991006FD236 /* DrumMeasureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumMeasureController.h; sourceTree = "<group>"; };
+		787A953F0B1AA991006FD236 /* DrumMeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumMeasureController.m; sourceTree = "<group>"; };
+		787A95F30B1BE389006FD236 /* Chomp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chomp.framework; sourceTree = "<group>"; };
 		78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffHorizontalRulerComponent.h; sourceTree = "<group>"; };
 		78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffHorizontalRulerComponent.m; sourceTree = "<group>"; };
 		788321110A636D64003363D7 /* doc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = doc.icns; sourceTree = "<group>"; };
@@ -287,7 +286,6 @@
 		78F2DB220A33B3BE0052DB2C /* clefins_treble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clefins_treble.png; sourceTree = "<group>"; };
 		78F7816A0AD0780A009EDC26 /* ChordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTest.h; sourceTree = "<group>"; };
 		78F7816B0AD0780A009EDC26 /* ChordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordTest.m; sourceTree = "<group>"; };
-		78F783820AD0822D009EDC26 /* Chomp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chomp.framework; sourceTree = "<group>"; };
 		78F785910AD09A0B009EDC26 /* ChordDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordDraw.h; sourceTree = "<group>"; };
 		78F785920AD09A0B009EDC26 /* ChordDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordDraw.m; sourceTree = "<group>"; };
 		78F785950AD09A1B009EDC26 /* ChordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordController.h; sourceTree = "<group>"; };
@@ -324,7 +322,7 @@
 				78E82A700A18027500DA31A3 /* CoreMIDI.framework in Frameworks */,
 				78E82A770A18028000DA31A3 /* CoreAudio.framework in Frameworks */,
 				7865F5A80AB4E10B00678461 /* AudioToolbox.framework in Frameworks */,
-				78F783890AD0822D009EDC26 /* Chomp.framework in Frameworks */,
+				787A95FA0B1BE389006FD236 /* Chomp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +432,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78F783820AD0822D009EDC26 /* Chomp.framework */,
+				787A95F30B1BE389006FD236 /* Chomp.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
@@ -491,6 +489,8 @@
 				78B43D590ABE4F980068C522 /* KeySignatureDraw.m */,
 				78F785910AD09A0B009EDC26 /* ChordDraw.h */,
 				78F785920AD09A0B009EDC26 /* ChordDraw.m */,
+				787A94EB0B1AA7C9006FD236 /* DrumMeasureDraw.h */,
+				787A94EC0B1AA7C9006FD236 /* DrumMeasureDraw.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -547,6 +547,8 @@
 				78F785960AD09A1B009EDC26 /* ChordController.m */,
 				7813C38D0B11692100CE7F59 /* ToolbarHelperController.h */,
 				789324BE0B116FB300E2DEF2 /* ToolbarHelperController.m */,
+				787A953E0B1AA991006FD236 /* DrumMeasureController.h */,
+				787A953F0B1AA991006FD236 /* DrumMeasureController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -814,6 +816,8 @@
 				78F785980AD09A1B009EDC26 /* ChordController.m in Sources */,
 				789324BF0B116FB300E2DEF2 /* ToolbarHelperController.m in Sources */,
 				787A93580B1A421A006FD236 /* NSPopUpButton+Images.m in Sources */,
+				787A94EE0B1AA7C9006FD236 /* DrumMeasureDraw.m in Sources */,
+				787A95410B1AA991006FD236 /* DrumMeasureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,8 +924,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -945,8 +951,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
@@ -970,6 +978,10 @@
 		C05733CD08A9546B00998B17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(NATIVE_ARCH)",
+					ppc,
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
