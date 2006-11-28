@@ -1197,6 +1197,22 @@
 			787A96640B1BE70F006FD236 /* PBXTextBookmark */ = 787A96640B1BE70F006FD236 /* PBXTextBookmark */;
 			787A96660B1BFCEB006FD236 /* PBXTextBookmark */ = 787A96660B1BFCEB006FD236 /* PBXTextBookmark */;
 			787A96670B1BFCEB006FD236 /* PBXTextBookmark */ = 787A96670B1BFCEB006FD236 /* PBXTextBookmark */;
+			787A974E0B1C0070006FD236 /* PBXTextBookmark */ = 787A974E0B1C0070006FD236 /* PBXTextBookmark */;
+			787A974F0B1C0070006FD236 /* PBXTextBookmark */ = 787A974F0B1C0070006FD236 /* PBXTextBookmark */;
+			787A97500B1C00AA006FD236 /* PBXTextBookmark */ = 787A97500B1C00AA006FD236 /* PBXTextBookmark */;
+			787A97510B1C00AA006FD236 /* PBXTextBookmark */ = 787A97510B1C00AA006FD236 /* PBXTextBookmark */;
+			787A97540B1C00AB006FD236 /* PBXTextBookmark */ = 787A97540B1C00AB006FD236 /* PBXTextBookmark */;
+			787A97550B1C00AB006FD236 /* PBXTextBookmark */ = 787A97550B1C00AB006FD236 /* PBXTextBookmark */;
+			787A97560B1C00AB006FD236 /* PBXTextBookmark */ = 787A97560B1C00AB006FD236 /* PBXTextBookmark */;
+			787A97570B1C00AB006FD236 /* PBXTextBookmark */ = 787A97570B1C00AB006FD236 /* PBXTextBookmark */;
+			787A97590B1C00AB006FD236 /* PBXTextBookmark */ = 787A97590B1C00AB006FD236 /* PBXTextBookmark */;
+			787A975A0B1C00AB006FD236 /* PBXTextBookmark */ = 787A975A0B1C00AB006FD236 /* PBXTextBookmark */;
+			787A975B0B1C00AB006FD236 /* PBXTextBookmark */ = 787A975B0B1C00AB006FD236 /* PBXTextBookmark */;
+			787A975C0B1C00AB006FD236 /* PBXTextBookmark */ = 787A975C0B1C00AB006FD236 /* PBXTextBookmark */;
+			787A975D0B1C00AB006FD236 /* PBXTextBookmark */ = 787A975D0B1C00AB006FD236 /* PBXTextBookmark */;
+			787A975E0B1C00AB006FD236 /* PBXTextBookmark */ = 787A975E0B1C00AB006FD236 /* PBXTextBookmark */;
+			787A975F0B1C00AB006FD236 /* PBXTextBookmark */ = 787A975F0B1C00AB006FD236 /* PBXTextBookmark */;
+			787A97610B1C00AB006FD236 /* PBXTextBookmark */ = 787A97610B1C00AB006FD236 /* PBXTextBookmark */;
 			788707DB0AAD057C0057D6DD = 788707DB0AAD057C0057D6DD /* PBXTextBookmark */;
 			788707E90AAD057C0057D6DD = 788707E90AAD057C0057D6DD /* PBXTextBookmark */;
 			788707EC0AAD057C0057D6DD = 788707EC0AAD057C0057D6DD /* PBXTextBookmark */;
@@ -12078,6 +12094,178 @@
 		vrLen = 1589;
 		vrLoc = 4429;
 	};
+	787A974E0B1C0070006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F783A70AD08376009EDC26 /* Chomp.h */;
+		name = "Chomp.h: 11";
+		rLen = 0;
+		rLoc = 179;
+		rType = 0;
+		vrLen = 179;
+		vrLoc = 0;
+	};
+	787A974F0B1C0070006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "MEWindowController.m: 145";
+		rLen = 0;
+		rLoc = 5455;
+		rType = 0;
+		vrLen = 1589;
+		vrLoc = 4429;
+	};
+	787A97500B1C00AA006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F783A70AD08376009EDC26 /* Chomp.h */;
+		name = "Chomp.h: 11";
+		rLen = 0;
+		rLoc = 179;
+		rType = 0;
+		vrLen = 179;
+		vrLoc = 0;
+	};
+	787A97510B1C00AA006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "MEWindowController.m: 145";
+		rLen = 0;
+		rLoc = 5455;
+		rType = 0;
+		vrLen = 1589;
+		vrLoc = 4429;
+	};
+	787A97540B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785910AD09A0B009EDC26 /* ChordDraw.h */;
+		name = "ChordDraw.h: draw:inMeasure:atIndex:target:";
+		rLen = 0;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 411;
+		vrLoc = 0;
+	};
+	787A97550B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93CA0B1A4FE7006FD236 /* LICENSE */;
+		name = "LICENSE: 127";
+		rLen = 0;
+		rLoc = 6105;
+		rType = 0;
+		vrLen = 1760;
+		vrLoc = 596;
+	};
+	787A97560B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F783A70AD08376009EDC26 /* Chomp.h */;
+		name = "#import \"NSObject+CHOMPHOM.h\"";
+		rLen = 30;
+		rLoc = 149;
+		rType = 0;
+		vrLen = 179;
+		vrLoc = 0;
+	};
+	787A97570B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A97580B1C00AB006FD236 /* NSObject+CHOMPIteration.h */;
+		name = "(null): 17";
+		rLen = 0;
+		rLoc = 195;
+		rType = 0;
+		vrLen = 195;
+		vrLoc = 0;
+	};
+	787A97580B1C00AB006FD236 /* NSObject+CHOMPIteration.h */ = {
+		isa = PBXFileReference;
+		name = "NSObject+CHOMPIteration.h";
+		path = "/Users/kprevas/Señor Staff/trunk/Chomp.framework/Headers/NSObject+CHOMPIteration.h";
+		sourceTree = "<absolute>";
+	};
+	787A97590B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A953E0B1AA991006FD236 /* DrumMeasureController.h */;
+		name = "DrumMeasureController.h: 7";
+		rLen = 0;
+		rLoc = 159;
+		rType = 0;
+		vrLen = 280;
+		vrLoc = 0;
+	};
+	787A975A0B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F785910AD09A0B009EDC26 /* ChordDraw.h */;
+		name = "ChordDraw.h: draw:inMeasure:atIndex:target:";
+		rLen = 0;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 411;
+		vrLoc = 0;
+	};
+	787A975B0B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A953E0B1AA991006FD236 /* DrumMeasureController.h */;
+		name = "DrumMeasureController.h: 7";
+		rLen = 0;
+		rLoc = 159;
+		rType = 0;
+		vrLen = 280;
+		vrLoc = 0;
+	};
+	787A975C0B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F783A70AD08376009EDC26 /* Chomp.h */;
+		name = "#import \"NSObject+CHOMPHOM.h\"";
+		rLen = 30;
+		rLoc = 149;
+		rType = 0;
+		vrLen = 179;
+		vrLoc = 0;
+	};
+	787A975D0B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A93CA0B1A4FE7006FD236 /* LICENSE */;
+		name = "LICENSE: 127";
+		rLen = 0;
+		rLoc = 6105;
+		rType = 0;
+		vrLen = 1760;
+		vrLoc = 596;
+	};
+	787A975E0B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78F783A70AD08376009EDC26 /* Chomp.h */;
+		name = "#import \"NSObject+CHOMPHOM.h\"";
+		rLen = 30;
+		rLoc = 149;
+		rType = 0;
+		vrLen = 179;
+		vrLoc = 0;
+	};
+	787A975F0B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A97600B1C00AB006FD236 /* NSObject+CHOMPIteration.h */;
+		name = "(null): 17";
+		rLen = 0;
+		rLoc = 195;
+		rType = 0;
+		vrLen = 195;
+		vrLoc = 0;
+	};
+	787A97600B1C00AB006FD236 /* NSObject+CHOMPIteration.h */ = {
+		isa = PBXFileReference;
+		name = "NSObject+CHOMPIteration.h";
+		path = "/Users/kprevas/Señor Staff/trunk/Chomp.framework/Headers/NSObject+CHOMPIteration.h";
+		sourceTree = "<absolute>";
+	};
+	787A97610B1C00AB006FD236 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 787A953E0B1AA991006FD236 /* DrumMeasureController.h */;
+		name = "DrumMeasureController.h: 7";
+		rLen = 0;
+		rLoc = 159;
+		rType = 0;
+		vrLen = 280;
+		vrLoc = 0;
+	};
 	78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 745}}";
@@ -14056,9 +14244,9 @@
 		path = "/Users/kprevas/Señor Staff/trunk/Chomp.framework/Headers/Chomp.h";
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1330, 311}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 512}}";
 			sepNavSelRange = "{149, 30}";
-			sepNavVisRect = "{{0, 0}, {1330, 311}}";
+			sepNavVisRect = "{{0, 0}, {1069, 512}}";
 		};
 	};
 	78F783AE0AD08381009EDC26 /* PBXTextBookmark */ = {
