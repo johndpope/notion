@@ -267,8 +267,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -315,15 +313,18 @@
 								<string>2A37F4B8FDCFA73011CA2CEA</string>
 								<string>78F2DB200A33B39E0052DB2C</string>
 								<string>2A37F4C3FDCFA73011CA2CEA</string>
+								<string>787A95F30B1BE389006FD236</string>
+								<string>787A95F50B1BE389006FD236</string>
 								<string>1058C7A6FEA54F5311CA2CBB</string>
 								<string>1058C7A8FEA54F5311CA2CBB</string>
 								<string>78E82A6F0A18027500DA31A3</string>
 								<string>19C28FB0FE9D524F11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>787A963A0B1BE632006FD236</string>
-								<string>787A964F0B1BE6B4006FD236</string>
+								<string>787A97520B1C00AB006FD236</string>
+								<string>787A97530B1C00AB006FD236</string>
 								<string>78E82A6F0A18027500DA31A3</string>
-								<string>787A965A0B1BE6EF006FD236</string>
+								<string>787A95F30B1BE389006FD236</string>
+								<string>787A95F50B1BE389006FD236</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1CC0EA4004350EF90041110B</string>
 							</array>
@@ -335,7 +336,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 2687}, {239, 764}}</string>
+							<string>{{0, 0}, {239, 764}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -370,7 +371,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ChordDraw.h</string>
+								<string>DrumMeasureController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -378,11 +379,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ChordDraw.h</string>
+										<string>DrumMeasureController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>787A965D0B1BE6EF006FD236</string>
+										<string>787A97610B1C00AB006FD236</string>
 										<key>history</key>
 										<array>
 											<string>786A94AD0A8999830006F54C</string>
@@ -487,7 +488,6 @@
 											<string>787A93AE0B1A4920006FD236</string>
 											<string>787A93B70B1A4AA0006FD236</string>
 											<string>787A93BE0B1A4B3C006FD236</string>
-											<string>787A93DA0B1A50DC006FD236</string>
 											<string>787A94200B1A9D71006FD236</string>
 											<string>787A94220B1A9D71006FD236</string>
 											<string>787A945C0B1A9EDE006FD236</string>
@@ -505,9 +505,11 @@
 											<string>787A95BD0B1AAD8C006FD236</string>
 											<string>787A95FE0B1BE3B5006FD236</string>
 											<string>787A95FF0B1BE3B5006FD236</string>
-											<string>787A96000B1BE3B5006FD236</string>
-											<string>787A965B0B1BE6EF006FD236</string>
-											<string>78F78A9C0AD9FD5B009EDC26</string>
+											<string>787A97540B1C00AB006FD236</string>
+											<string>787A97550B1C00AB006FD236</string>
+											<string>787A97560B1C00AB006FD236</string>
+											<string>787A97570B1C00AB006FD236</string>
+											<string>787A97590B1C00AB006FD236</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -755,6 +757,12 @@
 											<string>787A96040B1BE3B5006FD236</string>
 											<string>787A96050B1BE3B5006FD236</string>
 											<string>787A965C0B1BE6EF006FD236</string>
+											<string>787A975A0B1C00AB006FD236</string>
+											<string>787A975B0B1C00AB006FD236</string>
+											<string>787A975C0B1C00AB006FD236</string>
+											<string>787A975D0B1C00AB006FD236</string>
+											<string>787A975E0B1C00AB006FD236</string>
+											<string>787A975F0B1C00AB006FD236</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -776,6 +784,8 @@
 							<string>544pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -933,7 +943,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>186377967.243007</real>
+	<real>186384555.487912</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
