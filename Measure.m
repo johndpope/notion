@@ -75,9 +75,12 @@
 - (void)addNote:(NoteBase *)_note atIndex:(float)index tieToPrev:(BOOL)tieToPrev{
 	[self prepUndo];
 	if(((int)(index * 2)) % 2 == 0){
-		[[self undoManager] setActionName:@"changing note to chord"];
-		[self addNote:_note toChordAtIndex:index];
-		return;
+		if(![_note canBeInChord]){
+			[self addNote:_note atIndex:(index - 0.5) tieToPrev:tieToPrev];
+		} else {
+			[[self undoManager] setActionName:@"changing note to chord"];
+			[self addNote:_note toChordAtIndex:index];
+		}
 	} else{
 		Note *firstAddedNote = [self addNotes:[NSArray arrayWithObject:_note] atIndex:index consolidate:NO];
 		Measure *measure = [staff getMeasureContainingNote:firstAddedNote];

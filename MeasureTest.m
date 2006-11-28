@@ -391,12 +391,34 @@
 	[fourthNote release];
 }
 
+- (void)testAddRestDoesntAddToChord{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Chord *chord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObjects:secondNote, thirdNote, nil]];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, chord, nil]];
+	Note *fourthNote = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
+	[measure addNote:fourthNote atIndex:1 tieToPrev:NO];
+	STAssertEquals([[measure getNotes] count], (unsigned)3, @"Wrong number of notes in measure.");
+	NoteBase *newSecondNote = [[measure getNotes] objectAtIndex:1];
+	NoteBase *newThirdNote = [[measure getNotes] objectAtIndex:2];
+	STAssertTrue([newSecondNote isKindOfClass:[Rest class]], @"Rest not inserted before chord.");
+	STAssertEquals(newThirdNote, chord, @"Chord not pushed up by inserted rest.");
+	STAssertFalse([[chord getNotes] containsObject:fourthNote], @"Rest erroneously added to chord.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[chord release];
+	[fourthNote release];
+}
+
 - (void)testRemoveNoteFromThreeNoteChord{
 	[self setupSong];
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	Note *fourthNote = [[Note alloc] initWithPitch:2 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Rest *fourthNote = [[Note alloc] initWithPitch:2 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Chord *chord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObjects:secondNote, thirdNote, fourthNote, nil]];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, chord, nil]];
 	[measure removeNote:thirdNote fromChordAtIndex:1];

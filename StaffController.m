@@ -1,5 +1,5 @@
 //
-//  self.m
+//  StaffController.m
 //  Señor Staff
 //
 //  Created by Konstantine Prevas on 9/4/06.
