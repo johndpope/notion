@@ -180,17 +180,15 @@
 
 + (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
-	if(pointerMode == MODE_POINT){
-		if([self isOverClef:location inMeasure:measure]){
-			return [[ClefTarget alloc] initWithMeasure:measure];
-		}
-		if([self isOverKeySig:location inMeasure:measure]){
-			return [[KeySigTarget alloc] initWithMeasure:measure];
-		}
-		if([self isOverTimeSig:location inMeasure:measure]){
-			return [[TimeSigTarget alloc] initWithMeasure:measure];
-		}		
+	if([self isOverClef:location inMeasure:measure]){
+		return [[ClefTarget alloc] initWithMeasure:measure];
 	}
+	if([self isOverKeySig:location inMeasure:measure]){
+		return [[KeySigTarget alloc] initWithMeasure:measure];
+	}
+	if([self isOverTimeSig:location inMeasure:measure]){
+		return [[TimeSigTarget alloc] initWithMeasure:measure];
+	}		
 	if(location.x <= [self noteAreaStart:measure]){
 		return measure;
 	}

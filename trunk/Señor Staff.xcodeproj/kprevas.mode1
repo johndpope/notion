@@ -378,7 +378,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>786BD6BD0B238D3C002D16A3</string>
+										<string>786BD6BF0B238D6B002D16A3</string>
 										<key>history</key>
 										<array>
 											<string>786A94AD0A8999830006F54C</string>
@@ -807,7 +807,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>186879292.27237201</real>
+	<real>186879339.91874799</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -824,8 +824,8 @@
 	<array>
 		<string>7841FD130A09CEAA00292132</string>
 		<string>788317EF0A617516003363D7</string>
-		<string>/Users/kprevas/Señor Staff/trunk/Señor Staff.xcodeproj</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>/Users/kprevas/Señor Staff/trunk/Señor Staff.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>63 55 1377 823 0 0 1440 878 </string>
@@ -1282,7 +1282,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
