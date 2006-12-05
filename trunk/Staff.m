@@ -9,10 +9,13 @@
 #import "Staff.h"
 #import "Measure.h"
 #import "Clef.h"
+#import "DrumKit.h"
 #import "Song.h"
 #import "KeySignature.h"
+#import "ChromaticKeySignature.h"
 #import "TimeSignature.h"
 @class StaffDraw;
+@class DrumStaffDraw;
 @class StaffController;
 
 @implementation Staff
@@ -73,17 +76,34 @@
 	[song removeStaff:self];
 }
 
-- (Clef *)getClefForMeasure:(Measure *)measure{
+- (DrumKit *)getDrumKitForMeasure:(Measure *)measure{
 	int index = [measures indexOfObject:measure];
-	while([measure getClef] == nil){
-		if(index == 0) return [Clef trebleClef];
+	while([measure getDrumKit] == nil){
+		if(index == 0) return [DrumKit standardKit];
 		index--;
 		measure = [measures objectAtIndex:index];
 	}
-	return [measure getClef];
+	return [measure getDrumKit];
+}
+
+- (Clef *)getClefForMeasure:(Measure *)measure{
+	int index = [measures indexOfObject:measure];
+	if([self isDrums]){
+		return [self getDrumKitForMeasure:measure];
+	} else {
+		while([measure getClef] == nil){
+			if(index == 0) return [Clef trebleClef];
+			index--;
+			measure = [measures objectAtIndex:index];
+		}
+		return [measure getClef];		
+	}
 }
 
 - (KeySignature *)getKeySignatureForMeasure:(Measure *)measure{
+	if([self isDrums]){
+		return [ChromaticKeySignature instance];
+	}
 	int index = [measures indexOfObject:measure];
 	while([measure getKeySignature] == nil){
 		if(index == 0) return [KeySignature getSignatureWithSharps:0 minor:NO];
@@ -350,6 +370,9 @@
 }
 
 - (Class)getViewClass{
+	if([self isDrums]){
+		return [DrumStaffDraw class];
+	}
 	return [StaffDraw class];
 }
 - (Class)getControllerClass{

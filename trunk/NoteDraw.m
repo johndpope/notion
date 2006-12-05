@@ -40,14 +40,12 @@ static NSColor *mouseOverColor;
 
 + (NSRect)bodyRectFor:(NoteBase *)note atIndex:(float)index inMeasure:(Measure *)measure{
 	NSRect body;
-	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
-	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
 	Clef *clef = [measure getEffectiveClef];
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
-	body.origin.x = [MeasureController xOfIndex:index inMeasure:measure];
+	body.origin.x = [[measure getControllerClass] xOfIndex:index inMeasure:measure];
 	body.size.width = 12;
 	body.size.height = 12;
-	body.origin.y = measureBounds.origin.y + measureBounds.size.height - lineHeight * position - 6;
+	body.origin.y = [[measure getControllerClass] yOfPosition:position inMeasure:measure] - 6;
 	return body;
 }
 

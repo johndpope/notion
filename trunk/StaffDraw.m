@@ -20,12 +20,15 @@ static NSMutableArray *mustDraw;
 	}
 	[mustDraw removeAllObjects];
 	NSEnumerator *measures = [[staff getMeasures] objectEnumerator];
-	id measure;
+	id measure, lastDrawnMeasure;
 	while(measure = [measures nextObject]){
 		if([view needsToDrawRect:[MeasureController boundsOf:measure]] || [mustDraw containsObject:measure]){
 			[[measure getViewClass] draw:measure target:target targetLocation:location mode:mode];
+			lastDrawnMeasure = measure;
 		}
-	}	
+	}
+	if([staff isDrums]){
+	}
 }
 
 + (void) mustDraw:(Measure *)measure{
