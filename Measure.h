@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class NoteBase;
 @class Clef;
+@class DrumKit;
 @class Staff;
 @class KeySignature;
 @class TimeSignature;
@@ -17,6 +18,7 @@
 @interface Measure : NSObject <NSCoding> {
 	Staff *staff;
 	Clef *clef;
+	DrumKit *drumKit;
 	KeySignature *keySig;
 	NSMutableArray *notes;
 	NSViewAnimation *anim;
@@ -52,6 +54,7 @@
 - (BOOL)isFull;
 
 - (Clef *)getClef;
+- (DrumKit *)getDrumKit;
 - (Clef *)getEffectiveClef;
 - (void)setClef:(Clef *)_clef;
 

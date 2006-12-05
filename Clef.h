@@ -20,6 +20,8 @@
 + (Clef *)bassClef;
 + (Clef *)getClefAfter:(Clef *)clef;
 
+- (BOOL)positionIsValid:(int)position;
+
 - (int)getPositionForPitch:(int)pitch withOctave:(int)octave;
 - (int)getPitchForPosition:(int)position;
 - (int)getOctaveForPosition:(int)position;

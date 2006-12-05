@@ -108,24 +108,27 @@
 	[[NSColor blueColor] set];
 	location.x -= [MeasureController xOf:measure];
 	location.y -= [MeasureController boundsOf:measure].origin.y;
-	Note *feedbackNote = [[[Note alloc] initWithPitch:[MeasureController pitchAt:location inMeasure:measure]
-											   octave:[MeasureController octaveAt:location inMeasure:measure]
-											 duration:[[mode objectForKey:@"duration"] intValue]
-											   dotted:[[mode objectForKey:@"dotted"] boolValue]
-										   accidental:[[mode objectForKey:@"accidental"] intValue]
-											  onStaff:[measure getStaff]]
-		autorelease];
-	float index = [MeasureController indexAt:location inMeasure:measure];
-	if(((int)(index * 2)) % 2 == 0 && [[measure getNotes] count] > ceil(index)){
-		id note = [[measure getNotes] objectAtIndex:index];
-		if([[note getViewClass] respondsToSelector:@selector(isStemUpwards:inMeasure:)]){
-			BOOL stemUpwards = [[note getViewClass] isStemUpwards:note inMeasure:measure];
-			[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index isTarget:NO isOffset:NO
-						  isInChordWithOffset:NO stemUpwards:stemUpwards];
-			return;
+	if([[measure getControllerClass] canPlaceNoteAt:location inMeasure:measure]){
+		Note *feedbackNote = [[[Note alloc] initWithPitch:[MeasureController pitchAt:location inMeasure:measure]
+												   octave:[MeasureController octaveAt:location inMeasure:measure]
+												 duration:[[mode objectForKey:@"duration"] intValue]
+												   dotted:[[mode objectForKey:@"dotted"] boolValue]
+											   accidental:[[mode objectForKey:@"accidental"] intValue]
+												  onStaff:[measure getStaff]]
+			autorelease];
+		float index = [MeasureController indexAt:location inMeasure:measure];
+		if(((int)(index * 2)) % 2 == 0 && [[measure getNotes] count] > ceil(index)){
+			id note = [[measure getNotes] objectAtIndex:index];
+			if([[note getViewClass] respondsToSelector:@selector(isStemUpwards:inMeasure:)]){
+				BOOL stemUpwards = [[note getViewClass] isStemUpwards:note inMeasure:measure];
+				[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index isTarget:NO isOffset:NO
+							  isInChordWithOffset:NO stemUpwards:stemUpwards];
+				return;
+			}
 		}
+		[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index target:nil];		
 	}
-	[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index target:nil];
+	[[NSColor blackColor] set];
 }
 
 @end

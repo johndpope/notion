@@ -11,6 +11,8 @@
 #import "TimeSignatureDraw.h"
 #import "TimeSigTarget.h"
 #import "MEWindowController.h"
+#import "Measure.h"
+#import "DrumKit.h"
 
 @implementation DrumMeasureDraw
 

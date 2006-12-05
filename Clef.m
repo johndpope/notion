@@ -43,6 +43,10 @@
 	}
 }
 
+- (BOOL)positionIsValid:(int)position{
+	return YES;
+}
+
 - (int)getPositionForPitch:(int)pitch withOctave:(int)octave{
 	return (octave * 7) + pitch - (octaveOffset * 7 + pitchOffset);
 }

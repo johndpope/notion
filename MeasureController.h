@@ -29,6 +29,8 @@
 + (float)indexAt:(NSPoint)location inMeasure:(Measure *)measure;
 + (float)xOfIndex:(float)index inMeasure:(Measure *)measure;
 
++ (float)yOfPosition:(int)position inMeasure:(Measure *)measure;
+
 + (BOOL) isOverClef:(NSPoint)location inMeasure:(Measure *)measure;
 
 + (BOOL) isOverTimeSig:(NSPoint)location inMeasure:(Measure *)measure;
@@ -36,6 +38,8 @@
 + (BOOL) isOverKeySig:(NSPoint)location inMeasure:(Measure *)measure;
 
 + (BOOL)isOverNote:(NoteBase *)note at:(NSPoint)location inMeasure:(Measure *)measure;
+
++ (BOOL)canPlaceNoteAt:(NSPoint)location inMeasure:(Measure *)measure;
 
 + (NSPoint) keySigPanelLocationFor:(Measure *)measure;
 + (NSPoint) timeSigPanelLocationFor:(Measure *)measure;

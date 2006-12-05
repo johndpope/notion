@@ -17,6 +17,7 @@
 #import "KeySignatureController.h"
 #import "TimeSignatureController.h"
 #import "ClefTarget.h"
+#import "Clef.h"
 #import "Rest.h"
 
 @implementation MeasureController
@@ -143,6 +144,13 @@
 	return x;	
 }
 
++ (float)yOfPosition:(int)position inMeasure:(Measure *)measure{
+	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
+	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
+	Clef *clef = [measure getEffectiveClef];
+	return measureBounds.origin.y + measureBounds.size.height - lineHeight * position;
+}
+
 + (BOOL) isOverClef:(NSPoint)location inMeasure:(Measure *)measure{
 	return location.x <= [ClefController widthOf:[measure getClef]];
 }
@@ -196,12 +204,14 @@
 	if(((int)(index * 2)) % 2 == 0){
 		//on a note
 		NoteBase *note = [[measure getNotes] objectAtIndex:index];
-		if(pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ![self isOverNote:note at:location inMeasure:measure]){
-			//above or below a note in add note mode, want to create a chord
-			return measure;
-		}
-		if(pointerMode == MODE_NOTE && [note isKindOfClass:[Chord class]] && ![ChordController isOverNote:location inChord:note inMeasure:measure]){
-			return measure;
+		if([self canPlaceNoteAt:location inMeasure:measure]){
+			if(pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ![self isOverNote:note at:location inMeasure:measure]){
+				//above or below a note in add note mode, want to create a chord
+				return measure;
+			}
+			if(pointerMode == MODE_NOTE && [note isKindOfClass:[Chord class]] && ![ChordController isOverNote:location inChord:note inMeasure:measure]){
+				return measure;
+			}
 		}
 		if([note isKindOfClass:[Chord class]] && ([event modifierFlags] & NSAlternateKeyMask)){
 			return [[note getControllerClass] noteAt:location inChord:note inMeasure:measure];
@@ -217,6 +227,11 @@
 	[view scrollRectToVisible:NSInsetRect([self boundsOf:measure], -30, -30)];
 }
 
++ (BOOL)canPlaceNoteAt:(NSPoint)location inMeasure:(Measure *)measure{
+	Clef *clef = [measure getEffectiveClef];
+	return [clef positionIsValid:[self positionAt:location inMeasure:measure]];
+}
+
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
 	location.x -= [self xOf:measure];
 	location.y -= [self boundsOf:measure].origin.y;
@@ -229,12 +244,14 @@
 	int accidental = [[mode objectForKey:@"accidental"] intValue];
 	BOOL tieToPrev = [[mode objectForKey:@"tieToPrev"] boolValue];
 	if(pointerMode == MODE_NOTE){
-		[[measure undoManager] setActionName:@"adding note"];
 		int pitch = [self pitchAt:location inMeasure:measure];
 		int octave = [self octaveAt:location inMeasure:measure];
-		Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:duration dotted:dotted accidental:accidental onStaff:[measure getStaff]];
-		[measure addNote:note atIndex:[self indexAt:location inMeasure:measure] tieToPrev:tieToPrev];
-		[self scrollView:view toShowMeasure:[[note getStaff] getMeasureContainingNote:note]];
+		if([self canPlaceNoteAt:location inMeasure:measure]){
+			[[measure undoManager] setActionName:@"adding note"];
+			Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:duration dotted:dotted accidental:accidental onStaff:[measure getStaff]];
+			[measure addNote:note atIndex:[self indexAt:location inMeasure:measure] tieToPrev:tieToPrev];
+			[self scrollView:view toShowMeasure:[[note getStaff] getMeasureContainingNote:note]];			
+		}
 	}
 }
 
