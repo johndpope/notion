@@ -15,6 +15,8 @@
 	Song *song;
 	
 	NSPoint mouseLocation;
+	id clickTarget;
+	BOOL dragging;
 	id mouseOver;
 
 	ATSFontContainerRef container;
