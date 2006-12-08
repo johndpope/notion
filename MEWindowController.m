@@ -243,6 +243,13 @@
 	return handled;
 }
 
+- (void)dragged:(id)target toLocation:(NSPoint)location withEvent:(NSEvent *)event finished:(BOOL)finished{
+	if([[target getControllerClass] respondsToSelector:@selector(handleDrag:to:on:finished:mode:view:)]){
+		id modeDict = [self getMode];
+		[[target getControllerClass] handleDrag:event to:location on:target finished:finished mode:modeDict view:view];
+	}
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
 	if([keyPath isEqualToString:@"staffs"] || [keyPath isEqualToString:@"tempoData"]){
 		[self placeRulerComponents];

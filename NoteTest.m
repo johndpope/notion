@@ -270,4 +270,113 @@
 	[staff release];
 }
 
+// ----- undo/redo tests -----
+
+- (void)setUpUndoTest{
+	doc = [[MusicDocument alloc] init];
+	mgr = [[NSUndoManager alloc] init];
+	[doc setUndoManager:mgr];
+	song = [[Song alloc] initWithDocument:doc];
+	staff = [[song staffs] lastObject];
+	measure = [staff getLastMeasure];
+}
+
+- (void)tearDownUndoTest{
+	[song release];
+	[mgr release];
+	[doc release];	
+}
+
+- (void)testUndoRedoSetPitch {
+	[self setUpUndoTest];
+	Note *note = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[mgr beginUndoGrouping];
+	[note setPitch:6 finished:YES];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([note getPitch], 3, @"Failed to undo setting pitch.");
+	[mgr redo];
+	STAssertEquals([note getPitch], 6, @"Failed to redo setting pitch.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoRedoSetOctave {
+	[self setUpUndoTest];
+	Note *note = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[mgr beginUndoGrouping];
+	[note setOctave:6 finished:YES];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([note getOctave], 4, @"Failed to undo setting octave.");
+	[mgr redo];
+	STAssertEquals([note getOctave], 6, @"Failed to redo setting octave.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoDoesntAffectTemporarySetPitch {
+	[self setUpUndoTest];
+	Note *note = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[mgr beginUndoGrouping];
+	[note setPitch:6 finished:NO];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([note getPitch], 6, @"Temporary change of pitch undone.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoDoesntAffectTemporarySetOctave {
+	[self setUpUndoTest];
+	Note *note = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[mgr beginUndoGrouping];
+	[note setOctave:6 finished:NO];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([note getOctave], 6, @"Temporary change of octave undone.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoRedoSetPitchWithTemporarySets {
+	[self setUpUndoTest];
+	Note *note = [[Note alloc] initWithPitch:3 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[mgr beginUndoGrouping];
+	[note setPitch:4 finished:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[note setPitch:5 finished:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[note setPitch:6 finished:YES];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([note getPitch], 3, @"Failed to undo setting pitch.");
+	[mgr redo];
+	STAssertEquals([note getPitch], 6, @"Failed to redo setting pitch.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoRedoSetOctaveWithTemporarySets {
+	[self setUpUndoTest];
+	Note *note = [[Note alloc] initWithPitch:3 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[mgr beginUndoGrouping];
+	[note setOctave:4 finished:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[note setOctave:5 finished:NO];
+	[mgr endUndoGrouping];
+	[mgr beginUndoGrouping];
+	[note setOctave:6 finished:YES];
+	[mgr endUndoGrouping];
+	[mgr undo];
+	STAssertEquals([note getOctave], 3, @"Failed to undo setting octave.");
+	[mgr redo];
+	STAssertEquals([note getOctave], 6, @"Failed to redo setting octave.");
+	[note release];
+	[self tearDownUndoTest];
+}
+
 @end

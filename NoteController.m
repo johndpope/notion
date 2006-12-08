@@ -62,4 +62,14 @@
 	return NO;
 }
 
++ (void)handleDrag:(NSEvent *)event to:(NSPoint)location on:(NoteBase *)note finished:(BOOL)finished mode:(NSDictionary *)mode view:(ScoreView *)view{
+	Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+	id controller = [measure getControllerClass];
+	location.y -= [controller boundsOf:measure].origin.y;
+	int pitch = [controller pitchAt:location inMeasure:measure];
+	int octave = [controller octaveAt:location inMeasure:measure];
+	[note setPitch:pitch finished:finished];
+	[note setOctave:octave finished:finished];
+}
+
 @end

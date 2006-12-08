@@ -21,5 +21,6 @@
 + (float) xOf:(NoteBase *)note inMeasure:(Measure *)measure;
 
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view;
++ (void)handleDrag:(NSEvent *)event to:(NSPoint)location on:(NoteBase *)note finished:(BOOL)finished mode:(NSDictionary *)mode view:(ScoreView *)view;
 
 @end

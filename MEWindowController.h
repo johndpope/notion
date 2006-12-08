@@ -48,5 +48,6 @@ static const int MODE_NOTE = 1;
 
 - (void)clickedAtLocation:(NSPoint)location withEvent:(NSEvent *)event;
 - (BOOL)keyPressedAtLocation:(NSPoint)location withEvent:(NSEvent *)event;
+- (void)dragged:(id)target toLocation:(NSPoint)location withEvent:(NSEvent *)event;
 
 @end

@@ -8,9 +8,19 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 @class Note;
+@class Measure;
+@class Staff;
+@class MusicDocument;
+@class NSUndoManager;
+@class Song;
 
 @interface NoteTest : SenTestCase {
 	Note *note;
+	Measure *measure;
+	Staff *staff;
+	MusicDocument *doc;
+	NSUndoManager *mgr;
+	Song *song;
 }
 
 @end

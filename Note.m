@@ -15,8 +15,8 @@
 - (id)initWithPitch:(int)_pitch octave:(int)_octave 
 	duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)_staff{
 	if(self = [super init]){
-		pitch = _pitch;
-		octave = _octave;
+		lastPitch = pitch = _pitch;
+		lastOctave = octave = _octave;
 		duration = _duration;
 		dotted = _dotted;
 		accidental = _accidental;
@@ -49,12 +49,18 @@
 - (void)setDotted:(BOOL)_dotted{
 	dotted = _dotted;
 }
-- (void)setOctave:(int)_octave{
-	[[[self undoManager] prepareWithInvocationTarget:self] setOctave:octave];
+- (void)setOctave:(int)_octave finished:(BOOL)finished{
+	if(finished){
+		[[[self undoManager] prepareWithInvocationTarget:self] setOctave:lastOctave finished:YES];	
+		lastOctave = _octave;
+	}
 	octave = _octave;
 }
-- (void)setPitch:(int)_pitch{
-	[[[self undoManager] prepareWithInvocationTarget:self] setPitch:pitch];
+- (void)setPitch:(int)_pitch finished:(BOOL)finished{
+	if(finished){
+		[[[self undoManager] prepareWithInvocationTarget:self] setPitch:lastPitch finished:YES];
+		lastPitch = _pitch;
+	}
 	pitch = _pitch;
 }
 - (void)setAccidental:(int)_accidental{
@@ -139,17 +145,19 @@
 }
 
 - (void)transposeBy:(int)transposeAmount{
-	[[[self undoManager] prepareWithInvocationTarget:self] setPitch:pitch];
-	[[[self undoManager] prepareWithInvocationTarget:self] setOctave:octave];
-	pitch += transposeAmount;
-	while(pitch >= 7){
-		pitch -= 7;
-		octave++;
+	int newPitch = pitch;
+	int newOctave = octave;
+	newPitch += transposeAmount;
+	while(newPitch >= 7){
+		newPitch -= 7;
+		newOctave++;
 	}
-	while(pitch < 0){
-		pitch += 7;
-		octave--;
+	while(newPitch < 0){
+		newPitch += 7;
+		newOctave--;
 	}
+	[self setPitch:newPitch finished:YES];
+	[self setOctave:newOctave finished:YES];
 }
 
 - (void)prepareForDelete{

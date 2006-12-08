@@ -22,6 +22,9 @@ static int FLAT = -1;
 	int pitch;
 	int accidental;
 	
+	int lastOctave;
+	int lastPitch;
+	
 	Note *tieTo;
 	Note *tieFrom;
 	
@@ -34,8 +37,8 @@ static int FLAT = -1;
 - (int)getOctave;
 - (int)getAccidental;
 
-- (void)setOctave:(int)_octave;
-- (void)setPitch:(int)_pitch;
+- (void)setOctave:(int)_octave finished:(BOOL)finished;
+- (void)setPitch:(int)_pitch finished:(BOOL)finished;
 - (void)setAccidental:(int)_accidental;
 
 - (BOOL)pitchMatches:(Note *)note;
