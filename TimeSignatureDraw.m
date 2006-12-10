@@ -16,13 +16,12 @@
 @implementation TimeSignatureDraw
 
 +(void)drawTimeSig:(TimeSignature *)sig inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
-	NSRect bounds = [MeasureController innerBoundsOf:measure];
+	NSRect bounds = [[measure getControllerClass] innerBoundsOf:measure];
 	float baseY = [StaffController baseOf:[measure getStaff]];
 	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
-	float clefWidth = [ClefController widthOf:[measure getClef]];
 	if(sig != nil && ![sig isKindOfClass:[NSNull class]]){
 		NSPoint accLoc;
-		accLoc.x = bounds.origin.x + clefWidth;
+		accLoc.x = bounds.origin.x + [[measure getControllerClass] timeSigAreaX:measure];
 		accLoc.y = baseY - lineHeight * 18;
 		NSMutableDictionary *atts = [NSMutableDictionary dictionary];
 		[atts setObject:[NSFont fontWithName:@"Musicator" size:160] forKey:NSFontAttributeName];
@@ -37,7 +36,8 @@
 		[[NSColor blackColor] set];
 	} else if(isTarget){
 		NSImage *sigIns = [NSImage imageNamed:@"timesig_insert.png"];
-		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + clefWidth, bounds.origin.y) operation:NSCompositeSourceOver];			
+		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] timeSigAreaX:measure], bounds.origin.y)
+					   operation:NSCompositeSourceOver];			
 	}	
 }
 

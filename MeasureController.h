@@ -32,10 +32,13 @@
 + (float)yOfPosition:(int)position inMeasure:(Measure *)measure;
 
 + (BOOL) isOverClef:(NSPoint)location inMeasure:(Measure *)measure;
++ (float) clefAreaX:(Measure *)measure;
 
 + (BOOL) isOverTimeSig:(NSPoint)location inMeasure:(Measure *)measure;
-
++ (float) timeSigAreaX:(Measure *)measure;
+	
 + (BOOL) isOverKeySig:(NSPoint)location inMeasure:(Measure *)measure;
++ (float) keySigAreaX:(Measure *)measure;
 
 + (BOOL)isOverNote:(NoteBase *)note at:(NSPoint)location inMeasure:(Measure *)measure;
 

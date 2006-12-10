@@ -30,6 +30,15 @@
 	}
 }
 
+- (BOOL) isEqual:(id)obj {
+	return [obj isKindOfClass:[self class]] &&
+	[[obj measure] isEqual:measure];
+}
+
+- (unsigned) hash {
+	return [measure hash];
+}
+
 - (void) dealloc {
 	[measure release];
 	[super dealloc];

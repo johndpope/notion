@@ -17,14 +17,12 @@
 @implementation KeySignatureDraw
 
 +(void)drawKeySig:(KeySignature *)sig inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
-	NSRect bounds = [MeasureController innerBoundsOf:measure];
+	NSRect bounds = [[measure getControllerClass] innerBoundsOf:measure];
 	float baseY = [StaffController baseOf:[measure getStaff]];
 	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
-	float clefWidth = [ClefController widthOf:[measure getClef]];
-	float timeSigWidth = [TimeSignatureController widthOf:[measure getTimeSignature]];
 	if(sig != nil && ([sig getNumSharps] > 0 || [sig getNumFlats] > 0)){
 		NSPoint accLoc;
-		accLoc.x = bounds.origin.x + clefWidth + timeSigWidth;
+		accLoc.x = bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure];
 		NSEnumerator *sharps = [[sig getSharps] objectEnumerator];
 		NSNumber *sharp;
 		NSImage *sharpImg;
@@ -55,7 +53,8 @@
 		}
 	} else if(isTarget && ![measure isShowingKeySigPanel]){
 		NSImage *sigIns = [NSImage imageNamed:@"keysig_insert.png"];
-		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + clefWidth + timeSigWidth, bounds.origin.y) operation:NSCompositeSourceOver];			
+		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure], bounds.origin.y)
+					   operation:NSCompositeSourceOver];			
 	}	
 }
 
