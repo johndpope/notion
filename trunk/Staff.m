@@ -336,9 +336,30 @@
 	NSEnumerator *measureEnum = [measures objectEnumerator];
 	id measure;
 	float pos = 0.0;
+	BOOL isRepeating;
+	NSMutableArray *repeatMeasures = [NSMutableArray array];
 	while(measure = [measureEnum nextObject]){
+		if([measure isStartRepeat]){
+			isRepeating = YES;
+		}
 		pos += [measure addToMIDITrack:&musicTrack atPosition:pos
 				onChannel:channel];
+		if(isRepeating){
+			[repeatMeasures addObject:measure];
+		}
+		if([measure isEndRepeat]){
+			isRepeating = NO;
+			int i;
+			for(i = 1; i < [measure getNumRepeats]; i++){
+				NSEnumerator *repeatMeasuresEnum = [repeatMeasures objectEnumerator];
+				id repeatMeasure;
+				while(repeatMeasure = [repeatMeasuresEnum nextObject]){
+					pos += [measure addToMIDITrack:&musicTrack atPosition:pos
+											   onChannel:channel];
+				}
+			}
+			[repeatMeasures removeAllObjects];
+		}
 	}
 
 	MIDIMetaEvent metaEvent = { 0x2f, 0, 0, 0, 0, { 0 } };

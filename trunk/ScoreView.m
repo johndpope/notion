@@ -143,7 +143,7 @@
 		[controller dragged:clickTarget toLocation:mouseLocation withEvent:event finished:YES];
 	}
 	dragging = NO;
-	if(mouseOver == clickTarget){
+	if([mouseOver isEqual:clickTarget]){
 		[controller clickedAtLocation:mouseLocation withEvent:event];		
 	}
 	[self setFrameSize:[self calculateBounds].size];

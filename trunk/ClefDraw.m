@@ -19,7 +19,7 @@
 		NSImage *img;
 		NSPoint clefLoc;
 		float baseY = [StaffController baseOf:[measure getStaff]];
-		clefLoc.x = [MeasureController xOf:measure];
+		clefLoc.x = [[measure getControllerClass] xOf:measure] + [[measure getControllerClass] clefAreaX:measure];
 		if(clef == [Clef trebleClef]){
 			if(isTarget){
 				img = [NSImage imageNamed:@"treble over.png"];
@@ -44,7 +44,8 @@
 		} else{
 			clefIns = [NSImage imageNamed:@"clefins_treble.png"];
 		}
-		[clefIns compositeToPoint:NSMakePoint(bounds.origin.x, bounds.origin.y) operation:NSCompositeSourceOver];		
+		[clefIns compositeToPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] clefAreaX:measure], bounds.origin.y)
+						operation:NSCompositeSourceOver];		
 	}
 }
 

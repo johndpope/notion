@@ -26,8 +26,25 @@
 	return 15.0;
 }
 
++ (float)repeatAreaWidth:(Measure *)measure{
+	return 15.0;
+}
+
++ (float) clefAreaX:(Measure *)measure{
+	return [self repeatAreaWidth:measure];
+}
+
++ (float) timeSigAreaX:(Measure *)measure{
+	return [self clefAreaX:measure] + [ClefController widthOf:[measure getClef]];
+}
+
++ (float) keySigAreaX:(Measure *)measure{
+	return [self timeSigAreaX:measure] + [TimeSignatureController widthOf:[measure getTimeSignature]];
+}
+
 + (float)noteAreaStart:(Measure *)measure{
-	return [ClefController widthOf:[measure getClef]] + 
+	return [self repeatAreaWidth:measure] + 
+			[ClefController widthOf:[measure getClef]] + 
 			[KeySignatureController widthOf:[measure getKeySignature]] + 
 			[TimeSignatureController widthOf:[measure getTimeSignature]];
 }
@@ -152,18 +169,21 @@
 }
 
 + (BOOL) isOverClef:(NSPoint)location inMeasure:(Measure *)measure{
-	return location.x <= [ClefController widthOf:[measure getClef]];
+	return location.x <= [self repeatAreaWidth:measure] + [ClefController widthOf:[measure getClef]];
 }
 
 + (BOOL) isOverTimeSig:(NSPoint)location inMeasure:(Measure *)measure{
 	return ![self isOverClef:location inMeasure:measure] &&
-		location.x <= [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]];
+		location.x <= [self repeatAreaWidth:measure] + 
+		[ClefController widthOf:[measure getClef]] + 
+		[TimeSignatureController widthOf:[measure getTimeSignature]];
 }
 
 + (BOOL) isOverKeySig:(NSPoint)location inMeasure:(Measure *)measure{
 	return ![self isOverClef:location inMeasure:measure] &&
 		![self isOverTimeSig:location inMeasure:measure] &&
-			location.x <= [ClefController widthOf:[measure getClef]] + 
+			location.x <= [self repeatAreaWidth:measure] + 
+			[ClefController widthOf:[measure getClef]] + 
 			[TimeSignatureController widthOf:[measure getTimeSignature]] + 
 			[KeySignatureController widthOf:[measure getKeySignature]];
 }

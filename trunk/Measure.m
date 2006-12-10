@@ -327,6 +327,34 @@
 	return totalDuration == [[self getEffectiveTimeSignature] getMeasureDuration];
 }
 
+- (BOOL)isStartRepeat{
+	return startRepeat;
+}
+
+- (BOOL)isEndRepeat{
+	return endRepeat > 0;
+}
+
+- (int)getNumRepeats{
+	return endRepeat;
+}
+
+- (void)setStartRepeat:(BOOL)_startRepeat{
+	[[self undoManager] setActionName:@"inserting repeat"];
+	[[[self undoManager] prepareWithInvocationTarget:self] setStartRepeat:startRepeat];
+	startRepeat = _startRepeat;
+}
+
+- (void)setEndRepeat:(int)_numRepeats{
+	if([self isEndRepeat]){
+		[[self undoManager] setActionName:@"setting repeat number"];
+	} else {		
+		[[self undoManager] setActionName:@"inserting repeat"];
+	}
+	[[[self undoManager] prepareWithInvocationTarget:self] setEndRepeat:endRepeat];
+	endRepeat = _numRepeats;
+}
+
 - (Clef *)getClef{
 	return clef;
 }
@@ -566,6 +594,8 @@
 		}
 	}
 	[coder encodeObject:notes forKey:@"notes"];
+	[coder encodeBool:startRepeat forKey:@"startRepeat"];
+	[coder encodeInt:endRepeat forKey:@"endRepeat"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
@@ -589,6 +619,8 @@
 			[self setKeySignature:[KeySignature getSignatureWithFlats:0 minor:NO]];
 		}
 		[self setNotes:[coder decodeObjectForKey:@"notes"]];
+		[self setStartRepeat:[coder decodeBoolForKey:@"startRepeat"]];
+		[self setEndRepeat:[coder decodeIntForKey:@"endRepeat"]];
 	}
 	return self;
 }
