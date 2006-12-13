@@ -31,6 +31,8 @@
 
 + (float)yOfPosition:(int)position inMeasure:(Measure *)measure;
 
++ (BOOL) isOverStartRepeat:(NSPoint)location inMeasure:(Measure *)measure;
+
 + (BOOL) isOverClef:(NSPoint)location inMeasure:(Measure *)measure;
 + (float) clefAreaX:(Measure *)measure;
 

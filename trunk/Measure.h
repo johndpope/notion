@@ -23,9 +23,6 @@
 	NSMutableArray *notes;
 	NSViewAnimation *anim;
 	
-	BOOL startRepeat;
-	int endRepeat;
-	
 	IBOutlet NSView *keySigPanel;
 	IBOutlet NSPopUpButton *keySigLetter;
 	IBOutlet NSPopUpButton *keySigMajMin;
@@ -61,6 +58,8 @@
 - (int)getNumRepeats;
 - (void)setStartRepeat:(BOOL)_startRepeat;
 - (void)setEndRepeat:(int)_numRepeats;
+- (void)removeEndRepeat;
+- (BOOL)followsOpenRepeat;
 
 - (Clef *)getClef;
 - (DrumKit *)getDrumKit;

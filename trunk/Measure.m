@@ -327,22 +327,30 @@
 	return totalDuration == [[self getEffectiveTimeSignature] getMeasureDuration];
 }
 
+- (int)indexInStaff{
+	return [[[self getStaff] getMeasures] indexOfObject:self];
+}
+
 - (BOOL)isStartRepeat{
-	return startRepeat;
+	return [[[self getStaff] getSong] repeatStartsAt:[self indexInStaff]];
 }
 
 - (BOOL)isEndRepeat{
-	return endRepeat > 0;
+	return [[[self getStaff] getSong] repeatEndsAt:[self indexInStaff]];
 }
 
 - (int)getNumRepeats{
-	return endRepeat;
+	return [[[self getStaff] getSong] numRepeatsEndingAt:[self indexInStaff]];
 }
 
 - (void)setStartRepeat:(BOOL)_startRepeat{
-	[[self undoManager] setActionName:@"inserting repeat"];
-	[[[self undoManager] prepareWithInvocationTarget:self] setStartRepeat:startRepeat];
-	startRepeat = _startRepeat;
+	if(_startRepeat){
+		[[self undoManager] setActionName:@"inserting repeat"];
+		[[[self getStaff] getSong] startNewRepeatAt:[self indexInStaff]];		
+	} else {
+		[[self undoManager] setActionName:@"removing repeat"];
+		[[[self getStaff] getSong] removeRepeatStartingAt:[self indexInStaff]];
+	}
 }
 
 - (void)setEndRepeat:(int)_numRepeats{
@@ -350,9 +358,18 @@
 		[[self undoManager] setActionName:@"setting repeat number"];
 	} else {		
 		[[self undoManager] setActionName:@"inserting repeat"];
+		[[[self getStaff] getSong] endRepeatAt:[self indexInStaff]];
 	}
-	[[[self undoManager] prepareWithInvocationTarget:self] setEndRepeat:endRepeat];
-	endRepeat = _numRepeats;
+	[[[self getStaff] getSong] setNumRepeatsEndingAt:[self indexInStaff] to:_numRepeats];
+}
+
+- (void)removeEndRepeat{
+	[[self undoManager] setActionName:@"removing repeat"];
+	[[[self getStaff] getSong] removeEndRepeatAt:[self indexInStaff]];
+}
+
+- (BOOL)followsOpenRepeat{
+	return [[[self getStaff] getSong] repeatIsOpenAt:[self indexInStaff]];
 }
 
 - (Clef *)getClef{
@@ -594,8 +611,6 @@
 		}
 	}
 	[coder encodeObject:notes forKey:@"notes"];
-	[coder encodeBool:startRepeat forKey:@"startRepeat"];
-	[coder encodeInt:endRepeat forKey:@"endRepeat"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
@@ -619,8 +634,6 @@
 			[self setKeySignature:[KeySignature getSignatureWithFlats:0 minor:NO]];
 		}
 		[self setNotes:[coder decodeObjectForKey:@"notes"]];
-		[self setStartRepeat:[coder decodeBoolForKey:@"startRepeat"]];
-		[self setEndRepeat:[coder decodeIntForKey:@"endRepeat"]];
 	}
 	return self;
 }

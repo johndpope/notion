@@ -146,7 +146,7 @@
 						 measureBounds.size.height / 4 - 8);
 	[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill];
 	[NSBezierPath setDefaultLineWidth:1];
-	if(count > 1){
+	if(count > 2){
 		NSString *countString = [NSString stringWithFormat:@"x%d", count];
 		[countString drawAtPoint:NSMakePoint(measureBounds.origin.x + measureBounds.size.width - 4,
 											 measureBounds.origin.y - [countString sizeWithAttributes:nil].height - 3)
@@ -165,8 +165,26 @@
 		point1.y = point2.y = bounds.origin.y + i * bounds.size.height / 4;
 		[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
 	}
-	if([measure isStartRepeat]){		
+	BOOL drawFeedbackNote = YES;
+	NSPoint targetLoc = location;
+	targetLoc.x -= [[measure getControllerClass] xOf:measure];
+	targetLoc.y -= [[measure getControllerClass] boundsOf:measure].origin.y;
+	if(target == measure && [[measure getControllerClass] isOverStartRepeat:targetLoc inMeasure:measure]){
+		[([measure isStartRepeat] ? [[NSColor redColor] shadowWithLevel:0.4] : [NSColor redColor]) set];
 		[self drawStartRepeat:bounds];
+		[[NSColor blackColor] set];
+		drawFeedbackNote = NO;
+	}
+	else{
+		if([measure isStartRepeat]){		
+			[self drawStartRepeat:bounds];
+		}
+		if(target == measure && [measure followsOpenRepeat]){
+			[[NSColor redColor] set];
+			[self drawEndRepeat:bounds repeatCount:2];
+			[[NSColor blackColor] set];
+			drawFeedbackNote = NO;
+		}
 	}
 	if([measure isEndRepeat]){
 		[self drawEndRepeat:bounds repeatCount:[measure getNumRepeats]];
@@ -175,7 +193,7 @@
 	[TimeSignatureDraw drawTimeSig:[measure getTimeSignature] inMeasure:measure isTarget:([target isKindOfClass:[TimeSigTarget class]] && [target measure] == measure)];
 	[self drawKeySig:[measure getKeySignature] inMeasure:measure isTarget:([target isKindOfClass:[KeySigTarget class]] && [target measure] == measure)];
 	[self drawNotesInMeasure:measure target:(id)target];
-	if([[mode objectForKey:@"pointerMode"] intValue] == MODE_NOTE && target == measure){
+	if([[mode objectForKey:@"pointerMode"] intValue] == MODE_NOTE && target == measure && drawFeedbackNote){
 		[self drawFeedbackNoteInMeasure:measure targetLocation:location mode:mode];
 	}
 }
