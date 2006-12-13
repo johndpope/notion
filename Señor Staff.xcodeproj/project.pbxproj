@@ -68,6 +68,8 @@
 		789BC2A80A1FFD2000597728 /* srest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A40A1FFD2000597728 /* srest.png */; };
 		789BC2A90A1FFD2000597728 /* trest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A50A1FFD2000597728 /* trest.png */; };
 		789C1CB80A524DA900572AA8 /* sstaff.icns in Resources */ = {isa = PBXBuildFile; fileRef = 789C1CB70A524DA900572AA8 /* sstaff.icns */; };
+		78B224250B2FD48600047C6B /* Repeat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B224230B2FD48600047C6B /* Repeat.h */; };
+		78B224260B2FD48600047C6B /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B224240B2FD48600047C6B /* Repeat.m */; };
 		78B439740ABCBFE70068C522 /* ClefTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B439730ABCBFE70068C522 /* ClefTarget.m */; };
 		78B43AB80ABCCC630068C522 /* TimeSigTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43AB70ABCCC630068C522 /* TimeSigTarget.m */; };
 		78B43ABD0ABCCCA20068C522 /* KeySigTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43ABC0ABCCCA20068C522 /* KeySigTarget.m */; };
@@ -141,6 +143,7 @@
 				786BD6C50B238FAB002D16A3 /* DrumKit.h in CopyFiles */,
 				786BD89C0B23AFFF002D16A3 /* ChromaticKeySignature.h in CopyFiles */,
 				786BDA1A0B251B8C002D16A3 /* DrumStaffDraw.h in CopyFiles */,
+				78B224250B2FD48600047C6B /* Repeat.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +253,8 @@
 		789BC2A40A1FFD2000597728 /* srest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = srest.png; sourceTree = "<group>"; };
 		789BC2A50A1FFD2000597728 /* trest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trest.png; sourceTree = "<group>"; };
 		789C1CB70A524DA900572AA8 /* sstaff.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sstaff.icns; sourceTree = "<group>"; };
+		78B224230B2FD48600047C6B /* Repeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repeat.h; sourceTree = "<group>"; };
+		78B224240B2FD48600047C6B /* Repeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repeat.m; sourceTree = "<group>"; };
 		78B439720ABCBFE70068C522 /* ClefTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefTarget.h; sourceTree = "<group>"; };
 		78B439730ABCBFE70068C522 /* ClefTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefTarget.m; sourceTree = "<group>"; };
 		78B43AB60ABCCC630068C522 /* TimeSigTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSigTarget.h; sourceTree = "<group>"; };
@@ -483,6 +488,8 @@
 				786BD6C40B238FAB002D16A3 /* DrumKit.m */,
 				786BD89A0B23AFFF002D16A3 /* ChromaticKeySignature.h */,
 				786BD89B0B23AFFF002D16A3 /* ChromaticKeySignature.m */,
+				78B224230B2FD48600047C6B /* Repeat.h */,
+				78B224240B2FD48600047C6B /* Repeat.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -842,6 +849,7 @@
 				786BD6C60B238FAB002D16A3 /* DrumKit.m in Sources */,
 				786BD89D0B23AFFF002D16A3 /* ChromaticKeySignature.m in Sources */,
 				786BDA1B0B251B8C002D16A3 /* DrumStaffDraw.m in Sources */,
+				78B224260B2FD48600047C6B /* Repeat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

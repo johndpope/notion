@@ -168,19 +168,26 @@
 	return measureBounds.origin.y + measureBounds.size.height - lineHeight * position;
 }
 
++ (BOOL) isOverStartRepeat:(NSPoint)location inMeasure:(Measure *)measure{
+	return location.x <= [self repeatAreaWidth:measure];
+}
+
 + (BOOL) isOverClef:(NSPoint)location inMeasure:(Measure *)measure{
-	return location.x <= [self repeatAreaWidth:measure] + [ClefController widthOf:[measure getClef]];
+	return ![self isOverStartRepeat:location inMeasure:measure] &&
+		location.x <= [self repeatAreaWidth:measure] + [ClefController widthOf:[measure getClef]];
 }
 
 + (BOOL) isOverTimeSig:(NSPoint)location inMeasure:(Measure *)measure{
-	return ![self isOverClef:location inMeasure:measure] &&
+	return ![self isOverStartRepeat:location inMeasure:measure] &&
+		![self isOverClef:location inMeasure:measure] &&
 		location.x <= [self repeatAreaWidth:measure] + 
 		[ClefController widthOf:[measure getClef]] + 
 		[TimeSignatureController widthOf:[measure getTimeSignature]];
 }
 
 + (BOOL) isOverKeySig:(NSPoint)location inMeasure:(Measure *)measure{
-	return ![self isOverClef:location inMeasure:measure] &&
+	return ![self isOverStartRepeat:location inMeasure:measure] &&
+		![self isOverClef:location inMeasure:measure] &&
 		![self isOverTimeSig:location inMeasure:measure] &&
 			location.x <= [self repeatAreaWidth:measure] + 
 			[ClefController widthOf:[measure getClef]] + 
@@ -255,22 +262,30 @@
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
 	location.x -= [self xOf:measure];
 	location.y -= [self boundsOf:measure].origin.y;
-	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
-	int duration = [[mode objectForKey:@"duration"] intValue];
-	if([[mode objectForKey:@"triplet"] boolValue]){
-		duration = duration * 3 / 2;
-	}
-	BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
-	int accidental = [[mode objectForKey:@"accidental"] intValue];
-	BOOL tieToPrev = [[mode objectForKey:@"tieToPrev"] boolValue];
-	if(pointerMode == MODE_NOTE){
-		int pitch = [self pitchAt:location inMeasure:measure];
-		int octave = [self octaveAt:location inMeasure:measure];
-		if([self canPlaceNoteAt:location inMeasure:measure]){
-			[[measure undoManager] setActionName:@"adding note"];
-			Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:duration dotted:dotted accidental:accidental onStaff:[measure getStaff]];
-			[measure addNote:note atIndex:[self indexAt:location inMeasure:measure] tieToPrev:tieToPrev];
-			[self scrollView:view toShowMeasure:[[note getStaff] getMeasureContainingNote:note]];			
+	if([self isOverStartRepeat:location inMeasure:measure]){
+		if(![measure isStartRepeat]){
+			[measure setStartRepeat:YES];			
+		}
+	} else if([measure followsOpenRepeat]){
+		[measure setEndRepeat:2];
+	} else {
+		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
+		int duration = [[mode objectForKey:@"duration"] intValue];
+		if([[mode objectForKey:@"triplet"] boolValue]){
+			duration = duration * 3 / 2;
+		}
+		BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
+		int accidental = [[mode objectForKey:@"accidental"] intValue];
+		BOOL tieToPrev = [[mode objectForKey:@"tieToPrev"] boolValue];
+		if(pointerMode == MODE_NOTE){
+			int pitch = [self pitchAt:location inMeasure:measure];
+			int octave = [self octaveAt:location inMeasure:measure];
+			if([self canPlaceNoteAt:location inMeasure:measure]){
+				[[measure undoManager] setActionName:@"adding note"];
+				Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:duration dotted:dotted accidental:accidental onStaff:[measure getStaff]];
+				[measure addNote:note atIndex:[self indexAt:location inMeasure:measure] tieToPrev:tieToPrev];
+				[self scrollView:view toShowMeasure:[[note getStaff] getMeasureContainingNote:note]];			
+			}
 		}
 	}
 }
@@ -278,6 +293,11 @@
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
 	location.x -= [self xOf:measure];
 	location.y -= [self boundsOf:measure].origin.y;
+	if([measure isStartRepeat] && [self isOverStartRepeat:location inMeasure:measure] && 
+	   [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
+		[measure setStartRepeat:NO];
+		return YES;
+	}
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 	int duration = [[mode objectForKey:@"duration"] intValue];
 	BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];

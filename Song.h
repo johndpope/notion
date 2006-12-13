@@ -11,6 +11,7 @@
 @class Staff;
 @class TimeSignature;
 @class MusicDocument;
+@class Measure;
 
 @interface Song : NSObject <NSCoding>{
 	MusicDocument *doc;
@@ -18,6 +19,7 @@
 	NSMutableArray *staffs;
 	NSMutableArray *tempoData;
 	NSMutableArray *timeSigs;
+	NSMutableArray *repeats;
 }
 
 - (id)initWithDocument:(MusicDocument *)_doc;
@@ -44,6 +46,16 @@
 - (void)refreshTimeSigs;
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom;
 - (void)timeSigDeletedAtIndex:(int)measureIndex;
+
+- (BOOL)repeatStartsAt:(int)measureIndex;
+- (BOOL)repeatEndsAt:(int)measureIndex;
+- (int)numRepeatsEndingAt:(int)measureIndex;
+- (BOOL)repeatIsOpenAt:(int)measureIndex;
+- (void)startNewRepeatAt:(int)measureIndex;
+- (void)endRepeatAt:(int)measureIndex;
+- (void)setNumRepeatsEndingAt:(int)measureIndex to:(int)numRepeats;
+- (void)removeEndRepeatAt:(int)measureIndex;
+- (void)removeRepeatStartingAt:(int)measureIndex;
 
 - (void)soloPressed:(BOOL)solo onStaff:(Staff *)staff;
 

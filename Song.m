@@ -16,6 +16,7 @@
 
 #import "Chord.h"
 #import "Note.h"
+#import "Repeat.h"
 
 static MusicPlayer musicPlayer;
 
@@ -27,6 +28,7 @@ static MusicPlayer musicPlayer;
 		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120 withSong:self]] retain];
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
+		repeats = [[NSMutableArray array] retain];
 	}
 	return self;
 }
@@ -206,6 +208,88 @@ static MusicPlayer musicPlayer;
 	[self setTimeSignature:[NSNull null] atIndex:measureIndex];	
 }
 
+- (void)setRepeats:(NSMutableArray *)_repeats{
+	[[[self undoManager] prepareWithInvocationTarget:self] setRepeats:[repeats copy]];
+	repeats = _repeats;
+}
+
+- (Repeat *)repeatStartingAt:(int)measureIndex{
+	NSEnumerator *repeatsEnum = [repeats objectEnumerator];
+	id repeat;
+	while(repeat = [repeatsEnum nextObject]){
+		if([repeat startMeasure] == measureIndex){
+			return repeat;
+		}
+	}
+	return nil;
+}
+
+- (BOOL)repeatStartsAt:(int)measureIndex{
+	return [self repeatStartingAt:measureIndex] != nil;
+}
+
+- (Repeat *)repeatEndingAt:(int)measureIndex{
+	NSEnumerator *repeatsEnum = [repeats objectEnumerator];
+	id repeat;
+	while(repeat = [repeatsEnum nextObject]){
+		if([repeat endMeasure] == measureIndex){
+			return repeat;
+		}
+	}
+	return nil;
+}
+
+- (BOOL)repeatEndsAt:(int)measureIndex{
+	return [self repeatEndingAt:measureIndex] != nil;
+}
+
+- (int)numRepeatsEndingAt:(int)measureIndex{
+	return [[self repeatEndingAt:measureIndex] numRepeats];
+}
+
+- (BOOL)repeatIsOpenAt:(int)measureIndex{
+	NSEnumerator *repeatsEnum = [repeats objectEnumerator];
+	id repeat;
+	while(repeat = [repeatsEnum nextObject]){
+		if([repeat endMeasure] == -1 && [repeat startMeasure] <= measureIndex){
+			return YES;
+		}
+	}
+	return NO;
+}
+
+- (void)startNewRepeatAt:(int)measureIndex{
+	if(![self repeatStartsAt:measureIndex]){
+		[[[self undoManager] prepareWithInvocationTarget:self] setRepeats:[repeats copy]];
+		Repeat *repeat = [[[Repeat alloc] initWithSong:self] autorelease];
+		[repeats addObject:repeat];
+		[repeat setStartMeasure:measureIndex];
+	}
+}
+
+- (void)endRepeatAt:(int)measureIndex{
+	Repeat *repeat = nil;
+	int index = measureIndex;
+	while(repeat == nil && index >= 0){
+		repeat = [self repeatStartingAt:index];
+		index--;
+	}
+	[repeat setEndMeasure:measureIndex];
+}
+
+- (void)setNumRepeatsEndingAt:(int)measureIndex to:(int)numRepeats{
+	[[self repeatEndingAt:measureIndex] setNumRepeats:numRepeats];
+}
+
+- (void)removeEndRepeatAt:(int)measureIndex{
+	[[self repeatEndingAt:measureIndex] setEndMeasure:-1];
+}
+
+- (void) removeRepeatStartingAt:(int)measureIndex{
+	[[[self undoManager] prepareWithInvocationTarget:self] setRepeats:[repeats copy]];
+	[repeats removeObject:[self repeatStartingAt:measureIndex]];
+}
+
 - (void)soloPressed:(BOOL)solo onStaff:(Staff *)staff{
 	[[staffs do] muteSoloEnabled:(!solo)];
 	[staff muteSoloEnabled:YES];
@@ -285,6 +369,7 @@ static MusicPlayer musicPlayer;
 	[coder encodeObject:tempoData forKey:@"tempoData"];
 	NSArray *timeSigsToCode = [[TimeSignature collectSelf] asNSNumberArray:[timeSigs each]];
 	[coder encodeObject:timeSigsToCode forKey:@"timeSigs"];
+	[coder encodeObject:repeats forKey:@"repeats"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
@@ -299,6 +384,7 @@ static MusicPlayer musicPlayer;
 		NSArray *_sigs = [coder decodeObjectForKey:@"timeSigs"];
 		timeSigs = [[[TimeSignature collectSelf] fromNSNumberArray:[_sigs each]] retain];
 		[self refreshTimeSigs];
+		repeats = [coder decodeObjectForKey:@"repeats"];
 	}
 	return self;
 }
@@ -307,9 +393,11 @@ static MusicPlayer musicPlayer;
 	[staffs release];
 	[tempoData release];
 	[timeSigs release];
+	[repeats release];
 	staffs = nil;
 	tempoData = nil;
 	timeSigs = nil;
+	repeats = nil;
 	[super dealloc];
 }
 
