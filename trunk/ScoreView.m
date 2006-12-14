@@ -13,6 +13,7 @@
 #import "MeasureController.h"
 #import "Song.h"
 #import "NoteDraw.h"
+#import "Repeat.h"
 
 @implementation ScoreView
 
@@ -118,6 +119,17 @@
 		[timeSigPanel setHidden:NO withFade:YES blocking:NO];
 	}
 	if([measure isShowingKeySigPanel]) [measure keySigClose:nil];
+	[self setNeedsDisplay:YES];
+}
+
+- (void)showRepeatCountPanelFor:(Repeat *)repeat inMeasure:(Measure *)measure{
+	NSView *countPanel = [repeat getCountPanel];
+	if([countPanel superview] == nil){
+		[self addSubview:countPanel];
+		[repeat updateCountPanel];
+		[countPanel setFrameOrigin:[MeasureController repeatPanelLocationFor:measure]];
+		[countPanel setHidden:NO withFade:YES blocking:NO];
+	}
 	[self setNeedsDisplay:YES];
 }
 

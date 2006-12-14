@@ -372,6 +372,10 @@
 	return [[[self getStaff] getSong] repeatIsOpenAt:[self indexInStaff]];
 }
 
+- (Repeat *)getRepeatEndingHere{
+	return [[[self getStaff] getSong] repeatEndingAt:[self indexInStaff]];
+}
+
 - (Clef *)getClef{
 	return clef;
 }

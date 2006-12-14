@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {countChanged = id; countClose = id; }; 
+            CLASS = Repeat; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {countPanel = NSView; countStep = NSStepper; countText = NSTextField; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

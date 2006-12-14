@@ -25,6 +25,10 @@
 	return [song undoManager];
 }
 
+- (void)sendChangeNotification{
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
+}
+
 - (int) startMeasure{
 	return startMeasure;
 }
@@ -44,12 +48,48 @@
 
 - (void) setEndMeasure:(int)_endMeasure{
 	[[[self undoManager] prepareWithInvocationTarget:self] setEndMeasure:endMeasure];
+	[self countClose:nil];
 	endMeasure = _endMeasure;
 }
 
 - (void) setNumRepeats:(int)_numRepeats{
 	[[[self undoManager] prepareWithInvocationTarget:self] setNumRepeats:numRepeats];
 	numRepeats = _numRepeats;
+	[self updateCountPanel];
+}
+
+- (BOOL)isShowingCountPanel{
+	return countPanel != nil && ![countPanel isHidden];
+}
+
+- (NSView *)getCountPanel{
+	if(countPanel == nil){
+		[NSBundle loadNibNamed:@"RepeatCountPanel" owner:self];
+		[countPanel setHidden:YES];
+	}
+	return countPanel;
+}
+
+- (void)updateCountPanel{
+	[countStep setIntValue:numRepeats];
+	[countText setIntValue:numRepeats];
+}
+
+- (IBAction)countChanged:(id)sender{
+	[[self undoManager] setActionName:@"changing repeat count"];
+	int value = [sender intValue];
+	if(value < 2) value = 2;
+	[countStep setIntValue:value];
+	[countText setIntValue:value];
+	[self setNumRepeats:value];
+	[self sendChangeNotification];
+}
+
+- (IBAction)countClose:(id)sender{
+	[countPanel setHidden:YES withFade:YES blocking:(sender != nil)];
+	if([countPanel superview] != nil){
+		[countPanel removeFromSuperview];
+	}	
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

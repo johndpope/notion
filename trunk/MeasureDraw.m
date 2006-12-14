@@ -186,8 +186,15 @@
 			drawFeedbackNote = NO;
 		}
 	}
-	if([measure isEndRepeat]){
+	if(target == measure && [measure isEndRepeat] && [[measure getControllerClass] isOverEndRepeat:targetLoc inMeasure:measure]){
+		[[[NSColor redColor] shadowWithLevel:0.4] set];
 		[self drawEndRepeat:bounds repeatCount:[measure getNumRepeats]];
+		[[NSColor blackColor] set];
+		drawFeedbackNote = NO;
+	} else {
+		if([measure isEndRepeat]){
+			[self drawEndRepeat:bounds repeatCount:[measure getNumRepeats]];
+		}		
 	}
 	[self drawClef:[measure getClef] inMeasure:measure isTarget:([target isKindOfClass:[ClefTarget class]] && [target measure] == measure)];
 	[TimeSignatureDraw drawTimeSig:[measure getTimeSignature] inMeasure:measure isTarget:([target isKindOfClass:[TimeSigTarget class]] && [target measure] == measure)];

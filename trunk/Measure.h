@@ -13,6 +13,7 @@
 @class Staff;
 @class KeySignature;
 @class TimeSignature;
+@class Repeat;
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface Measure : NSObject <NSCoding> {
@@ -60,6 +61,7 @@
 - (void)setEndRepeat:(int)_numRepeats;
 - (void)removeEndRepeat;
 - (BOOL)followsOpenRepeat;
+- (Repeat *)getRepeatEndingHere;
 
 - (Clef *)getClef;
 - (DrumKit *)getDrumKit;
