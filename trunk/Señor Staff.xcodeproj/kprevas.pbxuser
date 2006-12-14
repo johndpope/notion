@@ -284,6 +284,18 @@
 			7809358A0B3113C400E2F980 /* PBXTextBookmark */ = 7809358A0B3113C400E2F980 /* PBXTextBookmark */;
 			7809358D0B3113C500E2F980 /* PBXTextBookmark */ = 7809358D0B3113C500E2F980 /* PBXTextBookmark */;
 			780935910B3113CD00E2F980 /* PBXTextBookmark */ = 780935910B3113CD00E2F980 /* PBXTextBookmark */;
+			780935940B3120A800E2F980 /* PBXTextBookmark */ = 780935940B3120A800E2F980 /* PBXTextBookmark */;
+			780935960B3120AB00E2F980 /* PBXTextBookmark */ = 780935960B3120AB00E2F980 /* PBXTextBookmark */;
+			780935970B3120AB00E2F980 /* PBXTextBookmark */ = 780935970B3120AB00E2F980 /* PBXTextBookmark */;
+			780935980B3120AB00E2F980 /* PBXTextBookmark */ = 780935980B3120AB00E2F980 /* PBXTextBookmark */;
+			780935990B3120AC00E2F980 /* PBXTextBookmark */ = 780935990B3120AC00E2F980 /* PBXTextBookmark */;
+			7809359A0B3120AC00E2F980 /* PBXTextBookmark */ = 7809359A0B3120AC00E2F980 /* PBXTextBookmark */;
+			7809359B0B3120AC00E2F980 /* PBXTextBookmark */ = 7809359B0B3120AC00E2F980 /* PBXTextBookmark */;
+			7809359E0B3120C300E2F980 /* PBXTextBookmark */ = 7809359E0B3120C300E2F980 /* PBXTextBookmark */;
+			780935A20B3120F100E2F980 /* PBXTextBookmark */ = 780935A20B3120F100E2F980 /* PBXTextBookmark */;
+			780935A30B3120F100E2F980 /* PBXTextBookmark */ = 780935A30B3120F100E2F980 /* PBXTextBookmark */;
+			780935A40B3120F100E2F980 /* PBXTextBookmark */ = 780935A40B3120F100E2F980 /* PBXTextBookmark */;
+			780935A50B3120F100E2F980 /* PBXTextBookmark */ = 780935A50B3120F100E2F980 /* PBXTextBookmark */;
 			781063B60AFE8A4D003F8F01 = 781063B60AFE8A4D003F8F01 /* PBXTextBookmark */;
 			781064290B097F10003F8F01 = 781064290B097F10003F8F01 /* PBXTextBookmark */;
 			7810645A0B0982AE003F8F01 = 7810645A0B0982AE003F8F01 /* PBXTextBookmark */;
@@ -630,7 +642,7 @@
 		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
 		name = TimeSignature;
 		rLen = 13;
-		rLoc = 9986;
+		rLoc = 10038;
 		rType = 0;
 		vrLen = 1369;
 		vrLoc = 6165;
@@ -1548,6 +1560,126 @@
 		vrLen = 740;
 		vrLoc = 3481;
 	};
+	780935940B3120A800E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */;
+		name = "ScoreView.m: showTimeSigPanelFor:";
+		rLen = 0;
+		rLoc = 3712;
+		rType = 0;
+		vrLen = 740;
+		vrLoc = 3481;
+	};
+	780935960B3120AB00E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */;
+		name = "ScoreView.m: showTimeSigPanelFor:";
+		rLen = 0;
+		rLoc = 3712;
+		rType = 0;
+		vrLen = 740;
+		vrLoc = 3481;
+	};
+	780935970B3120AB00E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */;
+		name = "ScoreView.m: showTimeSigPanelFor:";
+		rLen = 0;
+		rLoc = 3712;
+		rType = 0;
+		vrLen = 740;
+		vrLoc = 3481;
+	};
+	780935980B3120AB00E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */;
+		name = "ScoreView.m: showTimeSigPanelFor:";
+		rLen = 0;
+		rLoc = 3712;
+		rType = 0;
+		vrLen = 740;
+		vrLoc = 3481;
+	};
+	780935990B3120AC00E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78B224240B2FD48600047C6B /* Repeat.m */;
+		name = "Repeat.m: 51";
+		rLen = 0;
+		rLoc = 1015;
+		rType = 0;
+		vrLen = 1234;
+		vrLoc = 566;
+	};
+	7809359A0B3120AC00E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78B224240B2FD48600047C6B /* Repeat.m */;
+		name = "Repeat.m: 51";
+		rLen = 0;
+		rLoc = 1015;
+		rType = 0;
+		vrLen = 1234;
+		vrLoc = 566;
+	};
+	7809359B0B3120AC00E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707820AAD00850057D6DD /* MeasureController.h */;
+		name = "+ (NSPoint) repeatPanelLocationFor:(Measure *)measure;";
+		rLen = 54;
+		rLoc = 1580;
+		rType = 0;
+		vrLen = 1977;
+		vrLoc = 46;
+	};
+	7809359E0B3120C300E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */;
+		name = "ScoreView.m: showTimeSigPanelFor:";
+		rLen = 0;
+		rLoc = 3712;
+		rType = 0;
+		vrLen = 740;
+		vrLoc = 3481;
+	};
+	780935A20B3120F100E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707820AAD00850057D6DD /* MeasureController.h */;
+		name = "MeasureController.h: 42";
+		rLen = 0;
+		rLoc = 1195;
+		rType = 0;
+		vrLen = 1977;
+		vrLoc = 46;
+	};
+	780935A30B3120F100E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
+		name = "Song.m: 287";
+		rLen = 0;
+		rLoc = 7690;
+		rType = 0;
+		vrLen = 1592;
+		vrLoc = 6848;
+	};
+	780935A40B3120F100E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707820AAD00850057D6DD /* MeasureController.h */;
+		name = "MeasureController.h: 42";
+		rLen = 0;
+		rLoc = 1195;
+		rType = 0;
+		vrLen = 1977;
+		vrLoc = 46;
+	};
+	780935A50B3120F100E2F980 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
+		name = "Song.m: 293";
+		rLen = 0;
+		rLoc = 7910;
+		rType = 0;
+		vrLen = 1612;
+		vrLoc = 6848;
+	};
 	781063B60AFE8A4D003F8F01 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 784AFBB70A7F1C9A00832B7C /* NoteBase.m */;
@@ -1811,9 +1943,9 @@
 	};
 	7841FD8B0A0B08B800292132 /* Song.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1065, 5698}}";
-			sepNavSelRange = "{7690, 0}";
-			sepNavVisRect = "{{0, 3597}, {1065, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1065, 5726}}";
+			sepNavSelRange = "{7910, 0}";
+			sepNavVisRect = "{{0, 3609}, {1065, 745}}";
 			sepNavWindowFrame = "{{363, 106}, {562, 694}}";
 		};
 	};
@@ -3557,7 +3689,7 @@
 	788707820AAD00850057D6DD /* MeasureController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1065, 826}}";
-			sepNavSelRange = "{1580, 54}";
+			sepNavSelRange = "{1195, 0}";
 			sepNavVisRect = "{{0, 56}, {1065, 745}}";
 			sepNavWindowFrame = "{{101, 94}, {630, 758}}";
 		};
@@ -4511,7 +4643,7 @@
 		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
 		name = "Song.m: 317";
 		rLen = 0;
-		rLoc = 10881;
+		rLoc = 10933;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 7255;
@@ -4741,7 +4873,7 @@
 		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
 		name = "Song.m: 271";
 		rLen = 0;
-		rLoc = 7891;
+		rLoc = 7943;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 6338;
@@ -4761,7 +4893,7 @@
 		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
 		name = "Song.m: 272";
 		rLen = 0;
-		rLoc = 7891;
+		rLoc = 7943;
 		rType = 0;
 		vrLen = 1482;
 		vrLoc = 6338;
@@ -4791,7 +4923,7 @@
 		fRef = 7841FD8B0A0B08B800292132 /* Song.m */;
 		name = "Song.m: 289";
 		rLen = 0;
-		rLoc = 7829;
+		rLoc = 7911;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 6260;

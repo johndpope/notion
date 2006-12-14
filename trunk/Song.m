@@ -289,7 +289,9 @@ static MusicPlayer musicPlayer;
 
 - (void) removeRepeatStartingAt:(int)measureIndex{
 	[[[self undoManager] prepareWithInvocationTarget:self] setRepeats:[repeats copy]];
-	[repeats removeObject:[self repeatStartingAt:measureIndex]];
+	Repeat *repeat = [self repeatStartingAt:measureIndex];
+	[repeat countClose:nil];
+	[repeats removeObject:repeat];
 }
 
 - (void)soloPressed:(BOOL)solo onStaff:(Staff *)staff{
