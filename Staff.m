@@ -354,7 +354,7 @@
 				NSEnumerator *repeatMeasuresEnum = [repeatMeasures objectEnumerator];
 				id repeatMeasure;
 				while(repeatMeasure = [repeatMeasuresEnum nextObject]){
-					pos += [measure addToMIDITrack:&musicTrack atPosition:pos
+					pos += [repeatMeasure addToMIDITrack:&musicTrack atPosition:pos
 											   onChannel:channel];
 				}
 			}

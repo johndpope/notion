@@ -58,7 +58,7 @@
 		width += [NoteController widthOf:note] + [self minNoteSpacing];
 	}
 	if(width < 150.0) width = 150.0;
-	width += [self noteAreaStart:measure];
+	width += [self noteAreaStart:measure] + [self repeatAreaWidth:measure];
 	return width;
 }
 
@@ -195,6 +195,10 @@
 			[KeySignatureController widthOf:[measure getKeySignature]];
 }
 
++ (BOOL) isOverEndRepeat:(NSPoint)location inMeasure:(Measure *)measure{
+	return location.x >= [self widthOf:measure] - [self repeatAreaWidth:measure];
+}
+
 + (NSPoint) keySigPanelLocationFor:(Measure *)measure{
 	NSPoint location;
 	location.x = [MeasureController xOf:measure] + [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]];
@@ -205,6 +209,14 @@
 + (NSPoint) timeSigPanelLocationFor:(Measure *)measure{
 	NSPoint location;
 	location.x = [MeasureController xOf:measure] + [ClefController widthOf:[measure getClef]];
+	location.y = [StaffController topOf:[measure getStaff]];
+	return location;
+}
+
++ (NSPoint) repeatPanelLocationFor:(Measure *)measure{
+	NSPoint location;
+	NSRect bounds = [MeasureController boundsOf:measure];
+	location.x = bounds.origin.x + bounds.size.width - 10;
 	location.y = [StaffController topOf:[measure getStaff]];
 	return location;
 }
@@ -268,6 +280,8 @@
 		}
 	} else if([measure followsOpenRepeat]){
 		[measure setEndRepeat:2];
+	} else if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]){
+		[view showRepeatCountPanelFor:[measure getRepeatEndingHere] inMeasure:measure];
 	} else {
 		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 		int duration = [[mode objectForKey:@"duration"] intValue];
@@ -296,6 +310,11 @@
 	if([measure isStartRepeat] && [self isOverStartRepeat:location inMeasure:measure] && 
 	   [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		[measure setStartRepeat:NO];
+		return YES;
+	}
+	if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure] &&
+	   [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
+		[measure removeEndRepeat];
 		return YES;
 	}
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];

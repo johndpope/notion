@@ -12,6 +12,10 @@
 @interface Repeat : NSObject {
 	Song *song;
 	int startMeasure, endMeasure, numRepeats;
+
+	IBOutlet NSView *countPanel;
+	IBOutlet NSTextField *countText;
+	IBOutlet NSStepper *countStep;
 }
 
 - (id) initWithSong:(Song *)_song;
@@ -23,5 +27,12 @@
 - (void) setStartMeasure:(int)_startMeasure;
 - (void) setEndMeasure:(int)_endMeasure;
 - (void) setNumRepeats:(int)_numRepeats;
+
+- (BOOL)isShowingCountPanel;
+- (NSView *)getCountPanel;
+- (void)updateCountPanel;
+
+- (IBAction)countChanged:(id)sender;
+- (IBAction)countClose:(id)sender;
 
 @end

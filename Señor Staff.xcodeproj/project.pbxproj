@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780934E80B310E6900E2F980 /* RepeatCountPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 780934E70B310E6900E2F980 /* RepeatCountPanel.nib */; };
 		78124F860AAB6C6500D20E98 /* ScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */; };
 		7813C3880B1168E300CE7F59 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7813C3870B1168E300CE7F59 /* stop.png */; };
 		7813C38A0B1168FE00CE7F59 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 7813C3890B1168FE00CE7F59 /* play.png */; };
@@ -160,6 +161,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF750370BD2300C91783 /* Music Editor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Music Editor_Prefix.pch"; sourceTree = "<group>"; };
+		780934E70B310E6900E2F980 /* RepeatCountPanel.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = RepeatCountPanel.nib; sourceTree = "<group>"; };
 		78124F840AAB6C6500D20E98 /* ScoreView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ScoreView.h; sourceTree = "<group>"; };
 		78124F850AAB6C6500D20E98 /* ScoreView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ScoreView.m; sourceTree = "<group>"; };
 		7813C3870B1168E300CE7F59 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				78E758E40A4E4D2A005A67E4 /* TimeSigPanel.nib */,
 				785EE9CE0A589031005ABDAB /* StaffHorizontalRulerComponent.nib */,
 				787A93CA0B1A4FE7006FD236 /* LICENSE */,
+				780934E70B310E6900E2F980 /* RepeatCountPanel.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				787A92520B17E5E8006FD236 /* pointer.png in Resources */,
 				787A938D0B1A439A006FD236 /* qnote_t.png in Resources */,
 				787A93CB0B1A4FE7006FD236 /* LICENSE in Resources */,
+				780934E80B310E6900E2F980 /* RepeatCountPanel.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

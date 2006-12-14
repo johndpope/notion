@@ -282,7 +282,9 @@ static MusicPlayer musicPlayer;
 }
 
 - (void)removeEndRepeatAt:(int)measureIndex{
-	[[self repeatEndingAt:measureIndex] setEndMeasure:-1];
+	Repeat *repeat = [self repeatEndingAt:measureIndex];
+	[repeat setEndMeasure:-1];
+	[repeat countClose:nil];
 }
 
 - (void) removeRepeatStartingAt:(int)measureIndex{
