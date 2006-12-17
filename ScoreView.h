@@ -18,6 +18,7 @@
 	id clickTarget;
 	BOOL dragging;
 	id mouseOver;
+	id selection;
 
 	ATSFontContainerRef container;
 }
@@ -29,6 +30,9 @@
 
 - (void)drawRect:(NSRect)rect;
 - (BOOL)isOpaque;
+
+- (id)selection;
+- (void)setSelection:(id)_selection;
 
 - (NSRect)calculateBounds;
 

@@ -226,7 +226,6 @@
 }
 
 + (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
-	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 	if([self isOverClef:location inMeasure:measure]){
 		return [[ClefTarget alloc] initWithMeasure:measure];
 	}
@@ -242,6 +241,7 @@
 	float index = [self indexAt:location inMeasure:measure];
 	if(((int)(index * 2)) % 2 == 0){
 		//on a note
+		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 		NoteBase *note = [[measure getNotes] objectAtIndex:index];
 		if([self canPlaceNoteAt:location inMeasure:measure]){
 			if(pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ![self isOverNote:note at:location inMeasure:measure]){

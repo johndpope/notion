@@ -37,6 +37,17 @@
 	}
 }
 
+- (id)selection{
+	return selection;
+}
+
+- (void)setSelection:(id)_selection{
+	if(![selection isEqual:_selection]){
+		[selection release];
+		selection = [_selection retain];
+	}
+}
+
 - (NSRect)calculateBounds{
 	NSRect bounds;
 	bounds.origin.x = 0;
@@ -95,7 +106,7 @@
 	NSEnumerator *staffs = [[song staffs] objectEnumerator];
 	id staff;
 	while(staff = [staffs nextObject]){
-		[[staff getViewClass] draw:staff inView:self target:mouseOver targetLocation:mouseLocation mode:[controller getMode]];
+		[[staff getViewClass] draw:staff inView:self target:mouseOver targetLocation:mouseLocation selection:selection mode:[controller getMode]];
 	}
 }
 

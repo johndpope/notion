@@ -266,6 +266,77 @@
 	return nil;
 }
 
+- (NSArray *)notesBetweenSingleNote:(NoteBase *)note1 andNote:(NoteBase *)note2{
+	NSMutableArray *between = [NSMutableArray array];
+	Measure *measure1 = [self getMeasureContainingNote:note1];
+	Measure *measure2 = [self getMeasureContainingNote:note2];
+	Measure *firstMeasure = measure1, *lastMeasure = measure2;
+	NoteBase *firstNote = note1, *lastNote = note2;
+	if([[self getMeasures] indexOfObject:measure1] > [[self getMeasures] indexOfObject:measure2]){
+		firstMeasure = measure2;
+		lastMeasure = measure1;
+		firstNote = note2;
+		lastNote = note1;
+	}
+	if(firstMeasure == lastMeasure && 
+	   [[firstMeasure getNotes] indexOfObject:note1] > [[firstMeasure getNotes] indexOfObject:note2]){
+		firstNote = note2;
+		lastNote = note1;
+	}
+	int i;
+	for(i = [[firstMeasure getNotes] indexOfObject:firstNote]; i < [[firstMeasure getNotes] count]; i++){
+		NoteBase *note = [[firstMeasure getNotes] objectAtIndex:i];
+		[between addObject:note];
+		if(note == lastNote){
+			return between;
+		}
+	}
+	Measure *currMeasure;
+	for(currMeasure = [self getMeasureAfter:firstMeasure]; currMeasure != lastMeasure; currMeasure = [self getMeasureAfter:currMeasure]){
+		[between addObjectsFromArray:[currMeasure getNotes]];
+	}
+	for(i = 0; i <= [[lastMeasure getNotes] indexOfObject:lastNote]; i++){
+		NoteBase *note = [[lastMeasure getNotes] objectAtIndex:i];
+		[between addObject:note];
+	}
+	return between;
+}
+
+- (NSArray *)notesBetweenArray:(NSArray *)notes andNote:(NoteBase *)note2{
+	NoteBase *firstArrayNote = [notes objectAtIndex:0];
+	NoteBase *lastArrayNote = [notes lastObject];
+	Measure *firstArrayMeasure = [self getMeasureContainingNote:firstArrayNote];
+	Measure *lastArrayMeasure = [self getMeasureContainingNote:lastArrayNote];
+	Measure *secondNoteMeasure = [self getMeasureContainingNote:note2];
+	if([[self getMeasures] indexOfObject:secondNoteMeasure] < [[self getMeasures] indexOfObject:firstArrayMeasure]){
+		return [self notesBetweenSingleNote:note2 andNote:lastArrayNote];
+	}
+	if([[self getMeasures] indexOfObject:secondNoteMeasure] > [[self getMeasures] indexOfObject:lastArrayMeasure]){
+		return [self notesBetweenSingleNote:firstArrayNote andNote:note2];
+	}
+	if(secondNoteMeasure == firstArrayMeasure){
+		if([[secondNoteMeasure getNotes] indexOfObject:note2] >= [[secondNoteMeasure getNotes] indexOfObject:firstArrayNote]){
+			return [self notesBetweenSingleNote:firstArrayNote andNote:note2];
+		}
+		return [self notesBetweenSingleNote:note2 andNote:lastArrayNote];
+	}
+	if(secondNoteMeasure == lastArrayMeasure){
+		if([[secondNoteMeasure getNotes] indexOfObject:note2] <= [[secondNoteMeasure getNotes] indexOfObject:lastArrayNote]){
+			return [self notesBetweenSingleNote:firstArrayNote andNote:note2];
+		}
+		return [self notesBetweenSingleNote:firstArrayNote andNote:note2];
+	}
+	return [self notesBetweenSingleNote:firstArrayNote andNote:note2];
+}
+
+- (NSArray *)notesBetweenNote:(id)note1 andNote:(NoteBase *)note2{
+	if([note1 respondsToSelector:@selector(containsObject:)]){
+		return [self notesBetweenArray:note1 andNote:note2];
+	} else {
+		return [self notesBetweenSingleNote:note1 andNote:note2];
+	}
+}
+
 - (void)toggleClefAtMeasure:(Measure *)measure{
 	Clef *oldClef = [measure getClef];
 	if(oldClef != nil && measure != [measures objectAtIndex:0]){

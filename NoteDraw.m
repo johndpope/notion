@@ -38,6 +38,17 @@ static NSColor *mouseOverColor;
 	return position <= 4;
 }
 
++(BOOL)isSelected:(NoteBase *)note inSelection:(id)selection{
+	if(note == selection){
+		return true;
+	}
+	if([selection respondsToSelector:@selector(containsObject:)] &&
+	   [selection containsObject:note]){
+		return true;
+	}
+	return false;
+}
+
 + (NSRect)bodyRectFor:(NoteBase *)note atIndex:(float)index inMeasure:(Measure *)measure{
 	NSRect body;
 	Clef *clef = [measure getEffectiveClef];
@@ -200,8 +211,8 @@ static NSColor *mouseOverColor;
 	[drawnTriplets addObjectsFromArray:notesToDraw];
 }
 
-+(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target{
-	[self draw:note inMeasure:measure atIndex:index isTarget:(target == note) isOffset:NO 
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection{
+	[self draw:note inMeasure:measure atIndex:index isTarget:((target == note) || [self isSelected:note inSelection:selection]) isOffset:NO 
 		isInChordWithOffset:NO stemUpwards:[self isStemUpwards:note inMeasure:measure]];
 }
 

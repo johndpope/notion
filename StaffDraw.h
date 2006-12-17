@@ -14,7 +14,8 @@
 
 }
 
-+ (void) draw:(Staff *)staff inView:(NSView *)view target:(id)target targetLocation:(NSPoint)location mode:(NSDictionary *)mode;
++ (void) draw:(Staff *)staff inView:(NSView *)view target:(id)target targetLocation:(NSPoint)location selection:(id)selection
+		 mode:(NSDictionary *)mode;
 
 + (void) mustDraw:(Measure *)measure;
 
