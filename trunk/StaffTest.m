@@ -203,6 +203,190 @@
 	STAssertNil([staff findPreviousNoteMatching:thirdNote inMeasure:measure], @"Wrong note returned.");
 	[firstNote release];
 	[secondNote release];
+	[thirdNote release];
+}
+
+- (void) testNotesBetweenLeftToRightWithinMeasure{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	NSArray *between = [staff notesBetweenNote:firstNote andNote:thirdNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenRightToLeftWithinMeasure{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	NSArray *between = [staff notesBetweenNote:thirdNote andNote:firstNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenLeftToRightAcrossMeasures{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
+	NSArray *between = [staff notesBetweenNote:firstNote andNote:thirdNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenRightToLeftAcrossMeasures{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
+	NSArray *between = [staff notesBetweenNote:thirdNote andNote:firstNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenSingleNote{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	NSArray *between = [staff notesBetweenNote:firstNote andNote:firstNote];
+	STAssertEquals([between count], (unsigned)1, @"Wrong number of notes between note and itself.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first note and itself.");
+	STAssertFalse([between containsObject:secondNote], @"Second note not between first note and itself.");
+	STAssertFalse([between containsObject:thirdNote], @"Third note not between first note and itself.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first note and itself.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenArrayLeftToRightWithinMeasure{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	NSArray *array = [NSArray arrayWithObjects:firstNote, secondNote, nil];
+	NSArray *between = [staff notesBetweenNote:array andNote:thirdNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenArrayRightToLeftWithinMeasure{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	NSArray *array = [NSArray arrayWithObjects:secondNote, thirdNote, nil];
+	NSArray *between = [staff notesBetweenNote:array andNote:firstNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenArrayLeftToRightAcrossMeasures{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
+	NSArray *array = [NSArray arrayWithObjects:firstNote, secondNote, nil];
+	NSArray *between = [staff notesBetweenNote:array andNote:thirdNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void) testNotesBetweenArrayRightToLeftAcrossMeasures{
+	Measure *measure = [staff getLastMeasure];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:1 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
+	NSArray *array = [NSArray arrayWithObjects:secondNote, thirdNote, nil];
+	NSArray *between = [staff notesBetweenNote:array andNote:firstNote];
+	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
+	STAssertTrue([between containsObject:firstNote], @"First note not between first and third notes.");
+	STAssertTrue([between containsObject:secondNote], @"Second note not between first and third notes.");
+	STAssertTrue([between containsObject:thirdNote], @"Third note not between first and third notes.");
+	STAssertFalse([between containsObject:fourthNote], @"Fourth note between first and third notes.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
 }
 
 // ----- undo/redo tests -----

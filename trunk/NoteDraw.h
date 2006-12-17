@@ -17,8 +17,9 @@
 +(void)resetAccidentals;
 
 +(BOOL)isStemUpwards:(NoteBase *)note inMeasure:(Measure *)measure;
++(BOOL)isSelected:(NoteBase *)note inSelection:(id)selection;
 
-+(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target;
++(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection;
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted
    isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards;
 

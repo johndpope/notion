@@ -12,6 +12,7 @@
 #import "NoteBase.h"
 #import "Chord.h"
 #import "Measure.h"
+#import "ScoreView.h"
 
 @implementation NoteController
 
@@ -60,6 +61,14 @@
 		}
 	}
 	return NO;
+}
+
++ (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view{
+	if(([event modifierFlags] & NSShiftKeyMask) && [view selection] != nil){
+		[view setSelection:[[note getStaff] notesBetweenNote:[view selection] andNote:note]];
+	} else {
+		[view setSelection:note];		
+	}
 }
 
 + (void)handleDrag:(NSEvent *)event to:(NSPoint)location on:(NoteBase *)note finished:(BOOL)finished mode:(NSDictionary *)mode view:(ScoreView *)view{

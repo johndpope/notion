@@ -57,6 +57,8 @@
 - (NoteBase *)noteBefore:(NoteBase *)note;
 - (NoteBase *)noteAfter:(NoteBase *)note;
 
+- (NSArray *)notesBetweenNote:(id)note1 andNote:(NoteBase *)note2;
+
 - (void)cleanPanels;
 
 - (BOOL)isDrums;

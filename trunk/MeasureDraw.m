@@ -75,11 +75,11 @@
 	}	
 }
 
-+(void)drawNotesInMeasure:(Measure *)measure target:(id)target{
++(void)drawNotesInMeasure:(Measure *)measure target:(id)target selection:(id)selection{
 	NSEnumerator *notes = [[measure getNotes] objectEnumerator];
 	id note;
 	while(note = [notes nextObject]){
-		[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] target:target];
+		[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] target:target selection:selection];
 	}
 }
 
@@ -105,7 +105,7 @@
 				return;
 			}
 		}
-		[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index target:nil];		
+		[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index target:nil selection:nil];		
 	}
 	[[NSColor blackColor] set];
 }
@@ -154,7 +154,7 @@
 	}
 }
 
-+(void)draw:(Measure *)measure target:(id)target targetLocation:(NSPoint)location mode:(NSDictionary *)mode{
++(void)draw:(Measure *)measure target:(id)target targetLocation:(NSPoint)location selection:(id)selection mode:(NSDictionary *)mode{
 	NSRect bounds = [MeasureController innerBoundsOf:measure];
 	[NSBezierPath strokeRect:bounds];
 	int i;
@@ -199,7 +199,7 @@
 	[self drawClef:[measure getClef] inMeasure:measure isTarget:([target isKindOfClass:[ClefTarget class]] && [target measure] == measure)];
 	[TimeSignatureDraw drawTimeSig:[measure getTimeSignature] inMeasure:measure isTarget:([target isKindOfClass:[TimeSigTarget class]] && [target measure] == measure)];
 	[self drawKeySig:[measure getKeySignature] inMeasure:measure isTarget:([target isKindOfClass:[KeySigTarget class]] && [target measure] == measure)];
-	[self drawNotesInMeasure:measure target:(id)target];
+	[self drawNotesInMeasure:measure target:target selection:selection];
 	if([[mode objectForKey:@"pointerMode"] intValue] == MODE_NOTE && target == measure && drawFeedbackNote){
 		[self drawFeedbackNoteInMeasure:measure targetLocation:location mode:mode];
 	}
