@@ -13,6 +13,7 @@
 #import "Chord.h"
 #import "Measure.h"
 #import "ScoreView.h"
+#import <Chomp/Chomp.h>
 
 @implementation NoteController
 
@@ -42,22 +43,32 @@
 	return [MeasureController xOfIndex:[[measure getNotes] indexOfObject:note] inMeasure:measure];
 }
 
++ (BOOL)doNoteDeletion:(NoteBase *)note{
+	[[note undoManager] setActionName:@"deleting note"];
+	Chord *chord = [[note getStaff] getChordContainingNote:note];
+	if(chord == nil){
+		Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+		if(measure != nil){
+			[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:note] temporary:NO];
+			return YES;			
+		}			
+	} else {
+		Measure *measure = [[note getStaff] getMeasureContainingNote:chord];
+		if(measure != nil){
+			[measure removeNote:note fromChordAtIndex:[[measure getNotes] indexOfObject:chord]];
+			return YES;
+		}			
+	}	
+}
+
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view{
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
-		[[note undoManager] setActionName:@"deleting note"];
-		Chord *chord = [[note getStaff] getChordContainingNote:note];
-		if(chord == nil){
-			Measure *measure = [[note getStaff] getMeasureContainingNote:note];
-			if(measure != nil){
-				[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:note] temporary:NO];
-				return YES;			
-			}			
+		if([[view selection] respondsToSelector:@selector(containsObject:)] && [[view selection] containsObject:note]){
+			[[self doSelf] doNoteDeletion:[[view selection] each]];
+			[[note undoManager] setActionName:@"deleting notes"];
+			return YES;
 		} else {
-			Measure *measure = [[note getStaff] getMeasureContainingNote:chord];
-			if(measure != nil){
-				[measure removeNote:note fromChordAtIndex:[[measure getNotes] indexOfObject:chord]];
-				return YES;
-			}			
+			return [self doNoteDeletion:note];
 		}
 	}
 	return NO;
