@@ -37,6 +37,21 @@
 	return NO;
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder{
+	[coder encodeObject:staff forKey:@"staff"];
+	[coder encodeInt:duration forKey:@"duration"];
+	[coder encodeBool:dotted forKey:@"dotted"];
+}
+
+- (id)initWithCoder:(NSCoder *)coder{
+	if(self = [super init]){
+		staff = [coder decodeObjectForKey:@"staff"];
+		duration = [coder decodeIntForKey:@"duration"];
+		dotted = [coder decodeBoolForKey:@"dotted"];
+	}
+	return self;
+}
+
 - (Class)getViewClass{
 	return [RestDraw class];
 }
