@@ -205,6 +205,10 @@
 
 - (id)targetAt:(NSPoint)location withEvent:(NSEvent *)event{
 	id modeDict = [self getMode];
+	return [self targetAt:location withEvent:event mode:modeDict];
+}
+
+- (id)targetAt:(NSPoint)location withEvent:(NSEvent *)event mode:(NSDictionary *)modeDict{
 	id song = [[self document] getSong];
 	return [ScoreController targetAtLocation:location inSong:song mode:modeDict withEvent:(NSEvent *)event];	
 }
@@ -247,6 +251,15 @@
 	if([[target getControllerClass] respondsToSelector:@selector(handleDrag:from:to:on:finished:mode:view:)]){
 		id modeDict = [self getMode];
 		[[target getControllerClass] handleDrag:event from:fromLocation to:location on:target finished:finished mode:modeDict view:view];
+	}
+}
+
+- (void)paste:(id)data atLocation:(NSPoint)location{
+	NSMutableDictionary *modeDict = [NSMutableDictionary dictionaryWithDictionary:[self getMode]];
+	[modeDict setObject:@"paste" forKey:@"specialEvent"];
+	id target = [self targetAt:location withEvent:nil mode:modeDict];
+	if([[target getControllerClass] respondsToSelector:@selector(handlePaste:at:on:mode:)]){
+		[[target getControllerClass] handlePaste:data at:location on:target mode:modeDict];
 	}
 }
 

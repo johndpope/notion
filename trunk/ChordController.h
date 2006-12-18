@@ -25,5 +25,6 @@
 + (NoteBase *)noteAt:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure;
 
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Chord *)chord mode:(NSDictionary *)mode view:(ScoreView *)view;
++ (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Chord *)chord mode:(NSDictionary *)mode view:(ScoreView *)view;
 
 @end

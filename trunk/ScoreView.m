@@ -199,6 +199,29 @@
 	[self updateFeedback:event];
 }
 
+- (void)cut:(id)sender{
+	NSLog(@"cut");
+}
+
+- (void)copy:(id)sender{
+	NSPasteboard *pb = [NSPasteboard generalPasteboard];
+	[pb declareTypes:[NSArray arrayWithObject:@"NotesPBType"] owner:self];
+	NSData *data = nil;
+	if([self selection] != nil){
+		data = [NSKeyedArchiver archivedDataWithRootObject:selection];
+	} else if(mouseOver != nil && [mouseOver respondsToSelector:@selector(encodeWithCoder:)]){
+		data = [NSKeyedArchiver archivedDataWithRootObject:mouseOver];
+	}
+	[pb setData:data forType:@"NotesPBType"];
+}
+
+- (void)paste:(id)sender{
+	NSPasteboard *pb = [NSPasteboard generalPasteboard];
+	id data = [NSKeyedUnarchiver unarchiveObjectWithData:[pb dataForType:@"NotesPBType"]];
+	[controller paste:data atLocation:mouseLocation];
+	[self updateFeedback:nil];
+}
+
 - (BOOL)isFlipped{
 	return YES;
 }

@@ -28,7 +28,7 @@
 @implementation MeasureDraw
 
 +(void)drawClef:(Clef *)clef inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
-	Class *viewClass = (clef == nil) ? [ClefDraw class] : [clef getViewClass];
+	Class viewClass = (clef == nil) ? [ClefDraw class] : [clef getViewClass];
 	[viewClass draw:clef inMeasure:measure isTarget:isTarget];
 }
 
