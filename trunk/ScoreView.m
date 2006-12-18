@@ -154,7 +154,7 @@
 }
 
 - (void)mouseDown:(NSEvent *)event{
-	mouseLocation = [self convertPoint:[event locationInWindow] fromView:nil];
+	dragStart = mouseLocation = [self convertPoint:[event locationInWindow] fromView:nil];
 	clickTarget = mouseOver;
 	[self setFrameSize:[self calculateBounds].size];
 	[self updateFeedback:event];
@@ -163,7 +163,7 @@
 - (void)mouseUp:(NSEvent *)event{
 	mouseLocation = [self convertPoint:[event locationInWindow] fromView:nil];
 	if(dragging){
-		[controller dragged:clickTarget toLocation:mouseLocation withEvent:event finished:YES];
+		[controller dragged:clickTarget fromLocation:dragStart toLocation:mouseLocation withEvent:event finished:YES];
 	}
 	dragging = NO;
 	if([mouseOver isEqual:clickTarget]){
@@ -176,7 +176,7 @@
 - (void)mouseDragged:(NSEvent *)event{
 	dragging = YES;
 	mouseLocation = [self convertPoint:[event locationInWindow] fromView:nil];
-	[controller dragged:clickTarget toLocation:mouseLocation withEvent:event finished:NO];
+	[controller dragged:clickTarget fromLocation:dragStart toLocation:mouseLocation withEvent:event finished:NO];
 	[self setFrameSize:[self calculateBounds].size];
 	[self updateFeedback:event];
 }

@@ -15,7 +15,7 @@
 @implementation RestDraw
 
 +(void)draw:(NoteBase *)rest inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection{
-	BOOL highlighted = ((target == rest) || [self isSelected:rest inSelection:selection]);
+	BOOL highlighted = ((target == rest) || [[rest getControllerClass] isSelected:rest inSelection:selection]);
 	float x = [NoteController xOf:rest inMeasure:measure];
 	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
 	NSRect measureBounds = [MeasureController innerBoundsOf:measure];

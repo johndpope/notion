@@ -243,10 +243,10 @@
 	return handled;
 }
 
-- (void)dragged:(id)target toLocation:(NSPoint)location withEvent:(NSEvent *)event finished:(BOOL)finished{
-	if([[target getControllerClass] respondsToSelector:@selector(handleDrag:to:on:finished:mode:view:)]){
+- (void)dragged:(id)target fromLocation:(NSPoint)fromLocation toLocation:(NSPoint)location withEvent:(NSEvent *)event finished:(BOOL)finished{
+	if([[target getControllerClass] respondsToSelector:@selector(handleDrag:from:to:on:finished:mode:view:)]){
 		id modeDict = [self getMode];
-		[[target getControllerClass] handleDrag:event to:location on:target finished:finished mode:modeDict view:view];
+		[[target getControllerClass] handleDrag:event from:fromLocation to:location on:target finished:finished mode:modeDict view:view];
 	}
 }
 

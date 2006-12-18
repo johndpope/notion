@@ -37,6 +37,10 @@
 	return [[[[self getStaff] getSong] document] undoManager];
 }
 
+- (void)sendChangeNotification{
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
+}
+
 - (float)getEffectiveDuration{
 	float effDuration = 3.0 / (float)[self getDuration];
 	if([self getDotted]) effDuration *= 1.5;

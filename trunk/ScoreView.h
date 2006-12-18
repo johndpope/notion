@@ -14,7 +14,7 @@
 	MEWindowController *controller;
 	Song *song;
 	
-	NSPoint mouseLocation;
+	NSPoint mouseLocation, dragStart;
 	id clickTarget;
 	BOOL dragging;
 	id mouseOver;
