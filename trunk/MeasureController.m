@@ -272,6 +272,7 @@
 }
 
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
+	[view setSelection:nil];
 	location.x -= [self xOf:measure];
 	location.y -= [self boundsOf:measure].origin.y;
 	if([self isOverStartRepeat:location inMeasure:measure]){
@@ -316,6 +317,19 @@
 	   [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		[measure removeEndRepeat];
 		return YES;
+	}
+	if([view selection] != nil && [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
+		if([[view selection] respondsToSelector:@selector(objectAtIndex:)]){
+			BOOL handled = [[[[view selection] objectAtIndex:0] getControllerClass] handleKeyPress:event at:location on:[[view selection] objectAtIndex:0] mode:mode view:view];
+			if(handled){
+				return YES;
+			}
+		} else {
+			BOOL handled = [[[view selection] getControllerClass] handleKeyPress:event at:location on:[view selection] mode:mode view:view];
+			if(handled){
+				return YES;
+			}
+		}
 	}
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 	int duration = [[mode objectForKey:@"duration"] intValue];
