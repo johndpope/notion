@@ -35,6 +35,8 @@ static int FLAT = -1;
 		
 - (int)getPitch;
 - (int)getOctave;
+- (int)getLastPitch;
+- (int)getLastOctave;
 - (int)getAccidental;
 
 - (void)setOctave:(int)_octave finished:(BOOL)finished;

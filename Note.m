@@ -42,6 +42,12 @@
 - (int)getAccidental{
 	return accidental;
 }
+- (int)getLastPitch{
+	return lastPitch;
+}
+- (int)getLastOctave{
+	return lastOctave;
+}
 
 - (void)setDuration:(int)_duration{
 	duration = _duration;
@@ -55,6 +61,7 @@
 		lastOctave = _octave;
 	}
 	octave = _octave;
+	[self sendChangeNotification];
 }
 - (void)setPitch:(int)_pitch finished:(BOOL)finished{
 	if(finished){
@@ -62,9 +69,11 @@
 		lastPitch = _pitch;
 	}
 	pitch = _pitch;
+	[self sendChangeNotification];
 }
 - (void)setAccidental:(int)_accidental{
 	accidental = _accidental;
+	[self sendChangeNotification];
 }
 
 - (id)copyWithZone:(NSZone *)zone{

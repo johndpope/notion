@@ -26,7 +26,9 @@
 
 - (Staff *)getStaff;
 - (void)setStaff:(Staff *)_staff;
+
 - (NSUndoManager *)undoManager;
+- (void)sendChangeNotification;
 
 - (float)getEffectiveDuration;
 

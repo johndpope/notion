@@ -17,6 +17,17 @@
 
 @implementation NoteController
 
++(BOOL)isSelected:(NoteBase *)note inSelection:(id)selection{
+	if(note == selection){
+		return true;
+	}
+	if([selection respondsToSelector:@selector(containsObject:)] &&
+	   [selection containsObject:note]){
+		return true;
+	}
+	return false;
+}
+
 + (float) widthOf:(NoteBase *)note{
 	return (72.0 / [note getDuration]) * ([note getDotted] ? 1.5 : 1);	
 }
@@ -82,14 +93,38 @@
 	}
 }
 
-+ (void)handleDrag:(NSEvent *)event to:(NSPoint)location on:(NoteBase *)note finished:(BOOL)finished mode:(NSDictionary *)mode view:(ScoreView *)view{
-	Measure *measure = [[note getStaff] getMeasureContainingNote:note];
-	id controller = [measure getControllerClass];
-	location.y -= [controller boundsOf:measure].origin.y;
-	int pitch = [controller pitchAt:location inMeasure:measure];
-	int octave = [controller octaveAt:location inMeasure:measure];
-	[note setPitch:pitch finished:finished];
-	[note setOctave:octave finished:finished];
++ (void)dragNote:(NoteBase *)note to:(NSPoint)location finished:(BOOL)finished{
+	if([note respondsToSelector:@selector(setPitch:finished:)] && [note respondsToSelector:@selector(setOctave:finished:)]){
+		Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+		id controller = [measure getControllerClass];
+		location.y -= [controller boundsOf:measure].origin.y;
+		int pitch = [controller pitchAt:location inMeasure:measure];
+		int octave = [controller octaveAt:location inMeasure:measure];
+		[note setPitch:pitch finished:finished];
+		[note setOctave:octave finished:finished];	
+	}
+}
+
++ (void)handleDrag:(NSEvent *)event from:(NSPoint)fromLocation to:(NSPoint)location on:(NoteBase *)note finished:(BOOL)finished mode:(NSDictionary *)mode view:(ScoreView *)view{
+	if([[view selection] respondsToSelector:@selector(containsObject:)] && [[view selection] containsObject:note]){
+		NSEnumerator *notes = [[view selection] objectEnumerator];
+		id selectNote;
+		while(selectNote = [notes nextObject]){
+			if([selectNote respondsToSelector:@selector(getLastPitch)] && [selectNote respondsToSelector:@selector(getLastOctave)]){
+				Measure *measure = [[selectNote getStaff] getMeasureContainingNote:note];
+				id controller = [measure getControllerClass];
+				int lastPosition = [[measure getEffectiveClef] getPositionForPitch:[selectNote getLastPitch] withOctave:[selectNote getLastOctave]];
+				NSPoint fakeLocation;
+				fakeLocation.x = location.x;
+				fakeLocation.y = location.y - fromLocation.y + [controller yOfPosition:lastPosition inMeasure:measure];
+				[self dragNote:selectNote to:fakeLocation finished:finished];
+			}
+		}
+		[[note undoManager] setActionName:@"dragging notes"];
+	} else {
+		[self dragNote:note to:location finished:finished];
+		[[note undoManager] setActionName:@"dragging note"];
+	}
 }
 
 @end
