@@ -11,6 +11,7 @@
 #import "Note.h"
 #import "MeasureDraw.h"
 #import "NoteDraw.h"
+#import "NoteController.h"
 
 @implementation ChordDraw
 
@@ -51,7 +52,7 @@
 	return NO;
 }
 
-+(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index target:(id)target{
++(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection{
 	NSEnumerator *notes = [[chord getNotes] objectEnumerator];
 	id note;
 	BOOL hasOffset = NO;
@@ -63,7 +64,8 @@
 	}
 	notes = [[chord getNotes] objectEnumerator];
 	while(note = [notes nextObject]){
-		[[note getViewClass] draw:note inMeasure:measure atIndex:index isTarget:(target == note || target == chord) 
+		[[note getViewClass] draw:note inMeasure:measure atIndex:index 
+						 isTarget:(target == note || target == chord || [NoteController isSelected:chord inSelection:selection]) 
 						 isOffset:[self isOffset:note inChord:chord inMeasure:measure]
 			  isInChordWithOffset:hasOffset
 					  stemUpwards:[self isStemUpwards:chord inMeasure:measure]];

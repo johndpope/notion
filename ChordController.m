@@ -53,4 +53,12 @@
 	return NO;
 }
 
++ (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Chord *)chord mode:(NSDictionary *)mode view:(ScoreView *)view{
+	if(([event modifierFlags] & NSShiftKeyMask) && [view selection] != nil){
+		[view setSelection:[[chord getStaff] notesBetweenNote:[view selection] andNote:chord]];
+	} else {
+		[view setSelection:chord];		
+	}
+}
+
 @end

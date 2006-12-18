@@ -226,6 +226,9 @@
 }
 
 + (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
+	if([[mode objectForKey:@"specialEvent"] isEqualToString:@"paste"]){
+		return measure;
+	}
 	if([self isOverClef:location inMeasure:measure]){
 		return [[ClefTarget alloc] initWithMeasure:measure];
 	}
@@ -342,6 +345,28 @@
 		return YES;
 	}
 	return NO;
+}
+
++ (void)cleanNoteForPaste:(NoteBase *)note inMeasure:(Measure *)measure preserveTiesWithin:(NSArray *)array{
+	[note setStaff:[measure getStaff]];
+	if(![array containsObject:[note getTieTo]]){
+		[note tieTo:nil];
+	}
+	if(![array containsObject:[note getTieFrom]]){
+		[note tieFrom:nil];
+	}
+}
+
++ (void)handlePaste:(id)data at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode{
+	if([data isKindOfClass:[NoteBase class]]){
+		[self cleanNoteForPaste:data inMeasure:measure preserveTiesWithin:nil];
+		[measure addNote:data atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];	
+		[[measure undoManager] setActionName:@"pasting note"];
+	} else if([data respondsToSelector:@selector(containsObject:)]){
+		[[self doSelf] cleanNoteForPaste:[data each] inMeasure:measure preserveTiesWithin:data];
+		[measure addNotes:data atIndex:[self indexAt:location inMeasure:measure]];
+		[[measure undoManager] setActionName:@"pasting notes"];
+	}
 }
 
 @end
