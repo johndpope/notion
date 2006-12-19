@@ -26,8 +26,8 @@ static NSDictionary *drumNameAttributes;
 	return nil;
 }
 
-+ (void) draw:(Staff *)staff inView:(NSView *)view target:(id)target targetLocation:(NSPoint)location mode:(NSDictionary *)mode{
-	[super draw:staff inView:view target:target targetLocation:location mode:mode];
++ (void) draw:(Staff *)staff inView:(NSView *)view target:(id)target targetLocation:(NSPoint)location selection:(id)selection mode:(NSDictionary *)mode{
+	[super draw:staff inView:view target:target targetLocation:location selection:selection mode:mode];
 	
 	if(drumNameAttributes == nil){
 		drumNameAttributes = [[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:8], NSFontAttributeName, nil] retain];
