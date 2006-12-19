@@ -358,6 +358,7 @@
 }
 
 + (void)handlePaste:(id)data at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode{
+	location.x -= [self xOf:measure];
 	if([data isKindOfClass:[NoteBase class]]){
 		[self cleanNoteForPaste:data inMeasure:measure preserveTiesWithin:nil];
 		[measure addNote:data atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];	

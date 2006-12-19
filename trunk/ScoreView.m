@@ -200,7 +200,18 @@
 }
 
 - (void)cut:(id)sender{
-	NSLog(@"cut");
+	[self copy:sender];
+	if([selection respondsToSelector:@selector(containsObject:)]){
+		NSEnumerator *notes = [selection objectEnumerator];
+		id note;
+		while(note = [notes nextObject]){
+			[[note getControllerClass] doNoteDeletion:note];
+		}
+		[[[controller document] undoManager] setActionName:@"cutting note"];
+	} else {
+		[[selection getControllerClass] doNoteDeletion:selection];
+		[[[controller document] undoManager] setActionName:@"cutting notes"];
+	}
 }
 
 - (void)copy:(id)sender{

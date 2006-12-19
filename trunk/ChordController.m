@@ -43,12 +43,16 @@
 	return nil;
 }
 
++ (BOOL)doNoteDeletion:(Chord *)chord{
+	Measure *measure = [[chord getStaff] getMeasureContainingNote:chord];
+	[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:chord] temporary:NO];
+	return YES;
+}
+
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Chord *)chord mode:(NSDictionary *)mode view:(ScoreView *)view{
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		[[chord undoManager] setActionName:@"deleting note"];
-		Measure *measure = [[chord getStaff] getMeasureContainingNote:chord];
-		[measure removeNoteAtIndex:[[measure getNotes] indexOfObject:chord] temporary:NO];
-		return YES;
+		return [self doNoteDeletion:chord];
 	}
 	return NO;
 }
