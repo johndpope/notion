@@ -208,9 +208,12 @@ static MusicPlayer musicPlayer;
 	[self setTimeSignature:[NSNull null] atIndex:measureIndex];	
 }
 
-- (void)setRepeats:(NSMutableArray *)_repeats{
+- (void)setRepeats:(NSArray *)_repeats{
 	[[[self undoManager] prepareWithInvocationTarget:self] setRepeats:[repeats copy]];
-	repeats = _repeats;
+	if(![repeats isEqual:_repeats]){
+		[repeats release];
+		repeats = [_repeats retain];
+	}
 }
 
 - (Repeat *)repeatStartingAt:(int)measureIndex{
@@ -388,7 +391,7 @@ static MusicPlayer musicPlayer;
 		NSArray *_sigs = [coder decodeObjectForKey:@"timeSigs"];
 		timeSigs = [[[TimeSignature collectSelf] fromNSNumberArray:[_sigs each]] retain];
 		[self refreshTimeSigs];
-		repeats = [coder decodeObjectForKey:@"repeats"];
+		[self setRepeats:[coder decodeObjectForKey:@"repeats"]];
 	}
 	return self;
 }

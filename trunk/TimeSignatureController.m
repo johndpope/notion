@@ -23,7 +23,9 @@
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		[[[sig measure] undoManager] setActionName:@"deleting time signature"];
 		[[sig measure] timeSigDelete];
+		return YES;
 	}
+	return NO;
 }
 
 @end

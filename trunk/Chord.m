@@ -34,6 +34,7 @@
 		staff = _staff;
 		notes = [[[NSMutableArray alloc] initWithArray:_notes copyItems:_copyItems] retain];
 	}
+	return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone{
