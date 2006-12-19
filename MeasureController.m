@@ -164,7 +164,6 @@
 + (float)yOfPosition:(int)position inMeasure:(Measure *)measure{
 	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
 	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
-	Clef *clef = [measure getEffectiveClef];
 	return measureBounds.origin.y + measureBounds.size.height - lineHeight * position;
 }
 

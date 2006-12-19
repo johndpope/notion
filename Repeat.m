@@ -104,6 +104,7 @@
 	[self setStartMeasure:[coder decodeIntForKey:@"startMeasure"]];
 	[self setEndMeasure:[coder decodeIntForKey:@"endMeasure"]];
 	[self setNumRepeats:[coder decodeIntForKey:@"numRepeats"]];
+	return self;
 }
 
 @end

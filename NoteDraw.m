@@ -218,7 +218,6 @@ static NSColor *mouseOverColor;
 	}
 	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
 	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
-	float middle = measureBounds.origin.y + measureBounds.size.height / 2.0;
 	Clef *clef = [measure getEffectiveClef];
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
 	NSRect body = [self bodyRectFor:note atIndex:index inMeasure:measure];

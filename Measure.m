@@ -549,8 +549,6 @@
 }
 
 - (void)updateKeySigPanel{
-	int index;
-	BOOL minor;
 	KeySignature *sig = [self getEffectiveKeySignature];
 	[keySigLetter selectItemAtIndex:[sig getIndexFromA]];
 	if([sig isMinor]){

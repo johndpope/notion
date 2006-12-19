@@ -69,7 +69,8 @@
 			[measure removeNote:note fromChordAtIndex:[[measure getNotes] indexOfObject:chord]];
 			return YES;
 		}			
-	}	
+	}
+	return NO;
 }
 
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view{

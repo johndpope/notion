@@ -34,6 +34,7 @@ static DrumKit *standardKit;
 		}
 	}
 	NSAssert(NO, @"getPositionForPitch called on DrumKit for invalid pitch and octave");
+	return 0;
 }
 
 - (int)getPitchForPosition:(int)position{
