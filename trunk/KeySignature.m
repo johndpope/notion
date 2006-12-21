@@ -8,6 +8,7 @@
 
 #import "KeySignature.h"
 #import "Note.h"
+#import "Clef.h"
 
 static int majorSharps[18] = {3, -1, -1, 5, -1, 0, 7, -1, 2, -1, -1, 4, -1, 6, -1, 1, -1, -1};
 static int majorFlats[18] = {-1, -1, 2, -1, 7, 0, -1, 5, -1, -1, 3, -1, 1, -1, 6, -1, -1, 4};
@@ -154,20 +155,20 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 	return flats;
 }
 
-- (NSArray *)getSharps{
+- (NSArray *)getSharpsWithClef:(Clef *)clef{
 	NSMutableArray *sharpsArray = [NSMutableArray arrayWithCapacity:sharps];
 	int i;
 	for(i=0; i<sharps; i++){
-		[sharpsArray addObject:[[[NSNumber alloc] initWithInt:sharpVisLocs[i]] autorelease]];
+		[sharpsArray addObject:[[[NSNumber alloc] initWithInt:(sharpVisLocs[i] + [clef getKeySigOffset])] autorelease]];
 	}
 	return sharpsArray;
 }
 
-- (NSArray *)getFlats{
+- (NSArray *)getFlatsWithClef:(Clef *)clef{
 	NSMutableArray *flatsArray = [NSMutableArray arrayWithCapacity:flats];
 	int i;
 	for(i=0; i<flats; i++){
-		[flatsArray addObject:[[[NSNumber alloc] initWithInt:flatVisLocs[i]] autorelease]];
+		[flatsArray addObject:[[[NSNumber alloc] initWithInt:(flatVisLocs[i] + [clef getKeySigOffset])] autorelease]];
 	}
 	return flatsArray;
 }

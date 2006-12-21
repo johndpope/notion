@@ -23,7 +23,7 @@
 	if(sig != nil && ([sig getNumSharps] > 0 || [sig getNumFlats] > 0)){
 		NSPoint accLoc;
 		accLoc.x = bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure];
-		NSEnumerator *sharps = [[sig getSharps] objectEnumerator];
+		NSEnumerator *sharps = [[sig getSharpsWithClef:[measure getEffectiveClef]] objectEnumerator];
 		NSNumber *sharp;
 		NSImage *sharpImg;
 		if(isTarget){
@@ -37,7 +37,7 @@
 			[sharpImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
 			accLoc.x += 10.0;
 		}
-		NSEnumerator *flats = [[sig getFlats] objectEnumerator];
+		NSEnumerator *flats = [[sig getFlatsWithClef:[measure getEffectiveClef]] objectEnumerator];
 		NSNumber *flat;
 		NSImage *flatImg;
 		if(isTarget){
