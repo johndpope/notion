@@ -7,12 +7,14 @@
 //
 
 #import "TimeSignatureController.h"
+#import "TimeSignatureDraw.h"
 #import "TimeSignature.h"
 
 @implementation TimeSignatureController
 
 + (float) widthOf:(TimeSignature *)timeSig{
-	return [timeSig isKindOfClass:[NSNull class]] ? 10.0 : ([timeSig getBottom] > 10 ? 40.0 : 30.0);
+	return [timeSig isKindOfClass:[NSNull class]] ? 10.0 : 
+		[[NSString stringWithFormat:@"%d", [timeSig getBottom]] sizeWithAttributes:[TimeSignatureDraw timeSigStringAttrs]].width + 10.0;
 }
 
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(TimeSigTarget *)sig mode:(NSDictionary *)mode view:(ScoreView *)view{

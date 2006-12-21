@@ -145,6 +145,7 @@
 }
 
 - (void)updateFeedback:(NSEvent *)event{
+	[self setFrameSize:[self calculateBounds].size];
 	if([self mouse:mouseLocation inRect:[self frame]]){
 		mouseOver = [controller targetAt:mouseLocation withEvent:event];
 	} else {
