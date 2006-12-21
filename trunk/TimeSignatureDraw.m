@@ -13,7 +13,17 @@
 #import "TimeSignature.h"
 #import "Measure.h"
 
+static NSMutableDictionary *timeSigAttrs = nil;
+
 @implementation TimeSignatureDraw
+
++(NSMutableDictionary *)timeSigStringAttrs{
+	if(timeSigAttrs == nil){
+		timeSigAttrs = [[NSMutableDictionary dictionary] retain];
+		[timeSigAttrs setObject:[NSFont fontWithName:@"Musicator" size:160] forKey:NSFontAttributeName];			
+	}
+	return timeSigAttrs;
+}
 
 +(void)drawTimeSig:(TimeSignature *)sig inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
 	NSRect bounds = [[measure getControllerClass] innerBoundsOf:measure];
@@ -23,16 +33,15 @@
 		NSPoint accLoc;
 		accLoc.x = bounds.origin.x + [[measure getControllerClass] timeSigAreaX:measure];
 		accLoc.y = baseY - lineHeight * 18;
-		NSMutableDictionary *atts = [NSMutableDictionary dictionary];
-		[atts setObject:[NSFont fontWithName:@"Musicator" size:160] forKey:NSFontAttributeName];
+		NSMutableDictionary *attrs = [self timeSigStringAttrs];
 		if(isTarget){
-			[atts setObject:[NSColor redColor] forKey:NSForegroundColorAttributeName];
+			[attrs setObject:[NSColor redColor] forKey:NSForegroundColorAttributeName];
 		} else{
-			[atts setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
+			[attrs setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
 		}
-		[[NSString stringWithFormat:@"%d", [sig getBottom]] drawAtPoint:accLoc withAttributes:atts];
+		[[NSString stringWithFormat:@"%d", [sig getBottom]] drawAtPoint:accLoc withAttributes:attrs];
 		accLoc.y -= lineHeight * 4;
-		[[NSString stringWithFormat:@"%d", [sig getTop]] drawAtPoint:accLoc withAttributes:atts];			
+		[[NSString stringWithFormat:@"%d", [sig getTop]] drawAtPoint:accLoc withAttributes:attrs];			
 		[[NSColor blackColor] set];
 	} else if(isTarget){
 		NSImage *sigIns = [NSImage imageNamed:@"timesig_insert.png"];

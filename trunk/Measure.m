@@ -538,7 +538,7 @@
 		}
 	}
 	[self setKeySignature:newSig];
-	[[keySigPanel superview] setNeedsDisplay:YES];
+	[self sendChangeNotification];
 }
 
 - (IBAction)keySigClose:(id)sender{

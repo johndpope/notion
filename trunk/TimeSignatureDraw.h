@@ -14,6 +14,7 @@
 
 }
 
++(NSMutableDictionary *)timeSigStringAttrs;
 +(void)drawTimeSig:(TimeSignature *)sig inMeasure:(Measure *)measure isTarget:(BOOL)isTarget;
 
 @end

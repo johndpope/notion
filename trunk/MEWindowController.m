@@ -154,6 +154,7 @@
 }
 
 - (void) modelChanged:(NSNotification *)notification{
+	[view setFrameSize:[view calculateBounds].size];
 	[view setNeedsDisplay:YES];
 }
 
