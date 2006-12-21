@@ -63,6 +63,10 @@
 	return octaveOffset + octave;
 }
 
+- (int)getKeySigOffset{
+	return 2 - pitchOffset;
+}
+
 - (int)getTranspositionFrom:(Clef *)clef{
 	return ([self getOctaveForPosition:0] - [clef getOctaveForPosition:0]) * 7;
 }

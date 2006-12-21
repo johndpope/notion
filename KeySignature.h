@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+@class Clef;
 
 @interface KeySignature : NSObject {
 	int pitches[7];
@@ -27,8 +27,8 @@
 
 - (int)getNumSharps;
 - (int)getNumFlats;
-- (NSArray *)getSharps;
-- (NSArray *)getFlats;
+- (NSArray *)getSharpsWithClef:(Clef *)clef;
+- (NSArray *)getFlatsWithClef:(Clef *)clef;
 
 - (int)getIndexFromA;
 - (BOOL)isMinor;	
