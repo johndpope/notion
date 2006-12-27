@@ -108,6 +108,15 @@
 	while(staff = [staffs nextObject]){
 		[[staff getViewClass] draw:staff inView:self target:mouseOver targetLocation:mouseLocation selection:selection mode:[controller getMode]];
 	}
+	double playerPosition = [song getPlayerPosition];
+	if(playerPosition >= 0){
+		float x = [ScoreController xAtBeats:playerPosition inSong:song];
+		[NSBezierPath setDefaultLineWidth:3.0];
+		[[NSColor redColor] set];
+		[NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0) toPoint:NSMakePoint(x, [self bounds].origin.y + [self bounds].size.height)];
+		[NSBezierPath setDefaultLineWidth:1.0];
+		[[NSColor blackColor] set];
+	}
 }
 
 - (void)showKeySigPanelFor:(Measure *)measure{

@@ -29,12 +29,17 @@ static MusicPlayer musicPlayer;
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
 		repeats = [[NSMutableArray array] retain];
+		playerPosition = -1;
 	}
 	return self;
 }
 
 - (NSUndoManager *)undoManager{
 	return [doc undoManager];
+}
+
+- (void)sendChangeNotification{
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
 }
 
 - (MusicDocument *)document{
@@ -307,15 +312,21 @@ static MusicPlayer musicPlayer;
 	if (NewMusicSequence(&musicSequence) != noErr)
 		[NSException raise:@"main" format:@"Cannot create music sequence."];
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
+	float maxLength = 0;
 	id staff;
 	while(staff = [staffsEnum nextObject]){
 		if(![staff isMute]){
-			[staff addTrackToMIDISequence:&musicSequence];			
+			float length = [staff addTrackToMIDISequence:&musicSequence];
+			if(length > maxLength){
+				maxLength = length;
+			}
 		}
 		if([staff isSolo]){
 			break;
 		}
 	}
+
+	playerEnd = maxLength + 5; // add 5 beats for decay
 	
 	MusicTrack tempoTrack;
 	if (MusicSequenceGetTempoTrack(musicSequence, &tempoTrack) != noErr)
@@ -359,16 +370,38 @@ static MusicPlayer musicPlayer;
 
 	if (MusicPlayerStart(musicPlayer) != noErr) {
 		NSLog(@"Cannot start music player.");
-		return;
 	}
-
+	
+	musicPlayerPoll = [[NSTimer scheduledTimerWithTimeInterval:.03 target:self
+													  selector:@selector(pollMusicPlayer:)
+													  userInfo:nil
+													   repeats:YES] retain];
+	
 }
 
 - (void)stopPlaying{
+	if(musicPlayerPoll != nil){
+		[musicPlayerPoll invalidate];
+		[musicPlayerPoll release];
+		musicPlayerPoll = nil;
+	}
+	playerPosition = -1;
 	if (MusicPlayerStop(musicPlayer) != noErr) {
-		NSLog(@"Cannot start music player.");
+		NSLog(@"Cannot stop music player.");
 		return;
 	}
+}
+
+- (void)pollMusicPlayer:(NSTimer *)timer{
+	MusicPlayerGetTime(musicPlayer, &playerPosition);
+	[self sendChangeNotification];
+	if(playerPosition >= playerEnd){
+		[self stopPlaying];
+	}
+}
+
+- (double)getPlayerPosition{
+	return playerPosition;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

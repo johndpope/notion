@@ -8,7 +8,9 @@
 
 #import "ScoreController.h"
 #import "StaffController.h"
+#import "MeasureController.h"
 #import "Song.h"
+#import "Measure.h"
 
 @implementation ScoreController
 
@@ -22,6 +24,23 @@
 
 + (float)yInset{
 	return 5.0;
+}
+
++ (float)xAtBeats:(float)beats inSong:(Song *)song{
+	Staff *firstStaff = [[song staffs] objectAtIndex:0];
+	float measureX = [self xInset];
+	float currBeats = 0;
+	NSEnumerator *measures = [[firstStaff getMeasures] objectEnumerator];
+	id measure;
+	while(measure = [measures nextObject]){
+		currBeats += 4.0 * [measure getTotalDuration] / 3;
+		if(currBeats > beats){
+			break;
+		}
+		measureX += [[measure getControllerClass] widthOf:measure];
+	}
+	//TODO: x within measure
+	return measureX;
 }
 
 + (Staff *)staffAt:(NSPoint)location inSong:(Song *)song{

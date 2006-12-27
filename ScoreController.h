@@ -18,6 +18,8 @@
 + (float)xInset;
 + (float)yInset;
 
++ (float)xAtBeats:(float)beats inSong:(Song *)song;
+
 + (Staff *)staffAt:(NSPoint)location inSong:(Song *)song;
 
 + (id)targetAtLocation:(NSPoint)location inSong:(Song *)song mode:(NSDictionary *)mode withEvent:(NSEvent *)event;
