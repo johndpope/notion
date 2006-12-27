@@ -73,7 +73,7 @@
 - (BOOL)isMute;
 - (BOOL)isSolo;
 
-- (void)addTrackToMIDISequence:(MusicSequence *)musicSequence;
+- (float)addTrackToMIDISequence:(MusicSequence *)musicSequence;
 
 - (Class)getViewClass;
 - (Class)getControllerClass;

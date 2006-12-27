@@ -397,7 +397,7 @@
 	return [soloButton state] == NSOnState;
 }
 
-- (void)addTrackToMIDISequence:(MusicSequence *)musicSequence{
+- (float)addTrackToMIDISequence:(MusicSequence *)musicSequence{
 	MusicTrack musicTrack;
 	if (MusicSequenceNewTrack(*musicSequence, &musicTrack) != noErr) {
 		NSLog(@"Cannot create music track.");
@@ -439,6 +439,7 @@
 		return;
 	}
 
+	return pos;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

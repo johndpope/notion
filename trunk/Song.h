@@ -20,6 +20,10 @@
 	NSMutableArray *tempoData;
 	NSMutableArray *timeSigs;
 	NSMutableArray *repeats;
+	
+	NSTimer *musicPlayerPoll;
+	double playerPosition;
+	double playerEnd;
 }
 
 - (id)initWithDocument:(MusicDocument *)_doc;
@@ -32,6 +36,8 @@
 - (void)setStaffs:(NSMutableArray *)_staffs;
 - (Staff *)addStaff;
 - (void)removeStaff:(Staff *)staff;
+
+- (double)getPlayerPosition;
 
 - (NSMutableArray *)tempoData;
 - (void)setTempoData:(NSMutableArray *)_tempoData;
