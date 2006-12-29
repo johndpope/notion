@@ -11,6 +11,7 @@
 #import "ScoreController.h"
 #import "StaffController.h"
 #import "MeasureController.h"
+#import "NoteController.h"
 #import "Song.h"
 #import "NoteDraw.h"
 #import "Repeat.h"
@@ -110,15 +111,22 @@
 	}
 	double playerPosition = [song getPlayerPosition];
 	if(playerPosition >= 0){
+		float maxX = 0;
 		NSArray *playingNotes = [ScoreController notesAtBeats:playerPosition inSong:song];
 		NSEnumerator *notesEnum = [playingNotes objectEnumerator];
 		id note;
 		while(note = [notesEnum nextObject]){
 			Measure *measure = [[note getStaff] getMeasureContainingNote:note];
 			[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] target:note selection:nil];
+			float noteX = [[note getControllerClass] xOf:note inMeasure:measure];
+			if(noteX > maxX){
+				maxX = noteX;
+			}
+		}
+		if(maxX > 0) {
+			[self scrollRectToVisible:NSMakeRect(maxX - 25, [[self enclosingScrollView] documentVisibleRect].origin.y, 50, 0)];			
 		}
 	}
-	//TODO: scroll to keep up
 }
 
 - (void)showKeySigPanelFor:(Measure *)measure{
