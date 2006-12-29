@@ -325,14 +325,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>35</integer>
-									<integer>19</integer>
+									<integer>50</integer>
+									<integer>48</integer>
 									<integer>18</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 442}, {239, 764}}</string>
+							<string>{{0, 487}, {239, 764}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -369,7 +369,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ScoreController.m</string>
+								<string>ScoreView.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -377,11 +377,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ScoreController.m</string>
+										<string>ScoreView.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>78B6E6CD0B44D6FA00D94E4C</string>
+										<string>78B6E7030B45022900D94E4C</string>
 										<key>history</key>
 										<array>
 											<string>786A94AD0A8999830006F54C</string>
@@ -515,9 +515,9 @@
 											<string>78B6E6400B44CD7C00D94E4C</string>
 											<string>78B6E67F0B44D23300D94E4C</string>
 											<string>78B6E6800B44D23300D94E4C</string>
-											<string>78B6E6810B44D23300D94E4C</string>
 											<string>78B6E6BD0B44D6CE00D94E4C</string>
-											<string>78B6E6BE0B44D6CE00D94E4C</string>
+											<string>78B6E6E00B44FFFA00D94E4C</string>
+											<string>78B6E6E10B44FFFA00D94E4C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -651,6 +651,7 @@
 											<string>78B6E6850B44D23300D94E4C</string>
 											<string>78B6E6A50B44D49B00D94E4C</string>
 											<string>78B6E6BF0B44D6CE00D94E4C</string>
+											<string>78B6E6E20B44FFFA00D94E4C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -829,7 +830,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>189060858.51465699</real>
+	<real>189071913.42628399</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -877,7 +878,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ScoreController.m</string>
+								<string>ScoreView.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -1397,7 +1398,7 @@
 			<key>WindowToolGUID</key>
 			<string>788317EF0A617516003363D7</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
