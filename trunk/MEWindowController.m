@@ -87,7 +87,7 @@
 		if([tempo tempoPanel] == nil){
 			[self addHorizontalRulerComponentFor:tempo];
 		}
-		[[tempo tempoPanel] setFrameOrigin:NSMakePoint([MeasureController xOf:[[longest getMeasures] objectAtIndex:i]], 1)];
+		[[tempo tempoPanel] setFrameOrigin:NSMakePoint([MeasureController xOf:[longest getMeasureAtIndex:i]], 1)];
 		i++;
 	}
 	[view setFrameSize:[view calculateBounds].size];

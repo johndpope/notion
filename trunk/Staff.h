@@ -46,6 +46,7 @@
 - (TimeSignature *)getEffectiveTimeSignatureForMeasure:(Measure *)measure;
 
 - (Measure *)getLastMeasure;
+- (Measure *)getMeasureAtIndex:(unsigned)index;
 - (Measure *)getMeasureAfter:(Measure *)measure;
 - (Measure *)getMeasureBefore:(Measure *)measure;
 - (void)cleanEmptyMeasures;

@@ -65,7 +65,7 @@
 
 - (void) testDeleteTimeSig{
 	[[[song staffs] lastObject] addMeasure];
-	Measure *measure = [[[[song staffs] lastObject] getMeasures] objectAtIndex:1];
+	Measure *measure = [[[song staffs] lastObject] getMeasureAtIndex:1];
 	[song refreshTimeSigs];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:7 bottom:8] atIndex:1];
 	TimeSignature *sig = [measure getEffectiveTimeSignature];

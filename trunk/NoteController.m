@@ -42,7 +42,7 @@
 	id staff;
 	while(staff = [staffs nextObject]){
 		if([[staff getMeasures] count] > measureIndex){
-			Measure *measure = [[staff getMeasures] objectAtIndex:measureIndex];
+			Measure *measure = [staff getMeasureAtIndex:measureIndex];
 			int numNotes = [measure getNumberOfNotesStartingAfter:noteStart before:noteEnd];
 			if(numNotes > max) max = numNotes;
 		}

@@ -126,6 +126,13 @@
 	return [measures lastObject];
 }
 
+- (Measure *)getMeasureAtIndex:(unsigned)index{
+	if([measures count] <= index){
+		return nil;
+	}
+	return [measures objectAtIndex:index];
+}
+
 - (Measure *)getMeasureBefore:(Measure *)measure{
 	int index = [measures indexOfObject:measure];
 	if(index > 0){

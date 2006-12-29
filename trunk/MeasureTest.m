@@ -562,6 +562,56 @@
 	[thirdNote release];	
 }
 
+- (void)testGetClosestNoteBeforeWithSimpleNotes{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:1 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	STAssertEquals([measure getClosestNoteBefore:0.0], firstNote, @"Wrong closest note to 0.0.");
+	STAssertEquals([measure getClosestNoteBefore:0.5], firstNote, @"Wrong closest note to 0.5.");
+	STAssertEquals([measure getClosestNoteBefore:0.749], firstNote, @"Wrong closest note to 0.749.");
+	STAssertEquals([measure getClosestNoteBefore:0.75], secondNote, @"Wrong closest note to 0.75.");
+	STAssertEquals([measure getClosestNoteBefore:1.0], secondNote, @"Wrong closest note to 1.0.");
+	STAssertEquals([measure getClosestNoteBefore:1.49], secondNote, @"Wrong closest note to 1.49.");
+	STAssertEquals([measure getClosestNoteBefore:1.5], thirdNote, @"Wrong closest note to 1.5.");
+	STAssertEquals([measure getClosestNoteBefore:2.0], thirdNote, @"Wrong closest note to 2.0.");
+	STAssertEquals([measure getClosestNoteBefore:2.249], thirdNote, @"Wrong closest note to 2.249.");
+	STAssertEquals([measure getClosestNoteBefore:2.25], fourthNote, @"Wrong closest note to 2.25.");
+	STAssertEquals([measure getClosestNoteBefore:2.75], fourthNote, @"Wrong closest note to 2.75.");
+	STAssertEquals([measure getClosestNoteBefore:2.9], fourthNote, @"Wrong closest note to 2.9.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void)testGetClosestNoteBeforeWithComplexNotes{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:YES accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:16 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:1 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:1 octave:0 duration:16 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	STAssertEquals([measure getClosestNoteBefore:0.0], firstNote, @"Wrong closest note to 0.0.");
+	STAssertEquals([measure getClosestNoteBefore:0.75], firstNote, @"Wrong closest note to 0.75.");
+	STAssertEquals([measure getClosestNoteBefore:1.124], firstNote, @"Wrong closest note to 1.124.");
+	STAssertEquals([measure getClosestNoteBefore:1.125], secondNote, @"Wrong closest note to 1.125.");
+	STAssertEquals([measure getClosestNoteBefore:1.275], secondNote, @"Wrong closest note to 1.275.");
+	STAssertEquals([measure getClosestNoteBefore:1.3124], secondNote, @"Wrong closest note to 1.3124.");
+	STAssertEquals([measure getClosestNoteBefore:1.3125], thirdNote, @"Wrong closest note to 1.3125.");
+	STAssertEquals([measure getClosestNoteBefore:2.3], thirdNote, @"Wrong closest note to 2.3.");
+	STAssertEquals([measure getClosestNoteBefore:2.8124], thirdNote, @"Wrong closest note to 2.8124.");
+	STAssertEquals([measure getClosestNoteBefore:2.8125], fourthNote, @"Wrong closest note to 2.8125.");
+	STAssertEquals([measure getClosestNoteBefore:2.9], fourthNote, @"Wrong closest note to 2.9.");
+	STAssertEquals([measure getClosestNoteBefore:2.99], fourthNote, @"Wrong closest note to 2.99.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
 // ----- undo/redo tests -----
 
 - (void)setUpUndoTest{

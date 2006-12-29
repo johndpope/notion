@@ -513,6 +513,39 @@
 	return count;
 }
 
+- (NoteBase *)getClosestNoteBefore:(float)targetDuration{
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id currNote;
+	float duration = 0;
+	while(currNote = [notesEnum nextObject]){
+		duration += [currNote getEffectiveDuration];
+		if(duration > targetDuration){
+			return currNote;
+		}
+	}
+	return nil;
+}
+
+- (NoteBase *)getClosestNoteAfter:(float)targetDuration{
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id currNote;
+	float duration = 0;
+	while(currNote = [notesEnum nextObject]){
+		if(duration > targetDuration){
+			return currNote;
+		}
+		duration += [currNote getEffectiveDuration];
+	}
+	if([staff getLastMeasure] == self){
+		return nil;
+	}
+	NSArray *nextMeasureNotes = [[staff getMeasureAfter:self] getNotes];
+	if([nextMeasureNotes count] == 0){
+		return nil;
+	}
+	return [nextMeasureNotes objectAtIndex:0];
+}
+
 - (void)transposeBy:(int)transposeAmount{
 	NSEnumerator *notesEnum = [notes objectEnumerator];
 	id note;
