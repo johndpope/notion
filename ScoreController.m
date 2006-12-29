@@ -9,6 +9,7 @@
 #import "ScoreController.h"
 #import "StaffController.h"
 #import "MeasureController.h"
+#import "NoteController.h"
 #import "Song.h"
 #import "Measure.h"
 
@@ -26,21 +27,33 @@
 	return 5.0;
 }
 
-+ (float)xAtBeats:(float)beats inSong:(Song *)song{
++ (NSArray *)notesAtBeats:(float)beats inSong:(Song *)song{
+	NSMutableArray *notes = [NSMutableArray array];
 	Staff *firstStaff = [[song staffs] objectAtIndex:0];
-	float measureX = [self xInset];
 	float currBeats = 0;
-	NSEnumerator *measures = [[firstStaff getMeasures] objectEnumerator];
+	NSEnumerator *measuresEnum = [[firstStaff getMeasures] objectEnumerator];
 	id measure;
-	while(measure = [measures nextObject]){
-		currBeats += 4.0 * [measure getTotalDuration] / 3;
-		if(currBeats > beats){
+	int measureIndex = 0;
+	while(measure = [measuresEnum nextObject]){
+		float measureLength = 4.0 * [measure getTotalDuration] / 3;
+		if(currBeats + measureLength > beats){
 			break;
 		}
-		measureX += [[measure getControllerClass] widthOf:measure];
+		currBeats += measureLength;
+		measureIndex++;
 	}
-	//TODO: x within measure
-	return measureX;
+	beats -= currBeats;
+	NSArray *measures = [[[song staffs] collect] getMeasureAtIndex:measureIndex];
+	measuresEnum = [measures objectEnumerator];
+	while(measure = [measuresEnum nextObject]){
+		if(![measure isKindOfClass:[NSNull class]]){
+			NoteBase *note = [measure getClosestNoteBefore:(beats * 3 / 4)];
+			if(note != nil){
+				[notes addObject:note];
+			}
+		}
+	}
+	return notes;
 }
 
 + (Staff *)staffAt:(NSPoint)location inSong:(Song *)song{

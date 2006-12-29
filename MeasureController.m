@@ -69,7 +69,7 @@
 	id staff;
 	while(staff = [staffs nextObject]){
 		if([[staff getMeasures] count] > index){
-			float width = [self isolatedWidthOf:[[staff getMeasures] objectAtIndex:index]];
+			float width = [self isolatedWidthOf:[staff getMeasureAtIndex:index]];
 			if(width > max) max = width;
 		}
 	}

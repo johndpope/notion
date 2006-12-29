@@ -158,7 +158,7 @@ static MusicPlayer musicPlayer;
 	id staff;
 	while(staff = [staffsEnum nextObject]){
 		if([[staff getMeasures] count] > measureIndex){
-			[[[staff getMeasures] objectAtIndex:measureIndex] timeSignatureChangedFrom:oldTotal
+			[[staff getMeasureAtIndex:measureIndex] timeSignatureChangedFrom:oldTotal
 																					to:newTotal top:[sig getTop] bottom:[sig getBottom]];
 		}
 	}	
@@ -169,7 +169,7 @@ static MusicPlayer musicPlayer;
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
 	id staff;
 	while(staff = [staffsEnum nextObject]){
-		[[[staff getMeasures] objectAtIndex:measureIndex] updateTimeSigPanel];
+		[[staff getMeasureAtIndex:measureIndex] updateTimeSigPanel];
 	}	
 }
 
@@ -346,7 +346,7 @@ static MusicPlayer musicPlayer;
 		while([[[staffs objectAtIndex:j] getMeasures] count] <= i){
 			j++;
 		}
-		time += [[[[staffs objectAtIndex:j] getMeasures] objectAtIndex:i] getTotalDuration] * 4 / 3;
+		time += [[[staffs objectAtIndex:j] getMeasureAtIndex:i] getTotalDuration] * 4 / 3;
 		i++;
 	}
 	

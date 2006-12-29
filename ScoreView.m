@@ -110,13 +110,15 @@
 	}
 	double playerPosition = [song getPlayerPosition];
 	if(playerPosition >= 0){
-		float x = [ScoreController xAtBeats:playerPosition inSong:song];
-		[NSBezierPath setDefaultLineWidth:3.0];
-		[[NSColor redColor] set];
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(x, 0) toPoint:NSMakePoint(x, [self bounds].origin.y + [self bounds].size.height)];
-		[NSBezierPath setDefaultLineWidth:1.0];
-		[[NSColor blackColor] set];
+		NSArray *playingNotes = [ScoreController notesAtBeats:playerPosition inSong:song];
+		NSEnumerator *notesEnum = [playingNotes objectEnumerator];
+		id note;
+		while(note = [notesEnum nextObject]){
+			Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+			[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] target:note selection:nil];
+		}
 	}
+	//TODO: scroll to keep up
 }
 
 - (void)showKeySigPanelFor:(Measure *)measure{
