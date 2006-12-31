@@ -90,7 +90,7 @@
 			[firstAddedNote tieFrom:tie];
 			[tie tieTo:firstAddedNote];
 		}
-		if([measure isFull]) [staff getMeasureAfter:measure];
+		if([measure isFull]) [staff getMeasureAfter:measure createNew:YES];
 	}
 }
 
@@ -226,7 +226,7 @@
 	}
 	
 	if([notesToPush count] > 0){
-		Measure *nextMeasure = [staff getMeasureAfter:self];
+		Measure *nextMeasure = [staff getMeasureAfter:self createNew:YES];
 		[nextMeasure prepUndo];
 		[nextMeasure addNotesInternal:notesToPush atIndex:0 consolidate:YES];
 	}
@@ -236,7 +236,7 @@
 
 - (void)grabNotesFromNextMeasure{
 	if([staff getLastMeasure] == self) return;
-	Measure *nextMeasure = [staff getMeasureAfter:self];
+	Measure *nextMeasure = [staff getMeasureAfter:self createNew:YES];
 	[nextMeasure prepUndo];
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
@@ -539,7 +539,7 @@
 	if([staff getLastMeasure] == self){
 		return nil;
 	}
-	NSArray *nextMeasureNotes = [[staff getMeasureAfter:self] getNotes];
+	NSArray *nextMeasureNotes = [[staff getMeasureAfter:self createNew:YES] getNotes];
 	if([nextMeasureNotes count] == 0){
 		return nil;
 	}

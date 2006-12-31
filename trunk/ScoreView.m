@@ -13,6 +13,7 @@
 #import "MeasureController.h"
 #import "NoteController.h"
 #import "Song.h"
+#import "Staff.h"
 #import "NoteDraw.h"
 #import "Repeat.h"
 
@@ -102,6 +103,72 @@
 	[self loadLocalFonts];
 }
 
+- (void)drawPlayerPosition {
+	double playerPosition = [song getPlayerPosition];
+	if(playerPosition >= 0){
+		float maxX = 0;
+		NSArray *playingNotes = [ScoreController notesAtBeats:playerPosition inSong:song];
+		NSMutableArray *playingMeasures = [NSMutableArray arrayWithCapacity:[playingNotes count]];
+		NSEnumerator *notesEnum = [playingNotes objectEnumerator];
+		id note;
+		while(note = [notesEnum nextObject]){
+			Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+			[playingMeasures addObject:measure];
+			[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] target:note selection:nil];
+			float noteX = [[note getControllerClass] xOf:note];
+			if(noteX > maxX){
+				maxX = noteX;
+			}
+		}
+		
+		if(maxX > 0) {
+			[self scrollRectToVisible:NSMakeRect(maxX - 25, [[self enclosingScrollView] documentVisibleRect].origin.y, 50, 0)];			
+		}
+
+		float positionInMeasure = 3.0 * playerPosition / 4;
+		Measure *measure = [[[song staffs] objectAtIndex:0] getMeasureAtIndex:0];
+		while(measure != nil && ![playingMeasures containsObject:measure]){
+			positionInMeasure -= [measure getTotalDuration];
+			measure = [[measure getStaff] getMeasureAfter:measure createNew:NO];
+		}
+		if(measure != nil){
+			NoteBase *closestBefore, *closestAfter;
+			float distBefore = MAXFLOAT, distAfter = MAXFLOAT;
+			NSEnumerator *measuresEnum = [playingMeasures objectEnumerator];
+			while(measure = [measuresEnum nextObject]){
+				NoteBase *thisBefore = [measure getClosestNoteBefore:positionInMeasure];
+				float thisBeforeDist = positionInMeasure - [measure getNoteStartDuration:thisBefore];
+				if(thisBeforeDist < distBefore){
+					distBefore = thisBeforeDist;
+					closestBefore = thisBefore;
+				}
+				NoteBase *thisAfter = [measure getClosestNoteAfter:positionInMeasure];
+				float thisAfterDist = [measure getNoteStartDuration:thisAfter] - positionInMeasure;
+				if(thisAfterDist < distAfter){
+					distAfter = thisAfterDist;
+					closestAfter = thisAfter;
+				}
+			}
+			float beforePos = [[closestBefore getControllerClass] xOf:closestBefore];
+			float afterPos;
+			if(closestAfter != nil){
+				afterPos = [[closestAfter getControllerClass] xOf:closestAfter];
+			} else {
+				Measure *playingMeasure = [playingMeasures objectAtIndex:0];
+				NSRect bounds = [[playingMeasure getControllerClass] boundsOf:playingMeasure];
+				afterPos = bounds.origin.x + bounds.size.width;
+			}
+			float pos = beforePos + (afterPos - beforePos) * (distBefore / (distBefore + distAfter));
+			
+			[[NSColor redColor] set];
+			[NSBezierPath setDefaultLineWidth:3.0];
+			[NSBezierPath strokeLineFromPoint:NSMakePoint(pos, 0) toPoint:NSMakePoint(pos, [self bounds].size.height)];
+			[NSBezierPath setDefaultLineWidth:1.0];
+			[[NSColor blackColor] set];			
+		}
+	}
+}
+
 - (void)drawRect:(NSRect)rect {
 	[NoteDraw resetAccidentals];
 	NSEnumerator *staffs = [[song staffs] objectEnumerator];
@@ -109,24 +176,7 @@
 	while(staff = [staffs nextObject]){
 		[[staff getViewClass] draw:staff inView:self target:mouseOver targetLocation:mouseLocation selection:selection mode:[controller getMode]];
 	}
-	double playerPosition = [song getPlayerPosition];
-	if(playerPosition >= 0){
-		float maxX = 0;
-		NSArray *playingNotes = [ScoreController notesAtBeats:playerPosition inSong:song];
-		NSEnumerator *notesEnum = [playingNotes objectEnumerator];
-		id note;
-		while(note = [notesEnum nextObject]){
-			Measure *measure = [[note getStaff] getMeasureContainingNote:note];
-			[[note getViewClass] draw:note inMeasure:measure atIndex:[[measure getNotes] indexOfObject:note] target:note selection:nil];
-			float noteX = [[note getControllerClass] xOf:note inMeasure:measure];
-			if(noteX > maxX){
-				maxX = noteX;
-			}
-		}
-		if(maxX > 0) {
-			[self scrollRectToVisible:NSMakeRect(maxX - 25, [[self enclosingScrollView] documentVisibleRect].origin.y, 50, 0)];			
-		}
-	}
+	[self drawPlayerPosition];
 }
 
 - (void)showKeySigPanelFor:(Measure *)measure{

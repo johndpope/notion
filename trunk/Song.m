@@ -394,10 +394,11 @@ static MusicPlayer musicPlayer;
 
 - (void)pollMusicPlayer:(NSTimer *)timer{
 	MusicPlayerGetTime(musicPlayer, &playerPosition);
-	[self sendChangeNotification];
 	if(playerPosition >= playerEnd){
+		playerPosition = -1;
 		[self stopPlaying];
 	}
+	[self sendChangeNotification];
 }
 
 - (double)getPlayerPosition{

@@ -92,20 +92,27 @@
 - (void) testGetMeasureAfter{
 	Measure *firstMeasure = [staff getLastMeasure];
 	Measure *secondMeasure = [staff addMeasure];
-	STAssertEqualObjects([staff getMeasureAfter:firstMeasure], secondMeasure, @"Wrong measure returned.");	
+	STAssertEqualObjects([staff getMeasureAfter:firstMeasure createNew:NO], secondMeasure, @"Wrong measure returned.");	
 }
-- (void) testGetMeasureAfterDoesntCreateNewMeasure{
+- (void) testGetMeasureAfterLastDoesntCreateNewMeasureWhenToldNotTo{
 	Measure *firstMeasure = [staff getLastMeasure];
 	Measure *secondMeasure = [staff addMeasure];
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures before method call.");
-	[staff getMeasureAfter:firstMeasure];
+	[staff getMeasureAfter:secondMeasure createNew:NO];
+	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures after method call.");
+}
+- (void) testGetMeasureAfterFirstDoesntCreateNewMeasure{
+	Measure *firstMeasure = [staff getLastMeasure];
+	Measure *secondMeasure = [staff addMeasure];
+	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures before method call.");
+	[staff getMeasureAfter:firstMeasure createNew:YES];
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures after method call.");
 }
 - (void) testGetMeasureAfterLastCreatesNewMeasure{
 	Measure *firstMeasure = [staff getLastMeasure];
 	Measure *secondMeasure = [staff addMeasure];
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures before method call.");
-	[staff getMeasureAfter:secondMeasure];
+	[staff getMeasureAfter:secondMeasure createNew:YES];
 	STAssertEquals([[staff getMeasures] count], (unsigned)3, @"Wrong number of measures after method call.");
 }
 
@@ -251,7 +258,7 @@
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
-	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	Measure *secondMeasure = [staff getMeasureAfter:measure createNew:YES];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
 	NSArray *between = [staff notesBetweenNote:firstNote andNote:thirdNote];
 	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
@@ -272,7 +279,7 @@
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
-	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	Measure *secondMeasure = [staff getMeasureAfter:measure createNew:YES];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
 	NSArray *between = [staff notesBetweenNote:thirdNote andNote:firstNote];
 	STAssertEquals([between count], (unsigned)3, @"Wrong number of notes between notes.");
@@ -352,7 +359,7 @@
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
-	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	Measure *secondMeasure = [staff getMeasureAfter:measure createNew:YES];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
 	NSArray *array = [NSArray arrayWithObjects:firstNote, secondNote, nil];
 	NSArray *between = [staff notesBetweenNote:array andNote:thirdNote];
@@ -374,7 +381,7 @@
 	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:2 dotted:NO accidental:NO_ACC onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
-	Measure *secondMeasure = [staff getMeasureAfter:measure];
+	Measure *secondMeasure = [staff getMeasureAfter:measure createNew:YES];
 	[secondMeasure setNotes:[NSMutableArray arrayWithObjects:thirdNote, fourthNote, nil]];
 	NSArray *array = [NSArray arrayWithObjects:secondNote, thirdNote, nil];
 	NSArray *between = [staff notesBetweenNote:array andNote:firstNote];

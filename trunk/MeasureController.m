@@ -200,14 +200,14 @@
 
 + (NSPoint) keySigPanelLocationFor:(Measure *)measure{
 	NSPoint location;
-	location.x = [MeasureController xOf:measure] + [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]];
+	location.x = [self xOf:measure] + [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]];
 	location.y = [StaffController topOf:[measure getStaff]];
 	return location;
 }
 
 + (NSPoint) timeSigPanelLocationFor:(Measure *)measure{
 	NSPoint location;
-	location.x = [MeasureController xOf:measure] + [ClefController widthOf:[measure getClef]];
+	location.x = [self xOf:measure] + [ClefController widthOf:[measure getClef]];
 	location.y = [StaffController topOf:[measure getStaff]];
 	return location;
 }
@@ -339,7 +339,7 @@
 	if(pointerMode == MODE_NOTE && [[event characters] isEqualToString:@" "]){
 		Rest *rest = [[Rest alloc] initWithDuration:duration dotted:dotted onStaff:[measure getStaff]];
 		[measure addNote:rest atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];
-		if([measure isFull]) [[measure getStaff] getMeasureAfter:measure];
+		if([measure isFull]) [[measure getStaff] getMeasureAfter:measure createNew:YES];
 		[self scrollView:view toShowMeasure:[[rest getStaff] getMeasureContainingNote:rest]];
 		return YES;
 	}

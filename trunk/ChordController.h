@@ -19,7 +19,7 @@
 + (float) widthOf:(Chord *)chord;
 + (float) widthOf:(Chord *)chord inMeasure:(Measure *)measure;
 
-+ (float) xOf:(Chord *)chord inMeasure:(Measure *)measure;
++ (float) xOf:(Chord *)chord;
 
 + (BOOL)isOverNote:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure;
 + (NoteBase *)noteAt:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure;

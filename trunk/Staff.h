@@ -47,7 +47,7 @@
 
 - (Measure *)getLastMeasure;
 - (Measure *)getMeasureAtIndex:(unsigned)index;
-- (Measure *)getMeasureAfter:(Measure *)measure;
+- (Measure *)getMeasureAfter:(Measure *)measure createNew:(BOOL)createNew;
 - (Measure *)getMeasureBefore:(Measure *)measure;
 - (void)cleanEmptyMeasures;
 

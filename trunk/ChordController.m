@@ -9,6 +9,7 @@
 #import "ChordController.h"
 #import "Chord.h"
 #import "Measure.h"
+#import "Staff.h"
 #import "NoteBase.h"
 #import "MeasureController.h"
 
@@ -24,8 +25,9 @@
 	return [[note getControllerClass] widthOf:note inMeasure:measure];
 }
 
-+ (float) xOf:(Chord *)chord inMeasure:(Measure *)measure{
-	return [MeasureController xOfIndex:[[measure getNotes] indexOfObject:chord] inMeasure:measure];
++ (float) xOf:(Chord *)chord{
+	Measure *measure = [[chord getStaff] getMeasureContainingNote:chord];
+	return [[measure getControllerClass] xOfIndex:[[measure getNotes] indexOfObject:chord] inMeasure:measure];
 }
 
 + (BOOL)isOverNote:(NSPoint)location inChord:(Chord *)chord inMeasure:(Measure *)measure{

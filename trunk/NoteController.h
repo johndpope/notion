@@ -20,7 +20,7 @@
 + (float) widthOf:(NoteBase *)note;
 + (float) widthOf:(NoteBase *)note inMeasure:(Measure *)measure;
 
-+ (float) xOf:(NoteBase *)note inMeasure:(Measure *)measure;
++ (float) xOf:(NoteBase *)note;
 
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view;
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view;
