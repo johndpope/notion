@@ -12,6 +12,7 @@
 #import "NoteBase.h"
 #import "Chord.h"
 #import "Measure.h"
+#import "Staff.h"
 #import "ScoreView.h"
 #import <Chomp/Chomp.h>
 
@@ -50,8 +51,9 @@
 	return width + max * [MeasureController minNoteSpacing];	
 }
 
-+ (float) xOf:(NoteBase *)note inMeasure:(Measure *)measure{
-	return [MeasureController xOfIndex:[[measure getNotes] indexOfObject:note] inMeasure:measure];
++ (float) xOf:(NoteBase *)note{
+	Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+	return [[measure getControllerClass] xOfIndex:[[measure getNotes] indexOfObject:note] inMeasure:measure];
 }
 
 + (BOOL)doNoteDeletion:(NoteBase *)note{

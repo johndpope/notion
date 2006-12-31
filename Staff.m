@@ -166,12 +166,16 @@
 	}
 }
 
-- (Measure *)getMeasureAfter:(Measure *)measure{
+- (Measure *)getMeasureAfter:(Measure *)measure createNew:(BOOL)createNew{
 	int index = [measures indexOfObject:measure];
 	if(index + 1 < [measures count]){
 		return [measures objectAtIndex:(index + 1)];
 	} else{
-		return [self addMeasure];
+		if(createNew){
+			return [self addMeasure];
+		} else {
+			return nil;
+		}
 	}
 }
 
@@ -299,7 +303,7 @@
 		}
 	}
 	Measure *currMeasure;
-	for(currMeasure = [self getMeasureAfter:firstMeasure]; currMeasure != lastMeasure; currMeasure = [self getMeasureAfter:currMeasure]){
+	for(currMeasure = [self getMeasureAfter:firstMeasure createNew:NO]; currMeasure != lastMeasure; currMeasure = [self getMeasureAfter:currMeasure createNew:NO]){
 		[between addObjectsFromArray:[currMeasure getNotes]];
 	}
 	for(i = 0; i <= [[lastMeasure getNotes] indexOfObject:lastNote]; i++){
