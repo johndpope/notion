@@ -59,7 +59,7 @@
 			if([[note getViewClass] respondsToSelector:@selector(isStemUpwards:inMeasure:)]){
 				BOOL stemUpwards = [[note getViewClass] isStemUpwards:note inMeasure:measure];
 				[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index isTarget:NO isOffset:NO
-							  isInChordWithOffset:NO stemUpwards:stemUpwards];
+							  isInChordWithOffset:NO stemUpwards:stemUpwards drawStem:YES drawTriplet:YES];
 				return;
 			}
 		}

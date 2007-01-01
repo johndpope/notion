@@ -89,9 +89,39 @@
 		[obj getAccidental] == accidental;
 }
 
+- (int)getEffectivePitchWithKeySignature:(KeySignature *)keySig priorAccidentals:(NSMutableDictionary *)accidentals{
+	int effPitch = octave * 12 + [keySig getPitchAtPosition:pitch];
+	int effAccidental = accidental;
+	if(accidentals != nil){
+		if(effAccidental == NO_ACC){
+			NSNumber *effAccGet = [accidentals objectForKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+			if(effAccGet != nil){
+				effAccidental = [effAccGet intValue];
+			}
+		} else{
+			[accidentals setObject:[[[NSNumber alloc] initWithInt:accidental] autorelease] forKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+		}
+	}
+	if(effAccidental != NO_ACC){
+		int keySigAcc = [keySig getAccidentalAtPosition:pitch];
+		if(keySigAcc != NO_ACC){
+			effAccidental -= keySigAcc;
+		}
+		effPitch += effAccidental;
+	}
+	return effPitch;
+}
+
 - (BOOL)pitchMatches:(Note *)note{
-	return [note getPitch] == pitch && [note getOctave] == octave &&
-		[note getAccidental] == accidental;
+	return [note getEffectivePitchWithKeySignature:[[[note getStaff] getMeasureContainingNote:note] getEffectiveKeySignature] priorAccidentals:nil] == [self getEffectivePitchWithKeySignature:[[[self getStaff] getMeasureContainingNote:self] getEffectiveKeySignature] priorAccidentals:nil];
+}
+
+- (BOOL)isHigherThan:(Note *)note{
+	return [note getEffectivePitchWithKeySignature:[[[note getStaff] getMeasureContainingNote:note] getEffectiveKeySignature] priorAccidentals:nil] < [self getEffectivePitchWithKeySignature:[[[self getStaff] getMeasureContainingNote:self] getEffectiveKeySignature] priorAccidentals:nil];
+}
+
+- (BOOL)isLowerThan:(Note *)note{
+	return [note getEffectivePitchWithKeySignature:[[[note getStaff] getMeasureContainingNote:note] getEffectiveKeySignature] priorAccidentals:nil] > [self getEffectivePitchWithKeySignature:[[[self getStaff] getMeasureContainingNote:self] getEffectiveKeySignature] priorAccidentals:nil];
 }
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
@@ -106,23 +136,7 @@
 		note.duration += 4.0 * [tie getEffectiveDuration] / 3;
 		tie = [tie getTieTo];
 	}
-	note.note = octave * 12 + [keySig getPitchAtPosition:pitch];
-	int effAccidental = accidental;
-	if(effAccidental == NO_ACC){
-		NSNumber *effAccGet = [accidentals objectForKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
-		if(effAccGet != nil){
-			effAccidental = [effAccGet intValue];
-		}
-	} else{
-		[accidentals setObject:[[[NSNumber alloc] initWithInt:accidental] autorelease] forKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
-	}
-	if(effAccidental != NO_ACC){
-		int keySigAcc = [keySig getAccidentalAtPosition:pitch];
-		if(keySigAcc != NO_ACC){
-			effAccidental -= keySigAcc;
-		}
-		note.note += effAccidental;
-	}
+	note.note = [self getEffectivePitchWithKeySignature:keySig priorAccidentals:nil];
 	if (MusicTrackNewMIDINoteEvent(*musicTrack, pos, &note) != noErr) {
 		NSLog(@"Cannot add note to track.");
     }

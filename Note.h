@@ -44,6 +44,8 @@ static int FLAT = -1;
 - (void)setAccidental:(int)_accidental;
 
 - (BOOL)pitchMatches:(Note *)note;
+- (BOOL)isHigherThan:(Note *)note;
+- (BOOL)isLowerThan:(Note *)note;
 
 - (void)collapseOnTo:(Note *)note;
 

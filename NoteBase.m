@@ -52,7 +52,7 @@
 }
 
 - (BOOL)isTriplet{
-	return duration % 3 == 0;
+	return [self getDuration] % 3 == 0;
 }
 
 - (BOOL)isPartOfFullTriplet{
