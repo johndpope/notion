@@ -16,6 +16,8 @@
 
 + (BOOL)isStemUpwards:(Chord *)chord inMeasure:(Measure *)measure;
 
++ (float) topOf:(Chord *)chord inMeasure:(Measure *)measure;
+
 +(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection;
 
 @end

@@ -19,6 +19,9 @@
 
 - (NSArray *)getNotes;
 
+- (NoteBase *)highestNote;
+- (NoteBase *)lowestNote;
+
 - (void)addNote:(NoteBase *)note;
 - (void)removeNote:(NoteBase *)note;
 

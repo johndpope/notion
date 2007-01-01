@@ -20,8 +20,9 @@
 
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection;
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted
-   isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards;
+   isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards drawStem:(BOOL)stem drawTriplet:(BOOL)triplet;
 
 +(float)topOf:(NoteBase *)note inMeasure:(Measure *)measure;
++(NSRect)bodyRectFor:(NoteBase *)note atIndex:(float)index inMeasure:(Measure *)measure;
 
 @end

@@ -122,6 +122,30 @@
 	return notes;
 }
 
+- (NoteBase *)highestNote{
+	NoteBase *highestNote = nil;
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id note;
+	while(note = [notesEnum nextObject]){
+		if(highestNote == nil || [note isHigherThan:highestNote]){
+			highestNote = note;
+		}
+	}
+	return highestNote;
+}
+
+- (NoteBase *)lowestNote{
+	NoteBase *lowestNote = nil;
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id note;
+	while(note = [notesEnum nextObject]){
+		if(lowestNote == nil || [note isLowerThan:lowestNote]){
+			lowestNote = note;
+		}
+	}
+	return lowestNote;
+}
+
 - (void) setNotes:(NSMutableArray *)_notes{
 	[self prepUndo];
 	if(![notes isEqual:_notes]){

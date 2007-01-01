@@ -21,6 +21,13 @@ static NSMutableDictionary *noteX = nil;
 static NSMutableArray *drawnTriplets = nil;
 static NSColor *mouseOverColor;
 
++(NSColor *)mouseOverColor{
+	if(mouseOverColor == nil){
+		mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
+	}
+	return mouseOverColor;
+}
+
 +(void)resetAccidentals{
 	if(noteX == nil){
 		noteX = [[NSMutableDictionary dictionary] retain];
@@ -197,21 +204,19 @@ static NSColor *mouseOverColor;
 	[NSBezierPath strokeLineFromPoint:NSMakePoint(startX, top) toPoint:NSMakePoint(endX, top)];
 	[NSBezierPath strokeLineFromPoint:NSMakePoint(startX, top) toPoint:NSMakePoint(startX, top + 5)];
 	[NSBezierPath strokeLineFromPoint:NSMakePoint(endX, top) toPoint:NSMakePoint(endX, top + 5)];
+	[@"3" drawAtPoint:NSMakePoint((startX + endX) / 2, top - 15) withAttributes:nil];
 	[drawnTriplets addObjectsFromArray:notesToDraw];
 }
 
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection{
 	[self draw:note inMeasure:measure atIndex:index isTarget:((target == note) || [[note getControllerClass] isSelected:note inSelection:selection])
-	  isOffset:NO isInChordWithOffset:NO stemUpwards:[self isStemUpwards:note inMeasure:measure]];
+	  isOffset:NO isInChordWithOffset:NO stemUpwards:[self isStemUpwards:note inMeasure:measure] drawStem:YES drawTriplet:YES];
 }
 
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted
-   isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards{
+   isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards drawStem:(BOOL)stem drawTriplet:(BOOL)triplet{
 	if(highlighted){
-		if(mouseOverColor == nil){
-			mouseOverColor = [[NSColor colorWithDeviceRed:0.8 green:0 blue:0 alpha:1] retain];
-		}
-		[mouseOverColor set];
+		[[self mouseOverColor] set];
 	}
 	if(noteX == nil){
 		noteX = [[NSMutableDictionary dictionary] retain];
@@ -222,6 +227,11 @@ static NSColor *mouseOverColor;
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
 	NSRect body = [self bodyRectFor:note atIndex:index inMeasure:measure];
 	[self drawExtraStaffLinesForPosition:position withBody:body lineHeight:lineHeight];
+	if([note getDotted]){
+		[self drawDotForBody:body];		
+	}
+	[self drawAccidentalForNote:note withBody:body isTarget:highlighted];
+	[self drawTieForNote:note withBody:body];
 	[NSBezierPath setDefaultLineWidth:1.5];
 	if(offset){
 		if(stemUpwards){
@@ -235,36 +245,29 @@ static NSColor *mouseOverColor;
 	} else{
 		[[NSBezierPath bezierPathWithOvalInRect:body] stroke];
 	}
-	if([note isTriplet]){
-		if(![note isPartOfFullTriplet]){
-			float threeY = stemUpwards ? body.origin.y + body.size.height : body.origin.y - body.size.height - 2;
-			[@"3" drawAtPoint:NSMakePoint(body.origin.x + 2, threeY) withAttributes:nil];
-		} else{
-			[self drawTriplet:note];
+	if(triplet){
+		if([note isTriplet]){
+			if(![note isPartOfFullTriplet]){
+				float threeY = stemUpwards ? body.origin.y + body.size.height : body.origin.y - body.size.height - 2;
+				[@"3" drawAtPoint:NSMakePoint(body.origin.x + 2, threeY) withAttributes:nil];
+			} else{
+				[self drawTriplet:note];
+			}
 		}
 	}
-	if(offset){
-		if(stemUpwards){
-			body.origin.x -= 12;			
-		} else{
-			body.origin.x += 12;
+	if(stem){
+		if(offset){
+			if(stemUpwards){
+				body.origin.x -= 12;			
+			} else{
+				body.origin.x += 12;
+			}
 		}
-	}
-	if([note getDuration] >= 2){
-		[self drawStemForNote:note withBody:body upwards:stemUpwards];
+		if([note getDuration] >= 2){
+			[self drawStemForNote:note withBody:body upwards:stemUpwards];
+		}
 	}
 	[NSBezierPath setDefaultLineWidth:1.0];
-	if(hasOffset && stemUpwards){
-		body.origin.x += 12;
-	}
-	if([note getDotted]){
-		[self drawDotForBody:body];		
-	}
-	[self drawAccidentalForNote:note withBody:body isTarget:highlighted];
-	if(hasOffset && stemUpwards){
-		body.origin.x -= 12;
-	}
-	[self drawTieForNote:note withBody:body];
 	[[NSColor blackColor] set];
 }
 
