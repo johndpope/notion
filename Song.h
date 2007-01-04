@@ -39,6 +39,8 @@
 
 - (double)getPlayerPosition;
 
+- (int)getNumMeasures;
+
 - (NSMutableArray *)tempoData;
 - (void)setTempoData:(NSMutableArray *)_tempoData;
 - (float)getTempoAt:(int)measureIndex;

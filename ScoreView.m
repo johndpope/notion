@@ -14,6 +14,7 @@
 #import "NoteController.h"
 #import "Song.h"
 #import "Staff.h"
+#import "TimeSignature.h"
 #import "NoteDraw.h"
 #import "Repeat.h"
 
@@ -126,15 +127,15 @@
 		}
 
 		float positionInMeasure = 3.0 * playerPosition / 4;
-		Measure *measure = [[[song staffs] objectAtIndex:0] getMeasureAtIndex:0];
-		while(measure != nil && ![playingMeasures containsObject:measure]){
-			positionInMeasure -= [measure getTotalDuration];
-			measure = [[measure getStaff] getMeasureAfter:measure createNew:NO];
+		int index;
+		for(index = 0; index < [song getNumMeasures] && positionInMeasure >= [[song getEffectiveTimeSignatureAt:index] getMeasureDuration]; index++){
+			positionInMeasure -= [[song getEffectiveTimeSignatureAt:index] getMeasureDuration];
 		}
-		if(measure != nil){
-			NoteBase *closestBefore, *closestAfter;
+		if(index < [song getNumMeasures] && [playingMeasures count] > 0){
+			NoteBase *closestBefore = nil, *closestAfter = nil;
 			float distBefore = MAXFLOAT, distAfter = MAXFLOAT;
 			NSEnumerator *measuresEnum = [playingMeasures objectEnumerator];
+			id measure;
 			while(measure = [measuresEnum nextObject]){
 				NoteBase *thisBefore = [measure getClosestNoteBefore:positionInMeasure];
 				float thisBeforeDist = positionInMeasure - [measure getNoteStartDuration:thisBefore];
@@ -143,10 +144,12 @@
 					closestBefore = thisBefore;
 				}
 				NoteBase *thisAfter = [measure getClosestNoteAfter:positionInMeasure];
-				float thisAfterDist = [measure getNoteStartDuration:thisAfter] - positionInMeasure;
-				if(thisAfterDist < distAfter){
-					distAfter = thisAfterDist;
-					closestAfter = thisAfter;
+				if(thisAfter != nil){
+					float thisAfterDist = [measure getNoteStartDuration:thisAfter] - positionInMeasure;
+					if(thisAfterDist < distAfter){
+						distAfter = thisAfterDist;
+						closestAfter = thisAfter;
+					}
 				}
 			}
 			float beforePos = [[closestBefore getControllerClass] xOf:closestBefore];
@@ -157,6 +160,7 @@
 				Measure *playingMeasure = [playingMeasures objectAtIndex:0];
 				NSRect bounds = [[playingMeasure getControllerClass] boundsOf:playingMeasure];
 				afterPos = bounds.origin.x + bounds.size.width;
+				distAfter = [[playingMeasure getEffectiveTimeSignature] getMeasureDuration] - positionInMeasure;
 			}
 			float pos = beforePos + (afterPos - beforePos) * (distBefore / (distBefore + distAfter));
 			

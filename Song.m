@@ -97,6 +97,18 @@ static MusicPlayer musicPlayer;
 	[self didChangeValueForKey:@"staffs"];
 }
 
+- (int)getNumMeasures{
+	int numMeasures = 0;
+	NSEnumerator *staffEnum = [staffs objectEnumerator];
+	id staff;
+	while(staff = [staffEnum nextObject]){
+		if([[staff getMeasures] count] > numMeasures){
+			numMeasures = [[staff getMeasures] count];
+		}
+	}
+	return numMeasures;
+}
+
 - (float)getTempoAt:(int)measureIndex{
 	TempoData *data = [tempoData objectAtIndex:measureIndex];
 	while([data empty]){
@@ -107,14 +119,7 @@ static MusicPlayer musicPlayer;
 
 - (void)refreshTempoData{
 	[self willChangeValueForKey:@"tempoData"];
-	int numMeasures = 0;
-	NSEnumerator *staffEnum = [staffs objectEnumerator];
-	id staff;
-	while(staff = [staffEnum nextObject]){
-		if([[staff getMeasures] count] > numMeasures){
-			numMeasures = [[staff getMeasures] count];
-		}
-	}
+	int numMeasures = [self getNumMeasures];
 	while([tempoData count] < numMeasures){
 		[tempoData addObject:[[TempoData alloc] initEmptyWithSong:self]];
 	}
@@ -187,14 +192,7 @@ static MusicPlayer musicPlayer;
 
 - (void)refreshTimeSigs{
 	[self willChangeValueForKey:@"timeSigs"];
-	int numMeasures = 0;
-	NSEnumerator *staffEnum = [staffs objectEnumerator];
-	id staff;
-	while(staff = [staffEnum nextObject]){
-		if([[staff getMeasures] count] > numMeasures){
-			numMeasures = [[staff getMeasures] count];
-		}
-	}
+	int numMeasures = [self getNumMeasures];
 	while([timeSigs count] < numMeasures){
 		[timeSigs addObject:[NSNull null]];
 	}
@@ -372,7 +370,7 @@ static MusicPlayer musicPlayer;
 		NSLog(@"Cannot start music player.");
 	}
 	
-	musicPlayerPoll = [[NSTimer scheduledTimerWithTimeInterval:.03 target:self
+	musicPlayerPoll = [[NSTimer scheduledTimerWithTimeInterval:.02 target:self
 													  selector:@selector(pollMusicPlayer:)
 													  userInfo:nil
 													   repeats:YES] retain];

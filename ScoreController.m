@@ -12,6 +12,7 @@
 #import "NoteController.h"
 #import "Song.h"
 #import "Measure.h"
+#import "TimeSignature.h"
 
 @implementation ScoreController
 
@@ -31,11 +32,9 @@
 	NSMutableArray *notes = [NSMutableArray array];
 	Staff *firstStaff = [[song staffs] objectAtIndex:0];
 	float currBeats = 0;
-	NSEnumerator *measuresEnum = [[firstStaff getMeasures] objectEnumerator];
-	id measure;
 	int measureIndex = 0;
-	while(measure = [measuresEnum nextObject]){
-		float measureLength = 4.0 * [measure getTotalDuration] / 3;
+	while(measureIndex < [song getNumMeasures]){
+		float measureLength = 4.0 * [[song getEffectiveTimeSignatureAt:measureIndex] getMeasureDuration] / 3;
 		if(currBeats + measureLength > beats){
 			break;
 		}
@@ -44,7 +43,8 @@
 	}
 	beats -= currBeats;
 	NSArray *measures = [[[song staffs] collect] getMeasureAtIndex:measureIndex];
-	measuresEnum = [measures objectEnumerator];
+	NSEnumerator *measuresEnum = [measures objectEnumerator];
+	id measure;
 	while(measure = [measuresEnum nextObject]){
 		if(![measure isKindOfClass:[NSNull class]]){
 			NoteBase *note = [measure getClosestNoteBefore:(beats * 3 / 4)];
