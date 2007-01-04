@@ -30,7 +30,7 @@
 }
 
 + (float) widthOf:(NoteBase *)note{
-	return (72.0 / [note getDuration]) * ([note getDotted] ? 1.5 : 1);	
+	return (100.0 / [note getDuration]) * ([note getDotted] ? 1.5 : 1);	
 }
 
 + (float) widthOf:(NoteBase *)note inMeasure:(Measure *)measure{

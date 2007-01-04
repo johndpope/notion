@@ -55,7 +55,7 @@
 	NSEnumerator *notes = [[measure getNotes] objectEnumerator];
 	id note;
 	while(note = [notes nextObject]){
-		width += [NoteController widthOf:note] + [self minNoteSpacing];
+		width += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing];
 	}
 	if(width < 150.0) width = 150.0;
 	width += [self noteAreaStart:measure] + [self repeatAreaWidth:measure];
