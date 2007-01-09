@@ -612,6 +612,171 @@
 	[fourthNote release];
 }
 
+- (void)testTwoEighthNotesGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)1, @"Wrong number of groups in measure.");
+	NSArray *group = [groups objectAtIndex:0];
+	STAssertEquals([group count], (unsigned)2, @"Wrong number of notes in group.");
+	STAssertTrue([group containsObject:firstNote], @"First note not in group.");
+	STAssertTrue([group containsObject:secondNote], @"Second note not in group.");
+	[firstNote release];
+	[secondNote release];
+}
+
+- (void)testTwoQuarterNotesNotGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)0, @"Wrong number of groups in measure.");
+	[firstNote release];
+	[secondNote release];
+}
+
+- (void)testEighthNoteAndQuarterNoteNotGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)0, @"Wrong number of groups in measure.");
+	[firstNote release];
+	[secondNote release];
+}
+
+- (void)testQuarterNoteAndEighthNoteNotGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)0, @"Wrong number of groups in measure.");
+	[firstNote release];
+	[secondNote release];
+}
+
+- (void)testTwoEighthNotesSeparatedByQuarterNoteNotGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)0, @"Wrong number of groups in measure.");
+	[firstNote release];
+	[secondNote release];	
+	[thirdNote release];	
+}
+
+- (void)testEighthNoteAndTwoSixteenthNotesGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:16 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:16 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)1, @"Wrong number of groups in measure.");
+	NSArray *group = [groups objectAtIndex:0];
+	STAssertEquals([group count], (unsigned)3, @"Wrong number of notes in group.");
+	STAssertTrue([group containsObject:firstNote], @"First note not in group.");
+	STAssertTrue([group containsObject:secondNote], @"Second note not in group.");
+	STAssertTrue([group containsObject:thirdNote], @"Third note not in group.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+}
+
+- (void)testFourEightNotesGroupedIntoTwoGroups{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)2, @"Wrong number of groups in measure.");
+	NSArray *group = [groups objectAtIndex:0];
+	STAssertEquals([group count], (unsigned)2, @"Wrong number of notes in group.");
+	STAssertTrue([group containsObject:firstNote], @"First note not in group.");
+	STAssertTrue([group containsObject:secondNote], @"Second note not in group.");
+	group = [groups objectAtIndex:1];
+	STAssertEquals([group count], (unsigned)2, @"Wrong number of notes in group.");
+	STAssertTrue([group containsObject:thirdNote], @"Third note not in group.");
+	STAssertTrue([group containsObject:fourthNote], @"Fourth note not in group.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void)testEighthNoteTripletGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)1, @"Wrong number of groups in measure.");
+	NSArray *group = [groups objectAtIndex:0];
+	STAssertEquals([group count], (unsigned)3, @"Wrong number of notes in group.");
+	STAssertTrue([group containsObject:firstNote], @"First note not in group.");
+	STAssertTrue([group containsObject:secondNote], @"Second note not in group.");
+	STAssertTrue([group containsObject:thirdNote], @"Third note not in group.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];	
+}
+
+- (void)testEighthNoteAndEighthNoteTripletNotGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)1, @"Wrong number of groups in measure.");
+	NSArray *group = [groups objectAtIndex:0];
+	STAssertEquals([group count], (unsigned)3, @"Wrong number of notes in group.");
+	STAssertFalse([group containsObject:firstNote], @"First note incorrectly in group.");
+	STAssertTrue([group containsObject:secondNote], @"Second note not in group.");
+	STAssertTrue([group containsObject:thirdNote], @"Third note not in group.");
+	STAssertTrue([group containsObject:fourthNote], @"Fourth note not in group.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+}
+
+- (void)testEighthNoteTripletAndEighthNoteNotGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:16 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *thirdNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourthNote = [[Note alloc] initWithPitch:0 octave:0 duration:12 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fifthNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, thirdNote, fourthNote, fifthNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)1, @"Wrong number of groups in measure.");
+	NSArray *group = [groups objectAtIndex:0];
+	STAssertEquals([group count], (unsigned)3, @"Wrong number of notes in group.");
+	STAssertFalse([group containsObject:firstNote], @"First note incorrectly in group.");
+	STAssertTrue([group containsObject:secondNote], @"Second note not in group.");
+	STAssertTrue([group containsObject:thirdNote], @"Third note not in group.");
+	STAssertTrue([group containsObject:fourthNote], @"Fourth note not in group.");
+	STAssertFalse([group containsObject:fifthNote], @"Fifth note incorrectly in group.");
+	[firstNote release];
+	[secondNote release];
+	[thirdNote release];
+	[fourthNote release];
+	[fifthNote release];
+}
+
 // ----- undo/redo tests -----
 
 - (void)setUpUndoTest{

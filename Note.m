@@ -124,6 +124,10 @@
 	return [note getEffectivePitchWithKeySignature:[[[note getStaff] getMeasureContainingNote:note] getEffectiveKeySignature] priorAccidentals:nil] > [self getEffectivePitchWithKeySignature:[[[self getStaff] getMeasureContainingNote:self] getEffectiveKeySignature] priorAccidentals:nil];
 }
 
+- (BOOL)isDrawBars{
+	return [self getDuration] > 4;
+}
+
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
 			accidentals:(NSMutableDictionary *)accidentals onChannel:(int)channel{
 	if(tieFrom != nil) return 4.0 * [self getEffectiveDuration] / 3;

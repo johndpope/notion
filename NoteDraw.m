@@ -39,10 +39,29 @@ static NSColor *mouseOverColor;
 	[drawnTriplets removeAllObjects];
 }
 
-+(BOOL)isStemUpwards:(NoteBase *)note inMeasure:(Measure *)measure{
++(BOOL)isStemUpwardsInIsolation:(NoteBase *)note inMeasure:(Measure *)measure{
 	Clef *clef = [measure getEffectiveClef];
 	int position = [clef getPositionForPitch:[note getPitch] withOctave:[note getOctave]];
 	return position <= 4;
+}
+
++(BOOL)isStemUpwards:(NoteBase *)note inMeasure:(Measure *)measure{
+	NSEnumerator *groups = [[measure getNoteGroups] objectEnumerator];
+	id group;
+	while(group = [groups nextObject]){
+		if([group containsObject:note]){
+			int upwards = 0;
+			NSEnumerator *notes = [group objectEnumerator];
+			id enumNote;
+			while(enumNote = [notes nextObject]){
+				if([self isStemUpwardsInIsolation:enumNote inMeasure:measure]){
+					upwards++;
+				}
+			}
+			return upwards > [group count] / 2;
+		}
+	}
+	return [self isStemUpwardsInIsolation:note inMeasure:measure];
 }
 
 + (NSRect)bodyRectFor:(NoteBase *)note atIndex:(float)index inMeasure:(Measure *)measure{
@@ -63,6 +82,15 @@ static NSColor *mouseOverColor;
 		top -= 30;
 	}
 	return top;
+}
+
++ (float) bottomOf:(NoteBase *)note inMeasure:(Measure *)measure{
+	NSRect body = [self bodyRectFor:note atIndex:0 inMeasure:measure];
+	float bottom = body.origin.y + body.size.height;
+	if(![self isStemUpwards:note inMeasure:measure]){
+		bottom += 30;
+	}
+	return bottom;
 }
 
 +(void)drawExtraStaffLinesForPosition:(int)position withBody:(NSRect)body lineHeight:(float)line{
@@ -95,16 +123,22 @@ static NSColor *mouseOverColor;
 	}	
 }
 
-+(void)drawStemForNote:(Note *)note withBody:(NSRect)body upwards:(BOOL)up{
++ (float)stemXForNote:(NoteBase *)note inMeasure:(Measure *)measure upwards:(BOOL)up{
+	NSRect body = [self bodyRectFor:note atIndex:[[measure getNotes] indexOfObject:note] inMeasure:measure];
+	return up ? body.origin.x + body.size.width - 0.5 : body.origin.x + 0.5;
+}
+
++ (float)stemStartYForNote:(NoteBase *)note inMeasure:(Measure *)measure{
+	NSRect body = [self bodyRectFor:note atIndex:[[measure getNotes] indexOfObject:note] inMeasure:measure];
+	return body.origin.y + (body.size.height / 2);
+}
+
++(void)drawStemForNote:(Note *)note withBody:(NSRect)body upwards:(BOOL)up inMeasure:(Measure *)measure{
+	[NSBezierPath setDefaultLineWidth:2.0];
 	NSPoint point1, point2;
-	point1.y = body.origin.y + (body.size.height / 2);
-	if(!up){
-		point1.x = point2.x = body.origin.x + 0.5;
-		point2.y = point1.y + 30;
-	} else{
-		point1.x = point2.x = body.origin.x + body.size.width - 0.5;
-		point2.y = point1.y - 30;
-	}
+	point1.y = [self stemStartYForNote:note inMeasure:measure];
+	point1.x = point2.x = up ? body.origin.x + body.size.width - 0.5 : body.origin.x + 0.5;
+	point2.y = up ? point1.y - 30 : point1.y + 30;
 	[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
 	int i;
 	if(!up){
@@ -113,7 +147,7 @@ static NSColor *mouseOverColor;
 	} else{
 		point1.x += 7;
 		point1.y = point2.y + 7;
-	}		
+	}
 	for(i=8; i<=[note getDuration]; i*=2){
 		[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];
 		if(!up){
@@ -123,7 +157,8 @@ static NSColor *mouseOverColor;
 			point1.y += 5;
 			point2.y += 5;
 		}
-	}	
+	}		
+	[NSBezierPath setDefaultLineWidth:1.0];
 }
 
 +(void)drawDotForBody:(NSRect)body{
@@ -210,7 +245,8 @@ static NSColor *mouseOverColor;
 
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection{
 	[self draw:note inMeasure:measure atIndex:index isTarget:((target == note) || [[note getControllerClass] isSelected:note inSelection:selection])
-	  isOffset:NO isInChordWithOffset:NO stemUpwards:[self isStemUpwards:note inMeasure:measure] drawStem:YES drawTriplet:YES];
+	  isOffset:NO isInChordWithOffset:NO stemUpwards:[self isStemUpwards:note inMeasure:measure] 
+	  drawStem:(![note isDrawBars] || [measure isIsolated:note]) drawTriplet:YES];
 }
 
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted
@@ -264,7 +300,7 @@ static NSColor *mouseOverColor;
 			}
 		}
 		if([note getDuration] >= 2){
-			[self drawStemForNote:note withBody:body upwards:stemUpwards];
+			[self drawStemForNote:note withBody:body upwards:stemUpwards inMeasure:measure];
 		}
 	}
 	[NSBezierPath setDefaultLineWidth:1.0];

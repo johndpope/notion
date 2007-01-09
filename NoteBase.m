@@ -59,6 +59,10 @@
 	return [self getContainingTriplet] != nil;
 }
 
+- (BOOL)isDrawBars{
+	return NO;
+}
+
 - (NSArray *)getContainingTriplet{
 	// find first triplet note in sequence leading up to this note
 	NoteBase *curr = self;
