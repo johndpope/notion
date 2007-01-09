@@ -8,6 +8,8 @@
 
 #import "TimeSignature.h"
 #import "CompoundTimeSig.h"
+#import "TimeSignatureDraw.h"
+#import "TimeSignatureController.h"
 
 @implementation TimeSignature
 
@@ -64,6 +66,14 @@
 		return [CompoundTimeSig asNSNumberArray:sig];
 	}
 	return [NSArray arrayWithObjects:[NSNumber numberWithInt:[sig getTop]], [NSNumber numberWithInt:[sig getBottom]], nil];
+}
+
+-(Class)getViewClass{
+	return [TimeSignatureDraw class];
+}
+
+-(Class)getControllerClass{
+	return [TimeSignatureController class];
 }
 
 @end

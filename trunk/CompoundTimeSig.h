@@ -15,4 +15,7 @@
 
 -(id)initWithFirstSig:(TimeSignature *)_firstSig secondSig:(TimeSignature *)_secondSig;
 
+-(TimeSignature *)firstSig;
+-(TimeSignature *)secondSig;
+
 @end

@@ -27,4 +27,7 @@
 +(NSArray *)asNSNumberArray:(id)sig;
 +(id)fromNSNumberArray:(NSArray *)array;
 
+- (Class)getViewClass;
+- (Class)getControllerClass;
+
 @end

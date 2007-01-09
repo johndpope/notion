@@ -7,8 +7,10 @@
 //
 
 #import "TimeSignatureController.h"
+#import "CompoundTimeSigController.h"
 #import "TimeSignatureDraw.h"
 #import "TimeSignature.h"
+#import "CompoundTimeSig.h"
 
 static float widths[17] = {
 	0.0, 0.0, 0.0, 0.0,
@@ -22,6 +24,9 @@ static float widths[17] = {
 + (float) widthOf:(TimeSignature *)timeSig{
 	if([timeSig isKindOfClass:[NSNull class]]){
 		return 10.0;
+	}
+	if([timeSig isKindOfClass:[CompoundTimeSig class]]){
+		return [CompoundTimeSigController widthOf:timeSig];
 	}
 	if(widths[[timeSig getBottom]] == 0.0) {
 		widths[[timeSig getBottom]] = [[NSString stringWithFormat:@"%d", [timeSig getBottom]] sizeWithAttributes:[TimeSignatureDraw timeSigStringAttrs]].width + 10.0;
