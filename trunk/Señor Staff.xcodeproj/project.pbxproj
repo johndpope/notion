@@ -38,6 +38,8 @@
 		786EBA5A0A789651009D63DD /* RestDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBA590A789651009D63DD /* RestDraw.m */; };
 		786EBB6E0A7C7A36009D63DD /* MeasureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */; };
 		786EBBA40A7C7C98009D63DD /* ClefDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 786EBBA30A7C7C98009D63DD /* ClefDraw.m */; };
+		787A0B6D0B53648000926563 /* CompoundTimeSig.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 787A0B6B0B53648000926563 /* CompoundTimeSig.h */; };
+		787A0B6E0B53648000926563 /* CompoundTimeSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 787A0B6C0B53648000926563 /* CompoundTimeSig.m */; };
 		787A91550B159992006FD236 /* dotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A91540B159992006FD236 /* dotted.png */; };
 		787A91570B159A66006FD236 /* tietoprev.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A91560B159A66006FD236 /* tietoprev.png */; };
 		787A92130B17DE67006FD236 /* enote.png in Resources */ = {isa = PBXBuildFile; fileRef = 787A92080B17DE67006FD236 /* enote.png */; };
@@ -169,6 +171,7 @@
 				786BDA1A0B251B8C002D16A3 /* DrumStaffDraw.h in CopyFiles */,
 				78B224250B2FD48600047C6B /* Repeat.h in CopyFiles */,
 				786B734A0B51B806004297F2 /* NSArray+SenorStaff.h in CopyFiles */,
+				787A0B6D0B53648000926563 /* CompoundTimeSig.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +236,8 @@
 		786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureDraw.m; sourceTree = "<group>"; };
 		786EBBA20A7C7C98009D63DD /* ClefDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefDraw.h; sourceTree = "<group>"; };
 		786EBBA30A7C7C98009D63DD /* ClefDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClefDraw.m; sourceTree = "<group>"; };
+		787A0B6B0B53648000926563 /* CompoundTimeSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompoundTimeSig.h; sourceTree = "<group>"; };
+		787A0B6C0B53648000926563 /* CompoundTimeSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompoundTimeSig.m; sourceTree = "<group>"; };
 		787A91540B159992006FD236 /* dotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotted.png; sourceTree = "<group>"; };
 		787A91560B159A66006FD236 /* tietoprev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tietoprev.png; sourceTree = "<group>"; };
 		787A92080B17DE67006FD236 /* enote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enote.png; sourceTree = "<group>"; };
@@ -524,6 +529,8 @@
 				786BD89B0B23AFFF002D16A3 /* ChromaticKeySignature.m */,
 				78B224230B2FD48600047C6B /* Repeat.h */,
 				78B224240B2FD48600047C6B /* Repeat.m */,
+				787A0B6B0B53648000926563 /* CompoundTimeSig.h */,
+				787A0B6C0B53648000926563 /* CompoundTimeSig.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -888,6 +895,7 @@
 				786BDA1B0B251B8C002D16A3 /* DrumStaffDraw.m in Sources */,
 				78B224260B2FD48600047C6B /* Repeat.m in Sources */,
 				786B734B0B51B806004297F2 /* NSArray+SenorStaff.m in Sources */,
+				787A0B6E0B53648000926563 /* CompoundTimeSig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

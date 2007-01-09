@@ -18,6 +18,8 @@
 
 -(id)initWithTop:(int)top bottom:(int)bottom;
 
+-(TimeSignature *)getTimeSignatureAfterMeasures:(int)numMeasures;
+
 -(int)getTop;
 -(int)getBottom;
 -(float)getMeasureDuration;

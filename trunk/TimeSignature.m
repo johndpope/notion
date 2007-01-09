@@ -7,7 +7,7 @@
 //
 
 #import "TimeSignature.h"
-
+#import "CompoundTimeSig.h"
 
 @implementation TimeSignature
 
@@ -27,6 +27,7 @@
 
 +(id)fromNSNumberArray:(NSArray *)array{
 	if([array isEqual:[NSNull null]]) return [NSNull null];
+	if([array count] > 2) return [CompoundTimeSig fromNSNumberArray:(NSArray *)array];
 	return [self timeSignatureWithTop:[[array objectAtIndex:0] intValue] bottom:[[array objectAtIndex:1] intValue]];
 }
 
@@ -35,6 +36,10 @@
 		top = _top;
 		bottom = _bottom;
 	}
+	return self;
+}
+
+-(TimeSignature *)getTimeSignatureAfterMeasures:(int)numMeasures{
 	return self;
 }
 
@@ -50,9 +55,13 @@
 	return (float)(top * 3)/(float)bottom;
 }
 
+// this is a class method instead of an instance method so that we can handle NSNulls
 +(NSArray *)asNSNumberArray:(id)sig{
 	if([sig isEqual:[NSNull null]]){
 		return nil;
+	}
+	if([sig isKindOfClass:[CompoundTimeSig class]]){
+		return [CompoundTimeSig asNSNumberArray:sig];
 	}
 	return [NSArray arrayWithObjects:[NSNumber numberWithInt:[sig getTop]], [NSNumber numberWithInt:[sig getBottom]], nil];
 }
