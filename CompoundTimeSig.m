@@ -7,7 +7,8 @@
 //
 
 #import "CompoundTimeSig.h"
-
+#import "CompoundTimeSigDraw.h"
+#import "CompoundTimeSigController.h"
 
 @implementation CompoundTimeSig
 
@@ -26,6 +27,21 @@
 	return secondSig;
 }
 
+-(TimeSignature *)firstSig{
+	return firstSig;
+}
+
+-(TimeSignature *)secondSig{
+	return secondSig;
+}
+
++(id)fromNSNumberArray:(NSArray *)array{
+	NSArray *firstArray = [array subarrayWithRange:NSMakeRange(0, 2)],
+		*secondArray = [array subarrayWithRange:NSMakeRange(2, 2)];
+	return [[[self alloc] initWithFirstSig:[TimeSignature fromNSNumberArray:firstArray]
+								 secondSig:[TimeSignature fromNSNumberArray:secondArray]] autorelease];
+}
+
 +(NSArray *)asNSNumberArray:(id)sig{
 	return [[TimeSignature asNSNumberArray:firstSig] arrayByAddingObjectsFromArray:[TimeSignature asNSNumberArray:secondSig]];
 }
@@ -36,6 +52,14 @@
 	firstSig = nil;
 	secondSig = nil;
 	[super dealloc];
+}
+
+-(Class)getViewClass{
+	return [CompoundTimeSigDraw class];
+}
+
+-(Class)getControllerClass{
+	return [CompoundTimeSigController class];
 }
 
 @end

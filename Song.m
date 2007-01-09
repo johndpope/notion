@@ -18,6 +18,8 @@
 #import "Note.h"
 #import "Repeat.h"
 
+#import "CompoundTimeSig.h"
+
 static MusicPlayer musicPlayer;
 
 @implementation Song

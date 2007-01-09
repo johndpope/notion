@@ -45,7 +45,11 @@
 }
 
 - (Class)getControllerClass{
-	return [TimeSignatureController class];
+	id sig = [measure getTimeSignature];
+	if([sig isKindOfClass:[NSNull class]]){
+		return [TimeSignatureController class];
+	}
+	return [sig getControllerClass];
 }
 
 @end
