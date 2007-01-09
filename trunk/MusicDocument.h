@@ -19,4 +19,6 @@
 - (Song *)getSong;
 - (void)setSong:(Song *)_song;
 
+- (IBAction)goToHomepage:(id)sender;
+
 @end

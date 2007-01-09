@@ -62,5 +62,8 @@
 	return YES;
 }
 
+- (IBAction)goToHomepage:(id)sender{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.gusprevas.com/senorstaff/about"]];
+}
 
 @end
