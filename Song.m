@@ -183,11 +183,12 @@ static MusicPlayer musicPlayer;
 }
 
 - (TimeSignature *)getEffectiveTimeSignatureAt:(int)measureIndex{
-	while([[self getTimeSignatureAt:measureIndex] isKindOfClass:[NSNull class]]){
-		if(measureIndex == 0) return [TimeSignature timeSignatureWithTop:4 bottom:4];
-		measureIndex--;
+	int prevMeasureIndex = measureIndex;
+	while([[self getTimeSignatureAt:prevMeasureIndex] isKindOfClass:[NSNull class]]){
+		if(prevMeasureIndex == 0) return [TimeSignature timeSignatureWithTop:4 bottom:4];
+		prevMeasureIndex--;
 	}
-	return [self getTimeSignatureAt:measureIndex];
+	return [[self getTimeSignatureAt:prevMeasureIndex] getTimeSignatureAfterMeasures:(measureIndex - prevMeasureIndex)];
 }
 
 - (void)refreshTimeSigs{
