@@ -332,6 +332,57 @@
 	return totalDuration == [[self getEffectiveTimeSignature] getMeasureDuration];
 }
 
+- (BOOL)isIsolated:(NoteBase *)note{
+	NSEnumerator *groups = [[self getNoteGroups] objectEnumerator];
+	id group;
+	while(group = [groups nextObject]){
+		if([group containsObject:note]){
+			return false;
+		}
+	}
+	return true;
+}
+
+- (NSArray *)getNoteGroups{
+	NSMutableArray *groups = [NSMutableArray array];
+	NSMutableArray *group = [NSMutableArray array];
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id note;
+	float durationSoFar = 0;
+	while(note = [notesEnum nextObject]){
+		durationSoFar += [note getEffectiveDuration];
+		if([note isDrawBars]){
+			if([note isPartOfFullTriplet] &&
+			   [[note getContainingTriplet] objectAtIndex:0] == note){
+				if([group count] > 1){
+					[groups addObject:group];
+				}
+				group = [NSMutableArray array];				
+			}
+			[group addObject:note];
+			// durationSoFar / 3.0 gives the "real" effective duration
+			// we're at a quarter note boundary if it's a multiple of 1/4.
+			float realDuration = durationSoFar / 3.0;
+			if((realDuration * 4 - floor(realDuration * 4) < 0.005) || ([note isPartOfFullTriplet] &&
+																		[[note getContainingTriplet] lastObject] == note)){
+				if([group count] > 1){
+					[groups addObject:group];
+				}
+				group = [NSMutableArray array];				
+			}
+		} else {
+			if([group count] > 1){
+				[groups addObject:group];
+			}
+			group = [NSMutableArray array];
+		}
+	}
+	if([group count] > 1){
+		[groups addObject:group];
+	}
+	return groups;
+}
+
 - (int)indexInStaff{
 	return [[[self getStaff] getMeasures] indexOfObject:self];
 }

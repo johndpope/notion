@@ -25,6 +25,8 @@
 		7865F5A80AB4E10B00678461 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865F5970AB4E10B00678461 /* AudioToolbox.framework */; };
 		78683A1B0A0E8A72001DE5BB /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */; };
 		786A93F20A89822B0006F54C /* MeasureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A93F10A89822B0006F54C /* MeasureTest.m */; };
+		786B734A0B51B806004297F2 /* NSArray+SenorStaff.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 786B73480B51B806004297F2 /* NSArray+SenorStaff.h */; };
+		786B734B0B51B806004297F2 /* NSArray+SenorStaff.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B73490B51B806004297F2 /* NSArray+SenorStaff.m */; };
 		786BD6C50B238FAB002D16A3 /* DrumKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */; };
 		786BD6C60B238FAB002D16A3 /* DrumKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 786BD6C40B238FAB002D16A3 /* DrumKit.m */; };
 		786BD89C0B23AFFF002D16A3 /* ChromaticKeySignature.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 786BD89A0B23AFFF002D16A3 /* ChromaticKeySignature.h */; };
@@ -166,6 +168,7 @@
 				786BD89C0B23AFFF002D16A3 /* ChromaticKeySignature.h in CopyFiles */,
 				786BDA1A0B251B8C002D16A3 /* DrumStaffDraw.h in CopyFiles */,
 				78B224250B2FD48600047C6B /* Repeat.h in CopyFiles */,
+				786B734A0B51B806004297F2 /* NSArray+SenorStaff.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +215,8 @@
 		78683A1A0A0E8A72001DE5BB /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
 		786A93F00A89822B0006F54C /* MeasureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureTest.h; sourceTree = "<group>"; };
 		786A93F10A89822B0006F54C /* MeasureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureTest.m; sourceTree = "<group>"; };
+		786B73480B51B806004297F2 /* NSArray+SenorStaff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SenorStaff.h"; sourceTree = "<group>"; };
+		786B73490B51B806004297F2 /* NSArray+SenorStaff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SenorStaff.m"; sourceTree = "<group>"; };
 		786BD6C30B238FAB002D16A3 /* DrumKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumKit.h; sourceTree = "<group>"; };
 		786BD6C40B238FAB002D16A3 /* DrumKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumKit.m; sourceTree = "<group>"; };
 		786BD89A0B23AFFF002D16A3 /* ChromaticKeySignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromaticKeySignature.h; sourceTree = "<group>"; };
@@ -442,6 +447,8 @@
 				78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */,
 				787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */,
 				787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */,
+				786B73480B51B806004297F2 /* NSArray+SenorStaff.h */,
+				786B73490B51B806004297F2 /* NSArray+SenorStaff.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -880,6 +887,7 @@
 				786BD89D0B23AFFF002D16A3 /* ChromaticKeySignature.m in Sources */,
 				786BDA1B0B251B8C002D16A3 /* DrumStaffDraw.m in Sources */,
 				78B224260B2FD48600047C6B /* Repeat.m in Sources */,
+				786B734B0B51B806004297F2 /* NSArray+SenorStaff.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

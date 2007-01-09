@@ -88,6 +88,9 @@
 
 - (NoteBase *)getNoteBefore:(NoteBase *)source;
 
+- (BOOL)isIsolated:(NoteBase *)note;
+- (NSArray *)getNoteGroups;
+
 - (float)getNoteStartDuration:(NoteBase *)note;
 - (float)getNoteEndDuration:(NoteBase *)note;
 - (int)getNumberOfNotesStartingAfter:(float)startDuration before:(float)endDuration;

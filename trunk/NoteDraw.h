@@ -22,7 +22,10 @@
 +(void)draw:(NoteBase *)note inMeasure:(Measure *)measure atIndex:(float)index isTarget:(BOOL)highlighted
    isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards drawStem:(BOOL)stem drawTriplet:(BOOL)triplet;
 
++(float)stemXForNote:(NoteBase *)note inMeasure:(Measure *)measure upwards:(BOOL)up;
++(float)stemStartYForNote:(NoteBase *)note inMeasure:(Measure *)measure;
 +(float)topOf:(NoteBase *)note inMeasure:(Measure *)measure;
++(float) bottomOf:(NoteBase *)note inMeasure:(Measure *)measure;
 +(NSRect)bodyRectFor:(NoteBase *)note atIndex:(float)index inMeasure:(Measure *)measure;
 
 @end
