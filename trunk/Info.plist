@@ -27,6 +27,10 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>Señor Staff</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>Senor Staff Help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>Senor Staff Help</string>
 	<key>CFBundleIconFile</key>
 	<string>sstaff</string>
 	<key>CFBundleIdentifier</key>
