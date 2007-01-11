@@ -11,6 +11,7 @@
 #import "Measure.h"
 #import "TempoData.h"
 #import "TimeSignature.h"
+#import "CompoundTimeSig.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <Chomp/Chomp.h>
 
@@ -155,21 +156,6 @@ static MusicPlayer musicPlayer;
 	}
 }
 
-- (void)setTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
-	TimeSignature *oldEffSig = [self getEffectiveTimeSignatureAt:measureIndex];
-	float oldTotal = [oldEffSig getMeasureDuration];
-	[self doSetTimeSignature:sig atIndex:measureIndex];
-	sig = [self getEffectiveTimeSignatureAt:measureIndex];
-	float newTotal = [sig getMeasureDuration];
-	NSEnumerator *staffsEnum = [staffs objectEnumerator];
-	id staff;
-	while(staff = [staffsEnum nextObject]){
-		if([[staff getMeasures] count] > measureIndex){
-			[[staff getMeasureAtIndex:measureIndex] timeSignatureChangedFrom:oldTotal
-																					to:newTotal top:[sig getTop] bottom:[sig getBottom]];
-		}
-	}	
-}
 - (void)doSetTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
 	[[[self undoManager] prepareWithInvocationTarget:self] doSetTimeSignature:[timeSigs objectAtIndex:measureIndex] atIndex:measureIndex];
 	[timeSigs replaceObjectAtIndex:measureIndex withObject:sig];
@@ -179,12 +165,30 @@ static MusicPlayer musicPlayer;
 		[[staff getMeasureAtIndex:measureIndex] updateTimeSigPanel];
 	}	
 }
+- (void)setTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex{
+	float oldTotal = [[self getEffectiveTimeSignatureAt:measureIndex] getMeasureDuration];
+	float secondOldTotal = [[self getEffectiveTimeSignatureAt:(measureIndex+1)] getMeasureDuration];
+	[self doSetTimeSignature:sig atIndex:measureIndex];
+	NSEnumerator *staffsEnum = [staffs objectEnumerator];
+	id staff;
+	while(staff = [staffsEnum nextObject]){
+		if([[staff getMeasures] count] > measureIndex){
+			Measure *measure = [staff getMeasureAtIndex:measureIndex];
+			[measure timeSignatureChangedFrom:oldTotal to:[[measure getEffectiveTimeSignature] getMeasureDuration]];
+			measure = [staff getMeasureAfter:measure createNew:NO];
+			[measure timeSignatureChangedFrom:secondOldTotal to:[[measure getEffectiveTimeSignature] getMeasureDuration]];
+		}
+	}	
+}
 
 - (TimeSignature *)getTimeSignatureAt:(int)measureIndex{
 	return [timeSigs objectAtIndex:measureIndex];
 }
 
 - (TimeSignature *)getEffectiveTimeSignatureAt:(int)measureIndex{
+	if(measureIndex >= [self getNumMeasures]){
+		return nil;
+	}
 	int prevMeasureIndex = measureIndex;
 	while([[self getTimeSignatureAt:prevMeasureIndex] isKindOfClass:[NSNull class]]){
 		if(prevMeasureIndex == 0) return [TimeSignature timeSignatureWithTop:4 bottom:4];
@@ -207,6 +211,12 @@ static MusicPlayer musicPlayer;
 
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom{
 	TimeSignature *sig = [TimeSignature timeSignatureWithTop:top bottom:bottom];
+	[self setTimeSignature:sig atIndex:measureIndex];
+}
+
+- (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom secondTop:(int)secondTop secondBottom:(int)secondBottom{
+	TimeSignature *sig = [[[CompoundTimeSig alloc] initWithFirstSig:[TimeSignature timeSignatureWithTop:top bottom:bottom]
+														 secondSig:[TimeSignature timeSignatureWithTop:secondTop bottom:secondBottom]] autorelease];
 	[self setTimeSignature:sig atIndex:measureIndex];
 }
 
@@ -427,6 +437,7 @@ static MusicPlayer musicPlayer;
 		timeSigs = [[[TimeSignature collectSelf] fromNSNumberArray:[_sigs each]] retain];
 		[self refreshTimeSigs];
 		[self setRepeats:[coder decodeObjectForKey:@"repeats"]];
+		playerPosition = -1;
 	}
 	return self;
 }

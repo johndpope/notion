@@ -35,6 +35,19 @@
 	return secondSig;
 }
 
+-(int)getTop{
+	return [firstSig getTop];
+}
+-(int)getBottom{
+	return [firstSig getBottom];
+}
+-(int)getSecondTop{
+	return [secondSig getTop];
+}
+-(int)getSecondBottom{
+	return [secondSig getBottom];
+}
+
 +(id)fromNSNumberArray:(NSArray *)array{
 	NSArray *firstArray = [array subarrayWithRange:NSMakeRange(0, 2)],
 		*secondArray = [array subarrayWithRange:NSMakeRange(2, 2)];
@@ -43,7 +56,7 @@
 }
 
 +(NSArray *)asNSNumberArray:(id)sig{
-	return [[TimeSignature asNSNumberArray:firstSig] arrayByAddingObjectsFromArray:[TimeSignature asNSNumberArray:secondSig]];
+	return [[TimeSignature asNSNumberArray:[sig firstSig]] arrayByAddingObjectsFromArray:[TimeSignature asNSNumberArray:[sig secondSig]]];
 }
 
 -(void)dealloc{

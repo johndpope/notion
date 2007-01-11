@@ -310,7 +310,7 @@
 	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:NO onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:2 bottom:4] atIndex:0];
-	[measure timeSignatureChangedFrom:1.0 to:0.5 top:2 bottom:4];
+	[measure timeSignatureChangedFrom:1.0 to:0.5];
 	STAssertEquals([[staff getMeasures] count], (unsigned)2, @"Wrong number of measures resulting from time signature change.");
 	STAssertEquals([[measure getNotes] count], (unsigned)1, @"Wrong number of notes left after time signature change.");
 	STAssertEquals([measure getTotalDuration], (float)1.5, @"Wrong total duration left in first measure.");
@@ -325,7 +325,7 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondRest]];
 	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:8 bottom:4] atIndex:0];
-	[measure timeSignatureChangedFrom:1.0 to:2.0 top:8 bottom:4];
+	[measure timeSignatureChangedFrom:1.0 to:2.0];
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
 	STAssertEquals([measure getTotalDuration], (float)6.0, @"Wrong total duration left in first measure.");
 	STAssertEquals([[secondMeasure getNotes] count], (unsigned)0, @"Notes not removed from second measure."); 
@@ -340,7 +340,7 @@
 	[secondMeasure setNotes:[NSMutableArray arrayWithObject:secondNote]];
 	[measure setNotes:[NSMutableArray arrayWithObject:firstRest]];
 	[song setTimeSignature:[TimeSignature timeSignatureWithTop:6 bottom:4] atIndex:0];
-	[measure timeSignatureChangedFrom:1.0 to:1.5 top:6 bottom:4];
+	[measure timeSignatureChangedFrom:1.0 to:1.5];
 	STAssertEquals([[measure getNotes] count], (unsigned)2, @"Wrong number of notes left after time signature change.");
 	STAssertEquals([measure getTotalDuration], (float)4.5, @"Wrong total duration left in first measure.");
 	STAssertEquals([[secondMeasure getNotes] count], (unsigned)1, @"Wrong number of notes left in second measure.");

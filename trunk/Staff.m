@@ -371,7 +371,13 @@
 
 - (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom{
 	[song timeSigChangedAtIndex:[measures indexOfObject:measure]
-		top:(int)top bottom:(int)bottom];
+							top:(int)top bottom:(int)bottom];
+}
+
+- (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom secondTop:(int)secondTop secondBottom:(int)secondBottom{
+	[song timeSigChangedAtIndex:[measures indexOfObject:measure]
+							top:(int)top bottom:(int)bottom
+					  secondTop:(int)secondTop secondBottom:(int)secondBottom];
 }
 
 - (void)timeSigDeletedAtMeasure:(Measure *)measure{

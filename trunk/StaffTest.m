@@ -68,22 +68,21 @@
 	[song release];
 }
 - (void) testGetEffectiveTimeSignatureForMeasureWhenPreviousMeasureHasEffectiveTimeSignature{
-	Measure *firstMeasure = [staff getLastMeasure];
-	Measure *secondMeasure = [staff addMeasure];
 	TimeSignature *timeSig = [TimeSignature alloc];
 	Song *song = [[Song alloc] initWithDocument:nil];
 	NSMutableArray *timeSigs = [NSMutableArray array];
 	[timeSigs addObject:timeSig];
 	[timeSigs addObject:[NSNull null]];
 	[song setTimeSigs:timeSigs];
-	[staff setSong:song];
+	staff = [[song staffs] objectAtIndex:0];
+	Measure *firstMeasure = [staff getLastMeasure];
+	Measure *secondMeasure = [staff addMeasure];
 	STAssertEqualObjects([staff getEffectiveTimeSignatureForMeasure:secondMeasure], timeSig, @"Wrong time signature returned.");
 	[timeSig release];
 	[song release];
 }
 
 - (void) testGetEffectiveTimeSignatureForMeasureWithCompoundTimeSignature{
-	Measure *measure = [staff getLastMeasure];
 	TimeSignature *firstTimeSig = [TimeSignature alloc];
 	TimeSignature *secondTimeSig = [TimeSignature alloc];
 	TimeSignature *compoundTimeSig = [[CompoundTimeSig alloc] initWithFirstSig:firstTimeSig secondSig:secondTimeSig];
@@ -91,7 +90,8 @@
 	NSMutableArray *timeSigs = [NSMutableArray array];
 	[timeSigs addObject:compoundTimeSig];
 	[song setTimeSigs:timeSigs];
-	[staff setSong:song];
+	staff = [[song staffs] objectAtIndex:0];
+	Measure *measure = [staff getLastMeasure];
 	STAssertEqualObjects([staff getEffectiveTimeSignatureForMeasure:measure], firstTimeSig, @"Wrong time signature returned.");
 	[firstTimeSig release];
 	[secondTimeSig release];
@@ -99,8 +99,6 @@
 	[song release];
 }
 - (void) testGetEffectiveTimeSignatureForMeasureAfterCompoundTimeSignature{
-	Measure *firstMeasure = [staff getLastMeasure];
-	Measure *secondMeasure = [staff addMeasure];
 	TimeSignature *firstTimeSig = [TimeSignature alloc];
 	TimeSignature *secondTimeSig = [TimeSignature alloc];
 	TimeSignature *compoundTimeSig = [[CompoundTimeSig alloc] initWithFirstSig:firstTimeSig secondSig:secondTimeSig];
@@ -109,7 +107,9 @@
 	[timeSigs addObject:compoundTimeSig];
 	[timeSigs addObject:[NSNull null]];
 	[song setTimeSigs:timeSigs];
-	[staff setSong:song];
+	staff = [[song staffs] objectAtIndex:0];
+	Measure *firstMeasure = [staff getLastMeasure];
+	Measure *secondMeasure = [staff addMeasure];
 	STAssertEqualObjects([staff getEffectiveTimeSignatureForMeasure:secondMeasure], secondTimeSig, @"Wrong time signature returned.");
 	[firstTimeSig release];
 	[secondTimeSig release];
@@ -117,9 +117,6 @@
 	[song release];
 }
 - (void) testGetEffectiveTimeSignatureForMeasureTwoAfterCompoundTimeSignature{
-	Measure *firstMeasure = [staff getLastMeasure];
-	Measure *secondMeasure = [staff addMeasure];
-	Measure *thirdMeasure = [staff addMeasure];
 	TimeSignature *firstTimeSig = [TimeSignature alloc];
 	TimeSignature *secondTimeSig = [TimeSignature alloc];
 	TimeSignature *compoundTimeSig = [[CompoundTimeSig alloc] initWithFirstSig:firstTimeSig secondSig:secondTimeSig];
@@ -129,7 +126,10 @@
 	[timeSigs addObject:[NSNull null]];
 	[timeSigs addObject:[NSNull null]];
 	[song setTimeSigs:timeSigs];
-	[staff setSong:song];
+	staff = [[song staffs] objectAtIndex:0];
+	Measure *firstMeasure = [staff getLastMeasure];
+	Measure *secondMeasure = [staff addMeasure];
+	Measure *thirdMeasure = [staff addMeasure];
 	STAssertEqualObjects([staff getEffectiveTimeSignatureForMeasure:thirdMeasure], firstTimeSig, @"Wrong time signature returned.");
 	[firstTimeSig release];
 	[secondTimeSig release];

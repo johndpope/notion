@@ -53,6 +53,13 @@
 	return bottom;
 }
 
+-(int)getSecondTop{
+	return top;
+}
+-(int)getSecondBottom{
+	return bottom;
+}
+
 -(float)getMeasureDuration{
 	return (float)(top * 3)/(float)bottom;
 }

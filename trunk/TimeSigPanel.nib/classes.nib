@@ -7,6 +7,10 @@
                 keySigClose = id; 
                 timeSigBottomChanged = id; 
                 timeSigClose = id; 
+                timeSigCollapse = id; 
+                timeSigExpand = id; 
+                timeSigSecondBottomChanged = id; 
+                timeSigSecondTopChanged = id; 
                 timeSigTopChanged = id; 
             }; 
             CLASS = Measure; 
@@ -16,7 +20,12 @@
                 keySigMajMin = NSPopUpButton; 
                 keySigPanel = NSView; 
                 timeSigBottom = NSPopUpButton; 
+                timeSigExpand = NSButton; 
+                timeSigInnerClose = NSButton; 
                 timeSigPanel = NSView; 
+                timeSigSecondBottom = NSPopUpButton; 
+                timeSigSecondTopStep = NSStepper; 
+                timeSigSecondTopText = NSTextField; 
                 timeSigTopStep = NSStepper; 
                 timeSigTopText = NSTextField; 
             }; 

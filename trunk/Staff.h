@@ -66,6 +66,7 @@
 
 - (void)toggleClefAtMeasure:(Measure *)measure;
 - (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom;
+- (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom secondTop:(int)secondTop secondBottom:(int)secondBottom;
 - (void)timeSigDeletedAtMeasure:(Measure *)measure;
 
 - (IBAction)soloPressed:(id)sender;
