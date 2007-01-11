@@ -32,6 +32,11 @@
 	IBOutlet NSTextField *timeSigTopText;
 	IBOutlet NSStepper *timeSigTopStep;
 	IBOutlet NSPopUpButton *timeSigBottom;
+	IBOutlet NSTextField *timeSigSecondTopText;
+	IBOutlet NSStepper *timeSigSecondTopStep;
+	IBOutlet NSPopUpButton *timeSigSecondBottom;
+	IBOutlet NSButton *timeSigInnerClose;
+	IBOutlet NSButton *timeSigExpand;
 }
 
 - (id)initWithStaff:(Staff *)_staff;
@@ -76,7 +81,7 @@
 - (TimeSignature *)getTimeSignature;
 - (BOOL)hasTimeSignature;
 - (TimeSignature *)getEffectiveTimeSignature;
-- (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal top:(int)top bottom:(int)bottom;
+- (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal;
 - (void)timeSigDelete;
 
 - (BOOL)isShowingKeySigPanel;
@@ -104,7 +109,11 @@
 
 - (IBAction)timeSigTopChanged:(id)sender;
 - (IBAction)timeSigBottomChanged:(id)sender;
+- (IBAction)timeSigSecondTopChanged:(id)sender;
+- (IBAction)timeSigSecondBottomChanged:(id)sender;
 - (IBAction)timeSigClose:(id)sender;
+- (IBAction)timeSigExpand:(id)sender;
+- (IBAction)timeSigCollapse:(id)sender;
 
 - (void)cleanPanels;
 

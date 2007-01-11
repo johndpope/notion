@@ -24,6 +24,9 @@
 -(int)getBottom;
 -(float)getMeasureDuration;
 
+-(int)getSecondTop;
+-(int)getSecondBottom;
+
 +(NSArray *)asNSNumberArray:(id)sig;
 +(id)fromNSNumberArray:(NSArray *)array;
 

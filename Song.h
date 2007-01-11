@@ -53,6 +53,7 @@
 - (TimeSignature *)getEffectiveTimeSignatureAt:(int)measureIndex;
 - (void)refreshTimeSigs;
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom;
+- (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom secondTop:(int)secondTop secondBottom:(int)secondBottom;
 - (void)timeSigDeletedAtIndex:(int)measureIndex;
 
 - (BOOL)repeatStartsAt:(int)measureIndex;

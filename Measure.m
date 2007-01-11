@@ -14,6 +14,7 @@
 #import "DrumKit.h"
 #import "Staff.h"
 #import "TimeSignature.h"
+#import "NSView+Fade.h"
 @class MeasureDraw;
 @class DrumMeasureDraw;
 @class MeasureController;
@@ -483,17 +484,7 @@
 	return [staff getEffectiveTimeSignatureForMeasure:self];
 }
 
-- (void)updateTimeSigPanel{
-	TimeSignature *sig = [self getEffectiveTimeSignature];
-	int top = [sig getTop];
-	int bottom = [sig getBottom];
-	[timeSigTopStep setIntValue:top];
-	[timeSigTopText setIntValue:top];
-	[timeSigBottom selectItemWithTitle:[NSString stringWithFormat:@"%d", bottom]];
-	[[timeSigPanel superview] setNeedsDisplay:YES];
-}
-
-- (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal top:(int)top bottom:(int)bottom{
+- (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal{
 	if(newTotal < oldTotal){
 		[self prepUndo];
 		[self refreshNotes:nil];
@@ -642,21 +633,45 @@
 	}
 }
 
+- (void)processTimeSignatureChange:(BOOL)compound{
+	if(compound){
+		[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]
+							 secondTop:[timeSigSecondTopText intValue] secondBottom:[[[timeSigSecondBottom selectedItem] title] intValue]];
+	} else {
+		[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
+	}
+}
+
 - (IBAction)timeSigTopChanged:(id)sender{
 	[[self undoManager] setActionName:@"changing time signature"];
 	int value = [sender intValue];
 	if(value < 1) value = 1;
 	[timeSigTopStep setIntValue:value];
 	[timeSigTopText setIntValue:value];
-	[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
+	[self processTimeSignatureChange:[timeSigExpand isHidden]];
 }
 
 - (IBAction)timeSigBottomChanged:(id)sender{
 	[[self undoManager] setActionName:@"changing time signature"];
-	[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
+	[self processTimeSignatureChange:[timeSigExpand isHidden]];
+}
+
+- (IBAction)timeSigSecondTopChanged:(id)sender{
+	[[self undoManager] setActionName:@"changing time signature"];
+	int value = [sender intValue];
+	if(value < 1) value = 1;
+	[timeSigSecondTopStep setIntValue:value];
+	[timeSigSecondTopText setIntValue:value];
+	[self processTimeSignatureChange:[timeSigExpand isHidden]];
+}
+
+- (IBAction)timeSigSecondBottomChanged:(id)sender{
+	[[self undoManager] setActionName:@"changing time signature"];
+	[self processTimeSignatureChange:[timeSigExpand isHidden]];
 }
 
 - (void)timeSigDelete{
+	[[self undoManager] setActionName:@"deleting time signature"];
 	[staff timeSigDeletedAtMeasure:self];
 }
 
@@ -665,6 +680,34 @@
 	if([timeSigPanel superview] != nil){
 		[timeSigPanel removeFromSuperview];
 	}
+}
+
+- (IBAction)timeSigExpand:(id)sender{
+	[[self undoManager] setActionName:@"changing time signature"];
+	NSRect frame = [timeSigPanel frame];
+	[timeSigPanel setFrame:NSMakeRect(frame.origin.x, frame.origin.y, 180, frame.size.height) blocking:NO];
+	[timeSigInnerClose setHidden:YES withFade:YES blocking:NO];
+	[timeSigExpand setHidden:YES withFade:YES blocking:NO];
+	[self processTimeSignatureChange:YES];
+}
+
+- (IBAction)timeSigCollapse:(id)sender{
+	[[self undoManager] setActionName:@"changing time signature"];
+	NSRect frame = [timeSigPanel frame];
+	[timeSigPanel setFrame:NSMakeRect(frame.origin.x, frame.origin.y, 90, frame.size.height) blocking:NO];
+	[timeSigInnerClose setHidden:NO withFade:YES blocking:NO];
+	[timeSigExpand setHidden:NO withFade:YES blocking:NO];
+	[self processTimeSignatureChange:NO];
+}
+
+- (void)updateTimeSigPanel{
+	TimeSignature *sig = [self getEffectiveTimeSignature];
+	int top = [sig getTop];
+	int bottom = [sig getBottom];
+	[timeSigTopStep setIntValue:top];
+	[timeSigTopText setIntValue:top];
+	[timeSigBottom selectItemWithTitle:[NSString stringWithFormat:@"%d", bottom]];
+	[[timeSigPanel superview] setNeedsDisplay:YES];
 }
 
 - (void)cleanPanels{

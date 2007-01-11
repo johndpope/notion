@@ -33,6 +33,9 @@ static NSMutableArray *mustDraw;
 }
 
 + (void) mustDraw:(Measure *)measure{
+	if(measure == nil){
+		return;
+	}
 	if(mustDraw == nil){
 		mustDraw = [[NSMutableArray array] retain];
 	}
