@@ -107,7 +107,7 @@
 - (void)drawPlayerPosition {
 	double playerPosition = [song getPlayerPosition];
 	if(playerPosition >= 0){
-		float maxX = 0;
+		float maxX = 0, minX = MAXFLOAT;
 		NSArray *playingNotes = [ScoreController notesAtBeats:playerPosition inSong:song];
 		NSMutableArray *playingMeasures = [NSMutableArray arrayWithCapacity:[playingNotes count]];
 		NSEnumerator *notesEnum = [playingNotes objectEnumerator];
@@ -120,16 +120,25 @@
 			if(noteX > maxX){
 				maxX = noteX;
 			}
+			if(noteX < minX){
+				minX = noteX;
+			}
 		}
 		
-		if(maxX > 0) {
-			[self scrollRectToVisible:NSMakeRect(maxX - 25, [[self enclosingScrollView] documentVisibleRect].origin.y, 50, 0)];			
-		}
-
 		float positionInMeasure = 3.0 * playerPosition / 4;
 		int index;
+		int repeatCount = 1;
 		for(index = 0; index < [song getNumMeasures] && positionInMeasure >= [[song getEffectiveTimeSignatureAt:index] getMeasureDuration]; index++){
 			positionInMeasure -= [[song getEffectiveTimeSignatureAt:index] getMeasureDuration];
+			Repeat *repeat = [song repeatEndingAt:index];
+			if(repeat != nil){
+				if(repeatCount < [repeat numRepeats]){
+					repeatCount++;
+					index = [repeat startMeasure] - 1;					
+				} else {
+					repeatCount = 1;
+				}
+			}
 		}
 		if(index < [song getNumMeasures] && [playingMeasures count] > 0){
 			NoteBase *closestBefore = nil, *closestAfter = nil;
@@ -169,6 +178,17 @@
 			[NSBezierPath strokeLineFromPoint:NSMakePoint(pos, 0) toPoint:NSMakePoint(pos, [self bounds].size.height)];
 			[NSBezierPath setDefaultLineWidth:1.0];
 			[[NSColor blackColor] set];			
+			
+			if(pos > maxX){
+				maxX = pos;
+			}
+			if(pos < minX){
+				minX = pos;
+			}
+		}
+
+		if(maxX > 0) {
+			[self scrollRectToVisible:NSMakeRect(minX - 25, [[self enclosingScrollView] documentVisibleRect].origin.y, maxX - minX + 50, 0)];			
 		}
 	}
 }

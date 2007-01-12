@@ -13,6 +13,7 @@
 #import "Song.h"
 #import "Measure.h"
 #import "TimeSignature.h"
+#import "Repeat.h"
 
 @implementation ScoreController
 
@@ -33,13 +34,25 @@
 	Staff *firstStaff = [[song staffs] objectAtIndex:0];
 	float currBeats = 0;
 	int measureIndex = 0;
+	int repeatCount = 1;
 	while(measureIndex < [song getNumMeasures]){
 		float measureLength = 4.0 * [[song getEffectiveTimeSignatureAt:measureIndex] getMeasureDuration] / 3;
 		if(currBeats + measureLength > beats){
 			break;
 		}
 		currBeats += measureLength;
-		measureIndex++;
+		Repeat *repeat = [song repeatEndingAt:measureIndex];
+		if(repeat != nil){
+			if(repeatCount < [repeat numRepeats]){
+				repeatCount++;
+				measureIndex = [repeat startMeasure];
+			} else {
+				repeatCount = 1;
+				measureIndex++;
+			}				
+		} else {
+			measureIndex++;			
+		}
 	}
 	beats -= currBeats;
 	NSArray *measures = [[[song staffs] collect] getMeasureAtIndex:measureIndex];
