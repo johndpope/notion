@@ -20,5 +20,7 @@
 - (void)setSong:(Song *)_song;
 
 - (IBAction)goToHomepage:(id)sender;
+- (IBAction)goToBugReport:(id)sender;
+- (IBAction)goToDonate:(id)sender;
 
 @end

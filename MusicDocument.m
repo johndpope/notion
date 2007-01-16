@@ -66,4 +66,8 @@
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.gusprevas.com/senorstaff/about"]];
 }
 
+- (IBAction)goToBugReport:(id)sender{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://code.google.com/p/senorstaff/issues/list"]];	
+}
+
 @end

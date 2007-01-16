@@ -7,7 +7,7 @@
             SUPERCLASS = NSMenu; 
         }, 
         {
-            ACTIONS = {goToHomepage = id; }; 
+            ACTIONS = {goToBugReport = id; goToDonate = id; goToHomepage = id; }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
