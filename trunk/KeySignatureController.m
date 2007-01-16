@@ -8,16 +8,22 @@
 
 #import "KeySignatureController.h"
 #import "KeySignature.h"
+#import "Measure.h"
 
 @implementation KeySignatureController
 
-+ (float) widthOf:(KeySignature *)keySig{
++ (float) widthOf:(KeySignature *)keySig inMeasure:(Measure *)measure{
 	if(keySig == nil){
 		return 10.0;
 	}
 	int numSymbols = [keySig getNumSharps] + [keySig getNumFlats];
-	if(numSymbols == 0){		
-		return 10.0;
+	if(numSymbols == 0){
+		Measure *last = [measure getPreviousMeasureWithKeySignature];
+		if(last != nil){
+			return [self widthOf:[last getKeySignature] inMeasure:last];
+		} else {
+			return 10.0;
+		}
 	}
 	return numSymbols * 10.0;	
 }

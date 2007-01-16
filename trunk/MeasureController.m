@@ -45,7 +45,7 @@
 + (float)noteAreaStart:(Measure *)measure{
 	return [self repeatAreaWidth:measure] + 
 			[ClefController widthOf:[measure getClef]] + 
-			[KeySignatureController widthOf:[measure getKeySignature]] + 
+			[KeySignatureController widthOf:[measure getKeySignature] inMeasure:measure] + 
 			[TimeSignatureController widthOf:[measure getTimeSignature]];
 }
 
@@ -191,7 +191,7 @@
 			location.x <= [self repeatAreaWidth:measure] + 
 			[ClefController widthOf:[measure getClef]] + 
 			[TimeSignatureController widthOf:[measure getTimeSignature]] + 
-			[KeySignatureController widthOf:[measure getKeySignature]];
+	[KeySignatureController widthOf:[measure getKeySignature] inMeasure:measure];
 }
 
 + (BOOL) isOverEndRepeat:(NSPoint)location inMeasure:(Measure *)measure{

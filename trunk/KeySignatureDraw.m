@@ -51,11 +51,44 @@
 			[flatImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
 			accLoc.x += 10.0;
 		}
+	} else if(sig != nil){
+		NSPoint accLoc;
+		accLoc.x = bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure];
+		NSImage *naturalImg;
+		Measure *prevMeasure = [measure getPreviousMeasureWithKeySignature];
+		if(prevMeasure != nil){
+			if(isTarget){
+				naturalImg = [NSImage imageNamed:@"natural over.png"];
+			} else{
+				naturalImg = [NSImage imageNamed:@"natural.png"];
+			}
+			KeySignature *prev = [prevMeasure getKeySignature];
+			NSEnumerator *sharps = [[prev getSharpsWithClef:[prevMeasure getEffectiveClef]] objectEnumerator];
+			NSNumber *sharp;
+			while(sharp = [sharps nextObject]){
+				int sharpLoc = [sharp intValue];
+				accLoc.y = baseY - lineHeight * sharpLoc + 7.0;
+				[naturalImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
+				accLoc.x += 10.0;
+			}
+			NSEnumerator *flats = [[prev getFlatsWithClef:[prevMeasure getEffectiveClef]] objectEnumerator];
+			NSNumber *flat;
+			while(flat = [flats nextObject]){
+				int flatLoc = [flat intValue];
+				accLoc.y = baseY - lineHeight * flatLoc + 3.0;
+				[naturalImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
+				accLoc.x += 10.0;
+			}
+		} else if(isTarget && ![measure isShowingKeySigPanel]){
+			NSImage *sigIns = [NSImage imageNamed:@"keysig_insert.png"];
+			[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure], bounds.origin.y)
+						   operation:NSCompositeSourceOver];			
+		}
 	} else if(isTarget && ![measure isShowingKeySigPanel]){
 		NSImage *sigIns = [NSImage imageNamed:@"keysig_insert.png"];
 		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure], bounds.origin.y)
 					   operation:NSCompositeSourceOver];			
-	}	
+	}
 }
 
 @end

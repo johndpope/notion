@@ -142,6 +142,14 @@
 	}
 }
 
+- (Measure *)getMeasureWithKeySignatureBefore:(Measure *)measure{
+	Measure *prev = [self getMeasureBefore:measure];
+	while(prev != nil && [prev getTimeSignature] == nil){
+		prev = [self getMeasureBefore:prev];
+	}
+	return prev;
+}
+
 - (Measure *)addMeasure{
 	Measure *measure = [[Measure alloc] initWithStaff:self];
 	[self addMeasure:measure];
