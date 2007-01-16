@@ -476,6 +476,10 @@
 	[self setKeySignature:nil];
 }
 
+- (Measure *)getPreviousMeasureWithKeySignature{
+	return [staff getMeasureWithKeySignatureBefore:self];
+}
+
 - (TimeSignature *)getTimeSignature{
 	return [staff getTimeSignatureForMeasure:self];
 }
@@ -616,7 +620,12 @@
 			[keySigMajMin selectItemWithTitle:@"major"];
 		}
 	}
-	[self setKeySignature:newSig];
+	Measure *prev = [staff getMeasureBefore:self];
+	if(prev != nil && [[prev getEffectiveKeySignature] isEqualTo:newSig]){
+		[self keySigDelete];
+	} else {
+		[self setKeySignature:newSig];
+	}
 	[self sendChangeNotification];
 }
 

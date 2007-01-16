@@ -78,6 +78,7 @@
 - (KeySignature *)getEffectiveKeySignature;
 - (void)setKeySignature:(KeySignature *)_sig;
 - (void)keySigDelete;
+- (Measure *)getPreviousMeasureWithKeySignature;
 
 - (TimeSignature *)getTimeSignature;
 - (BOOL)hasTimeSignature;

@@ -49,6 +49,7 @@
 - (Measure *)getMeasureAtIndex:(unsigned)index;
 - (Measure *)getMeasureAfter:(Measure *)measure createNew:(BOOL)createNew;
 - (Measure *)getMeasureBefore:(Measure *)measure;
+- (Measure *)getMeasureWithKeySignatureBefore:(Measure *)measure;
 - (void)cleanEmptyMeasures;
 
 - (Measure *)getMeasureContainingNote:(NoteBase *)note;

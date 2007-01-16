@@ -10,12 +10,13 @@
 @class KeySignature;
 @class KeySigTarget;
 @class ScoreView;
+@class Measure;
 
 @interface KeySignatureController : NSObject {
 
 }
 
-+ (float) widthOf:(KeySignature *)keySig;
++ (float) widthOf:(KeySignature *)keySig inMeasure:(Measure *)measure;
 
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(KeySigTarget *)sig mode:(NSDictionary *)mode view:(ScoreView *)view;
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(KeySigTarget *)sig mode:(NSDictionary *)mode view:(ScoreView *)view;

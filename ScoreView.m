@@ -207,6 +207,7 @@
 	NSView *keySigPanel = [measure getKeySigPanel];
 	if([keySigPanel superview] == nil){
 		[self addSubview:keySigPanel];
+		[measure updateKeySigPanel];
 		[keySigPanel setFrameOrigin:[MeasureController keySigPanelLocationFor:measure]];
 		[keySigPanel setHidden:NO withFade:YES blocking:NO];
 	}

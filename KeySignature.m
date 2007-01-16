@@ -50,6 +50,19 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 	}
 }
 
+- (BOOL)isEqualTo:(id)other{
+	if(![other isKindOfClass:[self class]]){
+		return false;
+	}
+	int i;
+	for(i = 0; i < 8; i++){
+		if(pitches[i] != [other getPitchAtPosition:i]){
+			return false;
+		}
+	}
+	return true;
+}
+
 - (int)getIndexFromA{
 	int i;
 	if(sharps != 0){
