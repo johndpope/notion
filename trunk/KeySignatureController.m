@@ -26,4 +26,13 @@
 	[view showKeySigPanelFor:[sig measure]];
 }
 
++ (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(KeySigTarget *)sig mode:(NSDictionary *)mode view:(ScoreView *)view{
+	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
+		[[[sig measure] undoManager] setActionName:@"deleting key signature"];
+		[[sig measure] keySigDelete];
+		return YES;
+	}
+	return NO;
+}
+
 @end

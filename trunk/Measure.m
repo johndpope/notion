@@ -472,6 +472,10 @@
 	}
 }
 
+- (void)keySigDelete{
+	[self setKeySignature:nil];
+}
+
 - (TimeSignature *)getTimeSignature{
 	return [staff getTimeSignatureForMeasure:self];
 }
