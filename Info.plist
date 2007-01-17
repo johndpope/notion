@@ -44,14 +44,12 @@
 	<key>CFBundleSignature</key>
 	<string>SSTF</string>
 	<key>CFBundleVersion</key>
-	<string>0.6.2</string>
+	<string>0.7</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>http://www.gusprevas.com/senorstaff/dl/updates.xml</string>
-	<key>SUShowReleaseNotes</key>
-	<false/>
 </dict>
 </plist>
