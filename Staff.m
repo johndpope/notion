@@ -348,10 +348,47 @@
 	return [self notesBetweenSingleNote:firstArrayNote andNote:note2];
 }
 
-- (NSArray *)notesBetweenNote:(id)note1 andNote:(NoteBase *)note2{
+- (NSArray *)notesBetweenArray:(NSArray *)notes1 andArray:(NSArray *)notes2{
+	NoteBase *firstArray1Note = [notes1 objectAtIndex:0];
+	NoteBase *lastArray1Note = [notes1 lastObject];
+	Measure *firstArray1Measure = [self getMeasureContainingNote:firstArray1Note];
+	Measure *lastArray1Measure = [self getMeasureContainingNote:lastArray1Note];
+	NoteBase *firstArray2Note = [notes2 objectAtIndex:0];
+	NoteBase *lastArray2Note = [notes2 lastObject];
+	Measure *firstArray2Measure = [self getMeasureContainingNote:firstArray2Note];
+	Measure *lastArray2Measure = [self getMeasureContainingNote:lastArray2Note];
+	NoteBase *firstNote, *lastNote;
+	if([[self getMeasures] indexOfObject:firstArray1Measure] < [[self getMeasures] indexOfObject:firstArray2Measure]){
+		firstNote = firstArray1Note;
+	} else if([[self getMeasures] indexOfObject:firstArray1Measure] > [[self getMeasures] indexOfObject:firstArray2Measure]){
+		firstNote = firstArray2Note;
+	} else if([[firstArray1Measure getNotes] indexOfObject:firstArray1Note] < [[firstArray1Measure getNotes] indexOfObject:firstArray2Note]){
+		firstNote = firstArray1Note;
+	} else {
+		firstNote = firstArray2Note;
+	}
+	if([[self getMeasures] indexOfObject:lastArray1Measure] < [[self getMeasures] indexOfObject:lastArray2Measure]){
+		lastNote = lastArray2Note;
+	} else if([[self getMeasures] indexOfObject:lastArray1Measure] > [[self getMeasures] indexOfObject:lastArray2Measure]){
+		lastNote = lastArray1Note;
+	} else if([[lastArray1Measure getNotes] indexOfObject:lastArray1Note] < [[lastArray1Measure getNotes] indexOfObject:lastArray2Note]){
+		lastNote = lastArray2Note;
+	} else {
+		lastNote = lastArray1Note;
+	}
+	return [self notesBetweenSingleNote:firstNote andNote:lastNote];
+}
+
+- (NSArray *)notesBetweenNote:(id)note1 andNote:(id)note2{
 	if([note1 respondsToSelector:@selector(containsObject:)]){
+		if([note2 respondsToSelector:@selector(containsObject:)]){
+			return [self notesBetweenArray:note1 andArray:note2];
+		}
 		return [self notesBetweenArray:note1 andNote:note2];
 	} else {
+		if([note2 respondsToSelector:@selector(containsObject:)]){
+			return [self notesBetweenArray:note2 andNote:note1];
+		}
 		return [self notesBetweenSingleNote:note1 andNote:note2];
 	}
 }
