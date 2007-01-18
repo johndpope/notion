@@ -274,7 +274,9 @@
 }
 
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
-	[view setSelection:nil];
+	if([event clickCount] < 2 && !([event modifierFlags] & NSShiftKeyMask)){
+		[view setSelection:nil];
+	}
 	location.x -= [self xOf:measure];
 	location.y -= [self boundsOf:measure].origin.y;
 	if([self isOverStartRepeat:location inMeasure:measure]){
@@ -285,6 +287,12 @@
 		[measure setEndRepeat:2];
 	} else if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]){
 		[view showRepeatCountPanelFor:[measure getRepeatEndingHere] inMeasure:measure];
+	} else if([event clickCount] == 2){
+		if(([event modifierFlags] & NSShiftKeyMask) && [view selection] != nil){
+			[view setSelection:[[measure getStaff] notesBetweenNote:[view selection] andNote:[measure getNotes]]];			
+		} else {
+			[view setSelection:[measure getNotes]];
+		}
 	} else {
 		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 		int duration = [[mode objectForKey:@"duration"] intValue];

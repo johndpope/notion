@@ -59,7 +59,7 @@
 - (NoteBase *)noteBefore:(NoteBase *)note;
 - (NoteBase *)noteAfter:(NoteBase *)note;
 
-- (NSArray *)notesBetweenNote:(id)note1 andNote:(NoteBase *)note2;
+- (NSArray *)notesBetweenNote:(id)note1 andNote:(id)note2;
 
 - (void)cleanPanels;
 
