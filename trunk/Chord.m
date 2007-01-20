@@ -177,11 +177,13 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:notes forKey:@"notes"];
+	[coder encodeObject:staff forKey:@"staff"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
 	if(self = [super init]){
 		[self setNotes:[coder decodeObjectForKey:@"notes"]];
+		[self setStaff:[coder decodeObjectForKey:@"staff"]];
 	}
 	return self;
 }
