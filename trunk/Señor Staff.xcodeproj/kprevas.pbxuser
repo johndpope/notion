@@ -458,6 +458,19 @@
 			78A607890B62F8EC00DAE6DA /* PBXTextBookmark */ = 78A607890B62F8EC00DAE6DA /* PBXTextBookmark */;
 			78A6078A0B62F8EC00DAE6DA /* PBXTextBookmark */ = 78A6078A0B62F8EC00DAE6DA /* PBXTextBookmark */;
 			78A6078B0B62F8EC00DAE6DA /* PBXTextBookmark */ = 78A6078B0B62F8EC00DAE6DA /* PBXTextBookmark */;
+			78A6078E0B62F99E00DAE6DA /* PBXTextBookmark */ = 78A6078E0B62F99E00DAE6DA /* PBXTextBookmark */;
+			78A6078F0B62F99E00DAE6DA /* PBXTextBookmark */ = 78A6078F0B62F99E00DAE6DA /* PBXTextBookmark */;
+			78A607920B62F99E00DAE6DA /* PBXTextBookmark */ = 78A607920B62F99E00DAE6DA /* PBXTextBookmark */;
+			78A607930B62F99E00DAE6DA /* PBXTextBookmark */ = 78A607930B62F99E00DAE6DA /* PBXTextBookmark */;
+			78A607940B62F99F00DAE6DA /* PBXTextBookmark */ = 78A607940B62F99F00DAE6DA /* PBXTextBookmark */;
+			78A607950B62F99F00DAE6DA /* PBXTextBookmark */ = 78A607950B62F99F00DAE6DA /* PBXTextBookmark */;
+			78A607960B62FB7000DAE6DA /* PBXTextBookmark */ = 78A607960B62FB7000DAE6DA /* PBXTextBookmark */;
+			78A607970B62FB7000DAE6DA /* PBXTextBookmark */ = 78A607970B62FB7000DAE6DA /* PBXTextBookmark */;
+			78A6079C0B62FB8900DAE6DA /* PBXTextBookmark */ = 78A6079C0B62FB8900DAE6DA /* PBXTextBookmark */;
+			78A6079D0B62FB8900DAE6DA /* PBXTextBookmark */ = 78A6079D0B62FB8900DAE6DA /* PBXTextBookmark */;
+			78A6079E0B62FB8B00DAE6DA /* PBXTextBookmark */ = 78A6079E0B62FB8B00DAE6DA /* PBXTextBookmark */;
+			78A6079F0B62FB8B00DAE6DA /* PBXTextBookmark */ = 78A6079F0B62FB8B00DAE6DA /* PBXTextBookmark */;
+			78A607A00B62FB8B00DAE6DA /* PBXTextBookmark */ = 78A607A00B62FB8B00DAE6DA /* PBXTextBookmark */;
 			78A9ECB90B560F11005EC1B2 = 78A9ECB90B560F11005EC1B2 /* PBXTextBookmark */;
 			78A9ECBE0B560F11005EC1B2 = 78A9ECBE0B560F11005EC1B2 /* PBXTextBookmark */;
 			78A9ECC00B560F11005EC1B2 = 78A9ECC00B560F11005EC1B2 /* PBXTextBookmark */;
@@ -3108,13 +3121,18 @@
 		name = whatsnew.html;
 		path = "/Users/kprevas/Señor Staff/trunk/English.lproj/Senor Staff Help/pages/whatsnew.html";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1791, 1918}}";
+			sepNavSelRange = "{2070, 0}";
+			sepNavVisRect = "{{0, 244}, {1065, 745}}";
+		};
 	};
 	788DDE290B5E09A800945ECB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
 		name = "whatsnew.html: 94";
 		rLen = 0;
-		rLoc = 3190;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 2061;
 		vrLoc = 1401;
@@ -3124,7 +3142,7 @@
 		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
 		name = "whatsnew.html: 94";
 		rLen = 0;
-		rLoc = 3190;
+		rLoc = 4754;
 		rType = 0;
 		vrLen = 2061;
 		vrLoc = 1401;
@@ -4312,6 +4330,136 @@
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 999;
+	};
+	78A6078E0B62F99E00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: 165";
+		rLen = 0;
+		rLoc = 5077;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 4587;
+	};
+	78A6078F0B62F99E00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: getNoteStartDuration:";
+		rLen = 0;
+		rLoc = 16084;
+		rType = 0;
+		vrLen = 863;
+		vrLoc = 15463;
+	};
+	78A607920B62F99E00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: 165";
+		rLen = 0;
+		rLoc = 5077;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 4587;
+	};
+	78A607930B62F99E00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: getNoteStartDuration:";
+		rLen = 0;
+		rLoc = 16084;
+		rType = 0;
+		vrLen = 863;
+		vrLoc = 15463;
+	};
+	78A607940B62F99F00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: 165";
+		rLen = 0;
+		rLoc = 5077;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 4587;
+	};
+	78A607950B62F99F00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: getNoteStartDuration:";
+		rLen = 0;
+		rLoc = 16084;
+		rType = 0;
+		vrLen = 863;
+		vrLoc = 15463;
+	};
+	78A607960B62FB7000DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: 165";
+		rLen = 0;
+		rLoc = 5077;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 4587;
+	};
+	78A607970B62FB7000DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: getNoteStartDuration:";
+		rLen = 0;
+		rLoc = 16084;
+		rType = 0;
+		vrLen = 863;
+		vrLoc = 15463;
+	};
+	78A6079C0B62FB8900DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: 165";
+		rLen = 0;
+		rLoc = 5077;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 4587;
+	};
+	78A6079D0B62FB8900DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: getNoteStartDuration:";
+		rLen = 0;
+		rLoc = 16084;
+		rType = 0;
+		vrLen = 863;
+		vrLoc = 15463;
+	};
+	78A6079E0B62FB8B00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */;
+		name = "Staff.m: 75";
+		rLen = 0;
+		rLoc = 1571;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 999;
+	};
+	78A6079F0B62FB8B00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */;
+		name = "Staff.m: 75";
+		rLen = 0;
+		rLoc = 1571;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 999;
+	};
+	78A607A00B62FB8B00DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
+		name = "whatsnew.html: 56";
+		rLen = 0;
+		rLoc = 2070;
+		rType = 0;
+		vrLen = 2035;
+		vrLoc = 484;
 	};
 	78A9ECB90B560F11005EC1B2 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
