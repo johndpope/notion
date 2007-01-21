@@ -414,6 +414,9 @@
 			78A607380B62F46200DAE6DA /* PBXTextBookmark */ = 78A607380B62F46200DAE6DA /* PBXTextBookmark */;
 			78A607390B62F46200DAE6DA /* PBXTextBookmark */ = 78A607390B62F46200DAE6DA /* PBXTextBookmark */;
 			78A6073A0B62F46600DAE6DA /* PBXTextBookmark */ = 78A6073A0B62F46600DAE6DA /* PBXTextBookmark */;
+			78A6073B0B62F48000DAE6DA /* PBXTextBookmark */ = 78A6073B0B62F48000DAE6DA /* PBXTextBookmark */;
+			78A6073C0B62F48000DAE6DA /* PBXTextBookmark */ = 78A6073C0B62F48000DAE6DA /* PBXTextBookmark */;
+			78A6073E0B62F48600DAE6DA /* PBXTextBookmark */ = 78A6073E0B62F48600DAE6DA /* PBXTextBookmark */;
 			78A9ECB90B560F11005EC1B2 = 78A9ECB90B560F11005EC1B2 /* PBXTextBookmark */;
 			78A9ECBE0B560F11005EC1B2 = 78A9ECBE0B560F11005EC1B2 /* PBXTextBookmark */;
 			78A9ECC00B560F11005EC1B2 = 78A9ECC00B560F11005EC1B2 /* PBXTextBookmark */;
@@ -641,7 +644,7 @@
 	78124F850AAB6C6500D20E98 /* ScoreView.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1084, 4900}}";
-			sepNavSelRange = "{6105, 0}";
+			sepNavSelRange = "{4996, 0}";
 			sepNavVisRect = "{{0, 2031}, {1065, 745}}";
 			sepNavWindowFrame = "{{147, 52}, {630, 758}}";
 		};
@@ -3825,6 +3828,36 @@
 		name = "ScoreView.m: 191";
 		rLen = 0;
 		rLoc = 6105;
+		rType = 0;
+		vrLen = 1967;
+		vrLoc = 4290;
+	};
+	78A6073B0B62F48000DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788707830AAD00850057D6DD /* MeasureController.m */;
+		name = "MeasureController.m: 165";
+		rLen = 0;
+		rLoc = 5077;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 4587;
+	};
+	78A6073C0B62F48000DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FDD70A0B1E3100292132 /* Measure.m */;
+		name = "Measure.m: getNoteStartDuration:";
+		rLen = 0;
+		rLoc = 16084;
+		rType = 0;
+		vrLen = 863;
+		vrLoc = 15463;
+	};
+	78A6073E0B62F48600DAE6DA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */;
+		name = "ScoreView.m: 162";
+		rLen = 0;
+		rLoc = 4996;
 		rType = 0;
 		vrLen = 1967;
 		vrLoc = 4290;

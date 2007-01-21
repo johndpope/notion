@@ -62,6 +62,14 @@
 	return YES;
 }
 
+-(BOOL)validateMenuItem:(NSMenuItem *)item{
+	SEL act = [item action];
+	if(act == @selector(printDocument:)){
+		return NO;
+	}
+	return [super validateMenuItem:item];
+}
+
 - (IBAction)goToHomepage:(id)sender{
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.gusprevas.com/senorstaff/about"]];
 }
