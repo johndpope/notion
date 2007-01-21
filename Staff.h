@@ -62,6 +62,7 @@
 - (NSArray *)notesBetweenNote:(id)note1 andNote:(id)note2;
 
 - (void)cleanPanels;
+- (void)refreshChannelButton;
 
 - (BOOL)isDrums;
 

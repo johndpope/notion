@@ -71,6 +71,10 @@
 	[self sendChangeNotification];
 }
 
+- (void)refreshChannelButton{
+	[channelButton selectItemWithTag:(channel + 1)];
+}
+
 - (IBAction)deleteSelf:(id)sender{
 	[rulerView removeFromSuperview];
 	[song removeStaff:self];
