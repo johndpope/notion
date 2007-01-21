@@ -98,11 +98,13 @@
 	[firstRest release];
 	[secondRest release];
 }
-- (void)testGetNoteEndDuration{
+- (void)testGetNotePosition{
 	Rest *firstRest = [[Rest alloc] initWithDuration:4 dotted:NO onStaff:staff];
 	Rest *secondRest = [[Rest alloc] initWithDuration:2 dotted:YES onStaff:staff];
 	[measure setNotes:[NSMutableArray arrayWithObjects:firstRest, secondRest, nil]];
-	STAssertEquals([measure getNoteEndDuration:secondRest], [firstRest getEffectiveDuration] + [secondRest getEffectiveDuration], @"Wrong end duration returned.");
+	NSPoint notePosition = [measure getNotePosition:secondRest];
+	STAssertEquals(notePosition.x, [firstRest getEffectiveDuration], @"Wrong start duration returned.");
+	STAssertEquals(notePosition.x + notePosition.y, [firstRest getEffectiveDuration] + [secondRest getEffectiveDuration], @"Wrong end duration returned.");
 	[firstRest release];
 	[secondRest release];	
 }

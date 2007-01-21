@@ -545,8 +545,14 @@
 	return start;
 }
 
-- (float)getNoteEndDuration:(NoteBase *)note{
-	return [self getNoteStartDuration:note] + [note getEffectiveDuration];
+- (NSPoint)getNotePosition:(NoteBase *)note{
+	float start = 0;
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id currNote;
+	while((currNote = [notesEnum nextObject]) && currNote != note){
+		start += [currNote getEffectiveDuration];
+	}
+	return NSMakePoint(start, [note getEffectiveDuration]);
 }
 
 - (int)getNumberOfNotesStartingAfter:(float)startDuration before:(float)endDuration{
