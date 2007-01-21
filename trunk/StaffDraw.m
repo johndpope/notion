@@ -9,13 +9,42 @@
 #import "StaffDraw.h"
 #import "MeasureController.h"
 #import "Measure.h"
+#import "StaffController.h"
+#import "NoteController.h"
 
 @implementation StaffDraw
 
 static NSMutableArray *mustDraw;
 
++ (NSRect) getSelectionRectFor:(id)selection onStaff:(Staff *)staff{
+	NSRect selectionRect;
+	selectionRect.origin.y = [[staff getControllerClass] topOf:staff];
+	selectionRect.size.height = [[staff getControllerClass] heightOf:staff];
+	float minX = MAXFLOAT, maxX = 0;
+	NSEnumerator *notes = [selection objectEnumerator];
+	id note;
+	while(note = [notes nextObject]){
+		float noteX = [[note getControllerClass] xOf:note];
+		if(noteX < minX){
+			minX = noteX;
+		}
+		if(noteX > maxX){
+			maxX = noteX;
+		}
+	}
+	selectionRect.origin.x = minX - 3;
+	selectionRect.size.width = maxX - minX + 18;
+	return selectionRect;
+}
+
 + (void) draw:(Staff *)staff inView:(NSView *)view target:(id)target targetLocation:(NSPoint)location selection:(id)selection
 		 mode:(NSDictionary *)mode{
+	if([selection respondsToSelector:@selector(containsObject:)] && [[selection objectAtIndex:0] getStaff] == staff){
+		NSRect selectionRect = [self getSelectionRectFor:selection onStaff:staff];
+		[[NSColor colorWithDeviceRed:1.0 green:0.0 blue:0.0 alpha:0.15] set];
+		[NSBezierPath fillRect:selectionRect];
+		[[NSColor blackColor] set];
+	}
 	if(mustDraw == nil){
 		mustDraw = [[NSMutableArray array] retain];
 	}
