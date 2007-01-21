@@ -188,7 +188,7 @@
 		}
 
 		if(maxX > 0) {
-			[self scrollRectToVisible:NSMakeRect(minX - 25, [[self enclosingScrollView] documentVisibleRect].origin.y, maxX - minX + 50, 0)];			
+			[self scrollRectToVisible:NSMakeRect(minX - 40, [[self enclosingScrollView] documentVisibleRect].origin.y, maxX - minX + 80, 0)];			
 		}
 	}
 }

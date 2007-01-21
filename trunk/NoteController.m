@@ -35,8 +35,9 @@
 
 + (float) widthOf:(NoteBase *)note inMeasure:(Measure *)measure{
 	float width = [self widthOf:note];
-	float noteStart = [measure getNoteStartDuration:note];
-	float noteEnd = [measure getNoteEndDuration:note];
+	NSPoint notePosition = [measure getNotePosition:note];
+	float noteStart = notePosition.x;
+	float noteEnd = notePosition.x + notePosition.y;
 	int measureIndex = [[[measure getStaff] getMeasures] indexOfObject:measure];
 	NSEnumerator *staffs = [[[[measure getStaff] getSong] staffs] objectEnumerator];
 	int max = 0;

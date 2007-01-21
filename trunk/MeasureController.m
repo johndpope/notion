@@ -162,9 +162,9 @@
 }
 
 + (float)yOfPosition:(int)position inMeasure:(Measure *)measure{
-	NSRect measureBounds = [MeasureController innerBoundsOf:measure];
-	float lineHeight = [StaffController lineHeightOf:[measure getStaff]];
-	return measureBounds.origin.y + measureBounds.size.height - lineHeight * position;
+	Staff *staff = [measure getStaff];
+	float lineHeight = [StaffController lineHeightOf:staff];
+	return [StaffController baseOf:staff] - lineHeight * position;
 }
 
 + (BOOL) isOverStartRepeat:(NSPoint)location inMeasure:(Measure *)measure{
