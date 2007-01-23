@@ -106,7 +106,7 @@
 
 - (void)drawPlayerPosition {
 	double playerPosition = [song getPlayerPosition];
-	if(playerPosition >= 0){
+	if(playerPosition >= 0 && playerPosition <= [song getPlayerEnd] - 5){
 		float maxX = 0, minX = MAXFLOAT;
 		NSArray *playingNotes = [ScoreController notesAtBeats:playerPosition inSong:song];
 		NSMutableArray *playingMeasures = [NSMutableArray arrayWithCapacity:[playingNotes count]];

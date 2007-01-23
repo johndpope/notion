@@ -51,6 +51,11 @@
 	[[[self document] getSong] playToEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];
 }
 
+- (IBAction)playSelection:(id)sender{
+	[[[self document] getSong] stopPlaying];
+	[[[self document] getSong] playToEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint] notesToPlay:[view selection]];
+}
+
 - (IBAction)stopSong:(id)sender{
 	[[[self document] getSong] stopPlaying];
 }
@@ -130,6 +135,9 @@
 		[self addToolbarItemWithImage:[NSImage imageNamed:@"play.png"] identifier:@"play" label:@"Play" 
 							  paletteLabel:@"Play" toolTip:@"Begin MIDI playback" target:self 
 							   action:@selector(playSong:) keyEquiv:@"\r" isDefault:YES];
+		[self addToolbarItemWithImage:[NSImage imageNamed:@"playsel.png"] identifier:@"playselected" label:@"Play selected" 
+						 paletteLabel:@"Play selected" toolTip:@"Begin MIDI playback of selected notes" target:self 
+							   action:@selector(playSelection:) keyEquiv:@"$\r" isDefault:YES];
 		[self addToolbarItemWithImage:[NSImage imageNamed:@"stop.png"] identifier:@"stop" label:@"Stop" 
 							  paletteLabel:@"Stop" toolTip:@"Stop MIDI playback" target:self 
 							   action:@selector(stopSong:) keyEquiv:@"\033" isDefault:YES];

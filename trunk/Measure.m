@@ -734,14 +734,17 @@
 	[self keySigClose:nil];
 }
 
-- (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos onChannel:(int)channel{
+- (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos onChannel:(int)channel notesToPlay:(id)selection{
 	float initPos = pos;
 	NSEnumerator *noteEnum = [notes objectEnumerator];
 	NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];
 	id note;
 	while(note = [noteEnum nextObject]){
-		pos += [note addToMIDITrack:musicTrack atPosition:pos withKeySignature:[self getEffectiveKeySignature]
-				accidentals:accidentals onChannel:channel];
+		if(selection == nil || note == selection || 
+		   ([selection respondsToSelector:@selector(containsObject:)] && [selection containsObject:note])){
+			pos += [note addToMIDITrack:musicTrack atPosition:pos withKeySignature:[self getEffectiveKeySignature]
+							accidentals:accidentals onChannel:channel];			
+		}
 	}
 	return pos - initPos;
 }

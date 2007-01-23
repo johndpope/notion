@@ -463,7 +463,7 @@
 	return [soloButton state] == NSOnState;
 }
 
-- (float)addTrackToMIDISequence:(MusicSequence *)musicSequence{
+- (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection{
 	MusicTrack musicTrack;
 	if (MusicSequenceNewTrack(*musicSequence, &musicTrack) != noErr) {
 		NSLog(@"Cannot create music track.");
@@ -480,7 +480,7 @@
 			isRepeating = YES;
 		}
 		pos += [measure addToMIDITrack:&musicTrack atPosition:pos
-				onChannel:channel];
+							 onChannel:channel notesToPlay:selection];
 		if(isRepeating){
 			[repeatMeasures addObject:measure];
 		}
@@ -492,7 +492,7 @@
 				id repeatMeasure;
 				while(repeatMeasure = [repeatMeasuresEnum nextObject]){
 					pos += [repeatMeasure addToMIDITrack:&musicTrack atPosition:pos
-											   onChannel:channel];
+											   onChannel:channel notesToPlay:selection];
 				}
 			}
 			[repeatMeasures removeAllObjects];
