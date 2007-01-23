@@ -318,18 +318,38 @@ static MusicPlayer musicPlayer;
 	[staff muteSoloEnabled:YES];
 }
 
-- (void)playToEndpoint:(MIDIEndpointRef)endpoint{
+- (void)playToEndpoint:(MIDIEndpointRef)endpoint notesToPlay:(id)selection{
 	MusicSequence musicSequence;
 	if (NewMusicSequence(&musicSequence) != noErr)
 		[NSException raise:@"main" format:@"Cannot create music sequence."];
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
+	playerOffset = 0;
 	float maxLength = 0;
 	id staff;
 	while(staff = [staffsEnum nextObject]){
 		if(![staff isMute]){
-			float length = [staff addTrackToMIDISequence:&musicSequence];
+			float length = [staff addTrackToMIDISequence:&musicSequence notesToPlay:selection];
 			if(length > maxLength){
 				maxLength = length;
+			}
+			if(selection != nil && length > 0){
+				NSEnumerator *measures = [[staff getMeasures] objectEnumerator];
+				id measure;
+				BOOL found = NO;
+				while(measure = [measures nextObject]){
+					NSEnumerator *notes = [[measure getNotes] objectEnumerator];
+					id note;
+					while(note = [notes nextObject]){
+						if(note == selection || ([selection respondsToSelector:@selector(containsObject:)] && [selection containsObject:note])){
+							found = YES;
+							break;
+						}
+						playerOffset += 4.0 * [note getEffectiveDuration] / 3;
+					}
+					if(found){
+						break;
+					}
+				}
 			}
 		}
 		if([staff isSolo]){
@@ -390,6 +410,10 @@ static MusicPlayer musicPlayer;
 	
 }
 
+- (void)playToEndpoint:(MIDIEndpointRef)endpoint{
+	[self playToEndpoint:endpoint notesToPlay:nil];
+}
+
 - (void)stopPlaying{
 	if(musicPlayerPoll != nil){
 		[musicPlayerPoll invalidate];
@@ -413,7 +437,11 @@ static MusicPlayer musicPlayer;
 }
 
 - (double)getPlayerPosition{
-	return playerPosition;
+	return playerOffset + playerPosition;
+}
+
+- (double)getPlayerEnd{
+	return playerOffset + playerEnd;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

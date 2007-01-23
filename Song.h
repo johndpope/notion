@@ -22,8 +22,7 @@
 	NSMutableArray *repeats;
 	
 	NSTimer *musicPlayerPoll;
-	double playerPosition;
-	double playerEnd;
+	double playerPosition, playerOffset, playerEnd;
 }
 
 - (id)initWithDocument:(MusicDocument *)_doc;
@@ -38,6 +37,7 @@
 - (void)removeStaff:(Staff *)staff;
 
 - (double)getPlayerPosition;
+- (double)getPlayerEnd;
 
 - (int)getNumMeasures;
 
@@ -69,6 +69,7 @@
 - (void)soloPressed:(BOOL)solo onStaff:(Staff *)staff;
 
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint;
+- (void)playToEndpoint:(MIDIEndpointRef)endpoint notesToPlay:(id)selection;
 - (void)stopPlaying;
 
 @end

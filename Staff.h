@@ -77,7 +77,7 @@
 - (BOOL)isMute;
 - (BOOL)isSolo;
 
-- (float)addTrackToMIDISequence:(MusicSequence *)musicSequence;
+- (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection;
 
 - (Class)getViewClass;
 - (Class)getControllerClass;

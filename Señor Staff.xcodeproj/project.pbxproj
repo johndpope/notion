@@ -78,6 +78,7 @@
 		789BC2A80A1FFD2000597728 /* srest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A40A1FFD2000597728 /* srest.png */; };
 		789BC2A90A1FFD2000597728 /* trest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A50A1FFD2000597728 /* trest.png */; };
 		789C1CB80A524DA900572AA8 /* sstaff.icns in Resources */ = {isa = PBXBuildFile; fileRef = 789C1CB70A524DA900572AA8 /* sstaff.icns */; };
+		78A608D00B64502300DAE6DA /* playsel.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A608CF0B64502200DAE6DA /* playsel.png */; };
 		78B224250B2FD48600047C6B /* Repeat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B224230B2FD48600047C6B /* Repeat.h */; };
 		78B224260B2FD48600047C6B /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B224240B2FD48600047C6B /* Repeat.m */; };
 		78B439740ABCBFE70068C522 /* ClefTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B439730ABCBFE70068C522 /* ClefTarget.m */; };
@@ -298,6 +299,7 @@
 		789BC2A40A1FFD2000597728 /* srest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = srest.png; sourceTree = "<group>"; };
 		789BC2A50A1FFD2000597728 /* trest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trest.png; sourceTree = "<group>"; };
 		789C1CB70A524DA900572AA8 /* sstaff.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sstaff.icns; sourceTree = "<group>"; };
+		78A608CF0B64502200DAE6DA /* playsel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playsel.png; sourceTree = "<group>"; };
 		78B224230B2FD48600047C6B /* Repeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repeat.h; sourceTree = "<group>"; };
 		78B224240B2FD48600047C6B /* Repeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repeat.m; sourceTree = "<group>"; };
 		78B439720ABCBFE70068C522 /* ClefTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefTarget.h; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 		78F2DB200A33B39E0052DB2C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				78A608CF0B64502200DAE6DA /* playsel.png */,
 				787A938C0B1A439A006FD236 /* qnote_t.png */,
 				787A92510B17E5E8006FD236 /* pointer.png */,
 				787A92080B17DE67006FD236 /* enote.png */,
@@ -812,6 +815,7 @@
 				787A93CB0B1A4FE7006FD236 /* LICENSE in Resources */,
 				780934E80B310E6900E2F980 /* RepeatCountPanel.nib in Resources */,
 				789308FE0B548EEA0023F843 /* Senor Staff Help in Resources */,
+				78A608D00B64502300DAE6DA /* playsel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

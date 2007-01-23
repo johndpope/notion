@@ -120,7 +120,7 @@
 - (void)cleanPanels;
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
-	onChannel:(int)channel;
+			  onChannel:(int)channel notesToPlay:(id)selection;
 
 - (Class)getViewClass;
 - (Class)getControllerClass;
