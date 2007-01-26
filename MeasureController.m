@@ -19,6 +19,7 @@
 #import "ClefTarget.h"
 #import "Clef.h"
 #import "Rest.h"
+#import "Note.h"
 
 @implementation MeasureController
 
@@ -343,12 +344,37 @@
 	}
 	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
 	int duration = [[mode objectForKey:@"duration"] intValue];
+	if([[mode objectForKey:@"triplet"] boolValue]){
+		duration = duration * 3 / 2;
+	}
 	BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
 	if(pointerMode == MODE_NOTE && [[event characters] isEqualToString:@" "]){
-		Rest *rest = [[Rest alloc] initWithDuration:duration dotted:dotted onStaff:[measure getStaff]];
+		Rest *rest = [[[Rest alloc] initWithDuration:duration dotted:dotted onStaff:[measure getStaff]] autorelease];
 		[measure addNote:rest atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];
 		if([measure isFull]) [[measure getStaff] getMeasureAfter:measure createNew:YES];
 		[self scrollView:view toShowMeasure:[[rest getStaff] getMeasureContainingNote:rest]];
+		return YES;
+	}
+	if([[event characters] characterAtIndex:0] >= 'a' && [[event characters] characterAtIndex:0] <= 'g'){
+		int noteRank = [[event characters] characterAtIndex:0] - 'a';
+		float index = [self indexAt:location inMeasure:measure];
+		Note *lastNote = nil;
+		if(index < 0 && [[measure getStaff] getMeasureBefore:measure] != nil){
+			lastNote = [[[[measure getStaff] getMeasureBefore:measure] getNotes] lastObject];
+		} else if(((int)index) < [[measure getNotes] count]){
+			lastNote = [[measure getNotes] objectAtIndex:((int)index)];
+		}
+		NSPoint pitchAndOctave;
+		if(lastNote != nil){
+			pitchAndOctave = [lastNote closestNoteAtRank:noteRank];
+		} else {
+			pitchAndOctave = [Note noteAtRank:noteRank onClef:[measure getEffectiveClef]];
+		}
+		Note *newNote = [[[Note alloc] initWithPitch:pitchAndOctave.x octave:pitchAndOctave.y duration:duration dotted:dotted
+										  accidental:[[mode objectForKey:@"accidental"] intValue] onStaff:[measure getStaff]] autorelease];
+		[measure addNote:newNote atIndex:index tieToPrev:[[mode objectForKey:@"tieToPrev"] boolValue]];
+		if([measure isFull]) [[measure getStaff] getMeasureAfter:measure createNew:YES];
+		[self scrollView:view toShowMeasure:[[newNote getStaff] getMeasureContainingNote:newNote]];
 		return YES;
 	}
 	return NO;
