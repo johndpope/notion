@@ -47,6 +47,9 @@ static int FLAT = -1;
 - (BOOL)isHigherThan:(Note *)note;
 - (BOOL)isLowerThan:(Note *)note;
 
+- (NSPoint)closestNoteAtRank:(int)rank;
++ (NSPoint)noteAtRank:(int)rank onClef:(Clef *)clef;
+
 - (void)collapseOnTo:(Note *)note;
 
 @end

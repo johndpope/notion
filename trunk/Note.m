@@ -199,6 +199,28 @@
 	//TODO: implement
 }
 
++ (NSPoint)closestNoteTo:(NSPoint)base withRank:(int)rank{
+	int pitch = (rank + 5) % 7;
+	int octave = base.y;
+	if(base.x > pitch && base.x - pitch > (pitch + 7) - base.x){
+		octave++;
+	}
+	if(pitch > base.x && pitch - base.x > (base.x + 7) - pitch){
+		octave--;
+	}
+	return NSMakePoint(pitch, octave);
+}
+
+- (NSPoint)closestNoteAtRank:(int)rank{
+	return [Note closestNoteTo:NSMakePoint(pitch, octave) withRank:rank];
+}
+
++ (NSPoint)noteAtRank:(int)rank onClef:(Clef *)clef{
+	int pitch = [clef getPitchForPosition:4];
+	int octave = [clef getOctaveForPosition:4];
+	return [Note closestNoteTo:NSMakePoint(pitch, octave) withRank:rank];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:staff forKey:@"staff"];
 	[coder encodeInt:duration forKey:@"duration"];
