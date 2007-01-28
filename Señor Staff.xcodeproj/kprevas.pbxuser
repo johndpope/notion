@@ -905,6 +905,30 @@
 			78D424560B6D556A00C5B734 /* PBXTextBookmark */ = 78D424560B6D556A00C5B734 /* PBXTextBookmark */;
 			78D424570B6D557200C5B734 /* PBXTextBookmark */ = 78D424570B6D557200C5B734 /* PBXTextBookmark */;
 			78D424580B6D557200C5B734 /* PBXTextBookmark */ = 78D424580B6D557200C5B734 /* PBXTextBookmark */;
+			78D424690B6D58AC00C5B734 /* PBXTextBookmark */ = 78D424690B6D58AC00C5B734 /* PBXTextBookmark */;
+			78D4246A0B6D58AC00C5B734 /* PBXTextBookmark */ = 78D4246A0B6D58AC00C5B734 /* PBXTextBookmark */;
+			78D4246B0B6D58AC00C5B734 /* PBXTextBookmark */ = 78D4246B0B6D58AC00C5B734 /* PBXTextBookmark */;
+			78D4246C0B6D58AC00C5B734 /* PBXTextBookmark */ = 78D4246C0B6D58AC00C5B734 /* PBXTextBookmark */;
+			78D4246D0B6D58AC00C5B734 /* PBXTextBookmark */ = 78D4246D0B6D58AC00C5B734 /* PBXTextBookmark */;
+			78D424710B6D58C900C5B734 /* PBXTextBookmark */ = 78D424710B6D58C900C5B734 /* PBXTextBookmark */;
+			78D424740B6D593100C5B734 /* PBXTextBookmark */ = 78D424740B6D593100C5B734 /* PBXTextBookmark */;
+			78D424750B6D593100C5B734 /* PBXTextBookmark */ = 78D424750B6D593100C5B734 /* PBXTextBookmark */;
+			78D424760B6D593100C5B734 /* PBXTextBookmark */ = 78D424760B6D593100C5B734 /* PBXTextBookmark */;
+			78D424770B6D593100C5B734 /* PBXTextBookmark */ = 78D424770B6D593100C5B734 /* PBXTextBookmark */;
+			78D424780B6D594100C5B734 /* PBXTextBookmark */ = 78D424780B6D594100C5B734 /* PBXTextBookmark */;
+			78D4247C0B6D596E00C5B734 /* PBXTextBookmark */ = 78D4247C0B6D596E00C5B734 /* PBXTextBookmark */;
+			78D4247F0B6D597E00C5B734 /* PBXTextBookmark */ = 78D4247F0B6D597E00C5B734 /* PBXTextBookmark */;
+			78D424800B6D597E00C5B734 /* PBXTextBookmark */ = 78D424800B6D597E00C5B734 /* PBXTextBookmark */;
+			78D424830B6D598000C5B734 /* PBXTextBookmark */ = 78D424830B6D598000C5B734 /* PBXTextBookmark */;
+			78D424840B6D598000C5B734 /* PBXTextBookmark */ = 78D424840B6D598000C5B734 /* PBXTextBookmark */;
+			78D424860B6D598300C5B734 /* PBXTextBookmark */ = 78D424860B6D598300C5B734 /* PBXTextBookmark */;
+			78D424880B6D599F00C5B734 /* PBXTextBookmark */ = 78D424880B6D599F00C5B734 /* PBXTextBookmark */;
+			78D424890B6D599F00C5B734 /* PBXTextBookmark */ = 78D424890B6D599F00C5B734 /* PBXTextBookmark */;
+			78D4248A0B6D59A000C5B734 /* PBXTextBookmark */ = 78D4248A0B6D59A000C5B734 /* PBXTextBookmark */;
+			78D4248B0B6D59A000C5B734 /* PBXTextBookmark */ = 78D4248B0B6D59A000C5B734 /* PBXTextBookmark */;
+			78D4248C0B6D59A000C5B734 /* PBXTextBookmark */ = 78D4248C0B6D59A000C5B734 /* PBXTextBookmark */;
+			78D4248D0B6D59A000C5B734 /* PBXTextBookmark */ = 78D4248D0B6D59A000C5B734 /* PBXTextBookmark */;
+			78D4248E0B6D59A000C5B734 /* PBXTextBookmark */ = 78D4248E0B6D59A000C5B734 /* PBXTextBookmark */;
 			78F06FC60AE75468000E0C85 = 78F06FC60AE75468000E0C85 /* PBXTextBookmark */;
 			78F070440AE759D4000E0C85 = 78F070440AE759D4000E0C85 /* PBXTextBookmark */;
 			78F070460AE759D4000E0C85 = 78F070460AE759D4000E0C85 /* PBXTextBookmark */;
@@ -2238,9 +2262,9 @@
 	};
 	786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1196, 3906}}";
-			sepNavSelRange = "{6901, 0}";
-			sepNavVisRect = "{{0, 1922}, {1069, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1196, 4004}}";
+			sepNavSelRange = "{630, 0}";
+			sepNavVisRect = "{{0, 0}, {1069, 745}}";
 			sepNavWindowFrame = "{{364, 62}, {681, 760}}";
 		};
 	};
@@ -2503,7 +2527,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = drawKeySig;
 		rLen = 10;
-		rLoc = 13045;
+		rLoc = 13357;
 		rType = 0;
 		vrLen = 2485;
 		vrLoc = 10176;
@@ -3280,6 +3304,11 @@
 		name = whatsnew.html;
 		path = "/Users/kprevas/Señor Staff/trunk/English.lproj/Senor Staff Help/pages/whatsnew.html";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {2337, 2632}}";
+			sepNavSelRange = "{919, 0}";
+			sepNavVisRect = "{{0, 113}, {1069, 745}}";
+		};
 	};
 	788DDE2B0B5E09A800945ECB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3518,7 +3547,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = drawKeySig;
 		rLen = 10;
-		rLoc = 13045;
+		rLoc = 13357;
 		rType = 0;
 		vrLen = 2571;
 		vrLoc = 9895;
@@ -3558,7 +3587,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = drawKeySig;
 		rLen = 10;
-		rLoc = 13045;
+		rLoc = 13357;
 		rType = 0;
 		vrLen = 2571;
 		vrLoc = 9895;
@@ -5444,7 +5473,7 @@
 		comments = "error: parse error before '}' token";
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		rLen = 0;
-		rLoc = 176;
+		rLoc = 183;
 		rType = 1;
 	};
 	78D421D00B6D326D00C5B734 /* PBXTextBookmark */ = {
@@ -5462,7 +5491,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5482,7 +5511,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5502,7 +5531,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5522,7 +5551,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5542,7 +5571,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5562,7 +5591,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5582,7 +5611,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5672,7 +5701,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = isEqualTo;
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2863;
 		vrLoc = 6264;
@@ -5792,7 +5821,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 165";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2863;
 		vrLoc = 6264;
@@ -5802,7 +5831,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 166";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1674;
 		vrLoc = 7020;
@@ -5822,7 +5851,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 165";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2869;
 		vrLoc = 6264;
@@ -5832,7 +5861,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -5852,7 +5881,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -5872,7 +5901,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -5892,7 +5921,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 143";
 		rLen = 0;
-		rLoc = 7112;
+		rLoc = 7424;
 		rType = 0;
 		vrLen = 2869;
 		vrLoc = 6264;
@@ -5922,7 +5951,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 143";
 		rLen = 0;
-		rLoc = 7112;
+		rLoc = 7424;
 		rType = 0;
 		vrLen = 2869;
 		vrLoc = 6264;
@@ -5952,7 +5981,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -5972,7 +6001,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -5992,7 +6021,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6012,7 +6041,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6032,7 +6061,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6072,7 +6101,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6092,7 +6121,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6112,7 +6141,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6152,7 +6181,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6172,7 +6201,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6192,7 +6221,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6212,7 +6241,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6232,7 +6261,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6252,7 +6281,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 167";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1675;
 		vrLoc = 7020;
@@ -6282,7 +6311,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 168";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1706;
 		vrLoc = 6988;
@@ -6302,7 +6331,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 168";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1706;
 		vrLoc = 6988;
@@ -6352,7 +6381,7 @@
 		comments = "warning: no '-playFeedbackNote:atPosition:inMeasure:toEndpoint:' method found";
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		rLen = 0;
-		rLoc = 176;
+		rLoc = 183;
 		rType = 1;
 	};
 	78D4224F0B6D346F00C5B734 /* PBXTextBookmark */ = {
@@ -6360,7 +6389,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2908;
 		vrLoc = 6313;
@@ -6370,7 +6399,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1702;
 		vrLoc = 7086;
@@ -6388,7 +6417,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 1702;
 		vrLoc = 7086;
@@ -6438,7 +6467,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2908;
 		vrLoc = 6313;
@@ -6468,7 +6497,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2908;
 		vrLoc = 6313;
@@ -6688,7 +6717,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2907;
 		vrLoc = 6314;
@@ -6758,7 +6787,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 3030;
 		vrLoc = 6314;
@@ -6784,7 +6813,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 3030;
 		vrLoc = 6314;
@@ -7348,7 +7377,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 158";
 		rLen = 0;
-		rLoc = 7968;
+		rLoc = 8280;
 		rType = 0;
 		vrLen = 2911;
 		vrLoc = 6314;
@@ -7418,7 +7447,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 158";
 		rLen = 0;
-		rLoc = 7968;
+		rLoc = 8280;
 		rType = 0;
 		vrLen = 2911;
 		vrLoc = 6314;
@@ -7998,7 +8027,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 158";
 		rLen = 0;
-		rLoc = 7968;
+		rLoc = 8280;
 		rType = 0;
 		vrLen = 2911;
 		vrLoc = 6314;
@@ -8058,7 +8087,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 168";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2907;
 		vrLoc = 6314;
@@ -8168,7 +8197,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 168";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2907;
 		vrLoc = 6314;
@@ -8188,7 +8217,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 168";
 		rLen = 0;
-		rLoc = 8469;
+		rLoc = 8781;
 		rType = 0;
 		vrLen = 2907;
 		vrLoc = 6314;
@@ -8870,7 +8899,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 164";
 		rLen = 0;
-		rLoc = 8338;
+		rLoc = 8650;
 		rType = 0;
 		vrLen = 3083;
 		vrLoc = 5967;
@@ -8910,7 +8939,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 164";
 		rLen = 0;
-		rLoc = 8338;
+		rLoc = 8650;
 		rType = 0;
 		vrLen = 3083;
 		vrLoc = 5967;
@@ -9110,7 +9139,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 164";
 		rLen = 0;
-		rLoc = 8338;
+		rLoc = 8650;
 		rType = 0;
 		vrLen = 3049;
 		vrLoc = 6001;
@@ -9207,7 +9236,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 164";
 		rLen = 0;
-		rLoc = 8338;
+		rLoc = 8650;
 		rType = 0;
 		vrLen = 3049;
 		vrLoc = 6001;
@@ -9287,7 +9316,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 164";
 		rLen = 0;
-		rLoc = 8338;
+		rLoc = 8650;
 		rType = 0;
 		vrLen = 3049;
 		vrLoc = 6001;
@@ -9307,7 +9336,7 @@
 		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
 		name = "MeasureDraw.m: 152";
 		rLen = 0;
-		rLoc = 6901;
+		rLoc = 7213;
 		rType = 0;
 		vrLen = 2958;
 		vrLoc = 6277;
@@ -9351,6 +9380,244 @@
 		rType = 0;
 		vrLen = 953;
 		vrLoc = 898;
+	};
+	78D424690B6D58AC00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
+		name = "whatsnew.html: 31";
+		rLen = 0;
+		rLoc = 919;
+		rType = 0;
+		vrLen = 1688;
+		vrLoc = 261;
+	};
+	78D4246A0B6D58AC00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: parse error before ')' token";
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		rLen = 1;
+		rLoc = 150;
+		rType = 1;
+	};
+	78D4246B0B6D58AC00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 152";
+		rLen = 0;
+		rLoc = 7213;
+		rType = 0;
+		vrLen = 2958;
+		vrLoc = 6277;
+	};
+	78D4246C0B6D58AC00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
+		name = "whatsnew.html: 31";
+		rLen = 0;
+		rLoc = 919;
+		rType = 0;
+		vrLen = 1688;
+		vrLoc = 261;
+	};
+	78D4246D0B6D58AC00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "![feedbackNote isEqualTo:lastFeedbackNoteDrawn] || lastFeedbackPosition != index){";
+		rLen = 87;
+		rLoc = 6800;
+		rType = 0;
+		vrLen = 2827;
+		vrLoc = 5604;
+	};
+	78D424710B6D58C900C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 145";
+		rLen = 0;
+		rLoc = 6803;
+		rType = 0;
+		vrLen = 2829;
+		vrLoc = 5604;
+	};
+	78D424740B6D593100C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD8A0A0B08B800292132 /* Song.h */;
+		name = "Song.h: 10";
+		rLen = 0;
+		rLoc = 201;
+		rType = 0;
+		vrLen = 663;
+		vrLoc = 0;
+	};
+	78D424750B6D593100C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD8A0A0B08B800292132 /* Song.h */;
+		name = "Song.h: 10";
+		rLen = 0;
+		rLoc = 201;
+		rType = 0;
+		vrLen = 663;
+		vrLoc = 0;
+	};
+	78D424760B6D593100C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 145";
+		rLen = 0;
+		rLoc = 6884;
+		rType = 0;
+		vrLen = 1711;
+		vrLoc = 6041;
+	};
+	78D424770B6D593100C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]";
+		rLen = 61;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 953;
+		vrLoc = 898;
+	};
+	78D424780B6D594100C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 37";
+		rLen = 0;
+		rLoc = 782;
+		rType = 0;
+		vrLen = 1481;
+		vrLoc = 0;
+	};
+	78D4247C0B6D596E00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 40";
+		rLen = 0;
+		rLoc = 994;
+		rType = 0;
+		vrLen = 1554;
+		vrLoc = 0;
+	};
+	78D4247F0B6D597E00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 151";
+		rLen = 0;
+		rLoc = 6884;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 6113;
+	};
+	78D424800B6D597E00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]";
+		rLen = 61;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 953;
+		vrLoc = 898;
+	};
+	78D424830B6D598000C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 151";
+		rLen = 0;
+		rLoc = 6884;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 6113;
+	};
+	78D424840B6D598000C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]";
+		rLen = 61;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 953;
+		vrLoc = 898;
+	};
+	78D424860B6D598300C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 40";
+		rLen = 0;
+		rLoc = 994;
+		rType = 0;
+		vrLen = 1554;
+		vrLoc = 0;
+	};
+	78D424880B6D599F00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 151";
+		rLen = 0;
+		rLoc = 6884;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 6113;
+	};
+	78D424890B6D599F00C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]";
+		rLen = 61;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 953;
+		vrLoc = 898;
+	};
+	78D4248A0B6D59A000C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 151";
+		rLen = 0;
+		rLoc = 6884;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 6113;
+	};
+	78D4248B0B6D59A000C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]";
+		rLen = 61;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 953;
+		vrLoc = 898;
+	};
+	78D4248C0B6D59A000C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 151";
+		rLen = 0;
+		rLoc = 6884;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 6113;
+	};
+	78D4248D0B6D59A000C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
+		name = "[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]";
+		rLen = 61;
+		rLoc = 1382;
+		rType = 0;
+		vrLen = 953;
+		vrLoc = 898;
+	};
+	78D4248E0B6D59A000C5B734 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */;
+		name = "MeasureDraw.m: 27";
+		rLen = 0;
+		rLoc = 630;
+		rType = 0;
+		vrLen = 1554;
+		vrLoc = 0;
 	};
 	78DF74850A426F3B0058CF89 /* malloc_printf */ = {
 		isa = PBXSymbolicBreakpoint;
