@@ -280,4 +280,11 @@
 	}
 }
 
+- (BOOL)validateToolbarItem:(NSToolbarItem *)item{
+	if([[item itemIdentifier] isEqualToString:@"playselected"]){
+		return [view selection] != nil;
+	}
+	return YES;
+}
+
 @end
