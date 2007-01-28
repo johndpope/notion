@@ -140,7 +140,7 @@
 		note.duration += 4.0 * [tie getEffectiveDuration] / 3;
 		tie = [tie getTieTo];
 	}
-	note.note = [self getEffectivePitchWithKeySignature:keySig priorAccidentals:nil];
+	note.note = [self getEffectivePitchWithKeySignature:keySig priorAccidentals:accidentals];
 	if (MusicTrackNewMIDINoteEvent(*musicTrack, pos, &note) != noErr) {
 		NSLog(@"Cannot add note to track.");
     }

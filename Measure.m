@@ -734,6 +734,16 @@
 	[self keySigClose:nil];
 }
 
+- (NSDictionary *)getAccidentalsAtPosition:(float)pos{
+	NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];
+	int i;
+	KeySignature *keySig = [self getEffectiveKeySignature];
+	for(i = 0; i < pos; i++){
+		[[notes objectAtIndex:i] getEffectivePitchWithKeySignature:keySig priorAccidentals:accidentals];
+	}
+	return accidentals;
+}
+
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos onChannel:(int)channel notesToPlay:(id)selection{
 	float initPos = pos;
 	NSEnumerator *noteEnum = [notes objectEnumerator];

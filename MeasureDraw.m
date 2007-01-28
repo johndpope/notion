@@ -23,8 +23,13 @@
 #import "KeySigTarget.h"
 #import "TimeSigTarget.h"
 #import "Clef.h"
+#import "Song.h"
+#import "CAMIDIEndpointMenu2.h"
 
 @class Chord;
+
+static NoteBase *lastFeedbackNoteDrawn = nil;
+static float lastFeedbackPosition = -1;
 
 @implementation MeasureDraw
 
@@ -135,6 +140,16 @@
 	[NSBezierPath setDefaultLineWidth:1.0];
 }
 
++(void)playFeedbackNote:(NoteBase *)feedbackNote inMeasure:(Measure *)measure atIndex:(float)index withExistingNote:(NoteBase *)note{
+	if(![feedbackNote isEqualTo:lastFeedbackNoteDrawn] || lastFeedbackPosition != index){
+		[lastFeedbackNoteDrawn release];
+		lastFeedbackPosition = index;
+		lastFeedbackNoteDrawn = [feedbackNote retain];
+		[[[measure getStaff] getSong] playFeedbackNote:feedbackNote atPosition:index inMeasure:measure withExistingNote:note
+											toEndpoint:[[[[NSApp mainMenu] itemWithTag:1] submenu] selectedEndpoint]];
+	}
+}
+
 +(void)drawFeedbackNoteInMeasure:(Measure *)measure targetLocation:(NSPoint)location mode:(NSDictionary *)mode{
 	[[NSColor blueColor] set];
 	location.x -= [MeasureController xOf:measure];
@@ -154,10 +169,12 @@
 				BOOL stemUpwards = [[note getViewClass] isStemUpwards:note inMeasure:measure];
 				[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index isTarget:NO isOffset:NO
 							  isInChordWithOffset:NO stemUpwards:stemUpwards drawStem:YES drawTriplet:YES];
+				[self playFeedbackNote:feedbackNote inMeasure:measure atIndex:index withExistingNote:note];
 				return;
 			}
 		}
-		[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index target:nil selection:nil];		
+		[[feedbackNote getViewClass] draw:feedbackNote inMeasure:measure atIndex:index target:nil selection:nil];
+		[self playFeedbackNote:feedbackNote inMeasure:measure atIndex:index withExistingNote:nil];
 	}
 	[[NSColor blackColor] set];
 }

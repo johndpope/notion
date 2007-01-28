@@ -26,6 +26,8 @@
 	IBOutlet NSPopUpButton *channelButton;
 	IBOutlet NSButton *muteButton;
 	IBOutlet NSButton *soloButton;
+	
+	MusicTrack musicTrack;
 }
 
 - (id)initWithSong:(Song *)_song;
@@ -76,6 +78,8 @@
 
 - (BOOL)isMute;
 - (BOOL)isSolo;
+
+- (int)getChannel;
 
 - (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection;
 

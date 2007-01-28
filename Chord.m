@@ -175,6 +175,11 @@
 	[self sendChangeNotification];
 }
 
+- (int)getEffectivePitchWithKeySignature:(KeySignature *)keySig priorAccidentals:(NSMutableDictionary *)accidentals{
+	[[notes do] getEffectivePitchWithKeySignature:keySig priorAccidentals:accidentals];
+	return 0;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:notes forKey:@"notes"];
 	[coder encodeObject:staff forKey:@"staff"];
