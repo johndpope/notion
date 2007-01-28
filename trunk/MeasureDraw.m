@@ -33,6 +33,12 @@ static float lastFeedbackPosition = -1;
 
 @implementation MeasureDraw
 
++(void)initialize{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES" forKey:@"SSTFPlayFeedback"];
+    [defaults registerDefaults:appDefaults];
+}
+
 +(void)drawClef:(Clef *)clef inMeasure:(Measure *)measure isTarget:(BOOL)isTarget{
 	Class viewClass = (clef == nil) ? [ClefDraw class] : [clef getViewClass];
 	[viewClass draw:clef inMeasure:measure isTarget:isTarget];
@@ -141,7 +147,8 @@ static float lastFeedbackPosition = -1;
 }
 
 +(void)playFeedbackNote:(NoteBase *)feedbackNote inMeasure:(Measure *)measure atIndex:(float)index withExistingNote:(NoteBase *)note{
-	if(![feedbackNote isEqualTo:lastFeedbackNoteDrawn] || lastFeedbackPosition != index){
+	if([[NSUserDefaults standardUserDefaults] boolForKey:@"SSTFPlayFeedback"] &&
+		(![feedbackNote isEqualTo:lastFeedbackNoteDrawn] || lastFeedbackPosition != index)){
 		[lastFeedbackNoteDrawn release];
 		lastFeedbackPosition = index;
 		lastFeedbackNoteDrawn = [feedbackNote retain];
