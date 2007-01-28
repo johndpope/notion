@@ -17,11 +17,10 @@
 
 #import "Chord.h"
 #import "Note.h"
+#import "NoteBase.h"
 #import "Repeat.h"
 
 #import "CompoundTimeSig.h"
-
-static MusicPlayer musicPlayer;
 
 @implementation Song
 
@@ -33,8 +32,36 @@ static MusicPlayer musicPlayer;
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
 		repeats = [[NSMutableArray array] retain];
 		playerPosition = -1;
+		[self initMIDI];
 	}
 	return self;
+}
+
+- (void)initMIDI{
+	if (NewMusicPlayer(&musicPlayer) != noErr) {
+		[NSException raise:@"main" format:@"Cannot create music player."];
+	}
+	if (NewMusicSequence(&musicSequence) != noErr){
+		[NSException raise:@"main" format:@"Cannot create music sequence."];
+	}
+	if (MusicPlayerSetSequence(musicPlayer, musicSequence) != noErr) {
+		NSLog(@"Cannot set sequence for music player.");
+		return;
+	}
+	if (NewMusicPlayer(&feedbackPlayer) != noErr) {
+		[NSException raise:@"main" format:@"Cannot create music player."];
+	}
+	if (NewMusicSequence(&feedbackSequence) != noErr){
+		[NSException raise:@"main" format:@"Cannot create music sequence."];
+	}
+	if (MusicPlayerSetSequence(feedbackPlayer, feedbackSequence) != noErr) {
+		NSLog(@"Cannot set sequence for music player.");
+		return;
+	}
+	if (MusicSequenceNewTrack(feedbackSequence, &feedbackTrack) != noErr) {
+		[NSException raise:@"main" format:@"Cannot create music track."];
+	}
+	MusicPlayerPreroll(feedbackPlayer);
 }
 
 - (NSUndoManager *)undoManager{
@@ -318,10 +345,43 @@ static MusicPlayer musicPlayer;
 	[staff muteSoloEnabled:YES];
 }
 
+- (void)playFeedbackNote:(NoteBase *)note atPosition:(float)pos inMeasure:(Measure *)measure 
+		withExistingNote:existingNote toEndpoint:(MIDIEndpointRef)endpoint{
+	if(playerPosition != -1){
+		return;
+	}
+	BOOL isPlaying;
+	MusicPlayerIsPlaying(feedbackPlayer, &isPlaying);
+	if(isPlaying){
+		MusicPlayerStop(feedbackPlayer);
+	}
+	MusicTrackClear(feedbackTrack, 0.0, MAXFLOAT);
+	NSDictionary *accidentals = [measure getAccidentalsAtPosition:pos];
+	KeySignature *keySig = [measure getEffectiveKeySignature];
+	int channel = [[measure getStaff] getChannel];
+	playerEnd = [note addToMIDITrack:&feedbackTrack atPosition:0 withKeySignature:keySig
+						 accidentals:accidentals onChannel:channel];
+	[existingNote addToMIDITrack:&feedbackTrack atPosition:0 withKeySignature:keySig
+					 accidentals:accidentals onChannel:channel];
+	MIDIMetaEvent metaEvent = { 0x2f, 0, 0, 0, 0, { 0 } };
+	if (MusicTrackNewMetaEvent(feedbackTrack, 13.0, &metaEvent) != noErr) {
+		NSLog(@"Cannot add end of track meta event to track.");
+		return;
+	}
+	if(endpoint != nil){
+		if (MusicSequenceSetMIDIEndpoint(feedbackSequence, endpoint) != noErr)
+			[NSException raise:@"setMIDIEndpoint" format:@"Can't set midi endpoint for music sequence"];
+	}
+	
+	MusicPlayerSetTime(feedbackPlayer, 0.0);
+	
+	if (MusicPlayerStart(feedbackPlayer) != noErr) {
+		NSLog(@"Cannot start music player - %d.", MusicPlayerStart(feedbackPlayer));
+	}
+
+}
+
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint notesToPlay:(id)selection{
-	MusicSequence musicSequence;
-	if (NewMusicSequence(&musicSequence) != noErr)
-		[NSException raise:@"main" format:@"Cannot create music sequence."];
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
 	playerOffset = 0;
 	float maxLength = 0;
@@ -386,16 +446,6 @@ static MusicPlayer musicPlayer;
 			[NSException raise:@"setMIDIEndpoint" format:@"Can't set midi endpoint for music sequence"];
 	}
 	
-	if (NewMusicPlayer(&musicPlayer) != noErr) {
-		NSLog(@"Cannot create music player.");
-		return;
-	}
-
-	if (MusicPlayerSetSequence(musicPlayer, musicSequence) != noErr) {
-		NSLog(@"Cannot set sequence for music player.");
-		return;
-	}
-
 	MusicPlayerSetTime(musicPlayer, 0.0);
 	MusicPlayerPreroll(musicPlayer);
 
@@ -424,6 +474,14 @@ static MusicPlayer musicPlayer;
 	if (MusicPlayerStop(musicPlayer) != noErr) {
 		NSLog(@"Cannot stop music player.");
 		return;
+	}
+	int tracks;
+	
+	int i = 0;
+	for(MusicSequenceGetTrackCount(musicSequence, &tracks); tracks > 0; MusicSequenceGetTrackCount(musicSequence, &tracks)){
+		MusicTrack track;
+		MusicSequenceGetIndTrack(musicSequence, 0, &track);
+		MusicSequenceDisposeTrack(musicSequence, track);
 	}
 }
 
@@ -466,6 +524,7 @@ static MusicPlayer musicPlayer;
 		[self refreshTimeSigs];
 		[self setRepeats:[coder decodeObjectForKey:@"repeats"]];
 		playerPosition = -1;
+		[self initMIDI];
 	}
 	return self;
 }

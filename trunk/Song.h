@@ -7,11 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <CoreMidi/CoreMidi.h>
+#import <AudioToolbox/AudioToolbox.h>
 @class Staff;
 @class TimeSignature;
 @class MusicDocument;
 @class Measure;
+@class NoteBase;
 
 @interface Song : NSObject <NSCoding>{
 	MusicDocument *doc;
@@ -23,6 +24,12 @@
 	
 	NSTimer *musicPlayerPoll;
 	double playerPosition, playerOffset, playerEnd;
+	MusicPlayer musicPlayer;
+	MusicSequence musicSequence;
+	
+	MusicPlayer feedbackPlayer;
+	MusicSequence feedbackSequence;
+	MusicTrack feedbackTrack;
 }
 
 - (id)initWithDocument:(MusicDocument *)_doc;
@@ -70,6 +77,8 @@
 
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint;
 - (void)playToEndpoint:(MIDIEndpointRef)endpoint notesToPlay:(id)selection;
+- (void)playFeedbackNote:(NoteBase *)note atPosition:(float)pos inMeasure:(Measure *)measure 
+		withExistingNote:(NoteBase *)existingNote toEndpoint:(MIDIEndpointRef)endpoint;
 - (void)stopPlaying;
 
 @end

@@ -119,6 +119,8 @@
 
 - (void)cleanPanels;
 
+- (NSDictionary *)getAccidentalsAtPosition:(float)pos;
+
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 			  onChannel:(int)channel notesToPlay:(id)selection;
 

@@ -463,8 +463,11 @@
 	return [soloButton state] == NSOnState;
 }
 
+- (int)getChannel{
+	return channel;
+}
+
 - (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection{
-	MusicTrack musicTrack;
 	if (MusicSequenceNewTrack(*musicSequence, &musicTrack) != noErr) {
 		NSLog(@"Cannot create music track.");
 		return;
