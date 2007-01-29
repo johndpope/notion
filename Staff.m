@@ -47,6 +47,17 @@
 	return song;
 }
 
+- (NSString *)name{
+	return name;
+}
+
+- (void)setName:(NSString *)_name{
+	if(![name isEqualToString:_name]){
+		[name release];
+		name = [_name retain];
+	}
+}
+
 - (NSMutableArray *)getMeasures{
 	return measures;
 }
@@ -514,12 +525,14 @@
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:measures forKey:@"measures"];
 	[coder encodeInt:channel forKey:@"channel"];
+	[coder encodeObject:name forKey:@"name"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
 	if(self = [super init]){
 		[self setMeasures:[coder decodeObjectForKey:@"measures"]];
 		channel = [coder decodeIntForKey:@"channel"];
+		[self setName:[coder decodeObjectForKey:@"name"]];
 	}
 	return self;
 }

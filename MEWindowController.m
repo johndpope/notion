@@ -83,7 +83,7 @@
 			[verticalRuler addSubview:[staff rulerView]];
 		}
 		[[staff rulerView] setFrameOrigin:NSMakePoint(0, [StaffController baseOf:staff] -
-													  [StaffController lineHeightOf:staff] * 3.0)];
+													  [StaffController lineHeightOf:staff] * 5.0)];
 	}
 	NSEnumerator *tempos = [[[[self document] getSong] tempoData] objectEnumerator];
 	id tempo;

@@ -327,12 +327,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>188</integer>
-									<integer>186</integer>
+									<integer>82</integer>
+									<integer>80</integer>
+									<integer>18</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 2534}, {239, 764}}</string>
+							<string>{{0, 902}, {239, 764}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -381,7 +383,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>783087BC0B6D7D4300335C83</string>
+										<string>783087F60B6D825D00335C83</string>
 										<key>history</key>
 										<array>
 											<string>786A94AD0A8999830006F54C</string>
@@ -516,11 +518,9 @@
 											<string>78D4216A0B6D2B4400C5B734</string>
 											<string>78D4216B0B6D2B4400C5B734</string>
 											<string>78D421E10B6D329600C5B734</string>
-											<string>78D421E40B6D329600C5B734</string>
 											<string>78D4229F0B6D352300C5B734</string>
 											<string>78D422C00B6D359500C5B734</string>
 											<string>78D423090B6D458700C5B734</string>
-											<string>78D423620B6D4B1F00C5B734</string>
 											<string>78D4239D0B6D4F4100C5B734</string>
 											<string>78D423B00B6D4FCA00C5B734</string>
 											<string>78D423B10B6D4FCA00C5B734</string>
@@ -533,8 +533,10 @@
 											<string>78D424910B6D5A2E00C5B734</string>
 											<string>783086BB0B6D691E00335C83</string>
 											<string>783086BC0B6D691E00335C83</string>
-											<string>783086F10B6D6C3400335C83</string>
-											<string>783086F20B6D6C3400335C83</string>
+											<string>783087C50B6D7FFC00335C83</string>
+											<string>783087D30B6D816A00335C83</string>
+											<string>783087E40B6D821300335C83</string>
+											<string>783087E50B6D821300335C83</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -682,6 +684,10 @@
 											<string>783086BE0B6D691E00335C83</string>
 											<string>783086E60B6D6B5900335C83</string>
 											<string>783086F30B6D6C3400335C83</string>
+											<string>783087C60B6D7FFC00335C83</string>
+											<string>783087C70B6D7FFC00335C83</string>
+											<string>783087D50B6D816A00335C83</string>
+											<string>783087E60B6D821300335C83</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -860,7 +866,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>191724867.323174</real>
+	<real>191726173.56712401</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -882,9 +888,9 @@
 		<string>78683B020A0E97EE001DE5BB</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>783086900B6D668700335C83</string>
+		<string>/Users/kprevas/Señor Staff/trunk/Señor Staff.xcodeproj</string>
 		<string>7841FD130A09CEAA00292132</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>/Users/kprevas/Señor Staff/trunk/Señor Staff.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>63 55 1377 823 0 0 1440 878 </string>
@@ -979,7 +985,7 @@
 			<key>WindowToolGUID</key>
 			<string>7841FD130A09CEAA00292132</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1339,7 +1345,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

@@ -29,6 +29,7 @@
 		doc = _doc;
 		tempoData = [[NSMutableArray arrayWithObject:[[TempoData alloc] initWithTempo:120 withSong:self]] retain];
 		staffs = [[NSMutableArray arrayWithObject:[[Staff alloc] initWithSong:self]] retain];
+		[[staffs objectAtIndex:0] setName:@"Staff 1"];
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
 		repeats = [[NSMutableArray array] retain];
 		playerPosition = -1;
@@ -103,6 +104,7 @@
 - (Staff *)addStaff{
 	[self prepUndo];
 	Staff *staff = [self doAddStaff];
+	[staff setName:[NSString stringWithFormat:@"Staff %d", [staffs count]]];
 	[self refreshTimeSigs];
 	[self refreshTempoData];
 	return staff;
