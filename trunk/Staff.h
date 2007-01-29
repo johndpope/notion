@@ -21,6 +21,7 @@
 @interface Staff : NSObject <NSCoding> {
 	NSMutableArray *measures;
 	Song *song;
+	NSString *name;
 	int channel;
 	IBOutlet StaffVerticalRulerComponent *rulerView;
 	IBOutlet NSPopUpButton *channelButton;
@@ -34,6 +35,9 @@
 
 - (void)setSong:(Song *)_song;
 - (Song *)getSong;
+
+- (NSString *)name;
+- (void)setName:(NSString *)_name;
 
 - (NSMutableArray *)getMeasures;
 - (void)setMeasures:(NSMutableArray *)_measures;
