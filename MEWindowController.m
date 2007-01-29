@@ -17,6 +17,10 @@
 
 @implementation MEWindowController
 
+- (ScoreView *)view{
+	return view;
+}
+
 - (void)windowDidLoad{
 	[view setFrameSize:[view calculateBounds].size];
 	[verticalRuler setFrameSize:NSMakeSize([verticalRuler frame].size.width, [view frame].size.height)];
