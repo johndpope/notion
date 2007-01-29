@@ -28,6 +28,9 @@ static const int MODE_NOTE = 1;
 	IBOutlet NSScrollView *horizontalRulerScroll;
 	IBOutlet NSView *horizontalRuler;
 }
+
+- (ScoreView *)view;
+
 - (int)getPointerMode;
 - (int)getNoteModeDuration;
 - (int)getAccidental;
@@ -50,5 +53,6 @@ static const int MODE_NOTE = 1;
 - (BOOL)keyPressedAtLocation:(NSPoint)location withEvent:(NSEvent *)event;
 - (void)dragged:(id)target fromLocation:(NSPoint)fromLocation toLocation:(NSPoint)location withEvent:(NSEvent *)event finished:(BOOL)finished;
 - (void)paste:(id)data atLocation:(NSPoint)location;
+
 
 @end

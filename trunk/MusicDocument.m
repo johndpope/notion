@@ -65,12 +65,10 @@
 	return YES;
 }
 
--(BOOL)validateMenuItem:(NSMenuItem *)item{
-	SEL act = [item action];
-	if(act == @selector(printDocument:)){
-		return NO;
-	}
-	return [super validateMenuItem:item];
+- (void)printShowingPrintPanel:(BOOL)showPanels{
+	NSPrintOperation *op = [NSPrintOperation printOperationWithView:[windowController view] printInfo:[self printInfo]];
+	[op setShowPanels:showPanels];
+	[self runModalPrintOperation:op delegate:nil didRunSelector:nil contextInfo:nil];
 }
 
 - (IBAction)goToHomepage:(id)sender{
