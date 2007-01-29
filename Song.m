@@ -381,13 +381,13 @@
 
 }
 
-- (void)playToEndpoint:(MIDIEndpointRef)endpoint notesToPlay:(id)selection{
+- (float)addTracksToSequenceWithSelection:(id)selection includeAll:(BOOL)includeAll{
 	NSEnumerator *staffsEnum = [staffs objectEnumerator];
 	playerOffset = 0;
 	float maxLength = 0;
 	id staff;
 	while(staff = [staffsEnum nextObject]){
-		if(![staff isMute]){
+		if(includeAll || ![staff isMute]){
 			float length = [staff addTrackToMIDISequence:&musicSequence notesToPlay:selection];
 			if(length > maxLength){
 				maxLength = length;
@@ -412,17 +412,14 @@
 				}
 			}
 		}
-		if([staff isSolo]){
+		if([staff isSolo] && !includeAll){
 			break;
 		}
 	}
-
-	playerEnd = maxLength + 5; // add 5 beats for decay
-	
 	MusicTrack tempoTrack;
 	if (MusicSequenceGetTempoTrack(musicSequence, &tempoTrack) != noErr)
 		[NSException raise:@"main" format:@"Cannot get tempo track."];
-
+	
 	NSEnumerator *tempoEnum = [tempoData objectEnumerator];
 	id tempo;
 	float time = 0;
@@ -440,6 +437,26 @@
 		time += [[[staffs objectAtIndex:j] getMeasureAtIndex:i] getTotalDuration] * 4 / 3;
 		i++;
 	}
+	
+	return maxLength;
+}
+
+- (void)cleanMIDI{
+	int tracks;
+	
+	int i = 0;
+	for(MusicSequenceGetTrackCount(musicSequence, &tracks); tracks > 0; MusicSequenceGetTrackCount(musicSequence, &tracks)){
+		MusicTrack track;
+		MusicSequenceGetIndTrack(musicSequence, 0, &track);
+		MusicSequenceDisposeTrack(musicSequence, track);
+	}	
+}
+
+- (void)playToEndpoint:(MIDIEndpointRef)endpoint notesToPlay:(id)selection{
+
+	float maxLength = [self addTracksToSequenceWithSelection:selection includeAll:NO];
+	
+	playerEnd = maxLength + 5; // add 5 beats for decay
 	
 	if(endpoint != nil){
 		if (MusicSequenceSetMIDIEndpoint(musicSequence, endpoint) != noErr)
@@ -475,14 +492,7 @@
 		NSLog(@"Cannot stop music player.");
 		return;
 	}
-	int tracks;
-	
-	int i = 0;
-	for(MusicSequenceGetTrackCount(musicSequence, &tracks); tracks > 0; MusicSequenceGetTrackCount(musicSequence, &tracks)){
-		MusicTrack track;
-		MusicSequenceGetIndTrack(musicSequence, 0, &track);
-		MusicSequenceDisposeTrack(musicSequence, track);
-	}
+	[self cleanMIDI];
 }
 
 - (void)pollMusicPlayer:(NSTimer *)timer{
@@ -500,6 +510,24 @@
 
 - (double)getPlayerEnd{
 	return playerOffset + playerEnd;
+}
+
+- (NSData *)asMIDIData{
+#ifdef __BIG_ENDIAN__
+	[self stopPlaying];
+	[self addTracksToSequenceWithSelection:nil includeAll:YES];
+	CFDataRef dataRef;
+	if (MusicSequenceSaveSMFData(musicSequence, &dataRef, 0) != noErr) {
+		[NSException raise:@"main" format:@"Cannot save SMF data."];
+	}
+	[self cleanMIDI];
+	return [(NSData *)dataRef autorelease];
+#else
+	NSAlert *alert = [NSAlert alertWithMessageText:@"MIDI export does not currently work on Intel-based systems." defaultButton:nil alternateButton:nil otherButton:nil 
+						 informativeTextWithFormat:@"See http://code.google.com/p/senorstaff/issues/detail?id=61 for details.  For now, you can temporarily force the app to run under Rosetta, and retry the export."];
+	[alert runModal];
+	return nil;
+#endif
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

@@ -23,6 +23,28 @@
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
 			<string>MusicDocument</string>
+			<key>NSExportableAs</key>
+			<array>
+				<string>MIDI file</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mid</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>audio/midi</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MIDI file</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

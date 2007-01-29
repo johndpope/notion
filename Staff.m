@@ -503,7 +503,7 @@
 	}
 
 	MIDIMetaEvent metaEvent = { 0x2f, 0, 0, 0, 0, { 0 } };
-	if (MusicTrackNewMetaEvent(musicTrack, 13.0, &metaEvent) != noErr) {
+	if (MusicTrackNewMetaEvent(musicTrack, pos, &metaEvent) != noErr) {
 		NSLog(@"Cannot add end of track meta event to track.");
 		return;
 	}
