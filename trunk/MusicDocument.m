@@ -54,6 +54,9 @@
 }
 
 -(NSData *)dataRepresentationOfType:(NSString *)aType{
+	if([aType isEqualToString:@"MIDI file"]){
+		return [song asMIDIData];
+	}
 	return [NSKeyedArchiver archivedDataWithRootObject:song];
 }
 

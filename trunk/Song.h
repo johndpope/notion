@@ -81,4 +81,6 @@
 		withExistingNote:(NoteBase *)existingNote toEndpoint:(MIDIEndpointRef)endpoint;
 - (void)stopPlaying;
 
+- (NSData *)asMIDIData;
+
 @end
