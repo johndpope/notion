@@ -654,7 +654,7 @@
 		hitCount = 1;
 		lineNumber = 536;
 		location = "Señor Staff";
-		modificationTime = 191720687.861345;
+		modificationTime = 191727590.911007;
 		state = 2;
 	};
 	783086970B6D670300335C83 /* MusicDocument.m:57 */ = {
@@ -669,7 +669,7 @@
 		hitCount = 1;
 		lineNumber = 57;
 		location = "Señor Staff";
-		modificationTime = 191720677.469083;
+		modificationTime = 191727590.911014;
 		state = 2;
 	};
 	7830869A0B6D670D00335C83 /* PBXTextBookmark */ = {
@@ -744,7 +744,7 @@
 		hitCount = 1;
 		lineNumber = 523;
 		location = "Señor Staff";
-		modificationTime = 191720684.49319;
+		modificationTime = 191727590.91102;
 		state = 2;
 	};
 	783087C50B6D7FFC00335C83 /* PBXTextBookmark */ = {
@@ -1090,9 +1090,9 @@
 	};
 	7841FDD70A0B1E3100292132 /* Measure.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1069, 11746}}";
-			sepNavSelRange = "{22126, 0}";
-			sepNavVisRect = "{{0, 9953}, {1069, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1330, 11746}}";
+			sepNavSelRange = "{24737, 0}";
+			sepNavVisRect = "{{0, 11066}, {1330, 338}}";
 			sepNavWindowFrame = "{{518, 70}, {789, 766}}";
 		};
 	};
@@ -1607,9 +1607,9 @@
 	};
 	78683A1A0A0E8A72001DE5BB /* Staff.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1161, 7812}}";
-			sepNavSelRange = "{16138, 0}";
-			sepNavVisRect = "{{0, 6052}, {1069, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1330, 7812}}";
+			sepNavSelRange = "{16179, 0}";
+			sepNavVisRect = "{{0, 7258}, {1330, 338}}";
 			sepNavWindowFrame = "{{535, 153}, {787, 706}}";
 		};
 	};
@@ -2665,7 +2665,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = libSystem.B.dylib;
-		modificationTime = 191720653.167695;
+		modificationTime = 191727590.911797;
 		state = 2;
 		symbolName = szone_error;
 	};
@@ -2678,7 +2678,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 191720653.1677;
+		modificationTime = 191727590.91181;
 		state = 1;
 		symbolName = "- [NSZombie release]";
 	};
@@ -2691,7 +2691,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 191720653.167705;
+		modificationTime = 191727590.911818;
 		state = 1;
 		symbolName = "- [NSZombie retain]";
 	};
@@ -2704,7 +2704,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 191720653.16771;
+		modificationTime = 191727590.911823;
 		state = 1;
 		symbolName = "- [NSZombie methodSignatureForSelector:]";
 	};
@@ -2717,7 +2717,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 191720653.167715;
+		modificationTime = 191727590.911828;
 		state = 1;
 		symbolName = "- [NSZombie respondsToSelector:]";
 	};
@@ -2730,7 +2730,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 191720653.167719;
+		modificationTime = 191727590.911834;
 		state = 1;
 		symbolName = "- [NSZombie class]";
 	};
@@ -3070,7 +3070,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = Foundation;
-		modificationTime = 191720657.179545;
+		modificationTime = 191727595.388142;
 		state = 1;
 		symbolName = "-[NSObject doesNotRecognizeSelector:]";
 	};
@@ -4154,7 +4154,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = "";
-		modificationTime = 191720653.167728;
+		modificationTime = 191727590.911844;
 		state = 1;
 		symbolName = "- [SUUpdater installAndRestart]";
 	};
@@ -4435,7 +4435,7 @@
 		hitCount = 1;
 		lineNumber = 360;
 		location = "Señor Staff";
-		modificationTime = 191720653.167379;
+		modificationTime = 191727590.910986;
 		state = 2;
 	};
 	78D424130B6D530300C5B734 /* PBXTextBookmark */ = {
@@ -4518,7 +4518,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = libSystem.B.dylib;
-		modificationTime = 191720653.750477;
+		modificationTime = 191727591.544056;
 		state = 1;
 		symbolName = malloc_printf;
 	};
@@ -4580,7 +4580,7 @@
 		delayBeforeContinue = 0;
 		hitCount = 1;
 		location = Foundation;
-		modificationTime = 191720657.160446;
+		modificationTime = 191727650.302557;
 		state = 1;
 		symbolName = "- [NSException raise]";
 	};
@@ -5006,8 +5006,8 @@
 	78FA8CC70A0ECC0F00A37E39 /* Note.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {2036, 3640}}";
-			sepNavSelRange = "{1998, 117}";
-			sepNavVisRect = "{{0, 974}, {1069, 745}}";
+			sepNavSelRange = "{6844, 0}";
+			sepNavVisRect = "{{0, 3142}, {1330, 338}}";
 			sepNavWindowFrame = "{{286, 107}, {500, 716}}";
 		};
 	};

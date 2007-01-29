@@ -222,7 +222,6 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{
-	[coder encodeObject:staff forKey:@"staff"];
 	[coder encodeInt:duration forKey:@"duration"];
 	[coder encodeBool:dotted forKey:@"dotted"];
 	[coder encodeInt:octave forKey:@"octave"];
@@ -234,7 +233,6 @@
 
 - (id)initWithCoder:(NSCoder *)coder{
 	if(self = [super init]){
-		staff = [coder decodeObjectForKey:@"staff"];
 		duration = [coder decodeIntForKey:@"duration"];
 		dotted = [coder decodeBoolForKey:@"dotted"];
 		octave = [coder decodeIntForKey:@"octave"];

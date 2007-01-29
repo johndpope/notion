@@ -800,11 +800,7 @@
 			[self setKeySignature:[KeySignature getSignatureWithFlats:0 minor:NO]];
 		}
 		[self setNotes:[coder decodeObjectForKey:@"notes"]];
-		NSEnumerator *notesEnum = [notes objectEnumerator];
-		id note;
-		while(note = [notesEnum nextObject]){
-			[note setStaff:staff];
-		}
+		[[notes do] setStaff:staff];
 	}
 	return self;
 }
