@@ -27,6 +27,7 @@
 		[firstMeasure setKeySignature:[KeySignature getSignatureWithFlats:0 minor:NO]];
 		measures = [[NSMutableArray arrayWithObject:firstMeasure] retain];
 		song = _song;
+		canMute = YES;
 	}
 	return self;
 }
@@ -75,15 +76,6 @@
 
 - (BOOL)isDrums{
 	return channel == 9;
-}
-
-- (IBAction)setChannel:(id)sender{
-	channel = [channelButton selectedTag] - 1;
-	[self sendChangeNotification];
-}
-
-- (void)refreshChannelButton{
-	[channelButton selectItemWithTag:(channel + 1)];
 }
 
 - (IBAction)deleteSelf:(id)sender{
@@ -454,28 +446,49 @@
 	}
 }
 
-- (IBAction)soloPressed:(id)sender{
-	if([sender state] == NSOnState){
-		[muteButton setState:NSOffState];
+- (BOOL)canMute{
+	return canMute && !solo;
+}
+
+- (BOOL)canSolo{
+	return canMute;
+}
+
+- (void)setCanMute:(BOOL)enabled{
+	canMute = enabled;
+}
+
+- (BOOL)mute{
+	return mute;
+}
+
+- (BOOL)solo{
+	return solo;
+}
+
+- (void)setMute:(BOOL)_mute{
+	mute = _mute;
+}
+
+- (void)setSolo:(BOOL)_solo{
+	solo = _solo;
+	if(solo){
+		[self setMute:NO];
 	}
-	[song soloPressed:([sender state] == NSOnState) onStaff:self];
+	[song soloPressed:solo onStaff:self];
 }
 
-- (void)muteSoloEnabled:(BOOL)enabled{
-	[muteButton setEnabled:enabled];
-	[soloButton setEnabled:enabled];
+- (int)channel{
+	return channel + 1;
 }
 
-- (BOOL)isMute{
-	return [muteButton state] == NSOnState;
-}
-
-- (BOOL)isSolo{
-	return [soloButton state] == NSOnState;
-}
-
-- (int)getChannel{
+- (int)realChannel{
 	return channel;
+}
+
+- (void)setChannel:(int)_channel{
+	channel = _channel - 1;
+	[self sendChangeNotification];
 }
 
 - (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection{

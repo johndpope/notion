@@ -5,12 +5,7 @@
             ACTIONS = {deleteSelf = id; setChannel = id; soloPressed = id; }; 
             CLASS = Staff; 
             LANGUAGE = ObjC; 
-            OUTLETS = {
-                channelButton = NSPopUpButton; 
-                muteButton = NSButton; 
-                rulerView = StaffVerticalRulerComponent; 
-                soloButton = NSButton; 
-            }; 
+            OUTLETS = {rulerView = StaffVerticalRulerComponent; }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = StaffVerticalRulerComponent; LANGUAGE = ObjC; SUPERCLASS = NSView; }
