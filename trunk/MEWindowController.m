@@ -117,7 +117,6 @@
 - (void)addVerticalRulerComponentFor:(Staff *)staff{
 	if([NSBundle loadNibNamed:@"StaffVerticalRulerComponent" owner:staff]){
 		[verticalRuler addSubview:[staff rulerView]];
-		[staff refreshChannelButton];
 	}
 }
 

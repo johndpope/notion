@@ -24,9 +24,7 @@
 	NSString *name;
 	int channel;
 	IBOutlet StaffVerticalRulerComponent *rulerView;
-	IBOutlet NSPopUpButton *channelButton;
-	IBOutlet NSButton *muteButton;
-	IBOutlet NSButton *soloButton;
+	BOOL mute, solo, canMute;
 	
 	MusicTrack musicTrack;
 }
@@ -43,7 +41,6 @@
 - (void)setMeasures:(NSMutableArray *)_measures;
 
 - (StaffVerticalRulerComponent *)rulerView;
-- (IBAction)setChannel:(id)sender;
 - (IBAction)deleteSelf:(id)sender;
 
 - (Clef *)getClefForMeasure:(Measure *)measure;
@@ -68,7 +65,6 @@
 - (NSArray *)notesBetweenNote:(id)note1 andNote:(id)note2;
 
 - (void)cleanPanels;
-- (void)refreshChannelButton;
 
 - (BOOL)isDrums;
 
@@ -78,12 +74,16 @@
 - (void)timeSigDeletedAtMeasure:(Measure *)measure;
 
 - (IBAction)soloPressed:(id)sender;
-- (void)muteSoloEnabled:(BOOL)enabled;
+- (BOOL)canMute;
+- (void)setCanMute:(BOOL)enabled;
 
-- (BOOL)isMute;
-- (BOOL)isSolo;
+- (BOOL)mute;
+- (BOOL)solo;
+- (void)setMute:(BOOL)_mute;
+- (void)setSolo:(BOOL)_solo;
 
-- (int)getChannel;
+- (int)channel;
+- (void)setChannel:(int)_channel;
 
 - (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection;
 

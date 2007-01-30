@@ -343,8 +343,8 @@
 }
 
 - (void)soloPressed:(BOOL)solo onStaff:(Staff *)staff{
-	[[staffs do] muteSoloEnabled:(!solo)];
-	[staff muteSoloEnabled:YES];
+	[[staffs do] setCanMute:(!solo)];
+	[staff setCanMute:YES];
 }
 
 - (void)playFeedbackNote:(NoteBase *)note atPosition:(float)pos inMeasure:(Measure *)measure 
@@ -360,7 +360,7 @@
 	MusicTrackClear(feedbackTrack, 0.0, MAXFLOAT);
 	NSDictionary *accidentals = [measure getAccidentalsAtPosition:pos];
 	KeySignature *keySig = [measure getEffectiveKeySignature];
-	int channel = [[measure getStaff] getChannel];
+	int channel = [[measure getStaff] realChannel];
 	playerEnd = [note addToMIDITrack:&feedbackTrack atPosition:0 withKeySignature:keySig
 						 accidentals:accidentals onChannel:channel];
 	[existingNote addToMIDITrack:&feedbackTrack atPosition:0 withKeySignature:keySig
@@ -389,7 +389,7 @@
 	float maxLength = 0;
 	id staff;
 	while(staff = [staffsEnum nextObject]){
-		if(includeAll || ![staff isMute]){
+		if(includeAll || ![staff mute]){
 			float length = [staff addTrackToMIDISequence:&musicSequence notesToPlay:selection];
 			if(length > maxLength){
 				maxLength = length;
@@ -414,7 +414,7 @@
 				}
 			}
 		}
-		if([staff isSolo] && !includeAll){
+		if([staff solo] && !includeAll){
 			break;
 		}
 	}
