@@ -42,7 +42,7 @@
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
-			  onChannel:(int)channel;
+			  transpose:(int)transposition onChannel:(int)channel;
 
 - (void)transposeBy:(int)transposeAmount;
 

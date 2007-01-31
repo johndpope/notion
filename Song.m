@@ -362,9 +362,9 @@
 	KeySignature *keySig = [measure getEffectiveKeySignature];
 	int channel = [[measure getStaff] realChannel];
 	playerEnd = [note addToMIDITrack:&feedbackTrack atPosition:0 withKeySignature:keySig
-						 accidentals:accidentals onChannel:channel];
+						 accidentals:accidentals transpose:[[measure getStaff] transposition] onChannel:channel];
 	[existingNote addToMIDITrack:&feedbackTrack atPosition:0 withKeySignature:keySig
-					 accidentals:accidentals onChannel:channel];
+					 accidentals:accidentals transpose:[[measure getStaff] transposition] onChannel:channel];
 	MIDIMetaEvent metaEvent = { 0x2f, 0, 0, 0, 0, { 0 } };
 	if (MusicTrackNewMetaEvent(feedbackTrack, 13.0, &metaEvent) != noErr) {
 		NSLog(@"Cannot add end of track meta event to track.");

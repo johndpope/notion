@@ -70,9 +70,9 @@
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
-			  onChannel:(int)channel{
+			  transpose:(int)transposition onChannel:(int)channel{
 	[[notes do] addToMIDITrack:musicTrack atPosition:pos withKeySignature:sig 
-				   accidentals:accidentals onChannel:channel];
+				   accidentals:accidentals transpose:transposition onChannel:channel];
 	return 4.0 * [self getEffectiveDuration] / 3;
 }
 

@@ -129,7 +129,7 @@
 }
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
-			accidentals:(NSMutableDictionary *)accidentals onChannel:(int)channel{
+			accidentals:(NSMutableDictionary *)accidentals transpose:(int)transposition onChannel:(int)channel{
 	if(tieFrom != nil) return 4.0 * [self getEffectiveDuration] / 3;
 	MIDINoteMessage note;
 	note.channel = channel;
@@ -140,7 +140,7 @@
 		note.duration += 4.0 * [tie getEffectiveDuration] / 3;
 		tie = [tie getTieTo];
 	}
-	note.note = [self getEffectivePitchWithKeySignature:keySig priorAccidentals:accidentals];
+	note.note = [self getEffectivePitchWithKeySignature:keySig priorAccidentals:accidentals] + transposition;
 	if (MusicTrackNewMIDINoteEvent(*musicTrack, pos, &note) != noErr) {
 		NSLog(@"Cannot add note to track.");
     }
