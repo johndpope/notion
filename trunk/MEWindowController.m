@@ -14,8 +14,13 @@
 #import "MeasureController.h"
 #import "TimeSignatureController.h"
 #import "ClefController.h"
+#import "TranspositionValueTransformer.h"
 
 @implementation MEWindowController
+
++ (void)initialize{
+	[NSValueTransformer setValueTransformer:[[[TranspositionValueTransformer alloc] init] autorelease] forName:@"TranspositionValueTransformer"];
+}
 
 - (ScoreView *)view{
 	return view;
@@ -87,7 +92,7 @@
 			[verticalRuler addSubview:[staff rulerView]];
 		}
 		[[staff rulerView] setFrameOrigin:NSMakePoint(0, [StaffController baseOf:staff] -
-													  [StaffController lineHeightOf:staff] * 5.0)];
+													  [StaffController lineHeightOf:staff] * 6.0)];
 	}
 	NSEnumerator *tempos = [[[[self document] getSong] tempoData] objectEnumerator];
 	id tempo;

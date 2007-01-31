@@ -12,6 +12,7 @@
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
         }, 
+        {CLASS = SSAppDelegate; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {checkForUpdates = id; }; 
             CLASS = SUUpdater; 

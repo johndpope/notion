@@ -22,6 +22,7 @@
 	NSMutableArray *measures;
 	Song *song;
 	NSString *name;
+	int transposition;
 	int channel;
 	IBOutlet StaffVerticalRulerComponent *rulerView;
 	BOOL mute, solo, canMute;
@@ -36,6 +37,9 @@
 
 - (NSString *)name;
 - (void)setName:(NSString *)_name;
+
+- (int)transposition;
+- (void)setTransposition:(int)_transposition;
 
 - (NSMutableArray *)getMeasures;
 - (void)setMeasures:(NSMutableArray *)_measures;
@@ -73,7 +77,6 @@
 - (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom secondTop:(int)secondTop secondBottom:(int)secondBottom;
 - (void)timeSigDeletedAtMeasure:(Measure *)measure;
 
-- (IBAction)soloPressed:(id)sender;
 - (BOOL)canMute;
 - (void)setCanMute:(BOOL)enabled;
 

@@ -122,7 +122,7 @@
 - (NSDictionary *)getAccidentalsAtPosition:(float)pos;
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
-			  onChannel:(int)channel notesToPlay:(id)selection;
+			  transpose:(int)transposition onChannel:(int)channel notesToPlay:(id)selection;
 
 - (Class)getViewClass;
 - (Class)getControllerClass;

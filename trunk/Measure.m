@@ -744,7 +744,7 @@
 	return accidentals;
 }
 
-- (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos onChannel:(int)channel notesToPlay:(id)selection{
+- (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos transpose:(int)transposition onChannel:(int)channel notesToPlay:(id)selection{
 	float initPos = pos;
 	NSEnumerator *noteEnum = [notes objectEnumerator];
 	NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];
@@ -753,7 +753,7 @@
 		if(selection == nil || note == selection || 
 		   ([selection respondsToSelector:@selector(containsObject:)] && [selection containsObject:note])){
 			pos += [note addToMIDITrack:musicTrack atPosition:pos withKeySignature:[self getEffectiveKeySignature]
-							accidentals:accidentals onChannel:channel];			
+							accidentals:accidentals transpose:transposition onChannel:channel];			
 		}
 	}
 	return pos - initPos;

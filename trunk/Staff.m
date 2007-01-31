@@ -59,6 +59,14 @@
 	}
 }
 
+- (int)transposition{
+	return transposition;
+}
+
+- (void)setTransposition:(int)_transposition{
+	transposition = _transposition;
+}
+
 - (NSMutableArray *)getMeasures{
 	return measures;
 }
@@ -506,7 +514,7 @@
 		if([measure isStartRepeat]){
 			isRepeating = YES;
 		}
-		pos += [measure addToMIDITrack:&musicTrack atPosition:pos
+		pos += [measure addToMIDITrack:&musicTrack atPosition:pos transpose:transposition
 							 onChannel:channel notesToPlay:selection];
 		if(isRepeating){
 			[repeatMeasures addObject:measure];
@@ -518,7 +526,7 @@
 				NSEnumerator *repeatMeasuresEnum = [repeatMeasures objectEnumerator];
 				id repeatMeasure;
 				while(repeatMeasure = [repeatMeasuresEnum nextObject]){
-					pos += [repeatMeasure addToMIDITrack:&musicTrack atPosition:pos
+					pos += [repeatMeasure addToMIDITrack:&musicTrack atPosition:pos transpose:transposition
 											   onChannel:channel notesToPlay:selection];
 				}
 			}
@@ -538,14 +546,17 @@
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:measures forKey:@"measures"];
 	[coder encodeInt:channel forKey:@"channel"];
+	[coder encodeInt:transposition forKey:@"transposition"];
 	[coder encodeObject:name forKey:@"name"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
 	if(self = [super init]){
 		[self setMeasures:[coder decodeObjectForKey:@"measures"]];
-		channel = [coder decodeIntForKey:@"channel"];
+		[self setChannel:([coder decodeIntForKey:@"channel"] + 1)];
+		[self setTransposition:[coder decodeIntForKey:@"transposition"]];
 		[self setName:[coder decodeObjectForKey:@"name"]];
+		canMute = YES;
 	}
 	return self;
 }
