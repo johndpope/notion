@@ -10,6 +10,7 @@
 #import "Note.h"
 #import "Staff.h"
 #import "Measure.h"
+#include "TestUtil.h"
 
 @implementation NoteTest
 
@@ -21,32 +22,32 @@
 }
 
 - (void) testGetEffectiveDuration{
-	STAssertEquals([note getEffectiveDuration], (float)2.25, @"Wrong duration returned for note.");
+	STAssertEquals([note getEffectiveDuration], effDuration(2, YES), @"Wrong duration returned for note.");
 }
 
 - (void) testBasicTryToFill{
-	[note tryToFill:1.5];
-	STAssertEquals([note getEffectiveDuration], (float)1.5, @"Wrong duration when trying to fill.");
+	[note tryToFill:effDuration(2, NO)];
+	STAssertEquals([note getEffectiveDuration], effDuration(2, NO), @"Wrong duration when trying to fill.");
 }
 
 - (void) testComplexTryToFill{
-	[note tryToFill:0.793847];
-	STAssertEquals([note getEffectiveDuration], (float)0.75, @"Wrong duration when trying to fill.");
+	[note tryToFill:(effDuration(4, NO) + effDuration(32, YES))];
+	STAssertEquals([note getEffectiveDuration], effDuration(4, NO), @"Wrong duration when trying to fill.");
 }
 
 - (void) testSubtractDurationReturningSingleNote{
-	NSArray *array = [note subtractDuration:0.75];
+	NSArray *array = [note subtractDuration:effDuration(4, NO)];
 	STAssertEquals([array count], (unsigned)1, @"Wrong number of notes returned after subtracting duration.");
-	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration], (float)1.5, @"Wrong duration left after subtracting duration.");
-	STAssertEquals([note getEffectiveDuration], (float)2.25, @"Original note object modified during subtract duration.");
+	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration], effDuration(2, NO), @"Wrong duration left after subtracting duration.");
+	STAssertEquals([note getEffectiveDuration], effDuration(2, YES), @"Original note object modified during subtract duration.");
 }
 
 - (void) testSubtractDurationReturningMultipleNotes{
-	NSArray *array = [note subtractDuration:0.375];
+	NSArray *array = [note subtractDuration:effDuration(8, NO)];
 	STAssertEquals([array count], (unsigned)2, @"Wrong number of notes returned after subtracting duration.");
 	STAssertEquals([[array objectAtIndex:0] getEffectiveDuration] + [[array objectAtIndex:1] getEffectiveDuration],
-				   (float)1.875, @"Wrong duration left after subtracting duration.");
-	STAssertEquals([note getEffectiveDuration], (float)2.25, @"Original note object modified during subtract duration.");
+				   effDuration(2, NO) + effDuration(8, NO), @"Wrong duration left after subtracting duration.");
+	STAssertEquals([note getEffectiveDuration], effDuration(2, YES), @"Original note object modified during subtract duration.");
 	STAssertEqualObjects([[array objectAtIndex:0] getTieTo], [array objectAtIndex:1], @"Notes returned from subtracting duration not tied together.");
 }
 
