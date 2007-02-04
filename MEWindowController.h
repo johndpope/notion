@@ -42,6 +42,7 @@ static const int MODE_NOTE = 1;
 - (IBAction)changeDotted:(id)sender;
 - (IBAction)changeAccidental:(id)sender;
 - (IBAction)addStaff:(id)sender;
+- (IBAction)setZoom:(id)sender;
 
 - (void)placeRulerComponents;
 - (void)addVerticalRulerComponentFor:(Staff *)staff;

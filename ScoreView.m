@@ -18,6 +18,8 @@
 #import "NoteDraw.h"
 #import "Repeat.h"
 
+#import "NSView+ScaleUtilities.h"
+
 @implementation ScoreView
 
 - (void)setController:(MEWindowController *)_controller{
@@ -71,6 +73,8 @@
 	while(subview = [subviews nextObject]){
 		bounds = NSUnionRect(bounds, [subview frame]);
 	}
+	bounds.size.width *= [self scale].width;
+	bounds.size.height *= [self scale].height;
 	return bounds;
 }
 
@@ -240,7 +244,7 @@
 
 - (void)updateFeedback:(NSEvent *)event{
 	[self setFrameSize:[self calculateBounds].size];
-	if([self mouse:mouseLocation inRect:[self frame]]){
+	if([self mouse:mouseLocation inRect:[self bounds]]){
 		mouseOver = [controller targetAt:mouseLocation withEvent:event];
 	} else {
 		mouseOver = nil;

@@ -193,7 +193,7 @@ static NSColor *mouseOverColor;
 		} else{
 			NSAssert(NO, @"bad accidental value");
 		}
-		[acc compositeToPoint:NSMakePoint(body.origin.x - 10, body.origin.y + 5) operation:NSCompositeSourceOver];
+		[acc drawFlippedAtPoint:NSMakePoint(body.origin.x - 10, body.origin.y - 5)];
 	}	
 }
 
