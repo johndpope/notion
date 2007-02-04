@@ -74,6 +74,24 @@
 	[self placeRulerComponents];
 }
 
+- (IBAction) setZoom:(id)sender{
+	float zoomAmt = [sender floatValue];
+	if(fabs(zoomAmt - 1.0) < 0.075) {
+		zoomAmt = 1.0;
+		[sender setFloatValue:1.0];
+	}
+	NSSize zoom = NSMakeSize(zoomAmt, zoomAmt);
+	[view setScale:zoom];
+	[horizontalRuler setScale:zoom];
+	[verticalRuler setScale:zoom];
+	[view setFrameSize:[view calculateBounds].size];
+	[verticalRuler setFrameSize:NSMakeSize([verticalRuler frame].size.width, [view frame].size.height)];
+	[horizontalRuler setFrameSize:NSMakeSize([view frame].size.width, [horizontalRuler frame].size.height)];
+	[view setNeedsDisplay:YES];
+	[horizontalRuler setNeedsDisplay:YES];
+	[verticalRuler setNeedsDisplay:YES];
+}
+
 - (void)setupStaff:(Staff *)staff{
 	[self addVerticalRulerComponentFor:staff];
 	[view setNeedsDisplay:YES];

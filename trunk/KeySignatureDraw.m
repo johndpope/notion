@@ -33,8 +33,8 @@
 		}
 		while(sharp = [sharps nextObject]){
 			int sharpLoc = [sharp intValue];
-			accLoc.y = baseY - lineHeight * sharpLoc + 7.0;
-			[sharpImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
+			accLoc.y = baseY - lineHeight * sharpLoc - [sharpImg size].height + 7.0;
+			[sharpImg drawFlippedAtPoint:accLoc];
 			accLoc.x += 10.0;
 		}
 		NSEnumerator *flats = [[sig getFlatsWithClef:[measure getEffectiveClef]] objectEnumerator];
@@ -47,8 +47,8 @@
 		}
 		while(flat = [flats nextObject]){
 			int flatLoc = [flat intValue];
-			accLoc.y = baseY - lineHeight * flatLoc + 3.0;
-			[flatImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
+			accLoc.y = baseY - lineHeight * flatLoc - [flatImg size].height + 3.0;
+			[flatImg drawFlippedAtPoint:accLoc];
 			accLoc.x += 10.0;
 		}
 	} else if(sig != nil){
@@ -67,27 +67,31 @@
 			NSNumber *sharp;
 			while(sharp = [sharps nextObject]){
 				int sharpLoc = [sharp intValue];
-				accLoc.y = baseY - lineHeight * sharpLoc + 7.0;
-				[naturalImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
+				accLoc.y = baseY - lineHeight * sharpLoc - [naturalImg size].height + 10.0;
+				[naturalImg drawFlippedAtPoint:accLoc];
 				accLoc.x += 10.0;
 			}
 			NSEnumerator *flats = [[prev getFlatsWithClef:[prevMeasure getEffectiveClef]] objectEnumerator];
 			NSNumber *flat;
 			while(flat = [flats nextObject]){
 				int flatLoc = [flat intValue];
-				accLoc.y = baseY - lineHeight * flatLoc + 3.0;
-				[naturalImg compositeToPoint:accLoc operation:NSCompositeSourceOver];
+				accLoc.y = baseY - lineHeight * flatLoc - [naturalImg size].height + 10.0;
+				[naturalImg drawFlippedAtPoint:accLoc];
 				accLoc.x += 10.0;
 			}
 		} else if(isTarget && ![measure isShowingKeySigPanel]){
 			NSImage *sigIns = [NSImage imageNamed:@"keysig_insert.png"];
-			[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure], bounds.origin.y)
-						   operation:NSCompositeSourceOver];			
+			[sigIns setFlipped:YES];
+			[sigIns drawAtPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure], bounds.origin.y - [sigIns size].height)
+					   fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+			[sigIns setFlipped:NO];
 		}
 	} else if(isTarget && ![measure isShowingKeySigPanel]){
 		NSImage *sigIns = [NSImage imageNamed:@"keysig_insert.png"];
-		[sigIns compositeToPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure], bounds.origin.y)
-					   operation:NSCompositeSourceOver];			
+		[sigIns setFlipped:YES];
+		[sigIns drawAtPoint:NSMakePoint(bounds.origin.x + [[measure getControllerClass] keySigAreaX:measure], bounds.origin.y - [sigIns size].height)
+				   fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+		[sigIns setFlipped:NO];
 	}
 }
 

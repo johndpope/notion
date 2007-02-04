@@ -83,6 +83,10 @@
 		78AF625A0B7056290072CACE /* TestUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 78AF62580B7056290072CACE /* TestUtil.c */; };
 		78AF637E0B7084500072CACE /* TranspositionValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF637C0B7084500072CACE /* TranspositionValueTransformer.h */; };
 		78AF637F0B7084500072CACE /* TranspositionValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF637D0B7084500072CACE /* TranspositionValueTransformer.m */; };
+		78AF641A0B7551BC0072CACE /* NSView+ScaleUtilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF64180B7551BC0072CACE /* NSView+ScaleUtilities.h */; };
+		78AF641B0B7551BC0072CACE /* NSView+ScaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF64190B7551BC0072CACE /* NSView+ScaleUtilities.m */; };
+		78AF66B60B756AFB0072CACE /* NSImage+Flip.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF66B40B756AFB0072CACE /* NSImage+Flip.h */; };
+		78AF66B70B756AFB0072CACE /* NSImage+Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF66B50B756AFB0072CACE /* NSImage+Flip.m */; };
 		78B224250B2FD48600047C6B /* Repeat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B224230B2FD48600047C6B /* Repeat.h */; };
 		78B224260B2FD48600047C6B /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B224240B2FD48600047C6B /* Repeat.m */; };
 		78B439740ABCBFE70068C522 /* ClefTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B439730ABCBFE70068C522 /* ClefTarget.m */; };
@@ -186,6 +190,8 @@
 				787A0C120B5372A600926563 /* CompoundTimeSigController.h in CopyFiles */,
 				78AF62590B7056290072CACE /* TestUtil.h in CopyFiles */,
 				78AF637E0B7084500072CACE /* TranspositionValueTransformer.h in CopyFiles */,
+				78AF641A0B7551BC0072CACE /* NSView+ScaleUtilities.h in CopyFiles */,
+				78AF66B60B756AFB0072CACE /* NSImage+Flip.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +316,10 @@
 		78AF62580B7056290072CACE /* TestUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TestUtil.c; sourceTree = "<group>"; };
 		78AF637C0B7084500072CACE /* TranspositionValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspositionValueTransformer.h; sourceTree = "<group>"; };
 		78AF637D0B7084500072CACE /* TranspositionValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspositionValueTransformer.m; sourceTree = "<group>"; };
+		78AF64180B7551BC0072CACE /* NSView+ScaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+ScaleUtilities.h"; sourceTree = "<group>"; };
+		78AF64190B7551BC0072CACE /* NSView+ScaleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+ScaleUtilities.m"; sourceTree = "<group>"; };
+		78AF66B40B756AFB0072CACE /* NSImage+Flip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Flip.h"; sourceTree = "<group>"; };
+		78AF66B50B756AFB0072CACE /* NSImage+Flip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Flip.m"; sourceTree = "<group>"; };
 		78B224230B2FD48600047C6B /* Repeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repeat.h; sourceTree = "<group>"; };
 		78B224240B2FD48600047C6B /* Repeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repeat.m; sourceTree = "<group>"; };
 		78B439720ABCBFE70068C522 /* ClefTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClefTarget.h; sourceTree = "<group>"; };
@@ -458,26 +468,11 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				788707780AAD005C0057D6DD /* Controller */,
-				786EB9990A7878DD009D63DD /* View */,
-				78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */,
 				7841FDD50A0B1E1E00292132 /* Model */,
-				2A37F4AEFDCFA73011CA2CEA /* MusicDocument.h */,
-				2A37F4ACFDCFA73011CA2CEA /* MusicDocument.m */,
-				78E7F5FB0A353C5A008F8F40 /* StaffVerticalRuler.h */,
-				78E7F5FC0A353C5A008F8F40 /* StaffVerticalRuler.m */,
-				78E7F7B20A354672008F8F40 /* StaffVerticalRulerComponent.h */,
-				78E7F7B30A354672008F8F40 /* StaffVerticalRulerComponent.m */,
-				78E700B60A369A03008F8F40 /* NonScrollableScrollView.h */,
-				78E700B70A369A03008F8F40 /* NonScrollableScrollView.m */,
-				78DF77D40A48DF0F0058CF89 /* NSView+Fade.h */,
-				78DF77D50A48DF0F0058CF89 /* NSView+Fade.m */,
-				78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */,
-				78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */,
-				787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */,
-				787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */,
-				786B73480B51B806004297F2 /* NSArray+SenorStaff.h */,
-				786B73490B51B806004297F2 /* NSArray+SenorStaff.m */,
+				786EB9990A7878DD009D63DD /* View */,
+				788707780AAD005C0057D6DD /* Controller */,
+				78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */,
+				78AF67700B7570760072CACE /* Cocoa categories */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -526,6 +521,8 @@
 		7841FDD50A0B1E1E00292132 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2A37F4AEFDCFA73011CA2CEA /* MusicDocument.h */,
+				2A37F4ACFDCFA73011CA2CEA /* MusicDocument.m */,
 				7841FD8A0A0B08B800292132 /* Song.h */,
 				7841FD8B0A0B08B800292132 /* Song.m */,
 				7841FDD60A0B1E3100292132 /* Measure.h */,
@@ -563,30 +560,8 @@
 		786EB9990A7878DD009D63DD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				78124F840AAB6C6500D20E98 /* ScoreView.h */,
-				78124F850AAB6C6500D20E98 /* ScoreView.m */,
-				786EB99D0A787985009D63DD /* NoteDraw.h */,
-				786EB99E0A787985009D63DD /* NoteDraw.m */,
-				786EBA580A789651009D63DD /* RestDraw.h */,
-				786EBA590A789651009D63DD /* RestDraw.m */,
-				786EBB6C0A7C7A36009D63DD /* MeasureDraw.h */,
-				786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */,
-				786EBBA20A7C7C98009D63DD /* ClefDraw.h */,
-				786EBBA30A7C7C98009D63DD /* ClefDraw.m */,
-				7865F0460AB333C200678461 /* StaffDraw.h */,
-				7865F0470AB333C200678461 /* StaffDraw.m */,
-				78B43D130ABE4DB10068C522 /* TimeSignatureDraw.h */,
-				78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */,
-				78B43D580ABE4F980068C522 /* KeySignatureDraw.h */,
-				78B43D590ABE4F980068C522 /* KeySignatureDraw.m */,
-				78F785910AD09A0B009EDC26 /* ChordDraw.h */,
-				78F785920AD09A0B009EDC26 /* ChordDraw.m */,
-				787A94EB0B1AA7C9006FD236 /* DrumMeasureDraw.h */,
-				787A94EC0B1AA7C9006FD236 /* DrumMeasureDraw.m */,
-				786BDA180B251B8C002D16A3 /* DrumStaffDraw.h */,
-				786BDA190B251B8C002D16A3 /* DrumStaffDraw.m */,
-				787A0C080B53726600926563 /* CompoundTimeSigDraw.h */,
-				787A0C090B53726600926563 /* CompoundTimeSigDraw.m */,
+				78AF67720B7570BD0072CACE /* NSViews */,
+				78AF67710B7570BA0072CACE /* Draw classes */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -653,6 +628,69 @@
 				78AF637D0B7084500072CACE /* TranspositionValueTransformer.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		78AF67700B7570760072CACE /* Cocoa categories */ = {
+			isa = PBXGroup;
+			children = (
+				78DF77D40A48DF0F0058CF89 /* NSView+Fade.h */,
+				78DF77D50A48DF0F0058CF89 /* NSView+Fade.m */,
+				787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */,
+				787A93560B1A4219006FD236 /* NSPopUpButton+Images.m */,
+				786B73480B51B806004297F2 /* NSArray+SenorStaff.h */,
+				786B73490B51B806004297F2 /* NSArray+SenorStaff.m */,
+				78AF64180B7551BC0072CACE /* NSView+ScaleUtilities.h */,
+				78AF64190B7551BC0072CACE /* NSView+ScaleUtilities.m */,
+				78AF66B40B756AFB0072CACE /* NSImage+Flip.h */,
+				78AF66B50B756AFB0072CACE /* NSImage+Flip.m */,
+			);
+			name = "Cocoa categories";
+			sourceTree = "<group>";
+		};
+		78AF67710B7570BA0072CACE /* Draw classes */ = {
+			isa = PBXGroup;
+			children = (
+				786EB99D0A787985009D63DD /* NoteDraw.h */,
+				786EB99E0A787985009D63DD /* NoteDraw.m */,
+				786EBA580A789651009D63DD /* RestDraw.h */,
+				786EBA590A789651009D63DD /* RestDraw.m */,
+				786EBB6C0A7C7A36009D63DD /* MeasureDraw.h */,
+				786EBB6D0A7C7A36009D63DD /* MeasureDraw.m */,
+				786EBBA20A7C7C98009D63DD /* ClefDraw.h */,
+				786EBBA30A7C7C98009D63DD /* ClefDraw.m */,
+				7865F0460AB333C200678461 /* StaffDraw.h */,
+				7865F0470AB333C200678461 /* StaffDraw.m */,
+				78B43D130ABE4DB10068C522 /* TimeSignatureDraw.h */,
+				78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */,
+				78B43D580ABE4F980068C522 /* KeySignatureDraw.h */,
+				78B43D590ABE4F980068C522 /* KeySignatureDraw.m */,
+				78F785910AD09A0B009EDC26 /* ChordDraw.h */,
+				78F785920AD09A0B009EDC26 /* ChordDraw.m */,
+				787A94EB0B1AA7C9006FD236 /* DrumMeasureDraw.h */,
+				787A94EC0B1AA7C9006FD236 /* DrumMeasureDraw.m */,
+				786BDA180B251B8C002D16A3 /* DrumStaffDraw.h */,
+				786BDA190B251B8C002D16A3 /* DrumStaffDraw.m */,
+				787A0C080B53726600926563 /* CompoundTimeSigDraw.h */,
+				787A0C090B53726600926563 /* CompoundTimeSigDraw.m */,
+			);
+			name = "Draw classes";
+			sourceTree = "<group>";
+		};
+		78AF67720B7570BD0072CACE /* NSViews */ = {
+			isa = PBXGroup;
+			children = (
+				78E7F5FB0A353C5A008F8F40 /* StaffVerticalRuler.h */,
+				78E7F5FC0A353C5A008F8F40 /* StaffVerticalRuler.m */,
+				78E7F7B20A354672008F8F40 /* StaffVerticalRulerComponent.h */,
+				78E7F7B30A354672008F8F40 /* StaffVerticalRulerComponent.m */,
+				78E700B60A369A03008F8F40 /* NonScrollableScrollView.h */,
+				78E700B70A369A03008F8F40 /* NonScrollableScrollView.m */,
+				78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */,
+				78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */,
+				78124F840AAB6C6500D20E98 /* ScoreView.h */,
+				78124F850AAB6C6500D20E98 /* ScoreView.m */,
+			);
+			name = NSViews;
 			sourceTree = "<group>";
 		};
 		78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */ = {
@@ -936,6 +974,8 @@
 				787A0C130B5372A600926563 /* CompoundTimeSigController.m in Sources */,
 				78AF625A0B7056290072CACE /* TestUtil.c in Sources */,
 				78AF637F0B7084500072CACE /* TranspositionValueTransformer.m in Sources */,
+				78AF641B0B7551BC0072CACE /* NSView+ScaleUtilities.m in Sources */,
+				78AF66B70B756AFB0072CACE /* NSImage+Flip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
