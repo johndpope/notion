@@ -37,7 +37,6 @@ int enableMIDI = 1;
 		playerPosition = -1;
 		if(enableMIDI){
 			[self initMIDI];
-			NSLog(@"init MIDI");
 		}
 	}
 	return self;
