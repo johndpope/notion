@@ -20,7 +20,11 @@
 	return self;
 }
 
-- (void)transposeBy:(int)transposeAmount{
+- (void)transposeBy:(int)numLines{
+	//do nothing
+}
+
+- (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig{
 	//do nothing
 }
 

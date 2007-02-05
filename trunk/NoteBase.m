@@ -105,7 +105,11 @@
 	return 0;
 }
 
-- (void)transposeBy:(int)transposeAmount{
+- (void)transposeBy:(int)numLines{
+	[self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig{
 	[self doesNotRecognizeSelector:_cmd];
 }
 

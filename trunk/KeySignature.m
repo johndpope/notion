@@ -14,6 +14,7 @@ static int majorSharps[18] = {3, -1, -1, 5, -1, 0, 7, -1, 2, -1, -1, 4, -1, 6, -
 static int majorFlats[18] = {-1, -1, 2, -1, 7, 0, -1, 5, -1, -1, 3, -1, 1, -1, 6, -1, -1, 4};
 static int minorSharps[18] = {0, 7, -1, 2, -1, -1, 4, -1, -1, 6, -1, 1, -1, 3, -1, -1, 5, -1};
 static int minorFlats[18] = {0, -1, 5, -1, -1, 3, -1, -1, 1, -1, 6, -1, 4, -1, -1, 2, -1, 7};
+static int root[18] = {0, 1, 1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9, 9, 10, 11, 11};
 static int base[7] = {0, 2, 4, 5, 7, 9, 11};
 static int sharpLocs[7] = {3, 0, 4, 1, 5, 2, 6};
 static int sharpVisLocs[7] = {8, 5, 9, 6, 3, 7, 4};
@@ -61,6 +62,32 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		}
 	}
 	return true;
+}
+
+- (int)distanceFrom:(KeySignature *)otherSig{
+	int thisRoot = root[[self getIndexFromA]];
+	int otherRoot = root[[otherSig getIndexFromA]];
+	if([self isMinor]){
+		thisRoot = thisRoot + 3 % 12;
+	}
+	if([otherSig isMinor]){
+		otherRoot = otherRoot + 3 % 12;
+	}
+	if(thisRoot < otherRoot){
+		int distance = otherRoot - thisRoot;
+		if(distance < 12 - distance){
+			return -distance;
+		} else {
+			return 12 - distance;
+		}
+	} else {
+		int distance = thisRoot - otherRoot;
+		if(distance < 12 - distance){
+			return distance;
+		} else {
+			return distance - 12;
+		}
+	}
 }
 
 - (int)getIndexFromA{
@@ -158,6 +185,33 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 	if(pitches[position] < base[position]) return FLAT;
 	if(pitches[position] > base[position]) return SHARP;
 	return NO_ACC;
+}
+
+- (int)positionForPitch:(int)pitch preferAccidental:(int)accidental{
+	int i;
+	for(i=0; i < 7; i++){
+		if(pitches[i] >= pitch || (pitches[i] == pitch + 1 && accidental == SHARP)){
+			return i;
+		}
+	}
+	return 0;
+}
+
+- (int)accidentalForPitch:(int)pitch atPosition:(int)position{
+	int pitchAtPos = [self getPitchAtPosition:position];
+	if(pitchAtPos > pitch){
+		if([self getAccidentalAtPosition:position] == SHARP){
+			return NATURAL;
+		}
+		return FLAT;
+	} else if(pitchAtPos < pitch){
+		if([self getAccidentalAtPosition:position] == FLAT){
+			return NATURAL;
+		}
+		return SHARP;
+	} else {
+		return NO_ACC;
+	}
 }
 
 - (int)getNumSharps{

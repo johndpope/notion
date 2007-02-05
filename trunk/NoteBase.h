@@ -44,7 +44,8 @@
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
 			  transpose:(int)transposition onChannel:(int)channel;
 
-- (void)transposeBy:(int)transposeAmount;
+- (void)transposeBy:(int)numLines;
+- (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig;
 
 - (void)prepareForDelete;
 

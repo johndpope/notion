@@ -679,6 +679,8 @@
 		78AF67720B7570BD0072CACE /* NSViews */ = {
 			isa = PBXGroup;
 			children = (
+				78124F840AAB6C6500D20E98 /* ScoreView.h */,
+				78124F850AAB6C6500D20E98 /* ScoreView.m */,
 				78E7F5FB0A353C5A008F8F40 /* StaffVerticalRuler.h */,
 				78E7F5FC0A353C5A008F8F40 /* StaffVerticalRuler.m */,
 				78E7F7B20A354672008F8F40 /* StaffVerticalRulerComponent.h */,
@@ -687,8 +689,6 @@
 				78E700B70A369A03008F8F40 /* NonScrollableScrollView.m */,
 				78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */,
 				78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */,
-				78124F840AAB6C6500D20E98 /* ScoreView.h */,
-				78124F850AAB6C6500D20E98 /* ScoreView.m */,
 			);
 			name = NSViews;
 			sourceTree = "<group>";

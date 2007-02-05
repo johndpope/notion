@@ -417,14 +417,14 @@
 		[measure setClef:[Clef getClefAfter:oldClef]];
 	}
 	Clef *newClef = [self getClefForMeasure:measure];
-	int transposeAmount = [newClef getTranspositionFrom:oldClef];
+	int numLines = [newClef getTranspositionFrom:oldClef];
 	int index = [measures indexOfObject:measure] + 1;
-	[measure transposeBy:transposeAmount];
+	[measure transposeBy:numLines];
 	if(index < [measures count]){
 		while(index < [measures count]){
 			measure = [measures objectAtIndex:index++];
 			if([measure getClef] != nil) break;
-			[measure transposeBy:transposeAmount];
+			[measure transposeBy:numLines];
 		}
 	}
 }
@@ -444,6 +444,14 @@
 	if(measure != [measures objectAtIndex:0]){
 		[song timeSigDeletedAtIndex:[measures indexOfObject:measure]];		
 	}
+}
+
+- (void)transposeFrom:(KeySignature *)oldSig to:(KeySignature *)newSig startingAt:(Measure *)measure{
+	int transposeAmount = [newSig distanceFrom:oldSig];
+	do {
+		[measure transposeBy:transposeAmount oldSignature:oldSig newSignature:newSig];
+		measure = [[measure getStaff] getMeasureAfter:measure createNew:NO];
+	} while(measure != nil && [measure getKeySignature] == nil);
 }
 
 - (void)cleanPanels{

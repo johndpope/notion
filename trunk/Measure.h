@@ -27,6 +27,7 @@
 	IBOutlet NSView *keySigPanel;
 	IBOutlet NSPopUpButton *keySigLetter;
 	IBOutlet NSPopUpButton *keySigMajMin;
+	IBOutlet NSButton *keySigTranspose;
 	
 	IBOutlet NSView *timeSigPanel;
 	IBOutlet NSTextField *timeSigTopText;
@@ -104,7 +105,8 @@
 - (NoteBase *)getClosestNoteBefore:(float)targetDuration;
 - (NoteBase *)getClosestNoteAfter:(float)targetDuration;
 
-- (void)transposeBy:(int)tranposeAmount;
+- (void)transposeBy:(int)numLines;
+- (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig;
 
 - (IBAction)keySigChanged:(id)sender;
 - (IBAction)keySigClose:(id)sender;

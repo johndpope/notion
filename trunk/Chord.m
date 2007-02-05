@@ -76,8 +76,12 @@
 	return 4.0 * [self getEffectiveDuration] / 3;
 }
 
-- (void)transposeBy:(int)transposeAmount{
-	[[notes do] transposeBy:transposeAmount];
+- (void)transposeBy:(int)numLines{
+	[[notes do] transposeBy:numLines];
+}
+
+- (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig{
+	[[notes do] transposeBy:numHalfSteps oldSignature:oldSig newSignature:newSig];
 }
 
 - (void)prepareForDelete{
