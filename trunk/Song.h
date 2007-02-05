@@ -35,6 +35,7 @@
 - (id)initWithDocument:(MusicDocument *)_doc;
 
 - (MusicDocument *)document;
+- (void)setDocument:(MusicDocument *)_document;
 - (NSUndoManager *)undoManager;
 
 - (NSMutableArray *)staffs;

@@ -50,6 +50,7 @@
 	if(![song isEqual:_song]){
 		[song release];
 		song = [_song retain];
+		[song setDocument:self];
 	}
 }
 

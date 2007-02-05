@@ -82,6 +82,13 @@ int enableMIDI = 1;
 	return doc;
 }
 
+- (void)setDocument:(MusicDocument *)_document{
+	if(![doc isEqual:_document]){
+		[doc release];
+		doc = [_document retain];
+	}
+}
+
 - (NSMutableArray *)staffs{
 	return staffs;
 }
