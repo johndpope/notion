@@ -171,10 +171,10 @@
 	return tieFrom;
 }
 
-- (void)transposeBy:(int)transposeAmount{
+- (void)transposeBy:(int)numLines{
 	int newPitch = pitch;
 	int newOctave = octave;
-	newPitch += transposeAmount;
+	newPitch += numLines;
 	while(newPitch >= 7){
 		newPitch -= 7;
 		newOctave++;
@@ -185,6 +185,18 @@
 	}
 	[self setPitch:newPitch finished:YES];
 	[self setOctave:newOctave finished:YES];
+}
+
+- (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig{
+	int effectivePitch = [self getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	effectivePitch += numHalfSteps;
+	int newOctave = effectivePitch / 12;
+	effectivePitch -= newOctave * 12;
+	int newPitch = [newSig positionForPitch:effectivePitch preferAccidental:accidental];
+	int newAccidental = [newSig accidentalForPitch:effectivePitch atPosition:newPitch];
+	[self setOctave:newOctave finished:YES];
+	[self setPitch:newPitch finished:YES];
+	[self setAccidental:newAccidental];
 }
 
 - (void)prepareForDelete{

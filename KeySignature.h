@@ -25,10 +25,15 @@
 - (int)getPitchAtPosition:(int)position;
 - (int)getAccidentalAtPosition:(int)position;
 
+- (int)positionForPitch:(int)pitch preferAccidental:(int)accidental;
+- (int)accidentalForPitch:(int)pitch atPosition:(int)position;
+
 - (int)getNumSharps;
 - (int)getNumFlats;
 - (NSArray *)getSharpsWithClef:(Clef *)clef;
 - (NSArray *)getFlatsWithClef:(Clef *)clef;
+
+- (int)distanceFrom:(KeySignature *)otherSig;
 
 - (int)getIndexFromA;
 - (BOOL)isMinor;	

@@ -59,6 +59,8 @@
 - (Measure *)getMeasureWithKeySignatureBefore:(Measure *)measure;
 - (void)cleanEmptyMeasures;
 
+- (void)transposeFrom:(KeySignature *)oldSig to:(KeySignature *)newSig startingAt:(Measure *)measure;
+
 - (Measure *)getMeasureContainingNote:(NoteBase *)note;
 - (Chord *)getChordContainingNote:(NoteBase *)note;
 

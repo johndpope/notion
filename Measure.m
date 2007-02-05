@@ -602,12 +602,12 @@
 	return [nextMeasureNotes objectAtIndex:0];
 }
 
-- (void)transposeBy:(int)transposeAmount{
-	NSEnumerator *notesEnum = [notes objectEnumerator];
-	id note;
-	while(note = [notesEnum nextObject]){
-		[note transposeBy:transposeAmount];
-	}
+- (void)transposeBy:(int)numLines{
+	[[notes do] transposeBy:numLines];
+}
+
+- (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig{
+	[[notes do] transposeBy:numHalfSteps oldSignature:oldSig newSignature:newSig];
 }
 
 - (IBAction)keySigChanged:(id)sender{
@@ -625,6 +625,9 @@
 			newSig = [KeySignature getMajorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
 			[keySigMajMin selectItemWithTitle:@"major"];
 		}
+	}
+	if([keySigTranspose state] == NSOnState){
+		[staff transposeFrom:keySig to:newSig startingAt:self];		
 	}
 	Measure *prev = [staff getMeasureBefore:self];
 	if(prev != nil && [[prev getEffectiveKeySignature] isEqualTo:newSig]){
