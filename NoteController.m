@@ -1,5 +1,5 @@
 //
-//  self.m
+//  NoteController.m
 //  Señor Staff
 //
 //  Created by Konstantine Prevas on 9/4/06.
@@ -80,9 +80,11 @@
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		if([[view selection] respondsToSelector:@selector(containsObject:)] && [[view selection] containsObject:note]){
 			[[self doSelf] doNoteDeletion:[[view selection] each]];
+			[view setSelection:nil];
 			[[note undoManager] setActionName:@"deleting notes"];
 			return YES;
 		} else {
+			[view setSelection:nil];
 			return [self doNoteDeletion:note];
 		}
 	}
