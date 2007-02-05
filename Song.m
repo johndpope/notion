@@ -22,6 +22,8 @@
 
 #import "CompoundTimeSig.h"
 
+int enableMIDI = 1;
+
 @implementation Song
 
 - (id)initWithDocument:(MusicDocument *)_doc{
@@ -33,7 +35,10 @@
 		timeSigs = [[NSMutableArray arrayWithObject:[TimeSignature timeSignatureWithTop:4 bottom:4]] retain];
 		repeats = [[NSMutableArray array] retain];
 		playerPosition = -1;
-		[self initMIDI];
+		if(enableMIDI){
+			[self initMIDI];
+			NSLog(@"init MIDI");
+		}
 	}
 	return self;
 }

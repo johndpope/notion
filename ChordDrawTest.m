@@ -13,9 +13,12 @@
 #import "Staff.h"
 #import "Measure.h"
 
+extern int enableMIDI;
+
 @implementation ChordDrawTest
 
 - (void)setUp{
+	enableMIDI = 0;
 	Song *song = [[[Song alloc] initWithDocument:nil] autorelease];
 	staff = [[Staff alloc] initWithSong:song];
 	measure = [staff getLastMeasure];

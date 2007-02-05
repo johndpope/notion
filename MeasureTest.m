@@ -16,9 +16,12 @@
 #import "MusicDocument.h"
 #include "TestUtil.h"
 
+extern int enableMIDI;
+
 @implementation MeasureTest
 
 - (void)setUp{
+	enableMIDI = 0;
 	staff = [[Staff alloc] initWithSong:nil];
 	measure = [staff getLastMeasure];
 }
