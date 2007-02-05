@@ -12,9 +12,12 @@
 #import "Note.h"
 #include "TestUtil.h"
 
+extern int enableMIDI;
+
 @implementation ChordTest
 
 - (void)setUp{
+	enableMIDI = 0;
 	chord = [[Chord alloc] initWithStaff:nil];
 	int i;
 	for(i=0; i<3; i++){

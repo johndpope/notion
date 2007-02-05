@@ -15,9 +15,12 @@
 #import "Note.h"
 #include "TestUtil.h"
 
+extern int enableMIDI;
+
 @implementation SongTest
 
 - (void) setUp{
+	enableMIDI = 0;
 	song = [[Song alloc] initWithDocument:nil];
 }
 - (void) tearDown{

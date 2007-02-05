@@ -13,9 +13,12 @@
 #import "TimeSignature.h"
 #import "CompoundTimeSig.h"
 
+extern int enableMIDI;
+
 @implementation StaffTest
 
 - (void) setUp{
+	enableMIDI = 0;
 	staff = [[Staff alloc] initWithSong:nil];
 }
 

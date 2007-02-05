@@ -12,9 +12,12 @@
 #import "Measure.h"
 #include "TestUtil.h"
 
+extern int enableMIDI;
+
 @implementation NoteTest
 
 - (void)setUp{
+	enableMIDI = 0;
 	note = [[Note alloc] initWithPitch:4 octave:3 duration:2 dotted:YES accidental:SHARP onStaff:nil];
 }
 - (void)tearDown{
