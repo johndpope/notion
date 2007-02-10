@@ -10,6 +10,7 @@
 #import "ScoreController.h"
 #import "MeasureController.h"
 #import "NoteBase.h"
+#import "Note.h"
 #import "Chord.h"
 #import "Measure.h"
 #import "Staff.h"
@@ -86,6 +87,38 @@
 		} else {
 			[view setSelection:nil];
 			return [self doNoteDeletion:note];
+		}
+	}
+	if([note respondsToSelector:@selector(setAccidental:)]){
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@"p", NSDeleteCharacter]].location != NSNotFound){
+			if([note getAccidental] == SHARP){
+				[note setAccidental:NO_ACC];
+				[[note undoManager] setActionName:@"removing accidental"];
+			} else {
+				[note setAccidental:SHARP];
+				[[note undoManager] setActionName:@"changing accidental"];
+			}
+			return YES;
+		}
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@";", NSDeleteCharacter]].location != NSNotFound){
+			if([note getAccidental] == NATURAL){
+				[note setAccidental:NO_ACC];
+				[[note undoManager] setActionName:@"removing accidental"];
+			} else {
+				[note setAccidental:NATURAL];
+				[[note undoManager] setActionName:@"changing accidental"];
+			}
+			return YES;
+		}
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@"/", NSDeleteCharacter]].location != NSNotFound){
+			if([note getAccidental] == FLAT){
+				[note setAccidental:NO_ACC];
+				[[note undoManager] setActionName:@"removing accidental"];
+			} else {
+				[note setAccidental:FLAT];
+				[[note undoManager] setActionName:@"changing accidental"];
+			}
+			return YES;
 		}
 	}
 	return NO;

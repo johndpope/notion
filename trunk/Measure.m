@@ -742,7 +742,10 @@
 	int i;
 	KeySignature *keySig = [self getEffectiveKeySignature];
 	for(i = 0; i < pos; i++){
-		[[notes objectAtIndex:i] getEffectivePitchWithKeySignature:keySig priorAccidentals:accidentals];
+		NoteBase *note = [notes objectAtIndex:i];
+		if([note respondsToSelector:@selector(getEffectivePitchWithKeySignature:priorAccidentals:)]){
+			[note getEffectivePitchWithKeySignature:keySig priorAccidentals:accidentals];			
+		}
 	}
 	return accidentals;
 }

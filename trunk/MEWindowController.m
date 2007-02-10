@@ -259,9 +259,6 @@
 }
 
 - (BOOL)keyPressedAtLocation:(NSPoint)location withEvent:(NSEvent *)event{
-	if([self handleToolbarKeystroke:event]){
-		return YES;
-	}
 	id modeDict = [self getMode];
 	id song = [[self document] getSong];
 	id target = [ScoreController targetAtLocation:location inSong:song mode:modeDict withEvent:(NSEvent *)event];
@@ -279,6 +276,11 @@
 			[duration selectItemWithTag:sel];
 			return YES;
 		}		
+	}
+	if(!handled){
+		if([self handleToolbarKeystroke:event]){
+			return YES;
+		}
 	}
 	return handled;
 }
