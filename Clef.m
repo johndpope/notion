@@ -22,7 +22,7 @@
 + (Clef *)trebleClef{
 	static Clef *treble;
 	if(treble == nil){
-		treble = [[[Clef alloc] initWithPitchOffset:2 withOctaveOffset:4] retain];
+		treble = [[[Clef alloc] initWithPitchOffset:2 withOctaveOffset:5] retain];
 	}
 	return treble;
 }
@@ -30,7 +30,7 @@
 + (Clef *)bassClef{
 	static Clef *bass;
 	if(bass == nil){
-		bass = [[[Clef alloc] initWithPitchOffset:4 withOctaveOffset:2] retain];
+		bass = [[[Clef alloc] initWithPitchOffset:4 withOctaveOffset:3] retain];
 	}
 	return bass;
 }
