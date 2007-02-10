@@ -219,6 +219,7 @@ static NSString *UniqueTitle(NSString *name, NSMutableDictionary *previousTitles
 		// see if that collides with any previous item -- base class requires unique titles
 		
 		NSMenuItem *item = [self addItemWithTitle:newItemTitle action:@selector(endpointChanged:) keyEquivalent:@""]; // cast from CFString
+		[item setTarget:self];
 		if (ei->mUniqueID == mSelectedUniqueID) {
 			[item setState:NSOnState];
 			[self syncSelectedName];
