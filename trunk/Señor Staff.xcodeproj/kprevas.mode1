@@ -267,6 +267,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -365,8 +367,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -381,10 +381,6 @@
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>NoteController.m</string>
-										<key>_historyCapacity</key>
-										<integer>0</integer>
-										<key>bookmark</key>
-										<string>78684BBF0B7DB182002CCC1E</string>
 										<key>history</key>
 										<array>
 											<string>786A94AD0A8999830006F54C</string>
@@ -693,32 +689,9 @@
 											<string>78AF6BD80B7D92B90072CACE</string>
 											<string>78AF6BD90B7D92B90072CACE</string>
 											<string>78AF6BDC0B7D92B90072CACE</string>
-											<string>78684A5F0B7D976D002CCC1E</string>
-											<string>78684A600B7D976D002CCC1E</string>
-											<string>78684A610B7D976D002CCC1E</string>
-											<string>78684A810B7D9B04002CCC1E</string>
-											<string>78684A820B7D9B04002CCC1E</string>
 											<string>78684A9D0B7D9BA3002CCC1E</string>
-											<string>78684AAA0B7D9C91002CCC1E</string>
-											<string>78684ABE0B7D9D5D002CCC1E</string>
-											<string>78684ABF0B7D9D5D002CCC1E</string>
-											<string>78684AC00B7D9D5D002CCC1E</string>
-											<string>78684AC50B7D9DC7002CCC1E</string>
-											<string>78684AD10B7D9E38002CCC1E</string>
-											<string>78684AE70B7DA028002CCC1E</string>
-											<string>78684AE80B7DA028002CCC1E</string>
-											<string>78684AE90B7DA028002CCC1E</string>
-											<string>78684AEA0B7DA028002CCC1E</string>
-											<string>78684AEB0B7DA028002CCC1E</string>
-											<string>78684B140B7DA640002CCC1E</string>
-											<string>78684B250B7DA88D002CCC1E</string>
-											<string>78684B530B7DAD9F002CCC1E</string>
-											<string>78684B540B7DAD9F002CCC1E</string>
-											<string>78684B840B7DAF97002CCC1E</string>
 											<string>78684BA20B7DB0C1002CCC1E</string>
 											<string>78684BA30B7DB0C1002CCC1E</string>
-											<string>78684BA40B7DB0C1002CCC1E</string>
-											<string>78684BBE0B7DB182002CCC1E</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -776,9 +749,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>78684A640B7D976D002CCC1E</string>
+				<string>78684CB90B7DB1D0002CCC1E</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>78684A650B7D976D002CCC1E</string>
+				<string>78684CBA0B7DB1D0002CCC1E</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -897,7 +870,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>192786818.79065701</real>
+	<real>192786895.07884499</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -912,16 +885,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>788317EF0A617516003363D7</string>
-		<string>78684A2F0B7D9516002CCC1E</string>
-		<string>78684A660B7D976D002CCC1E</string>
-		<string>78684A670B7D976D002CCC1E</string>
-		<string>78683B020A0E97EE001DE5BB</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>78684A2B0B7D94DC002CCC1E</string>
 		<string>/Users/kprevas/Señor Staff/trunk/Señor Staff.xcodeproj</string>
-		<string>7841FD130A09CEAA00292132</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 	</array>
 	<key>WindowString</key>
 	<string>64 55 1377 823 0 0 1440 878 </string>
@@ -1016,7 +980,7 @@
 			<key>WindowToolGUID</key>
 			<string>7841FD130A09CEAA00292132</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1378,7 +1342,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
