@@ -72,6 +72,7 @@
 	[self sendChangeNotification];
 }
 - (void)setAccidental:(int)_accidental{
+	[[[self undoManager] prepareWithInvocationTarget:self] setAccidental:accidental];
 	accidental = _accidental;
 	[self sendChangeNotification];
 }
@@ -193,6 +194,9 @@
 	int newOctave = effectivePitch / 12;
 	effectivePitch -= newOctave * 12;
 	int newPitch = [newSig positionForPitch:effectivePitch preferAccidental:accidental];
+	if(effectivePitch == 11 && newPitch == 0) {
+		newOctave++;
+	}
 	int newAccidental = [newSig accidentalForPitch:effectivePitch atPosition:newPitch];
 	[self setOctave:newOctave finished:YES];
 	[self setPitch:newPitch finished:YES];

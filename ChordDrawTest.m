@@ -53,8 +53,8 @@ extern int enableMIDI;
 }
 
 - (void)testBottomNoteOfDownwardStemChordIsOffset{
-	Note *firstNote = [[Note alloc] initWithPitch:3 octave:5 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	Note *secondNote = [[Note alloc] initWithPitch:4 octave:5 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *firstNote = [[Note alloc] initWithPitch:3 octave:6 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:4 octave:6 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Chord *chord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	[measure addNote:chord atIndex:-0.5 tieToPrev:NO];
 	STAssertTrue([ChordDraw isOffset:firstNote inChord:chord inMeasure:measure], @"Bottom note should be offset.");
@@ -65,8 +65,8 @@ extern int enableMIDI;
 }
 
 - (void)testTopNoteOfDownwardStemChordSpanningOctaveIsOffset{
-	Note *firstNote = [[Note alloc] initWithPitch:6 octave:5 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	Note *secondNote = [[Note alloc] initWithPitch:0 octave:6 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *firstNote = [[Note alloc] initWithPitch:6 octave:6 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:7 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Chord *chord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	[measure addNote:chord atIndex:-0.5 tieToPrev:NO];
 	STAssertTrue([ChordDraw isOffset:firstNote inChord:chord inMeasure:measure], @"Bottom note should be offset.");
@@ -89,8 +89,8 @@ extern int enableMIDI;
 }
 
 - (void)testNonConsecutiveDownwardStemNotesAreNotOffset{
-	Note *firstNote = [[Note alloc] initWithPitch:2 octave:5 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
-	Note *secondNote = [[Note alloc] initWithPitch:4 octave:5 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *firstNote = [[Note alloc] initWithPitch:2 octave:6 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:4 octave:6 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
 	Chord *chord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
 	[measure addNote:chord atIndex:-0.5 tieToPrev:NO];
 	STAssertFalse([ChordDraw isOffset:firstNote inChord:chord inMeasure:measure], @"Bottom note should not be offset.");

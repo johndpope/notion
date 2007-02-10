@@ -67,12 +67,6 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 - (int)distanceFrom:(KeySignature *)otherSig{
 	int thisRoot = root[[self getIndexFromA]];
 	int otherRoot = root[[otherSig getIndexFromA]];
-	if([self isMinor]){
-		thisRoot = thisRoot + 3 % 12;
-	}
-	if([otherSig isMinor]){
-		otherRoot = otherRoot + 3 % 12;
-	}
 	if(thisRoot < otherRoot){
 		int distance = otherRoot - thisRoot;
 		if(distance < 12 - distance){
@@ -189,8 +183,30 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 
 - (int)positionForPitch:(int)pitch preferAccidental:(int)accidental{
 	int i;
+	if(accidental == SHARP){
+		if(pitches[6] + 1 == pitch && [self getAccidentalAtPosition:6] != SHARP){
+			return 6;
+		}
+		for(i=0; i < 7; i++){
+			if(pitches[i] + 1 == pitch && [self getAccidentalAtPosition:i] != SHARP){
+				return i;
+			}
+		}
+	} else if(accidental == FLAT){
+		if(pitches[0] - 1 == pitch - 12 && [self getAccidentalAtPosition:0] != FLAT){
+			return 0;
+		}
+		for(i=0; i < 7; i++){
+			if(pitches[i] - 1 == pitch && [self getAccidentalAtPosition:i] != FLAT){
+				return i;
+			}
+		}
+	}
 	for(i=0; i < 7; i++){
-		if(pitches[i] >= pitch || (pitches[i] == pitch + 1 && accidental == SHARP)){
+		if(pitches[i] >= pitch){
+			if(pitches[i] > pitch && [self getAccidentalAtPosition:i] == FLAT){
+				return (i-1) % 7;
+			}
 			return i;
 		}
 	}
@@ -199,14 +215,18 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 
 - (int)accidentalForPitch:(int)pitch atPosition:(int)position{
 	int pitchAtPos = [self getPitchAtPosition:position];
-	if(pitchAtPos > pitch){
+	if(pitchAtPos > pitch || (pitch == 11 && pitchAtPos == 0)){
 		if([self getAccidentalAtPosition:position] == SHARP){
 			return NATURAL;
+		} else if([self getAccidentalAtPosition:position] == FLAT){
+			return NO_ACC;
 		}
 		return FLAT;
-	} else if(pitchAtPos < pitch){
+	} else if(pitchAtPos < pitch || (pitchAtPos == 11 && pitch == 0)){
 		if([self getAccidentalAtPosition:position] == FLAT){
 			return NATURAL;
+		} else if([self getAccidentalAtPosition:position] == SHARP){
+			return NO_ACC;
 		}
 		return SHARP;
 	} else {
