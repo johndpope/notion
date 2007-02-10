@@ -55,27 +55,27 @@
 
 - (void)testDistanceFromMajorToMinorNoWrap{
 	KeySignature *sig = [KeySignature getMajorSignatureAtIndexFromA:6]; //C sharp major
-	KeySignature *otherSig = [KeySignature getMinorSignatureAtIndexFromA:6]; //C sharp minor
+	KeySignature *otherSig = [KeySignature getMinorSignatureAtIndexFromA:11]; //E minor
 	STAssertEquals([sig distanceFrom:otherSig], -3, @"distanceFrom failed downwards major to minor");
 	STAssertEquals([otherSig distanceFrom:sig], 3, @"distanceFrom failed upwards major to minor");
 }
 
 - (void)testDistanceFromMajorToMinorWrap{
 	KeySignature *sig = [KeySignature getMajorSignatureAtIndexFromA:15]; //G major
-	KeySignature *otherSig = [KeySignature getMinorSignatureAtIndexFromA:13]; //F sharp minor
+	KeySignature *otherSig = [KeySignature getMinorSignatureAtIndexFromA:0]; //A minor
 	STAssertEquals([sig distanceFrom:otherSig], -2, @"distanceFrom failed downwards major to minor");
 	STAssertEquals([otherSig distanceFrom:sig], 2, @"distanceFrom failed upwards major to minor");
 }
 
 - (void)testDistanceFromMinorToMajorNoWrap{
-	KeySignature *sig = [KeySignature getMinorSignatureAtIndexFromA:1]; //A sharp minor
+	KeySignature *sig = [KeySignature getMinorSignatureAtIndexFromA:6]; //C sharp minor
 	KeySignature *otherSig = [KeySignature getMajorSignatureAtIndexFromA:11]; //E major
 	STAssertEquals([sig distanceFrom:otherSig], -3, @"distanceFrom failed upwards minor to major");
 	STAssertEquals([otherSig distanceFrom:sig], 3, @"distanceFrom failed downwards minor to major");
 }
 
 - (void)testDistanceFromMinorToMajorWrap{
-	KeySignature *sig = [KeySignature getMinorSignatureAtIndexFromA:11]; //E minor
+	KeySignature *sig = [KeySignature getMinorSignatureAtIndexFromA:15]; //G minor
 	KeySignature *otherSig = [KeySignature getMajorSignatureAtIndexFromA:0]; //A major
 	STAssertEquals([sig distanceFrom:otherSig], -2, @"distanceFrom failed upwards minor to major");
 	STAssertEquals([otherSig distanceFrom:sig], 2, @"distanceFrom failed downwards minor to major");

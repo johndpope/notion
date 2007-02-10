@@ -8,6 +8,7 @@
 
 #import "NoteTest.h"
 #import "Note.h"
+#import "NoteBase.h"
 #import "Staff.h"
 #import "Measure.h"
 #include "TestUtil.h"
@@ -272,6 +273,90 @@ extern int enableMIDI;
 	[secondNote release];
 	[thirdNote release];
 	[staff release];
+}
+
+- (void)testTransposeNoAccidental {
+	KeySignature *oldSig = [KeySignature getSignatureWithSharps:0 minor:NO];
+	KeySignature *newSig = [KeySignature getSignatureWithSharps:1 minor:NO];
+	Note *note = [[Note alloc] initWithPitch:4 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:nil];
+	int oldPitch = [note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	[note transposeBy:7 oldSignature:oldSig newSignature:newSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:newSig priorAccidentals:nil], oldPitch + 7, @"Note transposed incorrectly.");
+	[note transposeBy:-7 oldSignature:newSig newSignature:oldSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note release];
+}
+
+- (void)testTransposeSharp {
+	KeySignature *oldSig = [KeySignature getSignatureWithSharps:0 minor:NO];
+	KeySignature *newSig = [KeySignature getSignatureWithSharps:1 minor:NO];
+	Note *note = [[Note alloc] initWithPitch:4 octave:3 duration:4 dotted:NO accidental:SHARP onStaff:nil];
+	int oldPitch = [note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	[note transposeBy:7 oldSignature:oldSig newSignature:newSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:newSig priorAccidentals:nil], oldPitch + 7, @"Note transposed incorrectly.");
+	[note transposeBy:-7 oldSignature:newSig newSignature:oldSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note release];
+}
+
+- (void)testTransposeSharpWhenNewKeySigHasSharp {
+	KeySignature *oldSig = [KeySignature getSignatureWithSharps:0 minor:NO];
+	KeySignature *newSig = [KeySignature getSignatureWithSharps:1 minor:NO];
+	Note *note = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:SHARP onStaff:nil];
+	int oldPitch = [note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	[note transposeBy:7 oldSignature:oldSig newSignature:newSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:newSig priorAccidentals:nil], oldPitch + 7, @"Note transposed incorrectly.");
+	[note transposeBy:-7 oldSignature:newSig newSignature:oldSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note release];
+}
+
+- (void)testTransposeSharpWhenNewKeySigHasFlat {
+	KeySignature *oldSig = [KeySignature getSignatureWithSharps:0 minor:NO];
+	KeySignature *newSig = [KeySignature getSignatureWithFlats:1 minor:NO];
+	Note *note = [[Note alloc] initWithPitch:4 octave:3 duration:4 dotted:NO accidental:SHARP onStaff:nil];
+	int oldPitch = [note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	[note transposeBy:5 oldSignature:oldSig newSignature:newSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:newSig priorAccidentals:nil], oldPitch + 5, @"Note transposed incorrectly.");
+	[note transposeBy:-5 oldSignature:newSig newSignature:oldSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note release];
+}
+
+- (void)testTransposeFlat {
+	KeySignature *oldSig = [KeySignature getSignatureWithSharps:0 minor:NO];
+	KeySignature *newSig = [KeySignature getSignatureWithSharps:1 minor:NO];
+	Note *note = [[Note alloc] initWithPitch:4 octave:3 duration:4 dotted:NO accidental:FLAT onStaff:nil];
+	int oldPitch = [note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	[note transposeBy:7 oldSignature:oldSig newSignature:newSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:newSig priorAccidentals:nil], oldPitch + 7, @"Note transposed incorrectly.");
+	[note transposeBy:-7 oldSignature:newSig newSignature:oldSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note release];
+}
+
+- (void)testTransposeFlatWhenNewKeySigHasSharp {
+	KeySignature *oldSig = [KeySignature getSignatureWithSharps:0 minor:NO];
+	KeySignature *newSig = [KeySignature getSignatureWithSharps:1 minor:NO];
+	Note *note = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:FLAT onStaff:nil];
+	int oldPitch = [note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	[note transposeBy:7 oldSignature:oldSig newSignature:newSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:newSig priorAccidentals:nil], oldPitch + 7, @"Note transposed incorrectly.");
+	[note transposeBy:-7 oldSignature:newSig newSignature:oldSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note release];
+}
+
+- (void)testTransposeFlatWhenNewKeySigHasFlat {
+	KeySignature *oldSig = [KeySignature getSignatureWithSharps:0 minor:NO];
+	KeySignature *newSig = [KeySignature getSignatureWithFlats:3 minor:YES];
+	Note *note = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:FLAT onStaff:nil];
+	int oldPitch = [note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil];
+	[note transposeBy:0 oldSignature:oldSig newSignature:newSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:newSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note transposeBy:0 oldSignature:newSig newSignature:oldSig];
+	STAssertEquals((int)[note getEffectivePitchWithKeySignature:oldSig priorAccidentals:nil], oldPitch, @"Note transposed incorrectly.");
+	[note release];
 }
 
 // ----- undo/redo tests -----

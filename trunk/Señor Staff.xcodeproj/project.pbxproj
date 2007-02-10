@@ -24,6 +24,7 @@
 		7865F0480AB333C200678461 /* StaffDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 7865F0470AB333C200678461 /* StaffDraw.m */; };
 		7865F5A80AB4E10B00678461 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865F5970AB4E10B00678461 /* AudioToolbox.framework */; };
 		78683A1B0A0E8A72001DE5BB /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */; };
+		78684A370B7D95AB002CCC1E /* TestUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 78684A360B7D95AB002CCC1E /* TestUtil.c */; };
 		786A93F20A89822B0006F54C /* MeasureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A93F10A89822B0006F54C /* MeasureTest.m */; };
 		786B734A0B51B806004297F2 /* NSArray+SenorStaff.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 786B73480B51B806004297F2 /* NSArray+SenorStaff.h */; };
 		786B734B0B51B806004297F2 /* NSArray+SenorStaff.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B73490B51B806004297F2 /* NSArray+SenorStaff.m */; };
@@ -79,14 +80,13 @@
 		789BC2A90A1FFD2000597728 /* trest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A50A1FFD2000597728 /* trest.png */; };
 		789C1CB80A524DA900572AA8 /* sstaff.icns in Resources */ = {isa = PBXBuildFile; fileRef = 789C1CB70A524DA900572AA8 /* sstaff.icns */; };
 		78A608D00B64502300DAE6DA /* playsel.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A608CF0B64502200DAE6DA /* playsel.png */; };
-		78AF62590B7056290072CACE /* TestUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF62570B7056290072CACE /* TestUtil.h */; };
-		78AF625A0B7056290072CACE /* TestUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 78AF62580B7056290072CACE /* TestUtil.c */; };
 		78AF637E0B7084500072CACE /* TranspositionValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF637C0B7084500072CACE /* TranspositionValueTransformer.h */; };
 		78AF637F0B7084500072CACE /* TranspositionValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF637D0B7084500072CACE /* TranspositionValueTransformer.m */; };
 		78AF641A0B7551BC0072CACE /* NSView+ScaleUtilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF64180B7551BC0072CACE /* NSView+ScaleUtilities.h */; };
 		78AF641B0B7551BC0072CACE /* NSView+ScaleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF64190B7551BC0072CACE /* NSView+ScaleUtilities.m */; };
 		78AF66B60B756AFB0072CACE /* NSImage+Flip.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF66B40B756AFB0072CACE /* NSImage+Flip.h */; };
 		78AF66B70B756AFB0072CACE /* NSImage+Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF66B50B756AFB0072CACE /* NSImage+Flip.m */; };
+		78AF6BB40B7D91470072CACE /* TestUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF62570B7056290072CACE /* TestUtil.h */; };
 		78B224250B2FD48600047C6B /* Repeat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B224230B2FD48600047C6B /* Repeat.h */; };
 		78B224260B2FD48600047C6B /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B224240B2FD48600047C6B /* Repeat.m */; };
 		78B439740ABCBFE70068C522 /* ClefTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B439730ABCBFE70068C522 /* ClefTarget.m */; };
@@ -160,6 +160,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				78AF6BB40B7D91470072CACE /* TestUtil.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,7 +189,6 @@
 				787A0B6D0B53648000926563 /* CompoundTimeSig.h in CopyFiles */,
 				787A0C0A0B53726600926563 /* CompoundTimeSigDraw.h in CopyFiles */,
 				787A0C120B5372A600926563 /* CompoundTimeSigController.h in CopyFiles */,
-				78AF62590B7056290072CACE /* TestUtil.h in CopyFiles */,
 				78AF637E0B7084500072CACE /* TranspositionValueTransformer.h in CopyFiles */,
 				78AF641A0B7551BC0072CACE /* NSView+ScaleUtilities.h in CopyFiles */,
 				78AF66B60B756AFB0072CACE /* NSImage+Flip.h in CopyFiles */,
@@ -236,6 +236,7 @@
 		7865F5970AB4E10B00678461 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		78683A190A0E8A72001DE5BB /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
 		78683A1A0A0E8A72001DE5BB /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
+		78684A360B7D95AB002CCC1E /* TestUtil.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = TestUtil.c; sourceTree = "<group>"; };
 		786A93F00A89822B0006F54C /* MeasureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureTest.h; sourceTree = "<group>"; };
 		786A93F10A89822B0006F54C /* MeasureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureTest.m; sourceTree = "<group>"; };
 		786B73480B51B806004297F2 /* NSArray+SenorStaff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SenorStaff.h"; sourceTree = "<group>"; };
@@ -313,7 +314,6 @@
 		789C1CB70A524DA900572AA8 /* sstaff.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sstaff.icns; sourceTree = "<group>"; };
 		78A608CF0B64502200DAE6DA /* playsel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playsel.png; sourceTree = "<group>"; };
 		78AF62570B7056290072CACE /* TestUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtil.h; sourceTree = "<group>"; };
-		78AF62580B7056290072CACE /* TestUtil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TestUtil.c; sourceTree = "<group>"; };
 		78AF637C0B7084500072CACE /* TranspositionValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspositionValueTransformer.h; sourceTree = "<group>"; };
 		78AF637D0B7084500072CACE /* TranspositionValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspositionValueTransformer.m; sourceTree = "<group>"; };
 		78AF64180B7551BC0072CACE /* NSView+ScaleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+ScaleUtilities.h"; sourceTree = "<group>"; };
@@ -586,7 +586,7 @@
 				78F78B500ADA1109009EDC26 /* ChordDrawTest.h */,
 				78F78B510ADA1109009EDC26 /* ChordDrawTest.m */,
 				78AF62570B7056290072CACE /* TestUtil.h */,
-				78AF62580B7056290072CACE /* TestUtil.c */,
+				78684A360B7D95AB002CCC1E /* TestUtil.c */,
 			);
 			name = "Test cases";
 			sourceTree = "<group>";
@@ -912,6 +912,7 @@
 				788707BE0AAD04660057D6DD /* TempoDataTest.m in Sources */,
 				78F7816C0AD0780A009EDC26 /* ChordTest.m in Sources */,
 				78F78B520ADA1109009EDC26 /* ChordDrawTest.m in Sources */,
+				78684A370B7D95AB002CCC1E /* TestUtil.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,7 +973,6 @@
 				787A0B6E0B53648000926563 /* CompoundTimeSig.m in Sources */,
 				787A0C0B0B53726600926563 /* CompoundTimeSigDraw.m in Sources */,
 				787A0C130B5372A600926563 /* CompoundTimeSigController.m in Sources */,
-				78AF625A0B7056290072CACE /* TestUtil.c in Sources */,
 				78AF637F0B7084500072CACE /* TranspositionValueTransformer.m in Sources */,
 				78AF641B0B7551BC0072CACE /* NSView+ScaleUtilities.m in Sources */,
 				78AF66B70B756AFB0072CACE /* NSImage+Flip.m in Sources */,
