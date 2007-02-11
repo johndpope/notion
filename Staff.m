@@ -244,19 +244,26 @@
 }
 
 - (Note *)findPreviousNoteMatching:(Note *)source inMeasure:(Measure *)measure{
-	if([measure getFirstNote] == source){
+	if([measure getFirstNote] == source || 
+	   ([[measure getFirstNote] isKindOfClass:[Chord class]] && [[[measure getFirstNote] getNotes] containsObject:source])){
 		Measure *prevMeasure = [[measure getStaff] getMeasureBefore:measure];
 		if(prevMeasure != nil){
 			NoteBase *note = [[prevMeasure getNotes] lastObject];
-			if([note pitchMatches:source]){
+			if([note respondsToSelector:@selector(pitchMatches:)] && [note pitchMatches:source]){
 				return note;
+			}
+			if([note isKindOfClass:[Chord class]]){
+				return [note getNoteMatching:source];
 			}
 		}
 		return nil;
 	} else{
 		NoteBase *note = [measure getNoteBefore:source];
-		if([note pitchMatches:source]){
+		if([note respondsToSelector:@selector(pitchMatches:)] && [note pitchMatches:source]){
 			return note;
+		}
+		if([note isKindOfClass:[Chord class]]){
+			return [note getNoteMatching:source];
 		}
 		return nil;
 	}

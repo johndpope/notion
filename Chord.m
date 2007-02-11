@@ -184,6 +184,17 @@
 	return 0;
 }
 
+- (NoteBase *)getNoteMatching:(NoteBase *)note{
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id chordNote;
+	while(chordNote = [notesEnum nextObject]){
+		if([chordNote respondsToSelector:@selector(pitchMatches:)] && [chordNote pitchMatches:note]){
+			return chordNote;
+		}
+	}
+	return nil;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:notes forKey:@"notes"];
 }
