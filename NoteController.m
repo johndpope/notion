@@ -83,7 +83,25 @@
 	[commands addObject:@"DELETE - delete note"];
 	if([note respondsToSelector:@selector(setPitch:finished:)]){
 		[commands addObject:@"drag - change pitch"];
+	}
+	if([note respondsToSelector:@selector(setAccidental:)]){
 		[commands addObject:@"P ; / - change accidental"];
+	}
+	if([note respondsToSelector:@selector(setDotted:)]){
+		if([note getDotted]){
+			[commands addObject:@". - make not dotted"];
+		} else {
+			[commands addObject:@". - make dotted"];
+		}
+	}
+	if([note respondsToSelector:@selector(tieFrom:)]){
+		if([note getTieFrom] == nil){
+			if([[note getStaff] findPreviousNoteMatching:note inMeasure:[[note getStaff] getMeasureContainingNote:note]] != nil){
+				[commands addObject:@"[ - tie to previous note"];
+			}
+		} else {
+			[commands addObject:@"[ - break tie"];
+		}
 	}
 	return [commands componentsJoinedByString:@"\n"];
 }
@@ -101,7 +119,7 @@
 		}
 	}
 	if([note respondsToSelector:@selector(setAccidental:)]){
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@"p", NSDeleteCharacter]].location != NSNotFound){
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@"p"]].location != NSNotFound){
 			if([note getAccidental] == SHARP){
 				[note setAccidental:NO_ACC];
 				[[note undoManager] setActionName:@"removing accidental"];
@@ -111,7 +129,7 @@
 			}
 			return YES;
 		}
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@";", NSDeleteCharacter]].location != NSNotFound){
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@";"]].location != NSNotFound){
 			if([note getAccidental] == NATURAL){
 				[note setAccidental:NO_ACC];
 				[[note undoManager] setActionName:@"removing accidental"];
@@ -121,7 +139,7 @@
 			}
 			return YES;
 		}
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@"/", NSDeleteCharacter]].location != NSNotFound){
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@"/"]].location != NSNotFound){
 			if([note getAccidental] == FLAT){
 				[note setAccidental:NO_ACC];
 				[[note undoManager] setActionName:@"removing accidental"];
@@ -130,6 +148,37 @@
 				[[note undoManager] setActionName:@"changing accidental"];
 			}
 			return YES;
+		}
+	}
+	if([note respondsToSelector:@selector(setDotted:)]){
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@"."]].location != NSNotFound){
+			if([note getDotted]){
+				[note setDotted:NO];
+				[[note undoManager] setActionName:@"removing dotted duration"];
+			} else {
+				[note setDotted:YES];
+				[[note undoManager] setActionName:@"setting dotted duration"];
+			}
+			return YES;
+		}
+	}
+	if([note respondsToSelector:@selector(tieFrom:)]){
+		if([[event characters] rangeOfString:[NSString stringWithFormat:@"["]].location != NSNotFound){
+			if([note getTieFrom] != nil){
+				[[note undoManager] setActionName:@"breaking note tie"];
+				[[note getTieFrom] tieTo:nil];
+				[note tieFrom:nil];
+				return YES;
+			} else {
+				Measure *measure = [[note getStaff] getMeasureContainingNote:note];
+				Note *tie = [[note getStaff] findPreviousNoteMatching:note inMeasure:measure];
+				if(tie != nil){
+					[note tieFrom:tie];
+					[tie tieTo:note];
+					[[note undoManager] setActionName:@"tying notes"];
+					return YES;
+				}
+			}
 		}
 	}
 	return NO;
