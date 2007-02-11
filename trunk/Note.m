@@ -49,12 +49,6 @@
 	return lastOctave;
 }
 
-- (void)setDuration:(int)_duration{
-	duration = _duration;
-}
-- (void)setDotted:(BOOL)_dotted{
-	dotted = _dotted;
-}
 - (void)setOctave:(int)_octave finished:(BOOL)finished{
 	if(finished){
 		[[[self undoManager] prepareWithInvocationTarget:self] setOctave:lastOctave finished:YES];	

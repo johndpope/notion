@@ -22,6 +22,7 @@
 	duration = _duration;
 }
 - (void)setDotted:(BOOL)_dotted{
+	[[[self undoManager] prepareWithInvocationTarget:self] setDotted:dotted];
 	dotted = _dotted;
 }
 

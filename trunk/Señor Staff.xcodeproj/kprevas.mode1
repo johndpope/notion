@@ -331,14 +331,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>133</integer>
-									<integer>129</integer>
+									<integer>27</integer>
+									<integer>21</integer>
 									<integer>20</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1743}, {239, 764}}</string>
+							<string>{{0, 334}, {239, 764}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -375,7 +375,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>OpaqueBox.m</string>
+								<string>NoteController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -383,11 +383,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>OpaqueBox.m</string>
+										<string>NoteController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>78684F160B7EA060002CCC1E</string>
+										<string>78684FC10B7EBC18002CCC1E</string>
 										<key>history</key>
 										<array>
 											<string>786A94AD0A8999830006F54C</string>
@@ -503,7 +503,6 @@
 											<string>78AF68060B76B3DB0072CACE</string>
 											<string>78AF68DF0B76CB810072CACE</string>
 											<string>78AF68E10B76CB810072CACE</string>
-											<string>78AF68E20B76CB810072CACE</string>
 											<string>78AF68E30B76CB810072CACE</string>
 											<string>78AF68E50B76CB810072CACE</string>
 											<string>78AF691E0B76CDE50072CACE</string>
@@ -522,14 +521,10 @@
 											<string>78684A5C0B7D976D002CCC1E</string>
 											<string>78684ABD0B7D9D5D002CCC1E</string>
 											<string>78684AE50B7DA028002CCC1E</string>
-											<string>78684B500B7DAD9F002CCC1E</string>
 											<string>78684B510B7DAD9F002CCC1E</string>
 											<string>78684B810B7DAF97002CCC1E</string>
-											<string>78684B820B7DAF97002CCC1E</string>
-											<string>78684BBC0B7DB182002CCC1E</string>
 											<string>78684CF60B7E87BF002CCC1E</string>
 											<string>78684CF80B7E87BF002CCC1E</string>
-											<string>78684CF90B7E87BF002CCC1E</string>
 											<string>78684CFC0B7E87BF002CCC1E</string>
 											<string>78684CFD0B7E87BF002CCC1E</string>
 											<string>78684D840B7E9491002CCC1E</string>
@@ -554,16 +549,21 @@
 											<string>78684EC20B7E9E79002CCC1E</string>
 											<string>78684EC30B7E9E79002CCC1E</string>
 											<string>78684EC40B7E9E79002CCC1E</string>
-											<string>78684EC50B7E9E79002CCC1E</string>
-											<string>78684EE80B7E9F00002CCC1E</string>
 											<string>78684EF80B7EA004002CCC1E</string>
 											<string>78684EFA0B7EA004002CCC1E</string>
 											<string>78684F130B7EA060002CCC1E</string>
-											<string>78684F140B7EA060002CCC1E</string>
+											<string>78684F2A0B7EA174002CCC1E</string>
+											<string>78684F7E0B7EA36B002CCC1E</string>
+											<string>78684F7F0B7EA36B002CCC1E</string>
+											<string>78684F800B7EA36B002CCC1E</string>
+											<string>78684F910B7EA417002CCC1E</string>
+											<string>78684F920B7EA417002CCC1E</string>
+											<string>78684FAE0B7EBB9C002CCC1E</string>
+											<string>78684FAF0B7EBB9C002CCC1E</string>
 										</array>
 										<key>nextStack</key>
 										<array>
-											<string>78684F150B7EA060002CCC1E</string>
+											<string>78684FB00B7EBB9C002CCC1E</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -674,14 +674,12 @@
 											<string>78A9ECDA0B560F11005EC1B2</string>
 											<string>78A9ECE30B560F11005EC1B2</string>
 											<string>78A9EEE10B5C2204005EC1B2</string>
-											<string>788DDE2B0B5E09A800945ECB</string>
 											<string>78A607CB0B62FE4500DAE6DA</string>
 											<string>78A60A200B65F52F00DAE6DA</string>
 											<string>78A60A4D0B69D61400DAE6DA</string>
 											<string>78A60A7E0B69D71A00DAE6DA</string>
 											<string>78D4220D0B6D32FB00C5B734</string>
 											<string>78D422A20B6D352300C5B734</string>
-											<string>78D422C30B6D359500C5B734</string>
 											<string>78D4230E0B6D458700C5B734</string>
 											<string>78AF62D50B705E8B0072CACE</string>
 											<string>78AF62D60B705E8B0072CACE</string>
@@ -706,9 +704,7 @@
 											<string>78AF6BD90B7D92B90072CACE</string>
 											<string>78AF6BDC0B7D92B90072CACE</string>
 											<string>78684A9D0B7D9BA3002CCC1E</string>
-											<string>78684BA20B7DB0C1002CCC1E</string>
 											<string>78684CFF0B7E87BF002CCC1E</string>
-											<string>78684D000B7E87BF002CCC1E</string>
 											<string>78684D020B7E87BF002CCC1E</string>
 											<string>78684D070B7E87BF002CCC1E</string>
 											<string>78684D090B7E87BF002CCC1E</string>
@@ -735,12 +731,13 @@
 											<string>78684ECB0B7E9E79002CCC1E</string>
 											<string>78684ECC0B7E9E79002CCC1E</string>
 											<string>78684ECD0B7E9E79002CCC1E</string>
-											<string>78684ECE0B7E9E79002CCC1E</string>
 											<string>78684ECF0B7E9E79002CCC1E</string>
-											<string>78684EEA0B7E9F00002CCC1E</string>
 											<string>78684EFC0B7EA004002CCC1E</string>
 											<string>78684EFD0B7EA004002CCC1E</string>
 											<string>78684EFF0B7EA004002CCC1E</string>
+											<string>78684F2C0B7EA174002CCC1E</string>
+											<string>78684F820B7EA36B002CCC1E</string>
+											<string>78684F950B7EA417002CCC1E</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -919,7 +916,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>192847968.01929799</real>
+	<real>192855064.81474301</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -967,7 +964,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>KeySignatureController.m</string>
+								<string>NoteController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
