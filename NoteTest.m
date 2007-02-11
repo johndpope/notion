@@ -359,6 +359,42 @@ extern int enableMIDI;
 	[note release];
 }
 
+- (void)testSetPitchBreaksTies {
+	Note *note = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:nil];
+	Note *preNote = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:nil];
+	Note *postNote = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:nil];
+	[note tieFrom:preNote];
+	[preNote tieTo:note];
+	[note tieTo:postNote];
+	[preNote tieFrom:note];
+	[note setPitch:2 finished:YES];
+	STAssertNil([note getTieFrom], @"Changing note pitch failed to break incoming tie.");
+	STAssertNil([preNote getTieTo], @"Changing note pitch failed to break incoming tie.");
+	STAssertNil([note getTieTo], @"Changing note pitch failed to break outgoing tie.");
+	STAssertNil([postNote getTieFrom], @"Changing note pitch failed to break outgoing tie.");
+	[note release];
+	[preNote release];
+	[postNote release];
+}
+
+- (void)testSetOctaveBreaksTies {
+	Note *note = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:nil];
+	Note *preNote = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:nil];
+	Note *postNote = [[Note alloc] initWithPitch:6 octave:3 duration:4 dotted:NO accidental:NO_ACC onStaff:nil];
+	[note tieFrom:preNote];
+	[preNote tieTo:note];
+	[note tieTo:postNote];
+	[preNote tieFrom:note];
+	[note setOctave:4 finished:YES];
+	STAssertNil([note getTieFrom], @"Changing note pitch failed to break incoming tie.");
+	STAssertNil([preNote getTieTo], @"Changing note pitch failed to break incoming tie.");
+	STAssertNil([note getTieTo], @"Changing note pitch failed to break outgoing tie.");
+	STAssertNil([postNote getTieFrom], @"Changing note pitch failed to break outgoing tie.");
+	[note release];
+	[preNote release];
+	[postNote release];
+}
+
 // ----- undo/redo tests -----
 
 - (void)setUpUndoTest{

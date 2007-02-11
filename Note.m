@@ -52,6 +52,12 @@
 - (void)setOctave:(int)_octave finished:(BOOL)finished{
 	if(finished){
 		[[[self undoManager] prepareWithInvocationTarget:self] setOctave:lastOctave finished:YES];	
+		if(lastOctave != _octave){
+			[[self getTieFrom] tieTo:nil];
+			[self tieFrom:nil];
+			[[self getTieTo] tieFrom:nil];
+			[self tieTo:nil];
+		}
 		lastOctave = _octave;
 	}
 	octave = _octave;
@@ -60,6 +66,12 @@
 - (void)setPitch:(int)_pitch finished:(BOOL)finished{
 	if(finished){
 		[[[self undoManager] prepareWithInvocationTarget:self] setPitch:lastPitch finished:YES];
+		if(lastPitch != _pitch){
+			[[self getTieFrom] tieTo:nil];
+			[self tieFrom:nil];
+			[[self getTieTo] tieFrom:nil];
+			[self tieTo:nil];
+		}
 		lastPitch = _pitch;
 	}
 	pitch = _pitch;
