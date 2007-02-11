@@ -532,6 +532,13 @@
 	if(index != NSNotFound && index > 0){
 		return [notes objectAtIndex:index-1];
 	}
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id note;
+	while(note = [notesEnum nextObject]){
+		if([note isKindOfClass:[Chord class]] && [[note getNotes] containsObject:source]){
+			return [self getNoteBefore:note];
+		}
+	}
 	return nil;
 }
 

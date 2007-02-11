@@ -25,4 +25,6 @@
 - (void)addNote:(NoteBase *)note;
 - (void)removeNote:(NoteBase *)note;
 
+- (NoteBase *)getNoteMatching:(NoteBase *)note;
+
 @end
