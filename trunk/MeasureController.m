@@ -274,6 +274,37 @@
 	return [clef positionIsValid:[self positionAt:location inMeasure:measure]];
 }
 
++ (NSString *)getCommandListFor:(Measure *)measure at:(NSPoint)location mode:(NSDictionary *)mode{
+	NSMutableArray *commands = [NSMutableArray array];
+	location.x -= [self xOf:measure];
+	location.y -= [self boundsOf:measure].origin.y;
+	if([self isOverStartRepeat:location inMeasure:measure]){
+		if(![measure isStartRepeat]){
+			[commands addObject:@"click - start repeat"];
+		} else {
+			[commands addObject:@"DELETE - delete repeat"];
+		}
+	} else if([measure followsOpenRepeat]){
+		[commands addObject:@"click - end repeat"];
+	} else if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]){
+		[commands addObject:@"click - edit repeat"];
+		[commands addObject:@"DELETE - delete repeat"];
+	} else {
+		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
+		if(pointerMode == MODE_NOTE){
+			int pitch = [self pitchAt:location inMeasure:measure];
+			int octave = [self octaveAt:location inMeasure:measure];
+			if([self canPlaceNoteAt:location inMeasure:measure]){
+				[commands addObject:@"click - add note"];
+			}
+			[commands addObject:@"SPACE - add rest"];
+		} else if([[measure getNotes] count] > 0){
+			[commands addObject:@"dbl-click - select measure"];
+		}
+	}
+	return [commands componentsJoinedByString:@"\n"];
+}
+
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
 	if([event clickCount] < 2 && !([event modifierFlags] & NSShiftKeyMask)){
 		[view setSelection:nil];
@@ -288,7 +319,7 @@
 		[measure setEndRepeat:2];
 	} else if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]){
 		[view showRepeatCountPanelFor:[measure getRepeatEndingHere] inMeasure:measure];
-	} else if([event clickCount] == 2){
+	} else if([event clickCount] == 2 && [[measure getNotes] count] > 0){
 		if(([event modifierFlags] & NSShiftKeyMask) && [view selection] != nil){
 			[view setSelection:[[measure getStaff] notesBetweenNote:[view selection] andNote:[measure getNotes]]];			
 		} else {

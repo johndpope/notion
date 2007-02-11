@@ -77,6 +77,17 @@
 	return NO;
 }
 
++ (NSString *)getCommandListFor:(NoteBase *)note at:(NSPoint)location mode:(NSDictionary *)mode{
+	NSMutableArray *commands = [NSMutableArray array];
+	[commands addObject:@"click - select note"];
+	[commands addObject:@"DELETE - delete note"];
+	if([note respondsToSelector:@selector(setPitch:finished:)]){
+		[commands addObject:@"drag - change pitch"];
+		[commands addObject:@"P ; / - change accidental"];
+	}
+	return [commands componentsJoinedByString:@"\n"];
+}
+
 + (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(NoteBase *)note mode:(NSDictionary *)mode view:(ScoreView *)view{
 	if([[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
 		if([[view selection] respondsToSelector:@selector(containsObject:)] && [[view selection] containsObject:note]){

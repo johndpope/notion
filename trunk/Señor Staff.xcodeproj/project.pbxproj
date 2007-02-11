@@ -25,6 +25,10 @@
 		7865F5A80AB4E10B00678461 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7865F5970AB4E10B00678461 /* AudioToolbox.framework */; };
 		78683A1B0A0E8A72001DE5BB /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 78683A1A0A0E8A72001DE5BB /* Staff.m */; };
 		78684A370B7D95AB002CCC1E /* TestUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 78684A360B7D95AB002CCC1E /* TestUtil.c */; };
+		78684D2D0B7E8E63002CCC1E /* OpaqueBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 78684D280B7E8E5B002CCC1E /* OpaqueBox.m */; };
+		78684D300B7E8E68002CCC1E /* OpaqueBox.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78684D270B7E8E5B002CCC1E /* OpaqueBox.h */; };
+		78684D360B7E8F78002CCC1E /* NSBezierPathAdditions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78684D340B7E8F78002CCC1E /* NSBezierPathAdditions.h */; };
+		78684D370B7E8F78002CCC1E /* NSBezierPathAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78684D350B7E8F78002CCC1E /* NSBezierPathAdditions.m */; };
 		786A93F20A89822B0006F54C /* MeasureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 786A93F10A89822B0006F54C /* MeasureTest.m */; };
 		786B734A0B51B806004297F2 /* NSArray+SenorStaff.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 786B73480B51B806004297F2 /* NSArray+SenorStaff.h */; };
 		786B734B0B51B806004297F2 /* NSArray+SenorStaff.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B73490B51B806004297F2 /* NSArray+SenorStaff.m */; };
@@ -192,6 +196,8 @@
 				78AF637E0B7084500072CACE /* TranspositionValueTransformer.h in CopyFiles */,
 				78AF641A0B7551BC0072CACE /* NSView+ScaleUtilities.h in CopyFiles */,
 				78AF66B60B756AFB0072CACE /* NSImage+Flip.h in CopyFiles */,
+				78684D300B7E8E68002CCC1E /* OpaqueBox.h in CopyFiles */,
+				78684D360B7E8F78002CCC1E /* NSBezierPathAdditions.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +243,10 @@
 		78683A190A0E8A72001DE5BB /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
 		78683A1A0A0E8A72001DE5BB /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
 		78684A360B7D95AB002CCC1E /* TestUtil.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = TestUtil.c; sourceTree = "<group>"; };
+		78684D270B7E8E5B002CCC1E /* OpaqueBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpaqueBox.h; sourceTree = "<group>"; };
+		78684D280B7E8E5B002CCC1E /* OpaqueBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpaqueBox.m; sourceTree = "<group>"; };
+		78684D340B7E8F78002CCC1E /* NSBezierPathAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSBezierPathAdditions.h; sourceTree = "<group>"; };
+		78684D350B7E8F78002CCC1E /* NSBezierPathAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSBezierPathAdditions.m; sourceTree = "<group>"; };
 		786A93F00A89822B0006F54C /* MeasureTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureTest.h; sourceTree = "<group>"; };
 		786A93F10A89822B0006F54C /* MeasureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureTest.m; sourceTree = "<group>"; };
 		786B73480B51B806004297F2 /* NSArray+SenorStaff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SenorStaff.h"; sourceTree = "<group>"; };
@@ -633,6 +643,8 @@
 		78AF67700B7570760072CACE /* Cocoa categories */ = {
 			isa = PBXGroup;
 			children = (
+				78684D340B7E8F78002CCC1E /* NSBezierPathAdditions.h */,
+				78684D350B7E8F78002CCC1E /* NSBezierPathAdditions.m */,
 				78DF77D40A48DF0F0058CF89 /* NSView+Fade.h */,
 				78DF77D50A48DF0F0058CF89 /* NSView+Fade.m */,
 				787A93550B1A4219006FD236 /* NSPopUpButton+Images.h */,
@@ -689,6 +701,8 @@
 				78E700B70A369A03008F8F40 /* NonScrollableScrollView.m */,
 				78830F7C0A60841A003363D7 /* StaffHorizontalRulerComponent.h */,
 				78830F7D0A60841A003363D7 /* StaffHorizontalRulerComponent.m */,
+				78684D270B7E8E5B002CCC1E /* OpaqueBox.h */,
+				78684D280B7E8E5B002CCC1E /* OpaqueBox.m */,
 			);
 			name = NSViews;
 			sourceTree = "<group>";
@@ -976,6 +990,8 @@
 				78AF637F0B7084500072CACE /* TranspositionValueTransformer.m in Sources */,
 				78AF641B0B7551BC0072CACE /* NSView+ScaleUtilities.m in Sources */,
 				78AF66B70B756AFB0072CACE /* NSImage+Flip.m in Sources */,
+				78684D2D0B7E8E63002CCC1E /* OpaqueBox.m in Sources */,
+				78684D370B7E8F78002CCC1E /* NSBezierPathAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,6 +45,21 @@
 	return width;
 }
 
++ (NSString *)getCommandListFor:(KeySigTarget *)sig at:(NSPoint)location mode:(NSDictionary *)mode{
+	NSMutableArray *commands = [NSMutableArray array];
+	if([[sig measure] getKeySignature] != nil){
+		[commands addObject:@"click - edit key signature"];
+		if([[[sig measure] getStaff] getMeasureAtIndex:0] != [sig measure] || 
+		   [[[sig measure] getKeySignature] getNumFlats] > 0 || 
+		   [[[sig measure] getKeySignature] getNumSharps] > 0){
+			[commands addObject:@"DELETE - delete key sig"];
+		}
+	} else {
+		[commands addObject:@"click - add key signature"];
+	}
+	return [commands componentsJoinedByString:@"\n"];
+}
+
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(KeySigTarget *)sig mode:(NSDictionary *)mode view:(ScoreView *)view{
 	[view showKeySigPanelFor:[sig measure]];
 }

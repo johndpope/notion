@@ -20,6 +20,9 @@
 
 + (void)initialize{
 	[NSValueTransformer setValueTransformer:[[[TranspositionValueTransformer alloc] init] autorelease] forName:@"TranspositionValueTransformer"];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"SSTFHideKeyHelp"];
+    [defaults registerDefaults:appDefaults];
 }
 
 - (ScoreView *)view{
@@ -30,6 +33,7 @@
 	[view setFrameSize:[view calculateBounds].size];
 	[verticalRuler setFrameSize:NSMakeSize([verticalRuler frame].size.width, [view frame].size.height)];
 	[horizontalRuler setFrameSize:NSMakeSize([view frame].size.width, [horizontalRuler frame].size.height)];
+	[self setKeyHelp:@"Available commands:"];
 }	
 
 - (void)mouseMoved:(NSEvent *)event{
@@ -90,6 +94,23 @@
 	[view setNeedsDisplay:YES];
 	[horizontalRuler setNeedsDisplay:YES];
 	[verticalRuler setNeedsDisplay:YES];
+}
+
+- (NSString *)keyHelp{
+	return keyHelp;
+}
+
+- (void)setKeyHelp:(NSString *)_keyHelp{
+	if(![keyHelp isEqualToString:_keyHelp]){
+		[keyHelp release];
+		keyHelp = [_keyHelp retain];
+	}
+}
+
+- (IBAction)toggleKeyHelpVisible:(id)sender{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	BOOL current = [defaults boolForKey:@"SSTFHideKeyHelp"];
+	[defaults setBool:!current forKey:@"SSTFHideKeyHelp"];
 }
 
 - (void)setupStaff:(Staff *)staff{

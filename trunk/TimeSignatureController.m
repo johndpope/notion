@@ -34,6 +34,17 @@ static float widths[17] = {
 	return widths[[timeSig getBottom]];
 }
 
++ (NSString *)getCommandListFor:(TimeSigTarget *)sig at:(NSPoint)location mode:(NSDictionary *)mode{
+	NSMutableArray *commands = [NSMutableArray array];
+	if([[sig measure] getTimeSignature] != [NSNull null]){
+		[commands addObject:@"click - edit time signature"];
+		[commands addObject:@"DELETE - delete time sig"];
+	} else {
+		[commands addObject:@"click - add time signature"];
+	}
+	return [commands componentsJoinedByString:@"\n"];
+}
+
 + (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(TimeSigTarget *)sig mode:(NSDictionary *)mode view:(ScoreView *)view{
 	[view showTimeSigPanelFor:[sig measure]];
 }

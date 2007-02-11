@@ -27,6 +27,7 @@ static const int MODE_NOTE = 1;
 	IBOutlet NSView *verticalRuler;
 	IBOutlet NSScrollView *horizontalRulerScroll;
 	IBOutlet NSView *horizontalRuler;
+	NSString *keyHelp;
 }
 
 - (ScoreView *)view;
@@ -43,6 +44,10 @@ static const int MODE_NOTE = 1;
 - (IBAction)changeAccidental:(id)sender;
 - (IBAction)addStaff:(id)sender;
 - (IBAction)setZoom:(id)sender;
+
+- (NSString *)keyHelp;
+- (void)setKeyHelp:(NSString *)_keyHelp;
+- (IBAction)toggleKeyHelpVisible:(id)sender;
 
 - (void)placeRulerComponents;
 - (void)addVerticalRulerComponentFor:(Staff *)staff;
