@@ -103,9 +103,21 @@
 	}
 }
 
+- (void) updateHelpBoxPosition{
+	NSRect visible = [self visibleRect];
+	NSRect helpBoxFrame = [helpBox frame];
+	[helpBox setFrameOrigin:NSMakePoint(visible.origin.x + visible.size.width - helpBoxFrame.size.width,
+										visible.origin.y + visible.size.height - helpBoxFrame.size.height)];
+}
+
 - (void) awakeFromNib{
 	[[self window] setAcceptsMouseMovedEvents:true];
 	[self loadLocalFonts];
+	[helpBox retain];
+	[helpBox removeFromSuperviewWithoutNeedingDisplay];
+	[self addSubview:helpBox];
+	[self updateHelpBoxPosition];
+	[helpBox release];
 }
 
 - (void)drawPlayerPosition {
@@ -205,6 +217,7 @@
 		[[staff getViewClass] draw:staff inView:self target:mouseOver targetLocation:mouseLocation selection:selection mode:[controller getMode]];
 	}
 	[self drawPlayerPosition];
+	[self updateHelpBoxPosition];
 }
 
 - (void)showKeySigPanelFor:(Measure *)measure{
@@ -246,6 +259,11 @@
 	[self setFrameSize:[self calculateBounds].size];
 	if([self mouse:mouseLocation inRect:[self bounds]]){
 		mouseOver = [controller targetAt:mouseLocation withEvent:event];
+		if([[mouseOver getControllerClass] respondsToSelector:@selector(getCommandListFor:at:mode:)]){
+			[controller setKeyHelp:[@"Available commands:\n" stringByAppendingString:[[mouseOver getControllerClass] getCommandListFor:mouseOver 
+																																	at:mouseLocation
+																																  mode:[controller getMode]]]];
+		}
 	} else {
 		mouseOver = nil;
 	}

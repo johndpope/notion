@@ -10,6 +10,7 @@
                 changeDuration = id; 
                 changeTriplet = id; 
                 setZoom = id; 
+                toggleKeyHelpVisible = id; 
             }; 
             CLASS = MEWindowController; 
             LANGUAGE = ObjC; 
@@ -39,10 +40,11 @@
             OUTLETS = {owner = NSView; }; 
             SUPERCLASS = NSScrollView; 
         }, 
+        {CLASS = OpaqueBox; LANGUAGE = ObjC; SUPERCLASS = NSBox; }, 
         {
             CLASS = ScoreView; 
             LANGUAGE = ObjC; 
-            OUTLETS = {clickTarget = id; mouseOver = id; selection = id; }; 
+            OUTLETS = {clickTarget = id; helpBox = NSBox; mouseOver = id; selection = id; }; 
             SUPERCLASS = NSView; 
         }, 
         {CLASS = Song; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
