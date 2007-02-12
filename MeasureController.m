@@ -106,7 +106,7 @@
 
 + (int)positionAt:(NSPoint)location inMeasure:(Measure *)measure{
 	Staff *staff = [measure getStaff];
-	return ([StaffController baseOf:staff] - [StaffController topOf:staff] - location.y) / [StaffController lineHeightOf:staff];
+	return floor(([StaffController baseOf:staff] - [StaffController topOf:staff] - location.y) / [StaffController lineHeightOf:staff]);
 }
 
 + (int)octaveAt:(NSPoint)location inMeasure:(Measure *)measure{

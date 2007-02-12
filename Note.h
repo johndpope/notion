@@ -41,6 +41,7 @@ static int FLAT = -1;
 
 - (void)setOctave:(int)_octave finished:(BOOL)finished;
 - (void)setPitch:(int)_pitch finished:(BOOL)finished;
+- (void)setPitch:(int)_pitch octave:(int)_octave finished:(BOOL)finished;
 - (void)setAccidental:(int)_accidental;
 
 - (BOOL)pitchMatches:(Note *)note;

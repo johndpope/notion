@@ -195,6 +195,28 @@
 	return nil;
 }
 
+- (int)getLastPitch{
+	return [[notes objectAtIndex:0] getLastPitch];
+}
+
+- (int)getLastOctave{
+	return [[notes objectAtIndex:0] getLastOctave];
+}
+
+- (void)setPitch:(int)pitch octave:(int)octave finished:(BOOL)finished{
+	int delta = (octave * 7 + pitch) - ([[notes objectAtIndex:0] getLastOctave] * 7 + [[notes objectAtIndex:0] getLastPitch]);
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id note;
+	while(note = [notesEnum nextObject]){
+		int lastPitch = [note getLastPitch];
+		int lastOctave = [note getLastOctave];
+		int newAbsPitch = (lastOctave * 7 + lastPitch) + delta;
+		int newPitch = newAbsPitch % 7;
+		int newOctave = newAbsPitch / 7;
+		[note setPitch:newPitch octave:newOctave finished:finished];
+	}
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:notes forKey:@"notes"];
 }

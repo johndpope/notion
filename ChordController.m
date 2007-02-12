@@ -12,6 +12,7 @@
 #import "Staff.h"
 #import "NoteBase.h"
 #import "MeasureController.h"
+#import "NoteController.h"
 
 @implementation ChordController
 
@@ -73,6 +74,10 @@
 	} else {
 		[view setSelection:chord];		
 	}
+}
+
++ (void)handleDrag:(NSEvent *)event from:(NSPoint)fromLocation to:(NSPoint)location on:(Chord *)chord finished:(BOOL)finished mode:(NSDictionary *)mode view:(ScoreView *)view{
+	[NoteController handleDrag:event from:fromLocation to:location on:chord finished:finished mode:mode view:view];
 }
 
 @end

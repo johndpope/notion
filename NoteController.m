@@ -193,14 +193,13 @@
 }
 
 + (void)dragNote:(NoteBase *)note to:(NSPoint)location finished:(BOOL)finished{
-	if([note respondsToSelector:@selector(setPitch:finished:)] && [note respondsToSelector:@selector(setOctave:finished:)]){
+	if([note respondsToSelector:@selector(setPitch:octave:finished:)]){
 		Measure *measure = [[note getStaff] getMeasureContainingNote:note];
 		id controller = [measure getControllerClass];
 		location.y -= [controller boundsOf:measure].origin.y;
 		int pitch = [controller pitchAt:location inMeasure:measure];
 		int octave = [controller octaveAt:location inMeasure:measure];
-		[note setPitch:pitch finished:finished];
-		[note setOctave:octave finished:finished];	
+		[note setPitch:pitch octave:octave finished:finished];	
 	}
 }
 
