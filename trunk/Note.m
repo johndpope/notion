@@ -77,6 +77,11 @@
 	pitch = _pitch;
 	[self sendChangeNotification];
 }
+- (void)setPitch:(int)_pitch octave:(int)_octave finished:(BOOL)finished{
+	[self setPitch:_pitch finished:finished];
+	[self setOctave:_octave finished:finished];
+}
+
 - (void)setAccidental:(int)_accidental{
 	[[[self undoManager] prepareWithInvocationTarget:self] setAccidental:accidental];
 	accidental = _accidental;
