@@ -137,7 +137,7 @@
 }
 
 - (BOOL)isDrawBars{
-	return [self getDuration] > 4;
+	return [self getDuration] > 6;
 }
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos withKeySignature:(KeySignature *)keySig 
