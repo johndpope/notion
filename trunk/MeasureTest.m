@@ -642,6 +642,17 @@ extern int enableMIDI;
 	[secondNote release];
 }
 
+- (void)testTwoQuarterNoteTripletNotesNotGrouped{
+	[self setupSong];
+	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *secondNote = [[Note alloc] initWithPitch:0 octave:0 duration:6 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:firstNote, secondNote, nil]];
+	NSArray *groups = [measure getNoteGroups];
+	STAssertEquals([groups count], (unsigned)0, @"Wrong number of groups in measure.");
+	[firstNote release];
+	[secondNote release];
+}
+
 - (void)testEighthNoteAndQuarterNoteNotGrouped{
 	[self setupSong];
 	Note *firstNote = [[Note alloc] initWithPitch:0 octave:0 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
