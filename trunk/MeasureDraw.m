@@ -74,7 +74,7 @@ static float lastFeedbackPosition = -1;
 			float stem = stemUpwards ? [[note getViewClass] topOf:note inMeasure:measure] :
 				[[note getViewClass] bottomOf:note inMeasure:measure];
 			if((stemUpwards && stem < firstStemY && stem < lastStemY) ||
-			   (stem > firstStemY && stem > lastStemY)){
+			   (!stemUpwards && stem > firstStemY && stem > lastStemY)){
 				firstStemY = lastStemY = stem;
 			}
 		}
