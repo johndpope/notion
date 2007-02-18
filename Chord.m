@@ -61,6 +61,14 @@
 	}
 }
 
+- (BOOL)isDrawBars{
+	if([notes count] > 0){
+		return [[notes objectAtIndex:0] isDrawBars];
+	} else{
+		return NO;
+	}
+}
+
 - (void)setDuration:(int)_duration{
 	[(NoteBase *)[notes do] setDuration:_duration];
 }

@@ -23,7 +23,7 @@
    isOffset:(BOOL)offset isInChordWithOffset:(BOOL)hasOffset stemUpwards:(BOOL)stemUpwards drawStem:(BOOL)stem drawTriplet:(BOOL)triplet;
 
 +(float)stemXForNote:(NoteBase *)note inMeasure:(Measure *)measure upwards:(BOOL)up;
-+(float)stemStartYForNote:(NoteBase *)note inMeasure:(Measure *)measure;
++(float)stemStartYForNote:(NoteBase *)note inMeasure:(Measure *)measure upwards:(BOOL)up;
 +(float)topOf:(NoteBase *)note inMeasure:(Measure *)measure;
 +(float) bottomOf:(NoteBase *)note inMeasure:(Measure *)measure;
 +(NSRect)bodyRectFor:(NoteBase *)note atIndex:(float)index inMeasure:(Measure *)measure;
