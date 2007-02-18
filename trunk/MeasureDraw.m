@@ -24,7 +24,10 @@
 #import "TimeSigTarget.h"
 #import "Clef.h"
 #import "Song.h"
+#import "NoteBase.h"
+#import "Note.h"
 #import "CAMIDIEndpointMenu2.h"
+#import "NSArray+SenorStaff.h"
 
 @class Chord;
 
@@ -60,7 +63,7 @@ static float lastFeedbackPosition = -1;
 		if([selection respondsToSelector:@selector(containsAll:)] && [selection containsAll:group]){
 			[[NSColor redColor] set];
 		}
-		Note *firstNote = [group objectAtIndex:0], *lastNote = [group lastObject];
+		NoteBase *firstNote = [group objectAtIndex:0], *lastNote = [group lastObject];
 		BOOL stemUpwards = [[firstNote getViewClass] isStemUpwards:firstNote inMeasure:measure];
 		float firstStemX = [[firstNote getViewClass] stemXForNote:firstNote inMeasure:measure upwards:stemUpwards];
 		float firstStemY = stemUpwards ? [[firstNote getViewClass] topOf:firstNote inMeasure:measure] :
@@ -82,13 +85,13 @@ static float lastFeedbackPosition = -1;
 		NSPoint barEnd = NSMakePoint(lastStemX, lastStemY);
 		[NSBezierPath strokeLineFromPoint:barStart toPoint:barEnd];
 		notes = [group objectEnumerator];
-		Note *prevNote = nil, *currNote = [notes nextObject], *nextNote = [notes nextObject];
+		NoteBase *prevNote = nil, *currNote = [notes nextObject], *nextNote = [notes nextObject];
 		float prevStemX = 0, currStemX = [[firstNote getViewClass] stemXForNote:firstNote inMeasure:measure upwards:stemUpwards],
 			nextStemX = nextNote != nil ? [[nextNote getViewClass] stemXForNote:nextNote inMeasure:measure upwards:stemUpwards] : 0;
 		float prevStemY = 0, currStemY = firstStemY + (lastStemY - firstStemY) * (currStemX - firstStemX) / (lastStemX - firstStemX),
 			nextStemY = firstStemY + (lastStemY - firstStemY) * (nextStemX - firstStemX) / (lastStemX - firstStemX);
 		while(currNote != nil){
-			NSPoint stemStart = NSMakePoint(currStemX, [[currNote getViewClass] stemStartYForNote:currNote inMeasure:measure]);
+			NSPoint stemStart = NSMakePoint(currStemX, [[currNote getViewClass] stemStartYForNote:currNote inMeasure:measure upwards:stemUpwards]);
 			NSPoint stemEnd = NSMakePoint(currStemX, currStemY);
 			[NSGraphicsContext saveGraphicsState];
 			if(target == currNote || selection == currNote || 

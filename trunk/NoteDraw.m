@@ -54,7 +54,7 @@ static NSColor *mouseOverColor;
 			NSEnumerator *notes = [group objectEnumerator];
 			id enumNote;
 			while(enumNote = [notes nextObject]){
-				if([self isStemUpwardsInIsolation:enumNote inMeasure:measure]){
+				if([[enumNote getViewClass] isStemUpwardsInIsolation:enumNote inMeasure:measure]){
 					upwards++;
 				}
 			}
@@ -128,7 +128,7 @@ static NSColor *mouseOverColor;
 	return up ? body.origin.x + body.size.width - 0.5 : body.origin.x + 0.5;
 }
 
-+ (float)stemStartYForNote:(NoteBase *)note inMeasure:(Measure *)measure{
++ (float)stemStartYForNote:(NoteBase *)note inMeasure:(Measure *)measure upwards:(BOOL)up{
 	NSRect body = [self bodyRectFor:note atIndex:[[measure getNotes] indexOfObject:note] inMeasure:measure];
 	return body.origin.y + (body.size.height / 2);
 }
@@ -136,7 +136,7 @@ static NSColor *mouseOverColor;
 +(void)drawStemForNote:(Note *)note withBody:(NSRect)body upwards:(BOOL)up inMeasure:(Measure *)measure{
 	[NSBezierPath setDefaultLineWidth:2.0];
 	NSPoint point1, point2;
-	point1.y = [self stemStartYForNote:note inMeasure:measure];
+	point1.y = [self stemStartYForNote:note inMeasure:measure upwards:up];
 	point1.x = point2.x = up ? body.origin.x + body.size.width - 0.5 : body.origin.x + 0.5;
 	point2.y = up ? point1.y - 30 : point1.y + 30;
 	[NSBezierPath strokeLineFromPoint:point1 toPoint:point2];

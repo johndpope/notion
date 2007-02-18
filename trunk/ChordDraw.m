@@ -15,7 +15,7 @@
 
 @implementation ChordDraw
 
-+ (BOOL)isStemUpwards:(Chord *)chord inMeasure:(Measure *)measure{
++ (BOOL)isStemUpwardsInIsolation:(Chord *)chord inMeasure:(Measure *)measure{
 	int numUpwards = 0, numDownwards = 0;
 	NSEnumerator *notes = [[chord getNotes] objectEnumerator];
 	id note;
@@ -30,16 +30,31 @@
 }
 
 + (float) topOf:(Chord *)chord inMeasure:(Measure *)measure{
-	float top = MAXFLOAT;
-	NSEnumerator *notes = [[chord getNotes] objectEnumerator];
-	id note;
-	while(note = [notes nextObject]){
-		float noteTop = [[note getViewClass] topOf:note inMeasure:measure];
-		if(noteTop < top){
-			top = noteTop;
-		}
+	NSRect body = [self bodyRectFor:[chord highestNote] atIndex:0 inMeasure:measure];
+	float top = body.origin.y;
+	if([self isStemUpwards:chord inMeasure:measure]){
+		top -= 30;
 	}
 	return top;
+}
+
++ (float) bottomOf:(Chord *)chord inMeasure:(Measure *)measure{
+	NSRect body = [self bodyRectFor:[chord lowestNote] atIndex:0 inMeasure:measure];
+	float bottom = body.origin.y + body.size.height;
+	if(![self isStemUpwards:chord inMeasure:measure]){
+		bottom += 30;
+	}
+	return bottom;
+}
+
++ (float)stemStartYForNote:(Chord *)chord inMeasure:(Measure *)measure upwards:(BOOL)up{
+	NoteBase *note;
+	if(up){
+		note = [chord highestNote];
+	} else{
+		note = [chord lowestNote];
+	}
+	return [[note getViewClass] stemStartYForNote:note inMeasure:measure upwards:up];
 }
 
 + (BOOL)isOffset:(Note *)note inChord:(Chord *)chord inMeasure:(Measure *)measure{
@@ -65,6 +80,15 @@
 	return NO;
 }
 
++ (float)stemXForNote:(Chord *)chord inMeasure:(Measure *)measure upwards:(BOOL)up{
+	if([[chord getNotes] count] > 0){
+		NoteBase *note = [[chord getNotes] objectAtIndex:0];
+		NSRect body = [[note getViewClass] bodyRectFor:note atIndex:[[measure getNotes] indexOfObject:chord] inMeasure:measure];
+		return up ? body.origin.x + body.size.width - 0.5 : body.origin.x + 0.5;
+	}
+	return 0;
+}
+
 +(void)draw:(Chord *)chord inMeasure:(Measure *)measure atIndex:(float)index target:(id)target selection:(id)selection{
 	NSEnumerator *notes = [[chord getNotes] objectEnumerator];
 	id note;
@@ -78,6 +102,7 @@
 	notes = [[chord getNotes] objectEnumerator];
 	BOOL stemUpwards = [self isStemUpwards:chord inMeasure:measure];
 	BOOL highlight = target == chord || [NoteController isSelected:chord inSelection:selection];
+	BOOL drawStem = ![chord isDrawBars] || [measure isIsolated:chord];
 	float highestBody = -MAXFLOAT, lowestBody = MAXFLOAT;
 	float stemX, threeX = MAXFLOAT;
 	while(note = [notes nextObject]){
@@ -98,8 +123,8 @@
 						 isOffset:[self isOffset:note inChord:chord inMeasure:measure]
 			  isInChordWithOffset:hasOffset
 					  stemUpwards:stemUpwards
-						 drawStem:((stemUpwards && note == [chord highestNote]) ||
-								   (!stemUpwards && note == [chord lowestNote]))
+						 drawStem:(drawStem && ((stemUpwards && note == [chord highestNote]) ||
+												(!stemUpwards && note == [chord lowestNote])))
 					  drawTriplet:NO];
 	}
 	if([chord getDuration] > 2){
