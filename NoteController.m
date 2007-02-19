@@ -17,6 +17,8 @@
 #import "ScoreView.h"
 #import <Chomp/Chomp.h>
 
+NSMutableDictionary *cachedNoteWidths = nil;
+
 @implementation NoteController
 
 +(BOOL)isSelected:(NoteBase *)note inSelection:(id)selection{
@@ -35,6 +37,13 @@
 }
 
 + (float) widthOf:(NoteBase *)note inMeasure:(Measure *)measure{
+	if(cachedNoteWidths == nil){
+		cachedNoteWidths = [[NSMutableDictionary dictionary] retain];
+	}
+	NSNumber *cachedWidth = [cachedNoteWidths objectForKey:[NSNumber numberWithInt:note]];
+	if(cachedWidth != nil){
+		return [cachedWidth floatValue];
+	}
 	float width = [self widthOf:note];
 	NSPoint notePosition = [measure getNotePosition:note];
 	float noteStart = notePosition.x;
@@ -50,7 +59,8 @@
 			if(numNotes > max) max = numNotes;
 		}
 	}
-	return width + max * [MeasureController minNoteSpacing];	
+	width = width + max * [MeasureController minNoteSpacing];
+	[cachedNoteWidths setObject:[NSNumber numberWithFloat:width] forKey:[NSNumber numberWithInt:note]];
 }
 
 + (float) xOf:(NoteBase *)note{
@@ -223,6 +233,10 @@
 		[self dragNote:note to:location finished:finished];
 		[[note undoManager] setActionName:@"dragging note"];
 	}
+}
+
++ (void)clearCaches{
+	[cachedNoteWidths removeAllObjects];
 }
 
 @end
