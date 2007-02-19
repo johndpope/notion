@@ -8,6 +8,7 @@
 
 #import "NoteBase.h"
 #import "NoteController.h"
+#import "Measure.h"
 
 @implementation NoteBase
 
@@ -24,6 +25,9 @@
 - (void)setDotted:(BOOL)_dotted{
 	[[[self undoManager] prepareWithInvocationTarget:self] setDotted:dotted];
 	dotted = _dotted;
+	Measure *measure = [staff getMeasureContainingNote:self];
+	[measure refreshNotes:self];
+	[measure grabNotesFromNextMeasure];
 }
 
 - (Staff *)getStaff{

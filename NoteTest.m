@@ -395,6 +395,41 @@ extern int enableMIDI;
 	[postNote release];
 }
 
+- (void)testSetDottedToTrueRefreshesMeasure {
+	[self setUpUndoTest];
+	Note *first = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *second = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *third = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *fourth = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:first, second, third, fourth, nil]];
+	[fourth setDotted:YES];
+	STAssertEquals([[[staff getMeasureAfter:measure createNew:NO] getNotes] count], (unsigned)1, @"Excess not pushed to second measure after setting dotted.");
+	[first release];
+	[second release];
+	[third release];
+	[fourth release];
+	[self tearDownUndoTest];
+}
+- (void)testSetDottedToFalseRefreshesMeasure {
+	[self setUpUndoTest];
+	Note *first = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *second = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:NO accidental:NO_ACC onStaff:staff];
+	Note *third = [[Note alloc] initWithPitch:3 octave:4 duration:4 dotted:YES accidental:NO_ACC onStaff:staff];
+	Note *fourth = [[Note alloc] initWithPitch:3 octave:4 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	[measure setNotes:[NSMutableArray arrayWithObjects:first, second, third, fourth, nil]];
+	Note *fifth = [[Note alloc] initWithPitch:3 octave:4 duration:8 dotted:NO accidental:NO_ACC onStaff:staff];
+	Measure *secondMeasure = [staff getMeasureAfter:measure createNew:YES];
+	[secondMeasure setNotes:[NSMutableArray arrayWithObject:fifth]];
+	[third setDotted:NO];
+	STAssertEquals([staff getMeasureContainingNote:fifth], measure, @"Space not filled after setting dotted.");
+	[first release];
+	[second release];
+	[third release];
+	[fourth release];
+	[fifth release];
+	[self tearDownUndoTest];
+}
+
 // ----- undo/redo tests -----
 
 - (void)setUpUndoTest{

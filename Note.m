@@ -27,12 +27,6 @@
 	return self;
 }
 
-- (int)getDuration{
-	return duration;
-}
-- (BOOL)getDotted{
-	return dotted;
-}
 - (int)getPitch{
 	return pitch;
 }
