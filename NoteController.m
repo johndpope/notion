@@ -119,7 +119,7 @@
 		}
 	}
 	if([note respondsToSelector:@selector(setAccidental:)]){
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@"p"]].location != NSNotFound){
+		if([[event charactersIgnoringModifiers] rangeOfString:[NSString stringWithFormat:@"p"]].location != NSNotFound){
 			if([note getAccidental] == SHARP){
 				[note setAccidental:NO_ACC];
 				[[note undoManager] setActionName:@"removing accidental"];
@@ -129,7 +129,7 @@
 			}
 			return YES;
 		}
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@";"]].location != NSNotFound){
+		if([[event charactersIgnoringModifiers] rangeOfString:[NSString stringWithFormat:@";"]].location != NSNotFound){
 			if([note getAccidental] == NATURAL){
 				[note setAccidental:NO_ACC];
 				[[note undoManager] setActionName:@"removing accidental"];
@@ -139,7 +139,7 @@
 			}
 			return YES;
 		}
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@"/"]].location != NSNotFound){
+		if([[event charactersIgnoringModifiers] rangeOfString:[NSString stringWithFormat:@"/"]].location != NSNotFound){
 			if([note getAccidental] == FLAT){
 				[note setAccidental:NO_ACC];
 				[[note undoManager] setActionName:@"removing accidental"];
@@ -151,7 +151,7 @@
 		}
 	}
 	if([note respondsToSelector:@selector(setDotted:)]){
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@"."]].location != NSNotFound){
+		if([[event charactersIgnoringModifiers] rangeOfString:[NSString stringWithFormat:@"."]].location != NSNotFound){
 			if([note getDotted]){
 				[note setDotted:NO];
 				[[note undoManager] setActionName:@"removing dotted duration"];
@@ -163,7 +163,7 @@
 		}
 	}
 	if([note respondsToSelector:@selector(tieFrom:)]){
-		if([[event characters] rangeOfString:[NSString stringWithFormat:@"["]].location != NSNotFound){
+		if([[event charactersIgnoringModifiers] rangeOfString:[NSString stringWithFormat:@"["]].location != NSNotFound){
 			if([note getTieFrom] != nil){
 				[[note undoManager] setActionName:@"breaking note tie"];
 				[[note getTieFrom] tieTo:nil];
