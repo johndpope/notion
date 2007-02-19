@@ -211,6 +211,7 @@
 
 - (void)drawRect:(NSRect)rect {
 	[NoteDraw resetAccidentals];
+	[MeasureController clearCaches];
 	NSEnumerator *staffs = [[song staffs] objectEnumerator];
 	id staff;
 	while(staff = [staffs nextObject]){

@@ -21,6 +21,8 @@
 #import "Rest.h"
 #import "Note.h"
 
+NSMutableDictionary *cachedMeasureWidths = nil;
+
 @implementation MeasureController
 
 + (float)minNoteSpacing{
@@ -64,6 +66,13 @@
 }
 
 + (float)widthOf:(Measure *)measure{
+	if(cachedMeasureWidths == nil){
+		cachedMeasureWidths = [[NSMutableDictionary dictionary] retain];
+	}
+	NSNumber *width = [cachedMeasureWidths objectForKey:[NSNumber numberWithInt:measure]];
+	if(width != nil){
+		return [width floatValue];
+	}
 	float max = 0;
 	int index = [[[measure getStaff] getMeasures] indexOfObject:measure];
 	NSEnumerator *staffs = [[[[measure getStaff] getSong] staffs] objectEnumerator];
@@ -74,6 +83,7 @@
 			if(width > max) max = width;
 		}
 	}
+	[cachedMeasureWidths setObject:[NSNumber numberWithFloat:max] forKey:[NSNumber numberWithInt:measure]];
 	return max;	
 }
 
@@ -431,6 +441,12 @@
 		[[self doSelf] cleanNoteForPaste:[data each] inMeasure:measure preserveTiesWithin:data];
 		[measure addNotes:data atIndex:[self indexAt:location inMeasure:measure]];
 		[[measure undoManager] setActionName:@"pasting notes"];
+	}
+}
+
++ (void)clearCaches{
+	if(cachedMeasureWidths != nil){
+		[cachedMeasureWidths removeAllObjects];
 	}
 }
 
