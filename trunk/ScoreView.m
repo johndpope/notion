@@ -106,8 +106,8 @@
 - (void) updateHelpBoxPosition{
 	NSRect visible = [self visibleRect];
 	NSRect helpBoxFrame = [helpBox frame];
-	[helpBox setFrameOrigin:NSMakePoint(visible.origin.x + visible.size.width - helpBoxFrame.size.width,
-										visible.origin.y + visible.size.height - helpBoxFrame.size.height)];
+	[helpBox setFrameOrigin:NSMakePoint((int)(visible.origin.x + visible.size.width - helpBoxFrame.size.width),
+										(int)(visible.origin.y + visible.size.height - helpBoxFrame.size.height))];
 }
 
 - (void) awakeFromNib{

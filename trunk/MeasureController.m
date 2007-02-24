@@ -211,23 +211,23 @@ NSMutableDictionary *cachedMeasureWidths = nil;
 
 + (NSPoint) keySigPanelLocationFor:(Measure *)measure{
 	NSPoint location;
-	location.x = [self xOf:measure] + [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]];
-	location.y = [StaffController topOf:[measure getStaff]];
+	location.x = (int)([self xOf:measure] + [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]]);
+	location.y = (int)([StaffController topOf:[measure getStaff]]);
 	return location;
 }
 
 + (NSPoint) timeSigPanelLocationFor:(Measure *)measure{
 	NSPoint location;
-	location.x = [self xOf:measure] + [ClefController widthOf:[measure getClef]];
-	location.y = [StaffController topOf:[measure getStaff]];
+	location.x = (int)([self xOf:measure] + [ClefController widthOf:[measure getClef]]);
+	location.y = (int)([StaffController topOf:[measure getStaff]]);
 	return location;
 }
 
 + (NSPoint) repeatPanelLocationFor:(Measure *)measure{
 	NSPoint location;
 	NSRect bounds = [MeasureController boundsOf:measure];
-	location.x = bounds.origin.x + bounds.size.width - 10;
-	location.y = [StaffController topOf:[measure getStaff]];
+	location.x = (int)(bounds.origin.x + bounds.size.width - 10);
+	location.y = (int)([StaffController topOf:[measure getStaff]]);
 	return location;
 }
 
