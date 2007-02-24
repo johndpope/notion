@@ -130,8 +130,8 @@
 		} else if(![[verticalRuler subviews] containsObject:[staff rulerView]]){
 			[verticalRuler addSubview:[staff rulerView]];
 		}
-		[[staff rulerView] setFrameOrigin:NSMakePoint(0, [StaffController baseOf:staff] -
-													  [StaffController lineHeightOf:staff] * 6.0)];
+		[[staff rulerView] setFrameOrigin:NSMakePoint(0, (int)([StaffController baseOf:staff] -
+													  [StaffController lineHeightOf:staff] * 6.0))];
 	}
 	NSEnumerator *tempos = [[[[self document] getSong] tempoData] objectEnumerator];
 	id tempo;
@@ -140,7 +140,7 @@
 		if([tempo tempoPanel] == nil){
 			[self addHorizontalRulerComponentFor:tempo];
 		}
-		[[tempo tempoPanel] setFrameOrigin:NSMakePoint([MeasureController xOf:[longest getMeasureAtIndex:i]], 1)];
+		[[tempo tempoPanel] setFrameOrigin:NSMakePoint((int)([MeasureController xOf:[longest getMeasureAtIndex:i]]), 1)];
 		i++;
 	}
 	[view setFrameSize:[view calculateBounds].size];
