@@ -38,10 +38,22 @@ static DrumKit *standardKit;
 }
 
 - (int)getPitchForPosition:(int)position{
+	if(position < 0){
+		position == 0;
+	}
+	if(position >= [pitches count]){
+		position = [pitches count] - 1;
+	}
 	return [[pitches objectAtIndex:position] intValue];
 }
 
 - (int)getOctaveForPosition:(int)position{
+	if(position < 0){
+		position == 0;
+	}
+	if(position >= [pitches count]){
+		position = [pitches count] - 1;
+	}
 	return [[octaves objectAtIndex:position] intValue];
 }
 

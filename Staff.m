@@ -86,6 +86,10 @@
 	return channel == 9;
 }
 
+- (void)setIsDrums:(BOOL)isDrums{
+	// do nothing - KVO compliance only
+}
+
 - (IBAction)deleteSelf:(id)sender{
 	[rulerView removeFromSuperview];
 	[song removeStaff:self];
@@ -511,6 +515,7 @@
 
 - (void)setChannel:(int)_channel{
 	channel = _channel - 1;
+	[self setIsDrums:[self isDrums]]; //trigger KVO
 	[self sendChangeNotification];
 }
 
