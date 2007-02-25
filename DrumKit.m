@@ -7,29 +7,33 @@
 //
 
 #import "DrumKit.h"
+#import "Drum.h"
 
 static DrumKit *standardKit;
+static NSArray *allDrums;
 
 @implementation DrumKit
 
-- (id) initWithPitches:(NSArray *)_pitches octaves:(NSArray *)_octaves names:(NSArray *)_names{
+- (id) initWithDrums:(NSArray *)_drums{
 	if(self = [super init]){
-		pitches = [[NSMutableArray arrayWithArray:_pitches] retain];
-		octaves = [[NSMutableArray arrayWithArray:_octaves] retain];
-		names = [[NSMutableArray arrayWithArray:_names] retain];
+		drums = [[NSMutableArray arrayWithArray:_drums] retain];
 	}
 	return self;	
 }
 
+- (void)sendChangeNotification{
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"modelChanged" object:self]];
+}
+
 - (BOOL)positionIsValid:(int)position{
-	return (position >= 0) && (position < [pitches count]);
+	return (position >= 0) && (position < [drums count]);
 }
 
 - (int)getPositionForPitch:(int)pitch withOctave:(int)octave{
 	int i;
-	for(i = 0; i < [pitches count]; i++){
-		if([[pitches objectAtIndex:i] intValue] == pitch &&
-		   [[octaves objectAtIndex:i] intValue] == octave){
+	for(i = 0; i < [drums count]; i++){
+		if([[drums objectAtIndex:([drums count] - i - 1)] pitch] == pitch &&
+		   [[drums objectAtIndex:([drums count] - i - 1)] octave] == octave){
 			return i;
 		}
 	}
@@ -41,20 +45,20 @@ static DrumKit *standardKit;
 	if(position < 0){
 		position == 0;
 	}
-	if(position >= [pitches count]){
-		position = [pitches count] - 1;
+	if(position >= [drums count]){
+		position = [drums count] - 1;
 	}
-	return [[pitches objectAtIndex:position] intValue];
+	return [[drums objectAtIndex:([drums count] - position - 1)] pitch];
 }
 
 - (int)getOctaveForPosition:(int)position{
 	if(position < 0){
 		position == 0;
 	}
-	if(position >= [pitches count]){
-		position = [pitches count] - 1;
+	if(position >= [drums count]){
+		position = [drums count] - 1;
 	}
-	return [[octaves objectAtIndex:position] intValue];
+	return [[drums objectAtIndex:([drums count] - position - 1)] octave];
 }
 
 - (int)getTranspositionFrom:(Clef *)clef{
@@ -62,61 +66,95 @@ static DrumKit *standardKit;
 }
 
 - (NSString *)nameAt:(int)position{
-	return [names objectAtIndex:position];
+	return [[drums objectAtIndex:([drums count] - position - 1)] shortName];
+}
+
+- (NSMutableArray *)drums{
+	return drums;
+}
+
+- (void)setDrums:(NSMutableArray *)_drums{
+	[[[staff undoManager] prepareWithInvocationTarget:self] setDrums:drums];
+	[[staff undoManager] setActionName:@"editing drum kit"];
+	if(![_drums isEqualToArray:drums]){
+		[drums release];
+		drums = [_drums retain];
+		[self sendChangeNotification];
+	}
+}
+
+- (void)setStaff:(Staff *)_staff{
+	staff = _staff;
+}
+
+- (NSWindow *)editDialog{
+	return editDialog;
+}
+
+- (IBAction)closeDialog:(id)sender{
+	[NSApp endSheet:editDialog];
+	[[staff undoManager] endUndoGrouping];
+}
+
+- (IBAction)cancelDialog:(id)sender{
+	[self closeDialog:sender];
+	[[staff undoManager] undo];
+}
+
+- (void)endEditDialog{
+	[editDialog orderOut:self];
+	[self sendChangeNotification];
 }
 
 + (DrumKit *)standardKit{
 	if(standardKit == nil){
-		standardKit = [[DrumKit alloc] initWithPitches:[NSArray arrayWithObjects:[NSNumber numberWithInt:0],
-																				 [NSNumber numberWithInt:2],
-																				 [NSNumber numberWithInt:7],
-																				 [NSNumber numberWithInt:11],
-																				 [NSNumber numberWithInt:2],
-																				 [NSNumber numberWithInt:6],
-																				 [NSNumber numberWithInt:3],
-																				 [NSNumber numberWithInt:1], nil]
-											   octaves:[NSArray arrayWithObjects:[NSNumber numberWithInt:3],
-																				 [NSNumber numberWithInt:3],
-																				 [NSNumber numberWithInt:3],
-																				 [NSNumber numberWithInt:3],
-																				 [NSNumber numberWithInt:4],
-																				 [NSNumber numberWithInt:3],
-																				 [NSNumber numberWithInt:4],
-																				 [NSNumber numberWithInt:4], nil]
-												 names:[NSArray arrayWithObjects:@"Kick",
-																				 @"Snare",
-																				 @"Low Tom",
-																				 @"Med Tom",
-																				 @"Hi Tom",
-																				 @"Hi Hat",
-																				 @"Ride",
-																				 @"Crash", nil]];
+		standardKit = [[DrumKit alloc] initWithDrums:[NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"stdDrums" ofType:@"dat"]]];
 	}
 	return standardKit;
 }
 
+- (NSArray *)allDrums{
+	if(allDrums == nil){
+		allDrums = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"allDrums" ofType:@"dat"]];
+	}
+	return allDrums;
+}
+
+- (id)copyWithZone:(NSZone *)zone{
+	return [[DrumKit allocWithZone:zone] initWithDrums:[NSArray arrayWithArray:drums]];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
-	[coder encodeObject:pitches forKey:@"pitches"];
-	[coder encodeObject:octaves forKey:@"octaves"];
-	[coder encodeObject:names forKey:@"names"];
+	[coder encodeObject:drums forKey:@"drums"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
 	if(self = [super init]){
-		pitches = [coder decodeObjectForKey:@"pitches"];
-		octaves = [coder decodeObjectForKey:@"octaves"];
-		names = [coder decodeObjectForKey:@"names"];
+		drums = [coder decodeObjectForKey:@"drums"];
+		// support old-style
+		NSArray *pitches = [coder decodeObjectForKey:@"pitches"];
+		NSArray *octaves = [coder decodeObjectForKey:@"octaves"];
+		NSArray *names = [coder decodeObjectForKey:@"names"];
+		if(pitches != nil){
+			[drums release];
+			drums = [[NSMutableArray array] retain];
+			NSEnumerator *pitchEnum = [pitches objectEnumerator];
+			NSEnumerator *octaveEnum = [octaves objectEnumerator];
+			NSEnumerator *nameEnum = [names objectEnumerator];
+			id pitch, octave, name;
+			while(pitch = [pitchEnum nextObject]){
+				octave = [octaveEnum nextObject];
+				name = [nameEnum nextObject];
+				[drums addObject:[[[Drum alloc] initWithPitch:[pitch intValue] octave:[octave intValue] name:name shortName:name] autorelease]];
+			}
+		}
 	}
 	return self;
 }
 
 - (void) dealloc {
-	[pitches release];
-	[octaves release];
-	[names release];
-	pitches = nil;
-	octaves = nil;
-	names = nil;
+	[drums release];
+	drums = nil;
 	[super dealloc];
 }
 

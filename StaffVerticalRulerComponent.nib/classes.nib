@@ -2,7 +2,7 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {deleteSelf = id; }; 
+            ACTIONS = {deleteSelf = id; editDrumKit = id; }; 
             CLASS = Staff; 
             LANGUAGE = ObjC; 
             OUTLETS = {rulerView = StaffVerticalRulerComponent; }; 

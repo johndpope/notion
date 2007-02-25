@@ -437,10 +437,6 @@
 	return clef;
 }
 
-- (DrumKit *)getDrumKit{
-	return drumKit;
-}
-
 - (Clef *)getEffectiveClef{
 	return [staff getClefForMeasure:self];
 }
@@ -780,7 +776,6 @@
 	if(clef == [Clef bassClef]){
 		[coder encodeObject:@"bass" forKey:@"clef"];
 	}
-	[coder encodeObject:drumKit forKey:@"drumKit"];
 	if(keySig != nil){
 		[coder encodeInt:[keySig getNumFlats] forKey:@"keySigFlats"];
 		[coder encodeInt:[keySig getNumSharps] forKey:@"keySigSharps"];
@@ -801,7 +796,6 @@
 		} else if([deClef isEqualToString:@"bass"]){
 			[self setClef:[Clef bassClef]];
 		}
-		drumKit = [coder decodeObjectForKey:@"drumKit"];
 		int flats = [coder decodeIntForKey:@"keySigFlats"];
 		int sharps = [coder decodeIntForKey:@"keySigSharps"];
 		BOOL minor = [coder decodeBoolForKey:@"keySigMinor"];

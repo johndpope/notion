@@ -78,6 +78,13 @@
 		789308FE0B548EEA0023F843 /* Senor Staff Help in Resources */ = {isa = PBXBuildFile; fileRef = 789308F90B548EEA0023F843 /* Senor Staff Help */; };
 		789324BF0B116FB300E2DEF2 /* ToolbarHelperController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789324BE0B116FB300E2DEF2 /* ToolbarHelperController.m */; };
 		7893266E0B118A2E00E2DEF2 /* addstaff.png in Resources */ = {isa = PBXBuildFile; fileRef = 7893266D0B118A2D00E2DEF2 /* addstaff.png */; };
+		789ACD370B90E29000A96BF4 /* DNDArrayController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 789ACD350B90E29000A96BF4 /* DNDArrayController.h */; };
+		789ACD380B90E29000A96BF4 /* DNDArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789ACD360B90E29000A96BF4 /* DNDArrayController.m */; };
+		789ACD5F0B90E79700A96BF4 /* DrumKitDialog.nib in Resources */ = {isa = PBXBuildFile; fileRef = 789ACD5E0B90E79700A96BF4 /* DrumKitDialog.nib */; };
+		789ACEBE0B90F7F700A96BF4 /* Drum.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 789ACEBC0B90F7F700A96BF4 /* Drum.h */; };
+		789ACEBF0B90F7F700A96BF4 /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 789ACEBD0B90F7F700A96BF4 /* Drum.m */; };
+		789AD0D00B911F8400A96BF4 /* allDrums.dat in Resources */ = {isa = PBXBuildFile; fileRef = 789AD0CF0B911F8400A96BF4 /* allDrums.dat */; };
+		789AD0F00B91205F00A96BF4 /* stdDrums.dat in Resources */ = {isa = PBXBuildFile; fileRef = 789AD0EF0B91205F00A96BF4 /* stdDrums.dat */; };
 		789BC2A60A1FFD2000597728 /* erest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A20A1FFD2000597728 /* erest.png */; };
 		789BC2A70A1FFD2000597728 /* qrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A30A1FFD2000597728 /* qrest.png */; };
 		789BC2A80A1FFD2000597728 /* srest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A40A1FFD2000597728 /* srest.png */; };
@@ -198,6 +205,8 @@
 				78AF66B60B756AFB0072CACE /* NSImage+Flip.h in CopyFiles */,
 				78684D300B7E8E68002CCC1E /* OpaqueBox.h in CopyFiles */,
 				78684D360B7E8F78002CCC1E /* NSBezierPathAdditions.h in CopyFiles */,
+				789ACD370B90E29000A96BF4 /* DNDArrayController.h in CopyFiles */,
+				789ACEBE0B90F7F700A96BF4 /* Drum.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +326,13 @@
 		789308FA0B548EEA0023F843 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/Senor Staff Help"; sourceTree = "<group>"; };
 		789324BE0B116FB300E2DEF2 /* ToolbarHelperController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ToolbarHelperController.m; sourceTree = "<group>"; };
 		7893266D0B118A2D00E2DEF2 /* addstaff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addstaff.png; sourceTree = "<group>"; };
+		789ACD350B90E29000A96BF4 /* DNDArrayController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DNDArrayController.h; sourceTree = "<group>"; };
+		789ACD360B90E29000A96BF4 /* DNDArrayController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DNDArrayController.m; sourceTree = "<group>"; };
+		789ACD5E0B90E79700A96BF4 /* DrumKitDialog.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = DrumKitDialog.nib; sourceTree = "<group>"; };
+		789ACEBC0B90F7F700A96BF4 /* Drum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drum.h; sourceTree = "<group>"; };
+		789ACEBD0B90F7F700A96BF4 /* Drum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drum.m; sourceTree = "<group>"; };
+		789AD0CF0B911F8400A96BF4 /* allDrums.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = allDrums.dat; sourceTree = "<group>"; };
+		789AD0EF0B91205F00A96BF4 /* stdDrums.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = stdDrums.dat; sourceTree = "<group>"; };
 		789BC2A20A1FFD2000597728 /* erest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = erest.png; sourceTree = "<group>"; };
 		789BC2A30A1FFD2000597728 /* qrest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrest.png; sourceTree = "<group>"; };
 		789BC2A40A1FFD2000597728 /* srest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = srest.png; sourceTree = "<group>"; };
@@ -499,6 +515,8 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				789AD0EF0B91205F00A96BF4 /* stdDrums.dat */,
+				789AD0CF0B911F8400A96BF4 /* allDrums.dat */,
 				789308F90B548EEA0023F843 /* Senor Staff Help */,
 				788321110A636D64003363D7 /* doc.icns */,
 				789C1CB70A524DA900572AA8 /* sstaff.icns */,
@@ -514,6 +532,7 @@
 				785EE9CE0A589031005ABDAB /* StaffHorizontalRulerComponent.nib */,
 				787A93CA0B1A4FE7006FD236 /* LICENSE */,
 				780934E70B310E6900E2F980 /* RepeatCountPanel.nib */,
+				789ACD5E0B90E79700A96BF4 /* DrumKitDialog.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -563,6 +582,8 @@
 				78B224240B2FD48600047C6B /* Repeat.m */,
 				787A0B6B0B53648000926563 /* CompoundTimeSig.h */,
 				787A0B6C0B53648000926563 /* CompoundTimeSig.m */,
+				789ACEBC0B90F7F700A96BF4 /* Drum.h */,
+				789ACEBD0B90F7F700A96BF4 /* Drum.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -643,6 +664,8 @@
 		78AF67700B7570760072CACE /* Cocoa categories */ = {
 			isa = PBXGroup;
 			children = (
+				789ACD350B90E29000A96BF4 /* DNDArrayController.h */,
+				789ACD360B90E29000A96BF4 /* DNDArrayController.m */,
 				78684D340B7E8F78002CCC1E /* NSBezierPathAdditions.h */,
 				78684D350B7E8F78002CCC1E /* NSBezierPathAdditions.m */,
 				78DF77D40A48DF0F0058CF89 /* NSView+Fade.h */,
@@ -882,6 +905,9 @@
 				780934E80B310E6900E2F980 /* RepeatCountPanel.nib in Resources */,
 				789308FE0B548EEA0023F843 /* Senor Staff Help in Resources */,
 				78A608D00B64502300DAE6DA /* playsel.png in Resources */,
+				789ACD5F0B90E79700A96BF4 /* DrumKitDialog.nib in Resources */,
+				789AD0D00B911F8400A96BF4 /* allDrums.dat in Resources */,
+				789AD0F00B91205F00A96BF4 /* stdDrums.dat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -992,6 +1018,8 @@
 				78AF66B70B756AFB0072CACE /* NSImage+Flip.m in Sources */,
 				78684D2D0B7E8E63002CCC1E /* OpaqueBox.m in Sources */,
 				78684D370B7E8F78002CCC1E /* NSBezierPathAdditions.m in Sources */,
+				789ACD380B90E29000A96BF4 /* DNDArrayController.m in Sources */,
+				789ACEBF0B90F7F700A96BF4 /* Drum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

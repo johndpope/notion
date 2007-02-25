@@ -19,7 +19,6 @@
 @interface Measure : NSObject <NSCoding> {
 	Staff *staff;
 	Clef *clef;
-	DrumKit *drumKit;
 	KeySignature *keySig;
 	NSMutableArray *notes;
 	NSViewAnimation *anim;
