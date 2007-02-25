@@ -15,6 +15,7 @@
 @class Note;
 @class Chord;
 @class Song;
+@class DrumKit;
 @class StaffVerticalRulerComponent;
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -26,6 +27,7 @@
 	int channel;
 	IBOutlet StaffVerticalRulerComponent *rulerView;
 	BOOL mute, solo, canMute;
+	DrumKit *drumKit;
 	
 	MusicTrack musicTrack;
 }
@@ -74,6 +76,8 @@
 
 - (BOOL)isDrums;
 - (void)setIsDrums:(BOOL)isDrums;
+- (DrumKit *)drumKit;
+- (IBAction)editDrumKit:(id)sender;
 
 - (void)toggleClefAtMeasure:(Measure *)measure;
 - (void)timeSigChangedAtMeasure:(Measure *)measure top:(int)top bottom:(int)bottom;

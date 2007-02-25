@@ -90,25 +90,30 @@
 	// do nothing - KVO compliance only
 }
 
+- (IBAction)editDrumKit:(id)sender{
+	[[self undoManager] beginUndoGrouping];
+	[NSBundle loadNibNamed:@"DrumKitDialog" owner:[self drumKit]];
+	[NSApp beginSheet:[[self drumKit] editDialog] modalForWindow:[[[self getSong] document] windowForSheet]
+		modalDelegate:[self drumKit] didEndSelector:@selector(endEditDialog) contextInfo:nil];
+}
+
 - (IBAction)deleteSelf:(id)sender{
 	[rulerView removeFromSuperview];
 	[song removeStaff:self];
 }
 
-- (DrumKit *)getDrumKitForMeasure:(Measure *)measure{
-	int index = [measures indexOfObject:measure];
-	while([measure getDrumKit] == nil){
-		if(index == 0) return [DrumKit standardKit];
-		index--;
-		measure = [measures objectAtIndex:index];
+- (DrumKit *)drumKit{
+	if(drumKit == nil){
+		drumKit = [[[DrumKit standardKit] copy] retain];
+		[drumKit setStaff:self];
 	}
-	return [measure getDrumKit];
+	return drumKit;
 }
 
 - (Clef *)getClefForMeasure:(Measure *)measure{
 	int index = [measures indexOfObject:measure];
 	if([self isDrums]){
-		return [self getDrumKitForMeasure:measure];
+		return [self drumKit];
 	} else {
 		while([measure getClef] == nil){
 			if(index == 0) return [Clef trebleClef];
@@ -568,6 +573,7 @@
 	[coder encodeInt:channel forKey:@"channel"];
 	[coder encodeInt:transposition forKey:@"transposition"];
 	[coder encodeObject:name forKey:@"name"];
+	[coder encodeObject:drumKit forKey:@"drumKit"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder{
@@ -576,6 +582,8 @@
 		[self setChannel:([coder decodeIntForKey:@"channel"] + 1)];
 		[self setTransposition:[coder decodeIntForKey:@"transposition"]];
 		[self setName:[coder decodeObjectForKey:@"name"]];
+		drumKit = [coder decodeObjectForKey:@"drumKit"];
+		[drumKit setStaff:self];
 		canMute = YES;
 	}
 	return self;
@@ -583,7 +591,9 @@
 
 - (void)dealloc{
 	[measures release];
+	[drumKit release];
 	measures = nil;
+	drumKit = nil;
 	song = nil;
 	[super dealloc];
 }
