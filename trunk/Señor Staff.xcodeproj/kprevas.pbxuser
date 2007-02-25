@@ -11,7 +11,7 @@
 	2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 7841FCEE0A09C4D600292132 /* Señor Staff */;
-		activeTarget = 8D15AC270486D014006FF6A4 /* Señor Staff */;
+		activeTarget = 7883C8980A86B5A5000E97DE /* Tests */;
 		addToTargets = (
 			8D15AC270486D014006FF6A4 /* Señor Staff */,
 		);
@@ -828,9 +828,9 @@
 	};
 	7841FD7E0A0B073B00292132 /* MEWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1330, 4760}}";
-			sepNavSelRange = "{4490, 0}";
-			sepNavVisRect = "{{0, 1625}, {1330, 461}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1203, 4774}}";
+			sepNavSelRange = "{267, 0}";
+			sepNavVisRect = "{{0, 0}, {1069, 745}}";
 			sepNavWindowFrame = "{{227, 88}, {787, 706}}";
 		};
 	};
@@ -1348,9 +1348,9 @@
 	};
 	78683A190A0E8A72001DE5BB /* Staff.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1330, 1456}}";
-			sepNavSelRange = "{312, 0}";
-			sepNavVisRect = "{{0, 106}, {1330, 278}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 1456}}";
+			sepNavSelRange = "{618, 0}";
+			sepNavVisRect = "{{0, 0}, {1069, 745}}";
 			sepNavWindowFrame = "{{535, 153}, {787, 706}}";
 		};
 	};
@@ -2007,15 +2007,15 @@
 	786BD6C30B238FAB002D16A3 /* DrumKit.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1069, 745}}";
-			sepNavSelRange = "{668, 0}";
+			sepNavSelRange = "{464, 18}";
 			sepNavVisRect = "{{0, 0}, {1069, 745}}";
 		};
 	};
 	786BD6C40B238FAB002D16A3 /* DrumKit.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1168, 2282}}";
-			sepNavSelRange = "{2206, 37}";
-			sepNavVisRect = "{{0, 955}, {1069, 745}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1168, 2590}}";
+			sepNavSelRange = "{2028, 0}";
+			sepNavVisRect = "{{0, 825}, {1069, 745}}";
 			sepNavWindowFrame = "{{78, 115}, {630, 758}}";
 		};
 	};
@@ -2971,9 +2971,9 @@
 	};
 	7883C7E10A86B05A000E97DE /* StaffTest.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1330, 7826}}";
-			sepNavSelRange = "{15126, 0}";
-			sepNavVisRect = "{{0, 4348}, {1330, 278}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 7980}}";
+			sepNavSelRange = "{30805, 0}";
+			sepNavVisRect = "{{0, 7207}, {1069, 745}}";
 			sepNavWindowFrame = "{{167, 79}, {630, 758}}";
 		};
 	};
@@ -3507,7 +3507,7 @@
 		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
 		name = "MEWindowController.m: 134";
 		rLen = 0;
-		rLoc = 4150;
+		rLoc = 4278;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 3186;
@@ -3517,7 +3517,7 @@
 		fRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */;
 		name = "MEWindowController.m: 134";
 		rLen = 0;
-		rLoc = 4150;
+		rLoc = 4278;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 3186;
@@ -3675,7 +3675,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "DrumKit.h: names";
 		rLen = 70;
-		rLoc = 499;
+		rLoc = 517;
 		rType = 0;
 		vrLen = 519;
 		vrLoc = 0;
@@ -3705,7 +3705,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "DrumKit.h: names";
 		rLen = 70;
-		rLoc = 499;
+		rLoc = 517;
 		rType = 0;
 		vrLen = 519;
 		vrLoc = 0;
@@ -3765,7 +3765,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "- (NSWindow *)editDialog;";
 		rLen = 62;
-		rLoc = 570;
+		rLoc = 588;
 		rType = 0;
 		vrLen = 571;
 		vrLoc = 0;
@@ -3845,7 +3845,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "- (IBAction)closeDialog:(id)sender;";
 		rLen = 36;
-		rLoc = 596;
+		rLoc = 614;
 		rType = 0;
 		vrLen = 616;
 		vrLoc = 0;
@@ -3909,7 +3909,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "DrumKit.h: 24";
 		rLen = 0;
-		rLoc = 542;
+		rLoc = 560;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -3929,7 +3929,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "DrumKit.h: setDrums:";
 		rLen = 0;
-		rLoc = 542;
+		rLoc = 560;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -4286,7 +4286,7 @@
 		fRef = 786BD6C40B238FAB002D16A3 /* DrumKit.m */;
 		name = "DrumKit.m: 92";
 		rLen = 0;
-		rLoc = 2300;
+		rLoc = 2335;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 17;
@@ -4296,7 +4296,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "- (void)setStaff:(Staff *)_staff;";
 		rLen = 34;
-		rLoc = 464;
+		rLoc = 482;
 		rType = 0;
 		vrLen = 665;
 		vrLoc = 0;
@@ -4306,7 +4306,7 @@
 		fRef = 786BD6C40B238FAB002D16A3 /* DrumKit.m */;
 		name = "DrumKit.m: 84";
 		rLen = 0;
-		rLoc = 2044;
+		rLoc = 2079;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 1039;
@@ -4386,7 +4386,7 @@
 		fRef = 786BD6C40B238FAB002D16A3 /* DrumKit.m */;
 		name = "DrumKit.m: 92";
 		rLen = 0;
-		rLoc = 2096;
+		rLoc = 2131;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 1483;
@@ -4406,7 +4406,7 @@
 		fRef = 786BD6C40B238FAB002D16A3 /* DrumKit.m */;
 		name = "- (IBAction)cancelDialog:(id)sender{";
 		rLen = 37;
-		rLoc = 2206;
+		rLoc = 2241;
 		rType = 0;
 		vrLen = 1245;
 		vrLoc = 1575;
@@ -4416,7 +4416,7 @@
 		fRef = 786BD6C40B238FAB002D16A3 /* DrumKit.m */;
 		name = "- (IBAction)cancelDialog:(id)sender{";
 		rLen = 37;
-		rLoc = 2206;
+		rLoc = 2241;
 		rType = 0;
 		vrLen = 1245;
 		vrLoc = 1575;
@@ -4426,7 +4426,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "DrumKit.h: cancelDialog:";
 		rLen = 0;
-		rLoc = 668;
+		rLoc = 749;
 		rType = 0;
 		vrLen = 702;
 		vrLoc = 0;
@@ -4456,7 +4456,7 @@
 		fRef = 786BD6C30B238FAB002D16A3 /* DrumKit.h */;
 		name = "DrumKit.h: cancelDialog:";
 		rLen = 0;
-		rLoc = 668;
+		rLoc = 749;
 		rType = 0;
 		vrLen = 702;
 		vrLoc = 0;

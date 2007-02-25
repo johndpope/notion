@@ -555,4 +555,26 @@ extern int enableMIDI;
 	[self tearDownUndoTest];
 }
 
+- (void)testUndoRedoSetChannel{
+	[self setUpUndoTest];
+	int startChannel = [staff channel];
+	[staff setChannel:10];
+	[mgr undo];
+	STAssertEquals([staff channel], startChannel, @"Failed to undo setting staff channel.");
+	[mgr redo];
+	STAssertEquals([staff channel], 10, @"Failed to redo setting staff channel.");
+	[self tearDownUndoTest];
+}
+
+- (void)testUndoRedoSetTransposition{
+	[self setUpUndoTest];
+	int startTransp = [staff transposition];
+	[staff setTransposition:-3];
+	[mgr undo];
+	STAssertEquals([staff transposition], startTransp, @"Failed to undo setting staff transposition.");
+	[mgr redo];
+	STAssertEquals([staff transposition], -3, @"Failed to redo setting staff transposition.");
+	[self tearDownUndoTest];
+}
+
 @end
