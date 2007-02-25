@@ -23,6 +23,7 @@
 
 - (NSArray *)allDrums;
 
+- (Staff *)staff;
 - (void)setStaff:(Staff *)_staff;
 
 - (NSMutableArray *)drums;
@@ -31,6 +32,9 @@
 - (NSWindow *)editDialog;
 - (IBAction)closeDialog:(id)sender;
 - (IBAction)cancelDialog:(id)sender;
+
+- (IBAction)import:(id)sender;
+- (IBAction)export:(id)sender;
 
 + (DrumKit *)standardKit;
 

@@ -21,7 +21,8 @@
 + (void)initialize{
 	[NSValueTransformer setValueTransformer:[[[TranspositionValueTransformer alloc] init] autorelease] forName:@"TranspositionValueTransformer"];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"NO" forKey:@"SSTFHideKeyHelp"];
+	NSDictionary *appDefaults = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"NO", @"YES", nil]
+															forKeys:[NSArray arrayWithObjects:@"SSTFHideKeyHelp", @"NSNavPanelExpandedStateForSaveMode", nil]];
     [defaults registerDefaults:appDefaults];
 }
 
