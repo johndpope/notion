@@ -64,6 +64,7 @@
 }
 
 - (void)setTransposition:(int)_transposition{
+	[[[self undoManager] prepareWithInvocationTarget:self] setTransposition:transposition];
 	transposition = _transposition;
 }
 
@@ -519,6 +520,7 @@
 }
 
 - (void)setChannel:(int)_channel{
+	[[[self undoManager] prepareWithInvocationTarget:self] setChannel:(channel + 1)];
 	channel = _channel - 1;
 	[self setIsDrums:[self isDrums]]; //trigger KVO
 	[self sendChangeNotification];
