@@ -1,0 +1,20 @@
+{
+    IBClasses = (
+        {CLASS = Clef; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = DNDArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {tableView = NSTableView; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {
+            ACTIONS = {cancelDialog = id; closeDialog = id; export = id; import = id; }; 
+            CLASS = DrumKit; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {editDialog = NSWindow; }; 
+            SUPERCLASS = Clef; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}
