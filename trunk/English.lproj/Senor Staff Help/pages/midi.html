@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/sgml/loosedtd.html">
 <html>
 	<head>
-		<title>Fine-tuned MIDI control</title>
+		<title>Controlling MIDI playback and MIDI files</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="keywords" content="midi, channel, device, synthesize, synth, input, output, controller, module">
 		<meta name="description" content="Learn how to control MIDI parameters for playback.">
@@ -22,7 +22,7 @@
 				<img class="icon" src="../gfx/icon.png" alt="Se&ntilde;or Staff Icon" />
 			</div>
 			<div id="pagetitle">
-				<h1>Fine-tuned MIDI control</h1>
+				<h1>Controlling MIDI playback and MIDI files</h1>
 			</div>
 <!--
 				<p style="text-align: center;">
@@ -58,6 +58,17 @@
 							<li>Click the "M" button to the left of the editing window to mute a staff (prevent it from being played).</li>
 							<li>Click the "S" button to the left of the editing window to solo a staff (prevent all other staffs from being played).</li>
 						</ol>
+					</p>
+				</div>
+
+				<div summary="How to export to a MIDI file" id="taskbox">
+					<p>
+						<strong>To export a song to a MIDI file:</strong>
+						<ol>
+							<li>Select "Export as..." from the File menu.</li>
+							<li>Select "MIDI file" from the "file format" dropdown.</li>
+						</ol>
+						<strong>Due to a bug in Apple's CoreMidi library, MIDI export does not yet work on Intel Macs.  To export to MIDI on an Intel Mac, quit Se&ntilde;or Staff, <a href="http://docs.info.apple.com/article.html?artnum=303120">force it to run with Rosetta</a>, and do the export.</strong> 
 					</p>
 				</div>
 
