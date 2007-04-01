@@ -11,6 +11,8 @@
 		78124F860AAB6C6500D20E98 /* ScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78124F850AAB6C6500D20E98 /* ScoreView.m */; };
 		7813C3880B1168E300CE7F59 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7813C3870B1168E300CE7F59 /* stop.png */; };
 		7813C38A0B1168FE00CE7F59 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 7813C3890B1168FE00CE7F59 /* play.png */; };
+		78196F050BB731E800063447 /* MIDIUtil.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78196F030BB731E800063447 /* MIDIUtil.h */; };
+		78196F060BB731E800063447 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 78196F040BB731E800063447 /* MIDIUtil.m */; };
 		784182AB0BAE087900F2A4CF /* NSTableView+CocoaBindingsDeleteKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 784182AA0BAE087900F2A4CF /* NSTableView+CocoaBindingsDeleteKey.m */; };
 		7841FD2E0A09D29B00292132 /* MusicDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7841FD2C0A09D29B00292132 /* MusicDocument.nib */; };
 		7841FD7F0A0B073B00292132 /* MEWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7841FD7E0A0B073B00292132 /* MEWindowController.m */; };
@@ -208,6 +210,7 @@
 				78684D360B7E8F78002CCC1E /* NSBezierPathAdditions.h in CopyFiles */,
 				789ACD370B90E29000A96BF4 /* DNDArrayController.h in CopyFiles */,
 				789ACEBE0B90F7F700A96BF4 /* Drum.h in CopyFiles */,
+				78196F050BB731E800063447 /* MIDIUtil.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +233,8 @@
 		7813C3870B1168E300CE7F59 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		7813C3890B1168FE00CE7F59 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		7813C38D0B11692100CE7F59 /* ToolbarHelperController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolbarHelperController.h; sourceTree = "<group>"; };
+		78196F030BB731E800063447 /* MIDIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIUtil.h; sourceTree = "<group>"; };
+		78196F040BB731E800063447 /* MIDIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIDIUtil.m; sourceTree = "<group>"; };
 		784182AA0BAE087900F2A4CF /* NSTableView+CocoaBindingsDeleteKey.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSTableView+CocoaBindingsDeleteKey.m"; sourceTree = "<group>"; };
 		7841FD2D0A09D29B00292132 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MusicDocument.nib; sourceTree = "<group>"; };
 		7841FD7D0A0B073B00292132 /* MEWindowController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MEWindowController.h; sourceTree = "<group>"; };
@@ -499,7 +504,7 @@
 				7841FDD50A0B1E1E00292132 /* Model */,
 				786EB9990A7878DD009D63DD /* View */,
 				788707780AAD005C0057D6DD /* Controller */,
-				78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */,
+				78E82B7B0A18048B00DA31A3 /* MIDI */,
 				78AF67700B7570760072CACE /* Cocoa categories */,
 			);
 			name = Classes;
@@ -733,15 +738,17 @@
 			name = NSViews;
 			sourceTree = "<group>";
 		};
-		78E82B7B0A18048B00DA31A3 /* MIDI endpoint selection */ = {
+		78E82B7B0A18048B00DA31A3 /* MIDI */ = {
 			isa = PBXGroup;
 			children = (
 				78E82A0F0A17FF9800DA31A3 /* CAMIDIEndpointMenu2.h */,
 				78E82A100A17FF9800DA31A3 /* CAMIDIEndpointMenu2.mm */,
 				78E829300A17FD6600DA31A3 /* CAMIDIEndpoints.cpp */,
 				78E829310A17FD6600DA31A3 /* CAMIDIEndpoints.h */,
+				78196F030BB731E800063447 /* MIDIUtil.h */,
+				78196F040BB731E800063447 /* MIDIUtil.m */,
 			);
-			name = "MIDI endpoint selection";
+			name = MIDI;
 			sourceTree = "<group>";
 		};
 		78F2DB200A33B39E0052DB2C /* images */ = {
@@ -1024,6 +1031,7 @@
 				789ACD380B90E29000A96BF4 /* DNDArrayController.m in Sources */,
 				789ACEBF0B90F7F700A96BF4 /* Drum.m in Sources */,
 				784182AB0BAE087900F2A4CF /* NSTableView+CocoaBindingsDeleteKey.m in Sources */,
+				78196F060BB731E800063447 /* MIDIUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

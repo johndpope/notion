@@ -22,6 +22,8 @@
 
 #import "CompoundTimeSig.h"
 
+#import "MIDIUtil.h"
+
 int enableMIDI = 1;
 
 @implementation Song
@@ -526,21 +528,20 @@ int enableMIDI = 1;
 }
 
 - (NSData *)asMIDIData{
-#ifdef __BIG_ENDIAN__
 	[self stopPlaying];
 	[self addTracksToSequenceWithSelection:nil includeAll:YES];
+	NSData *data;
+#ifdef __BIG_ENDIAN__
 	CFDataRef dataRef;
-	if (MusicSequenceSaveSMFData(musicSequence, &dataRef, 0) != noErr) {
+	if (MusicSequenceSaveSMFData(musicSequence, &dataRef, 480) != noErr) {
 		[NSException raise:@"main" format:@"Cannot save SMF data."];
 	}
-	[self cleanMIDI];
-	return [(NSData *)dataRef autorelease];
+	data = [(NSData *)dataRef autorelease];
 #else
-	NSAlert *alert = [NSAlert alertWithMessageText:@"MIDI export does not currently work on Intel-based systems." defaultButton:nil alternateButton:nil otherButton:nil 
-						 informativeTextWithFormat:@"See http://code.google.com/p/senorstaff/issues/detail?id=61 for details.  For now, you can temporarily force the app to run under Rosetta, and retry the export."];
-	[alert runModal];
-	return nil;
+	data = [MIDIUtil writeSequenceToData:musicSequence];
 #endif
+	[self cleanMIDI];
+	return data;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{
