@@ -419,7 +419,6 @@ static char lastStatus = 0x00;
 			}
 			measure = [staff getLastMeasure];
 			if(deltaBeats > 0){
-				//TODO increase duration of open notes; add rests if none exist
 				if([openNoteArray count] == 0){
 					//add rests
 					float restsToCreate = deltaBeats * 3 / 4;
