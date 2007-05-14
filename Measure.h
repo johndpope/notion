@@ -37,6 +37,8 @@
 	IBOutlet NSPopUpButton *timeSigSecondBottom;
 	IBOutlet NSButton *timeSigInnerClose;
 	IBOutlet NSButton *timeSigExpand;
+	
+	NSArray *cachedNoteGroups;
 }
 
 - (id)initWithStaff:(Staff *)_staff;
@@ -52,6 +54,7 @@
 - (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index;
 - (NoteBase *)addNotesInternal:(NSArray *)_notes atIndex:(float)index consolidate:(BOOL)consolidate;
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp;
+- (void)removeNote:(NoteBase *)note temporary:(BOOL)temp;
 
 - (void)addNote:(NoteBase *)newNote toChordAtIndex:(float)index;
 - (void)removeNote:(NoteBase *)note fromChordAtIndex:(float)index;

@@ -47,8 +47,13 @@
 }
 
 - (float)getEffectiveDuration{
+	if([self getDuration] == 0) {
+		return 0;
+	}
 	float effDuration = 3.0 / (float)[self getDuration];
-	if([self getDotted]) effDuration *= 1.5;
+	if([self getDotted]){
+		 effDuration *= 1.5;
+	}
 	return effDuration;
 }
 
@@ -138,59 +143,77 @@
 	return remainingNotes;
 }
 
-- (void)tryToFill:(float)maxDuration{
+- (BOOL)tryToFill:(float)maxDuration{
 	if(maxDuration >= 4.5){
 		duration = 1;
 		dotted = YES;
+		return YES;
 	} else if(maxDuration >= 3){
 		duration = 1;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 2.25){
 		duration = 2;
 		dotted = YES;
+		return YES;
 	} else if(maxDuration >= 1.5){
 		duration = 2;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 1.0){
 		duration = 3;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.975){
 		duration = 4;
 		dotted = YES;
+		return YES;
 	} else if(maxDuration >= 0.75){
 		duration = 4;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.5){
 		duration = 6;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.5625){
 		duration = 8;
 		dotted = YES;
+		return YES;
 	} else if(maxDuration >= 0.375){
 		duration = 8;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.25){
 		duration = 12;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.28125){
 		duration = 16;
 		dotted = YES;
+		return YES;
 	} else if(maxDuration >= 0.1875){
 		duration = 16;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.125){
 		duration = 24;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.140625){
 		duration = 32;
 		dotted = YES;
+		return YES;
 	} else if(maxDuration >= 0.09375){
 		duration = 32;
 		dotted = NO;
+		return YES;
 	} else if(maxDuration >= 0.0625){
 		duration = 48;
 		dotted = NO;
+		return YES;
 	}
+	return NO;
 }
 
 // -- tie methods - do nothing by default

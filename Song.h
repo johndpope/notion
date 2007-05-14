@@ -33,6 +33,7 @@
 }
 
 - (id)initWithDocument:(MusicDocument *)_doc;
+- (id)initFromMIDI:(NSData *)data withDocument:(MusicDocument *)_doc;
 
 - (MusicDocument *)document;
 - (void)setDocument:(MusicDocument *)_document;

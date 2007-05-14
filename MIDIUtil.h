@@ -8,11 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import <AudioToolbox/AudioToolbox.h>
+@class Song;
 
 @interface MIDIUtil : NSObject {
 
 }
 
 + (NSData *)writeSequenceToData:(MusicSequence)seq;
++ (void)readSong:(Song *)song fromMIDI:(NSData *)data;
 
 @end

@@ -72,6 +72,8 @@
 
 - (NSArray *)notesBetweenNote:(id)note1 andNote:(id)note2;
 
+- (void)removeLastNote;
+
 - (void)cleanPanels;
 
 - (BOOL)isDrums;
