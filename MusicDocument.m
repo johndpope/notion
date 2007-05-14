@@ -62,6 +62,27 @@
 }
 
 -(BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType{
+	if([aType isEqualToString:@"MIDI file"]){
+		@try {
+			NSAlert *alert = [NSAlert alertWithMessageText:@"Importing from a MIDI file is currently an experimental feature."
+											 defaultButton:@"OK"
+										   alternateButton:nil
+											   otherButton:nil
+								 informativeTextWithFormat:@"The resulting score may contain errors.  If so, please report a bug using the \"Report a Bug\" item in the \"Help\" menu, and attach the MIDI file to the bug report."];
+			[alert runModal];
+			[self setSong:[[Song alloc] initFromMIDI:data withDocument:self]];
+		}
+		@catch (NSException *exception) {
+			NSAlert *alert = [NSAlert alertWithMessageText:@"The selected MIDI file was invalid or could not be imported."
+											 defaultButton:@"OK"
+										   alternateButton:nil
+											   otherButton:nil
+								 informativeTextWithFormat:[exception reason]];
+			[alert runModal];
+			return NO;
+		}
+		return YES;
+	}
 	[self setSong:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
 	return YES;
 }
@@ -77,7 +98,7 @@
 }
 
 - (IBAction)goToBugReport:(id)sender{
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://code.google.com/p/senorstaff/issues/list"]];	
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://code.google.com/p/senorstaff/issues/entry"]];	
 }
 
 @end
