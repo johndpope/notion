@@ -177,7 +177,11 @@
 		[note setDuration:[self getDuration]];		
 		[note setDotted:[self getDotted]];
 	}
-	[notes addObject:note];
+	if([note respondsToSelector:@selector(getNotes)]){
+		[[notes doSelf] addObject:[[note getNotes] each]];
+	} else {
+		[notes addObject:note];
+	}
 	[self sendChangeNotification];
 }
 

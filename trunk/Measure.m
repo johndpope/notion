@@ -26,8 +26,14 @@
 	if((self = [super init])){
 		notes = [[NSMutableArray array] retain];
 		staff = _staff;
+		cachedNoteGroups = nil;
 	}
 	return self;
+}
+
+- (void)clearCaches {
+	[cachedNoteGroups release];
+	cachedNoteGroups = nil;
 }
 
 - (Staff *)getStaff{
@@ -55,6 +61,7 @@
 }
 
 - (void)setNotes:(NSMutableArray *)_notes{
+	[self clearCaches];
 	[self prepUndo];
 	if(![notes isEqual:_notes]){
 		[notes release];
@@ -75,6 +82,7 @@
 }
 
 - (void)addNote:(NoteBase *)_note atIndex:(float)index tieToPrev:(BOOL)tieToPrev{
+	[self clearCaches];
 	[self prepUndo];
 	if(((int)(index * 2)) % 2 == 0){
 		if(![_note canBeInChord]){
@@ -96,11 +104,13 @@
 }
 
 - (NoteBase *)addNotes:(NSArray *)_notes atIndex:(float)index{
+	[self clearCaches];
 	[self prepUndo];
 	return [self addNotesInternal:_notes atIndex:index consolidate:YES];
 }
 
 - (NoteBase *)addNotesInternal:(NSArray *)_notes atIndex:(float)index consolidate:(BOOL)consolidate{
+	[self clearCaches];
 	NSEnumerator *notesEnum = [_notes reverseObjectEnumerator];
 	NoteBase *note;
 	index = ceil(index);
@@ -148,6 +158,7 @@
 }
 
 - (void)consolidateNote:(NoteBase *)note{
+	[self clearCaches];
 	NoteBase *oldNote = [note getTieFrom];
 	int index = [notes indexOfObject:oldNote];
 	NoteBase *noteToAdd = [note copy];
@@ -184,6 +195,7 @@
 }
 
 - (NoteBase *)refreshNotes:(NoteBase *)rtn{
+	[self clearCaches];
 	float totalDuration = [self getTotalDuration];
 	float maxDuration = [[self getEffectiveTimeSignature] getMeasureDuration];
 	NSMutableArray *notesToPush = [NSMutableArray array];
@@ -236,6 +248,7 @@
 }
 
 - (void)grabNotesFromNextMeasure{
+	[self clearCaches];
 	if([staff getLastMeasure] == self) return;
 	Measure *nextMeasure = [staff getMeasureAfter:self createNew:YES];
 	[nextMeasure prepUndo];
@@ -271,20 +284,27 @@
 }
 
 - (void)removeNoteAtIndex:(float)x temporary:(BOOL)temp{
-	[self prepUndo];
+	[self clearCaches];
 	NoteBase *note = [notes objectAtIndex:floor(x)];
+	[self removeNote:note temporary:temp];
+}
+
+- (void)removeNote:(NoteBase *)note temporary:(BOOL)temp{
+	[self clearCaches];
+	[self prepUndo];
 	if(!temp){
 		[note prepareForDelete];
 	}
-	[notes removeObjectAtIndex:floor(x)];
+	[notes removeObject:note];
 	[self grabNotesFromNextMeasure];
 	if(!temp){
 		[staff cleanEmptyMeasures];
 		[self sendChangeNotification];
-	}
+	}	
 }
 
 - (void)addNote:(NoteBase *)newNote toChordAtIndex:(float)index{
+	[self clearCaches];
 	NoteBase *note = [notes objectAtIndex:index];
 	if([note isKindOfClass:[Chord class]]){
 		[note addNote:newNote];
@@ -298,6 +318,7 @@
 }
 
 - (void)removeNote:(NoteBase *)note fromChordAtIndex:(float)index{
+	[self clearCaches];
 	NoteBase *chord = [notes objectAtIndex:index];
 	if([chord isKindOfClass:[Chord class]]){
 		if([[chord getNotes] containsObject:note]){
@@ -345,6 +366,9 @@
 }
 
 - (NSArray *)getNoteGroups{
+	if(cachedNoteGroups != nil) {
+		return cachedNoteGroups;
+	}
 	NSMutableArray *groups = [NSMutableArray array];
 	NSMutableArray *group = [NSMutableArray array];
 	NSEnumerator *notesEnum = [notes objectEnumerator];
@@ -381,6 +405,7 @@
 	if([group count] > 1){
 		[groups addObject:group];
 	}
+	cachedNoteGroups = [groups retain];
 	return groups;
 }
 
@@ -489,6 +514,7 @@
 }
 
 - (void)timeSignatureChangedFrom:(float)oldTotal to:(float)newTotal{
+	[self clearCaches];
 	if(newTotal < oldTotal){
 		[self prepUndo];
 		[self refreshNotes:nil];
@@ -606,14 +632,17 @@
 }
 
 - (void)transposeBy:(int)numLines{
+	[self clearCaches];
 	[[notes do] transposeBy:numLines];
 }
 
 - (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig{
+	[self clearCaches];
 	[[notes do] transposeBy:numHalfSteps oldSignature:oldSig newSignature:newSig];
 }
 
 - (IBAction)keySigChanged:(id)sender{
+	[self clearCaches];
 	[[self undoManager] setActionName:@"changing key signature"];
 	KeySignature *newSig;
 	if([[[keySigMajMin selectedItem] title] isEqual:@"major"]){
@@ -659,6 +688,7 @@
 }
 
 - (void)processTimeSignatureChange:(BOOL)compound{
+	[self clearCaches];
 	if(compound){
 		[staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]
 							 secondTop:[timeSigSecondTopText intValue] secondBottom:[[[timeSigSecondBottom selectedItem] title] intValue]];
@@ -696,6 +726,7 @@
 }
 
 - (void)timeSigDelete{
+	[self clearCaches];
 	[[self undoManager] setActionName:@"deleting time signature"];
 	[staff timeSigDeletedAtMeasure:self];
 }
@@ -817,10 +848,12 @@
 	[keySig release];
 	[notes release];
 	[anim release];
+	[cachedNoteGroups release];
 	clef = nil;
 	keySig = nil;
 	notes = nil;
 	anim = nil;
+	cachedNoteGroups = nil;
 	[super dealloc];
 }
 

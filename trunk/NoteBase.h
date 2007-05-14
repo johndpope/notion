@@ -50,7 +50,7 @@
 - (void)prepareForDelete;
 
 - (NSArray *)subtractDuration:(float)maxDuration;
-- (void)tryToFill:(float)maxDuration;
+- (BOOL)tryToFill:(float)maxDuration;
 
 - (void)tieTo:(NoteBase *)note;
 - (NoteBase *)getTieTo;

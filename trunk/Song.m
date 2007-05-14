@@ -44,6 +44,13 @@ int enableMIDI = 1;
 	return self;
 }
 
+- (id)initFromMIDI:(NSData *)data withDocument:(MusicDocument *)_doc{
+	if((self = [self initWithDocument:_doc])){
+		[MIDIUtil readSong:self fromMIDI:data];
+	}
+	return self;
+}
+
 - (void)initMIDI{
 	if (NewMusicPlayer(&musicPlayer) != noErr) {
 		[NSException raise:@"main" format:@"Cannot create music player."];

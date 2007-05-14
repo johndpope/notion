@@ -72,6 +72,13 @@ extern int enableMIDI;
 	//STAssertEqualObjects([[array objectAtIndex:0] getTieTo], [array objectAtIndex:1], @"Notes returned from subtracting duration not tied together.");
 }
 
+- (void) testAddNoteAddsOtherChord{
+	Chord *otherChord = [chord copy];
+	[chord addNote:otherChord];
+	STAssertEquals([[chord getNotes] count], (unsigned)6, @"Chord not added to other chord.");
+	[otherChord release];
+}
+
 // undo/redo tests
 
 - (void)setUpUndoTest{

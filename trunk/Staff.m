@@ -243,6 +243,14 @@
 	return nil;
 }
 
+- (void)removeLastNote{
+	Measure *measure = [measures lastObject];
+	while(measure != [measures objectAtIndex:0] && [[measure getNotes] count] == 0){
+		measure = [measures objectAtIndex:([measures indexOfObject:measure] - 1)];
+	}
+	[[measure getNotes] removeLastObject];
+}
+
 - (void)cleanEmptyMeasures{
 	while([measures count] > 1 && [[measures lastObject] isEmpty]){
 		Measure *measure = [measures lastObject];
@@ -529,7 +537,7 @@
 - (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection{
 	if (MusicSequenceNewTrack(*musicSequence, &musicTrack) != noErr) {
 		NSLog(@"Cannot create music track.");
-		return;
+		return 0;
 	}
   
 	NSEnumerator *measureEnum = [measures objectEnumerator];
@@ -564,7 +572,7 @@
 	MIDIMetaEvent metaEvent = { 0x2f, 0, 0, 0, 0, { 0 } };
 	if (MusicTrackNewMetaEvent(musicTrack, pos, &metaEvent) != noErr) {
 		NSLog(@"Cannot add end of track meta event to track.");
-		return;
+		return 0;
 	}
 
 	return pos;

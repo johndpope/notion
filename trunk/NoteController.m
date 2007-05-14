@@ -11,6 +11,7 @@
 #import "MeasureController.h"
 #import "NoteBase.h"
 #import "Note.h"
+#import "Rest.h"
 #import "Chord.h"
 #import "Measure.h"
 #import "Staff.h"
@@ -104,7 +105,7 @@ NSMutableDictionary *cachedNoteWidths = nil;
 			[commands addObject:@". - make dotted"];
 		}
 	}
-	if([note respondsToSelector:@selector(tieFrom:)]){
+	if([note respondsToSelector:@selector(tieFrom:)] && ![note isKindOfClass:[Rest class]]){
 		if([note getTieFrom] == nil){
 			if([[note getStaff] findPreviousNoteMatching:note inMeasure:[[note getStaff] getMeasureContainingNote:note]] != nil){
 				[commands addObject:@"[ - tie to previous note"];

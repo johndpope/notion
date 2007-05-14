@@ -104,7 +104,7 @@ static float lastFeedbackPosition = -1;
 				if([nextNote getDuration] >= 16){
 					[NSBezierPath strokeLineFromPoint:NSMakePoint(currStemX, currStemY + (stemUpwards ? 4 : -4))
 											  toPoint:NSMakePoint(nextStemX, nextStemY + (stemUpwards ? 4 : -4))];
-				} else if(prevNote != nil && [prevNote getDuration] < 16){
+				} else{
 					float partialStemX, partialStemY;
 					if(prevNote == nil){
 						partialStemY = currStemY + (nextStemY - currStemY) * 8 / (nextStemX - currStemX);
@@ -120,7 +120,7 @@ static float lastFeedbackPosition = -1;
 					if([nextNote getDuration] >= 32){
 						[NSBezierPath strokeLineFromPoint:NSMakePoint(currStemX, currStemY + (stemUpwards ? 8 : -8))
 												  toPoint:NSMakePoint(nextStemX, nextStemY + (stemUpwards ? 8 : -8))];
-					} else if(prevNote != nil && [prevNote getDuration] < 32){
+					} else{
 						float partialStemX, partialStemY;
 						if(prevNote == nil){
 							partialStemY = currStemY + (nextStemY - currStemY) * 8 / (nextStemX - currStemX);
