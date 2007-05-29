@@ -41,7 +41,7 @@
 	return NO;
 }
 
-- (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+- (void)addNoteToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
 	[string appendString:@"r"];
 	[self addDurationToLilypondString:string];
 	[string appendString:@" "];
