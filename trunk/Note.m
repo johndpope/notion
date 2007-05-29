@@ -269,7 +269,7 @@
 	}
 }
 
-- (NSString *)addPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+- (void)addRegularPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
 	NSString *accStr;
 	int acc = [self getAbsoluteAccidentalWithPriorAccidentals:accidentals];
 	if(acc == FLAT){
@@ -289,6 +289,19 @@
 		[octaveStr appendString:@","];
 	}
 	[string appendFormat:@"%@%@", pitchStr, octaveStr];
+}
+
+- (void)addDrumPitchToLilypondString:(NSMutableString *)string{
+	Clef *clef = [[staff getMeasureContainingNote:self] getEffectiveClef];
+	[string appendString:[clef lilypondStringForPitch:[self getPitch] octave:[self getOctave]]];
+}
+
+- (void)addPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	if([staff isDrums]){
+		[self addDrumPitchToLilypondString:string];
+	} else{
+		[self addRegularPitchToLilypondString:string accidentals:accidentals];
+	}
 }
 
 - (void)addNoteToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{

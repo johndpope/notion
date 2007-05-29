@@ -94,6 +94,8 @@
 		789BC2A90A1FFD2000597728 /* trest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A50A1FFD2000597728 /* trest.png */; };
 		789C1CB80A524DA900572AA8 /* sstaff.icns in Resources */ = {isa = PBXBuildFile; fileRef = 789C1CB70A524DA900572AA8 /* sstaff.icns */; };
 		78A608D00B64502300DAE6DA /* playsel.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A608CF0B64502200DAE6DA /* playsel.png */; };
+		78AEFEF80C0BC4E90066C0A6 /* Drum+Lilypond.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AEFEF60C0BC4E90066C0A6 /* Drum+Lilypond.h */; };
+		78AEFEF90C0BC4E90066C0A6 /* Drum+Lilypond.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AEFEF70C0BC4E90066C0A6 /* Drum+Lilypond.m */; };
 		78AF637E0B7084500072CACE /* TranspositionValueTransformer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF637C0B7084500072CACE /* TranspositionValueTransformer.h */; };
 		78AF637F0B7084500072CACE /* TranspositionValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AF637D0B7084500072CACE /* TranspositionValueTransformer.m */; };
 		78AF641A0B7551BC0072CACE /* NSView+ScaleUtilities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AF64180B7551BC0072CACE /* NSView+ScaleUtilities.h */; };
@@ -211,6 +213,7 @@
 				789ACD370B90E29000A96BF4 /* DNDArrayController.h in CopyFiles */,
 				789ACEBE0B90F7F700A96BF4 /* Drum.h in CopyFiles */,
 				78196F050BB731E800063447 /* MIDIUtil.h in CopyFiles */,
+				78AEFEF80C0BC4E90066C0A6 /* Drum+Lilypond.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +349,8 @@
 		789BC2A50A1FFD2000597728 /* trest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trest.png; sourceTree = "<group>"; };
 		789C1CB70A524DA900572AA8 /* sstaff.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sstaff.icns; sourceTree = "<group>"; };
 		78A608CF0B64502200DAE6DA /* playsel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playsel.png; sourceTree = "<group>"; };
+		78AEFEF60C0BC4E90066C0A6 /* Drum+Lilypond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drum+Lilypond.h"; sourceTree = "<group>"; };
+		78AEFEF70C0BC4E90066C0A6 /* Drum+Lilypond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drum+Lilypond.m"; sourceTree = "<group>"; };
 		78AF62570B7056290072CACE /* TestUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtil.h; sourceTree = "<group>"; };
 		78AF637C0B7084500072CACE /* TranspositionValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspositionValueTransformer.h; sourceTree = "<group>"; };
 		78AF637D0B7084500072CACE /* TranspositionValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspositionValueTransformer.m; sourceTree = "<group>"; };
@@ -591,6 +596,8 @@
 				787A0B6C0B53648000926563 /* CompoundTimeSig.m */,
 				789ACEBC0B90F7F700A96BF4 /* Drum.h */,
 				789ACEBD0B90F7F700A96BF4 /* Drum.m */,
+				78AEFEF60C0BC4E90066C0A6 /* Drum+Lilypond.h */,
+				78AEFEF70C0BC4E90066C0A6 /* Drum+Lilypond.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1032,6 +1039,7 @@
 				789ACEBF0B90F7F700A96BF4 /* Drum.m in Sources */,
 				784182AB0BAE087900F2A4CF /* NSTableView+CocoaBindingsDeleteKey.m in Sources */,
 				78196F060BB731E800063447 /* MIDIUtil.m in Sources */,
+				78AEFEF90C0BC4E90066C0A6 /* Drum+Lilypond.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

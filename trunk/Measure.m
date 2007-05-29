@@ -812,13 +812,13 @@
 	if([self isStartRepeat]){
 		[string appendFormat:@"\\repeat volta %d {\n", [[self getRepeatStartingHere] numRepeats]];
 	}
-	if(clef != nil){
+	if(clef != nil && ![staff isDrums]){
 		[clef addToLilypondString:string];
 	}
 	if(![[self getTimeSignature] isKindOfClass:[NSNull class]]){
 		[[self getTimeSignature] addToLilypondString:string];
 	}
-	if(keySig != nil){
+	if(keySig != nil && ![staff isDrums]){
 		[keySig addToLilypondString:string];
 	}
 	NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];

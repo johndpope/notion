@@ -69,6 +69,16 @@ static NSArray *allDrums;
 	return [[drums objectAtIndex:([drums count] - position - 1)] shortName];
 }
 
+- (NSString *)lilypondStringForPitch:(int)pitch octave:(int)octave{
+	NSEnumerator *drumsEnum = [drums objectEnumerator];
+	id drum;
+	while(drum = [drumsEnum nextObject]){
+		if([drum pitch] == pitch && [drum octave] == octave){
+			return [drum lilypondString];
+		}
+	}
+}
+
 - (NSMutableArray *)drums{
 	return drums;
 }
