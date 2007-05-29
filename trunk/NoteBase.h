@@ -44,6 +44,7 @@
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
 			  transpose:(int)transposition onChannel:(int)channel;
 - (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
+- (void)addNoteToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
 - (void)addDurationToLilypondString:(NSMutableString *)string;
 
 - (void)transposeBy:(int)numLines;

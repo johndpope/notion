@@ -291,7 +291,7 @@
 	[string appendFormat:@"%@%@", pitchStr, octaveStr];
 }
 
-- (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+- (void)addNoteToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
 	[self addPitchToLilypondString:string accidentals:accidentals];
 	[self addDurationToLilypondString:string];
 	[string appendString:@" "];

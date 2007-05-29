@@ -115,7 +115,18 @@
 	return 0;
 }
 
-- (void)addToLilypondString:(NSMutableString *)string{
+- (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	NSArray *triplet = [self getContainingTriplet];
+	if([triplet objectAtIndex:0] == self){
+		[string appendString:@"\\times 2/3 {"];
+	}
+	[self addNoteToLilypondString:string accidentals:accidentals];
+	if([triplet lastObject] == self){
+		[string appendString:@"}"];
+	}
+}
+
+- (void)addNoteToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
 	[self doesNotRecognizeSelector:_cmd];
 }
 
@@ -239,7 +250,11 @@
 }
 
 - (void)addDurationToLilypondString:(NSMutableString *)string{
-	[string appendFormat:@"%d", [self getDuration]];
+	int duration = [self getDuration];
+	if(duration % 3 == 0) {
+		duration = duration * 2 / 3;
+	}
+	[string appendFormat:@"%d", duration];
 	if([self getDotted]){
 		[string appendString:@"."];
 	}

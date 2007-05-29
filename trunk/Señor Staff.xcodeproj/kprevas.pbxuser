@@ -1310,9 +1310,9 @@
 	};
 	7841FDD70A0B1E3100292132 /* Measure.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1330, 12656}}";
-			sepNavSelRange = "{327, 0}";
-			sepNavVisRect = "{{0, 0}, {1330, 278}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1063, 12656}}";
+			sepNavSelRange = "{24465, 0}";
+			sepNavVisRect = "{{0, 10962}, {1033, 745}}";
 			sepNavWindowFrame = "{{518, 70}, {789, 766}}";
 		};
 	};
@@ -1460,8 +1460,8 @@
 	784AFBB70A7F1C9A00832B7C /* NoteBase.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1033, 3654}}";
-			sepNavSelRange = "{5418, 0}";
-			sepNavVisRect = "{{0, 2867}, {1033, 745}}";
+			sepNavSelRange = "{1396, 33}";
+			sepNavVisRect = "{{0, 1137}, {1033, 745}}";
 			sepNavWindowFrame = "{{147, 52}, {630, 758}}";
 		};
 	};
@@ -2612,8 +2612,8 @@
 	786EBA470A7894E2009D63DD /* Rest.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1033, 980}}";
-			sepNavSelRange = "{1182, 0}";
-			sepNavVisRect = "{{0, 140}, {1033, 745}}";
+			sepNavSelRange = "{1023, 0}";
+			sepNavVisRect = "{{0, 137}, {1033, 745}}";
 			sepNavWindowFrame = "{{672, 96}, {630, 758}}";
 		};
 	};
@@ -5169,8 +5169,8 @@
 	78C52F340ACF4D6C006B5727 /* Chord.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1033, 3850}}";
-			sepNavSelRange = "{6128, 0}";
-			sepNavVisRect = "{{0, 2993}, {1033, 745}}";
+			sepNavSelRange = "{5784, 0}";
+			sepNavVisRect = "{{0, 2979}, {1033, 745}}";
 			sepNavWindowFrame = "{{101, 94}, {630, 758}}";
 		};
 	};
@@ -5905,7 +5905,7 @@
 		fRef = 784AFBB60A7F1C9A00832B7C /* NoteBase.h */;
 		name = "NoteBase.h: tryToFill:";
 		rLen = 0;
-		rLoc = 1331;
+		rLoc = 1437;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 171;
@@ -5945,7 +5945,7 @@
 		fRef = 786EBA470A7894E2009D63DD /* Rest.m */;
 		name = "Rest.m: 47";
 		rLen = 0;
-		rLoc = 1214;
+		rLoc = 1218;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 182;
@@ -5955,7 +5955,7 @@
 		fRef = 786EBA470A7894E2009D63DD /* Rest.m */;
 		name = "Rest.m: 45";
 		rLen = 0;
-		rLoc = 1211;
+		rLoc = 1215;
 		rType = 0;
 		vrLen = 1386;
 		vrLoc = 182;
@@ -5975,7 +5975,7 @@
 		fRef = 78FA8CC70A0ECC0F00A37E39 /* Note.m */;
 		name = "Note.m: 246";
 		rLen = 0;
-		rLoc = 9296;
+		rLoc = 9300;
 		rType = 0;
 		vrLen = 1503;
 		vrLoc = 6883;
@@ -5985,7 +5985,7 @@
 		fRef = 786EBA470A7894E2009D63DD /* Rest.m */;
 		name = "Rest.m: 45";
 		rLen = 0;
-		rLoc = 1211;
+		rLoc = 1215;
 		rType = 0;
 		vrLen = 1386;
 		vrLoc = 182;
@@ -6005,7 +6005,7 @@
 		fRef = 78FA8CC70A0ECC0F00A37E39 /* Note.m */;
 		name = "accidentals:(NSMutableDictionary *)accidentals";
 		rLen = 47;
-		rLoc = 9136;
+		rLoc = 9140;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 7084;
@@ -6035,7 +6035,7 @@
 		fRef = 786EBA470A7894E2009D63DD /* Rest.m */;
 		name = "Rest.m: canBeInChord";
 		rLen = 0;
-		rLoc = 1108;
+		rLoc = 1112;
 		rType = 0;
 		vrLen = 1433;
 		vrLoc = 182;
@@ -6145,7 +6145,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 240";
 		rLen = 0;
-		rLoc = 6233;
+		rLoc = 6237;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 5121;
@@ -6172,15 +6172,15 @@
 		hitCount = 1;
 		lineNumber = 273;
 		location = "Señor Staff";
-		modificationTime = 201593107.384898;
-		state = 1;
+		modificationTime = 202095720.080244;
+		state = 2;
 	};
 	78F5C9CC0C040D9900E06EE3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 241";
 		rLen = 0;
-		rLoc = 6262;
+		rLoc = 6266;
 		rType = 0;
 		vrLen = 1522;
 		vrLoc = 5121;
@@ -6200,7 +6200,7 @@
 		fRef = 786EBA470A7894E2009D63DD /* Rest.m */;
 		name = "Rest.m: 46";
 		rLen = 0;
-		rLoc = 1182;
+		rLoc = 1186;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 182;
@@ -6210,7 +6210,7 @@
 		fRef = 784AFBB60A7F1C9A00832B7C /* NoteBase.h */;
 		name = "NoteBase.h: addDurationToLilypondString:";
 		rLen = 0;
-		rLoc = 1098;
+		rLoc = 1204;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 230;
@@ -6220,7 +6220,7 @@
 		fRef = 786EBA470A7894E2009D63DD /* Rest.m */;
 		name = "Rest.m: 46";
 		rLen = 0;
-		rLoc = 1182;
+		rLoc = 1186;
 		rType = 0;
 		vrLen = 1444;
 		vrLoc = 182;
@@ -6230,7 +6230,7 @@
 		fRef = 784AFBB60A7F1C9A00832B7C /* NoteBase.h */;
 		name = "NoteBase.h: addDurationToLilypondString:";
 		rLen = 0;
-		rLoc = 1098;
+		rLoc = 1204;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 230;
@@ -6250,7 +6250,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 242";
 		rLen = 0;
-		rLoc = 6309;
+		rLoc = 6313;
 		rType = 0;
 		vrLen = 1552;
 		vrLoc = 5121;
@@ -6260,7 +6260,7 @@
 		fRef = 78FA8CC70A0ECC0F00A37E39 /* Note.m */;
 		name = "Note.m: 296";
 		rLen = 0;
-		rLoc = 9293;
+		rLoc = 9297;
 		rType = 0;
 		vrLen = 1742;
 		vrLoc = 8384;
@@ -6270,7 +6270,7 @@
 		fRef = 78FA8CC70A0ECC0F00A37E39 /* Note.m */;
 		name = "Note.m: 296";
 		rLen = 0;
-		rLoc = 9293;
+		rLoc = 9297;
 		rType = 0;
 		vrLen = 1742;
 		vrLoc = 8384;
@@ -6280,7 +6280,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 239";
 		rLen = 0;
-		rLoc = 6128;
+		rLoc = 6132;
 		rType = 0;
 		vrLen = 1568;
 		vrLoc = 5121;
@@ -6290,7 +6290,7 @@
 		fRef = 78C52F340ACF4D6C006B5727 /* Chord.m */;
 		name = "Chord.m: 239";
 		rLen = 0;
-		rLoc = 6128;
+		rLoc = 6132;
 		rType = 0;
 		vrLen = 1568;
 		vrLoc = 5121;
@@ -6549,15 +6549,15 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1033, 826}}";
 			sepNavSelRange = "{1346, 0}";
-			sepNavVisRect = "{{0, 81}, {1033, 745}}";
+			sepNavVisRect = "{{0, 0}, {1033, 745}}";
 			sepNavWindowFrame = "{{286, 107}, {500, 716}}";
 		};
 	};
 	78FA8CC70A0ECC0F00A37E39 /* Note.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {2036, 4676}}";
-			sepNavSelRange = "{9293, 0}";
-			sepNavVisRect = "{{0, 3732}, {1033, 745}}";
+			sepNavSelRange = "{9098, 0}";
+			sepNavVisRect = "{{0, 3596}, {1033, 745}}";
 			sepNavWindowFrame = "{{286, 107}, {500, 716}}";
 		};
 	};
@@ -6587,7 +6587,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1033, 1358}}";
 			sepNavSelRange = "{770, 9}";
-			sepNavVisRect = "{{0, 13}, {1033, 745}}";
+			sepNavVisRect = "{{0, 0}, {1033, 745}}";
 			sepNavWindowFrame = "{{238, 112}, {737, 663}}";
 		};
 	};
