@@ -273,4 +273,9 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 	return self;
 }
 
+- (void)addToLilypondString:(NSMutableString *)string{
+	NSString *lyPitches[] = {@"a", @"ais", @"bes", @"b", @"ces", @"c", @"cis", @"des", @"d", @"dis", @"ees", @"e", @"f", @"fis", @"ges", @"g", @"gis", @"aes"};
+	[string appendFormat:@"\\key %@ \\%@ ", lyPitches[[self getIndexFromA]], (minor ? @"minor" : @"major")];
+}
+
 @end

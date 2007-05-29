@@ -58,6 +58,9 @@
 	if([aType isEqualToString:@"MIDI file"]){
 		return [song asMIDIData];
 	}
+	if([aType isEqualToString:@"LilyPond file"]){
+		return [song asLilypond];
+	}
 	return [NSKeyedArchiver archivedDataWithRootObject:song];
 }
 

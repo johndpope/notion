@@ -14,6 +14,7 @@
 #import "DrumKit.h"
 #import "Staff.h"
 #import "TimeSignature.h"
+#import "TempoData.h"
 #import "NSView+Fade.h"
 @class MeasureDraw;
 @class DrumMeasureDraw;
@@ -454,6 +455,10 @@
 	return [[[self getStaff] getSong] repeatIsOpenAt:[self indexInStaff]];
 }
 
+- (Repeat *)getRepeatStartingHere{
+	return [[[self getStaff] getSong] repeatStartingAt:[self indexInStaff]];
+}
+
 - (Repeat *)getRepeatEndingHere{
 	return [[[self getStaff] getSong] repeatEndingAt:[self indexInStaff]];
 }
@@ -797,6 +802,30 @@
 		}
 	}
 	return pos - initPos;
+}
+
+- (void)addToLilypondString:(NSMutableString *)string{
+	TempoData *tempo = [[[staff getSong] tempoData] objectAtIndex:[[staff getMeasures] indexOfObject:self]];
+	if(![tempo empty]){
+		[string appendFormat:@"\\tempo 4=%d ", (int)[tempo tempo]];
+	}
+	if([self isStartRepeat]){
+		[string appendFormat:@"\\repeat volta %d {\n", [[self getRepeatStartingHere] numRepeats]];
+	}
+	if(clef != nil){
+		[clef addToLilypondString:string];
+	}
+	if(![[self getTimeSignature] isKindOfClass:[NSNull class]]){
+		[[self getTimeSignature] addToLilypondString:string];
+	}
+	if(keySig != nil){
+		[keySig addToLilypondString:string];
+	}
+	NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];
+	[[notes do] addToLilypondString:string accidentals:accidentals];
+	if([self isEndRepeat]){
+		[string appendString:@"\n}\n"];
+	}
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

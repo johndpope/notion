@@ -551,6 +551,15 @@ int enableMIDI = 1;
 	return data;
 }
 
+- (NSData *)asLilypond{
+	NSMutableString *string = [NSMutableString string];
+	[string appendString:@"\\version \"2.10.25\"\n"];
+	[string appendString:@"\\score {\n<<\n"];
+	[[staffs do] addToLilypondString:string];
+	[string appendString:@">>\n}\n"];
+	return [string dataUsingEncoding:NSUTF8StringEncoding];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:staffs forKey:@"staffs"];
 	[coder encodeObject:tempoData forKey:@"tempoData"];

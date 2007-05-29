@@ -29,6 +29,8 @@
 
 - (int)getKeySigOffset;
 
+- (void)addToLilypondString:(NSMutableString *)string;
+
 - (Class)getViewClass;
 
 @end

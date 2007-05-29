@@ -43,6 +43,8 @@
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals
 			  transpose:(int)transposition onChannel:(int)channel;
+- (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
+- (void)addDurationToLilypondString:(NSMutableString *)string;
 
 - (void)transposeBy:(int)numLines;
 - (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig;

@@ -95,6 +95,24 @@
 		[obj getAccidental] == accidental;
 }
 
+- (int)getEffectiveAccidentalWithKeySignature:(KeySignature *)keySig priorAccidentals:(NSMutableDictionary *)accidentals{
+	int effAccidental = accidental;
+	if(accidentals != nil){
+		if(effAccidental == NO_ACC){
+			NSNumber *effAccGet = [accidentals objectForKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+			if(effAccGet != nil){
+				effAccidental = [effAccGet intValue];
+			}
+		} else{
+			[accidentals setObject:[[[NSNumber alloc] initWithInt:accidental] autorelease] forKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+		}
+	}
+	if(effAccidental == NO_ACC){
+		return [keySig getAccidentalAtPosition:pitch];
+	}
+	return effAccidental;
+}
+
 - (int)getEffectivePitchWithKeySignature:(KeySignature *)keySig priorAccidentals:(NSMutableDictionary *)accidentals{
 	int effPitch = octave * 12 + [keySig getPitchAtPosition:pitch];
 	int effAccidental = accidental;
@@ -240,6 +258,43 @@
 	int pitch = [clef getPitchForPosition:4];
 	int octave = [clef getOctaveForPosition:4];
 	return [Note closestNoteTo:NSMakePoint(pitch, octave) withRank:rank];
+}
+
+- (int)getAbsoluteAccidentalWithPriorAccidentals:(NSMutableDictionary *)accidentals{
+	if(accidental == NO_ACC){
+		KeySignature *keySig = [[staff getMeasureContainingNote:self] getEffectiveKeySignature];
+		return [self getEffectiveAccidentalWithKeySignature:keySig priorAccidentals:accidentals];
+	} else {
+		return accidental;
+	}
+}
+
+- (NSString *)addPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	NSString *accStr;
+	int acc = [self getAbsoluteAccidentalWithPriorAccidentals:accidentals];
+	if(acc == FLAT){
+		accStr = @"es";
+	} else if(acc == SHARP){
+		accStr = @"is";		
+	} else {
+		accStr = @"";
+	}
+	NSString *pitchStr = [NSString stringWithFormat:@"%c%@", ('a' + ((pitch + 2) % 7)), accStr];
+	NSMutableString *octaveStr = [NSMutableString string];
+	int i;
+	for(i = octave; i > 4; i--){
+		[octaveStr appendString:@"'"];
+	}
+	for(i = octave; i < 4; i++){
+		[octaveStr appendString:@","];
+	}
+	[string appendFormat:@"%@%@", pitchStr, octaveStr];
+}
+
+- (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	[self addPitchToLilypondString:string accidentals:accidentals];
+	[self addDurationToLilypondString:string];
+	[string appendString:@" "];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

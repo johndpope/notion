@@ -41,6 +41,12 @@
 	return NO;
 }
 
+- (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	[string appendString:@"r"];
+	[self addDurationToLilypondString:string];
+	[string appendString:@" "];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:staff forKey:@"staff"];
 	[coder encodeInt:duration forKey:@"duration"];

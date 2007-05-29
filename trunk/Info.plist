@@ -26,6 +26,7 @@
 			<key>NSExportableAs</key>
 			<array>
 				<string>MIDI file</string>
+				<string>LilyPond file</string>
 			</array>
 		</dict>
 		<dict>
@@ -41,6 +42,22 @@
 			<string>MIDI file</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSDocumentClass</key>
+			<string>MusicDocument</string>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ly</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>LilyPond file</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>

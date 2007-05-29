@@ -71,6 +71,14 @@
 	return ([self getOctaveForPosition:0] - [clef getOctaveForPosition:0]) * 7;
 }
 
+- (void)addToLilypondString:(NSMutableString *)string{
+	if(self == [Clef trebleClef]){
+		[string appendString:@"\\clef treble "];
+	} else if(self == [Clef bassClef]){
+		[string appendString:@"\\clef bass "];
+	}
+}
+
 - (Class)getViewClass{
 	return [ClefDraw class];
 }

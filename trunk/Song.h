@@ -84,5 +84,6 @@
 - (void)stopPlaying;
 
 - (NSData *)asMIDIData;
+- (NSData *)asLilypond;
 
 @end
