@@ -53,6 +53,6 @@ static int FLAT = -1;
 
 - (void)collapseOnTo:(Note *)note;
 
-- (NSString *)addPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
+- (void)addPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
 
 @end

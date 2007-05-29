@@ -580,12 +580,19 @@
 }
 
 - (void)addToLilypondString:(NSMutableString *)string{
-	[string appendString:@"\\new Staff {\n"];
+	if([self isDrums]){
+		[string appendString:@"\\new DrumStaff {\n\\drummode{\n"];
+	} else {
+		[string appendString:@"\\new Staff {\n"];
+	}
 	if([[self name] length] > 0){
 		[string appendFormat:@"\\set Staff.instrumentName = \"%@\"\n", [self name]];
 	}
 	[[measures do] addToLilypondString:string];
 	[string appendString:@"}\n"];
+	if([self isDrums]){
+		[string appendString:@"}\n"];
+	}
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{
