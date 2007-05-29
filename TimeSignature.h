@@ -30,6 +30,8 @@
 +(NSArray *)asNSNumberArray:(id)sig;
 +(id)fromNSNumberArray:(NSArray *)array;
 
+-(void)addToLilypondString:(NSMutableString *)string;
+
 - (Class)getViewClass;
 - (Class)getControllerClass;
 

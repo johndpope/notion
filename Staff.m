@@ -14,6 +14,7 @@
 #import "KeySignature.h"
 #import "ChromaticKeySignature.h"
 #import "TimeSignature.h"
+#import <Chomp/Chomp.h>
 @class StaffDraw;
 @class DrumStaffDraw;
 @class StaffController;
@@ -576,6 +577,15 @@
 	}
 
 	return pos;
+}
+
+- (void)addToLilypondString:(NSMutableString *)string{
+	[string appendString:@"\\new Staff {\n"];
+	if([[self name] length] > 0){
+		[string appendFormat:@"\\set Staff.instrumentName = \"%@\"\n", [self name]];
+	}
+	[[measures do] addToLilypondString:string];
+	[string appendString:@"}\n"];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

@@ -98,6 +98,7 @@
 - (void)setChannel:(int)_channel;
 
 - (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection;
+- (void)addToLilypondString:(NSMutableString *)string;
 
 - (Class)getViewClass;
 - (Class)getControllerClass;

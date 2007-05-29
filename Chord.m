@@ -229,6 +229,23 @@
 	}
 }
 
+- (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	[string appendString:@"<"];
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	id note;
+	while(note = [notesEnum nextObject]){
+		[note addPitchToLilypondString:string accidentals:accidentals];
+		if([note getTieTo] != nil){
+			[string appendString:@"~"];
+		}
+		[string appendString:@" "];
+	}
+	[string deleteCharactersInRange:NSMakeRange([string length] - 1, 1)];
+	[string appendString:@">"];
+	[self addDurationToLilypondString:string];
+	[string appendString:@" "];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:notes forKey:@"notes"];
 }

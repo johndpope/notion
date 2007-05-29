@@ -115,6 +115,10 @@
 	return 0;
 }
 
+- (void)addToLilypondString:(NSMutableString *)string{
+	[self doesNotRecognizeSelector:_cmd];
+}
+
 - (void)transposeBy:(int)numLines{
 	[self doesNotRecognizeSelector:_cmd];
 }
@@ -232,6 +236,16 @@
 
 - (NoteBase *)getTieFrom{
 	return nil;
+}
+
+- (void)addDurationToLilypondString:(NSMutableString *)string{
+	[string appendFormat:@"%d", [self getDuration]];
+	if([self getDotted]){
+		[string appendString:@"."];
+	}
+	if([self getTieTo] != nil){
+		[string appendString:@"~"];
+	}
 }
 
 - (Class)getViewClass{

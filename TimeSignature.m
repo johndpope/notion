@@ -75,6 +75,10 @@
 	return [NSArray arrayWithObjects:[NSNumber numberWithInt:[sig getTop]], [NSNumber numberWithInt:[sig getBottom]], nil];
 }
 
+-(void)addToLilypondString:(NSMutableString *)string{
+	[string appendFormat:@"\\time %d/%d ", top, bottom];
+}
+
 -(Class)getViewClass{
 	return [TimeSignatureDraw class];
 }

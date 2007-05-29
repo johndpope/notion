@@ -36,6 +36,8 @@
 - (int)distanceFrom:(KeySignature *)otherSig;
 
 - (int)getIndexFromA;
-- (BOOL)isMinor;	
+- (BOOL)isMinor;
+
+- (void)addToLilypondString:(NSMutableString *)string;
 
 @end
