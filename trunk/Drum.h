@@ -21,4 +21,6 @@
 - (NSString *)name;
 - (NSString *)shortName;
 
+- (void)appendMusicXMLHeaderToString:(NSMutableString *)string;
+
 @end

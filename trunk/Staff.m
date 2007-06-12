@@ -148,6 +148,11 @@
 	return [song getEffectiveTimeSignatureAt:index];
 }
 
+- (BOOL)isCompoundTimeSignatureAt:(Measure *)measure{
+	int index = [measures indexOfObject:measure];
+	return [song isCompoundTimeSignatureAt:index];
+}
+
 - (Measure *)getLastMeasure{
 	return [measures lastObject];
 }
@@ -593,6 +598,10 @@
 	if([self isDrums]){
 		[string appendString:@"}\n"];
 	}
+}
+
+- (void)addToMusicXMLString:(NSMutableString *)string{
+	[[measures do] addToMusicXMLString:string];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

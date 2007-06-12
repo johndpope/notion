@@ -246,6 +246,15 @@ int enableMIDI = 1;
 	return [[self getTimeSignatureAt:prevMeasureIndex] getTimeSignatureAfterMeasures:(measureIndex - prevMeasureIndex)];
 }
 
+- (BOOL)isCompoundTimeSignatureAt:(int)measureIndex{
+	int prevMeasureIndex = measureIndex;
+	while([[self getTimeSignatureAt:prevMeasureIndex] isKindOfClass:[NSNull class]]){
+		if(prevMeasureIndex == 0) return [TimeSignature timeSignatureWithTop:4 bottom:4];
+		prevMeasureIndex--;
+	}
+	return [[self getTimeSignatureAt:prevMeasureIndex] isKindOfClass:[CompoundTimeSig class]];
+}
+
 - (void)refreshTimeSigs{
 	[self willChangeValueForKey:@"timeSigs"];
 	int numMeasures = [self getNumMeasures];
@@ -557,6 +566,37 @@ int enableMIDI = 1;
 	[string appendString:@"\\score {\n<<\n"];
 	[[staffs do] addToLilypondString:string];
 	[string appendString:@">>\n}\n"];
+	return [string dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (void) appendMusicXMLHeaderToString:(NSMutableString *)string forStaff:(Staff *)staff{
+	[string appendFormat:@"<score-part id=\"P%d\">\n", [staffs indexOfObject:staff]];
+	[string appendFormat:@"<part-name>%@</part-name>\n", [staff name]];
+	if([staff isDrums]){
+		[[staff drumKit] appendMusicXMLHeaderToString:string];
+	} else {
+		[string appendFormat:@"<midi-instrument id=\"P%dI\">\n", [staffs indexOfObject:staff]];
+		[string appendFormat:@"<midi-channel>%d</midi-channel>\n", [staff channel]];
+		[string appendString:@"</midi-instrument>\n"];
+	}
+	[string appendString:@"</score-part>\n"];
+}
+
+- (void) appendMusicXMLToString:(NSMutableString *)string forStaff:(Staff *)staff{
+	[string appendFormat:@"<part id=\"P%d\">\n", [staffs indexOfObject:staff]];
+	[staff addToMusicXMLString:string];
+	[string appendString:@"</part>\n"];
+}
+
+- (NSData *)asMusicXML{
+	NSMutableString *string = [NSMutableString string];
+	[string appendString:@"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<!DOCTYPE score-partwise PUBLIC \"-//Recordare//DTD MusicXML 1.1 Partwise//EN\" \"http://www.musicxml.org/dtds/partwise.dtd\">"];
+	[string appendString:@"<score-partwise version=\"1.1\">\n"];
+	[string appendString:@"<part-list>\n"];
+	[[self doSelf] appendMusicXMLHeaderToString:string forStaff:[staffs each]];
+	[string appendString:@"</part-list>\n"];
+	[[self doSelf] appendMusicXMLToString:string forStaff:[staffs each]];
+	[string appendString:@"</score-partwise>"];
 	return [string dataUsingEncoding:NSUTF8StringEncoding];
 }
 

@@ -258,6 +258,16 @@
 	}
 }
 
+- (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	NSEnumerator *notesEnum = [notes objectEnumerator];
+	BOOL first = YES;
+	id note;
+	while(note = [notesEnum nextObject]){
+		[note addToMusicXMLString:string accidentals:accidentals chord:(!first)];
+		first = NO;
+	}
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:notes forKey:@"notes"];
 }

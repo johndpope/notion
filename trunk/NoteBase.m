@@ -263,6 +263,21 @@
 	}
 }
 
+- (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	[self doesNotRecognizeSelector:_cmd];
+}
+
+- (void)addDurationToMusicXMLString:(NSMutableString *)string{
+	int duration = 48 / [self getDuration];
+	if([self getDotted]){
+		duration += duration / 2;
+	}
+	[string appendFormat:@"<duration>%d</duration>\n", duration];
+	if([self isTriplet]){
+		[string appendString:@"<time-modification>\n<actual-notes>3</actual-notes>\n<normal-notes>2</normal-notes>\n</time-modification>\n"];
+	}
+}
+
 - (Class)getViewClass{
 	[self doesNotRecognizeSelector:_cmd];
 	return [NSObject class];

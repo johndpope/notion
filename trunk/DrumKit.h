@@ -36,6 +36,9 @@
 - (IBAction)import:(id)sender;
 - (IBAction)export:(id)sender;
 
+- (void)appendMusicXMLHeaderToString:(NSMutableString *)string;
+- (NSString *)musicXMLStringForPitch:(int)pitch octave:(int)octave;
+
 + (DrumKit *)standardKit;
 
 @end

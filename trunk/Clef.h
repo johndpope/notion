@@ -30,6 +30,7 @@
 - (int)getKeySigOffset;
 
 - (void)addToLilypondString:(NSMutableString *)string;
+- (void)addToMusicXMLString:(NSMutableString *)string;
 
 - (Class)getViewClass;
 

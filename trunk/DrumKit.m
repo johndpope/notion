@@ -8,6 +8,7 @@
 
 #import "DrumKit.h"
 #import "Drum.h"
+#import <Chomp/Chomp.h>
 
 static DrumKit *standardKit;
 static NSArray *allDrums;
@@ -77,6 +78,20 @@ static NSArray *allDrums;
 			return [drum lilypondString];
 		}
 	}
+}
+
+- (NSString *)musicXMLStringForPitch:(int)pitch octave:(int)octave{
+	NSEnumerator *drumsEnum = [drums objectEnumerator];
+	id drum;
+	while(drum = [drumsEnum nextObject]){
+		if([drum pitch] == pitch && [drum octave] == octave){
+			return [drum musicXMLString];
+		}
+	}
+}
+
+- (void)appendMusicXMLHeaderToString:(NSMutableString *)string{
+	[[drums do] appendMusicXMLHeaderToString:string];
 }
 
 - (NSMutableArray *)drums{

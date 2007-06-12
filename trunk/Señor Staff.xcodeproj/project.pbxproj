@@ -93,6 +93,8 @@
 		789BC2A80A1FFD2000597728 /* srest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A40A1FFD2000597728 /* srest.png */; };
 		789BC2A90A1FFD2000597728 /* trest.png in Resources */ = {isa = PBXBuildFile; fileRef = 789BC2A50A1FFD2000597728 /* trest.png */; };
 		789C1CB80A524DA900572AA8 /* sstaff.icns in Resources */ = {isa = PBXBuildFile; fileRef = 789C1CB70A524DA900572AA8 /* sstaff.icns */; };
+		78A06C6D0C1C8C0E00CAEC51 /* Drum+MusicXML.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78A06C6B0C1C8C0E00CAEC51 /* Drum+MusicXML.h */; };
+		78A06C6E0C1C8C0E00CAEC51 /* Drum+MusicXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A06C6C0C1C8C0E00CAEC51 /* Drum+MusicXML.m */; };
 		78A608D00B64502300DAE6DA /* playsel.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A608CF0B64502200DAE6DA /* playsel.png */; };
 		78AEFEF80C0BC4E90066C0A6 /* Drum+Lilypond.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78AEFEF60C0BC4E90066C0A6 /* Drum+Lilypond.h */; };
 		78AEFEF90C0BC4E90066C0A6 /* Drum+Lilypond.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AEFEF70C0BC4E90066C0A6 /* Drum+Lilypond.m */; };
@@ -214,6 +216,7 @@
 				789ACEBE0B90F7F700A96BF4 /* Drum.h in CopyFiles */,
 				78196F050BB731E800063447 /* MIDIUtil.h in CopyFiles */,
 				78AEFEF80C0BC4E90066C0A6 /* Drum+Lilypond.h in CopyFiles */,
+				78A06C6D0C1C8C0E00CAEC51 /* Drum+MusicXML.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +351,8 @@
 		789BC2A40A1FFD2000597728 /* srest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = srest.png; sourceTree = "<group>"; };
 		789BC2A50A1FFD2000597728 /* trest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trest.png; sourceTree = "<group>"; };
 		789C1CB70A524DA900572AA8 /* sstaff.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sstaff.icns; sourceTree = "<group>"; };
+		78A06C6B0C1C8C0E00CAEC51 /* Drum+MusicXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drum+MusicXML.h"; sourceTree = "<group>"; };
+		78A06C6C0C1C8C0E00CAEC51 /* Drum+MusicXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drum+MusicXML.m"; sourceTree = "<group>"; };
 		78A608CF0B64502200DAE6DA /* playsel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playsel.png; sourceTree = "<group>"; };
 		78AEFEF60C0BC4E90066C0A6 /* Drum+Lilypond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drum+Lilypond.h"; sourceTree = "<group>"; };
 		78AEFEF70C0BC4E90066C0A6 /* Drum+Lilypond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drum+Lilypond.m"; sourceTree = "<group>"; };
@@ -598,6 +603,8 @@
 				789ACEBD0B90F7F700A96BF4 /* Drum.m */,
 				78AEFEF60C0BC4E90066C0A6 /* Drum+Lilypond.h */,
 				78AEFEF70C0BC4E90066C0A6 /* Drum+Lilypond.m */,
+				78A06C6B0C1C8C0E00CAEC51 /* Drum+MusicXML.h */,
+				78A06C6C0C1C8C0E00CAEC51 /* Drum+MusicXML.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1040,6 +1047,7 @@
 				784182AB0BAE087900F2A4CF /* NSTableView+CocoaBindingsDeleteKey.m in Sources */,
 				78196F060BB731E800063447 /* MIDIUtil.m in Sources */,
 				78AEFEF90C0BC4E90066C0A6 /* Drum+Lilypond.m in Sources */,
+				78A06C6E0C1C8C0E00CAEC51 /* Drum+MusicXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

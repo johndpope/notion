@@ -27,6 +27,7 @@
 			<array>
 				<string>MIDI file</string>
 				<string>LilyPond file</string>
+				<string>MusicXML file</string>
 			</array>
 		</dict>
 		<dict>
@@ -64,6 +65,26 @@
 			<string>MusicDocument</string>
 			<key>NSPersistentStoreTypeKey</key>
 			<string>Binary</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xml</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text.xml</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MusicXML file</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSDocumentClass</key>
+			<string>MusicDocument</string>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>XML</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

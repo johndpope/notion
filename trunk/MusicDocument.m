@@ -61,6 +61,9 @@
 	if([aType isEqualToString:@"LilyPond file"]){
 		return [song asLilypond];
 	}
+	if([aType isEqualToString:@"MusicXML file"]){
+		return [song asMusicXML];
+	}
 	return [NSKeyedArchiver archivedDataWithRootObject:song];
 }
 

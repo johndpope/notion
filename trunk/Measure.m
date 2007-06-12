@@ -817,6 +817,8 @@
 	}
 	if(![[self getTimeSignature] isKindOfClass:[NSNull class]]){
 		[[self getTimeSignature] addToLilypondString:string];
+	} else if([staff isCompoundTimeSignatureAt:self]){
+		[[self getEffectiveTimeSignature] addToLilypondString:string];
 	}
 	if(keySig != nil && ![staff isDrums]){
 		[keySig addToLilypondString:string];
@@ -826,6 +828,45 @@
 	if([self isEndRepeat]){
 		[string appendString:@"\n}\n"];
 	}
+}
+
+- (void)addToMusicXMLString:(NSMutableString *)string{
+	int index = [[staff getMeasures] indexOfObject:self];
+	[string appendFormat:@"<measure number=\"%d\">\n", (index + 1)];
+	[string appendString:@"<attributes>\n"];
+	if(index == 0){
+		[string appendString:@"<divisions>48</divisions>\n"];
+		if([staff transposition] != 0){
+			[string appendFormat:@"<transpose>\n<chromatic>%d</chromatic>\n</transpose>\n", [staff transposition]];
+		}
+	}
+	if(keySig != nil && ![staff isDrums]){
+		[keySig addToMusicXMLString:string];
+	}
+	if(![[self getTimeSignature] isKindOfClass:[NSNull class]]){
+		[[self getTimeSignature] addToMusicXMLString:string];
+	} else if([staff isCompoundTimeSignatureAt:self]){
+		[[self getEffectiveTimeSignature] addToMusicXMLString:string];
+	}
+	if(clef != nil && ![staff isDrums]){
+		[clef addToMusicXMLString:string];
+	} else if([staff isDrums]){
+		[string appendString:@"<clef>\n<sign>percussion</sign>\n</clef>\n"];
+	}
+	[string appendString:@"</attributes>\n"];
+	TempoData *tempo = [[[staff getSong] tempoData] objectAtIndex:[[staff getMeasures] indexOfObject:self]];
+	if(![tempo empty]){
+		[string appendFormat:@"<sound tempo=\"%d\"/>\n", (int)[tempo tempo]];
+	}
+	if([self isStartRepeat]){
+		[string appendString:@"<barline location=\"left\">\n<bar-style>heavy-light</bar-style>\n<repeat direction=\"forward\"/>\n</barline>"];
+	}
+	NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];
+	[[notes do] addToMusicXMLString:string accidentals:accidentals];
+	if([self isEndRepeat]){
+		[string appendFormat:@"<barline location=\"left\">\n<bar-style>light-heavy</bar-style>\n<repeat direction=\"backward\" times=\"%d\"/>\n</barline>", [self getNumRepeats]];
+	}
+	[string appendString:@"</measure>\n"];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

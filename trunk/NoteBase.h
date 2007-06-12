@@ -46,6 +46,8 @@
 - (void)addToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
 - (void)addNoteToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
 - (void)addDurationToLilypondString:(NSMutableString *)string;
+- (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
+- (void)addDurationToMusicXMLString:(NSMutableString *)string;
 
 - (void)transposeBy:(int)numLines;
 - (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig;

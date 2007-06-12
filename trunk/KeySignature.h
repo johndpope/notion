@@ -39,5 +39,6 @@
 - (BOOL)isMinor;
 
 - (void)addToLilypondString:(NSMutableString *)string;
+- (void)addToMusicXMLString:(NSMutableString *)string;
 
 @end
