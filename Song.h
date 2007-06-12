@@ -60,6 +60,7 @@
 - (void)setTimeSignature:(TimeSignature *)sig atIndex:(int)measureIndex;
 - (TimeSignature *)getTimeSignatureAt:(int)measureIndex;
 - (TimeSignature *)getEffectiveTimeSignatureAt:(int)measureIndex;
+- (BOOL)isCompoundTimeSignatureAt:(int)measureIndex;
 - (void)refreshTimeSigs;
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom;
 - (void)timeSigChangedAtIndex:(int)measureIndex top:(int)top bottom:(int)bottom secondTop:(int)secondTop secondBottom:(int)secondBottom;
@@ -85,5 +86,6 @@
 
 - (NSData *)asMIDIData;
 - (NSData *)asLilypond;
+- (NSData *)asMusicXML;
 
 @end

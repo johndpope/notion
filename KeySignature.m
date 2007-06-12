@@ -278,4 +278,19 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 	[string appendFormat:@"\\key %@ \\%@ ", lyPitches[[self getIndexFromA]], (minor ? @"minor" : @"major")];
 }
 
+- (void)addToMusicXMLString:(NSMutableString *)string{
+	[string appendString:@"<key>\n"];
+	if(flats != 0){
+		[string appendFormat:@"<fifths>-%d</fifths>\n", flats];
+	} else {
+		[string appendFormat:@"<fifths>%d</fifths>\n", sharps];
+	}
+	if(minor){
+		[string appendString:@"<mode>minor</mode>\n"];
+	} else {
+		[string appendString:@"<mode>major</mode>\n"];
+	}
+	[string appendString:@"</key>\n"];
+}
+
 @end

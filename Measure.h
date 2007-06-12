@@ -128,6 +128,7 @@
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 			  transpose:(int)transposition onChannel:(int)channel notesToPlay:(id)selection;
 - (void)addToLilypondString:(NSMutableString *)string;
+- (void)addToMusicXMLString:(NSMutableString *)string;
 
 - (Class)getViewClass;
 - (Class)getControllerClass;

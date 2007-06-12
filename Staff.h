@@ -53,6 +53,7 @@
 - (KeySignature *)getKeySignatureForMeasure:(Measure *)measure;
 - (TimeSignature *)getTimeSignatureForMeasure:(Measure *)measure;
 - (TimeSignature *)getEffectiveTimeSignatureForMeasure:(Measure *)measure;
+- (BOOL)isCompoundTimeSignatureAt:(Measure *)measure;
 
 - (Measure *)getLastMeasure;
 - (Measure *)getMeasureAtIndex:(unsigned)index;
@@ -99,6 +100,7 @@
 
 - (float)addTrackToMIDISequence:(MusicSequence *)musicSequence notesToPlay:(id)selection;
 - (void)addToLilypondString:(NSMutableString *)string;
+- (void)addToMusicXMLString:(NSMutableString *)string;
 
 - (Class)getViewClass;
 - (Class)getControllerClass;

@@ -47,6 +47,12 @@
 	[string appendString:@" "];
 }
 
+- (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	[string appendString:@"<note>/n<rest/>\n"];
+	[self addDurationToMusicXMLString:string];
+	[string appendString:@"</note>\n"];
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder{
 	[coder encodeObject:staff forKey:@"staff"];
 	[coder encodeInt:duration forKey:@"duration"];

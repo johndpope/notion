@@ -34,6 +34,7 @@ static int FLAT = -1;
 		   duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)staff;
 		
 - (int)getPitch;
+- (char)getPitchLetter;
 - (int)getOctave;
 - (int)getLastPitch;
 - (int)getLastOctave;
@@ -54,5 +55,6 @@ static int FLAT = -1;
 - (void)collapseOnTo:(Note *)note;
 
 - (void)addPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
+- (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals chord:(BOOL)chord;
 
 @end

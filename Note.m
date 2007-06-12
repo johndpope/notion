@@ -8,6 +8,7 @@
 
 #import "Note.h"
 #import "KeySignature.h"
+#import "DrumKit.h"
 @class NoteDraw;
 
 @implementation Note
@@ -269,6 +270,10 @@
 	}
 }
 
+- (char)getPitchLetter{
+	return ('a' + ((pitch + 2) % 7));
+}
+
 - (void)addRegularPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
 	NSString *accStr;
 	int acc = [self getAbsoluteAccidentalWithPriorAccidentals:accidentals];
@@ -279,7 +284,7 @@
 	} else {
 		accStr = @"";
 	}
-	NSString *pitchStr = [NSString stringWithFormat:@"%c%@", ('a' + ((pitch + 2) % 7)), accStr];
+	NSString *pitchStr = [NSString stringWithFormat:@"%c%@", [self getPitchLetter], accStr];
 	NSMutableString *octaveStr = [NSMutableString string];
 	int i;
 	for(i = octave; i > 4; i--){
@@ -308,6 +313,50 @@
 	[self addPitchToLilypondString:string accidentals:accidentals];
 	[self addDurationToLilypondString:string];
 	[string appendString:@" "];
+}
+
+- (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals{
+	[self addToMusicXMLString:string accidentals:accidentals chord:NO];
+}
+
+- (void)addDrumPitchToMusicXMLString:(NSMutableString *)string{
+	Clef *clef = [[staff getMeasureContainingNote:self] getEffectiveClef];
+	[string appendString:[clef musicXMLStringForPitch:[self getPitch] octave:[self getOctave]]];
+}
+
+- (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals chord:(BOOL)chord{
+	[string appendString:@"<note>\n"];
+	if(chord){
+		[string appendString:@"<chord/>\n"];
+	}
+	if([staff isDrums]){
+		[self addDrumPitchToMusicXMLString:string];
+	} else {
+		[string appendString:@"<pitch>\n"];
+		[string appendFormat:@"<step>%c</step>\n", [self getPitchLetter]];
+		int alter = [self getAbsoluteAccidentalWithPriorAccidentals:accidentals];
+		if(alter != NO_ACC){
+			[string appendFormat:@"<alter>%d</alter>\n", alter];
+		}
+		[string appendFormat:@"<octave>%d</octave>\n", [self getOctave]];
+		[string appendString:@"</pitch>\n"];
+	}
+	[self addDurationToMusicXMLString:string];
+	if([self getTieFrom] != nil){
+		[string appendString:@"<tie type=\"stop\"/>\n"];
+	}
+	if([self getTieTo] != nil){
+		[string appendString:@"<tie type=\"start\"/>\n"];
+	}
+	[string appendString:@"<notations>\n"];
+	if([self getTieFrom] != nil){
+		[string appendString:@"<tied type=\"stop\"/>\n"];
+	}
+	if([self getTieTo] != nil){
+		[string appendString:@"<tied type=\"start\"/>\n"];
+	}
+	[string appendString:@"</notations>\n"];
+	[string appendString:@"</note>\n"];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder{

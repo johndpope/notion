@@ -55,6 +55,20 @@
 	return self;
 }
 
+- (void)appendMusicXMLHeaderToString:(NSMutableString *)string{
+	[string appendFormat:@"<score-instrument id=\"%@\">\n", shortName];
+	[string appendFormat:@"<instrument-name>%@</instrument-name>\n", name];
+	[string appendString:@"</score-instrument>\n"];
+	[string appendFormat:@"<midi-instrument id=\"%@\">\n", shortName];
+	[string appendString:@"<midi-channel>10</midi-channel>\n<midi-program>1</midi-program>\n"];
+	[string appendFormat:@"<midi-unpitched>%d</midi-unpitched>\n", (octave * 12 + pitch)];
+	[string appendString:@"</midi-instrument>\n"];
+}
+
+- (NSString *)description{
+	return [NSString stringWithFormat:@"%@ (o%d, p%d)", name, octave, pitch];
+}
+
 - (BOOL)isEqual:(id)otherDrum{
 	return [otherDrum pitch] == pitch && [otherDrum octave] == octave;
 }

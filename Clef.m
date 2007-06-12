@@ -79,6 +79,14 @@
 	}
 }
 
+- (void)addToMusicXMLString:(NSMutableString *)string{
+	if(self == [Clef trebleClef]){
+		[string appendString:@"<clef>\n<sign>G</sign>\n<line>2</line>\n</clef>\n"];
+	} else if(self == [Clef bassClef]){
+		[string appendString:@"<clef>\n<sign>F</sign>\n<line>4</line>\n</clef>\n"];
+	}
+}
+
 - (Class)getViewClass{
 	return [ClefDraw class];
 }

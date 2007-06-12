@@ -76,7 +76,11 @@
 }
 
 -(void)addToLilypondString:(NSMutableString *)string{
-	[string appendFormat:@"\\time %d/%d ", top, bottom];
+	[string appendFormat:@"\\time %d/%d ", [self getTop], [self getBottom]];
+}
+
+-(void)addToMusicXMLString:(NSMutableString *)string{
+	[string appendFormat:@"<time>\n<beats>%d</beats>\n<beat-type>%d</beat-type>\n</time>\n", [self getTop], [self getBottom]];
 }
 
 -(Class)getViewClass{
