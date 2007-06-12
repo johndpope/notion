@@ -633,6 +633,9 @@
 			78A06D860C1E6C4500CAEC51 /* PBXTextBookmark */ = 78A06D860C1E6C4500CAEC51 /* PBXTextBookmark */;
 			78A06D870C1E6C4500CAEC51 /* PBXTextBookmark */ = 78A06D870C1E6C4500CAEC51 /* PBXTextBookmark */;
 			78A06D880C1E6C4500CAEC51 /* PBXTextBookmark */ = 78A06D880C1E6C4500CAEC51 /* PBXTextBookmark */;
+			78A06D930C1E6EB400CAEC51 /* PBXTextBookmark */ = 78A06D930C1E6EB400CAEC51 /* PBXTextBookmark */;
+			78A06D940C1E6EB400CAEC51 /* PBXTextBookmark */ = 78A06D940C1E6EB400CAEC51 /* PBXTextBookmark */;
+			78A06D950C1E6EB400CAEC51 /* PBXTextBookmark */ = 78A06D950C1E6EB400CAEC51 /* PBXTextBookmark */;
 			78A3F34E0B34A56800EAF26A = 78A3F34E0B34A56800EAF26A /* PBXTextBookmark */;
 			78A3F3540B34A56800EAF26A = 78A3F3540B34A56800EAF26A /* PBXTextBookmark */;
 			78A3F3550B34A56800EAF26A = 78A3F3550B34A56800EAF26A /* PBXTextBookmark */;
@@ -1079,6 +1082,11 @@
 		name = midi.html;
 		path = "/Users/kprevas/Señor Staff/trunk/English.lproj/Senor Staff Help/pages/midi.html";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1749, 1568}}";
+			sepNavSelRange = "{3452, 0}";
+			sepNavVisRect = "{{0, 658}, {1033, 745}}";
+		};
 	};
 	784182C00BAE08C600F2A4CF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1103,6 +1111,11 @@
 		name = index.html;
 		path = "/Users/kprevas/Señor Staff/trunk/English.lproj/Senor Staff Help/pages/index.html";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1630, 1974}}";
+			sepNavSelRange = "{2830, 0}";
+			sepNavVisRect = "{{0, 560}, {1033, 745}}";
+		};
 	};
 	784182C40BAE08C600F2A4CF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1228,7 +1241,7 @@
 		fRef = 784182EA0BAE08C600F2A4CF /* index.html */;
 		name = "(null): 118";
 		rLen = 0;
-		rLoc = 4266;
+		rLoc = 4396;
 		rType = 0;
 		vrLen = 1877;
 		vrLoc = 0;
@@ -2378,7 +2391,7 @@
 		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
 		name = "whatsnew.html: 39";
 		rLen = 0;
-		rLoc = 4120;
+		rLoc = 4646;
 		rType = 0;
 		vrLen = 1607;
 		vrLoc = 0;
@@ -3826,6 +3839,11 @@
 		name = whatsnew.html;
 		path = "/Users/kprevas/Señor Staff/trunk/English.lproj/Senor Staff Help/pages/whatsnew.html";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {2757, 5628}}";
+			sepNavSelRange = "{1170, 0}";
+			sepNavVisRect = "{{0, 56}, {1033, 745}}";
+		};
 	};
 	7890395E0A9933A30034F61B /* -[NSObject doesNotRecognizeSelector:] */ = {
 		isa = PBXSymbolicBreakpoint;
@@ -6726,6 +6744,36 @@
 		vrLen = 1128;
 		vrLoc = 1159;
 	};
+	78A06D930C1E6EB400CAEC51 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78FA8CC70A0ECC0F00A37E39 /* Note.m */;
+		name = "Note.m: 326";
+		rLen = 0;
+		rLoc = 10311;
+		rType = 0;
+		vrLen = 809;
+		vrLoc = 9829;
+	};
+	78A06D940C1E6EB400CAEC51 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 78A06C6C0C1C8C0E00CAEC51 /* Drum+MusicXML.m */;
+		name = "<display-octave>4</display-octave>";
+		rLen = 34;
+		rLoc = 473;
+		rType = 0;
+		vrLen = 1182;
+		vrLoc = 23;
+	};
+	78A06D950C1E6EB400CAEC51 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8D15AC360486D014006FF6A4 /* Info.plist */;
+		name = "Info.plist: 30";
+		rLen = 0;
+		rLoc = 858;
+		rType = 0;
+		vrLen = 132;
+		vrLoc = 758;
+	};
 	78A3F34E0B34A56800EAF26A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 7865F0460AB333C200678461 /* StaffDraw.h */;
@@ -8310,7 +8358,7 @@
 		fRef = 784182BF0BAE08C600F2A4CF /* midi.html */;
 		name = "midi.html: 89";
 		rLen = 0;
-		rLoc = 3452;
+		rLoc = 3762;
 		rType = 0;
 		vrLen = 1995;
 		vrLoc = 1876;
@@ -8350,7 +8398,7 @@
 		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
 		name = "whatsnew.html: 32";
 		rLen = 0;
-		rLoc = 935;
+		rLoc = 1461;
 		rType = 0;
 		vrLen = 1664;
 		vrLoc = 128;
@@ -8440,7 +8488,7 @@
 		fRef = 788DDE1E0B5CBC3200945ECB /* whatsnew.html */;
 		name = "whatsnew.html: 32";
 		rLen = 0;
-		rLoc = 935;
+		rLoc = 1461;
 		rType = 0;
 		vrLen = 1664;
 		vrLoc = 128;
