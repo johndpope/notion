@@ -105,7 +105,15 @@
 	NSMutableArray *remainingChords = [[NSMutableArray arrayWithCapacity:[remainingNotes count]] autorelease];
 	int i;
 	for(i=0; i<[[remainingNotes objectAtIndex:0] count]; i++){
-		[remainingChords addObject:[[[Chord alloc] initWithStaff:staff withNotes:[[remainingNotes collect] objectAtIndex:i]] autorelease]];
+		NSMutableArray *newChordNotes = [NSMutableArray array];
+		NSEnumerator *notesEnum = [remainingNotes objectEnumerator];
+		id noteArr;
+		while(noteArr = [notesEnum nextObject]){
+			if([noteArr count] > i){
+				[newChordNotes addObject:[noteArr objectAtIndex:i]];
+			}
+		}
+		[remainingChords addObject:[[[Chord alloc] initWithStaff:staff withNotes:newChordNotes] autorelease]];
 	}
 	return remainingChords;
 }
