@@ -112,6 +112,8 @@
 		78B43ABD0ABCCCA20068C522 /* KeySigTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43ABC0ABCCCA20068C522 /* KeySigTarget.m */; };
 		78B43D150ABE4DB10068C522 /* TimeSignatureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */; };
 		78B43D5A0ABE4F980068C522 /* KeySignatureDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B43D590ABE4F980068C522 /* KeySignatureDraw.m */; };
+		78B92E5E0C4016A000AFA9A5 /* NSNumberPool.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B92E5C0C4016A000AFA9A5 /* NSNumberPool.h */; };
+		78B92E5F0C4016A000AFA9A5 /* NSNumberPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B92E5D0C4016A000AFA9A5 /* NSNumberPool.m */; };
 		78B9AE3C0B4A30BB00D41461 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B9AE280B4A30BB00D41461 /* Sparkle.framework */; };
 		78B9AE470B4A30F600D41461 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78B9AE280B4A30BB00D41461 /* Sparkle.framework */; };
 		78BDB83C0A8AE15D00323E8A /* SongTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BDB83B0A8AE15D00323E8A /* SongTest.m */; };
@@ -217,6 +219,7 @@
 				78196F050BB731E800063447 /* MIDIUtil.h in CopyFiles */,
 				78AEFEF80C0BC4E90066C0A6 /* Drum+Lilypond.h in CopyFiles */,
 				78A06C6D0C1C8C0E00CAEC51 /* Drum+MusicXML.h in CopyFiles */,
+				78B92E5E0C4016A000AFA9A5 /* NSNumberPool.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +378,8 @@
 		78B43D140ABE4DB10068C522 /* TimeSignatureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignatureDraw.m; sourceTree = "<group>"; };
 		78B43D580ABE4F980068C522 /* KeySignatureDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySignatureDraw.h; sourceTree = "<group>"; };
 		78B43D590ABE4F980068C522 /* KeySignatureDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySignatureDraw.m; sourceTree = "<group>"; };
+		78B92E5C0C4016A000AFA9A5 /* NSNumberPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberPool.h; sourceTree = "<group>"; };
+		78B92E5D0C4016A000AFA9A5 /* NSNumberPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberPool.m; sourceTree = "<group>"; };
 		78B9AE280B4A30BB00D41461 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		78BDB83A0A8AE15D00323E8A /* SongTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTest.h; sourceTree = "<group>"; };
 		78BDB83B0A8AE15D00323E8A /* SongTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTest.m; sourceTree = "<group>"; };
@@ -516,6 +521,8 @@
 				788707780AAD005C0057D6DD /* Controller */,
 				78E82B7B0A18048B00DA31A3 /* MIDI */,
 				78AF67700B7570760072CACE /* Cocoa categories */,
+				78B92E5C0C4016A000AFA9A5 /* NSNumberPool.h */,
+				78B92E5D0C4016A000AFA9A5 /* NSNumberPool.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1048,6 +1055,7 @@
 				78196F060BB731E800063447 /* MIDIUtil.m in Sources */,
 				78AEFEF90C0BC4E90066C0A6 /* Drum+Lilypond.m in Sources */,
 				78A06C6E0C1C8C0E00CAEC51 /* Drum+MusicXML.m in Sources */,
+				78B92E5F0C4016A000AFA9A5 /* NSNumberPool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

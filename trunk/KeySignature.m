@@ -9,6 +9,7 @@
 #import "KeySignature.h"
 #import "Note.h"
 #import "Clef.h"
+#import "NSNumberPool.h"
 
 static int majorSharps[18] = {3, -1, -1, 5, -1, 0, 7, -1, 2, -1, -1, 4, -1, 6, -1, 1, -1, -1};
 static int majorFlats[18] = {-1, -1, 2, -1, 7, 0, -1, 5, -1, -1, 3, -1, 1, -1, 6, -1, -1, 4};
@@ -129,7 +130,7 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		cachedMinorSharps = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
 	}
 	NSMutableDictionary *cachedSharps = _minor ? cachedMinorSharps : cachedMajorSharps;
-	id sig = [cachedSharps objectForKey:[[[NSNumber alloc] initWithInt:sharps] autorelease]];
+	id sig = [cachedSharps objectForKey:[NSNumberPool number:sharps]];
 	if(nil == sig){
 		int pitches[7];
 		int i;
@@ -140,7 +141,7 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 			pitches[sharpLocs[i]]++;		
 		}
 		sig = [[[KeySignature alloc] initWithPitches:pitches sharps:sharps flats:0 minor:_minor] autorelease];
-		[cachedSharps setObject:sig forKey:[[[NSNumber alloc] initWithInt:sharps] autorelease]];
+		[cachedSharps setObject:sig forKey:[NSNumberPool number:sharps]];
 	}
 	return sig;
 }
@@ -155,7 +156,7 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 		cachedMinorFlats = [[NSMutableDictionary dictionaryWithCapacity:8] retain];
 	}
 	NSMutableDictionary *cachedFlats = _minor ? cachedMinorFlats : cachedMajorFlats;
-	id sig = [cachedFlats objectForKey:[[[NSNumber alloc] initWithInt:flats] autorelease]];
+	id sig = [cachedFlats objectForKey:[NSNumberPool number:flats]];
 	if(nil == sig){
 		int pitches[7];
 		int i;
@@ -166,7 +167,7 @@ static int flatVisLocs[7] = {4, 7, 3, 6, 2, 5, 1};
 			pitches[flatLocs[i]]--;		
 		}
 		sig = [[[KeySignature alloc] initWithPitches:pitches sharps:0 flats:flats minor:_minor] autorelease];
-		[cachedFlats setObject:sig forKey:[[[NSNumber alloc] initWithInt:flats] autorelease]];
+		[cachedFlats setObject:sig forKey:[NSNumberPool number:flats]];
 	}
 	return sig;
 }

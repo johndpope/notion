@@ -214,21 +214,24 @@
 //				get an array of notes resulting from removing that note from the original note
 			NSArray *remainingNotes = [lastNote subtractDuration:[noteToPush getEffectiveDuration]];
 //				tie the last of those notes to the note we're adding
-			[[remainingNotes lastObject] tieTo:noteToPush];
-			[noteToPush tieFrom:[remainingNotes lastObject]];
-//				add the last note to the next measure
-			[notesToPush insertObject:noteToPush atIndex:0];
-//				tie the last note to whatever the old note was tied to
-			[noteToPush tieTo:[lastNote getTieTo]];
-			[[lastNote getTieTo] tieFrom:noteToPush];
-//				tie the first note from whatever the old note was tied from
-			[[remainingNotes objectAtIndex:0] tieFrom:[lastNote getTieFrom]];
-			[[lastNote getTieFrom] tieTo:[remainingNotes objectAtIndex:0]];
-//				add the array of notes to this measure
-			[notes addObjectsFromArray:remainingNotes];
-//				if we just removed the first note added, update the pointer
-			if(lastNote == rtn){
-				rtn = [remainingNotes objectAtIndex:0];
+			[notes removeObject:lastNote];
+			if([remainingNotes count] > 0){
+				[[remainingNotes lastObject] tieTo:noteToPush];
+				[noteToPush tieFrom:[remainingNotes lastObject]];
+				//				add the last note to the next measure
+				[notesToPush insertObject:noteToPush atIndex:0];
+				//				tie the last note to whatever the old note was tied to
+				[noteToPush tieTo:[lastNote getTieTo]];
+				[[lastNote getTieTo] tieFrom:noteToPush];
+				//				tie the first note from whatever the old note was tied from
+				[[remainingNotes objectAtIndex:0] tieFrom:[lastNote getTieFrom]];
+				[[lastNote getTieFrom] tieTo:[remainingNotes objectAtIndex:0]];
+				//				add the array of notes to this measure
+				[notes addObjectsFromArray:remainingNotes];
+				//				if we just removed the first note added, update the pointer
+				if(lastNote == rtn){
+					rtn = [remainingNotes objectAtIndex:0];
+				}
 			}
 		} else {
 //				remove the last note
@@ -264,16 +267,20 @@
 			noteToAdd = nextNote;
 		} else{
 			noteToAdd = [nextNote copy];
-			[noteToAdd tryToFill:durationToFill];
+			if(![noteToAdd tryToFill:durationToFill]){
+				break;
+			}
 			NSArray *remainingNotes = [nextNote subtractDuration:[noteToAdd getEffectiveDuration]];
-			[nextMeasure addNotesInternal:remainingNotes atIndex:0 consolidate:YES];
-			[nextMeasure grabNotesFromNextMeasure];
-			[noteToAdd tieFrom:[nextNote getTieFrom]];
-			[[nextNote getTieFrom] tieTo:noteToAdd];
-			[noteToAdd tieTo:[remainingNotes objectAtIndex:0]];
-			[[remainingNotes objectAtIndex:0] tieFrom:noteToAdd];
-			[[remainingNotes lastObject] tieTo:[nextNote getTieTo]];
-			[[nextNote getTieTo] tieFrom:[remainingNotes lastObject]];
+			if([remainingNotes count] > 0){
+				[nextMeasure addNotesInternal:remainingNotes atIndex:0 consolidate:YES];
+				[nextMeasure grabNotesFromNextMeasure];
+				[noteToAdd tieFrom:[nextNote getTieFrom]];
+				[[nextNote getTieFrom] tieTo:noteToAdd];
+				[noteToAdd tieTo:[remainingNotes objectAtIndex:0]];
+				[[remainingNotes objectAtIndex:0] tieFrom:noteToAdd];
+				[[remainingNotes lastObject] tieTo:[nextNote getTieTo]];
+				[[nextNote getTieTo] tieFrom:[remainingNotes lastObject]];
+			}
 		}
 		if([noteToAdd getTieFrom] != nil && [notes containsObject:[noteToAdd getTieFrom]]){
 			[self consolidateNote:noteToAdd];
@@ -297,8 +304,8 @@
 		[note prepareForDelete];
 	}
 	[notes removeObject:note];
-	[self grabNotesFromNextMeasure];
 	if(!temp){
+		[self grabNotesFromNextMeasure];
 		[staff cleanEmptyMeasures];
 		[self sendChangeNotification];
 	}	
@@ -939,6 +946,12 @@
 		return [DrumMeasureController class];
 	}
 	return [MeasureController class];
+}
+
+- (NSString *) description {
+	NSMutableString *str = [NSMutableString string];
+	[self addToMusicXMLString:str];
+	return str;
 }
 
 @end

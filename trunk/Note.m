@@ -9,6 +9,7 @@
 #import "Note.h"
 #import "KeySignature.h"
 #import "DrumKit.h"
+#import "NSNumberPool.h"
 @class NoteDraw;
 
 @implementation Note
@@ -100,12 +101,12 @@
 	int effAccidental = accidental;
 	if(accidentals != nil){
 		if(effAccidental == NO_ACC){
-			NSNumber *effAccGet = [accidentals objectForKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+			NSNumber *effAccGet = [accidentals objectForKey:[NSNumberPool number:(octave * 7 + pitch)]];
 			if(effAccGet != nil){
 				effAccidental = [effAccGet intValue];
 			}
 		} else{
-			[accidentals setObject:[[[NSNumber alloc] initWithInt:accidental] autorelease] forKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+			[accidentals setObject:[NSNumberPool number:accidental] forKey:[NSNumberPool number:(octave * 7 + pitch)]];
 		}
 	}
 	if(effAccidental == NO_ACC){
@@ -119,12 +120,12 @@
 	int effAccidental = accidental;
 	if(accidentals != nil){
 		if(effAccidental == NO_ACC){
-			NSNumber *effAccGet = [accidentals objectForKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+			NSNumber *effAccGet = [accidentals objectForKey:[NSNumberPool number:(octave * 7 + pitch)]];
 			if(effAccGet != nil){
 				effAccidental = [effAccGet intValue];
 			}
 		} else{
-			[accidentals setObject:[[[NSNumber alloc] initWithInt:accidental] autorelease] forKey:[[[NSNumber alloc] initWithInt:(octave * 7 + pitch)] autorelease]];
+			[accidentals setObject:[NSNumberPool number:accidental] forKey:[NSNumberPool number:(octave * 7 + pitch)]];
 		}
 	}
 	if(effAccidental != NO_ACC){
