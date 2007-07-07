@@ -27,7 +27,8 @@ const int RESOLUTION =  480;
 	}
 }
 
-+ (int)readIntFrom:(NSData *)data range:(NSRange)range{
++ (int)readIntFrom:(NSData *)data offset:(unsigned int)offset length:(unsigned int)length{
+	NSRange range = NSMakeRange(offset, length);
 	unsigned char *bytes = (unsigned char *)malloc(range.length);
 	[data getBytes:bytes range:range];
 	int rtn = 0, i = 0;
@@ -306,7 +307,7 @@ static char lastStatus = 0x00;
 }
 
 + (int)readTrackFrom:(NSData *)data into:(Song *)song atOffset:(int)offset withResolution:(int)resolution{
-	int trackSize = [self readIntFrom:data range:NSMakeRange(offset + 4, 4)];
+	int trackSize = [self readIntFrom:data offset:(offset + 4) length:4];
 	offset += 8;
 	int trackEnd = offset + trackSize;
 	NSMutableDictionary *staffs = [NSMutableDictionary dictionary];
@@ -314,15 +315,16 @@ static char lastStatus = 0x00;
 	NSMutableDictionary *openNotes = [NSMutableDictionary dictionary];
 	NSMutableDictionary *lastEventTimes = [NSMutableDictionary dictionary];
 	int type, channel;
+	float deltaBeats = 0;
 	while(offset < trackEnd){
 		int deltaTime;
 		offset += [self readVariableLengthFrom:data into:&deltaTime atOffset:offset];
-		float deltaBeats = (float)deltaTime / (float)resolution;
-		int eventTypeAndChannel = [self readIntFrom:data range:NSMakeRange(offset, 1)];
+		deltaBeats += (float)deltaTime / (float)resolution;
+		int eventTypeAndChannel = [self readIntFrom:data offset:(offset) length:1];
 		offset++;
 		if(eventTypeAndChannel == 0xFF){
 			//meta event
-			int metaType = [self readIntFrom:data range:NSMakeRange(offset, 1)];
+			int metaType = [self readIntFrom:data offset:(offset) length:1];
 			offset++;
 			int eventLength;
 			offset += [self readVariableLengthFrom:data into:&eventLength atOffset:offset];
@@ -343,12 +345,13 @@ static char lastStatus = 0x00;
 				case 0x03: //track name
 					name = [self readStringFrom:data range:NSMakeRange(offset, eventLength)];
 					[staff setName:name];
+//					NSLog(name);
 					break;
 				case 0x51: //tempo change
-					mpqn = [self readIntFrom:data range:NSMakeRange(offset, eventLength)];
+					mpqn = [self readIntFrom:data offset:(offset) length:eventLength];
 					bpm = ((float)60000000 / mpqn);
 					//TODO - get the right one based on the current time
-					[[[song tempoData] lastObject] setTempo:bpm];
+					[[[song tempoData] lastObject] setTempo:round(bpm)];
 					break;
 				case 0x58: //time signature
 					//TODO: end the current measure (by changing its time signature)
@@ -356,16 +359,16 @@ static char lastStatus = 0x00;
 					//we will need to change the current measure's time signature to make it end where it is,
 					//set the next measure's time signature so it ends where it should end, then set the specified
 					//time signature in the following measure.
-					num = [self readIntFrom:data range:NSMakeRange(offset, 1)];
-					denomPower = [self readIntFrom:data range:NSMakeRange(offset + 1, 1)];
+					num = [self readIntFrom:data offset:(offset) length:1];
+					denomPower = [self readIntFrom:data offset:(offset + 1) length:1];
 					denom = pow(2, denomPower);
 					[song setTimeSignature:[TimeSignature timeSignatureWithTop:num bottom:denom]
 								   atIndex:([[staff getMeasures] count] - 1)];
 					break;
 				case 0x59: //key signature
 					//TODO: end the current measure (by changing its time signature)
-					sharpsOrFlats = [self readIntFrom:data range:NSMakeRange(offset, 1)];
-					minor = [self readIntFrom:data range:NSMakeRange(offset + 1, 1)];
+					sharpsOrFlats = [self readIntFrom:data offset:(offset) length:1];
+					minor = [self readIntFrom:data offset:(offset + 1) length:1];
 					if(sharpsOrFlats >= 0){
 						[[[staff getMeasures] lastObject] setKeySignature:[KeySignature getSignatureWithSharps:sharpsOrFlats minor:(minor > 0)]];
 					} else {
@@ -380,129 +383,135 @@ static char lastStatus = 0x00;
 			if(eventTypeAndChannel & 0x80){
 				type = eventTypeAndChannel & 0xF0;
 				channel = eventTypeAndChannel & 0x0F;
-				param1 = [self readIntFrom:data range:NSMakeRange(offset, 1)];
+				param1 = [self readIntFrom:data offset:(offset) length:1];
 				offset++;
 			} else {
 				param1 = eventTypeAndChannel;
 			}
 			NSNumber *ch = [NSNumber numberWithInt:channel];
-			int param2 = [self readIntFrom:data range:NSMakeRange(offset, 1)];
+			int param2 = [self readIntFrom:data offset:(offset) length:1];
 			offset++;
-			Staff *staff;
-			if([staffs count] == 0 && extraStaff != nil) {
-				staff = extraStaff;
-				[staffs setObject:staff forKey:ch];
-			} else {
-				staff = [staffs objectForKey:ch];
-				if(staff == nil){
-					staff = [song addStaff];
+			if(type == 0x80 || type == 0x90) {
+				Staff *staff;
+				if([staffs count] == 0 && extraStaff != nil) {
+					staff = extraStaff;
+					[staff setChannel:(channel + 1)];
 					[staffs setObject:staff forKey:ch];
-				}
-			}
-			NSMutableArray *openNoteArray = [openNotes objectForKey:ch];
-			if(openNoteArray == nil){
-				openNoteArray = [NSMutableArray array];
-				[openNotes setObject:openNoteArray forKey:ch];
-			}
-			Note *newNote;
-			Measure *measure;
-			KeySignature *keySig;
-			int pitch, octave, acc;
-			NSNumber *prevAcc;
-			NSEnumerator *openNotesEnum;
-			NSDictionary *accidentals;
-			id openNote;
-			NSNumber *lastEventTime = [lastEventTimes objectForKey:ch];
-			float lastEvent;
-			if(lastEventTime == nil){
-				[lastEventTimes setObject:[NSNumber numberWithFloat:0] forKey:ch];
-				lastEvent = 0;
-			} else {
-				lastEvent = [lastEventTime floatValue];
-			}
-			measure = [staff getLastMeasure];
-			if(deltaBeats > 0){
-				if([openNoteArray count] == 0){
-					//add rests
-					float restsToCreate = deltaBeats * 3 / 4;
-					while(restsToCreate > 0){
-						Rest *rest = [[[Rest alloc] initWithDuration:0 dotted:NO onStaff:staff] autorelease];
-						if(![rest tryToFill:restsToCreate]){
-							break;
-						}
-						restsToCreate -= [rest getEffectiveDuration];
-						[measure addNote:rest atIndex:([[measure getNotes] count] - 0.5) tieToPrev:NO];
-					}
 				} else {
-					//increase duration of open notes
-					openNotesEnum = [openNoteArray objectEnumerator];
-					while(openNote = [openNotesEnum nextObject]){
-						[openNote tryToFill:([openNote getEffectiveDuration] + deltaBeats * 3 / 4)];
+					staff = [staffs objectForKey:ch];
+					if(staff == nil){
+						staff = [song addStaff];
+						[staff setChannel:(channel + 1)];
+						[staffs setObject:staff forKey:ch];
 					}
 				}
-			}
-			keySig = [measure getEffectiveKeySignature];
-			switch(type) {
-				case 0x80: //note off
-					openNotesEnum = [openNoteArray objectEnumerator];
-					while(openNote = [openNotesEnum nextObject]){
-						if([openNote getEffectivePitchWithKeySignature:keySig priorAccidentals:[measure getAccidentalsAtPosition:[[measure getNotes] count]]] == param1){
-							[openNoteArray removeObject:openNote];
-						}
-					}
-					break;
-				case 0x90: //note on
-					pitch = [keySig positionForPitch:(param1 % 12) preferAccidental:0];
-					octave = (param1 / 12);
-					acc = [keySig accidentalForPitch:(param1 % 12) atPosition:pitch];
-					if(acc == NO_ACC){
-						accidentals = [measure getAccidentalsAtPosition:[[measure getNotes] count]];
-						prevAcc = [accidentals objectForKey:[NSNumber numberWithInt:(octave * 7 + pitch)]];
-						if(prevAcc != nil && [prevAcc intValue] != NO_ACC){
-							acc = NATURAL;
-						}						
-					}
-					newNote = [[[Note alloc] initWithPitch:pitch octave:octave duration:0 dotted:NO
-												accidental:acc onStaff:staff] autorelease];
-					if([openNoteArray count] != 0){
-						Chord *newChord = [[[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObject:newNote]] autorelease];
-						openNotesEnum = [openNoteArray objectEnumerator];
-						BOOL replacing = NO;
-						while(openNote = [openNotesEnum nextObject]){
-							if([openNote getDuration] > 0){
-								NSArray *notes;
-								if([openNote respondsToSelector:@selector(getNotes)]){
-									notes = [openNote getNotes];
-								} else {
-									notes = [NSArray arrayWithObject:openNote];
-								}
-								NSEnumerator *openNoteEnum = [notes objectEnumerator];
-								id subnote;
-								while(subnote = [openNoteEnum nextObject]){
-									Note *noteCopy = [subnote copy];
-									[noteCopy setDuration:0];
-									[noteCopy setDotted:NO];
-									[subnote tieTo:noteCopy];
-									[noteCopy tieFrom:subnote];
-									[newChord addNote:subnote];
-								}
-							} else {
-								replacing = YES;
-								[newChord addNote:openNote];
+				NSMutableArray *openNoteArray = [openNotes objectForKey:ch];
+				if(openNoteArray == nil){
+					openNoteArray = [NSMutableArray array];
+					[openNotes setObject:openNoteArray forKey:ch];
+				}
+				Note *newNote;
+				Measure *measure;
+				KeySignature *keySig;
+				int pitch, octave, acc;
+				NSNumber *prevAcc;
+				NSEnumerator *openNotesEnum;
+				NSDictionary *accidentals;
+				id openNote;
+				NSNumber *lastEventTime = [lastEventTimes objectForKey:ch];
+				float lastEvent;
+				if(lastEventTime == nil){
+					[lastEventTimes setObject:[NSNumber numberWithFloat:0] forKey:ch];
+					lastEvent = 0;
+				} else {
+					lastEvent = [lastEventTime floatValue];
+				}
+				measure = [staff getLastMeasure];
+				if(deltaBeats > 0){
+					if([openNoteArray count] == 0){
+						//add rests
+						float restsToCreate = deltaBeats * 3 / 4;
+						while(restsToCreate > 0){
+							Rest *rest = [[[Rest alloc] initWithDuration:0 dotted:NO onStaff:staff] autorelease];
+							if(![rest tryToFill:restsToCreate]){
+								break;
 							}
-						}
-						[openNoteArray addObject:newNote];
-						newNote = newChord;
-						if(replacing) {
-							[staff removeLastNote];
+							restsToCreate -= [rest getEffectiveDuration];
+							[measure addNote:rest atIndex:([[measure getNotes] count] - 0.5) tieToPrev:NO];
+							measure = [staff getLastMeasure];
 						}
 					} else {
-						[openNoteArray addObject:newNote];
+						//increase duration of open notes
+						openNotesEnum = [openNoteArray objectEnumerator];
+						while(openNote = [openNotesEnum nextObject]){
+							[openNote tryToFill:([openNote getEffectiveDuration] + deltaBeats * 3 / 4)];
+						}
 					}
-					[measure addNote:newNote atIndex:([[measure getNotes] count] - 0.5) tieToPrev:NO];
-					break;
+					deltaBeats = 0;
+				}
+				keySig = [measure getEffectiveKeySignature];
+				switch(type) {
+					case 0x80: //note off
+						openNotesEnum = [openNoteArray objectEnumerator];
+						while(openNote = [openNotesEnum nextObject]){
+							if([openNote getEffectivePitchWithKeySignature:keySig priorAccidentals:[measure getAccidentalsAtPosition:[[measure getNotes] count]]] == param1){
+								[openNoteArray removeObject:openNote];
+							}
+						}
+							break;
+					case 0x90: //note on
+						pitch = [keySig positionForPitch:(param1 % 12) preferAccidental:0];
+						octave = (param1 / 12);
+						acc = [keySig accidentalForPitch:(param1 % 12) atPosition:pitch];
+						if(acc == NO_ACC){
+							accidentals = [measure getAccidentalsAtPosition:[[measure getNotes] count]];
+							prevAcc = [accidentals objectForKey:[NSNumber numberWithInt:(octave * 7 + pitch)]];
+							if(prevAcc != nil && [prevAcc intValue] != NO_ACC){
+								acc = NATURAL;
+							}						
+						}
+						newNote = [[[Note alloc] initWithPitch:pitch octave:octave duration:0 dotted:NO
+														accidental:acc onStaff:staff] autorelease];
+						if([openNoteArray count] != 0){
+							Chord *newChord = [[[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObject:newNote]] autorelease];
+							openNotesEnum = [openNoteArray objectEnumerator];
+							BOOL replacing = NO;
+							while(openNote = [openNotesEnum nextObject]){
+								if([openNote getDuration] > 0){
+									NSArray *notes;
+									if([openNote respondsToSelector:@selector(getNotes)]){
+										notes = [openNote getNotes];
+									} else {
+										notes = [NSArray arrayWithObject:openNote];
+									}
+									NSEnumerator *openNoteEnum = [notes objectEnumerator];
+									id subnote;
+									while(subnote = [openNoteEnum nextObject]){
+										Note *noteCopy = [subnote copy];
+										[noteCopy setDuration:0];
+										[noteCopy setDottedSilently:NO];
+										[subnote tieTo:noteCopy];
+										[noteCopy tieFrom:subnote];
+										[newChord addNote:subnote];
+									}
+								} else {
+									replacing = YES;
+									[newChord addNote:openNote];
+								}
+							}
+							[openNoteArray addObject:newNote];
+							newNote = newChord;
+							if(replacing) {
+								[staff removeLastNote];
+							}
+						} else {
+							[openNoteArray addObject:newNote];
+						}
+						[measure addNote:newNote atIndex:([[measure getNotes] count] - 0.5) tieToPrev:NO];
+						break;
+				}
+				[lastEventTimes setObject:[NSNumber numberWithFloat:(lastEvent + deltaBeats)] forKey:ch];
 			}
-			[lastEventTimes setObject:[NSNumber numberWithFloat:(lastEvent + deltaBeats)] forKey:ch];
 		}
 	}
 	NSEnumerator *staffsEnum = [[song staffs] objectEnumerator];
@@ -513,8 +522,8 @@ static char lastStatus = 0x00;
 			NSEnumerator *measuresEnum = [measures objectEnumerator];
 			id measure;
 			while(measure = [measuresEnum nextObject]){
-				[measure grabNotesFromNextMeasure];
-				[measure refreshNotes:nil];
+//				[measure grabNotesFromNextMeasure];
+//				[measure refreshNotes:nil];
 			}
 		} else {
 			[song removeStaff:staff];
@@ -524,14 +533,14 @@ static char lastStatus = 0x00;
 }
 
 + (void)readSong:(Song *)song fromMIDI:(NSData *)data{
-	int format = [self readIntFrom:data range:NSMakeRange(8, 2)];
+	int format = [self readIntFrom:data offset:(8) length:2];
 	if(format > 1){
 		NSException *e = [NSException exceptionWithName:@"MIDIException" reason:@"MIDI file was an unsupported format type, must be 0 or 1." userInfo:nil];
 		@throw e;
 	}
-	int numTracks = [self readIntFrom:data range:NSMakeRange(10, 2)];
+	int numTracks = [self readIntFrom:data offset:(10) length:2];
 	int resolution;
-	int rawRes = [self readIntFrom:data range:NSMakeRange(12, 2)];
+	int rawRes = [self readIntFrom:data offset:(12) length:2];
 	if(!(rawRes & 0x8000)){
 		resolution = rawRes;
 	} else {
@@ -541,6 +550,9 @@ static char lastStatus = 0x00;
 	int i, offset = 14;
 	for(i = 0; i < numTracks; i++){
 		offset += [self readTrackFrom:data into:song atOffset:offset withResolution:resolution];
+	}
+	while([[song staffs] count] > 1){
+		[song removeStaff:[[song staffs] lastObject]];
 	}
 }
 

@@ -24,6 +24,10 @@ static ChromaticKeySignature *instance;
 	return position;
 }
 
+- (int)positionForPitch:(int)pitch preferAccidental:(int)accidental{
+	return pitch;
+}
+
 - (int)getAccidentalAtPosition:(int)position{
 	return NO_ACC;
 }

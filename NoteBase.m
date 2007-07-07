@@ -30,6 +30,10 @@
 	[measure grabNotesFromNextMeasure];
 }
 
+- (void)setDottedSilently:(BOOL)_dotted{
+	dotted = _dotted;
+}
+
 - (Staff *)getStaff{
 	return staff;
 }
@@ -148,7 +152,9 @@
 	NoteBase *lastNote = nil;
 	while(remainingDuration > 0){
 		NoteBase *newNote = [self copy];
-		[newNote tryToFill:remainingDuration];
+		if(![newNote tryToFill:remainingDuration]) {
+			break;
+		}
 		remainingDuration -= [newNote getEffectiveDuration];
 		[remainingNotes addObject:newNote];
 		[lastNote tieTo:newNote];
@@ -285,6 +291,12 @@
 
 - (Class)getControllerClass{
 	return [NoteController class];
+}
+
+- (NSString *) description {
+	NSMutableString *str = [NSMutableString string];
+	[self addToMusicXMLString:str];
+	return str;
 }
 
 @end

@@ -75,6 +75,9 @@
 - (void)setDotted:(BOOL)_dotted{
 	[[notes do] setDotted:_dotted];
 }
+- (void)setDottedSilently:(BOOL)_dotted{
+	[[notes do] setDottedSilently:_dotted];
+}
 
 - (float)addToMIDITrack:(MusicTrack *)musicTrack atPosition:(float)pos
 	   withKeySignature:(KeySignature *)sig accidentals:(NSMutableDictionary *)accidentals

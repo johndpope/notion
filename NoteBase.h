@@ -23,6 +23,7 @@
 
 - (void)setDuration:(int)_duration;
 - (void)setDotted:(BOOL)_dotted;
+- (void)setDottedSilently:(BOOL)_dotted;
 
 - (Staff *)getStaff;
 - (void)setStaff:(Staff *)_staff;

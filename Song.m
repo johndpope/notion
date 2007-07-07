@@ -639,4 +639,10 @@ int enableMIDI = 1;
 	[super dealloc];
 }
 
+- (NSString *) description {
+	NSMutableString *str = [NSMutableString string];
+	[[self doSelf] appendMusicXMLToString:str forStaff:[staffs each]];
+	return str;
+}
+
 @end

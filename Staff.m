@@ -644,4 +644,10 @@
 	return [StaffController class];
 }
 
+- (NSString *) description {
+	NSMutableString *str = [NSMutableString string];
+	[self addToMusicXMLString:str];
+	return str;
+}
+
 @end
