@@ -132,7 +132,7 @@ static char lastStatus = 0x00;
 			meta = 0xFF;
 			[self writeBackwards:&meta length:1 to:(bytes + timestampLength)];
 			[self writeBackwards:&(metaMsg->metaEventType) length:1 to:(bytes + timestampLength + 1)];
-			lengthLength = [self writeVariableLength:&(metaMsg->dataLength) to:(bytes + timestampLength + 2)];
+			lengthLength = [self writeVariableLength:metaMsg->dataLength to:(bytes + timestampLength + 2)];
 			[self writeBackwards:&(metaMsg->data) length:(metaMsg->dataLength) to:(bytes + timestampLength + 2 + lengthLength)];
 			size += 2 + lengthLength + metaMsg->dataLength;
 			lastStatus = 0x00;
@@ -173,7 +173,7 @@ static char lastStatus = 0x00;
 			} else {
 				[self writeBackwards:&status length:1 to:(bytes + timestampLength)];
 			}
-			lengthLength = [self writeVariableLength:&(rawData->length) to:(bytes + timestampLength + 1)];
+			lengthLength = [self writeVariableLength:rawData->length to:(bytes + timestampLength + 1)];
 			[self writeBackwards:rawData->data length:rawData->length to:(bytes + timestampLength + 1 + lengthLength)];
 			size += 2 + lengthLength + rawData->length;
 			break;
