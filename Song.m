@@ -381,11 +381,6 @@ int enableMIDI = 1;
 	if(playerPosition != -1){
 		return;
 	}
-	BOOL isPlaying;
-	MusicPlayerIsPlaying(feedbackPlayer, &isPlaying);
-	if(isPlaying){
-		MusicPlayerStop(feedbackPlayer);
-	}
 	MusicTrackClear(feedbackTrack, 0.0, MAXFLOAT);
 	NSDictionary *accidentals = [measure getAccidentalsAtPosition:pos];
 	KeySignature *keySig = [measure getEffectiveKeySignature];
@@ -406,7 +401,9 @@ int enableMIDI = 1;
 	
 	MusicPlayerSetTime(feedbackPlayer, 0.0);
 	
-	if (MusicPlayerStart(feedbackPlayer) != noErr) {
+	BOOL isPlaying;
+	MusicPlayerIsPlaying(feedbackPlayer, &isPlaying);
+	if (!isPlaying && MusicPlayerStart(feedbackPlayer) != noErr) {
 		NSLog(@"Cannot start music player - %d.", MusicPlayerStart(feedbackPlayer));
 	}
 
