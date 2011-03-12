@@ -1229,14 +1229,15 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PREBINDING = NO;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
 		C05733CD08A9546B00998B17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1244,6 +1245,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				PREBINDING = NO;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};
