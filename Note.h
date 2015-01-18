@@ -17,22 +17,21 @@ static int SHARP = 1;
 static int NATURAL = 0;
 static int FLAT = -1;
 
-@interface Note : NoteBase <NSCopying>{
-	int octave;
-	int pitch;
-	int accidental;
-	
-	int lastOctave;
-	int lastPitch;
-	
-	Note *tieTo;
-	Note *tieFrom;
-	
+@interface Note : NoteBase <NSCopying> {
+    int octave;
+    int pitch;
+    int accidental;
+    
+    int lastOctave;
+    int lastPitch;
+    
+    Note *tieTo;
+    Note *tieFrom;
 }
 
-- (id)initWithPitch:(int)_pitch octave:(int)_octave 
-		   duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)staff;
-		
+- (id)initWithPitch:(int)_pitch octave:(int)_octave
+           duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)staff;
+
 - (int)getPitch;
 - (char)getPitchLetter;
 - (int)getOctave;

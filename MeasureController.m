@@ -25,429 +25,450 @@ NSMutableDictionary *cachedMeasureWidths = nil;
 
 @implementation MeasureController
 
-+ (float)minNoteSpacing{
-	return 15.0;
++ (float)minNoteSpacing {
+    return 15.0;
 }
 
-+ (float)repeatAreaWidth:(Measure *)measure{
-	return 15.0;
++ (float)repeatAreaWidth:(Measure *)measure {
+    return 15.0;
 }
 
-+ (float) clefAreaX:(Measure *)measure{
-	return [self repeatAreaWidth:measure];
++ (float)clefAreaX:(Measure *)measure {
+    return [self repeatAreaWidth:measure];
 }
 
-+ (float) timeSigAreaX:(Measure *)measure{
-	return [self clefAreaX:measure] + [ClefController widthOf:[measure getClef]];
++ (float)timeSigAreaX:(Measure *)measure {
+    return [self clefAreaX:measure] + [ClefController widthOf:[measure getClef]];
 }
 
-+ (float) keySigAreaX:(Measure *)measure{
-	return [self timeSigAreaX:measure] + [TimeSignatureController widthOf:[measure getTimeSignature]];
++ (float)keySigAreaX:(Measure *)measure {
+    return [self timeSigAreaX:measure] + [TimeSignatureController widthOf:[measure getTimeSignature]];
 }
 
-+ (float)noteAreaStart:(Measure *)measure{
-	return [self repeatAreaWidth:measure] + 
-			[ClefController widthOf:[measure getClef]] + 
-			[KeySignatureController widthOf:[measure getKeySignature] inMeasure:measure] + 
-			[TimeSignatureController widthOf:[measure getTimeSignature]];
++ (float)noteAreaStart:(Measure *)measure {
+    return [self repeatAreaWidth:measure] +
+    [ClefController widthOf:[measure getClef]] +
+    [KeySignatureController widthOf:[measure getKeySignature] inMeasure:measure] +
+    [TimeSignatureController widthOf:[measure getTimeSignature]];
 }
 
-+ (float)isolatedWidthOf:(Measure *)measure{
-	if(measure == nil) return 0;
-	float width = [self minNoteSpacing];
-	NSEnumerator *notes = [[measure getNotes] objectEnumerator];
-	id note;
-	while(note = [notes nextObject]){
-		width += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing];
-	}
-	if(width < 150.0) width = 150.0;
-	width += [self noteAreaStart:measure] + [self repeatAreaWidth:measure];
-	return width;
++ (float)isolatedWidthOf:(Measure *)measure {
+    if (measure == nil) return 0;
+    float width = [self minNoteSpacing];
+    NSEnumerator *notes = [[measure getNotes] objectEnumerator];
+    id note;
+    while (note = [notes nextObject]) {
+        width += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing];
+    }
+    if (width < 150.0) width = 150.0;
+    width += [self noteAreaStart:measure] + [self repeatAreaWidth:measure];
+    return width;
 }
 
-+ (float)widthOf:(Measure *)measure{
-	if(cachedMeasureWidths == nil){
-		cachedMeasureWidths = [[NSMutableDictionary dictionary] retain];
-	}
-	NSNumber *width = [cachedMeasureWidths objectForKey:[NSNumber numberWithInt:measure]];
-	if(width != nil){
-		return [width floatValue];
-	}
-	float max = 0;
-	int index = [[[measure getStaff] getMeasures] indexOfObject:measure];
-	NSEnumerator *staffs = [[[[measure getStaff] getSong] staffs] objectEnumerator];
-	id staff;
-	while(staff = [staffs nextObject]){
-		if([[staff getMeasures] count] > index){
-			float width = [self isolatedWidthOf:[staff getMeasureAtIndex:index]];
-			if(width > max) max = width;
-		}
-	}
-	[cachedMeasureWidths setObject:[NSNumber numberWithFloat:max] forKey:[NSNumber numberWithInt:measure]];
-	return max;	
++ (float)widthOf:(Measure *)measure {
+    if (cachedMeasureWidths == nil) {
+        cachedMeasureWidths = [[NSMutableDictionary dictionary] retain];
+    }
+    NSNumber *width = [cachedMeasureWidths objectForKey:[NSNumber numberWithInt:measure]];
+    if (width != nil) {
+        return [width floatValue];
+    }
+    float max = 0;
+    int index = [[[measure getStaff] getMeasures] indexOfObject:measure];
+    NSEnumerator *staffs = [[[[measure getStaff] getSong] staffs] objectEnumerator];
+    id staff;
+    while (staff = [staffs nextObject]) {
+        if ([[staff getMeasures] count] > index) {
+            float width = [self isolatedWidthOf:[staff getMeasureAtIndex:index]];
+            if (width > max) max = width;
+        }
+    }
+    [cachedMeasureWidths setObject:[NSNumber numberWithFloat:max] forKey:[NSNumber numberWithInt:measure]];
+    return max;
 }
 
-+ (float)xOf:(Measure *)measure{
-	NSEnumerator *measures = [[[measure getStaff] getMeasures] objectEnumerator];
-	float x = [ScoreController xInset];
-	id currMeasure;
-	while((currMeasure = [measures nextObject]) && currMeasure != measure){
-		x += [self widthOf:currMeasure];
-	}
-	return x;
++ (float)xOf:(Measure *)measure {
+    NSEnumerator *measures = [[[measure getStaff] getMeasures] objectEnumerator];
+    float x = [ScoreController xInset];
+    id currMeasure;
+    while ((currMeasure = [measures nextObject]) && currMeasure != measure) {
+        x += [self widthOf:currMeasure];
+    }
+    return x;
 }
 
-+ (NSRect)boundsOf:(Measure *)measure{
-	NSRect bounds;
-	NSRect staffBounds = [StaffController boundsOf:[measure getStaff]];
-	bounds.origin.x = [self xOf:measure];
-	bounds.origin.y = staffBounds.origin.y;
-	bounds.size.width = [self widthOf:measure];
-	bounds.size.height = staffBounds.size.height;
-	return bounds;
++ (NSRect)boundsOf:(Measure *)measure {
+    NSRect bounds;
+    NSRect staffBounds = [StaffController boundsOf:[measure getStaff]];
+    bounds.origin.x = [self xOf:measure];
+    bounds.origin.y = staffBounds.origin.y;
+    bounds.size.width = [self widthOf:measure];
+    bounds.size.height = staffBounds.size.height;
+    return bounds;
 }
 
-+ (NSRect)innerBoundsOf:(Measure *)measure{
-	NSRect bounds = [self boundsOf:measure];
-	bounds.size.height -= 100;
-	bounds.origin.y = [StaffController baseOf:[measure getStaff]] - bounds.size.height;
-	return bounds;
++ (NSRect)innerBoundsOf:(Measure *)measure {
+    NSRect bounds = [self boundsOf:measure];
+    bounds.size.height -= 100;
+    bounds.origin.y = [StaffController baseOf:[measure getStaff]] - bounds.size.height;
+    return bounds;
 }
 
-+ (int)positionAt:(NSPoint)location inMeasure:(Measure *)measure{
-	Staff *staff = [measure getStaff];
-	return floor(([StaffController baseOf:staff] - [StaffController topOf:staff] - location.y) / [StaffController lineHeightOf:staff]);
++ (int)positionAt:(NSPoint)location inMeasure:(Measure *)measure {
+    Staff *staff = [measure getStaff];
+    return floor(([StaffController baseOf:staff] - [StaffController topOf:staff] - location.y) / [StaffController lineHeightOf:staff]);
 }
 
-+ (int)octaveAt:(NSPoint)location inMeasure:(Measure *)measure{
-	return [[measure getEffectiveClef] getOctaveForPosition:[self positionAt:location inMeasure:measure]];
++ (int)octaveAt:(NSPoint)location inMeasure:(Measure *)measure {
+    return [[measure getEffectiveClef] getOctaveForPosition:[self positionAt:location inMeasure:measure]];
 }
 
-+ (int)pitchAt:(NSPoint)location inMeasure:(Measure *)measure{
-	return [[measure getEffectiveClef] getPitchForPosition:[self positionAt:location inMeasure:measure]];
++ (int)pitchAt:(NSPoint)location inMeasure:(Measure *)measure {
+    return [[measure getEffectiveClef] getPitchForPosition:[self positionAt:location inMeasure:measure]];
 }
 
-+ (float)indexAt:(NSPoint)location inMeasure:(Measure *)measure{
-	float x = location.x;
-	float currX = 0;
-	NSEnumerator *notes = [[measure getNotes] objectEnumerator];
-	id note;
-	float index = -0.5;
-	currX += [self minNoteSpacing] + [self noteAreaStart:measure];
-	while((note = [notes nextObject]) && currX < x){
-		index += 0.5;
-		currX += 12;
-		if(currX >= x) break;
-		currX += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing] - 12;
-		index += 0.5;
-	}
-	return index;	
++ (float)indexAt:(NSPoint)location inMeasure:(Measure *)measure {
+    float x = location.x;
+    float currX = 0;
+    NSEnumerator *notes = [[measure getNotes] objectEnumerator];
+    id note;
+    float index = -0.5;
+    currX += [self minNoteSpacing] + [self noteAreaStart:measure];
+    while ((note = [notes nextObject]) && currX < x) {
+        index += 0.5;
+        currX += 12;
+        if (currX >= x) break;
+        currX += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing] - 12;
+        index += 0.5;
+    }
+    return index;
 }
 
-+ (float)xOfIndex:(float)index inMeasure:(Measure *)measure{
-	float measureX = [self xOf:measure];
-	float x = measureX + [self minNoteSpacing] + [self noteAreaStart:measure];
-	if([[measure getNotes] count] > 0){
-		NSEnumerator *notes = [[measure getNotes] objectEnumerator];
-		id note = [notes nextObject];
-		while(index >= 1 && note){
-			x += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing];
-			note = [notes nextObject];
-			index -= 1;
-		}
-		if(note == nil) note = [[measure getNotes] lastObject];
-		if(index < 0){
-			x -= [self minNoteSpacing];
-		} else if(index > 0){
-			if(note == [[measure getNotes] lastObject]){
-				x += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing];
-			} else{
-				x += [NoteController widthOf:note inMeasure:measure] / 2;
-			}
-		}
-	}
-	if(x + [self minNoteSpacing] > measureX + [self widthOf:measure]){
-		x = measureX + [self widthOf:measure] - [self minNoteSpacing];
-	}
-	return x;	
++ (float)xOfIndex:(float)index inMeasure:(Measure *)measure {
+    float measureX = [self xOf:measure];
+    float x = measureX + [self minNoteSpacing] + [self noteAreaStart:measure];
+    if ([[measure getNotes] count] > 0) {
+        NSEnumerator *notes = [[measure getNotes] objectEnumerator];
+        id note = [notes nextObject];
+        while (index >= 1 && note) {
+            x += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing];
+            note = [notes nextObject];
+            index -= 1;
+        }
+        if (note == nil) note = [[measure getNotes] lastObject];
+        if (index < 0) {
+            x -= [self minNoteSpacing];
+        }
+        else if (index > 0) {
+            if (note == [[measure getNotes] lastObject]) {
+                x += [NoteController widthOf:note inMeasure:measure] + [self minNoteSpacing];
+            }
+            else {
+                x += [NoteController widthOf:note inMeasure:measure] / 2;
+            }
+        }
+    }
+    if (x + [self minNoteSpacing] > measureX + [self widthOf:measure]) {
+        x = measureX + [self widthOf:measure] - [self minNoteSpacing];
+    }
+    return x;
 }
 
-+ (float)yOfPosition:(int)position inMeasure:(Measure *)measure{
-	Staff *staff = [measure getStaff];
-	float lineHeight = [StaffController lineHeightOf:staff];
-	return [StaffController baseOf:staff] - lineHeight * position;
++ (float)yOfPosition:(int)position inMeasure:(Measure *)measure {
+    Staff *staff = [measure getStaff];
+    float lineHeight = [StaffController lineHeightOf:staff];
+    return [StaffController baseOf:staff] - lineHeight * position;
 }
 
-+ (BOOL) isOverStartRepeat:(NSPoint)location inMeasure:(Measure *)measure{
-	return location.x <= [self repeatAreaWidth:measure];
++ (BOOL)isOverStartRepeat:(NSPoint)location inMeasure:(Measure *)measure {
+    return location.x <= [self repeatAreaWidth:measure];
 }
 
-+ (BOOL) isOverClef:(NSPoint)location inMeasure:(Measure *)measure{
-	return ![self isOverStartRepeat:location inMeasure:measure] &&
-		location.x <= [self repeatAreaWidth:measure] + [ClefController widthOf:[measure getClef]];
++ (BOOL)isOverClef:(NSPoint)location inMeasure:(Measure *)measure {
+    return ![self isOverStartRepeat:location inMeasure:measure] &&
+    location.x <= [self repeatAreaWidth:measure] + [ClefController widthOf:[measure getClef]];
 }
 
-+ (BOOL) isOverTimeSig:(NSPoint)location inMeasure:(Measure *)measure{
-	return ![self isOverStartRepeat:location inMeasure:measure] &&
-		![self isOverClef:location inMeasure:measure] &&
-		location.x <= [self repeatAreaWidth:measure] + 
-		[ClefController widthOf:[measure getClef]] + 
-		[TimeSignatureController widthOf:[measure getTimeSignature]];
++ (BOOL)isOverTimeSig:(NSPoint)location inMeasure:(Measure *)measure {
+    return ![self isOverStartRepeat:location inMeasure:measure] &&
+    ![self isOverClef:location inMeasure:measure] &&
+    location.x <= [self repeatAreaWidth:measure] +
+    [ClefController widthOf:[measure getClef]] +
+    [TimeSignatureController widthOf:[measure getTimeSignature]];
 }
 
-+ (BOOL) isOverKeySig:(NSPoint)location inMeasure:(Measure *)measure{
-	return ![self isOverStartRepeat:location inMeasure:measure] &&
-		![self isOverClef:location inMeasure:measure] &&
-		![self isOverTimeSig:location inMeasure:measure] &&
-			location.x <= [self repeatAreaWidth:measure] + 
-			[ClefController widthOf:[measure getClef]] + 
-			[TimeSignatureController widthOf:[measure getTimeSignature]] + 
-	[KeySignatureController widthOf:[measure getKeySignature] inMeasure:measure];
++ (BOOL)isOverKeySig:(NSPoint)location inMeasure:(Measure *)measure {
+    return ![self isOverStartRepeat:location inMeasure:measure] &&
+    ![self isOverClef:location inMeasure:measure] &&
+    ![self isOverTimeSig:location inMeasure:measure] &&
+    location.x <= [self repeatAreaWidth:measure] +
+    [ClefController widthOf:[measure getClef]] +
+    [TimeSignatureController widthOf:[measure getTimeSignature]] +
+    [KeySignatureController widthOf:[measure getKeySignature] inMeasure:measure];
 }
 
-+ (BOOL) isOverEndRepeat:(NSPoint)location inMeasure:(Measure *)measure{
-	return location.x >= [self widthOf:measure] - [self repeatAreaWidth:measure];
++ (BOOL)isOverEndRepeat:(NSPoint)location inMeasure:(Measure *)measure {
+    return location.x >= [self widthOf:measure] - [self repeatAreaWidth:measure];
 }
 
-+ (NSPoint) keySigPanelLocationFor:(Measure *)measure{
-	NSPoint location;
-	location.x = (int)([self xOf:measure] + [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]]);
-	location.y = (int)([StaffController topOf:[measure getStaff]]);
-	return location;
++ (NSPoint)keySigPanelLocationFor:(Measure *)measure {
+    NSPoint location;
+    location.x = (int)([self xOf:measure] + [ClefController widthOf:[measure getClef]] + [TimeSignatureController widthOf:[measure getTimeSignature]]);
+    location.y = (int)([StaffController topOf:[measure getStaff]]);
+    return location;
 }
 
-+ (NSPoint) timeSigPanelLocationFor:(Measure *)measure{
-	NSPoint location;
-	location.x = (int)([self xOf:measure] + [ClefController widthOf:[measure getClef]]);
-	location.y = (int)([StaffController topOf:[measure getStaff]]);
-	return location;
++ (NSPoint)timeSigPanelLocationFor:(Measure *)measure {
+    NSPoint location;
+    location.x = (int)([self xOf:measure] + [ClefController widthOf:[measure getClef]]);
+    location.y = (int)([StaffController topOf:[measure getStaff]]);
+    return location;
 }
 
-+ (NSPoint) repeatPanelLocationFor:(Measure *)measure{
-	NSPoint location;
-	NSRect bounds = [MeasureController boundsOf:measure];
-	location.x = (int)(bounds.origin.x + bounds.size.width - 10);
-	location.y = (int)([StaffController topOf:[measure getStaff]]);
-	return location;
++ (NSPoint)repeatPanelLocationFor:(Measure *)measure {
+    NSPoint location;
+    NSRect bounds = [MeasureController boundsOf:measure];
+    location.x = (int)(bounds.origin.x + bounds.size.width - 10);
+    location.y = (int)([StaffController topOf:[measure getStaff]]);
+    return location;
 }
 
-+ (BOOL)isOverNote:(NoteBase *)note at:(NSPoint)location inMeasure:(Measure *)measure{
-	return [self pitchAt:location inMeasure:measure] == [note getPitch] && [self octaveAt:location inMeasure:measure] == [note getOctave];
++ (BOOL)isOverNote:(NoteBase *)note at:(NSPoint)location inMeasure:(Measure *)measure {
+    return [self pitchAt:location inMeasure:measure] == [note getPitch] && [self octaveAt:location inMeasure:measure] == [note getOctave];
 }
 
-+ (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode withEvent:(NSEvent *)event{
-	if([[mode objectForKey:@"specialEvent"] isEqualToString:@"paste"]){
-		return measure;
-	}
-	if([self isOverClef:location inMeasure:measure]){
-		return [[ClefTarget alloc] initWithMeasure:measure];
-	}
-	if([self isOverKeySig:location inMeasure:measure]){
-		return [[KeySigTarget alloc] initWithMeasure:measure];
-	}
-	if([self isOverTimeSig:location inMeasure:measure]){
-		return [[TimeSigTarget alloc] initWithMeasure:measure];
-	}		
-	if(location.x <= [self noteAreaStart:measure]){
-		return measure;
-	}
-	float index = [self indexAt:location inMeasure:measure];
-	if(((int)(index * 2)) % 2 == 0){
-		//on a note
-		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
-		NoteBase *note = [[measure getNotes] objectAtIndex:index];
-		if([self canPlaceNoteAt:location inMeasure:measure]){
-			if(pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ![self isOverNote:note at:location inMeasure:measure]){
-				//above or below a note in add note mode, want to create a chord
-				return measure;
-			}
-			if(pointerMode == MODE_NOTE && [note isKindOfClass:[Chord class]] && ![ChordController isOverNote:location inChord:note inMeasure:measure]){
-				return measure;
-			}
-		}
-		if([note isKindOfClass:[Chord class]] && ([event modifierFlags] & NSAlternateKeyMask)){
-			return [[note getControllerClass] noteAt:location inChord:note inMeasure:measure];
-		}
-		return note;
-	} else{
-		//between notes
-		return measure;
-	}
++ (id)targetAtLocation:(NSPoint)location inMeasure:(Measure *)measure mode:(NSDictionary *)mode withEvent:(NSEvent *)event {
+    NSLog(@"location:%f :%f", location.x, location.y);
+    NSLog(@"mode:%d", mode);
+    NSLog(@"event:%@", event);
+    //
+    //    if ([[mode objectForKey:@"specialEvent"] isEqualToString:@"paste"]) {
+    //        return measure;
+    //    }
+    if ([self isOverClef:location inMeasure:measure]) {
+        return [[ClefTarget alloc] initWithMeasure:measure];
+    }
+    if ([self isOverKeySig:location inMeasure:measure]) {
+        return [[KeySigTarget alloc] initWithMeasure:measure];
+    }
+    if ([self isOverTimeSig:location inMeasure:measure]) {
+        return [[TimeSigTarget alloc] initWithMeasure:measure];
+    }
+    if (location.x <= [self noteAreaStart:measure]) {
+        return measure;
+    }
+    float index = [self indexAt:location inMeasure:measure];
+    if (((int)(index * 2)) % 2 == 0) {
+        //on a note
+        int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
+        NoteBase *note = [[measure getNotes] objectAtIndex:index];
+        if ([self canPlaceNoteAt:location inMeasure:measure]) {
+            if (pointerMode == MODE_NOTE && [note isKindOfClass:[Note class]] && ![self isOverNote:note at:location inMeasure:measure]) {
+                //above or below a note in add note mode, want to create a chord
+                return measure;
+            }
+            if (pointerMode == MODE_NOTE && [note isKindOfClass:[Chord class]] && ![ChordController isOverNote:location inChord:note inMeasure:measure]) {
+                return measure;
+            }
+        }
+        if ([note isKindOfClass:[Chord class]] && ([event modifierFlags] & NSAlternateKeyMask)) {
+            return [[note getControllerClass] noteAt:location inChord:note inMeasure:measure];
+        }
+        return note;
+    }
+    else {
+        //between notes
+        return measure;
+    }
 }
 
-+ (void)scrollView:(NSView *)view toShowMeasure:(Measure *)measure{
-	[view scrollRectToVisible:NSInsetRect([self boundsOf:measure], -30, -30)];
++ (void)scrollView:(NSView *)view toShowMeasure:(Measure *)measure {
+    [view scrollRectToVisible:NSInsetRect([self boundsOf:measure], -30, -30)];
 }
 
-+ (BOOL)canPlaceNoteAt:(NSPoint)location inMeasure:(Measure *)measure{
-	Clef *clef = [measure getEffectiveClef];
-	return [clef positionIsValid:[self positionAt:location inMeasure:measure]];
++ (BOOL)canPlaceNoteAt:(NSPoint)location inMeasure:(Measure *)measure {
+    Clef *clef = [measure getEffectiveClef];
+    return [clef positionIsValid:[self positionAt:location inMeasure:measure]];
 }
 
-+ (NSString *)getCommandListFor:(Measure *)measure at:(NSPoint)location mode:(NSDictionary *)mode{
-	NSMutableArray *commands = [NSMutableArray array];
-	location.x -= [self xOf:measure];
-	location.y -= [self boundsOf:measure].origin.y;
-	if([self isOverStartRepeat:location inMeasure:measure]){
-		if(![measure isStartRepeat]){
-			[commands addObject:@"click - start repeat"];
-		} else {
-			[commands addObject:@"DELETE - delete repeat"];
-		}
-	} else if([measure followsOpenRepeat]){
-		[commands addObject:@"click - end repeat"];
-	} else if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]){
-		[commands addObject:@"click - edit repeat"];
-		[commands addObject:@"DELETE - delete repeat"];
-	} else {
-		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
-		if(pointerMode == MODE_NOTE){
-			int pitch = [self pitchAt:location inMeasure:measure];
-			int octave = [self octaveAt:location inMeasure:measure];
-			if([self canPlaceNoteAt:location inMeasure:measure]){
-				[commands addObject:@"click - add note"];
-			}
-			[commands addObject:@"SPACE - add rest"];
-		} else if([[measure getNotes] count] > 0){
-			[commands addObject:@"dbl-click - select measure"];
-		}
-	}
-	return [commands componentsJoinedByString:@"\n"];
++ (NSString *)getCommandListFor:(Measure *)measure at:(NSPoint)location mode:(NSDictionary *)mode {
+    NSMutableArray *commands = [NSMutableArray array];
+    location.x -= [self xOf:measure];
+    location.y -= [self boundsOf:measure].origin.y;
+    if ([self isOverStartRepeat:location inMeasure:measure]) {
+        if (![measure isStartRepeat]) {
+            [commands addObject:@"click - start repeat"];
+        }
+        else {
+            [commands addObject:@"DELETE - delete repeat"];
+        }
+    }
+    else if ([measure followsOpenRepeat]) {
+        [commands addObject:@"click - end repeat"];
+    }
+    else if ([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]) {
+        [commands addObject:@"click - edit repeat"];
+        [commands addObject:@"DELETE - delete repeat"];
+    }
+    else {
+        int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
+        if (pointerMode == MODE_NOTE) {
+            int pitch = [self pitchAt:location inMeasure:measure];
+            int octave = [self octaveAt:location inMeasure:measure];
+            if ([self canPlaceNoteAt:location inMeasure:measure]) {
+                [commands addObject:@"click - add note"];
+            }
+            [commands addObject:@"SPACE - add rest"];
+        }
+        else if ([[measure getNotes] count] > 0) {
+            [commands addObject:@"dbl-click - select measure"];
+        }
+    }
+    return [commands componentsJoinedByString:@"\n"];
 }
 
-+ (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
-	if([event clickCount] < 2 && !([event modifierFlags] & NSShiftKeyMask)){
-		[view setSelection:nil];
-	}
-	location.x -= [self xOf:measure];
-	location.y -= [self boundsOf:measure].origin.y;
-	if([self isOverStartRepeat:location inMeasure:measure]){
-		if(![measure isStartRepeat]){
-			[measure setStartRepeat:YES];			
-		}
-	} else if([measure followsOpenRepeat]){
-		[measure setEndRepeat:2];
-	} else if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]){
-		[view showRepeatCountPanelFor:[measure getRepeatEndingHere] inMeasure:measure];
-	} else if([event clickCount] == 2 && [[measure getNotes] count] > 0){
-		if(([event modifierFlags] & NSShiftKeyMask) && [view selection] != nil){
-			[view setSelection:[[measure getStaff] notesBetweenNote:[view selection] andNote:[measure getNotes]]];			
-		} else {
-			[view setSelection:[measure getNotes]];
-		}
-	} else {
-		int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
-		int duration = [[mode objectForKey:@"duration"] intValue];
-		if([[mode objectForKey:@"triplet"] boolValue]){
-			duration = duration * 3 / 2;
-		}
-		BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
-		int accidental = [[mode objectForKey:@"accidental"] intValue];
-		BOOL tieToPrev = [[mode objectForKey:@"tieToPrev"] boolValue];
-		if(pointerMode == MODE_NOTE){
-			int pitch = [self pitchAt:location inMeasure:measure];
-			int octave = [self octaveAt:location inMeasure:measure];
-			if([self canPlaceNoteAt:location inMeasure:measure]){
-				[[measure undoManager] setActionName:@"adding note"];
-				Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:duration dotted:dotted accidental:accidental onStaff:[measure getStaff]];
-				[measure addNote:note atIndex:[self indexAt:location inMeasure:measure] tieToPrev:tieToPrev];
-				[self scrollView:view toShowMeasure:[[note getStaff] getMeasureContainingNote:note]];			
-			}
-		}
-	}
++ (void)handleMouseClick:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view {
+    if ([event clickCount] < 2 && !([event modifierFlags] & NSShiftKeyMask)) {
+        [view setSelection:nil];
+    }
+    location.x -= [self xOf:measure];
+    location.y -= [self boundsOf:measure].origin.y;
+    if ([self isOverStartRepeat:location inMeasure:measure]) {
+        if (![measure isStartRepeat]) {
+            [measure setStartRepeat:YES];
+        }
+    }
+    else if ([measure followsOpenRepeat]) {
+        [measure setEndRepeat:2];
+    }
+    else if ([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure]) {
+        [view showRepeatCountPanelFor:[measure getRepeatEndingHere] inMeasure:measure];
+    }
+    else if ([event clickCount] == 2 && [[measure getNotes] count] > 0) {
+        if (([event modifierFlags] & NSShiftKeyMask) && [view selection] != nil) {
+            [view setSelection:[[measure getStaff] notesBetweenNote:[view selection] andNote:[measure getNotes]]];
+        }
+        else {
+            [view setSelection:[measure getNotes]];
+        }
+    }
+    else {
+        int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
+        int duration = [[mode objectForKey:@"duration"] intValue];
+        if ([[mode objectForKey:@"triplet"] boolValue]) {
+            duration = duration * 3 / 2;
+        }
+        BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
+        int accidental = [[mode objectForKey:@"accidental"] intValue];
+        BOOL tieToPrev = [[mode objectForKey:@"tieToPrev"] boolValue];
+        if (pointerMode == MODE_NOTE) {
+            int pitch = [self pitchAt:location inMeasure:measure];
+            int octave = [self octaveAt:location inMeasure:measure];
+            if ([self canPlaceNoteAt:location inMeasure:measure]) {
+                [[measure undoManager] setActionName:@"adding note"];
+                Note *note = [[Note alloc] initWithPitch:pitch octave:octave duration:duration dotted:dotted accidental:accidental onStaff:[measure getStaff]];
+                [measure addNote:note atIndex:[self indexAt:location inMeasure:measure] tieToPrev:tieToPrev];
+                [self scrollView:view toShowMeasure:[[note getStaff] getMeasureContainingNote:note]];
+            }
+        }
+    }
 }
 
-+ (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view{
-	location.x -= [self xOf:measure];
-	location.y -= [self boundsOf:measure].origin.y;
-	if([measure isStartRepeat] && [self isOverStartRepeat:location inMeasure:measure] && 
-	   [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
-		[measure setStartRepeat:NO];
-		return YES;
-	}
-	if([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure] &&
-	   [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
-		[measure removeEndRepeat];
-		return YES;
-	}
-	if([view selection] != nil && [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound){
-		if([[view selection] respondsToSelector:@selector(objectAtIndex:)]){
-			BOOL handled = [[[[view selection] objectAtIndex:0] getControllerClass] handleKeyPress:event at:location on:[[view selection] objectAtIndex:0] mode:mode view:view];
-			if(handled){
-				return YES;
-			}
-		} else {
-			BOOL handled = [[[view selection] getControllerClass] handleKeyPress:event at:location on:[view selection] mode:mode view:view];
-			if(handled){
-				return YES;
-			}
-		}
-	}
-	int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
-	int duration = [[mode objectForKey:@"duration"] intValue];
-	if([[mode objectForKey:@"triplet"] boolValue]){
-		duration = duration * 3 / 2;
-	}
-	BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
-	if(pointerMode == MODE_NOTE && [[event characters] isEqualToString:@" "]){
-		Rest *rest = [[[Rest alloc] initWithDuration:duration dotted:dotted onStaff:[measure getStaff]] autorelease];
-		[measure addNote:rest atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];
-		if([measure isFull]) [[measure getStaff] getMeasureAfter:measure createNew:YES];
-		[self scrollView:view toShowMeasure:[[rest getStaff] getMeasureContainingNote:rest]];
-		return YES;
-	}
-	if([[event characters] characterAtIndex:0] >= 'a' && [[event characters] characterAtIndex:0] <= 'g'){
-		int noteRank = [[event characters] characterAtIndex:0] - 'a';
-		float index = [self indexAt:location inMeasure:measure];
-		Note *lastNote = nil;
-		if(index < 0 && [[measure getStaff] getMeasureBefore:measure] != nil){
-			lastNote = [[[[measure getStaff] getMeasureBefore:measure] getNotes] lastObject];
-		} else if(((int)index) < [[measure getNotes] count]){
-			lastNote = [[measure getNotes] objectAtIndex:((int)index)];
-		}
-		NSPoint pitchAndOctave;
-		if(lastNote != nil){
-			pitchAndOctave = [lastNote closestNoteAtRank:noteRank];
-		} else {
-			pitchAndOctave = [Note noteAtRank:noteRank onClef:[measure getEffectiveClef]];
-		}
-		Note *newNote = [[[Note alloc] initWithPitch:pitchAndOctave.x octave:pitchAndOctave.y duration:duration dotted:dotted
-										  accidental:[[mode objectForKey:@"accidental"] intValue] onStaff:[measure getStaff]] autorelease];
-		[measure addNote:newNote atIndex:index tieToPrev:[[mode objectForKey:@"tieToPrev"] boolValue]];
-		if([measure isFull]) [[measure getStaff] getMeasureAfter:measure createNew:YES];
-		[self scrollView:view toShowMeasure:[[newNote getStaff] getMeasureContainingNote:newNote]];
-		return YES;
-	}
-	return NO;
++ (BOOL)handleKeyPress:(NSEvent *)event at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode view:(ScoreView *)view {
+    location.x -= [self xOf:measure];
+    location.y -= [self boundsOf:measure].origin.y;
+    if ([measure isStartRepeat] && [self isOverStartRepeat:location inMeasure:measure] &&
+        [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound) {
+        [measure setStartRepeat:NO];
+        return YES;
+    }
+    if ([measure isEndRepeat] && [self isOverEndRepeat:location inMeasure:measure] &&
+        [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound) {
+        [measure removeEndRepeat];
+        return YES;
+    }
+    if ([view selection] != nil && [[event characters] rangeOfString:[NSString stringWithFormat:@"%C", NSDeleteCharacter]].location != NSNotFound) {
+        if ([[view selection] respondsToSelector:@selector(objectAtIndex:)]) {
+            BOOL handled = [[[[view selection] objectAtIndex:0] getControllerClass] handleKeyPress:event at:location on:[[view selection] objectAtIndex:0] mode:mode view:view];
+            if (handled) {
+                return YES;
+            }
+        }
+        else {
+            BOOL handled = [[[view selection] getControllerClass] handleKeyPress:event at:location on:[view selection] mode:mode view:view];
+            if (handled) {
+                return YES;
+            }
+        }
+    }
+    int pointerMode = [[mode objectForKey:@"pointerMode"] intValue];
+    int duration = [[mode objectForKey:@"duration"] intValue];
+    if ([[mode objectForKey:@"triplet"] boolValue]) {
+        duration = duration * 3 / 2;
+    }
+    BOOL dotted = [[mode objectForKey:@"dotted"] boolValue];
+    if (pointerMode == MODE_NOTE && [[event characters] isEqualToString:@" "]) {
+        Rest *rest = [[[Rest alloc] initWithDuration:duration dotted:dotted onStaff:[measure getStaff]] autorelease];
+        [measure addNote:rest atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];
+        if ([measure isFull]) [[measure getStaff] getMeasureAfter:measure createNew:YES];
+        [self scrollView:view toShowMeasure:[[rest getStaff] getMeasureContainingNote:rest]];
+        return YES;
+    }
+    if ([[event characters] characterAtIndex:0] >= 'a' && [[event characters] characterAtIndex:0] <= 'g') {
+        int noteRank = [[event characters] characterAtIndex:0] - 'a';
+        float index = [self indexAt:location inMeasure:measure];
+        Note *lastNote = nil;
+        if (index < 0 && [[measure getStaff] getMeasureBefore:measure] != nil) {
+            lastNote = [[[[measure getStaff] getMeasureBefore:measure] getNotes] lastObject];
+        }
+        else if (((int)index) < [[measure getNotes] count]) {
+            lastNote = [[measure getNotes] objectAtIndex:((int)index)];
+        }
+        NSPoint pitchAndOctave;
+        if (lastNote != nil) {
+            pitchAndOctave = [lastNote closestNoteAtRank:noteRank];
+        }
+        else {
+            pitchAndOctave = [Note noteAtRank:noteRank onClef:[measure getEffectiveClef]];
+        }
+        Note *newNote = [[[Note alloc] initWithPitch:pitchAndOctave.x octave:pitchAndOctave.y duration:duration dotted:dotted
+                                          accidental:[[mode objectForKey:@"accidental"] intValue] onStaff:[measure getStaff]] autorelease];
+        [measure addNote:newNote atIndex:index tieToPrev:[[mode objectForKey:@"tieToPrev"] boolValue]];
+        if ([measure isFull]) [[measure getStaff] getMeasureAfter:measure createNew:YES];
+        [self scrollView:view toShowMeasure:[[newNote getStaff] getMeasureContainingNote:newNote]];
+        return YES;
+    }
+    return NO;
 }
 
-+ (void)cleanNoteForPaste:(NoteBase *)note inMeasure:(Measure *)measure preserveTiesWithin:(NSArray *)array{
-	[note setStaff:[measure getStaff]];
-	if(![array containsObject:[note getTieTo]]){
-		[note tieTo:nil];
-	}
-	if(![array containsObject:[note getTieFrom]]){
-		[note tieFrom:nil];
-	}
++ (void)cleanNoteForPaste:(NoteBase *)note inMeasure:(Measure *)measure preserveTiesWithin:(NSArray *)array {
+    [note setStaff:[measure getStaff]];
+    if (![array containsObject:[note getTieTo]]) {
+        [note tieTo:nil];
+    }
+    if (![array containsObject:[note getTieFrom]]) {
+        [note tieFrom:nil];
+    }
 }
 
-+ (void)handlePaste:(id)data at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode{
-	location.x -= [self xOf:measure];
-	if([data isKindOfClass:[NoteBase class]]){
-		[self cleanNoteForPaste:data inMeasure:measure preserveTiesWithin:nil];
-		[measure addNote:data atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];	
-		[[measure undoManager] setActionName:@"pasting note"];
-	} else if([data respondsToSelector:@selector(containsObject:)]){
-		[[self doSelf] cleanNoteForPaste:[data each] inMeasure:measure preserveTiesWithin:data];
-		[measure addNotes:data atIndex:[self indexAt:location inMeasure:measure]];
-		[[measure undoManager] setActionName:@"pasting notes"];
-	}
++ (void)handlePaste:(id)data at:(NSPoint)location on:(Measure *)measure mode:(NSDictionary *)mode {
+    location.x -= [self xOf:measure];
+    if ([data isKindOfClass:[NoteBase class]]) {
+        [self cleanNoteForPaste:data inMeasure:measure preserveTiesWithin:nil];
+        [measure addNote:data atIndex:[self indexAt:location inMeasure:measure] tieToPrev:NO];
+        [[measure undoManager] setActionName:@"pasting note"];
+    }
+    else if ([data respondsToSelector:@selector(containsObject:)]) {
+        [[self doSelf] cleanNoteForPaste:[data each] inMeasure:measure preserveTiesWithin:data];
+        [measure addNotes:data atIndex:[self indexAt:location inMeasure:measure]];
+        [[measure undoManager] setActionName:@"pasting notes"];
+    }
 }
 
-+ (void)clearCaches{
-	if(cachedMeasureWidths != nil){
-		[cachedMeasureWidths removeAllObjects];
-	}
++ (void)clearCaches {
+    if (cachedMeasureWidths != nil) {
+        [cachedMeasureWidths removeAllObjects];
+    }
 }
 
 @end
