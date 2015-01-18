@@ -895,7 +895,10 @@
         [string appendString:@"<barline location=\"left\">\n<bar-style>heavy-light</bar-style>\n<repeat direction=\"forward\"/>\n</barline>"];
     }
     NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];
-    [[notes do] addToMusicXMLString:string accidentals:accidentals];
+    for (Note *n in notes) {
+        [n addToMusicXMLString:string accidentals:accidentals];
+    }
+    
     if ([self isEndRepeat]) {
         [string appendFormat:@"<barline location=\"left\">\n<bar-style>light-heavy</bar-style>\n<repeat direction=\"backward\" times=\"%d\"/>\n</barline>", [self getNumRepeats]];
     }
