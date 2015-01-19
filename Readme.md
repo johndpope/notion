@@ -44,7 +44,7 @@ http://forumnet.ircam.fr/product/antescofo/
 
 
 
-Thanks to Gus - he has kindly reworked Señor Staff from GPL license to Mite
+Thanks to Gus - he has kindly reworked Señor Staff from GPL license to 
 MIT License. https://code.google.com/p/senorstaff/
 
 
