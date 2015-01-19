@@ -37,6 +37,18 @@ Processing a midi will give you this >
 What's next? 
 Join the project - start chipping away at recreating the ui
 
+
+known regression
+the MusicXML parts of app were overiding the description method in models. 
+I commented these parts out - it would be good to get this working again. 
+http://www.musicxml.com/wp-content/uploads/2012/12/musicxml-tutorial.pdf
+
+
+If you would like to contribute to project - feel free to ask to be a collaborator. 
+Please use uncrustify xcode plugin to conform code standards and simplify merging->
+https://github.com/bengardner/uncrustify
+
+
 Be sure to keep an eye out for the C++ Ascograph with libmusicxml framework + ios sample app by Thomas Coffy.
 https://github.com/k4rm/AscoGraph
 
