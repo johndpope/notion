@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DemoApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Notion 2.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,16 @@
 			<true/>
 		</dict>
 		<key>5D40D8641A6CABC200252285</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D40D9361A6CC45500252285</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D40D94E1A6CC45600252285</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -17,3 +17,6 @@ FOUNDATION_EXPORT const unsigned char ChompIOSVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <ChompIOS/PublicHeader.h>
 
 
+#import "NSCollections+CHOMPIteration.h"
+#import "NSObject+CHOMPIteration.h"
+#import "NSObject+CHOMPHOM.h"
