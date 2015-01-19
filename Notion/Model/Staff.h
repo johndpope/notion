@@ -103,8 +103,6 @@
 - (void)addToMusicXMLString:(NSMutableString *)string;
 - (NSUndoManager *)undoManager;
 - (void)setName:(NSString *)_name;
-
-- (Class)getViewClass;
-- (Class)getControllerClass;
+- (NSString *)musicXml;
 
 @end

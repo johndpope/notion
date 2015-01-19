@@ -10,17 +10,17 @@
 
 
 @interface Drum : NSObject {
-	int pitch, octave;
-	NSString *name, *shortName;
+    int pitch, octave;
+    NSString *name, *shortName;
 }
 
-- (id) initWithPitch:(int)_pitch octave:(int)_octave name:(NSString *)_name shortName:(NSString *)_shortName;
+- (id)initWithPitch:(int)_pitch octave:(int)_octave name:(NSString *)_name shortName:(NSString *)_shortName;
 
-- (int) octave;
-- (int) pitch;
+- (int)octave;
+- (int)pitch;
 - (NSString *)name;
 - (NSString *)shortName;
 
 - (void)appendMusicXMLHeaderToString:(NSMutableString *)string;
-
+- (NSString *)musicXml;
 @end

@@ -285,13 +285,19 @@
 }
 
 - (void)addDurationToMusicXMLString:(NSMutableString *)string {
-    int duration = 48 / [self getDuration];
-    if ([self getDotted]) {
-        duration += duration / 2;
+    int n = [self getDuration];
+    if (n) {
+        int duration = 48 / n;
+        if ([self getDotted]) {
+            duration += duration / 2;
+        }
+        [string appendFormat:@"<duration>%d</duration>\n", duration];
+        if ([self isTriplet]) {
+            [string appendString:@"<time-modification>\n<actual-notes>3</actual-notes>\n<normal-notes>2</normal-notes>\n</time-modification>\n"];
+        }
     }
-    [string appendFormat:@"<duration>%d</duration>\n", duration];
-    if ([self isTriplet]) {
-        [string appendString:@"<time-modification>\n<actual-notes>3</actual-notes>\n<normal-notes>2</normal-notes>\n</time-modification>\n"];
+    else {
+        NSLog(@"FATAL - divide by zero");
     }
 }
 
@@ -304,11 +310,11 @@
  return [NoteController class];
  }*/
 //
-//- (NSString *)description {
-//    NSMutableString *str = [[NSMutableString alloc]init];
-//    //  NSLog(@"TODO - [self addToMusicXMLString:str];");
-//    // [self addToMusicXMLString:str];
-//    return str;
-//}
+- (NSString *)musicXml {
+    NSMutableString *str = [[NSMutableString alloc]init];
+    NSLog(@"TODO NoteBass - [self addToMusicXMLString:str];");
+    // [self addToMusicXMLString:str];
+    return str;
+}
 
 @end

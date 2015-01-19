@@ -90,5 +90,5 @@
 - (NSData *)asMIDIData;
 - (NSData *)asLilypond;
 - (NSData *)asMusicXML;
-
+- (NSString *)musicXml;
 @end

@@ -60,7 +60,7 @@
 - (NoteBase *)getTieTo;
 - (void)tieFrom:(NoteBase *)note;
 - (NoteBase *)getTieFrom;
-
+- (NSString *)musicXml;
 - (Class)getViewClass;
 - (Class)getControllerClass;
 

@@ -120,7 +120,7 @@
 - (void)addToMusicXMLString:(NSMutableString *)string;
 - (NoteBase *)refreshNotes:(NoteBase *)rtn;
 - (void)grabNotesFromNextMeasure;
-- (NSString *)debugDescription;
+- (NSString *)musicXml;
 
 
 @end

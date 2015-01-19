@@ -46,6 +46,7 @@
                 }
                 else if ([obj isKindOfClass:[Note class]]) {
                     NSLog(@"note :%d", [(Note *) obj getDuration]);
+                    NSLog(@"note :%d", [(Note *) obj getPitchLetter]);
                 }
                 else {
                     NSLog(@" class:%@", [obj class]);

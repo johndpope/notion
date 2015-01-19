@@ -5,7 +5,9 @@
 @interface AppControl : NSObject {
     MusicDocument *testDoc;
     Song *song;
-    NSData *_midiData;
+ 
+    NSMutableDictionary *db;
+    NSMutableArray *loops;
 }
 
 @property MusicDocument *testDoc;

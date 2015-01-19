@@ -136,6 +136,7 @@
 
 - (TimeSignature *)getEffectiveTimeSignatureForMeasure:(Measure *)measure {
     int index = [self.measures indexOfObject:measure];
+    
     return [song getEffectiveTimeSignatureAt:index];
 }
 
@@ -647,10 +648,10 @@
 //    return [StaffController class];
 //}
 
-//- (NSString *)description {
-//    NSMutableString *str = [NSMutableString string];
-//    [self addToMusicXMLString:str];
-//    return str;
-//}
+- (NSString *)musicXml {
+    NSMutableString *str = [NSMutableString string];
+    [self addToMusicXMLString:str];
+    return str;
+}
 
 @end

@@ -543,7 +543,7 @@
 
 - (TimeSignature *)getEffectiveTimeSignature {
     TimeSignature *t = [staff getEffectiveTimeSignatureForMeasure:self];
-    NSLog(@"t:%@", t);
+    NSLog(@"time sig %d/%d", t.getTop, t.getBottom);
     if (t == nil) {
         return [TimeSignature timeSignatureWithTop:4 bottom:4];
     }
@@ -982,12 +982,7 @@
 //    return [MeasureController class];
 //}
 
-//- (NSString *)description {
-//    NSMutableString *str = [NSMutableString string];
-//    [self addToMusicXMLString:str];
-//    return str;
-//}
-- (NSString *)debugDescription {
+- (NSString *)musicXml {
     NSMutableString *str = [NSMutableString string];
     [self addToMusicXMLString:str];
     return str;

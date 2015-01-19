@@ -237,7 +237,7 @@ int enableMIDI = 1;
         }
     }
     
-    return 0;
+    return [TimeSignature timeSignatureWithTop:4 bottom:4];
 }
 
 - (TimeSignature *)getEffectiveTimeSignatureAt:(int)measureIndex {
@@ -627,10 +627,10 @@ int enableMIDI = 1;
     return self;
 }
 
-//- (NSString *)description {
-//    NSMutableString *str = [NSMutableString string];
-//    [[self doSelf] appendMusicXMLToString:str forStaff:[staffs each]];
-//    return str;
-//}
+- (NSString *)musicXml {
+    NSMutableString *str = [NSMutableString string];
+    [[self doSelf] appendMusicXMLToString:str forStaff:[staffs each]];
+    return str;
+}
 
 @end
