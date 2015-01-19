@@ -1,0 +1,6 @@
+framework module ChompIOS {
+  umbrella header "ChompIOS.h"
+
+  export *
+  module * { export * }
+}
