@@ -5,6 +5,8 @@ https://github.com/kprevas in SenorStaff osx app.
 I've included the Señor Staff app as a reference. 
 It can input notes into staffs and supports playback to any MIDI device.
 
+https://raw.githubusercontent.com/johndpope/notion/master/justForShow.png
+
 
 The OSXApp-Reference - Non ARC. 
 The models have ui logic / classes. This predates ios operating system.
@@ -13,7 +15,13 @@ Notion - is an attempt to reboot library - reusing the core models which have be
 Currently its loading a midi file and parsing this into components > 
 Staffs / Measures / Notes + Rests.
 
-Processing a midi will give you this > 
+
+Processing this midi .....
+<img src="https://raw.githubusercontent.com/johndpope/notion/master/justForShow.png"/>
+
+
+
+ will give you this > 
 
 	2015-01-19 14:37:01.559 Notion[23662:2258719] staff:<Staff: 0x618000082080>
 	2015-01-19 14:37:01.559 Notion[23662:2258719] measure:<Measure: 0x6180001404d0>
@@ -32,6 +40,8 @@ Processing a midi will give you this >
 	2015-01-19 14:37:01.560 Notion[23662:2258719] Note class:<Note: 0x600000066e80>
 	2015-01-19 14:37:01.560 Notion[23662:2258719] Note class:<Note: 0x600000066f00>
 	2015-01-19 14:37:01.560 Notion[23662:2258719] Note class:<Note: 0x6180002609c0>
+
+this have ties / durations etc
 
 
 What's next? 
