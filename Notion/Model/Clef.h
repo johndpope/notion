@@ -10,8 +10,8 @@
 
 
 @interface Clef : NSObject {
-	int pitchOffset;
-	int octaveOffset;
+    int pitchOffset;
+    int octaveOffset;
 }
 
 - (id)initWithPitchOffset:(int)_pitchOff withOctaveOffset:(int)_octOff;
@@ -32,6 +32,6 @@
 - (void)addToLilypondString:(NSMutableString *)string;
 - (void)addToMusicXMLString:(NSMutableString *)string;
 
-- (Class)getViewClass;
+
 
 @end

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,22 +11,14 @@
 		5D40D84F1A6CABC200252285 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D84E1A6CABC200252285 /* main.m */; };
 		5D40D8521A6CABC200252285 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8511A6CABC200252285 /* AppDelegate.m */; };
 		5D40D85D1A6CABC200252285 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D85C1A6CABC200252285 /* Images.xcassets */; };
-		5D40D86C1A6CABC200252285 /* Notion_IOS_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D86B1A6CABC200252285 /* Notion_IOS_DemoTests.m */; };
 		5D40D87B1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D87C1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D87D1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
-		5D40D87E1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
-		5D40D8831A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
 		5D40D8841A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
-		5D40D8861A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
-		5D40D8871A6CABDF00252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8791A6CABDF00252285 /* ring-12-0.mid */; };
 		5D40D8881A6CABDF00252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8791A6CABDF00252285 /* ring-12-0.mid */; };
-		5D40D8891A6CABDF00252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8791A6CABDF00252285 /* ring-12-0.mid */; };
-		5D40D88A1A6CABDF00252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8791A6CABDF00252285 /* ring-12-0.mid */; };
 		5D40D88B1A6CABDF00252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D87A1A6CABDF00252285 /* Sor_Study.mid */; };
 		5D40D88C1A6CABDF00252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D87A1A6CABDF00252285 /* Sor_Study.mid */; };
 		5D40D88D1A6CABDF00252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D87A1A6CABDF00252285 /* Sor_Study.mid */; };
-		5D40D88E1A6CABDF00252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D87A1A6CABDF00252285 /* Sor_Study.mid */; };
 		5D40D8C31A6CAF0000252285 /* ChompIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40D8C21A6CAF0000252285 /* ChompIOS.framework */; };
 		5D40D8C41A6CB2B000252285 /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8381A6CABA100252285 /* StaffTest.m */; };
 		5D40D8C51A6CB2B400252285 /* ChordDrawTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D82C1A6CABA100252285 /* ChordDrawTest.m */; };
@@ -37,17 +29,12 @@
 		5D40D8CA1A6CB2C500252285 /* SongTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8361A6CABA100252285 /* SongTest.m */; };
 		5D40D8CB1A6CB2C900252285 /* TempoDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D83A1A6CABA100252285 /* TempoDataTest.m */; };
 		5D40D8CC1A6CB2CD00252285 /* TestUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D83B1A6CABA100252285 /* TestUtil.c */; };
-		5D40D8D31A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8CE1A6CB2E900252285 /* apprhythmsvol1y2r1.mid */; };
-		5D40D8D41A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8CE1A6CB2E900252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D8D71A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D01A6CB2E900252285 /* bars - 1 2 3 4.mid */; };
 		5D40D8D81A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D01A6CB2E900252285 /* bars - 1 2 3 4.mid */; };
 		5D40D8D91A6CB2E900252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D11A6CB2E900252285 /* ring-12-0.mid */; };
 		5D40D8DA1A6CB2E900252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D11A6CB2E900252285 /* ring-12-0.mid */; };
-		5D40D8DB1A6CB2E900252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D21A6CB2E900252285 /* Sor_Study.mid */; };
-		5D40D8DC1A6CB2E900252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D21A6CB2E900252285 /* Sor_Study.mid */; };
 		5D40D8DD1A6CB50100252285 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
 		5D40D8DE1A6CB50200252285 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
-		5D40D8DF1A6CB50300252285 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
 		5D40D8E11A6CB54E00252285 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40D8E01A6CB54E00252285 /* AudioToolbox.framework */; };
 		5D40D90A1A6CB5DE00252285 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E41A6CB5DE00252285 /* Chord.m */; };
 		5D40D90B1A6CB5DE00252285 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E41A6CB5DE00252285 /* Chord.m */; };
@@ -110,16 +97,6 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5D40D8661A6CABC200252285 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D40D8491A6CABC200252285;
-			remoteInfo = "Notion IOS Demo";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		73495DE50FEEDFB4002BED5B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -166,7 +143,6 @@
 		5D40D8511A6CABC200252285 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		5D40D85C1A6CABC200252285 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5D40D85F1A6CABC200252285 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		5D40D8651A6CABC200252285 /* Notion IOS DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Notion IOS DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D40D86A1A6CABC200252285 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D40D86B1A6CABC200252285 /* Notion_IOS_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Notion_IOS_DemoTests.m; sourceTree = "<group>"; };
 		5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = apprhythmsvol1y2r1.mid; sourceTree = "<group>"; };
@@ -251,13 +227,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D40D8621A6CABC200252285 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		73B87E9B0E6985A6003C2410 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,7 +305,6 @@
 				8D1107320486CEB800E47090 /* Notion.app */,
 				73B87E9E0E6985A6003C2410 /* SenorStaffTests.octest */,
 				5D40D84A1A6CABC200252285 /* Notion IOS Demo.app */,
-				5D40D8651A6CABC200252285 /* Notion IOS DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -551,24 +519,6 @@
 			productReference = 5D40D84A1A6CABC200252285 /* Notion IOS Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5D40D8641A6CABC200252285 /* Notion IOS DemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5D40D8711A6CABC200252285 /* Build configuration list for PBXNativeTarget "Notion IOS DemoTests" */;
-			buildPhases = (
-				5D40D8611A6CABC200252285 /* Sources */,
-				5D40D8621A6CABC200252285 /* Frameworks */,
-				5D40D8631A6CABC200252285 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5D40D8671A6CABC200252285 /* PBXTargetDependency */,
-			);
-			name = "Notion IOS DemoTests";
-			productName = "Notion IOS DemoTests";
-			productReference = 5D40D8651A6CABC200252285 /* Notion IOS DemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		73B87E9D0E6985A6003C2410 /* SenorStaffTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73B87EA20E6985A6003C2410 /* Build configuration list for PBXNativeTarget "SenorStaffTests" */;
@@ -612,18 +562,16 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					5D40D8491A6CABC200252285 = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					5D40D8641A6CABC200252285 = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 5D40D8491A6CABC200252285;
+						DevelopmentTeam = WMDZ2CQA8K;
 					};
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Notion" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -637,7 +585,6 @@
 				8D1107260486CEB800E47090 /* SenorStaff Hack */,
 				73B87E9D0E6985A6003C2410 /* SenorStaffTests */,
 				5D40D8491A6CABC200252285 /* Notion IOS Demo */,
-				5D40D8641A6CABC200252285 /* Notion IOS DemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -651,21 +598,7 @@
 				5D40D8DA1A6CB2E900252285 /* ring-12-0.mid in Resources */,
 				5D40D8D81A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */,
 				5D40D87D1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */,
-				5D40D8891A6CABDF00252285 /* ring-12-0.mid in Resources */,
-				5D40D8DC1A6CB2E900252285 /* Sor_Study.mid in Resources */,
-				5D40D8D41A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */,
 				5D40D85D1A6CABC200252285 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5D40D8631A6CABC200252285 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5D40D88E1A6CABDF00252285 /* Sor_Study.mid in Resources */,
-				5D40D8861A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */,
-				5D40D87E1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */,
-				5D40D88A1A6CABDF00252285 /* ring-12-0.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,12 +621,8 @@
 				5D40D8D91A6CB2E900252285 /* ring-12-0.mid in Resources */,
 				5D40D8D71A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */,
 				5D40D88B1A6CABDF00252285 /* Sor_Study.mid in Resources */,
-				5D40D8871A6CABDF00252285 /* ring-12-0.mid in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				5D40D87B1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */,
-				5D40D8DB1A6CB2E900252285 /* Sor_Study.mid in Resources */,
-				5D40D8D31A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */,
-				5D40D8831A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,15 +671,6 @@
 				5D40D92F1A6CB5DE00252285 /* TimeSignature.m in Sources */,
 				5D40D9191A6CB5DE00252285 /* DrumKit.m in Sources */,
 				5D40D84F1A6CABC200252285 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5D40D8611A6CABC200252285 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5D40D8DF1A6CB50300252285 /* MIDIUtil.m in Sources */,
-				5D40D86C1A6CABC200252285 /* Notion_IOS_DemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,14 +724,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		5D40D8671A6CABC200252285 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5D40D8491A6CABC200252285 /* Notion IOS Demo */;
-			targetProxy = 5D40D8661A6CABC200252285 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -858,6 +770,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -878,12 +791,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Notion IOS Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -905,6 +820,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -921,13 +837,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Notion IOS Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Coverage;
 		};
@@ -949,6 +867,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -965,152 +884,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Notion IOS Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		5D40D8721A6CABC200252285 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "Notion IOS DemoTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Notion IOS Demo.app/Notion IOS Demo";
-			};
-			name = Debug;
-		};
-		5D40D8731A6CABC200252285 /* Coverage */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "Notion IOS DemoTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Notion IOS Demo.app/Notion IOS Demo";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Coverage;
-		};
-		5D40D8741A6CABC200252285 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(PROJECT_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = "Notion IOS DemoTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Notion IOS Demo.app/Notion IOS Demo";
-				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
 		73675AF40FF42BAE00B02E63 /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1126,8 +913,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../Source Code/CHDataStructures/build/Debug\"",
@@ -1159,6 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
 				CONFIGURATION_TEMP_DIR = "$(SYMROOT)";
 				COPY_PHASE_STRIP = NO;
@@ -1194,7 +982,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(NATIVE_ARCH)";
+				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
 				CONFIGURATION_TEMP_DIR = "$(SYMROOT)";
 				COPY_PHASE_STRIP = NO;
@@ -1233,6 +1021,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1263,8 +1052,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../Source Code/CHDataStructures/build/Debug\"",
@@ -1296,8 +1085,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1324,7 +1113,6 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
 				CONFIGURATION_TEMP_DIR = "$(SYMROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1343,7 +1131,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1361,16 +1148,6 @@
 				5D40D86E1A6CABC200252285 /* Debug */,
 				5D40D86F1A6CABC200252285 /* Coverage */,
 				5D40D8701A6CABC200252285 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5D40D8711A6CABC200252285 /* Build configuration list for PBXNativeTarget "Notion IOS DemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5D40D8721A6CABC200252285 /* Debug */,
-				5D40D8731A6CABC200252285 /* Coverage */,
-				5D40D8741A6CABC200252285 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

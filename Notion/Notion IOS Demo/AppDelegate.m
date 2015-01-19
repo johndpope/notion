@@ -19,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    UIViewController *vc  = [[UIViewController alloc] init];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+    
+    
     
     NSString *testMidiFile = [[NSBundle mainBundle] pathForResource:@"bars - 1 2 3 4" ofType:@"mid"];
     NSAssert(testMidiFile != nil, @"File not found");
@@ -46,6 +53,9 @@
             }];
         }];
     }];
+    
+    
+    
     
     return YES;
 }
