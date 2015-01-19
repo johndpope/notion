@@ -2,7 +2,7 @@
 build/*
 !build/build.xml
 /Notion/build
-/Notion/build/DemoApp.app
+Notion/build/DemoApp.app
 /Notion/build/*/*
 Notion/build
 build

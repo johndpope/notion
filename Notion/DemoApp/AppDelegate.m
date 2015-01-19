@@ -39,13 +39,13 @@
     [song.staffs enumerateObjectsUsingBlock: ^(Staff *s, NSUInteger idx, BOOL *stop) {
         NSLog(@"staff:%@", s);
         [s.measures enumerateObjectsUsingBlock: ^(Measure *m, NSUInteger idx, BOOL *stop) {
-            NSLog(@"measure:%@", m);
+            NSLog(@"measure note count:%lu", (unsigned long)[m notes].count);
             [m.notes enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
                 if ([obj isKindOfClass:[Rest class]]) {
-                    NSLog(@"rest class:%@", obj);
+                    NSLog(@"rest :%d", [(Rest *)obj getDuration]);
                 }
                 else if ([obj isKindOfClass:[Note class]]) {
-                    NSLog(@"Note class:%@", obj);
+                    NSLog(@"note :%d", [(Note *) obj getDuration]);
                 }
                 else {
                     NSLog(@" class:%@", [obj class]);
