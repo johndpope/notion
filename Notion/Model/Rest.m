@@ -13,7 +13,7 @@
 @implementation Rest
 
 - (id)initWithDuration:(int)_duration dotted:(BOOL)_dotted onStaff:(Staff *)_staff {
-    ENTER_METHOD;
+    //ENTER_METHOD;
     if (self = [super init]) {
         duration = _duration;
         dotted = _dotted;

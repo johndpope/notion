@@ -6,27 +6,27 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 @class StaffHorizontalRulerComponent;
 @class Song;
 
 @interface TempoData : NSObject <NSCoding> {
-	float tempo;
-	IBOutlet StaffHorizontalRulerComponent *tempoPanel;
-	IBOutlet NSTextField *tempoText;
-	Song *song;
+    float tempo;
+    //	IBOutlet StaffHorizontalRulerComponent *tempoPanel;
+    //	IBOutlet NSTextField *tempoText;
+    Song *song;
 }
 
-- (float) tempo;
-- (void) setTempo:(float)_tempo;
+- (float)tempo;
+- (void)setTempo:(float)_tempo;
 
-- (BOOL) empty;
+- (BOOL)empty;
 
-- (id) initWithTempo:(float)_tempo withSong:(Song *)song;
-- (id) initEmptyWithSong:(Song *)song;
+- (id)initWithTempo:(float)_tempo withSong:(Song *)song;
+- (id)initEmptyWithSong:(Song *)song;
 
-- (NSView *)tempoPanel;
-- (void) removePanel;
+//- (NSView *)tempoPanel;
+- (void)removePanel;
 
 - (IBAction)tempoChanged:(id)sender;
 

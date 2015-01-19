@@ -10,18 +10,20 @@
 #import "KeySignature.h"
 #import "DrumKit.h"
 #import "NSNumberPool.h"
+#import "Staff.h"
+#import "SNFactory.h"
+
 @class NoteDraw;
 
 @implementation Note
 
 - (id)initWithPitch:(int)_pitch octave:(int)_octave
            duration:(int)_duration dotted:(BOOL)_dotted accidental:(int)_accidental onStaff:(Staff *)_staff {
-    ENTER_METHOD;
+    //   ENTER_METHOD;
     if (self = [super init]) {
         lastPitch = pitch = _pitch;
         lastOctave = octave = _octave;
         duration = _duration;
-        NSLog(@"duration:%d", duration);
         dotted = _dotted;
         accidental = _accidental;
         self.staff = _staff;
@@ -248,27 +250,28 @@
     //TODO: implement
 }
 
-+ (NSPoint)closestNoteTo:(NSPoint)base withRank:(int)rank {
-    int pitch = (rank + 5) % 7;
-    int octave = base.y;
-    if (base.x > pitch && base.x - pitch > (pitch + 7) - base.x) {
-        octave++;
-    }
-    if (pitch > base.x && pitch - base.x > (base.x + 7) - pitch) {
-        octave--;
-    }
-    return NSMakePoint(pitch, octave);
-}
-
-- (NSPoint)closestNoteAtRank:(int)rank {
-    return [Note closestNoteTo:NSMakePoint(pitch, octave) withRank:rank];
-}
-
-+ (NSPoint)noteAtRank:(int)rank onClef:(Clef *)clef {
-    int pitch = [clef getPitchForPosition:4];
-    int octave = [clef getOctaveForPosition:4];
-    return [Note closestNoteTo:NSMakePoint(pitch, octave) withRank:rank];
-}
+//
+//+ (NSPoint)closestNoteTo:(NSPoint)base withRank:(int)rank {
+//    int pitch = (rank + 5) % 7;
+//    int octave = base.y;
+//    if (base.x > pitch && base.x - pitch > (pitch + 7) - base.x) {
+//        octave++;
+//    }
+//    if (pitch > base.x && pitch - base.x > (base.x + 7) - pitch) {
+//        octave--;
+//    }
+//    return NSMakePoint(pitch, octave);
+//}
+//
+//- (NSPoint)closestNoteAtRank:(int)rank {
+//    return [Note closestNoteTo:NSMakePoint(pitch, octave) withRank:rank];
+//}
+//
+//+ (NSPoint)noteAtRank:(int)rank onClef:(Clef *)clef {
+//    int pitch = [clef getPitchForPosition:4];
+//    int octave = [clef getOctaveForPosition:4];
+//    return [Note closestNoteTo:NSMakePoint(pitch, octave) withRank:rank];
+//}
 
 - (int)getAbsoluteAccidentalWithPriorAccidentals:(NSMutableDictionary *)accidentals {
     if (accidental == NO_ACC) {

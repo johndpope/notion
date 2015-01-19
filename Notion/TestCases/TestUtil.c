@@ -9,6 +9,6 @@
 
 #include "TestUtil.h"
 
-inline float effDuration(int duration, int dotted){
-	return (3.0 / (float)duration) * (dotted ? 1.5 : 1.0);
+inline float effDuration(int duration, int dotted) {
+    return (3.0 / (float)duration) * (dotted ? 1.5 : 1.0);
 }

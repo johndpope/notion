@@ -36,7 +36,7 @@
 }
 
 - (NSUndoManager *)undoManager {
-    return [[song document] undoManager];
+    return nil;//[[song document] undoManager];
 }
 
 - (void)sendChangeNotification {
@@ -82,17 +82,17 @@
     // do nothing - KVO compliance only
 }
 
-- (IBAction)editDrumKit:(id)sender {
-    [[self undoManager] beginUndoGrouping];
-    [NSBundle loadNibNamed:@"DrumKitDialog" owner:[self drumKit]];
-    [NSApp beginSheet:[[self drumKit] editDialog] modalForWindow:[[[self getSong] document] windowForSheet]
-        modalDelegate:[self drumKit] didEndSelector:@selector(endEditDialog) contextInfo:nil];
-}
+//- (IBAction)editDrumKit:(id)sender {
+//    [[self undoManager] beginUndoGrouping];
+//    [NSBundle loadNibNamed:@"DrumKitDialog" owner:[self drumKit]];
+//    [NSApp beginSheet:[[self drumKit] editDialog] modalForWindow:[[[self getSong] document] windowForSheet]
+//        modalDelegate:[self drumKit] didEndSelector:@selector(endEditDialog) contextInfo:nil];
+//}
 
-- (IBAction)deleteSelf:(id)sender {
-    //  [rulerView removeFromSuperview];
-    [song removeStaff:self];
-}
+//- (IBAction)deleteSelf:(id)sender {
+//    //  [rulerView removeFromSuperview];
+//    [song removeStaff:self];
+//}
 
 - (DrumKit *)drumKit {
     if (drumKit == nil) {
@@ -181,7 +181,7 @@
 
 - (void)addMeasure:(Measure *)measure {
     NSLog(@"addMeasure count:%lu",  (unsigned long)self.measures.count);
-
+    
     if (![self.measures containsObject:measure]) {
         [[[self undoManager] prepareWithInvocationTarget:self] removeMeasure:measure];
         [self.measures addObject:measure];
@@ -257,7 +257,7 @@
 - (void)cleanEmptyMeasures {
     while ([self.measures count] > 1 && [[self.measures lastObject] isEmpty]) {
         Measure *measure = [self.measures lastObject];
-        [measure keySigClose:nil];
+        // [measure keySigClose:nil];
         [self removeMeasure:measure];
     }
     [song refreshTimeSigs];

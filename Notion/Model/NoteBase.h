@@ -6,8 +6,10 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+
+
 #import <AudioToolbox/AudioToolbox.h>
+#import <Foundation/Foundation.h>
 @class KeySignature;
 @class Staff;
 

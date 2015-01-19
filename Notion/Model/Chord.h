@@ -6,7 +6,6 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import "NoteBase.h"
 @class Staff;
 

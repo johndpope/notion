@@ -6,7 +6,7 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "Clef.h"
 @class Staff;
 
@@ -14,7 +14,7 @@
     NSMutableArray *drums;
     Staff *staff;
     
-    IBOutlet NSWindow *editDialog;
+    //  IBOutlet NSWindow *editDialog;
 }
 
 - (id)initWithPitches:(NSArray *)_pitches octaves:(NSArray *)_octaves names:(NSArray *)_names;
@@ -29,7 +29,7 @@
 - (NSMutableArray *)drums;
 - (void)setDrums:(NSMutableArray *)_names;
 
-- (NSWindow *)editDialog;
+//- (NSWindow *)editDialog;
 - (IBAction)closeDialog:(id)sender;
 - (IBAction)cancelDialog:(id)sender;
 

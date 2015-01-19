@@ -6,7 +6,7 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "KeySignature.h"
 #import "NoteBase.h"
@@ -48,12 +48,14 @@ static int FLAT = -1;
 - (BOOL)isHigherThan:(Note *)note;
 - (BOOL)isLowerThan:(Note *)note;
 
-- (NSPoint)closestNoteAtRank:(int)rank;
-+ (NSPoint)noteAtRank:(int)rank onClef:(Clef *)clef;
+//- (NSPoint)closestNoteAtRank:(int)rank;
+//+ (NSPoint)noteAtRank:(int)rank onClef:(Clef *)clef;
 
 - (void)collapseOnTo:(Note *)note;
 
 - (void)addPitchToLilypondString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals;
 - (void)addToMusicXMLString:(NSMutableString *)string accidentals:(NSMutableDictionary *)accidentals chord:(BOOL)chord;
 - (int)getEffectivePitchWithKeySignature:(KeySignature *)keySig priorAccidentals:(NSMutableDictionary *)accidentals;
+
+- (BOOL)isEqualTo:(id)obj;
 @end

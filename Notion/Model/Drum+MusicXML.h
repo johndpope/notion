@@ -6,7 +6,7 @@
 //  Copyright 2007 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "Drum.h"
 
 @interface Drum(MusicXML)

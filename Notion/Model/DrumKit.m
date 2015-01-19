@@ -78,6 +78,7 @@ static NSArray *allDrums;
             return [drum lilypondString];
         }
     }
+    return nil;
 }
 
 - (NSString *)musicXMLStringForPitch:(int)pitch octave:(int)octave {
@@ -88,6 +89,7 @@ static NSArray *allDrums;
             return [drum musicXMLString];
         }
     }
+    return nil;
 }
 
 - (void)appendMusicXMLHeaderToString:(NSMutableString *)string {
@@ -115,44 +117,45 @@ static NSArray *allDrums;
     staff = _staff;
 }
 
-- (NSWindow *)editDialog {
-    return editDialog;
-}
-
-- (IBAction)closeDialog:(id)sender {
-    [NSApp endSheet:editDialog];
-    [[staff undoManager] endUndoGrouping];
-}
-
-- (IBAction)cancelDialog:(id)sender {
-    [self closeDialog:sender];
-    [[staff undoManager] undo];
-}
-
-- (void)endEditDialog {
-    [editDialog orderOut:self];
-    [self sendChangeNotification];
-}
-
-- (IBAction)import:(id)sender {
-    NSOpenPanel *open = [NSOpenPanel openPanel];
-    [open setTitle:@"Import Drum Kit"];
-    [open setAllowsMultipleSelection:NO];
-    if ([open runModalForTypes:[NSArray arrayWithObject:@"ssd"]] == NSOKButton) {
-        NSString *file = [[open filenames] objectAtIndex:0];
-        [self setDrums:[NSKeyedUnarchiver unarchiveObjectWithFile:file]];
-    }
-}
-
-- (IBAction)export:(id)sender {
-    NSSavePanel *save = [NSSavePanel savePanel];
-    [save setTitle:@"Export Drum Kit"];
-    [save setRequiredFileType:@"ssd"];
-    if ([save runModal] == NSOKButton) {
-        NSString *file = [save filename];
-        [NSKeyedArchiver archiveRootObject:drums toFile:file];
-    }
-}
+//
+//- (NSWindow *)editDialog {
+//    return editDialog;
+//}
+//
+//- (IBAction)closeDialog:(id)sender {
+//    [NSApp endSheet:editDialog];
+//    [[staff undoManager] endUndoGrouping];
+//}
+//
+//- (IBAction)cancelDialog:(id)sender {
+//    [self closeDialog:sender];
+//    [[staff undoManager] undo];
+//}
+//
+//- (void)endEditDialog {
+//    [editDialog orderOut:self];
+//    [self sendChangeNotification];
+//}
+//
+//- (IBAction)import:(id)sender {
+//    NSOpenPanel *open = [NSOpenPanel openPanel];
+//    [open setTitle:@"Import Drum Kit"];
+//    [open setAllowsMultipleSelection:NO];
+//    if ([open runModalForTypes:[NSArray arrayWithObject:@"ssd"]] == NSOKButton) {
+//        NSString *file = [[open filenames] objectAtIndex:0];
+//        [self setDrums:[NSKeyedUnarchiver unarchiveObjectWithFile:file]];
+//    }
+//}
+//
+//- (IBAction)export:(id)sender {
+//    NSSavePanel *save = [NSSavePanel savePanel];
+//    [save setTitle:@"Export Drum Kit"];
+//    [save setRequiredFileType:@"ssd"];
+//    if ([save runModal] == NSOKButton) {
+//        NSString *file = [save filename];
+//        [NSKeyedArchiver archiveRootObject:drums toFile:file];
+//    }
+//}
 
 + (DrumKit *)standardKit {
     if (standardKit == nil) {

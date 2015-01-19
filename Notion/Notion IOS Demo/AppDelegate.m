@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "DetailViewController.h"
+#import "SNFactory.h"
+#import "MIDIUtil.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -18,10 +19,34 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
-    splitViewController.delegate = self;
+    
+    NSString *testMidiFile = [[NSBundle mainBundle] pathForResource:@"bars - 1 2 3 4" ofType:@"mid"];
+    NSAssert(testMidiFile != nil, @"File not found");
+    NSData *_midiData = [NSData dataWithContentsOfFile:testMidiFile];
+    
+    
+    Song *song = [[Song alloc] initWithDocument:nil];
+    [MIDIUtil readSong:song fromMIDI:_midiData];
+    
+    
+    [song.staffs enumerateObjectsUsingBlock: ^(Staff *s, NSUInteger idx, BOOL *stop) {
+        NSLog(@"staff:%@", s);
+        [s.measures enumerateObjectsUsingBlock: ^(Measure *m, NSUInteger idx, BOOL *stop) {
+            NSLog(@"measure:%@", m);
+            [m.notes enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
+                if ([obj isKindOfClass:[Rest class]]) {
+                    NSLog(@"rest class:%@", obj);
+                }
+                else if ([obj isKindOfClass:[Note class]]) {
+                    NSLog(@"Note class:%@", obj);
+                }
+                else {
+                    NSLog(@" class:%@", [obj class]);
+                }
+            }];
+        }];
+    }];
+    
     return YES;
 }
 
@@ -48,14 +73,5 @@
 }
 
 #pragma mark - Split view
-
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]] && ([(DetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
-        // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-        return YES;
-    } else {
-        return NO;
-    }
-}
 
 @end

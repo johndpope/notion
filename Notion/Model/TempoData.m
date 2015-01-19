@@ -42,18 +42,18 @@
     return self;
 }
 
-- (NSView *)tempoPanel {
-    return nil;
-}
+//- (NSView *)tempoPanel {
+//    return nil;
+//}
 
 - (void)refreshTempo {
     if (tempo > 0) {
-        [tempoText setFloatValue:tempo];
+        // [tempoText setFloatValue:tempo];
         //[tempoPanel setShouldFade:NO];
         //        [tempoPanel setHidden:NO];
     }
     else {
-        [tempoText setStringValue:@""];
+        //   [tempoText setStringValue:@""];
         //  [tempoPanel setShouldFade:YES];
     }
 }

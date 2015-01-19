@@ -6,7 +6,7 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 @class NoteBase;
 @class Clef;
 @class DrumKit;
@@ -20,23 +20,6 @@
     Staff *staff;
     Clef *clef;
     KeySignature *keySig;
-    
-    NSViewAnimation *anim;
-    
-    IBOutlet NSView *keySigPanel;
-    IBOutlet NSPopUpButton *keySigLetter;
-    IBOutlet NSPopUpButton *keySigMajMin;
-    IBOutlet NSButton *keySigTranspose;
-    
-    IBOutlet NSView *timeSigPanel;
-    IBOutlet NSTextField *timeSigTopText;
-    IBOutlet NSStepper *timeSigTopStep;
-    IBOutlet NSPopUpButton *timeSigBottom;
-    IBOutlet NSTextField *timeSigSecondTopText;
-    IBOutlet NSStepper *timeSigSecondTopStep;
-    IBOutlet NSPopUpButton *timeSigSecondBottom;
-    IBOutlet NSButton *timeSigInnerClose;
-    IBOutlet NSButton *timeSigExpand;
 }
 @property (nonatomic, strong) NSArray *cachedNoteGroups;
 @property (nonatomic, strong) NSMutableArray *notes;
@@ -90,10 +73,10 @@
 - (void)timeSigDelete;
 
 - (BOOL)isShowingKeySigPanel;
-- (NSView *)getKeySigPanel;
+
 
 - (BOOL)isShowingTimeSigPanel;
-- (NSView *)getTimeSigPanel;
+
 - (void)updateTimeSigPanel;
 
 - (NoteBase *)getNoteBefore:(NoteBase *)source;
@@ -103,7 +86,7 @@
 - (BOOL)isFull;
 
 - (float)getNoteStartDuration:(NoteBase *)note;
-- (NSPoint)getNotePosition:(NoteBase *)note;
+
 - (int)getNumberOfNotesStartingAfter:(float)startDuration before:(float)endDuration;
 - (NoteBase *)getClosestNoteBefore:(float)targetDuration;
 - (NoteBase *)getClosestNoteAfter:(float)targetDuration;
@@ -111,16 +94,21 @@
 - (void)transposeBy:(int)numLines;
 - (void)transposeBy:(int)numHalfSteps oldSignature:(KeySignature *)oldSig newSignature:(KeySignature *)newSig;
 
-- (IBAction)keySigChanged:(id)sender;
-- (IBAction)keySigClose:(id)sender;
 
-- (IBAction)timeSigTopChanged:(id)sender;
-- (IBAction)timeSigBottomChanged:(id)sender;
-- (IBAction)timeSigSecondTopChanged:(id)sender;
-- (IBAction)timeSigSecondBottomChanged:(id)sender;
-- (IBAction)timeSigClose:(id)sender;
-- (IBAction)timeSigExpand:(id)sender;
-- (IBAction)timeSigCollapse:(id)sender;
+//- (NSView *)getTimeSigPanel;
+//- (NSPoint)getNotePosition:(NoteBase *)note;
+//- (NSView *)getKeySigPanel;
+
+//- (IBAction)keySigChanged:(id)sender;
+//- (IBAction)keySigClose:(id)sender;
+//
+//- (IBAction)timeSigTopChanged:(id)sender;
+//- (IBAction)timeSigBottomChanged:(id)sender;
+//- (IBAction)timeSigSecondTopChanged:(id)sender;
+//- (IBAction)timeSigSecondBottomChanged:(id)sender;
+//- (IBAction)timeSigClose:(id)sender;
+//- (IBAction)timeSigExpand:(id)sender;
+//- (IBAction)timeSigCollapse:(id)sender;
 
 - (void)cleanPanels;
 

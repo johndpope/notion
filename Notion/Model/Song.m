@@ -23,8 +23,8 @@
 #import "CompoundTimeSig.h"
 
 #import "MIDIUtil.h"
-#import "MusicDocument.h"
-#import <Chomp/Chomp.h>
+
+
 
 int enableMIDI = 1;
 
@@ -82,7 +82,7 @@ int enableMIDI = 1;
 }
 
 - (NSUndoManager *)undoManager {
-    return [doc undoManager];
+    return nil;// [doc undoManager];
 }
 
 - (void)sendChangeNotification {
@@ -94,9 +94,9 @@ int enableMIDI = 1;
 }
 
 - (void)setDocument:(MusicDocument *)_document {
-    if (![doc isEqual:_document]) {
-        doc = _document;
-    }
+    //    if (![doc isEqual:_document]) {
+    //        doc = _document;
+    //    }
 }
 
 - (NSMutableArray *)staffs {
@@ -141,7 +141,7 @@ int enableMIDI = 1;
     [self prepUndo];
     [self willChangeValueForKey:@"staffs"];
     [staffs removeObject:staff];
-    [staff cleanPanels];
+    //  [staff cleanPanels];
     if ([staffs count] == 0) {
         [self doAddStaff];
     }
@@ -366,13 +366,13 @@ int enableMIDI = 1;
 - (void)removeEndRepeatAt:(int)measureIndex {
     Repeat *repeat = [self repeatEndingAt:measureIndex];
     [repeat setEndMeasure:-1];
-    [repeat countClose:nil];
+    //[repeat countClose:nil];
 }
 
 - (void)removeRepeatStartingAt:(int)measureIndex {
     [(Song *)[[self undoManager] prepareWithInvocationTarget:self] setRepeats:[repeats copy]];
     Repeat *repeat = [self repeatStartingAt:measureIndex];
-    [repeat countClose:nil];
+    // [repeat countClose:nil];
     [repeats removeObject:repeat];
 }
 
@@ -625,13 +625,6 @@ int enableMIDI = 1;
         [self initMIDI];
     }
     return self;
-}
-
-- (void)dealloc {
-    staffs = nil;
-    tempoData = nil;
-    timeSigs = nil;
-    repeats = nil;
 }
 
 //- (NSString *)description {

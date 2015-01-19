@@ -8,6 +8,10 @@
 
 #import "NoteBase.h"
 #import "Measure.h"
+#import "Measure.h"
+#import "Staff.h"
+#import "Song.h"
+
 @class NoteController;
 
 @implementation NoteBase
@@ -37,7 +41,7 @@
 }
 
 - (NSUndoManager *)undoManager {
-    return [[[self.staff getSong] document] undoManager];
+    return nil;//[[[self.staff getSong] document] undoManager];
 }
 
 - (void)sendChangeNotification {

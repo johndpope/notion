@@ -15,6 +15,7 @@
 #import "Staff.h"
 #import "TimeSignature.h"
 #import "TempoData.h"
+#import "Staff.h"
 
 @class MeasureDraw;
 @class DrumMeasureDraw;
@@ -24,7 +25,6 @@
 @implementation Measure
 
 - (id)initWithStaff:(Staff *)_staff {
-    ENTER_METHOD;
     if (_staff == nil) {
         return nil;
     }
@@ -45,7 +45,7 @@
 }
 
 - (NSUndoManager *)undoManager {
-    return [[[[self getStaff] getSong] document] undoManager];
+    return nil;////  return [[[[self getStaff] getSong] document] undoManager];
 }
 
 - (void)sendChangeNotification {
@@ -520,7 +520,7 @@
     if (![keySig isEqual:_sig]) {
         [[[self undoManager] prepareWithInvocationTarget:self] setKeySignature:keySig];
         keySig = _sig;
-        [self updateKeySigPanel];
+        //   [self updateKeySigPanel];
         [self sendChangeNotification];
     }
 }
@@ -563,29 +563,30 @@
     [self updateTimeSigPanel];
 }
 
-- (BOOL)isShowingKeySigPanel {
-    return keySigPanel != nil && ![keySigPanel isHidden];
-}
-
-- (NSView *)getKeySigPanel {
-    if (keySigPanel == nil) {
-        [NSBundle loadNibNamed:@"KeySigPanel" owner:self];
-        [keySigPanel setHidden:YES];
-    }
-    return keySigPanel;
-}
-
-- (BOOL)isShowingTimeSigPanel {
-    return timeSigPanel != nil && ![timeSigPanel isHidden];
-}
-
-- (NSView *)getTimeSigPanel {
-    if (timeSigPanel == nil) {
-        [NSBundle loadNibNamed:@"TimeSigPanel" owner:self];
-        [timeSigPanel setHidden:YES];
-    }
-    return timeSigPanel;
-}
+//
+//- (BOOL)isShowingKeySigPanel {
+//    return keySigPanel != nil && ![keySigPanel isHidden];
+//}
+//
+//- (NSView *)getKeySigPanel {
+//    if (keySigPanel == nil) {
+//        [NSBundle loadNibNamed:@"KeySigPanel" owner:self];
+//        [keySigPanel setHidden:YES];
+//    }
+//    return keySigPanel;
+//}
+//
+//- (BOOL)isShowingTimeSigPanel {
+//    return timeSigPanel != nil && ![timeSigPanel isHidden];
+//}
+//
+//- (NSView *)getTimeSigPanel {
+//    if (timeSigPanel == nil) {
+//        [NSBundle loadNibNamed:@"TimeSigPanel" owner:self];
+//        [timeSigPanel setHidden:YES];
+//    }
+//    return timeSigPanel;
+//}
 
 - (NoteBase *)getNoteBefore:(NoteBase *)source {
     int index = [self.notes indexOfObject:source];
@@ -612,15 +613,15 @@
     return start;
 }
 
-- (NSPoint)getNotePosition:(NoteBase *)note {
-    float start = 0;
-    NSEnumerator *notesEnum = [self.notes objectEnumerator];
-    id currNote;
-    while ((currNote = [notesEnum nextObject]) && currNote != note) {
-        start += [currNote getEffectiveDuration];
-    }
-    return NSMakePoint(start, [note getEffectiveDuration]);
-}
+//- (NSPoint)getNotePosition:(NoteBase *)note {
+//    float start = 0;
+//    NSEnumerator *notesEnum = [self.notes objectEnumerator];
+//    id currNote;
+//    while ((currNote = [notesEnum nextObject]) && currNote != note) {
+//        start += [currNote getEffectiveDuration];
+//    }
+//    return NSMakePoint(start, [note getEffectiveDuration]);
+//}
 
 - (int)getNumberOfNotesStartingAfter:(float)startDuration before:(float)endDuration {
     float duration = 0;
@@ -680,93 +681,94 @@
     [[self.notes do] transposeBy:numHalfSteps oldSignature:oldSig newSignature:newSig];
 }
 
-- (IBAction)keySigChanged:(id)sender {
-    [self clearCaches];
-    [[self undoManager] setActionName:@"changing key signature"];
-    KeySignature *newSig;
-    if ([[[keySigMajMin selectedItem] title] isEqual:@"major"]) {
-        newSig = [KeySignature getMajorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
-        if (newSig == nil) {
-            newSig = [KeySignature getMinorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
-            [keySigMajMin selectItemWithTitle:@"minor"];
-        }
-    }
-    else {
-        newSig = [KeySignature getMinorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
-        if (newSig == nil) {
-            newSig = [KeySignature getMajorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
-            [keySigMajMin selectItemWithTitle:@"major"];
-        }
-    }
-    if ([keySigTranspose state] == NSOnState) {
-        [staff transposeFrom:keySig to:newSig startingAt:self];
-    }
-    Measure *prev = [staff getMeasureBefore:self];
-    if (prev != nil && [[prev getEffectiveKeySignature] isEqualTo:newSig]) {
-        [self keySigDelete];
-    }
-    else {
-        [self setKeySignature:newSig];
-    }
-    [self sendChangeNotification];
-}
+//
+//- (IBAction)keySigChanged:(id)sender {
+//    [self clearCaches];
+//    [[self undoManager] setActionName:@"changing key signature"];
+//    KeySignature *newSig;
+//    if ([[[keySigMajMin selectedItem] title] isEqual:@"major"]) {
+//        newSig = [KeySignature getMajorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
+//        if (newSig == nil) {
+//            newSig = [KeySignature getMinorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
+//            [keySigMajMin selectItemWithTitle:@"minor"];
+//        }
+//    }
+//    else {
+//        newSig = [KeySignature getMinorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
+//        if (newSig == nil) {
+//            newSig = [KeySignature getMajorSignatureAtIndexFromA:[keySigLetter indexOfSelectedItem]];
+//            [keySigMajMin selectItemWithTitle:@"major"];
+//        }
+//    }
+//    if ([keySigTranspose state] == NSOnState) {
+//        [staff transposeFrom:keySig to:newSig startingAt:self];
+//    }
+//    Measure *prev = [staff getMeasureBefore:self];
+//    if (prev != nil && [[prev getEffectiveKeySignature] isEqualTo:newSig]) {
+//        [self keySigDelete];
+//    }
+//    else {
+//        [self setKeySignature:newSig];
+//    }
+//    [self sendChangeNotification];
+//}
+//
+//- (IBAction)keySigClose:(id)sender {
+//    //    [keySigPanel setHidden:YES withFade:YES blocking:(sender != nil)];
+//    //    if ([keySigPanel superview] != nil) {
+//    //        [keySigPanel removeFromSuperview];
+//    //    }
+//}
 
-- (IBAction)keySigClose:(id)sender {
-    //    [keySigPanel setHidden:YES withFade:YES blocking:(sender != nil)];
-    //    if ([keySigPanel superview] != nil) {
-    //        [keySigPanel removeFromSuperview];
-    //    }
-}
-
-- (void)updateKeySigPanel {
-    KeySignature *sig = [self getEffectiveKeySignature];
-    [keySigLetter selectItemAtIndex:[sig getIndexFromA]];
-    if ([sig isMinor]) {
-        [keySigMajMin selectItemAtIndex:1];
-    }
-    else {
-        [keySigMajMin selectItemAtIndex:0];
-    }
-}
-
-- (void)processTimeSignatureChange:(BOOL)compound {
-    [self clearCaches];
-    if (compound) {
-        [staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]
-                             secondTop:[timeSigSecondTopText intValue] secondBottom:[[[timeSigSecondBottom selectedItem] title] intValue]];
-    }
-    else {
-        [staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
-    }
-}
-
-- (IBAction)timeSigTopChanged:(id)sender {
-    [[self undoManager] setActionName:@"changing time signature"];
-    int value = [sender intValue];
-    if (value < 1) value = 1;
-    [timeSigTopStep setIntValue:value];
-    [timeSigTopText setIntValue:value];
-    [self processTimeSignatureChange:[timeSigExpand isHidden]];
-}
-
-- (IBAction)timeSigBottomChanged:(id)sender {
-    [[self undoManager] setActionName:@"changing time signature"];
-    [self processTimeSignatureChange:[timeSigExpand isHidden]];
-}
-
-- (IBAction)timeSigSecondTopChanged:(id)sender {
-    [[self undoManager] setActionName:@"changing time signature"];
-    int value = [sender intValue];
-    if (value < 1) value = 1;
-    [timeSigSecondTopStep setIntValue:value];
-    [timeSigSecondTopText setIntValue:value];
-    [self processTimeSignatureChange:[timeSigExpand isHidden]];
-}
-
-- (IBAction)timeSigSecondBottomChanged:(id)sender {
-    [[self undoManager] setActionName:@"changing time signature"];
-    [self processTimeSignatureChange:[timeSigExpand isHidden]];
-}
+//- (void)updateKeySigPanel {
+//    KeySignature *sig = [self getEffectiveKeySignature];
+//    [keySigLetter selectItemAtIndex:[sig getIndexFromA]];
+//    if ([sig isMinor]) {
+//        [keySigMajMin selectItemAtIndex:1];
+//    }
+//    else {
+//        [keySigMajMin selectItemAtIndex:0];
+//    }
+//}
+//
+//- (void)processTimeSignatureChange:(BOOL)compound {
+//    [self clearCaches];
+//    if (compound) {
+//        [staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]
+//                             secondTop:[timeSigSecondTopText intValue] secondBottom:[[[timeSigSecondBottom selectedItem] title] intValue]];
+//    }
+//    else {
+//        [staff timeSigChangedAtMeasure:self top:[timeSigTopText intValue] bottom:[[[timeSigBottom selectedItem] title] intValue]];
+//    }
+//}
+//
+//- (IBAction)timeSigTopChanged:(id)sender {
+//    [[self undoManager] setActionName:@"changing time signature"];
+//    int value = [sender intValue];
+//    if (value < 1) value = 1;
+//    [timeSigTopStep setIntValue:value];
+//    [timeSigTopText setIntValue:value];
+//    [self processTimeSignatureChange:[timeSigExpand isHidden]];
+//}
+//
+//- (IBAction)timeSigBottomChanged:(id)sender {
+//    [[self undoManager] setActionName:@"changing time signature"];
+//    [self processTimeSignatureChange:[timeSigExpand isHidden]];
+//}
+//
+//- (IBAction)timeSigSecondTopChanged:(id)sender {
+//    [[self undoManager] setActionName:@"changing time signature"];
+//    int value = [sender intValue];
+//    if (value < 1) value = 1;
+//    [timeSigSecondTopStep setIntValue:value];
+//    [timeSigSecondTopText setIntValue:value];
+//    [self processTimeSignatureChange:[timeSigExpand isHidden]];
+//}
+//
+//- (IBAction)timeSigSecondBottomChanged:(id)sender {
+//    [[self undoManager] setActionName:@"changing time signature"];
+//    [self processTimeSignatureChange:[timeSigExpand isHidden]];
+//}
 
 - (void)timeSigDelete {
     [self clearCaches];
@@ -799,21 +801,22 @@
     //    [self processTimeSignatureChange:NO];
 }
 
-- (void)updateTimeSigPanel {
-    TimeSignature *sig = [self getEffectiveTimeSignature];
-    int top = [sig getTop];
-    int bottom = [sig getBottom];
-    [timeSigTopStep setIntValue:top];
-    [timeSigTopText setIntValue:top];
-    [timeSigBottom selectItemWithTitle:[NSString stringWithFormat:@"%d", bottom]];
-    [[timeSigPanel superview] setNeedsDisplay:YES];
-}
-
-- (void)cleanPanels {
-    [self timeSigClose:nil];
-    [self keySigClose:nil];
-}
-
+//
+//- (void)updateTimeSigPanel {
+//    TimeSignature *sig = [self getEffectiveTimeSignature];
+//    int top = [sig getTop];
+//    int bottom = [sig getBottom];
+//    [timeSigTopStep setIntValue:top];
+//    [timeSigTopText setIntValue:top];
+//    [timeSigBottom selectItemWithTitle:[NSString stringWithFormat:@"%d", bottom]];
+//    [[timeSigPanel superview] setNeedsDisplay:YES];
+//}
+//
+//- (void)cleanPanels {
+//    [self timeSigClose:nil];
+//    [self keySigClose:nil];
+//}
+//
 - (NSDictionary *)getAccidentalsAtPosition:(float)pos {
     NSMutableDictionary *accidentals = [NSMutableDictionary dictionary];
     int i;

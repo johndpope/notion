@@ -7,6 +7,8 @@
 #import "Note.h"
 #import "Rest.h"
 #import "Measure.h"
+#import <AudioToolbox/MusicPlayer.h>
+#import "Chord.h"
 
 const int RESOLUTION =  480;
 
@@ -99,10 +101,7 @@ static char lastStatus = 0x00;
             // Apple says "non-MIDI"
             break;
             
-        case kMusicEventType_ExtendedControl:
-            //		kMusicEventType_ExtendedControl			ExtendedControlEvent*
-            // Apple says "non-MIDI"
-            break;
+            
             
         case kMusicEventType_ExtendedTempo:
             tempoMsg = (ExtendedTempoEvent *)event;

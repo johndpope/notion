@@ -6,7 +6,7 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "NoteBase.h"
 
 @interface Rest : NoteBase <NSCopying> {

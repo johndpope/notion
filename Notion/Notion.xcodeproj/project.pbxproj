@@ -8,54 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		5D40D7FA1A6CA8BC00252285 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7D21A6CA8BC00252285 /* Chord.m */; };
-		5D40D7FB1A6CA8BC00252285 /* ChromaticKeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7D41A6CA8BC00252285 /* ChromaticKeySignature.m */; };
-		5D40D7FC1A6CA8BC00252285 /* Clef.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7D61A6CA8BC00252285 /* Clef.m */; };
-		5D40D7FD1A6CA8BC00252285 /* CompoundTimeSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7D81A6CA8BC00252285 /* CompoundTimeSig.m */; };
-		5D40D7FE1A6CA8BC00252285 /* Drum+Lilypond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7DA1A6CA8BC00252285 /* Drum+Lilypond.m */; };
-		5D40D7FF1A6CA8BC00252285 /* Drum+MusicXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7DC1A6CA8BC00252285 /* Drum+MusicXML.m */; };
-		5D40D8001A6CA8BC00252285 /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7DE1A6CA8BC00252285 /* Drum.m */; };
-		5D40D8011A6CA8BC00252285 /* DrumKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7E01A6CA8BC00252285 /* DrumKit.m */; };
-		5D40D8021A6CA8BC00252285 /* KeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7E21A6CA8BC00252285 /* KeySignature.m */; };
-		5D40D8031A6CA8BC00252285 /* Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7E41A6CA8BC00252285 /* Measure.m */; };
-		5D40D8041A6CA8BC00252285 /* MusicDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7E61A6CA8BC00252285 /* MusicDocument.m */; };
-		5D40D8051A6CA8BC00252285 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7E81A6CA8BC00252285 /* Note.m */; };
-		5D40D8061A6CA8BC00252285 /* NoteBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7EA1A6CA8BC00252285 /* NoteBase.m */; };
-		5D40D8071A6CA8BC00252285 /* NSNumberPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7EC1A6CA8BC00252285 /* NSNumberPool.m */; };
-		5D40D8081A6CA8BC00252285 /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7EE1A6CA8BC00252285 /* Repeat.m */; };
-		5D40D8091A6CA8BC00252285 /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7F01A6CA8BC00252285 /* Rest.m */; };
-		5D40D80A1A6CA8BC00252285 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7F31A6CA8BC00252285 /* Song.m */; };
-		5D40D80B1A6CA8BC00252285 /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7F51A6CA8BC00252285 /* Staff.m */; };
-		5D40D80C1A6CA8BC00252285 /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7F71A6CA8BC00252285 /* TempoData.m */; };
-		5D40D80D1A6CA8BC00252285 /* TimeSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D7F91A6CA8BC00252285 /* TimeSignature.m */; };
-		5D40D83D1A6CABA100252285 /* ChordDrawTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D82C1A6CABA100252285 /* ChordDrawTest.m */; };
-		5D40D83E1A6CABA100252285 /* ChordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D82E1A6CABA100252285 /* ChordTest.m */; };
-		5D40D83F1A6CABA100252285 /* KeySigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8301A6CABA100252285 /* KeySigTest.m */; };
-		5D40D8401A6CABA100252285 /* MeasureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8321A6CABA100252285 /* MeasureTest.m */; };
-		5D40D8411A6CABA100252285 /* NoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8341A6CABA100252285 /* NoteTest.m */; };
-		5D40D8421A6CABA100252285 /* SongTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8361A6CABA100252285 /* SongTest.m */; };
-		5D40D8431A6CABA100252285 /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8381A6CABA100252285 /* StaffTest.m */; };
-		5D40D8441A6CABA100252285 /* TempoDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D83A1A6CABA100252285 /* TempoDataTest.m */; };
-		5D40D8451A6CABA100252285 /* TestUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D83B1A6CABA100252285 /* TestUtil.c */; };
 		5D40D84F1A6CABC200252285 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D84E1A6CABC200252285 /* main.m */; };
 		5D40D8521A6CABC200252285 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8511A6CABC200252285 /* AppDelegate.m */; };
-		5D40D8551A6CABC200252285 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8541A6CABC200252285 /* MasterViewController.m */; };
-		5D40D8581A6CABC200252285 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8571A6CABC200252285 /* DetailViewController.m */; };
-		5D40D85B1A6CABC200252285 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8591A6CABC200252285 /* Main.storyboard */; };
 		5D40D85D1A6CABC200252285 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D85C1A6CABC200252285 /* Images.xcassets */; };
-		5D40D8601A6CABC200252285 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D85E1A6CABC200252285 /* LaunchScreen.xib */; };
 		5D40D86C1A6CABC200252285 /* Notion_IOS_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D86B1A6CABC200252285 /* Notion_IOS_DemoTests.m */; };
 		5D40D87B1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D87C1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D87D1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D87E1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
-		5D40D87F1A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8771A6CABDF00252285 /* bars - 1 2 3 4 copy.mid */; };
-		5D40D8801A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8771A6CABDF00252285 /* bars - 1 2 3 4 copy.mid */; };
-		5D40D8811A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8771A6CABDF00252285 /* bars - 1 2 3 4 copy.mid */; };
-		5D40D8821A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8771A6CABDF00252285 /* bars - 1 2 3 4 copy.mid */; };
 		5D40D8831A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
 		5D40D8841A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
-		5D40D8851A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
 		5D40D8861A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
 		5D40D8871A6CABDF00252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8791A6CABDF00252285 /* ring-12-0.mid */; };
 		5D40D8881A6CABDF00252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8791A6CABDF00252285 /* ring-12-0.mid */; };
@@ -65,9 +27,67 @@
 		5D40D88C1A6CABDF00252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D87A1A6CABDF00252285 /* Sor_Study.mid */; };
 		5D40D88D1A6CABDF00252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D87A1A6CABDF00252285 /* Sor_Study.mid */; };
 		5D40D88E1A6CABDF00252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D87A1A6CABDF00252285 /* Sor_Study.mid */; };
-		5D40D8901A6CAC2E00252285 /* Chomp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40D88F1A6CAC2E00252285 /* Chomp.framework */; };
-		5D40D8911A6CAC2E00252285 /* Chomp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40D88F1A6CAC2E00252285 /* Chomp.framework */; };
 		5D40D8C31A6CAF0000252285 /* ChompIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40D8C21A6CAF0000252285 /* ChompIOS.framework */; };
+		5D40D8C41A6CB2B000252285 /* StaffTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8381A6CABA100252285 /* StaffTest.m */; };
+		5D40D8C51A6CB2B400252285 /* ChordDrawTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D82C1A6CABA100252285 /* ChordDrawTest.m */; };
+		5D40D8C61A6CB2B800252285 /* ChordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D82E1A6CABA100252285 /* ChordTest.m */; };
+		5D40D8C71A6CB2BB00252285 /* KeySigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8301A6CABA100252285 /* KeySigTest.m */; };
+		5D40D8C81A6CB2BE00252285 /* MeasureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8321A6CABA100252285 /* MeasureTest.m */; };
+		5D40D8C91A6CB2C200252285 /* NoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8341A6CABA100252285 /* NoteTest.m */; };
+		5D40D8CA1A6CB2C500252285 /* SongTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8361A6CABA100252285 /* SongTest.m */; };
+		5D40D8CB1A6CB2C900252285 /* TempoDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D83A1A6CABA100252285 /* TempoDataTest.m */; };
+		5D40D8CC1A6CB2CD00252285 /* TestUtil.c in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D83B1A6CABA100252285 /* TestUtil.c */; };
+		5D40D8D31A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8CE1A6CB2E900252285 /* apprhythmsvol1y2r1.mid */; };
+		5D40D8D41A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8CE1A6CB2E900252285 /* apprhythmsvol1y2r1.mid */; };
+		5D40D8D71A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D01A6CB2E900252285 /* bars - 1 2 3 4.mid */; };
+		5D40D8D81A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D01A6CB2E900252285 /* bars - 1 2 3 4.mid */; };
+		5D40D8D91A6CB2E900252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D11A6CB2E900252285 /* ring-12-0.mid */; };
+		5D40D8DA1A6CB2E900252285 /* ring-12-0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D11A6CB2E900252285 /* ring-12-0.mid */; };
+		5D40D8DB1A6CB2E900252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D21A6CB2E900252285 /* Sor_Study.mid */; };
+		5D40D8DC1A6CB2E900252285 /* Sor_Study.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8D21A6CB2E900252285 /* Sor_Study.mid */; };
+		5D40D8DD1A6CB50100252285 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
+		5D40D8DE1A6CB50200252285 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
+		5D40D8DF1A6CB50300252285 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
+		5D40D8E11A6CB54E00252285 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40D8E01A6CB54E00252285 /* AudioToolbox.framework */; };
+		5D40D90A1A6CB5DE00252285 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E41A6CB5DE00252285 /* Chord.m */; };
+		5D40D90B1A6CB5DE00252285 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E41A6CB5DE00252285 /* Chord.m */; };
+		5D40D90C1A6CB5DE00252285 /* ChromaticKeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E61A6CB5DE00252285 /* ChromaticKeySignature.m */; };
+		5D40D90D1A6CB5DE00252285 /* ChromaticKeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E61A6CB5DE00252285 /* ChromaticKeySignature.m */; };
+		5D40D90E1A6CB5DE00252285 /* Clef.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E81A6CB5DE00252285 /* Clef.m */; };
+		5D40D90F1A6CB5DE00252285 /* Clef.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8E81A6CB5DE00252285 /* Clef.m */; };
+		5D40D9101A6CB5DE00252285 /* CompoundTimeSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8EA1A6CB5DE00252285 /* CompoundTimeSig.m */; };
+		5D40D9111A6CB5DE00252285 /* CompoundTimeSig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8EA1A6CB5DE00252285 /* CompoundTimeSig.m */; };
+		5D40D9121A6CB5DE00252285 /* Drum+Lilypond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8EC1A6CB5DE00252285 /* Drum+Lilypond.m */; };
+		5D40D9131A6CB5DE00252285 /* Drum+Lilypond.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8EC1A6CB5DE00252285 /* Drum+Lilypond.m */; };
+		5D40D9141A6CB5DE00252285 /* Drum+MusicXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8EE1A6CB5DE00252285 /* Drum+MusicXML.m */; };
+		5D40D9151A6CB5DE00252285 /* Drum+MusicXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8EE1A6CB5DE00252285 /* Drum+MusicXML.m */; };
+		5D40D9161A6CB5DE00252285 /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F01A6CB5DE00252285 /* Drum.m */; };
+		5D40D9171A6CB5DE00252285 /* Drum.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F01A6CB5DE00252285 /* Drum.m */; };
+		5D40D9181A6CB5DE00252285 /* DrumKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F21A6CB5DE00252285 /* DrumKit.m */; };
+		5D40D9191A6CB5DE00252285 /* DrumKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F21A6CB5DE00252285 /* DrumKit.m */; };
+		5D40D91A1A6CB5DE00252285 /* KeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F41A6CB5DE00252285 /* KeySignature.m */; };
+		5D40D91B1A6CB5DE00252285 /* KeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F41A6CB5DE00252285 /* KeySignature.m */; };
+		5D40D91C1A6CB5DE00252285 /* Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F61A6CB5DE00252285 /* Measure.m */; };
+		5D40D91D1A6CB5DE00252285 /* Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F61A6CB5DE00252285 /* Measure.m */; };
+		5D40D91E1A6CB5DE00252285 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F81A6CB5DE00252285 /* Note.m */; };
+		5D40D91F1A6CB5DE00252285 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8F81A6CB5DE00252285 /* Note.m */; };
+		5D40D9201A6CB5DE00252285 /* NoteBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8FA1A6CB5DE00252285 /* NoteBase.m */; };
+		5D40D9211A6CB5DE00252285 /* NoteBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8FA1A6CB5DE00252285 /* NoteBase.m */; };
+		5D40D9221A6CB5DE00252285 /* NSNumberPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8FC1A6CB5DE00252285 /* NSNumberPool.m */; };
+		5D40D9231A6CB5DE00252285 /* NSNumberPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8FC1A6CB5DE00252285 /* NSNumberPool.m */; };
+		5D40D9241A6CB5DE00252285 /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8FE1A6CB5DE00252285 /* Repeat.m */; };
+		5D40D9251A6CB5DE00252285 /* Repeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D8FE1A6CB5DE00252285 /* Repeat.m */; };
+		5D40D9261A6CB5DE00252285 /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9001A6CB5DE00252285 /* Rest.m */; };
+		5D40D9271A6CB5DE00252285 /* Rest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9001A6CB5DE00252285 /* Rest.m */; };
+		5D40D9281A6CB5DE00252285 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9031A6CB5DE00252285 /* Song.m */; };
+		5D40D9291A6CB5DE00252285 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9031A6CB5DE00252285 /* Song.m */; };
+		5D40D92A1A6CB5DE00252285 /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9051A6CB5DE00252285 /* Staff.m */; };
+		5D40D92B1A6CB5DE00252285 /* Staff.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9051A6CB5DE00252285 /* Staff.m */; };
+		5D40D92C1A6CB5DE00252285 /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9071A6CB5DE00252285 /* TempoData.m */; };
+		5D40D92D1A6CB5DE00252285 /* TempoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9071A6CB5DE00252285 /* TempoData.m */; };
+		5D40D92E1A6CB5DE00252285 /* TimeSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9091A6CB5DE00252285 /* TimeSignature.m */; };
+		5D40D92F1A6CB5DE00252285 /* TimeSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D40D9091A6CB5DE00252285 /* TimeSignature.m */; };
+		5D40D9321A6CB98800252285 /* Chomp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D40D9311A6CB98800252285 /* Chomp.framework */; };
 		5DD50D131A6B6F520012B2A1 /* FScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD50D111A6B6F520012B2A1 /* FScript.framework */; };
 		5DD50D141A6B6F520012B2A1 /* libportsmf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD50D121A6B6F520012B2A1 /* libportsmf.a */; };
 		7315FCD20FF2EA4F008D3CE1 /* MidiInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 7315FCD10FF2EA4F008D3CE1 /* MidiInterface.m */; };
@@ -76,7 +96,6 @@
 		7397F76D0E5C9FF1003AE8A6 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7397F76A0E5C9FF1003AE8A6 /* CoreAudio.framework */; };
 		7397F76E0E5C9FF1003AE8A6 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7397F76B0E5C9FF1003AE8A6 /* CoreMIDI.framework */; };
 		7397F7710E5C9FFD003AE8A6 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
-		73B4CD7E0FF51BE600949D15 /* MIDIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */; };
 		73B4CDA70FF51F0800949D15 /* MidiInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 7315FCD10FF2EA4F008D3CE1 /* MidiInterface.m */; };
 		73B4CDAA0FF51F1800949D15 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7397F76B0E5C9FF1003AE8A6 /* CoreMIDI.framework */; };
 		73B4CDAB0FF51F1900949D15 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7397F76A0E5C9FF1003AE8A6 /* CoreAudio.framework */; };
@@ -122,47 +141,6 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Notion_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notion_Prefix.pch; sourceTree = "<group>"; };
-		5D40D7D11A6CA8BC00252285 /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
-		5D40D7D21A6CA8BC00252285 /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
-		5D40D7D31A6CA8BC00252285 /* ChromaticKeySignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromaticKeySignature.h; sourceTree = "<group>"; };
-		5D40D7D41A6CA8BC00252285 /* ChromaticKeySignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromaticKeySignature.m; sourceTree = "<group>"; };
-		5D40D7D51A6CA8BC00252285 /* Clef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clef.h; sourceTree = "<group>"; };
-		5D40D7D61A6CA8BC00252285 /* Clef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clef.m; sourceTree = "<group>"; };
-		5D40D7D71A6CA8BC00252285 /* CompoundTimeSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompoundTimeSig.h; sourceTree = "<group>"; };
-		5D40D7D81A6CA8BC00252285 /* CompoundTimeSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompoundTimeSig.m; sourceTree = "<group>"; };
-		5D40D7D91A6CA8BC00252285 /* Drum+Lilypond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drum+Lilypond.h"; sourceTree = "<group>"; };
-		5D40D7DA1A6CA8BC00252285 /* Drum+Lilypond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drum+Lilypond.m"; sourceTree = "<group>"; };
-		5D40D7DB1A6CA8BC00252285 /* Drum+MusicXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drum+MusicXML.h"; sourceTree = "<group>"; };
-		5D40D7DC1A6CA8BC00252285 /* Drum+MusicXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drum+MusicXML.m"; sourceTree = "<group>"; };
-		5D40D7DD1A6CA8BC00252285 /* Drum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drum.h; sourceTree = "<group>"; };
-		5D40D7DE1A6CA8BC00252285 /* Drum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drum.m; sourceTree = "<group>"; };
-		5D40D7DF1A6CA8BC00252285 /* DrumKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumKit.h; sourceTree = "<group>"; };
-		5D40D7E01A6CA8BC00252285 /* DrumKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumKit.m; sourceTree = "<group>"; };
-		5D40D7E11A6CA8BC00252285 /* KeySignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySignature.h; sourceTree = "<group>"; };
-		5D40D7E21A6CA8BC00252285 /* KeySignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySignature.m; sourceTree = "<group>"; };
-		5D40D7E31A6CA8BC00252285 /* Measure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Measure.h; sourceTree = "<group>"; };
-		5D40D7E41A6CA8BC00252285 /* Measure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measure.m; sourceTree = "<group>"; };
-		5D40D7E51A6CA8BC00252285 /* MusicDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicDocument.h; sourceTree = "<group>"; };
-		5D40D7E61A6CA8BC00252285 /* MusicDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicDocument.m; sourceTree = "<group>"; };
-		5D40D7E71A6CA8BC00252285 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		5D40D7E81A6CA8BC00252285 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		5D40D7E91A6CA8BC00252285 /* NoteBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBase.h; sourceTree = "<group>"; };
-		5D40D7EA1A6CA8BC00252285 /* NoteBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBase.m; sourceTree = "<group>"; };
-		5D40D7EB1A6CA8BC00252285 /* NSNumberPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberPool.h; sourceTree = "<group>"; };
-		5D40D7EC1A6CA8BC00252285 /* NSNumberPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberPool.m; sourceTree = "<group>"; };
-		5D40D7ED1A6CA8BC00252285 /* Repeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repeat.h; sourceTree = "<group>"; };
-		5D40D7EE1A6CA8BC00252285 /* Repeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repeat.m; sourceTree = "<group>"; };
-		5D40D7EF1A6CA8BC00252285 /* Rest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rest.h; sourceTree = "<group>"; };
-		5D40D7F01A6CA8BC00252285 /* Rest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rest.m; sourceTree = "<group>"; };
-		5D40D7F11A6CA8BC00252285 /* SNFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFactory.h; sourceTree = "<group>"; };
-		5D40D7F21A6CA8BC00252285 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
-		5D40D7F31A6CA8BC00252285 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
-		5D40D7F41A6CA8BC00252285 /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
-		5D40D7F51A6CA8BC00252285 /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
-		5D40D7F61A6CA8BC00252285 /* TempoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempoData.h; sourceTree = "<group>"; };
-		5D40D7F71A6CA8BC00252285 /* TempoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoData.m; sourceTree = "<group>"; };
-		5D40D7F81A6CA8BC00252285 /* TimeSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignature.h; sourceTree = "<group>"; };
-		5D40D7F91A6CA8BC00252285 /* TimeSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignature.m; sourceTree = "<group>"; };
 		5D40D82B1A6CABA100252285 /* ChordDrawTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordDrawTest.h; sourceTree = "<group>"; };
 		5D40D82C1A6CABA100252285 /* ChordDrawTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordDrawTest.m; sourceTree = "<group>"; };
 		5D40D82D1A6CABA100252285 /* ChordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTest.h; sourceTree = "<group>"; };
@@ -186,23 +164,62 @@
 		5D40D84E1A6CABC200252285 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5D40D8501A6CABC200252285 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D40D8511A6CABC200252285 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5D40D8531A6CABC200252285 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		5D40D8541A6CABC200252285 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		5D40D8561A6CABC200252285 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		5D40D8571A6CABC200252285 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		5D40D85A1A6CABC200252285 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D40D85C1A6CABC200252285 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5D40D85F1A6CABC200252285 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5D40D8651A6CABC200252285 /* Notion IOS DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Notion IOS DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D40D86A1A6CABC200252285 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D40D86B1A6CABC200252285 /* Notion_IOS_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Notion_IOS_DemoTests.m; sourceTree = "<group>"; };
 		5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = apprhythmsvol1y2r1.mid; sourceTree = "<group>"; };
-		5D40D8771A6CABDF00252285 /* bars - 1 2 3 4 copy.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "bars - 1 2 3 4 copy.mid"; sourceTree = "<group>"; };
 		5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "bars - 1 2 3 4.mid"; sourceTree = "<group>"; };
 		5D40D8791A6CABDF00252285 /* ring-12-0.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "ring-12-0.mid"; sourceTree = "<group>"; };
 		5D40D87A1A6CABDF00252285 /* Sor_Study.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Sor_Study.mid; sourceTree = "<group>"; };
-		5D40D88F1A6CAC2E00252285 /* Chomp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chomp.framework; sourceTree = "<group>"; };
 		5D40D8C21A6CAF0000252285 /* ChompIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ChompIOS.framework; sourceTree = "<group>"; };
+		5D40D8CE1A6CB2E900252285 /* apprhythmsvol1y2r1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = apprhythmsvol1y2r1.mid; sourceTree = "<group>"; };
+		5D40D8D01A6CB2E900252285 /* bars - 1 2 3 4.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "bars - 1 2 3 4.mid"; sourceTree = "<group>"; };
+		5D40D8D11A6CB2E900252285 /* ring-12-0.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = "ring-12-0.mid"; sourceTree = "<group>"; };
+		5D40D8D21A6CB2E900252285 /* Sor_Study.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Sor_Study.mid; sourceTree = "<group>"; };
+		5D40D8E01A6CB54E00252285 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		5D40D8E31A6CB5DE00252285 /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
+		5D40D8E41A6CB5DE00252285 /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
+		5D40D8E51A6CB5DE00252285 /* ChromaticKeySignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChromaticKeySignature.h; sourceTree = "<group>"; };
+		5D40D8E61A6CB5DE00252285 /* ChromaticKeySignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChromaticKeySignature.m; sourceTree = "<group>"; };
+		5D40D8E71A6CB5DE00252285 /* Clef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clef.h; sourceTree = "<group>"; };
+		5D40D8E81A6CB5DE00252285 /* Clef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clef.m; sourceTree = "<group>"; };
+		5D40D8E91A6CB5DE00252285 /* CompoundTimeSig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompoundTimeSig.h; sourceTree = "<group>"; };
+		5D40D8EA1A6CB5DE00252285 /* CompoundTimeSig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompoundTimeSig.m; sourceTree = "<group>"; };
+		5D40D8EB1A6CB5DE00252285 /* Drum+Lilypond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drum+Lilypond.h"; sourceTree = "<group>"; };
+		5D40D8EC1A6CB5DE00252285 /* Drum+Lilypond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drum+Lilypond.m"; sourceTree = "<group>"; };
+		5D40D8ED1A6CB5DE00252285 /* Drum+MusicXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Drum+MusicXML.h"; sourceTree = "<group>"; };
+		5D40D8EE1A6CB5DE00252285 /* Drum+MusicXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Drum+MusicXML.m"; sourceTree = "<group>"; };
+		5D40D8EF1A6CB5DE00252285 /* Drum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drum.h; sourceTree = "<group>"; };
+		5D40D8F01A6CB5DE00252285 /* Drum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drum.m; sourceTree = "<group>"; };
+		5D40D8F11A6CB5DE00252285 /* DrumKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumKit.h; sourceTree = "<group>"; };
+		5D40D8F21A6CB5DE00252285 /* DrumKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrumKit.m; sourceTree = "<group>"; };
+		5D40D8F31A6CB5DE00252285 /* KeySignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySignature.h; sourceTree = "<group>"; };
+		5D40D8F41A6CB5DE00252285 /* KeySignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySignature.m; sourceTree = "<group>"; };
+		5D40D8F51A6CB5DE00252285 /* Measure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Measure.h; sourceTree = "<group>"; };
+		5D40D8F61A6CB5DE00252285 /* Measure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measure.m; sourceTree = "<group>"; };
+		5D40D8F71A6CB5DE00252285 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		5D40D8F81A6CB5DE00252285 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		5D40D8F91A6CB5DE00252285 /* NoteBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteBase.h; sourceTree = "<group>"; };
+		5D40D8FA1A6CB5DE00252285 /* NoteBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteBase.m; sourceTree = "<group>"; };
+		5D40D8FB1A6CB5DE00252285 /* NSNumberPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberPool.h; sourceTree = "<group>"; };
+		5D40D8FC1A6CB5DE00252285 /* NSNumberPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNumberPool.m; sourceTree = "<group>"; };
+		5D40D8FD1A6CB5DE00252285 /* Repeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repeat.h; sourceTree = "<group>"; };
+		5D40D8FE1A6CB5DE00252285 /* Repeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repeat.m; sourceTree = "<group>"; };
+		5D40D8FF1A6CB5DE00252285 /* Rest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rest.h; sourceTree = "<group>"; };
+		5D40D9001A6CB5DE00252285 /* Rest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rest.m; sourceTree = "<group>"; };
+		5D40D9011A6CB5DE00252285 /* SNFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNFactory.h; sourceTree = "<group>"; };
+		5D40D9021A6CB5DE00252285 /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		5D40D9031A6CB5DE00252285 /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
+		5D40D9041A6CB5DE00252285 /* Staff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Staff.h; sourceTree = "<group>"; };
+		5D40D9051A6CB5DE00252285 /* Staff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Staff.m; sourceTree = "<group>"; };
+		5D40D9061A6CB5DE00252285 /* TempoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempoData.h; sourceTree = "<group>"; };
+		5D40D9071A6CB5DE00252285 /* TempoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoData.m; sourceTree = "<group>"; };
+		5D40D9081A6CB5DE00252285 /* TimeSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSignature.h; sourceTree = "<group>"; };
+		5D40D9091A6CB5DE00252285 /* TimeSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSignature.m; sourceTree = "<group>"; };
+		5D40D9301A6CB76000252285 /* Notion_IOSPrefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notion_IOSPrefix.pch; sourceTree = "<group>"; };
+		5D40D9311A6CB98800252285 /* Chomp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chomp.framework; sourceTree = "<group>"; };
 		5DD50D111A6B6F520012B2A1 /* FScript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FScript.framework; sourceTree = "<group>"; };
 		5DD50D121A6B6F520012B2A1 /* libportsmf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libportsmf.a; sourceTree = "<group>"; };
 		7315FCD00FF2EA4F008D3CE1 /* MidiInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiInterface.h; path = Src/MidiInterface.h; sourceTree = "<group>"; };
@@ -229,6 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D40D8E11A6CB54E00252285 /* AudioToolbox.framework in Frameworks */,
 				5D40D8C31A6CAF0000252285 /* ChompIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,7 +263,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				73B4CDAA0FF51F1800949D15 /* CoreMIDI.framework in Frameworks */,
-				5D40D8911A6CAC2E00252285 /* Chomp.framework in Frameworks */,
 				73B4CDAB0FF51F1900949D15 /* CoreAudio.framework in Frameworks */,
 				73B4CDAC0FF51F1A00949D15 /* AudioToolbox.framework in Frameworks */,
 				73B4CDAD0FF51F1E00949D15 /* AudioUnit.framework in Frameworks */,
@@ -258,10 +275,10 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				7397F76C0E5C9FF1003AE8A6 /* AudioToolbox.framework in Frameworks */,
+				5D40D9321A6CB98800252285 /* Chomp.framework in Frameworks */,
 				7397F76D0E5C9FF1003AE8A6 /* CoreAudio.framework in Frameworks */,
 				7397F76E0E5C9FF1003AE8A6 /* CoreMIDI.framework in Frameworks */,
 				5DD50D141A6B6F520012B2A1 /* libportsmf.a in Frameworks */,
-				5D40D8901A6CAC2E00252285 /* Chomp.framework in Frameworks */,
 				73CA0AAC0E77E1BB006D131C /* CoreServices.framework in Frameworks */,
 				5DD50D131A6B6F520012B2A1 /* FScript.framework in Frameworks */,
 				73CA0AAD0E77E1BB006D131C /* CoreFoundation.framework in Frameworks */,
@@ -273,19 +290,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* Notion */ = {
 			isa = PBXGroup;
 			children = (
-				5D40D7D01A6CA8BC00252285 /* Model */,
+				5D40D8E21A6CB5DE00252285 /* Model */,
 				7397F6D60E5C9F1A003AE8A6 /* AppControl.h */,
 				7397F6D70E5C9F1A003AE8A6 /* AppControl.m */,
 				7397F76F0E5C9FFD003AE8A6 /* MIDIUtil.h */,
 				7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */,
 				7315FCD00FF2EA4F008D3CE1 /* MidiInterface.h */,
 				7315FCD10FF2EA4F008D3CE1 /* MidiInterface.m */,
-				7397F7D00E5CA211003AE8A6 /* senorstaff */,
+				5D40D8CD1A6CB2E900252285 /* Midi */,
 			);
-			name = Classes;
+			name = Notion;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -328,7 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				5D40D82A1A6CABA100252285 /* TestCases */,
-				080E96DDFE201D6D7F000001 /* Classes */,
+				080E96DDFE201D6D7F000001 /* Notion */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				5D40D84B1A6CABC200252285 /* Notion IOS Demo */,
 				5D40D8681A6CABC200252285 /* Notion IOS DemoTests */,
@@ -370,54 +387,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5D40D7D01A6CA8BC00252285 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				5D40D7D11A6CA8BC00252285 /* Chord.h */,
-				5D40D7D21A6CA8BC00252285 /* Chord.m */,
-				5D40D7D31A6CA8BC00252285 /* ChromaticKeySignature.h */,
-				5D40D7D41A6CA8BC00252285 /* ChromaticKeySignature.m */,
-				5D40D7D51A6CA8BC00252285 /* Clef.h */,
-				5D40D7D61A6CA8BC00252285 /* Clef.m */,
-				5D40D7D71A6CA8BC00252285 /* CompoundTimeSig.h */,
-				5D40D7D81A6CA8BC00252285 /* CompoundTimeSig.m */,
-				5D40D7D91A6CA8BC00252285 /* Drum+Lilypond.h */,
-				5D40D7DA1A6CA8BC00252285 /* Drum+Lilypond.m */,
-				5D40D7DB1A6CA8BC00252285 /* Drum+MusicXML.h */,
-				5D40D7DC1A6CA8BC00252285 /* Drum+MusicXML.m */,
-				5D40D7DD1A6CA8BC00252285 /* Drum.h */,
-				5D40D7DE1A6CA8BC00252285 /* Drum.m */,
-				5D40D7DF1A6CA8BC00252285 /* DrumKit.h */,
-				5D40D7E01A6CA8BC00252285 /* DrumKit.m */,
-				5D40D7E11A6CA8BC00252285 /* KeySignature.h */,
-				5D40D7E21A6CA8BC00252285 /* KeySignature.m */,
-				5D40D7E31A6CA8BC00252285 /* Measure.h */,
-				5D40D7E41A6CA8BC00252285 /* Measure.m */,
-				5D40D7E51A6CA8BC00252285 /* MusicDocument.h */,
-				5D40D7E61A6CA8BC00252285 /* MusicDocument.m */,
-				5D40D7E71A6CA8BC00252285 /* Note.h */,
-				5D40D7E81A6CA8BC00252285 /* Note.m */,
-				5D40D7E91A6CA8BC00252285 /* NoteBase.h */,
-				5D40D7EA1A6CA8BC00252285 /* NoteBase.m */,
-				5D40D7EB1A6CA8BC00252285 /* NSNumberPool.h */,
-				5D40D7EC1A6CA8BC00252285 /* NSNumberPool.m */,
-				5D40D7ED1A6CA8BC00252285 /* Repeat.h */,
-				5D40D7EE1A6CA8BC00252285 /* Repeat.m */,
-				5D40D7EF1A6CA8BC00252285 /* Rest.h */,
-				5D40D7F01A6CA8BC00252285 /* Rest.m */,
-				5D40D7F11A6CA8BC00252285 /* SNFactory.h */,
-				5D40D7F21A6CA8BC00252285 /* Song.h */,
-				5D40D7F31A6CA8BC00252285 /* Song.m */,
-				5D40D7F41A6CA8BC00252285 /* Staff.h */,
-				5D40D7F51A6CA8BC00252285 /* Staff.m */,
-				5D40D7F61A6CA8BC00252285 /* TempoData.h */,
-				5D40D7F71A6CA8BC00252285 /* TempoData.m */,
-				5D40D7F81A6CA8BC00252285 /* TimeSignature.h */,
-				5D40D7F91A6CA8BC00252285 /* TimeSignature.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		5D40D82A1A6CABA100252285 /* TestCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,13 +415,9 @@
 		5D40D84B1A6CABC200252285 /* Notion IOS Demo */ = {
 			isa = PBXGroup;
 			children = (
+				5D40D9301A6CB76000252285 /* Notion_IOSPrefix.pch */,
 				5D40D8501A6CABC200252285 /* AppDelegate.h */,
 				5D40D8511A6CABC200252285 /* AppDelegate.m */,
-				5D40D8531A6CABC200252285 /* MasterViewController.h */,
-				5D40D8541A6CABC200252285 /* MasterViewController.m */,
-				5D40D8561A6CABC200252285 /* DetailViewController.h */,
-				5D40D8571A6CABC200252285 /* DetailViewController.m */,
-				5D40D8591A6CABC200252285 /* Main.storyboard */,
 				5D40D85C1A6CABC200252285 /* Images.xcassets */,
 				5D40D85E1A6CABC200252285 /* LaunchScreen.xib */,
 				5D40D84C1A6CABC200252285 /* Supporting Files */,
@@ -490,7 +455,6 @@
 			isa = PBXGroup;
 			children = (
 				5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */,
-				5D40D8771A6CABDF00252285 /* bars - 1 2 3 4 copy.mid */,
 				5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */,
 				5D40D8791A6CABDF00252285 /* ring-12-0.mid */,
 				5D40D87A1A6CABDF00252285 /* Sor_Study.mid */,
@@ -498,22 +462,73 @@
 			path = Midi;
 			sourceTree = "<group>";
 		};
+		5D40D8CD1A6CB2E900252285 /* Midi */ = {
+			isa = PBXGroup;
+			children = (
+				5D40D8CE1A6CB2E900252285 /* apprhythmsvol1y2r1.mid */,
+				5D40D8D01A6CB2E900252285 /* bars - 1 2 3 4.mid */,
+				5D40D8D11A6CB2E900252285 /* ring-12-0.mid */,
+				5D40D8D21A6CB2E900252285 /* Sor_Study.mid */,
+			);
+			path = Midi;
+			sourceTree = "<group>";
+		};
+		5D40D8E21A6CB5DE00252285 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D40D8E31A6CB5DE00252285 /* Chord.h */,
+				5D40D8E41A6CB5DE00252285 /* Chord.m */,
+				5D40D8E51A6CB5DE00252285 /* ChromaticKeySignature.h */,
+				5D40D8E61A6CB5DE00252285 /* ChromaticKeySignature.m */,
+				5D40D8E71A6CB5DE00252285 /* Clef.h */,
+				5D40D8E81A6CB5DE00252285 /* Clef.m */,
+				5D40D8E91A6CB5DE00252285 /* CompoundTimeSig.h */,
+				5D40D8EA1A6CB5DE00252285 /* CompoundTimeSig.m */,
+				5D40D8EB1A6CB5DE00252285 /* Drum+Lilypond.h */,
+				5D40D8EC1A6CB5DE00252285 /* Drum+Lilypond.m */,
+				5D40D8ED1A6CB5DE00252285 /* Drum+MusicXML.h */,
+				5D40D8EE1A6CB5DE00252285 /* Drum+MusicXML.m */,
+				5D40D8EF1A6CB5DE00252285 /* Drum.h */,
+				5D40D8F01A6CB5DE00252285 /* Drum.m */,
+				5D40D8F11A6CB5DE00252285 /* DrumKit.h */,
+				5D40D8F21A6CB5DE00252285 /* DrumKit.m */,
+				5D40D8F31A6CB5DE00252285 /* KeySignature.h */,
+				5D40D8F41A6CB5DE00252285 /* KeySignature.m */,
+				5D40D8F51A6CB5DE00252285 /* Measure.h */,
+				5D40D8F61A6CB5DE00252285 /* Measure.m */,
+				5D40D8F71A6CB5DE00252285 /* Note.h */,
+				5D40D8F81A6CB5DE00252285 /* Note.m */,
+				5D40D8F91A6CB5DE00252285 /* NoteBase.h */,
+				5D40D8FA1A6CB5DE00252285 /* NoteBase.m */,
+				5D40D8FB1A6CB5DE00252285 /* NSNumberPool.h */,
+				5D40D8FC1A6CB5DE00252285 /* NSNumberPool.m */,
+				5D40D8FD1A6CB5DE00252285 /* Repeat.h */,
+				5D40D8FE1A6CB5DE00252285 /* Repeat.m */,
+				5D40D8FF1A6CB5DE00252285 /* Rest.h */,
+				5D40D9001A6CB5DE00252285 /* Rest.m */,
+				5D40D9011A6CB5DE00252285 /* SNFactory.h */,
+				5D40D9021A6CB5DE00252285 /* Song.h */,
+				5D40D9031A6CB5DE00252285 /* Song.m */,
+				5D40D9041A6CB5DE00252285 /* Staff.h */,
+				5D40D9051A6CB5DE00252285 /* Staff.m */,
+				5D40D9061A6CB5DE00252285 /* TempoData.h */,
+				5D40D9071A6CB5DE00252285 /* TempoData.m */,
+				5D40D9081A6CB5DE00252285 /* TimeSignature.h */,
+				5D40D9091A6CB5DE00252285 /* TimeSignature.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5DD50D101A6B6F520012B2A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5D40D9311A6CB98800252285 /* Chomp.framework */,
+				5D40D8E01A6CB54E00252285 /* AudioToolbox.framework */,
 				5D40D8C21A6CAF0000252285 /* ChompIOS.framework */,
-				5D40D88F1A6CAC2E00252285 /* Chomp.framework */,
 				5DD50D111A6B6F520012B2A1 /* FScript.framework */,
 				5DD50D121A6B6F520012B2A1 /* libportsmf.a */,
 			);
 			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		7397F7D00E5CA211003AE8A6 /* senorstaff */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = senorstaff;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,13 +647,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D40D85B1A6CABC200252285 /* Main.storyboard in Resources */,
 				5D40D88D1A6CABDF00252285 /* Sor_Study.mid in Resources */,
-				5D40D8811A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */,
-				5D40D8601A6CABC200252285 /* LaunchScreen.xib in Resources */,
-				5D40D8851A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */,
+				5D40D8DA1A6CB2E900252285 /* ring-12-0.mid in Resources */,
+				5D40D8D81A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */,
 				5D40D87D1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */,
 				5D40D8891A6CABDF00252285 /* ring-12-0.mid in Resources */,
+				5D40D8DC1A6CB2E900252285 /* Sor_Study.mid in Resources */,
+				5D40D8D41A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */,
 				5D40D85D1A6CABC200252285 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,7 +666,6 @@
 				5D40D8861A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */,
 				5D40D87E1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */,
 				5D40D88A1A6CABDF00252285 /* ring-12-0.mid in Resources */,
-				5D40D8821A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,7 +677,6 @@
 				5D40D8841A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */,
 				5D40D8881A6CABDF00252285 /* ring-12-0.mid in Resources */,
 				5D40D88C1A6CABDF00252285 /* Sor_Study.mid in Resources */,
-				5D40D8801A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,11 +685,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				5D40D87F1A6CABDF00252285 /* bars - 1 2 3 4 copy.mid in Resources */,
+				5D40D8D91A6CB2E900252285 /* ring-12-0.mid in Resources */,
+				5D40D8D71A6CB2E900252285 /* bars - 1 2 3 4.mid in Resources */,
 				5D40D88B1A6CABDF00252285 /* Sor_Study.mid in Resources */,
 				5D40D8871A6CABDF00252285 /* ring-12-0.mid in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				5D40D87B1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */,
+				5D40D8DB1A6CB2E900252285 /* Sor_Study.mid in Resources */,
+				5D40D8D31A6CB2E900252285 /* apprhythmsvol1y2r1.mid in Resources */,
 				5D40D8831A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -704,10 +720,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D40D9211A6CB5DE00252285 /* NoteBase.m in Sources */,
+				5D40D9131A6CB5DE00252285 /* Drum+Lilypond.m in Sources */,
+				5D40D91D1A6CB5DE00252285 /* Measure.m in Sources */,
 				5D40D8521A6CABC200252285 /* AppDelegate.m in Sources */,
-				5D40D8551A6CABC200252285 /* MasterViewController.m in Sources */,
+				5D40D8DD1A6CB50100252285 /* MIDIUtil.m in Sources */,
+				5D40D90D1A6CB5DE00252285 /* ChromaticKeySignature.m in Sources */,
+				5D40D9251A6CB5DE00252285 /* Repeat.m in Sources */,
+				5D40D91F1A6CB5DE00252285 /* Note.m in Sources */,
+				5D40D90F1A6CB5DE00252285 /* Clef.m in Sources */,
+				5D40D9291A6CB5DE00252285 /* Song.m in Sources */,
+				5D40D9171A6CB5DE00252285 /* Drum.m in Sources */,
+				5D40D90B1A6CB5DE00252285 /* Chord.m in Sources */,
+				5D40D9151A6CB5DE00252285 /* Drum+MusicXML.m in Sources */,
+				5D40D91B1A6CB5DE00252285 /* KeySignature.m in Sources */,
+				5D40D92B1A6CB5DE00252285 /* Staff.m in Sources */,
+				5D40D9271A6CB5DE00252285 /* Rest.m in Sources */,
+				5D40D9111A6CB5DE00252285 /* CompoundTimeSig.m in Sources */,
+				5D40D9231A6CB5DE00252285 /* NSNumberPool.m in Sources */,
+				5D40D92D1A6CB5DE00252285 /* TempoData.m in Sources */,
+				5D40D92F1A6CB5DE00252285 /* TimeSignature.m in Sources */,
+				5D40D9191A6CB5DE00252285 /* DrumKit.m in Sources */,
 				5D40D84F1A6CABC200252285 /* main.m in Sources */,
-				5D40D8581A6CABC200252285 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +749,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D40D8DF1A6CB50300252285 /* MIDIUtil.m in Sources */,
 				5D40D86C1A6CABC200252285 /* Notion_IOS_DemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -723,8 +758,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73B4CD7E0FF51BE600949D15 /* MIDIUtil.m in Sources */,
+				5D40D8C51A6CB2B400252285 /* ChordDrawTest.m in Sources */,
+				5D40D8CC1A6CB2CD00252285 /* TestUtil.c in Sources */,
+				5D40D8C71A6CB2BB00252285 /* KeySigTest.m in Sources */,
+				5D40D8C61A6CB2B800252285 /* ChordTest.m in Sources */,
+				5D40D8C91A6CB2C200252285 /* NoteTest.m in Sources */,
+				5D40D8DE1A6CB50200252285 /* MIDIUtil.m in Sources */,
+				5D40D8C41A6CB2B000252285 /* StaffTest.m in Sources */,
+				5D40D8CA1A6CB2C500252285 /* SongTest.m in Sources */,
+				5D40D8C81A6CB2BE00252285 /* MeasureTest.m in Sources */,
 				73B4CDA70FF51F0800949D15 /* MidiInterface.m in Sources */,
+				5D40D8CB1A6CB2C900252285 /* TempoDataTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,39 +776,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D40D80A1A6CA8BC00252285 /* Song.m in Sources */,
-				5D40D7FC1A6CA8BC00252285 /* Clef.m in Sources */,
-				5D40D8021A6CA8BC00252285 /* KeySignature.m in Sources */,
-				5D40D80D1A6CA8BC00252285 /* TimeSignature.m in Sources */,
-				5D40D8431A6CABA100252285 /* StaffTest.m in Sources */,
-				5D40D7FA1A6CA8BC00252285 /* Chord.m in Sources */,
-				5D40D7FB1A6CA8BC00252285 /* ChromaticKeySignature.m in Sources */,
-				5D40D7FD1A6CA8BC00252285 /* CompoundTimeSig.m in Sources */,
-				5D40D8041A6CA8BC00252285 /* MusicDocument.m in Sources */,
-				5D40D8441A6CABA100252285 /* TempoDataTest.m in Sources */,
-				5D40D7FE1A6CA8BC00252285 /* Drum+Lilypond.m in Sources */,
-				5D40D8051A6CA8BC00252285 /* Note.m in Sources */,
-				5D40D8031A6CA8BC00252285 /* Measure.m in Sources */,
-				5D40D8081A6CA8BC00252285 /* Repeat.m in Sources */,
+				5D40D9281A6CB5DE00252285 /* Song.m in Sources */,
+				5D40D91E1A6CB5DE00252285 /* Note.m in Sources */,
+				5D40D90E1A6CB5DE00252285 /* Clef.m in Sources */,
+				5D40D92C1A6CB5DE00252285 /* TempoData.m in Sources */,
+				5D40D91A1A6CB5DE00252285 /* KeySignature.m in Sources */,
+				5D40D92E1A6CB5DE00252285 /* TimeSignature.m in Sources */,
+				5D40D90A1A6CB5DE00252285 /* Chord.m in Sources */,
+				5D40D90C1A6CB5DE00252285 /* ChromaticKeySignature.m in Sources */,
+				5D40D9101A6CB5DE00252285 /* CompoundTimeSig.m in Sources */,
+				5D40D9201A6CB5DE00252285 /* NoteBase.m in Sources */,
+				5D40D9121A6CB5DE00252285 /* Drum+Lilypond.m in Sources */,
+				5D40D92A1A6CB5DE00252285 /* Staff.m in Sources */,
+				5D40D91C1A6CB5DE00252285 /* Measure.m in Sources */,
+				5D40D9221A6CB5DE00252285 /* NSNumberPool.m in Sources */,
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				5D40D8001A6CA8BC00252285 /* Drum.m in Sources */,
-				5D40D83E1A6CABA100252285 /* ChordTest.m in Sources */,
-				5D40D8061A6CA8BC00252285 /* NoteBase.m in Sources */,
-				5D40D80B1A6CA8BC00252285 /* Staff.m in Sources */,
+				5D40D9261A6CB5DE00252285 /* Rest.m in Sources */,
+				5D40D9161A6CB5DE00252285 /* Drum.m in Sources */,
 				7397F6D80E5C9F1A003AE8A6 /* AppControl.m in Sources */,
-				5D40D8411A6CABA100252285 /* NoteTest.m in Sources */,
-				5D40D8011A6CA8BC00252285 /* DrumKit.m in Sources */,
-				5D40D83D1A6CABA100252285 /* ChordDrawTest.m in Sources */,
-				5D40D8451A6CABA100252285 /* TestUtil.c in Sources */,
-				5D40D8091A6CA8BC00252285 /* Rest.m in Sources */,
+				5D40D9181A6CB5DE00252285 /* DrumKit.m in Sources */,
 				7397F7710E5C9FFD003AE8A6 /* MIDIUtil.m in Sources */,
-				5D40D8071A6CA8BC00252285 /* NSNumberPool.m in Sources */,
-				5D40D8421A6CABA100252285 /* SongTest.m in Sources */,
-				5D40D80C1A6CA8BC00252285 /* TempoData.m in Sources */,
 				7315FCD20FF2EA4F008D3CE1 /* MidiInterface.m in Sources */,
-				5D40D83F1A6CABA100252285 /* KeySigTest.m in Sources */,
-				5D40D8401A6CABA100252285 /* MeasureTest.m in Sources */,
-				5D40D7FF1A6CA8BC00252285 /* Drum+MusicXML.m in Sources */,
+				5D40D9241A6CB5DE00252285 /* Repeat.m in Sources */,
+				5D40D9141A6CB5DE00252285 /* Drum+MusicXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,14 +827,6 @@
 				1DDD58150DA1D0A300B32029 /* English */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		5D40D8591A6CABC200252285 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5D40D85A1A6CABC200252285 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		5D40D85E1A6CABC200252285 /* LaunchScreen.xib */ = {
@@ -840,6 +866,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREFIX_HEADER = "Notion IOS Demo/Notion_IOSPrefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -887,6 +914,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = "Notion IOS Demo/Notion_IOSPrefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -930,6 +958,7 @@
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = "Notion IOS Demo/Notion_IOSPrefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

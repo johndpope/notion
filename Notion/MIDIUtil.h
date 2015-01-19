@@ -1,4 +1,4 @@
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 @class Song, SimpleSong;
 

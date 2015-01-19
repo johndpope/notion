@@ -6,14 +6,14 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 @class Staff;
 @class TimeSignature;
 @class MusicDocument;
 @class Measure;
 @class NoteBase;
-
+@class Repeat;
 @interface Song : NSObject <NSCoding> {
     MusicDocument *doc;
     

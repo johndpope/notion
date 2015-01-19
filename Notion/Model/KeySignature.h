@@ -6,13 +6,13 @@
 //  Copyright 2006 Konstantine Prevas. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 @class Clef;
 
 @interface KeySignature : NSObject {
-	int pitches[7];
-	int sharps, flats;
-	BOOL minor;
+    int pitches[7];
+    int sharps, flats;
+    BOOL minor;
 }
 
 + (id)getMajorSignatureAtIndexFromA:(int)index;
