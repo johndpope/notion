@@ -1,5 +1,10 @@
 #xcode specific
 build/*
+!build/build.xml
+/Notion/build
+/Notion/build/*/*
+Notion/build
+build
 *.pbxuser
 *.mode2v3
 *.mode1v3
