@@ -10,7 +10,7 @@
 #import <AudioToolbox/MusicPlayer.h>
 #import "Chord.h"
 
-const int RESOLUTION =  480;
+const int RESOLUTION =  480; // this will dynamically get adjusted below to match midi file
 
 @implementation MIDIUtil
 

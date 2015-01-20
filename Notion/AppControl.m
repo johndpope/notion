@@ -30,7 +30,7 @@ static AppControl *cachedAppControl;
     NSArray *extensions = @[@"mid"];
     NSArray *paths = nil;
     
-    int x = 0;
+    
     for (NSString *extension in extensions) {
         paths = [[NSBundle mainBundle] pathsForResourcesOfType:extension inDirectory:nil];
         

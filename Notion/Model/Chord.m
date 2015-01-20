@@ -112,6 +112,10 @@
 
 - (NSArray *)subtractDuration:(float)maxDuration {
     @try {
+        //        __block NSArray *remainingNotes;
+        //        [notes enumerateObjectsUsingBlock:^(Note  *n, NSUInteger idx, BOOL *stop) {
+        //            remainingNotes  = [n subtractDuration:maxDuration];
+        //        }];
         NSArray *remainingNotes  = [[notes collect] subtractDuration:maxDuration];
         NSMutableArray *remainingChords = [NSMutableArray arrayWithCapacity:[remainingNotes count]];
         int i;
