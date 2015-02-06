@@ -8,6 +8,187 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		5D2AEA561A84ECA800DBF255 /* 12-8Bal_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A21A84ECA800DBF255 /* 12-8Bal_SFF.STL */; };
+		5D2AEA571A84ECA800DBF255 /* 16Beat1_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A31A84ECA800DBF255 /* 16Beat1_SFF.STL */; };
+		5D2AEA581A84ECA800DBF255 /* 16Beat2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A41A84ECA800DBF255 /* 16Beat2_SFF.STL */; };
+		5D2AEA591A84ECA800DBF255 /* AccordionJaz_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A51A84ECA800DBF255 /* AccordionJaz_SFF.STL */; };
+		5D2AEA5A1A84ECA800DBF255 /* Animation_K7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A61A84ECA800DBF255 /* Animation_K7_SFF.STL */; };
+		5D2AEA5B1A84ECA800DBF255 /* BallroomFox7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A71A84ECA800DBF255 /* BallroomFox7_SFF.STL */; };
+		5D2AEA5C1A84ECA800DBF255 /* BallroomQst7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A81A84ECA800DBF255 /* BallroomQst7_SFF.STL */; };
+		5D2AEA5D1A84ECA800DBF255 /* BallroomSmb7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9A91A84ECA800DBF255 /* BallroomSmb7_SFF.STL */; };
+		5D2AEA5E1A84ECA800DBF255 /* BallroomTan7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9AA1A84ECA800DBF255 /* BallroomTan7_SFF.STL */; };
+		5D2AEA5F1A84ECA800DBF255 /* BallroomTwi7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9AB1A84ECA800DBF255 /* BallroomTwi7_SFF.STL */; };
+		5D2AEA601A84ECA800DBF255 /* BallroomWlz7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9AC1A84ECA800DBF255 /* BallroomWlz7_SFF.STL */; };
+		5D2AEA611A84ECA800DBF255 /* BavarianWlz__SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9AD1A84ECA800DBF255 /* BavarianWlz__SFF.STL */; };
+		5D2AEA621A84ECA800DBF255 /* Beguine_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9AE1A84ECA800DBF255 /* Beguine_SFF.STL */; };
+		5D2AEA631A84ECA800DBF255 /* BigBandFast_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9AF1A84ECA800DBF255 /* BigBandFast_SFF.STL */; };
+		5D2AEA641A84ECA800DBF255 /* BigBandMid_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B01A84ECA800DBF255 /* BigBandMid_SFF.STL */; };
+		5D2AEA651A84ECA800DBF255 /* BigBandSlow1_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B11A84ECA800DBF255 /* BigBandSlow1_SFF.STL */; };
+		5D2AEA661A84ECA800DBF255 /* BigBandSlow2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B21A84ECA800DBF255 /* BigBandSlow2_SFF.STL */; };
+		5D2AEA671A84ECA800DBF255 /* BirdDance_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B31A84ECA800DBF255 /* BirdDance_SFF.STL */; };
+		5D2AEA681A84ECA800DBF255 /* BlueBerry_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B41A84ECA800DBF255 /* BlueBerry_SFF.STL */; };
+		5D2AEA691A84ECA800DBF255 /* Bluegrass_K7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B51A84ECA800DBF255 /* Bluegrass_K7_SFF.STL */; };
+		5D2AEA6A1A84ECA800DBF255 /* BlueGrass_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B61A84ECA800DBF255 /* BlueGrass_SFF.STL */; };
+		5D2AEA6B1A84ECA800DBF255 /* BluesR&Roll_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B71A84ECA800DBF255 /* BluesR&Roll_SFF.STL */; };
+		5D2AEA6C1A84ECA800DBF255 /* Bolero_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B81A84ECA800DBF255 /* Bolero_SFF.STL */; };
+		5D2AEA6D1A84ECA800DBF255 /* BoogieWoogie_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9B91A84ECA800DBF255 /* BoogieWoogie_SFF.STL */; };
+		5D2AEA6E1A84ECA800DBF255 /* BossaNova2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9BA1A84ECA800DBF255 /* BossaNova2_SFF.STL */; };
+		5D2AEA6F1A84ECA800DBF255 /* Broadway_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9BB1A84ECA800DBF255 /* Broadway_SFF.STL */; };
+		5D2AEA701A84ECA800DBF255 /* Cabaret_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9BC1A84ECA800DBF255 /* Cabaret_SFF.STL */; };
+		5D2AEA711A84ECA800DBF255 /* CajunCountr7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9BD1A84ECA800DBF255 /* CajunCountr7_SFF.STL */; };
+		5D2AEA721A84ECA800DBF255 /* Calypso_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9BE1A84ECA800DBF255 /* Calypso_SFF.STL */; };
+		5D2AEA731A84ECA800DBF255 /* Caribarena_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9BF1A84ECA800DBF255 /* Caribarena_SFF.STL */; };
+		5D2AEA741A84ECA800DBF255 /* CarribeanRk__SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C01A84ECA800DBF255 /* CarribeanRk__SFF.STL */; };
+		5D2AEA751A84ECA800DBF255 /* ChaCha_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C11A84ECA800DBF255 /* ChaCha_SFF.STL */; };
+		5D2AEA761A84ECA800DBF255 /* ChapelGospel_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C21A84ECA800DBF255 /* ChapelGospel_SFF.STL */; };
+		5D2AEA771A84ECA800DBF255 /* Chasapico_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C31A84ECA800DBF255 /* Chasapico_SFF.STL */; };
+		5D2AEA781A84ECA800DBF255 /* Christmastim_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C41A84ECA800DBF255 /* Christmastim_SFF.STL */; };
+		5D2AEA791A84ECA800DBF255 /* ClassicViena_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C51A84ECA800DBF255 /* ClassicViena_SFF.STL */; };
+		5D2AEA7A1A84ECA800DBF255 /* Country2Ste7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C61A84ECA800DBF255 /* Country2Ste7_SFF.STL */; };
+		5D2AEA7B1A84ECA800DBF255 /* Country2Step_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C71A84ECA800DBF255 /* Country2Step_SFF.STL */; };
+		5D2AEA7C1A84ECA800DBF255 /* Country3_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C81A84ECA800DBF255 /* Country3_SFF.STL */; };
+		5D2AEA7D1A84ECA800DBF255 /* Country4_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9C91A84ECA800DBF255 /* Country4_SFF.STL */; };
+		5D2AEA7E1A84ECA800DBF255 /* Countryb_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9CA1A84ECA800DBF255 /* Countryb_SFF.STL */; };
+		5D2AEA7F1A84ECA800DBF255 /* CountryBall7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9CB1A84ECA800DBF255 /* CountryBall7_SFF.STL */; };
+		5D2AEA801A84ECA800DBF255 /* CountryBlue7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9CC1A84ECA800DBF255 /* CountryBlue7_SFF.STL */; };
+		5D2AEA811A84ECA800DBF255 /* CountryFolk7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9CD1A84ECA800DBF255 /* CountryFolk7_SFF.STL */; };
+		5D2AEA821A84ECA800DBF255 /* CountryPian7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9CE1A84ECA800DBF255 /* CountryPian7_SFF.STL */; };
+		5D2AEA831A84ECA800DBF255 /* CountryPop_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9CF1A84ECA800DBF255 /* CountryPop_SFF.STL */; };
+		5D2AEA841A84ECA800DBF255 /* CountryPopK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D01A84ECA800DBF255 /* CountryPopK7_SFF.STL */; };
+		5D2AEA851A84ECA800DBF255 /* Countryr_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D11A84ECA800DBF255 /* Countryr_SFF.STL */; };
+		5D2AEA861A84ECA800DBF255 /* CountryRkK_7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D21A84ECA800DBF255 /* CountryRkK_7_SFF.STL */; };
+		5D2AEA871A84ECA800DBF255 /* CountryShff7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D31A84ECA800DBF255 /* CountryShff7_SFF.STL */; };
+		5D2AEA881A84ECA800DBF255 /* CountryWaltz_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D41A84ECA800DBF255 /* CountryWaltz_SFF.STL */; };
+		5D2AEA891A84ECA800DBF255 /* CountryWlzK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D51A84ECA800DBF255 /* CountryWlzK7_SFF.STL */; };
+		5D2AEA8A1A84ECA800DBF255 /* Cumbia_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D61A84ECA800DBF255 /* Cumbia_SFF.STL */; };
+		5D2AEA8B1A84ECA800DBF255 /* Dance1_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D71A84ECA800DBF255 /* Dance1_SFF.STL */; };
+		5D2AEA8C1A84ECA800DBF255 /* Dance2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D81A84ECA800DBF255 /* Dance2_SFF.STL */; };
+		5D2AEA8D1A84ECA800DBF255 /* DanceReggae_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9D91A84ECA800DBF255 /* DanceReggae_SFF.STL */; };
+		5D2AEA8E1A84ECA800DBF255 /* Disco1_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9DA1A84ECA800DBF255 /* Disco1_SFF.STL */; };
+		5D2AEA8F1A84ECA800DBF255 /* Disco2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9DB1A84ECA800DBF255 /* Disco2_SFF.STL */; };
+		5D2AEA901A84ECA800DBF255 /* DixieBand_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9DC1A84ECA800DBF255 /* DixieBand_SFF.STL */; };
+		5D2AEA911A84ECA800DBF255 /* DixiePianist_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9DD1A84ECA800DBF255 /* DixiePianist_SFF.STL */; };
+		5D2AEA921A84ECA800DBF255 /* EnglishWaltz_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9DE1A84ECA800DBF255 /* EnglishWaltz_SFF.STL */; };
+		5D2AEA931A84ECA800DBF255 /* EP_Ballad_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9DF1A84ECA800DBF255 /* EP_Ballad_SFF.STL */; };
+		5D2AEA941A84ECA800DBF255 /* EpicBalladK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E01A84ECA800DBF255 /* EpicBalladK7_SFF.STL */; };
+		5D2AEA951A84ECA800DBF255 /* EuroCombo_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E11A84ECA800DBF255 /* EuroCombo_SFF.STL */; };
+		5D2AEA961A84ECA800DBF255 /* EuroDisco_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E21A84ECA800DBF255 /* EuroDisco_SFF.STL */; };
+		5D2AEA971A84ECA800DBF255 /* FastRagtime_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E31A84ECA800DBF255 /* FastRagtime_SFF.STL */; };
+		5D2AEA981A84ECA800DBF255 /* FolkRock_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E41A84ECA800DBF255 /* FolkRock_SFF.STL */; };
+		5D2AEA991A84ECA800DBF255 /* Funk_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E51A84ECA800DBF255 /* Funk_SFF.STL */; };
+		5D2AEA9A1A84ECA800DBF255 /* German2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E61A84ECA800DBF255 /* German2_SFF.STL */; };
+		5D2AEA9B1A84ECA800DBF255 /* GermanBallad_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E71A84ECA800DBF255 /* GermanBallad_SFF.STL */; };
+		5D2AEA9C1A84ECA800DBF255 /* GermanMarch_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E81A84ECA800DBF255 /* GermanMarch_SFF.STL */; };
+		5D2AEA9D1A84ECA800DBF255 /* Germanpo_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9E91A84ECA800DBF255 /* Germanpo_SFF.STL */; };
+		5D2AEA9E1A84ECA800DBF255 /* Gospel 34_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9EA1A84ECA800DBF255 /* Gospel 34_SFF.STL */; };
+		5D2AEA9F1A84ECA800DBF255 /* GospelBallad_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9EB1A84ECA800DBF255 /* GospelBallad_SFF.STL */; };
+		5D2AEAA01A84ECA800DBF255 /* GospelReviva_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9EC1A84ECA800DBF255 /* GospelReviva_SFF.STL */; };
+		5D2AEAA11A84ECA800DBF255 /* GospelShuffl_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9ED1A84ECA800DBF255 /* GospelShuffl_SFF.STL */; };
+		5D2AEAA21A84ECA800DBF255 /* GypsyJazz_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9EE1A84ECA800DBF255 /* GypsyJazz_SFF.STL */; };
+		5D2AEAA31A84ECA800DBF255 /* HardRock_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9EF1A84ECA800DBF255 /* HardRock_SFF.STL */; };
+		5D2AEAA41A84ECA800DBF255 /* Hawaiin_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F01A84ECA800DBF255 /* Hawaiin_SFF.STL */; };
+		5D2AEAA51A84ECA800DBF255 /* HawaiinShuff_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F11A84ECA800DBF255 /* HawaiinShuff_SFF.STL */; };
+		5D2AEAA61A84ECA800DBF255 /* HipHop_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F21A84ECA800DBF255 /* HipHop_SFF.STL */; };
+		5D2AEAA71A84ECA800DBF255 /* HokieDance_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F31A84ECA800DBF255 /* HokieDance_SFF.STL */; };
+		5D2AEAA81A84ECA800DBF255 /* Hollywood_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F41A84ECA800DBF255 /* Hollywood_SFF.STL */; };
+		5D2AEAA91A84ECA800DBF255 /* House_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F51A84ECA800DBF255 /* House_SFF.STL */; };
+		5D2AEAAA1A84ECA800DBF255 /* HRockBallad_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F61A84ECA800DBF255 /* HRockBallad_SFF.STL */; };
+		5D2AEAAB1A84ECA800DBF255 /* IrishJig_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F71A84ECA800DBF255 /* IrishJig_SFF.STL */; };
+		5D2AEAAC1A84ECA800DBF255 /* JazzBallad_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F81A84ECA800DBF255 /* JazzBallad_SFF.STL */; };
+		5D2AEAAD1A84ECA800DBF255 /* JazzCombo_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9F91A84ECA800DBF255 /* JazzCombo_SFF.STL */; };
+		5D2AEAAE1A84ECA800DBF255 /* JazzPop_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9FA1A84ECA800DBF255 /* JazzPop_SFF.STL */; };
+		5D2AEAAF1A84ECA800DBF255 /* JazzQuartet_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9FB1A84ECA800DBF255 /* JazzQuartet_SFF.STL */; };
+		5D2AEAB01A84ECA800DBF255 /* JazzQuintet_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9FC1A84ECA800DBF255 /* JazzQuintet_SFF.STL */; };
+		5D2AEAB11A84ECA800DBF255 /* JazzRock_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9FD1A84ECA800DBF255 /* JazzRock_SFF.STL */; };
+		5D2AEAB21A84ECA800DBF255 /* JazzTrio_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9FE1A84ECA800DBF255 /* JazzTrio_SFF.STL */; };
+		5D2AEAB31A84ECA800DBF255 /* Jive_K7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AE9FF1A84ECA800DBF255 /* Jive_K7_SFF.STL */; };
+		5D2AEAB41A84ECA800DBF255 /* Jive_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA001A84ECA800DBF255 /* Jive_SFF.STL */; };
+		5D2AEAB51A84ECA800DBF255 /* Keroncong_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA011A84ECA800DBF255 /* Keroncong_SFF.STL */; };
+		5D2AEAB61A84ECA800DBF255 /* LastFoxtrot7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA021A84ECA800DBF255 /* LastFoxtrot7_SFF.STL */; };
+		5D2AEAB71A84ECA800DBF255 /* Lieder 2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA031A84ECA800DBF255 /* Lieder 2_SFF.STL */; };
+		5D2AEAB81A84ECA800DBF255 /* LineDance_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA041A84ECA800DBF255 /* LineDance_SFF.STL */; };
+		5D2AEAB91A84ECA800DBF255 /* LoungePiano7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA051A84ECA800DBF255 /* LoungePiano7_SFF.STL */; };
+		5D2AEABA1A84ECA800DBF255 /* LoungePiano_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA061A84ECA800DBF255 /* LoungePiano_SFF.STL */; };
+		5D2AEABB1A84ECA800DBF255 /* Macarena_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA071A84ECA800DBF255 /* Macarena_SFF.STL */; };
+		5D2AEABC1A84ECA800DBF255 /* Mambo_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA081A84ECA800DBF255 /* Mambo_SFF.STL */; };
+		5D2AEABD1A84ECA800DBF255 /* MamboNr5 2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA091A84ECA800DBF255 /* MamboNr5 2_SFF.STL */; };
+		5D2AEABE1A84ECA800DBF255 /* Mandolino_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA0A1A84ECA800DBF255 /* Mandolino_SFF.STL */; };
+		5D2AEABF1A84ECA800DBF255 /* Mariachi_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA0B1A84ECA800DBF255 /* Mariachi_SFF.STL */; };
+		5D2AEAC01A84ECA800DBF255 /* Mazurka_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA0C1A84ECA800DBF255 /* Mazurka_SFF.STL */; };
+		5D2AEAC11A84ECA800DBF255 /* Merengue_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA0D1A84ECA800DBF255 /* Merengue_SFF.STL */; };
+		5D2AEAC21A84ECA800DBF255 /* Mitsou_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA0E1A84ECA800DBF255 /* Mitsou_SFF.STL */; };
+		5D2AEAC31A84ECA800DBF255 /* ModBluegrass_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA0F1A84ECA800DBF255 /* ModBluegrass_SFF.STL */; };
+		5D2AEAC41A84ECA800DBF255 /* ModernBegui7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA101A84ECA800DBF255 /* ModernBegui7_SFF.STL */; };
+		5D2AEAC51A84ECA800DBF255 /* ModernChaCh7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA111A84ECA800DBF255 /* ModernChaCh7_SFF.STL */; };
+		5D2AEAC61A84ECA800DBF255 /* ModernOpera7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA121A84ECA800DBF255 /* ModernOpera7_SFF.STL */; };
+		5D2AEAC71A84ECA800DBF255 /* ModernRhumb7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA131A84ECA800DBF255 /* ModernRhumb7_SFF.STL */; };
+		5D2AEAC81A84ECA800DBF255 /* MovieBallad7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA141A84ECA800DBF255 /* MovieBallad7_SFF.STL */; };
+		5D2AEAC91A84ECA800DBF255 /* MovieDiscoK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA151A84ECA800DBF255 /* MovieDiscoK7_SFF.STL */; };
+		5D2AEACA1A84ECA800DBF255 /* MovieSwingK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA161A84ECA800DBF255 /* MovieSwingK7_SFF.STL */; };
+		5D2AEACB1A84ECA800DBF255 /* MovieWaltzK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA171A84ECA800DBF255 /* MovieWaltzK7_SFF.STL */; };
+		5D2AEACC1A84ECA800DBF255 /* NightClubSh7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA181A84ECA800DBF255 /* NightClubSh7_SFF.STL */; };
+		5D2AEACD1A84ECA800DBF255 /* Nowomann cry_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA191A84ECA800DBF255 /* Nowomann cry_SFF.STL */; };
+		5D2AEACE1A84ECA800DBF255 /* Oberkrainer_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA1A1A84ECA800DBF255 /* Oberkrainer_SFF.STL */; };
+		5D2AEACF1A84ECA800DBF255 /* Orch_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA1B1A84ECA800DBF255 /* Orch_SFF.STL */; };
+		5D2AEAD01A84ECA800DBF255 /* Oriental_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA1C1A84ECA800DBF255 /* Oriental_SFF.STL */; };
+		5D2AEAD11A84ECA800DBF255 /* Pasodoble_K7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA1D1A84ECA800DBF255 /* Pasodoble_K7_SFF.STL */; };
+		5D2AEAD21A84ECA800DBF255 /* PianoShowti7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA1E1A84ECA800DBF255 /* PianoShowti7_SFF.STL */; };
+		5D2AEAD31A84ECA800DBF255 /* QuickFoxtro7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA1F1A84ECA800DBF255 /* QuickFoxtro7_SFF.STL */; };
+		5D2AEAD41A84ECA800DBF255 /* SaloonBar_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA201A84ECA800DBF255 /* SaloonBar_SFF.STL */; };
+		5D2AEAD51A84ECA800DBF255 /* Salsa_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA211A84ECA800DBF255 /* Salsa_SFF.STL */; };
+		5D2AEAD61A84ECA800DBF255 /* SambaRock2_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA221A84ECA800DBF255 /* SambaRock2_SFF.STL */; };
+		5D2AEAD71A84ECA800DBF255 /* SambaRock_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA231A84ECA800DBF255 /* SambaRock_SFF.STL */; };
+		5D2AEAD81A84ECA800DBF255 /* ScottishReel_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA241A84ECA800DBF255 /* ScottishReel_SFF.STL */; };
+		5D2AEAD91A84ECA800DBF255 /* SecretAgent7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA251A84ECA800DBF255 /* SecretAgent7_SFF.STL */; };
+		5D2AEADA1A84ECA800DBF255 /* Shalala_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA261A84ECA800DBF255 /* Shalala_SFF.STL */; };
+		5D2AEADB1A84ECA800DBF255 /* ShowBalladK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA271A84ECA800DBF255 /* ShowBalladK7_SFF.STL */; };
+		5D2AEADC1A84ECA800DBF255 /* ShowBand_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA281A84ECA800DBF255 /* ShowBand_SFF.STL */; };
+		5D2AEADD1A84ECA800DBF255 /* Showstopper7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA291A84ECA800DBF255 /* Showstopper7_SFF.STL */; };
+		5D2AEADE1A84ECA800DBF255 /* ShowStride_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA2A1A84ECA800DBF255 /* ShowStride_SFF.STL */; };
+		5D2AEADF1A84ECA800DBF255 /* Shuffleb_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA2B1A84ECA800DBF255 /* Shuffleb_SFF.STL */; };
+		5D2AEAE01A84ECA800DBF255 /* Simple 16_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA2C1A84ECA800DBF255 /* Simple 16_SFF.STL */; };
+		5D2AEAE11A84ECA800DBF255 /* Simplebt_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA2D1A84ECA800DBF255 /* Simplebt_SFF.STL */; };
+		5D2AEAE21A84ECA800DBF255 /* SimpleJazz34_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA2E1A84ECA800DBF255 /* SimpleJazz34_SFF.STL */; };
+		5D2AEAE31A84ECA800DBF255 /* SimpleSwing_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA2F1A84ECA800DBF255 /* SimpleSwing_SFF.STL */; };
+		5D2AEAE41A84ECA800DBF255 /* SimpleWaltz_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA301A84ECA800DBF255 /* SimpleWaltz_SFF.STL */; };
+		5D2AEAE51A84ECA800DBF255 /* Sirtaki_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA311A84ECA800DBF255 /* Sirtaki_SFF.STL */; };
+		5D2AEAE61A84ECA800DBF255 /* SlowBlues_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA321A84ECA800DBF255 /* SlowBlues_SFF.STL */; };
+		5D2AEAE71A84ECA800DBF255 /* SlowFoxtrot7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA331A84ECA800DBF255 /* SlowFoxtrot7_SFF.STL */; };
+		5D2AEAE81A84ECA800DBF255 /* SlowFunk_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA341A84ECA800DBF255 /* SlowFunk_SFF.STL */; };
+		5D2AEAE91A84ECA800DBF255 /* SlowRagtime_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA351A84ECA800DBF255 /* SlowRagtime_SFF.STL */; };
+		5D2AEAEA1A84ECA800DBF255 /* SlowSwing_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA361A84ECA800DBF255 /* SlowSwing_SFF.STL */; };
+		5D2AEAEB1A84ECA800DBF255 /* Soul_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA371A84ECA800DBF255 /* Soul_SFF.STL */; };
+		5D2AEAEC1A84ECA800DBF255 /* SoulBallad_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA381A84ECA800DBF255 /* SoulBallad_SFF.STL */; };
+		5D2AEAED1A84ECA800DBF255 /* SoulRock_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA391A84ECA800DBF255 /* SoulRock_SFF.STL */; };
+		5D2AEAEE1A84ECA800DBF255 /* SoulShuffle_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA3A1A84ECA800DBF255 /* SoulShuffle_SFF.STL */; };
+		5D2AEAEF1A84ECA800DBF255 /* SpaceEpic_K7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA3B1A84ECA800DBF255 /* SpaceEpic_K7_SFF.STL */; };
+		5D2AEAF01A84ECA800DBF255 /* SquareDance7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA3C1A84ECA800DBF255 /* SquareDance7_SFF.STL */; };
+		5D2AEAF11A84ECA800DBF255 /* SquareDance_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA3D1A84ECA800DBF255 /* SquareDance_SFF.STL */; };
+		5D2AEAF21A84ECA800DBF255 /* StridePiano7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA3E1A84ECA800DBF255 /* StridePiano7_SFF.STL */; };
+		5D2AEAF31A84ECA800DBF255 /* SummerBalla7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA3F1A84ECA800DBF255 /* SummerBalla7_SFF.STL */; };
+		5D2AEAF41A84ECA800DBF255 /* SwingCombo_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA401A84ECA800DBF255 /* SwingCombo_SFF.STL */; };
+		5D2AEAF51A84ECA800DBF255 /* SwingRock_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA411A84ECA800DBF255 /* SwingRock_SFF.STL */; };
+		5D2AEAF61A84ECA800DBF255 /* SwingyFunk1_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA421A84ECA800DBF255 /* SwingyFunk1_SFF.STL */; };
+		5D2AEAF71A84ECA800DBF255 /* SwingyReggae_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA431A84ECA800DBF255 /* SwingyReggae_SFF.STL */; };
+		5D2AEAF81A84ECA800DBF255 /* Talempong_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA441A84ECA800DBF255 /* Talempong_SFF.STL */; };
+		5D2AEAF91A84ECA800DBF255 /* TangoEurope_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA451A84ECA800DBF255 /* TangoEurope_SFF.STL */; };
+		5D2AEAFA1A84ECA800DBF255 /* TangoPiano_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA461A84ECA800DBF255 /* TangoPiano_SFF.STL */; };
+		5D2AEAFB1A84ECA800DBF255 /* TapDancersK7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA471A84ECA800DBF255 /* TapDancersK7_SFF.STL */; };
+		5D2AEAFC1A84ECA800DBF255 /* Tarantella_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA481A84ECA800DBF255 /* Tarantella_SFF.STL */; };
+		5D2AEAFD1A84ECA800DBF255 /* Techno_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA491A84ECA800DBF255 /* Techno_SFF.STL */; };
+		5D2AEAFE1A84ECA800DBF255 /* TheMainEven7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA4A1A84ECA800DBF255 /* TheMainEven7_SFF.STL */; };
+		5D2AEAFF1A84ECA800DBF255 /* TheWall_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA4B1A84ECA800DBF255 /* TheWall_SFF.STL */; };
+		5D2AEB001A84ECA800DBF255 /* TimeToSayGby_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA4C1A84ECA800DBF255 /* TimeToSayGby_SFF.STL */; };
+		5D2AEB011A84ECA800DBF255 /* Twist_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA4D1A84ECA800DBF255 /* Twist_SFF.STL */; };
+		5D2AEB021A84ECA800DBF255 /* USAMarch24_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA4E1A84ECA800DBF255 /* USAMarch24_SFF.STL */; };
+		5D2AEB031A84ECA800DBF255 /* USAMarch68_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA4F1A84ECA800DBF255 /* USAMarch68_SFF.STL */; };
+		5D2AEB041A84ECA800DBF255 /* VegasPianist_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA501A84ECA800DBF255 /* VegasPianist_SFF.STL */; };
+		5D2AEB051A84ECA800DBF255 /* ViennaDance_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA511A84ECA800DBF255 /* ViennaDance_SFF.STL */; };
+		5D2AEB061A84ECA800DBF255 /* VirtuosoPia7_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA521A84ECA800DBF255 /* VirtuosoPia7_SFF.STL */; };
+		5D2AEB071A84ECA800DBF255 /* Walk of life_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA531A84ECA800DBF255 /* Walk of life_SFF.STL */; };
+		5D2AEB081A84ECA800DBF255 /* Waltz_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA541A84ECA800DBF255 /* Waltz_SFF.STL */; };
+		5D2AEB091A84ECA800DBF255 /* WindOfChange_SFF.STL in Resources */ = {isa = PBXBuildFile; fileRef = 5D2AEA551A84ECA800DBF255 /* WindOfChange_SFF.STL */; };
+		5D2AEB0C1A84F7B000DBF255 /* NSData+SnapAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D2AEB0B1A84F7B000DBF255 /* NSData+SnapAdditions.m */; };
 		5D40D87B1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D87C1A6CABDF00252285 /* apprhythmsvol1y2r1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8761A6CABDF00252285 /* apprhythmsvol1y2r1.mid */; };
 		5D40D8841A6CABDF00252285 /* bars - 1 2 3 4.mid in Resources */ = {isa = PBXBuildFile; fileRef = 5D40D8781A6CABDF00252285 /* bars - 1 2 3 4.mid */; };
@@ -118,6 +299,188 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Notion_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notion_Prefix.pch; sourceTree = "<group>"; };
+		5D2AE9A21A84ECA800DBF255 /* 12-8Bal_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "12-8Bal_SFF.STL"; sourceTree = "<group>"; };
+		5D2AE9A31A84ECA800DBF255 /* 16Beat1_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = 16Beat1_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9A41A84ECA800DBF255 /* 16Beat2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = 16Beat2_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9A51A84ECA800DBF255 /* AccordionJaz_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = AccordionJaz_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9A61A84ECA800DBF255 /* Animation_K7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Animation_K7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9A71A84ECA800DBF255 /* BallroomFox7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BallroomFox7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9A81A84ECA800DBF255 /* BallroomQst7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BallroomQst7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9A91A84ECA800DBF255 /* BallroomSmb7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BallroomSmb7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9AA1A84ECA800DBF255 /* BallroomTan7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BallroomTan7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9AB1A84ECA800DBF255 /* BallroomTwi7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BallroomTwi7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9AC1A84ECA800DBF255 /* BallroomWlz7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BallroomWlz7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9AD1A84ECA800DBF255 /* BavarianWlz__SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BavarianWlz__SFF.STL; sourceTree = "<group>"; };
+		5D2AE9AE1A84ECA800DBF255 /* Beguine_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Beguine_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9AF1A84ECA800DBF255 /* BigBandFast_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BigBandFast_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B01A84ECA800DBF255 /* BigBandMid_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BigBandMid_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B11A84ECA800DBF255 /* BigBandSlow1_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BigBandSlow1_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B21A84ECA800DBF255 /* BigBandSlow2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BigBandSlow2_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B31A84ECA800DBF255 /* BirdDance_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BirdDance_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B41A84ECA800DBF255 /* BlueBerry_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlueBerry_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B51A84ECA800DBF255 /* Bluegrass_K7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bluegrass_K7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B61A84ECA800DBF255 /* BlueGrass_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlueGrass_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B71A84ECA800DBF255 /* BluesR&Roll_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BluesR&Roll_SFF.STL"; sourceTree = "<group>"; };
+		5D2AE9B81A84ECA800DBF255 /* Bolero_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bolero_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9B91A84ECA800DBF255 /* BoogieWoogie_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoogieWoogie_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9BA1A84ECA800DBF255 /* BossaNova2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = BossaNova2_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9BB1A84ECA800DBF255 /* Broadway_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Broadway_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9BC1A84ECA800DBF255 /* Cabaret_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cabaret_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9BD1A84ECA800DBF255 /* CajunCountr7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CajunCountr7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9BE1A84ECA800DBF255 /* Calypso_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calypso_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9BF1A84ECA800DBF255 /* Caribarena_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Caribarena_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C01A84ECA800DBF255 /* CarribeanRk__SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CarribeanRk__SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C11A84ECA800DBF255 /* ChaCha_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChaCha_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C21A84ECA800DBF255 /* ChapelGospel_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChapelGospel_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C31A84ECA800DBF255 /* Chasapico_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chasapico_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C41A84ECA800DBF255 /* Christmastim_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Christmastim_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C51A84ECA800DBF255 /* ClassicViena_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ClassicViena_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C61A84ECA800DBF255 /* Country2Ste7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Country2Ste7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C71A84ECA800DBF255 /* Country2Step_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Country2Step_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C81A84ECA800DBF255 /* Country3_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Country3_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9C91A84ECA800DBF255 /* Country4_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Country4_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9CA1A84ECA800DBF255 /* Countryb_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countryb_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9CB1A84ECA800DBF255 /* CountryBall7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryBall7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9CC1A84ECA800DBF255 /* CountryBlue7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryBlue7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9CD1A84ECA800DBF255 /* CountryFolk7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryFolk7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9CE1A84ECA800DBF255 /* CountryPian7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryPian7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9CF1A84ECA800DBF255 /* CountryPop_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryPop_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D01A84ECA800DBF255 /* CountryPopK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryPopK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D11A84ECA800DBF255 /* Countryr_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Countryr_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D21A84ECA800DBF255 /* CountryRkK_7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryRkK_7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D31A84ECA800DBF255 /* CountryShff7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryShff7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D41A84ECA800DBF255 /* CountryWaltz_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryWaltz_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D51A84ECA800DBF255 /* CountryWlzK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = CountryWlzK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D61A84ECA800DBF255 /* Cumbia_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cumbia_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D71A84ECA800DBF255 /* Dance1_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dance1_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D81A84ECA800DBF255 /* Dance2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Dance2_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9D91A84ECA800DBF255 /* DanceReggae_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = DanceReggae_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9DA1A84ECA800DBF255 /* Disco1_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Disco1_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9DB1A84ECA800DBF255 /* Disco2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Disco2_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9DC1A84ECA800DBF255 /* DixieBand_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = DixieBand_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9DD1A84ECA800DBF255 /* DixiePianist_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = DixiePianist_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9DE1A84ECA800DBF255 /* EnglishWaltz_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnglishWaltz_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9DF1A84ECA800DBF255 /* EP_Ballad_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = EP_Ballad_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E01A84ECA800DBF255 /* EpicBalladK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = EpicBalladK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E11A84ECA800DBF255 /* EuroCombo_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = EuroCombo_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E21A84ECA800DBF255 /* EuroDisco_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = EuroDisco_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E31A84ECA800DBF255 /* FastRagtime_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = FastRagtime_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E41A84ECA800DBF255 /* FolkRock_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = FolkRock_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E51A84ECA800DBF255 /* Funk_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Funk_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E61A84ECA800DBF255 /* German2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = German2_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E71A84ECA800DBF255 /* GermanBallad_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = GermanBallad_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E81A84ECA800DBF255 /* GermanMarch_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = GermanMarch_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9E91A84ECA800DBF255 /* Germanpo_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Germanpo_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9EA1A84ECA800DBF255 /* Gospel 34_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gospel 34_SFF.STL"; sourceTree = "<group>"; };
+		5D2AE9EB1A84ECA800DBF255 /* GospelBallad_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = GospelBallad_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9EC1A84ECA800DBF255 /* GospelReviva_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = GospelReviva_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9ED1A84ECA800DBF255 /* GospelShuffl_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = GospelShuffl_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9EE1A84ECA800DBF255 /* GypsyJazz_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = GypsyJazz_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9EF1A84ECA800DBF255 /* HardRock_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = HardRock_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F01A84ECA800DBF255 /* Hawaiin_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hawaiin_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F11A84ECA800DBF255 /* HawaiinShuff_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = HawaiinShuff_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F21A84ECA800DBF255 /* HipHop_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = HipHop_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F31A84ECA800DBF255 /* HokieDance_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = HokieDance_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F41A84ECA800DBF255 /* Hollywood_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hollywood_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F51A84ECA800DBF255 /* House_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = House_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F61A84ECA800DBF255 /* HRockBallad_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = HRockBallad_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F71A84ECA800DBF255 /* IrishJig_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = IrishJig_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F81A84ECA800DBF255 /* JazzBallad_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzBallad_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9F91A84ECA800DBF255 /* JazzCombo_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzCombo_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9FA1A84ECA800DBF255 /* JazzPop_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzPop_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9FB1A84ECA800DBF255 /* JazzQuartet_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzQuartet_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9FC1A84ECA800DBF255 /* JazzQuintet_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzQuintet_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9FD1A84ECA800DBF255 /* JazzRock_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzRock_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9FE1A84ECA800DBF255 /* JazzTrio_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = JazzTrio_SFF.STL; sourceTree = "<group>"; };
+		5D2AE9FF1A84ECA800DBF255 /* Jive_K7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jive_K7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA001A84ECA800DBF255 /* Jive_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jive_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA011A84ECA800DBF255 /* Keroncong_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Keroncong_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA021A84ECA800DBF255 /* LastFoxtrot7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = LastFoxtrot7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA031A84ECA800DBF255 /* Lieder 2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lieder 2_SFF.STL"; sourceTree = "<group>"; };
+		5D2AEA041A84ECA800DBF255 /* LineDance_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = LineDance_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA051A84ECA800DBF255 /* LoungePiano7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoungePiano7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA061A84ECA800DBF255 /* LoungePiano_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoungePiano_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA071A84ECA800DBF255 /* Macarena_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Macarena_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA081A84ECA800DBF255 /* Mambo_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mambo_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA091A84ECA800DBF255 /* MamboNr5 2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MamboNr5 2_SFF.STL"; sourceTree = "<group>"; };
+		5D2AEA0A1A84ECA800DBF255 /* Mandolino_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mandolino_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA0B1A84ECA800DBF255 /* Mariachi_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mariachi_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA0C1A84ECA800DBF255 /* Mazurka_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mazurka_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA0D1A84ECA800DBF255 /* Merengue_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Merengue_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA0E1A84ECA800DBF255 /* Mitsou_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mitsou_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA0F1A84ECA800DBF255 /* ModBluegrass_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModBluegrass_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA101A84ECA800DBF255 /* ModernBegui7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModernBegui7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA111A84ECA800DBF255 /* ModernChaCh7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModernChaCh7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA121A84ECA800DBF255 /* ModernOpera7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModernOpera7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA131A84ECA800DBF255 /* ModernRhumb7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModernRhumb7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA141A84ECA800DBF255 /* MovieBallad7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = MovieBallad7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA151A84ECA800DBF255 /* MovieDiscoK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = MovieDiscoK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA161A84ECA800DBF255 /* MovieSwingK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = MovieSwingK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA171A84ECA800DBF255 /* MovieWaltzK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = MovieWaltzK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA181A84ECA800DBF255 /* NightClubSh7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightClubSh7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA191A84ECA800DBF255 /* Nowomann cry_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nowomann cry_SFF.STL"; sourceTree = "<group>"; };
+		5D2AEA1A1A84ECA800DBF255 /* Oberkrainer_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Oberkrainer_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA1B1A84ECA800DBF255 /* Orch_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Orch_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA1C1A84ECA800DBF255 /* Oriental_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Oriental_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA1D1A84ECA800DBF255 /* Pasodoble_K7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pasodoble_K7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA1E1A84ECA800DBF255 /* PianoShowti7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = PianoShowti7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA1F1A84ECA800DBF255 /* QuickFoxtro7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = QuickFoxtro7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA201A84ECA800DBF255 /* SaloonBar_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SaloonBar_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA211A84ECA800DBF255 /* Salsa_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Salsa_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA221A84ECA800DBF255 /* SambaRock2_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SambaRock2_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA231A84ECA800DBF255 /* SambaRock_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SambaRock_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA241A84ECA800DBF255 /* ScottishReel_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ScottishReel_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA251A84ECA800DBF255 /* SecretAgent7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SecretAgent7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA261A84ECA800DBF255 /* Shalala_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shalala_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA271A84ECA800DBF255 /* ShowBalladK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShowBalladK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA281A84ECA800DBF255 /* ShowBand_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShowBand_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA291A84ECA800DBF255 /* Showstopper7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Showstopper7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA2A1A84ECA800DBF255 /* ShowStride_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ShowStride_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA2B1A84ECA800DBF255 /* Shuffleb_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Shuffleb_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA2C1A84ECA800DBF255 /* Simple 16_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Simple 16_SFF.STL"; sourceTree = "<group>"; };
+		5D2AEA2D1A84ECA800DBF255 /* Simplebt_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Simplebt_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA2E1A84ECA800DBF255 /* SimpleJazz34_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleJazz34_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA2F1A84ECA800DBF255 /* SimpleSwing_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleSwing_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA301A84ECA800DBF255 /* SimpleWaltz_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleWaltz_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA311A84ECA800DBF255 /* Sirtaki_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sirtaki_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA321A84ECA800DBF255 /* SlowBlues_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SlowBlues_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA331A84ECA800DBF255 /* SlowFoxtrot7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SlowFoxtrot7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA341A84ECA800DBF255 /* SlowFunk_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SlowFunk_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA351A84ECA800DBF255 /* SlowRagtime_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SlowRagtime_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA361A84ECA800DBF255 /* SlowSwing_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SlowSwing_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA371A84ECA800DBF255 /* Soul_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Soul_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA381A84ECA800DBF255 /* SoulBallad_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SoulBallad_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA391A84ECA800DBF255 /* SoulRock_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SoulRock_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA3A1A84ECA800DBF255 /* SoulShuffle_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SoulShuffle_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA3B1A84ECA800DBF255 /* SpaceEpic_K7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceEpic_K7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA3C1A84ECA800DBF255 /* SquareDance7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SquareDance7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA3D1A84ECA800DBF255 /* SquareDance_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SquareDance_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA3E1A84ECA800DBF255 /* StridePiano7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = StridePiano7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA3F1A84ECA800DBF255 /* SummerBalla7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SummerBalla7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA401A84ECA800DBF255 /* SwingCombo_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwingCombo_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA411A84ECA800DBF255 /* SwingRock_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwingRock_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA421A84ECA800DBF255 /* SwingyFunk1_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwingyFunk1_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA431A84ECA800DBF255 /* SwingyReggae_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwingyReggae_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA441A84ECA800DBF255 /* Talempong_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Talempong_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA451A84ECA800DBF255 /* TangoEurope_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = TangoEurope_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA461A84ECA800DBF255 /* TangoPiano_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = TangoPiano_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA471A84ECA800DBF255 /* TapDancersK7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = TapDancersK7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA481A84ECA800DBF255 /* Tarantella_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tarantella_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA491A84ECA800DBF255 /* Techno_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Techno_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA4A1A84ECA800DBF255 /* TheMainEven7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = TheMainEven7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA4B1A84ECA800DBF255 /* TheWall_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = TheWall_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA4C1A84ECA800DBF255 /* TimeToSayGby_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = TimeToSayGby_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA4D1A84ECA800DBF255 /* Twist_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Twist_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA4E1A84ECA800DBF255 /* USAMarch24_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = USAMarch24_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA4F1A84ECA800DBF255 /* USAMarch68_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = USAMarch68_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA501A84ECA800DBF255 /* VegasPianist_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = VegasPianist_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA511A84ECA800DBF255 /* ViennaDance_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = ViennaDance_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA521A84ECA800DBF255 /* VirtuosoPia7_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = VirtuosoPia7_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA531A84ECA800DBF255 /* Walk of life_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Walk of life_SFF.STL"; sourceTree = "<group>"; };
+		5D2AEA541A84ECA800DBF255 /* Waltz_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = Waltz_SFF.STL; sourceTree = "<group>"; };
+		5D2AEA551A84ECA800DBF255 /* WindOfChange_SFF.STL */ = {isa = PBXFileReference; lastKnownFileType = file; path = WindOfChange_SFF.STL; sourceTree = "<group>"; };
+		5D2AEB0A1A84F7A100DBF255 /* NSData+SnapAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SnapAdditions.h"; sourceTree = "<group>"; };
+		5D2AEB0B1A84F7B000DBF255 /* NSData+SnapAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SnapAdditions.m"; sourceTree = "<group>"; };
 		5D40D82B1A6CABA100252285 /* ChordDrawTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordDrawTest.h; sourceTree = "<group>"; };
 		5D40D82C1A6CABA100252285 /* ChordDrawTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordDrawTest.m; sourceTree = "<group>"; };
 		5D40D82D1A6CABA100252285 /* ChordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTest.h; sourceTree = "<group>"; };
@@ -269,6 +632,8 @@
 				7397F6D70E5C9F1A003AE8A6 /* AppControl.m */,
 				7397F76F0E5C9FFD003AE8A6 /* MIDIUtil.h */,
 				7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */,
+				5D2AEB0A1A84F7A100DBF255 /* NSData+SnapAdditions.h */,
+				5D2AEB0B1A84F7B000DBF255 /* NSData+SnapAdditions.m */,
 				7315FCD00FF2EA4F008D3CE1 /* MidiInterface.h */,
 				7315FCD10FF2EA4F008D3CE1 /* MidiInterface.m */,
 				5D40D8CD1A6CB2E900252285 /* Midi */,
@@ -357,6 +722,193 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5D2AE9A11A84ECA800DBF255 /* ROLAND1 */ = {
+			isa = PBXGroup;
+			children = (
+				5D2AE9A21A84ECA800DBF255 /* 12-8Bal_SFF.STL */,
+				5D2AE9A31A84ECA800DBF255 /* 16Beat1_SFF.STL */,
+				5D2AE9A41A84ECA800DBF255 /* 16Beat2_SFF.STL */,
+				5D2AE9A51A84ECA800DBF255 /* AccordionJaz_SFF.STL */,
+				5D2AE9A61A84ECA800DBF255 /* Animation_K7_SFF.STL */,
+				5D2AE9A71A84ECA800DBF255 /* BallroomFox7_SFF.STL */,
+				5D2AE9A81A84ECA800DBF255 /* BallroomQst7_SFF.STL */,
+				5D2AE9A91A84ECA800DBF255 /* BallroomSmb7_SFF.STL */,
+				5D2AE9AA1A84ECA800DBF255 /* BallroomTan7_SFF.STL */,
+				5D2AE9AB1A84ECA800DBF255 /* BallroomTwi7_SFF.STL */,
+				5D2AE9AC1A84ECA800DBF255 /* BallroomWlz7_SFF.STL */,
+				5D2AE9AD1A84ECA800DBF255 /* BavarianWlz__SFF.STL */,
+				5D2AE9AE1A84ECA800DBF255 /* Beguine_SFF.STL */,
+				5D2AE9AF1A84ECA800DBF255 /* BigBandFast_SFF.STL */,
+				5D2AE9B01A84ECA800DBF255 /* BigBandMid_SFF.STL */,
+				5D2AE9B11A84ECA800DBF255 /* BigBandSlow1_SFF.STL */,
+				5D2AE9B21A84ECA800DBF255 /* BigBandSlow2_SFF.STL */,
+				5D2AE9B31A84ECA800DBF255 /* BirdDance_SFF.STL */,
+				5D2AE9B41A84ECA800DBF255 /* BlueBerry_SFF.STL */,
+				5D2AE9B51A84ECA800DBF255 /* Bluegrass_K7_SFF.STL */,
+				5D2AE9B61A84ECA800DBF255 /* BlueGrass_SFF.STL */,
+				5D2AE9B71A84ECA800DBF255 /* BluesR&Roll_SFF.STL */,
+				5D2AE9B81A84ECA800DBF255 /* Bolero_SFF.STL */,
+				5D2AE9B91A84ECA800DBF255 /* BoogieWoogie_SFF.STL */,
+				5D2AE9BA1A84ECA800DBF255 /* BossaNova2_SFF.STL */,
+				5D2AE9BB1A84ECA800DBF255 /* Broadway_SFF.STL */,
+				5D2AE9BC1A84ECA800DBF255 /* Cabaret_SFF.STL */,
+				5D2AE9BD1A84ECA800DBF255 /* CajunCountr7_SFF.STL */,
+				5D2AE9BE1A84ECA800DBF255 /* Calypso_SFF.STL */,
+				5D2AE9BF1A84ECA800DBF255 /* Caribarena_SFF.STL */,
+				5D2AE9C01A84ECA800DBF255 /* CarribeanRk__SFF.STL */,
+				5D2AE9C11A84ECA800DBF255 /* ChaCha_SFF.STL */,
+				5D2AE9C21A84ECA800DBF255 /* ChapelGospel_SFF.STL */,
+				5D2AE9C31A84ECA800DBF255 /* Chasapico_SFF.STL */,
+				5D2AE9C41A84ECA800DBF255 /* Christmastim_SFF.STL */,
+				5D2AE9C51A84ECA800DBF255 /* ClassicViena_SFF.STL */,
+				5D2AE9C61A84ECA800DBF255 /* Country2Ste7_SFF.STL */,
+				5D2AE9C71A84ECA800DBF255 /* Country2Step_SFF.STL */,
+				5D2AE9C81A84ECA800DBF255 /* Country3_SFF.STL */,
+				5D2AE9C91A84ECA800DBF255 /* Country4_SFF.STL */,
+				5D2AE9CA1A84ECA800DBF255 /* Countryb_SFF.STL */,
+				5D2AE9CB1A84ECA800DBF255 /* CountryBall7_SFF.STL */,
+				5D2AE9CC1A84ECA800DBF255 /* CountryBlue7_SFF.STL */,
+				5D2AE9CD1A84ECA800DBF255 /* CountryFolk7_SFF.STL */,
+				5D2AE9CE1A84ECA800DBF255 /* CountryPian7_SFF.STL */,
+				5D2AE9CF1A84ECA800DBF255 /* CountryPop_SFF.STL */,
+				5D2AE9D01A84ECA800DBF255 /* CountryPopK7_SFF.STL */,
+				5D2AE9D11A84ECA800DBF255 /* Countryr_SFF.STL */,
+				5D2AE9D21A84ECA800DBF255 /* CountryRkK_7_SFF.STL */,
+				5D2AE9D31A84ECA800DBF255 /* CountryShff7_SFF.STL */,
+				5D2AE9D41A84ECA800DBF255 /* CountryWaltz_SFF.STL */,
+				5D2AE9D51A84ECA800DBF255 /* CountryWlzK7_SFF.STL */,
+				5D2AE9D61A84ECA800DBF255 /* Cumbia_SFF.STL */,
+				5D2AE9D71A84ECA800DBF255 /* Dance1_SFF.STL */,
+				5D2AE9D81A84ECA800DBF255 /* Dance2_SFF.STL */,
+				5D2AE9D91A84ECA800DBF255 /* DanceReggae_SFF.STL */,
+				5D2AE9DA1A84ECA800DBF255 /* Disco1_SFF.STL */,
+				5D2AE9DB1A84ECA800DBF255 /* Disco2_SFF.STL */,
+				5D2AE9DC1A84ECA800DBF255 /* DixieBand_SFF.STL */,
+				5D2AE9DD1A84ECA800DBF255 /* DixiePianist_SFF.STL */,
+				5D2AE9DE1A84ECA800DBF255 /* EnglishWaltz_SFF.STL */,
+				5D2AE9DF1A84ECA800DBF255 /* EP_Ballad_SFF.STL */,
+				5D2AE9E01A84ECA800DBF255 /* EpicBalladK7_SFF.STL */,
+				5D2AE9E11A84ECA800DBF255 /* EuroCombo_SFF.STL */,
+				5D2AE9E21A84ECA800DBF255 /* EuroDisco_SFF.STL */,
+				5D2AE9E31A84ECA800DBF255 /* FastRagtime_SFF.STL */,
+				5D2AE9E41A84ECA800DBF255 /* FolkRock_SFF.STL */,
+				5D2AE9E51A84ECA800DBF255 /* Funk_SFF.STL */,
+				5D2AE9E61A84ECA800DBF255 /* German2_SFF.STL */,
+				5D2AE9E71A84ECA800DBF255 /* GermanBallad_SFF.STL */,
+				5D2AE9E81A84ECA800DBF255 /* GermanMarch_SFF.STL */,
+				5D2AE9E91A84ECA800DBF255 /* Germanpo_SFF.STL */,
+				5D2AE9EA1A84ECA800DBF255 /* Gospel 34_SFF.STL */,
+				5D2AE9EB1A84ECA800DBF255 /* GospelBallad_SFF.STL */,
+				5D2AE9EC1A84ECA800DBF255 /* GospelReviva_SFF.STL */,
+				5D2AE9ED1A84ECA800DBF255 /* GospelShuffl_SFF.STL */,
+				5D2AE9EE1A84ECA800DBF255 /* GypsyJazz_SFF.STL */,
+				5D2AE9EF1A84ECA800DBF255 /* HardRock_SFF.STL */,
+				5D2AE9F01A84ECA800DBF255 /* Hawaiin_SFF.STL */,
+				5D2AE9F11A84ECA800DBF255 /* HawaiinShuff_SFF.STL */,
+				5D2AE9F21A84ECA800DBF255 /* HipHop_SFF.STL */,
+				5D2AE9F31A84ECA800DBF255 /* HokieDance_SFF.STL */,
+				5D2AE9F41A84ECA800DBF255 /* Hollywood_SFF.STL */,
+				5D2AE9F51A84ECA800DBF255 /* House_SFF.STL */,
+				5D2AE9F61A84ECA800DBF255 /* HRockBallad_SFF.STL */,
+				5D2AE9F71A84ECA800DBF255 /* IrishJig_SFF.STL */,
+				5D2AE9F81A84ECA800DBF255 /* JazzBallad_SFF.STL */,
+				5D2AE9F91A84ECA800DBF255 /* JazzCombo_SFF.STL */,
+				5D2AE9FA1A84ECA800DBF255 /* JazzPop_SFF.STL */,
+				5D2AE9FB1A84ECA800DBF255 /* JazzQuartet_SFF.STL */,
+				5D2AE9FC1A84ECA800DBF255 /* JazzQuintet_SFF.STL */,
+				5D2AE9FD1A84ECA800DBF255 /* JazzRock_SFF.STL */,
+				5D2AE9FE1A84ECA800DBF255 /* JazzTrio_SFF.STL */,
+				5D2AE9FF1A84ECA800DBF255 /* Jive_K7_SFF.STL */,
+				5D2AEA001A84ECA800DBF255 /* Jive_SFF.STL */,
+				5D2AEA011A84ECA800DBF255 /* Keroncong_SFF.STL */,
+				5D2AEA021A84ECA800DBF255 /* LastFoxtrot7_SFF.STL */,
+				5D2AEA031A84ECA800DBF255 /* Lieder 2_SFF.STL */,
+				5D2AEA041A84ECA800DBF255 /* LineDance_SFF.STL */,
+				5D2AEA051A84ECA800DBF255 /* LoungePiano7_SFF.STL */,
+				5D2AEA061A84ECA800DBF255 /* LoungePiano_SFF.STL */,
+				5D2AEA071A84ECA800DBF255 /* Macarena_SFF.STL */,
+				5D2AEA081A84ECA800DBF255 /* Mambo_SFF.STL */,
+				5D2AEA091A84ECA800DBF255 /* MamboNr5 2_SFF.STL */,
+				5D2AEA0A1A84ECA800DBF255 /* Mandolino_SFF.STL */,
+				5D2AEA0B1A84ECA800DBF255 /* Mariachi_SFF.STL */,
+				5D2AEA0C1A84ECA800DBF255 /* Mazurka_SFF.STL */,
+				5D2AEA0D1A84ECA800DBF255 /* Merengue_SFF.STL */,
+				5D2AEA0E1A84ECA800DBF255 /* Mitsou_SFF.STL */,
+				5D2AEA0F1A84ECA800DBF255 /* ModBluegrass_SFF.STL */,
+				5D2AEA101A84ECA800DBF255 /* ModernBegui7_SFF.STL */,
+				5D2AEA111A84ECA800DBF255 /* ModernChaCh7_SFF.STL */,
+				5D2AEA121A84ECA800DBF255 /* ModernOpera7_SFF.STL */,
+				5D2AEA131A84ECA800DBF255 /* ModernRhumb7_SFF.STL */,
+				5D2AEA141A84ECA800DBF255 /* MovieBallad7_SFF.STL */,
+				5D2AEA151A84ECA800DBF255 /* MovieDiscoK7_SFF.STL */,
+				5D2AEA161A84ECA800DBF255 /* MovieSwingK7_SFF.STL */,
+				5D2AEA171A84ECA800DBF255 /* MovieWaltzK7_SFF.STL */,
+				5D2AEA181A84ECA800DBF255 /* NightClubSh7_SFF.STL */,
+				5D2AEA191A84ECA800DBF255 /* Nowomann cry_SFF.STL */,
+				5D2AEA1A1A84ECA800DBF255 /* Oberkrainer_SFF.STL */,
+				5D2AEA1B1A84ECA800DBF255 /* Orch_SFF.STL */,
+				5D2AEA1C1A84ECA800DBF255 /* Oriental_SFF.STL */,
+				5D2AEA1D1A84ECA800DBF255 /* Pasodoble_K7_SFF.STL */,
+				5D2AEA1E1A84ECA800DBF255 /* PianoShowti7_SFF.STL */,
+				5D2AEA1F1A84ECA800DBF255 /* QuickFoxtro7_SFF.STL */,
+				5D2AEA201A84ECA800DBF255 /* SaloonBar_SFF.STL */,
+				5D2AEA211A84ECA800DBF255 /* Salsa_SFF.STL */,
+				5D2AEA221A84ECA800DBF255 /* SambaRock2_SFF.STL */,
+				5D2AEA231A84ECA800DBF255 /* SambaRock_SFF.STL */,
+				5D2AEA241A84ECA800DBF255 /* ScottishReel_SFF.STL */,
+				5D2AEA251A84ECA800DBF255 /* SecretAgent7_SFF.STL */,
+				5D2AEA261A84ECA800DBF255 /* Shalala_SFF.STL */,
+				5D2AEA271A84ECA800DBF255 /* ShowBalladK7_SFF.STL */,
+				5D2AEA281A84ECA800DBF255 /* ShowBand_SFF.STL */,
+				5D2AEA291A84ECA800DBF255 /* Showstopper7_SFF.STL */,
+				5D2AEA2A1A84ECA800DBF255 /* ShowStride_SFF.STL */,
+				5D2AEA2B1A84ECA800DBF255 /* Shuffleb_SFF.STL */,
+				5D2AEA2C1A84ECA800DBF255 /* Simple 16_SFF.STL */,
+				5D2AEA2D1A84ECA800DBF255 /* Simplebt_SFF.STL */,
+				5D2AEA2E1A84ECA800DBF255 /* SimpleJazz34_SFF.STL */,
+				5D2AEA2F1A84ECA800DBF255 /* SimpleSwing_SFF.STL */,
+				5D2AEA301A84ECA800DBF255 /* SimpleWaltz_SFF.STL */,
+				5D2AEA311A84ECA800DBF255 /* Sirtaki_SFF.STL */,
+				5D2AEA321A84ECA800DBF255 /* SlowBlues_SFF.STL */,
+				5D2AEA331A84ECA800DBF255 /* SlowFoxtrot7_SFF.STL */,
+				5D2AEA341A84ECA800DBF255 /* SlowFunk_SFF.STL */,
+				5D2AEA351A84ECA800DBF255 /* SlowRagtime_SFF.STL */,
+				5D2AEA361A84ECA800DBF255 /* SlowSwing_SFF.STL */,
+				5D2AEA371A84ECA800DBF255 /* Soul_SFF.STL */,
+				5D2AEA381A84ECA800DBF255 /* SoulBallad_SFF.STL */,
+				5D2AEA391A84ECA800DBF255 /* SoulRock_SFF.STL */,
+				5D2AEA3A1A84ECA800DBF255 /* SoulShuffle_SFF.STL */,
+				5D2AEA3B1A84ECA800DBF255 /* SpaceEpic_K7_SFF.STL */,
+				5D2AEA3C1A84ECA800DBF255 /* SquareDance7_SFF.STL */,
+				5D2AEA3D1A84ECA800DBF255 /* SquareDance_SFF.STL */,
+				5D2AEA3E1A84ECA800DBF255 /* StridePiano7_SFF.STL */,
+				5D2AEA3F1A84ECA800DBF255 /* SummerBalla7_SFF.STL */,
+				5D2AEA401A84ECA800DBF255 /* SwingCombo_SFF.STL */,
+				5D2AEA411A84ECA800DBF255 /* SwingRock_SFF.STL */,
+				5D2AEA421A84ECA800DBF255 /* SwingyFunk1_SFF.STL */,
+				5D2AEA431A84ECA800DBF255 /* SwingyReggae_SFF.STL */,
+				5D2AEA441A84ECA800DBF255 /* Talempong_SFF.STL */,
+				5D2AEA451A84ECA800DBF255 /* TangoEurope_SFF.STL */,
+				5D2AEA461A84ECA800DBF255 /* TangoPiano_SFF.STL */,
+				5D2AEA471A84ECA800DBF255 /* TapDancersK7_SFF.STL */,
+				5D2AEA481A84ECA800DBF255 /* Tarantella_SFF.STL */,
+				5D2AEA491A84ECA800DBF255 /* Techno_SFF.STL */,
+				5D2AEA4A1A84ECA800DBF255 /* TheMainEven7_SFF.STL */,
+				5D2AEA4B1A84ECA800DBF255 /* TheWall_SFF.STL */,
+				5D2AEA4C1A84ECA800DBF255 /* TimeToSayGby_SFF.STL */,
+				5D2AEA4D1A84ECA800DBF255 /* Twist_SFF.STL */,
+				5D2AEA4E1A84ECA800DBF255 /* USAMarch24_SFF.STL */,
+				5D2AEA4F1A84ECA800DBF255 /* USAMarch68_SFF.STL */,
+				5D2AEA501A84ECA800DBF255 /* VegasPianist_SFF.STL */,
+				5D2AEA511A84ECA800DBF255 /* ViennaDance_SFF.STL */,
+				5D2AEA521A84ECA800DBF255 /* VirtuosoPia7_SFF.STL */,
+				5D2AEA531A84ECA800DBF255 /* Walk of life_SFF.STL */,
+				5D2AEA541A84ECA800DBF255 /* Waltz_SFF.STL */,
+				5D2AEA551A84ECA800DBF255 /* WindOfChange_SFF.STL */,
+			);
+			path = ROLAND1;
+			sourceTree = "<group>";
+		};
 		5D40D82A1A6CABA100252285 /* TestCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +959,7 @@
 		5D40D9381A6CC45600252285 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				5D2AE9A11A84ECA800DBF255 /* ROLAND1 */,
 				5D40D93D1A6CC45600252285 /* AppDelegate.h */,
 				5D40D93E1A6CC45600252285 /* AppDelegate.m */,
 				5D40D9401A6CC45600252285 /* ViewController.h */,
@@ -598,11 +1151,191 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D2AEAC31A84ECA800DBF255 /* ModBluegrass_SFF.STL in Resources */,
+				5D2AEAEA1A84ECA800DBF255 /* SlowSwing_SFF.STL in Resources */,
+				5D2AEA701A84ECA800DBF255 /* Cabaret_SFF.STL in Resources */,
+				5D2AEA6C1A84ECA800DBF255 /* Bolero_SFF.STL in Resources */,
 				5D40D9B01A6CC55800252285 /* apprhythmsvol1y2r1.mid in Resources */,
+				5D2AEB011A84ECA800DBF255 /* Twist_SFF.STL in Resources */,
+				5D2AEAD81A84ECA800DBF255 /* ScottishReel_SFF.STL in Resources */,
+				5D2AEAA61A84ECA800DBF255 /* HipHop_SFF.STL in Resources */,
+				5D2AEAF81A84ECA800DBF255 /* Talempong_SFF.STL in Resources */,
+				5D2AEA781A84ECA800DBF255 /* Christmastim_SFF.STL in Resources */,
+				5D2AEA6B1A84ECA800DBF255 /* BluesR&Roll_SFF.STL in Resources */,
+				5D2AEAA21A84ECA800DBF255 /* GypsyJazz_SFF.STL in Resources */,
+				5D2AEAFA1A84ECA800DBF255 /* TangoPiano_SFF.STL in Resources */,
 				5D40D9B11A6CC55A00252285 /* bars - 1 2 3 4.mid in Resources */,
+				5D2AEA8D1A84ECA800DBF255 /* DanceReggae_SFF.STL in Resources */,
+				5D2AEB091A84ECA800DBF255 /* WindOfChange_SFF.STL in Resources */,
+				5D2AEA8C1A84ECA800DBF255 /* Dance2_SFF.STL in Resources */,
+				5D2AEAD21A84ECA800DBF255 /* PianoShowti7_SFF.STL in Resources */,
+				5D2AEADE1A84ECA800DBF255 /* ShowStride_SFF.STL in Resources */,
+				5D2AEAE61A84ECA800DBF255 /* SlowBlues_SFF.STL in Resources */,
+				5D2AEAC11A84ECA800DBF255 /* Merengue_SFF.STL in Resources */,
+				5D2AEAE81A84ECA800DBF255 /* SlowFunk_SFF.STL in Resources */,
+				5D2AEAD41A84ECA800DBF255 /* SaloonBar_SFF.STL in Resources */,
+				5D2AEAD11A84ECA800DBF255 /* Pasodoble_K7_SFF.STL in Resources */,
+				5D2AEAEC1A84ECA800DBF255 /* SoulBallad_SFF.STL in Resources */,
+				5D2AEA7D1A84ECA800DBF255 /* Country4_SFF.STL in Resources */,
+				5D2AEB071A84ECA800DBF255 /* Walk of life_SFF.STL in Resources */,
+				5D2AEAAD1A84ECA800DBF255 /* JazzCombo_SFF.STL in Resources */,
+				5D2AEA751A84ECA800DBF255 /* ChaCha_SFF.STL in Resources */,
+				5D2AEAF11A84ECA800DBF255 /* SquareDance_SFF.STL in Resources */,
+				5D2AEAC41A84ECA800DBF255 /* ModernBegui7_SFF.STL in Resources */,
+				5D2AEB041A84ECA800DBF255 /* VegasPianist_SFF.STL in Resources */,
+				5D2AEAAC1A84ECA800DBF255 /* JazzBallad_SFF.STL in Resources */,
+				5D2AEA761A84ECA800DBF255 /* ChapelGospel_SFF.STL in Resources */,
+				5D2AEAC81A84ECA800DBF255 /* MovieBallad7_SFF.STL in Resources */,
+				5D2AEACB1A84ECA800DBF255 /* MovieWaltzK7_SFF.STL in Resources */,
+				5D2AEA611A84ECA800DBF255 /* BavarianWlz__SFF.STL in Resources */,
+				5D2AEA5A1A84ECA800DBF255 /* Animation_K7_SFF.STL in Resources */,
+				5D2AEA7C1A84ECA800DBF255 /* Country3_SFF.STL in Resources */,
+				5D2AEAF41A84ECA800DBF255 /* SwingCombo_SFF.STL in Resources */,
+				5D2AEA9D1A84ECA800DBF255 /* Germanpo_SFF.STL in Resources */,
+				5D2AEAB71A84ECA800DBF255 /* Lieder 2_SFF.STL in Resources */,
+				5D2AEAB31A84ECA800DBF255 /* Jive_K7_SFF.STL in Resources */,
+				5D2AEA791A84ECA800DBF255 /* ClassicViena_SFF.STL in Resources */,
+				5D2AEACF1A84ECA800DBF255 /* Orch_SFF.STL in Resources */,
+				5D2AEAE01A84ECA800DBF255 /* Simple 16_SFF.STL in Resources */,
+				5D2AEAB41A84ECA800DBF255 /* Jive_SFF.STL in Resources */,
+				5D2AEAE21A84ECA800DBF255 /* SimpleJazz34_SFF.STL in Resources */,
+				5D2AEACE1A84ECA800DBF255 /* Oberkrainer_SFF.STL in Resources */,
+				5D2AEAC21A84ECA800DBF255 /* Mitsou_SFF.STL in Resources */,
+				5D2AEAA51A84ECA800DBF255 /* HawaiinShuff_SFF.STL in Resources */,
+				5D2AEABD1A84ECA800DBF255 /* MamboNr5 2_SFF.STL in Resources */,
+				5D2AEA6A1A84ECA800DBF255 /* BlueGrass_SFF.STL in Resources */,
+				5D2AEA5E1A84ECA800DBF255 /* BallroomTan7_SFF.STL in Resources */,
+				5D2AEA731A84ECA800DBF255 /* Caribarena_SFF.STL in Resources */,
+				5D2AEAE51A84ECA800DBF255 /* Sirtaki_SFF.STL in Resources */,
+				5D2AEA771A84ECA800DBF255 /* Chasapico_SFF.STL in Resources */,
+				5D2AEABC1A84ECA800DBF255 /* Mambo_SFF.STL in Resources */,
+				5D2AEA871A84ECA800DBF255 /* CountryShff7_SFF.STL in Resources */,
+				5D2AEAA31A84ECA800DBF255 /* HardRock_SFF.STL in Resources */,
+				5D2AEAE91A84ECA800DBF255 /* SlowRagtime_SFF.STL in Resources */,
+				5D2AEA651A84ECA800DBF255 /* BigBandSlow1_SFF.STL in Resources */,
+				5D2AEA9B1A84ECA800DBF255 /* GermanBallad_SFF.STL in Resources */,
+				5D2AEA821A84ECA800DBF255 /* CountryPian7_SFF.STL in Resources */,
+				5D2AEA861A84ECA800DBF255 /* CountryRkK_7_SFF.STL in Resources */,
+				5D2AEAFD1A84ECA800DBF255 /* Techno_SFF.STL in Resources */,
+				5D2AEADF1A84ECA800DBF255 /* Shuffleb_SFF.STL in Resources */,
+				5D2AEA711A84ECA800DBF255 /* CajunCountr7_SFF.STL in Resources */,
+				5D2AEAD01A84ECA800DBF255 /* Oriental_SFF.STL in Resources */,
+				5D2AEA901A84ECA800DBF255 /* DixieBand_SFF.STL in Resources */,
+				5D2AEAD61A84ECA800DBF255 /* SambaRock2_SFF.STL in Resources */,
+				5D2AEAF91A84ECA800DBF255 /* TangoEurope_SFF.STL in Resources */,
+				5D2AEAFE1A84ECA800DBF255 /* TheMainEven7_SFF.STL in Resources */,
+				5D2AEAB51A84ECA800DBF255 /* Keroncong_SFF.STL in Resources */,
+				5D2AEA841A84ECA800DBF255 /* CountryPopK7_SFF.STL in Resources */,
+				5D2AEAF61A84ECA800DBF255 /* SwingyFunk1_SFF.STL in Resources */,
+				5D2AEAF31A84ECA800DBF255 /* SummerBalla7_SFF.STL in Resources */,
+				5D2AEA831A84ECA800DBF255 /* CountryPop_SFF.STL in Resources */,
+				5D2AEA8F1A84ECA800DBF255 /* Disco2_SFF.STL in Resources */,
+				5D2AEAD71A84ECA800DBF255 /* SambaRock_SFF.STL in Resources */,
+				5D2AEAB21A84ECA800DBF255 /* JazzTrio_SFF.STL in Resources */,
+				5D2AEA9F1A84ECA800DBF255 /* GospelBallad_SFF.STL in Resources */,
+				5D2AEA6D1A84ECA800DBF255 /* BoogieWoogie_SFF.STL in Resources */,
+				5D2AEAFC1A84ECA800DBF255 /* Tarantella_SFF.STL in Resources */,
+				5D2AEAC51A84ECA800DBF255 /* ModernChaCh7_SFF.STL in Resources */,
+				5D2AEAA11A84ECA800DBF255 /* GospelShuffl_SFF.STL in Resources */,
+				5D2AEAF51A84ECA800DBF255 /* SwingRock_SFF.STL in Resources */,
+				5D2AEA5B1A84ECA800DBF255 /* BallroomFox7_SFF.STL in Resources */,
+				5D2AEACA1A84ECA800DBF255 /* MovieSwingK7_SFF.STL in Resources */,
+				5D2AEA951A84ECA800DBF255 /* EuroCombo_SFF.STL in Resources */,
 				5D40D9451A6CC45600252285 /* Main.storyboard in Resources */,
+				5D2AEABB1A84ECA800DBF255 /* Macarena_SFF.STL in Resources */,
+				5D2AEA581A84ECA800DBF255 /* 16Beat2_SFF.STL in Resources */,
+				5D2AEAA41A84ECA800DBF255 /* Hawaiin_SFF.STL in Resources */,
+				5D2AEAAE1A84ECA800DBF255 /* JazzPop_SFF.STL in Resources */,
+				5D2AEACD1A84ECA800DBF255 /* Nowomann cry_SFF.STL in Resources */,
+				5D2AEA5F1A84ECA800DBF255 /* BallroomTwi7_SFF.STL in Resources */,
+				5D2AEA981A84ECA800DBF255 /* FolkRock_SFF.STL in Resources */,
+				5D2AEA631A84ECA800DBF255 /* BigBandFast_SFF.STL in Resources */,
+				5D2AEAE31A84ECA800DBF255 /* SimpleSwing_SFF.STL in Resources */,
+				5D2AEAE11A84ECA800DBF255 /* Simplebt_SFF.STL in Resources */,
+				5D2AEA941A84ECA800DBF255 /* EpicBalladK7_SFF.STL in Resources */,
+				5D2AEA5D1A84ECA800DBF255 /* BallroomSmb7_SFF.STL in Resources */,
+				5D2AEA961A84ECA800DBF255 /* EuroDisco_SFF.STL in Resources */,
+				5D2AEA921A84ECA800DBF255 /* EnglishWaltz_SFF.STL in Resources */,
+				5D2AEAC71A84ECA800DBF255 /* ModernRhumb7_SFF.STL in Resources */,
+				5D2AEA681A84ECA800DBF255 /* BlueBerry_SFF.STL in Resources */,
+				5D2AEA7B1A84ECA800DBF255 /* Country2Step_SFF.STL in Resources */,
+				5D2AEADC1A84ECA800DBF255 /* ShowBand_SFF.STL in Resources */,
+				5D2AEA5C1A84ECA800DBF255 /* BallroomQst7_SFF.STL in Resources */,
+				5D2AEA931A84ECA800DBF255 /* EP_Ballad_SFF.STL in Resources */,
+				5D2AEA7E1A84ECA800DBF255 /* Countryb_SFF.STL in Resources */,
+				5D2AEB021A84ECA800DBF255 /* USAMarch24_SFF.STL in Resources */,
+				5D2AEA561A84ECA800DBF255 /* 12-8Bal_SFF.STL in Resources */,
+				5D2AEB051A84ECA800DBF255 /* ViennaDance_SFF.STL in Resources */,
+				5D2AEA8A1A84ECA800DBF255 /* Cumbia_SFF.STL in Resources */,
+				5D2AEAB01A84ECA800DBF255 /* JazzQuintet_SFF.STL in Resources */,
+				5D2AEAA71A84ECA800DBF255 /* HokieDance_SFF.STL in Resources */,
 				5D40D94A1A6CC45600252285 /* LaunchScreen.xib in Resources */,
+				5D2AEAD91A84ECA800DBF255 /* SecretAgent7_SFF.STL in Resources */,
+				5D2AEAD31A84ECA800DBF255 /* QuickFoxtro7_SFF.STL in Resources */,
+				5D2AEA671A84ECA800DBF255 /* BirdDance_SFF.STL in Resources */,
+				5D2AEA641A84ECA800DBF255 /* BigBandMid_SFF.STL in Resources */,
+				5D2AEADB1A84ECA800DBF255 /* ShowBalladK7_SFF.STL in Resources */,
+				5D2AEAF21A84ECA800DBF255 /* StridePiano7_SFF.STL in Resources */,
+				5D2AEAED1A84ECA800DBF255 /* SoulRock_SFF.STL in Resources */,
+				5D2AEA811A84ECA800DBF255 /* CountryFolk7_SFF.STL in Resources */,
+				5D2AEAC01A84ECA800DBF255 /* Mazurka_SFF.STL in Resources */,
+				5D2AEA8B1A84ECA800DBF255 /* Dance1_SFF.STL in Resources */,
+				5D2AEA9A1A84ECA800DBF255 /* German2_SFF.STL in Resources */,
+				5D2AEA571A84ECA800DBF255 /* 16Beat1_SFF.STL in Resources */,
+				5D2AEAF71A84ECA800DBF255 /* SwingyReggae_SFF.STL in Resources */,
+				5D2AEA9C1A84ECA800DBF255 /* GermanMarch_SFF.STL in Resources */,
+				5D2AEA881A84ECA800DBF255 /* CountryWaltz_SFF.STL in Resources */,
+				5D2AEAC61A84ECA800DBF255 /* ModernOpera7_SFF.STL in Resources */,
+				5D2AEB061A84ECA800DBF255 /* VirtuosoPia7_SFF.STL in Resources */,
+				5D2AEACC1A84ECA800DBF255 /* NightClubSh7_SFF.STL in Resources */,
+				5D2AEAEB1A84ECA800DBF255 /* Soul_SFF.STL in Resources */,
+				5D2AEAF01A84ECA800DBF255 /* SquareDance7_SFF.STL in Resources */,
+				5D2AEB001A84ECA800DBF255 /* TimeToSayGby_SFF.STL in Resources */,
+				5D2AEAB81A84ECA800DBF255 /* LineDance_SFF.STL in Resources */,
+				5D2AEAB61A84ECA800DBF255 /* LastFoxtrot7_SFF.STL in Resources */,
+				5D2AEAB91A84ECA800DBF255 /* LoungePiano7_SFF.STL in Resources */,
+				5D2AEABF1A84ECA800DBF255 /* Mariachi_SFF.STL in Resources */,
+				5D2AEA661A84ECA800DBF255 /* BigBandSlow2_SFF.STL in Resources */,
+				5D2AEAC91A84ECA800DBF255 /* MovieDiscoK7_SFF.STL in Resources */,
+				5D2AEA691A84ECA800DBF255 /* Bluegrass_K7_SFF.STL in Resources */,
+				5D2AEA8E1A84ECA800DBF255 /* Disco1_SFF.STL in Resources */,
+				5D2AEA851A84ECA800DBF255 /* Countryr_SFF.STL in Resources */,
+				5D2AEAAF1A84ECA800DBF255 /* JazzQuartet_SFF.STL in Resources */,
+				5D2AEABA1A84ECA800DBF255 /* LoungePiano_SFF.STL in Resources */,
+				5D2AEA991A84ECA800DBF255 /* Funk_SFF.STL in Resources */,
+				5D2AEAE41A84ECA800DBF255 /* SimpleWaltz_SFF.STL in Resources */,
+				5D2AEAB11A84ECA800DBF255 /* JazzRock_SFF.STL in Resources */,
+				5D2AEAA91A84ECA800DBF255 /* House_SFF.STL in Resources */,
+				5D2AEA721A84ECA800DBF255 /* Calypso_SFF.STL in Resources */,
+				5D2AEABE1A84ECA800DBF255 /* Mandolino_SFF.STL in Resources */,
+				5D2AEA911A84ECA800DBF255 /* DixiePianist_SFF.STL in Resources */,
+				5D2AEA9E1A84ECA800DBF255 /* Gospel 34_SFF.STL in Resources */,
+				5D2AEB081A84ECA800DBF255 /* Waltz_SFF.STL in Resources */,
+				5D2AEA801A84ECA800DBF255 /* CountryBlue7_SFF.STL in Resources */,
+				5D2AEA971A84ECA800DBF255 /* FastRagtime_SFF.STL in Resources */,
+				5D2AEADA1A84ECA800DBF255 /* Shalala_SFF.STL in Resources */,
+				5D2AEAAA1A84ECA800DBF255 /* HRockBallad_SFF.STL in Resources */,
+				5D2AEA891A84ECA800DBF255 /* CountryWlzK7_SFF.STL in Resources */,
+				5D2AEAE71A84ECA800DBF255 /* SlowFoxtrot7_SFF.STL in Resources */,
+				5D2AEA7A1A84ECA800DBF255 /* Country2Ste7_SFF.STL in Resources */,
+				5D2AEA6F1A84ECA800DBF255 /* Broadway_SFF.STL in Resources */,
+				5D2AEAFF1A84ECA800DBF255 /* TheWall_SFF.STL in Resources */,
+				5D2AEA741A84ECA800DBF255 /* CarribeanRk__SFF.STL in Resources */,
+				5D2AEAD51A84ECA800DBF255 /* Salsa_SFF.STL in Resources */,
+				5D2AEA591A84ECA800DBF255 /* AccordionJaz_SFF.STL in Resources */,
+				5D2AEB031A84ECA800DBF255 /* USAMarch68_SFF.STL in Resources */,
+				5D2AEAA81A84ECA800DBF255 /* Hollywood_SFF.STL in Resources */,
+				5D2AEAAB1A84ECA800DBF255 /* IrishJig_SFF.STL in Resources */,
+				5D2AEAEE1A84ECA800DBF255 /* SoulShuffle_SFF.STL in Resources */,
+				5D2AEAA01A84ECA800DBF255 /* GospelReviva_SFF.STL in Resources */,
+				5D2AEAFB1A84ECA800DBF255 /* TapDancersK7_SFF.STL in Resources */,
+				5D2AEA621A84ECA800DBF255 /* Beguine_SFF.STL in Resources */,
+				5D2AEADD1A84ECA800DBF255 /* Showstopper7_SFF.STL in Resources */,
+				5D2AEAEF1A84ECA800DBF255 /* SpaceEpic_K7_SFF.STL in Resources */,
 				5D40D9471A6CC45600252285 /* Images.xcassets in Resources */,
+				5D2AEA7F1A84ECA800DBF255 /* CountryBall7_SFF.STL in Resources */,
+				5D2AEA601A84ECA800DBF255 /* BallroomWlz7_SFF.STL in Resources */,
+				5D2AEA6E1A84ECA800DBF255 /* BossaNova2_SFF.STL in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +1394,7 @@
 				5D40D98A1A6CC4B000252285 /* ChromaticKeySignature.m in Sources */,
 				5D40D9A21A6CC4B000252285 /* Repeat.m in Sources */,
 				5D40D99C1A6CC4B000252285 /* Note.m in Sources */,
+				5D2AEB0C1A84F7B000DBF255 /* NSData+SnapAdditions.m in Sources */,
 				5D40D98C1A6CC4B000252285 /* Clef.m in Sources */,
 				5D40D9A61A6CC4B000252285 /* Song.m in Sources */,
 				5D40D9941A6CC4B000252285 /* Drum.m in Sources */,
@@ -1155,6 +1889,7 @@
 				5D40D9591A6CC45600252285 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		73B87EA20E6985A6003C2410 /* Build configuration list for PBXNativeTarget "SenorStaffTests" */ = {
 			isa = XCConfigurationList;

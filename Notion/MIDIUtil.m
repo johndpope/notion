@@ -14,6 +14,313 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
 
 @implementation MIDIUtil
 
+
+/*
+ 
+ /// Reads the style's signature (0x0 - 0x1)
+ private void GetStyleSignature() {
+ string SignatureText = Encoding.ASCII.GetString(this.FileContents, 0x0, 2);
+ switch (SignatureText) {
+ case "G8": this._signature = StyleSignature.G8; break;
+ case "EV": this._signature = StyleSignature.EV; break;
+ 
+ /// Reads the style's name (0x2 - 0x11)
+ private void GetStyleName() {
+ this._name = Encoding.ASCII.GetString(this.FileContents, 0x2, 16);
+ 
+ /// Reads the style's tempo (0x14 - 0x15)
+ private void GetTempo() {
+ int DivBy = System.Net.IPAddress.HostToNetworkOrder(BitConverter.ToInt16(this.FileContents, 0x14));
+ this._tempo = 500000 / DivBy;
+ 
+ /// Reads the metronome mark of the style.
+ /// Numerator: 0x18
+ /// Denominator: 0x19 (2^value)
+ int BeatsInMeasure = (int)this.FileContents[0x18];
+ int BeatLength = (int)Math.Pow(2, this.FileContents[0x19]);
+ 
+ this._measure = new Measure(BeatsInMeasure, BeatLength);
+ */
+
++ (void)readStylesFromFile {
+    NSString *style = [[NSBundle mainBundle] pathForResource:@"12-8Bal_SFF" ofType:@"STL"];
+    NSData *data = [NSData dataWithContentsOfFile:style];
+    // NSLog(@"data:%@", data);
+    //  [self dumpData:data];
+    //  po (NSString *)[[NSString alloc] initWithData:buffer encoding:4]
+    
+    
+    NSString *signature = [self readStringFrom:data range:NSMakeRange(0x0, 0x1)];
+    NSLog(@"signature:%@", signature);
+    
+    NSString *styleName = [self readStringFrom:data range:NSMakeRange(0x2, 0x16)];
+    NSLog(@"styleName:%@", styleName);
+    int16_t t2 = [self readInt16From:data offset:0x14 length:1];
+    short t1 = [data rw_int16AtOffset:0x14];
+    //int DivBy = System.Net.IPAddress.HostToNetworkOrder(BitConverter.ToInt16(this.FileContents, 0x14));
+    // this._tempo = 500000 / DivBy;
+    NSLog(@" tempo:%d", 500000 / t1);
+    
+    int numerator = [self readIntFrom:data offset:0x18 length:1];
+    NSLog(@"numerator:%d", numerator);
+    int denominator = [self readIntFrom:data offset:0x19 length:1];
+    NSLog(@"Denominator:%d", denominator * denominator);
+    
+    return;
+    /// Reads the addresses from the file (0x3A - 0x639)
+    /// </summary>
+    NSMutableDictionary *basicAddresses = [[NSMutableDictionary alloc]init];
+    NSMutableDictionary *advancedAddresses = [[NSMutableDictionary alloc]init];
+    int CurrentInstrument = 0;
+    for (int StartOffset = 0x3A; StartOffset <= 0x639; StartOffset += 192, CurrentInstrument++) {
+        // NSString *test = [self readStringFrom:data range:NSMakeRange(0x0, 0x1)];
+        [self readData:data instrumentAddress:StartOffset instrument:CurrentInstrument targetDict:basicAddresses];
+        [self readData:data instrumentAddress:(StartOffset + 96) instrument:CurrentInstrument targetDict:advancedAddresses];
+    }
+}
+
+- (NSArray *)arrayOfBytesFromData:(NSData *)data {
+    if (data.length > 0) {
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:data.length];
+        NSUInteger i = 0;
+        
+        for (int i = 0; i < data.length; i++) {
+            unsigned char byteFromArray = data.bytes[i];
+            [array addObject:[NSValue valueWithBytes:&byteFromArray
+                                            objCType:@encode(unsigned char)]];
+        }
+        
+        return [NSArray arrayWithArray:array];
+    }
+    
+    return nil;
+}
+
+/// <summary>
+/// Reads up the addresses of a given instrument
+/// </summary>
+/// <param name="InstrStartOffset">The start offset of the data</param>
+/// <param name="Instr">Which instrument to read</param>
+/// <param name="TargetDict">The target dictionary to store the address data</param>
+
+
+//CurrentPart
+enum {
+    Intro      = 0,
+    Original      = 1,
+    Variation     = 2,
+    Variation2     = 3,
+    FillToOriginal             = 4,
+    FillToVariation = 5,
+    FillToVariation2 = 6,
+    Ending = 7
+};
+
+
++ (void)readData:(NSData *)data instrumentAddress:(int)InstrStartOffset instrument:(int)instrument0 targetDict:(NSMutableDictionary *)targetDict {
+    for (int CurrentPart = 0; CurrentPart < 8; CurrentPart++) {
+        int PartStart = CurrentPart * 12;
+        NSLog(@"instrument:%d", instrument0);
+        int major = [self readIntFrom:data offset:InstrStartOffset + PartStart length:1];
+        int minor = [self readIntFrom:data offset:InstrStartOffset + PartStart + 4 length:1];
+        int seventh = [self readIntFrom:data offset:InstrStartOffset + PartStart +  8 length:1];
+        
+        NSLog(@"major:%d minor:%d seventh:%d", major, minor, seventh);
+        //
+        //        TargetDict[Instr].Add(   (StylePart)CurrentPart,  new InstrumentAddress(Major, Minor, Seventh)  );
+        [self getMidiMessagesFromData:data instrument:0 chordType:0];
+    }
+}
+
++ (NSArray *)getMidiMessagesFromData:(NSData *)data instrument:(int)instrumentAddress chordType:(int)chordType {
+    int Addr;
+    //
+    //        if (Address.IsAvailable(CType) && Address[CType] < this.FileContents.Length) {
+    //            Addr = Address[CType];
+    //        }
+    //        else
+    //            yield break;
+    
+    int totalTime = 0;
+    for (int Offset = Addr; true; Offset += 6) {
+        int totalTime = [self readIntFrom:data offset:Offset length:1];
+        int dx = [self readIntFrom:data offset:Offset + 1 length:1];
+        if (dx == 0x8F) {
+            break;
+        }
+        
+        NSLog(@"dx:%d totalTime:%d", dx, totalTime);
+        
+        NSData *d1 = [data subdataWithRange:NSMakeRange(Offset, 6)];
+        
+        // dtNSLog(@"d1:%@", d1);
+        
+        //Array.Copy(       this.FileContents,   Offset,  Data,  0,  6   );
+        //int end = [self readIntFrom:data offset:Offset + 1 length:1];
+        //
+        //        MidiMessage msg = MidiMessage.CreateFromData(Data, Time);
+        //        Time += this.FileContents[Offset];
+        //
+        //        yield return msg;
+    }
+    return @[];
+}
+
+/*
+ 
+ 
+ /// <summary>
+ /// Gets the events from the given style part
+ /// </summary>
+ /// <param name="IsBasic">True if Basic, False if Advanced</param>
+ /// <param name="Part">Part of the style</param>
+ /// <param name="Instr">Track of the part</param>
+ /// <param name="CType">Chord type</param>
+ /// <returns>A list of the events</returns>
+ public IEnumerable<MidiMessage> this[bool IsBasic, StylePart Part, Instrument Instr, ChordType CType] {
+ get {
+ Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> Source =
+ IsBasic ? this.BasicAddresses : this.AdvancedAddresses;
+ 
+ InstrumentAddress addr = Source[Instr][Part];
+ 
+ return this.GetMidiMessages(addr, CType);
+ }
+ }
+ 
+ /// <summary>
+ /// Addresses of the style's Basic part
+ /// </summary>
+ private Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> BasicAddresses;
+ 
+ /// <summary>
+ /// Addresses of the style's Advanced part
+ /// </summary>
+ private Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> AdvancedAddresses;
+ 
+ /// <summary>
+ /// Loads the given Roland style file
+ /// </summary>
+ /// <param name="Filename">The path to the file</param>
+ public Reader_STL_2var(string Filename) {
+ this.FileContents = File.ReadAllBytes(Filename);
+ 
+ this.ReadFile();
+ }
+ 
+ /// <summary>
+ /// Loads the Roland style from the given stream
+ /// </summary>
+ /// <param name="File">A stream that contains the file</param>
+ public Reader_STL_2var(Stream File) {
+ using (BinaryReader reader = new BinaryReader(File)) {
+ this.FileContents = reader.ReadBytes((int)File.Length);
+ }
+ 
+ this.ReadFile();
+ }
+ 
+ /// <summary>
+ /// Reads up the whole file
+ /// </summary>
+ private void ReadFile() {
+ this.GetStyleSignature();
+ this.GetStyleName();
+ this.GetTempo();
+ this.GetMeasure();
+ 
+ this.BasicAddresses = new Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>>();
+ this.AdvancedAddresses = new Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>>();
+ for (int i = 0; i < 8; i++) {
+ this.BasicAddresses.Add((Instrument)i, new Dictionary<StylePart, InstrumentAddress>());
+ this.AdvancedAddresses.Add((Instrument)i, new Dictionary<StylePart, InstrumentAddress>());
+ }
+ 
+ this.ReadAddresses();
+ 
+ /// Reads the metronome mark of the style.
+ ///
+ /// Numerator: 0x18
+ /// Denominator: 0x19 (2^value)
+ /// </summary>
+ private void GetMeasure() {
+ int BeatsInMeasure = (int)this.FileContents[0x18];
+ int BeatLength = (int)Math.Pow(2, this.FileContents[0x19]);
+ 
+ this._measure = new Measure(BeatsInMeasure, BeatLength);
+ }
+ 
+ /// <summary>
+ /// Reads the addresses from the file (0x3A - 0x639)
+ /// </summary>
+ private void ReadAddresses() {
+ Instrument CurrentInstrument = 0;
+ for (int StartOffset = 0x3A; StartOffset <= 0x639; StartOffset += 192, CurrentInstrument++) {
+ this.ReadInstrumentAddress(StartOffset, CurrentInstrument, BasicAddresses);
+ this.ReadInstrumentAddress(StartOffset + 96, CurrentInstrument, AdvancedAddresses);
+ }
+ }
+ 
+ /// <summary>
+ /// Reads up the addresses of a given instrument
+ /// </summary>
+ /// <param name="InstrStartOffset">The start offset of the data</param>
+ /// <param name="Instr">Which instrument to read</param>
+ /// <param name="TargetDict">The target dictionary to store the address data</param>
+ private void ReadInstrumentAddress(int InstrStartOffset, Instrument Instr, Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> TargetDict) {
+ for (int CurrentPart = 0; CurrentPart < 8; CurrentPart++) {
+ int PartStart = CurrentPart * 12;
+ 
+ int Major = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart);
+ int Minor = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart + 4);
+ int Seventh = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart + 8);
+ 
+ TargetDict[Instr].Add(
+ (StylePart)CurrentPart,
+ new InstrumentAddress(Major, Minor, Seventh)
+ );
+ }
+ }
+ 
+ /// <summary>
+ /// Reads the MIDI messages at the given address
+ /// </summary>
+ /// <param name="Address">The address to read</param>
+ /// <param name="CType">The chord family to read</param>
+ /// <returns>A collection that stores the MidiMessage instances</returns>
+ private IEnumerable<MidiMessage> GetMidiMessages(InstrumentAddress Address, ChordType CType) {
+ int Addr;
+ 
+ if (Address.IsAvailable(CType) && Address[CType] < this.FileContents.Length) {
+ Addr = Address[CType];
+ }
+ else
+ yield break;
+ 
+ int Time = 0;
+ for (int Offset = Addr; true; Offset += 6) {
+ if (this.FileContents[Offset + 1] == 0x8F)
+ yield break;
+ 
+ byte[] Data = new byte[6];
+ Array.Copy(
+ this.FileContents,
+ Offset,
+ Data,
+ 0,
+ 6
+ );
+ 
+ MidiMessage msg = MidiMessage.CreateFromData(Data, Time);
+ Time += this.FileContents[Offset];
+ 
+ yield return msg;
+ }
+ }
+ }
+ }}*/
+
+
 + (void)writeBackwards:(char *)bytes length:(int)length to:(char *)dest {
     int i;
     for (i = 0; i < length; i++) {
@@ -26,6 +333,19 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
     unsigned char *bytes = (unsigned char *)malloc(range.length);
     [data getBytes:bytes range:range];
     int rtn = 0, i = 0;
+    for (i = 0; i < range.length; i++) {
+        rtn = rtn << 8;
+        rtn += bytes[i];
+    }
+    free(bytes);
+    return rtn;
+}
+
++ (int16_t)readInt16From:(NSData *)data offset:(unsigned int)offset length:(unsigned int)length {
+    NSRange range = NSMakeRange(offset, length);
+    unsigned char *bytes = (unsigned char *)malloc(range.length);
+    [data getBytes:bytes range:range];
+    int16_t rtn = 0, i = 0;
     for (i = 0; i < range.length; i++) {
         rtn = rtn << 8;
         rtn += bytes[i];
@@ -303,7 +623,7 @@ static char lastStatus = 0x00;
     };
     int tracks;
     MusicSequenceGetTrackCount(seq, &tracks);
-    tracks += 1; //tempo track
+    tracks += 1;  //tempo track
     [self writeBackwards:&tracks length:2 to:(header + 10)];
     [self writeBackwards:&RESOLUTION length:2 to:(header + 12)];
     NSMutableData *data = [NSMutableData dataWithBytes:header length:14];

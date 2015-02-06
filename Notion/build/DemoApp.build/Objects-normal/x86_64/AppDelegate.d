@@ -26,4 +26,5 @@ dependencies: \
   /Users/johnpope/Documents/gitWorkspace/notion/Notion/Model/Staff.h \
   /Users/johnpope/Documents/gitWorkspace/notion/Notion/Model/TempoData.h \
   /Users/johnpope/Documents/gitWorkspace/notion/Notion/DemoApp/AppDelegate.h \
-  /Users/johnpope/Documents/gitWorkspace/notion/Notion/MIDIUtil.h
+  /Users/johnpope/Documents/gitWorkspace/notion/Notion/MIDIUtil.h \
+  /Users/johnpope/Documents/gitWorkspace/notion/Notion/NSData+SnapAdditions.h
