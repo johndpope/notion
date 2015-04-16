@@ -268,6 +268,10 @@
 		5D94879C1ADF51F000121A49 /* JPNoteEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9487991ADF51F000121A49 /* JPNoteEvent.m */; };
 		5DD50D131A6B6F520012B2A1 /* FScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD50D111A6B6F520012B2A1 /* FScript.framework */; };
 		5DD50D141A6B6F520012B2A1 /* libportsmf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD50D121A6B6F520012B2A1 /* libportsmf.a */; };
+		5DEB26271ADF6D90005D39C8 /* MIDIClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB26261ADF6D90005D39C8 /* MIDIClock.m */; };
+		5DEB26281ADF6D90005D39C8 /* MIDIClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB26261ADF6D90005D39C8 /* MIDIClock.m */; };
+		5DEB26291ADF6D90005D39C8 /* MIDIClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB26261ADF6D90005D39C8 /* MIDIClock.m */; };
+		5DEB262A1ADF6D90005D39C8 /* MIDIClock.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEB26261ADF6D90005D39C8 /* MIDIClock.m */; };
 		7315FCD20FF2EA4F008D3CE1 /* MidiInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 7315FCD10FF2EA4F008D3CE1 /* MidiInterface.m */; };
 		7397F6D80E5C9F1A003AE8A6 /* AppControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7397F6D70E5C9F1A003AE8A6 /* AppControl.m */; };
 		7397F76C0E5C9FF1003AE8A6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7397F7690E5C9FF1003AE8A6 /* AudioToolbox.framework */; };
@@ -585,6 +589,8 @@
 		5D9487991ADF51F000121A49 /* JPNoteEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNoteEvent.m; sourceTree = SOURCE_ROOT; };
 		5DD50D111A6B6F520012B2A1 /* FScript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FScript.framework; sourceTree = "<group>"; };
 		5DD50D121A6B6F520012B2A1 /* libportsmf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libportsmf.a; sourceTree = "<group>"; };
+		5DEB26251ADF6D90005D39C8 /* MIDIClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIClock.h; sourceTree = "<group>"; };
+		5DEB26261ADF6D90005D39C8 /* MIDIClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIDIClock.m; sourceTree = "<group>"; };
 		7315FCD00FF2EA4F008D3CE1 /* MidiInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MidiInterface.h; path = Src/MidiInterface.h; sourceTree = "<group>"; };
 		7315FCD10FF2EA4F008D3CE1 /* MidiInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MidiInterface.m; path = Src/MidiInterface.m; sourceTree = "<group>"; };
 		7397F6D60E5C9F1A003AE8A6 /* AppControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppControl.h; sourceTree = "<group>"; };
@@ -658,6 +664,8 @@
 				5D40D95F1A6CC4B000252285 /* Model */,
 				7397F6D60E5C9F1A003AE8A6 /* AppControl.h */,
 				7397F6D70E5C9F1A003AE8A6 /* AppControl.m */,
+				5DEB26251ADF6D90005D39C8 /* MIDIClock.h */,
+				5DEB26261ADF6D90005D39C8 /* MIDIClock.m */,
 				7397F76F0E5C9FFD003AE8A6 /* MIDIUtil.h */,
 				7397F7700E5C9FFD003AE8A6 /* MIDIUtil.m */,
 				5D2AEB0A1A84F7A100DBF255 /* NSData+SnapAdditions.h */,
@@ -1499,6 +1507,7 @@
 				5D2AEB0C1A84F7B000DBF255 /* NSData+SnapAdditions.m in Sources */,
 				5D40D98C1A6CC4B000252285 /* Clef.m in Sources */,
 				5D94879B1ADF51F000121A49 /* JPNoteEvent.m in Sources */,
+				5DEB26291ADF6D90005D39C8 /* MIDIClock.m in Sources */,
 				5D40D9A61A6CC4B000252285 /* Song.m in Sources */,
 				5D40D9941A6CC4B000252285 /* Drum.m in Sources */,
 				5D40D9AD1A6CC4BB00252285 /* MIDIUtil.m in Sources */,
@@ -1523,6 +1532,7 @@
 				5D94879C1ADF51F000121A49 /* JPNoteEvent.m in Sources */,
 				5D8EAE601ADF20F600B0B9D7 /* NSData+SnapAdditions.m in Sources */,
 				5D8EAE451ADF20B700B0B9D7 /* main.m in Sources */,
+				5DEB262A1ADF6D90005D39C8 /* MIDIClock.m in Sources */,
 				5D8EAE5F1ADF20E800B0B9D7 /* MIDIUtil.m in Sources */,
 				5D8EAE431ADF20B700B0B9D7 /* AppDelegate.m in Sources */,
 			);
@@ -1541,6 +1551,7 @@
 				5D40D8C41A6CB2B000252285 /* StaffTest.m in Sources */,
 				5D40D8CA1A6CB2C500252285 /* SongTest.m in Sources */,
 				5D40D8C81A6CB2BE00252285 /* MeasureTest.m in Sources */,
+				5DEB26281ADF6D90005D39C8 /* MIDIClock.m in Sources */,
 				73B4CDA70FF51F0800949D15 /* MidiInterface.m in Sources */,
 				5D40D8CB1A6CB2C900252285 /* TempoDataTest.m in Sources */,
 			);
@@ -1571,6 +1582,7 @@
 				7397F6D80E5C9F1A003AE8A6 /* AppControl.m in Sources */,
 				5D40D9951A6CC4B000252285 /* DrumKit.m in Sources */,
 				7397F7710E5C9FFD003AE8A6 /* MIDIUtil.m in Sources */,
+				5DEB26271ADF6D90005D39C8 /* MIDIClock.m in Sources */,
 				7315FCD20FF2EA4F008D3CE1 /* MidiInterface.m in Sources */,
 				5D40D9A11A6CC4B000252285 /* Repeat.m in Sources */,
 				5D40D9911A6CC4B000252285 /* Drum+MusicXML.m in Sources */,

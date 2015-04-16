@@ -1,45 +1,13 @@
 #import "MIDIUtil.h"
-//#import "Song.h"
-//#import "Staff.h"
-//#import "TimeSignature.h"
-//#import "TempoData.h"
-//#import "NoteBase.h"
-//#import "Note.h"
-//#import "Rest.h"
-//#import "Measure.h"
-//#import <AudioToolbox/MusicPlayer.h>
-//#import "Chord.h"
+#import "MIDIClock.h"
+
 #import "JPNoteEvent.h"
 
 
 const int RESOLUTION =  480; // this will dynamically get adjusted below to match midi file
 
-typedef enum {
-    Intro      = 0,
-    Original      = 1,
-    Variation     = 2,
-    Variation2     = 3,
-    FillToOriginal             = 4,
-    FillToVariation = 5,
-    FillToVariation2 = 6,
-    Ending = 7
-} CurrentPart;
 
-typedef enum {
-    Major      = 0,
-    Minor      = 1,
-    Seventh     = 2,
-} ChordType;
 
-@interface InstrumentAddress :NSObject;
--(int)addressForChordType:(ChordType)type;
-@property(nonatomic) int16_t major;
-@property(nonatomic) int16_t minor;
-@property(nonatomic) int16_t seventh;
-@property(nonatomic,strong) NSMutableArray *notes;
--(id)initWithMajor:(int)major minor:(int)minor seventh:(int)seventh;
--(BOOL)isAvailableChordType:(ChordType)type;
-@end
 
 @implementation InstrumentAddress
 
@@ -83,11 +51,6 @@ typedef enum {
 @end
 
 
-@interface StylePart : NSObject
-@property(nonatomic,strong) InstrumentAddress *address;
-@property(nonatomic) CurrentPart part;
-
-@end
 
 @implementation StylePart
 
@@ -97,6 +60,54 @@ typedef enum {
 
 @implementation MIDIUtil
 
++ (void)saveMIDIForStylePart:(StylePart *)style currentPart:(CurrentPart)part instrument:(int)instrument{
+
+    MIDIClock *clock =  [[MIDIClock alloc]init];
+    MusicSequence s;
+    NewMusicSequence(&s);
+    
+   // NSLog(@"injecting 120 tempo track");
+    MusicTrack tempoTrack;
+    MusicSequenceGetTempoTrack(s, &tempoTrack);
+    MusicTimeStamp timestamp = 0;
+    OSStatus err = MusicTrackNewExtendedTempoEvent(tempoTrack, timestamp, 120);
+    
+    // create a new track
+    MusicTrack tmpTrack;
+    MusicSequenceNewTrack(s, &tmpTrack);
+    MusicPlayer p;
+    NewMusicPlayer(&p);
+    
+    [style.address.notes enumerateObjectsUsingBlock: ^(JPNoteEvent *message, NSUInteger idx, BOOL *stop) {
+        // NSLog(@"duration:%f", message.duration);
+        MIDINoteMessage noteMessage;
+        noteMessage.channel = message.channel;
+        noteMessage.note = message.note;
+        noteMessage.velocity = message.velocity;
+        noteMessage.duration = message.duration;
+        
+        MusicTimeStamp musicTimeStamp = [clock musicTimeStampForMIDITimeStamp:message.timeStamp];
+        MusicTrackNewMIDINoteEvent(tmpTrack, musicTimeStamp, &noteMessage);
+    }];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];     // Get documents folder
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"Komposer"];
+    //NSString *theFileName = [[file.filename lastPathComponent] stringByDeletingPathExtension];
+    NSString *directory = [dataPath stringByAppendingPathComponent:@"RolandStyles"];
+    
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:directory])
+        [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:NO attributes:nil error:&error];     //Create main directory
+
+    NSString *midiPath = [NSString stringWithFormat:@"%@/%d-%d-%d.mid", directory,instrument,part, style.part];
+    
+    NSLog(@"midiPath:%@", midiPath);
+    NSURL *midiURL = [[NSURL alloc] initFileURLWithPath:midiPath];
+    MusicSequenceFileCreate(s, CFBridgingRetain(midiURL), kMusicSequenceFile_MIDIType, kMusicSequenceFileFlags_EraseFile, (SInt16)960);
+    MusicSequenceDisposeTrack(s, tmpTrack);
+
+}
 
 /*
  
@@ -208,6 +219,8 @@ typedef enum {
         style.part =CurrentPart;
          [self addMidiMessagesFromData:data instrument:style.address chordType:Major];
         [arr addObject:style];
+
+        [MIDIUtil saveMIDIForStylePart:style currentPart:CurrentPart instrument:instrument0];
     }
     NSString *instrument = [NSString stringWithFormat:@"%d",instrument0];
     [targetDict setValue:arr forKey:instrument];
@@ -272,166 +285,15 @@ typedef enum {
        
         }
     }
+    
+    
 //    NSSortDescriptor *earliestNotes = [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:YES];
 //    [instrumentAddress.notes sortUsingDescriptors:[NSArray arrayWithObject:earliestNotes]];
     
-    NSLog(@":%@",instrumentAddress.notes);
+   
+    
 
 }
-
-/*
- 
- 
- /// <summary>
- /// Gets the events from the given style part
- /// </summary>
- /// <param name="IsBasic">True if Basic, False if Advanced</param>
- /// <param name="Part">Part of the style</param>
- /// <param name="Instr">Track of the part</param>
- /// <param name="CType">Chord type</param>
- /// <returns>A list of the events</returns>
- public IEnumerable<MidiMessage> this[bool IsBasic, StylePart Part, Instrument Instr, ChordType CType] {
- get {
- Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> Source =
- IsBasic ? this.BasicAddresses : this.AdvancedAddresses;
- 
- InstrumentAddress addr = Source[Instr][Part];
- 
- return this.GetMidiMessages(addr, CType);
- }
- }
- 
- /// <summary>
- /// Addresses of the style's Basic part
- /// </summary>
- private Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> BasicAddresses;
- 
- /// <summary>
- /// Addresses of the style's Advanced part
- /// </summary>
- private Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> AdvancedAddresses;
- 
- /// <summary>
- /// Loads the given Roland style file
- /// </summary>
- /// <param name="Filename">The path to the file</param>
- public Reader_STL_2var(string Filename) {
- this.FileContents = File.ReadAllBytes(Filename);
- 
- this.ReadFile();
- }
- 
- /// <summary>
- /// Loads the Roland style from the given stream
- /// </summary>
- /// <param name="File">A stream that contains the file</param>
- public Reader_STL_2var(Stream File) {
- using (BinaryReader reader = new BinaryReader(File)) {
- this.FileContents = reader.ReadBytes((int)File.Length);
- }
- 
- this.ReadFile();
- }
- 
- /// <summary>
- /// Reads up the whole file
- /// </summary>
- private void ReadFile() {
- this.GetStyleSignature();
- this.GetStyleName();
- this.GetTempo();
- this.GetMeasure();
- 
- this.BasicAddresses = new Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>>();
- this.AdvancedAddresses = new Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>>();
- for (int i = 0; i < 8; i++) {
- this.BasicAddresses.Add((Instrument)i, new Dictionary<StylePart, InstrumentAddress>());
- this.AdvancedAddresses.Add((Instrument)i, new Dictionary<StylePart, InstrumentAddress>());
- }
- 
- this.ReadAddresses();
- 
- /// Reads the metronome mark of the style.
- ///
- /// Numerator: 0x18
- /// Denominator: 0x19 (2^value)
- /// </summary>
- private void GetMeasure() {
- int BeatsInMeasure = (int)this.FileContents[0x18];
- int BeatLength = (int)Math.Pow(2, this.FileContents[0x19]);
- 
- this._measure = new Measure(BeatsInMeasure, BeatLength);
- }
- 
- /// <summary>
- /// Reads the addresses from the file (0x3A - 0x639)
- /// </summary>
- private void ReadAddresses() {
- Instrument CurrentInstrument = 0;
- for (int StartOffset = 0x3A; StartOffset <= 0x639; StartOffset += 192, CurrentInstrument++) {
- this.ReadInstrumentAddress(StartOffset, CurrentInstrument, BasicAddresses);
- this.ReadInstrumentAddress(StartOffset + 96, CurrentInstrument, AdvancedAddresses);
- }
- }
- 
- /// <summary>
- /// Reads up the addresses of a given instrument
- /// </summary>
- /// <param name="InstrStartOffset">The start offset of the data</param>
- /// <param name="Instr">Which instrument to read</param>
- /// <param name="TargetDict">The target dictionary to store the address data</param>
- private void ReadInstrumentAddress(int InstrStartOffset, Instrument Instr, Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> TargetDict) {
- for (int CurrentPart = 0; CurrentPart < 8; CurrentPart++) {
- int PartStart = CurrentPart * 12;
- 
- int Major = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart);
- int Minor = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart + 4);
- int Seventh = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart + 8);
- 
- TargetDict[Instr].Add(
- (StylePart)CurrentPart,
- new InstrumentAddress(Major, Minor, Seventh)
- );
- }
- }
- 
- /// <summary>
- /// Reads the MIDI messages at the given address
- /// </summary>
- /// <param name="Address">The address to read</param>
- /// <param name="CType">The chord family to read</param>
- /// <returns>A collection that stores the MidiMessage instances</returns>
- private IEnumerable<MidiMessage> GetMidiMessages(InstrumentAddress Address, ChordType CType) {
- int Addr;
- 
- if (Address.IsAvailable(CType) && Address[CType] < this.FileContents.Length) {
- Addr = Address[CType];
- }
- else
- yield break;
- 
- int Time = 0;
- for (int Offset = Addr; true; Offset += 6) {
- if (this.FileContents[Offset + 1] == 0x8F)
- yield break;
- 
- byte[] Data = new byte[6];
- Array.Copy(
- this.FileContents,
- Offset,
- Data,
- 0,
- 6
- );
- 
- MidiMessage msg = MidiMessage.CreateFromData(Data, Time);
- Time += this.FileContents[Offset];
- 
- yield return msg;
- }
- }
- }
- }}*/
 
 
 + (void)writeBackwards:(char *)bytes length:(int)length to:(char *)dest {
@@ -939,281 +801,4 @@ const char *noteForMidiNumber(int midiNumber) {
     
     return noteArraySharps[midiNumber];
 }
-
-/*
-+ (int)readTrackFrom:(NSData *)data into:(Song *)song atOffset:(int)offset withResolution:(int)resolution {
-    int trackSize = [self readIntFrom:data offset:(offset + 4) length:4];
-    offset += 8;
-    int trackEnd = offset + trackSize;
-    NSMutableDictionary *staffs = [NSMutableDictionary dictionary];
-    Staff *extraStaff = nil;
-    NSMutableDictionary *openNotes = [NSMutableDictionary dictionary];
-    NSMutableDictionary *lastEventTimes = [NSMutableDictionary dictionary];
-    int type, channel;
-    float deltaBeats = 0;
-    while (offset < trackEnd) {
-        int deltaTime;
-        offset += [self readVariableLengthFrom:data into:&deltaTime atOffset:offset];
-        deltaBeats += (float)deltaTime / (float)resolution;
-        NSLog(@"offset:%d deltaTime:%d", offset, deltaTime);
-        int eventTypeAndChannel = [self readIntFrom:data offset:(offset) length:1];
-        offset++;
-        if (eventTypeAndChannel == 0xFF) {
-            //meta event
-            int metaType = [self readIntFrom:data offset:(offset) length:1];
-            offset++;
-            int eventLength;
-            offset += [self readVariableLengthFrom:data into:&eventLength atOffset:offset];
-            //TODO: process delta time
-            NSString *name;
-            int mpqn, num, denomPower, denom, sharpsOrFlats, minor;
-            float bpm;
-            Staff *staff;
-            if ([staffs count] == 0) {
-                if (extraStaff == nil) {
-                    extraStaff = [song addStaff];
-                }
-                staff = extraStaff;
-            }
-            else {
-                staff = [[staffs allValues] objectAtIndex:0];
-            }
-            switch (metaType) {
-                case 0x03: //track name
-                    name = [self readStringFrom:data range:NSMakeRange(offset, eventLength)];
-                    [staff setName:name];
-                    //					NSLog(name);
-                    break;
-                    
-                case 0x51: //tempo change
-                    mpqn = [self readIntFrom:data offset:(offset) length:eventLength];
-                    bpm = ((float)60000000 / mpqn);
-                    //TODO - get the right one based on the current time
-                    [[[song tempoData] lastObject] setTempo:round(bpm)];
-                    break;
-                    
-                case 0x58: //time signature
-                    //TODO: end the current measure (by changing its time signature)
-                    //this will be weird - what does it mean to change time signatures in the middle of a measure?
-                    //we will need to change the current measure's time signature to make it end where it is,
-                    //set the next measure's time signature so it ends where it should end, then set the specified
-                    //time signature in the following measure.
-                    num = [self readIntFrom:data offset:(offset) length:1];
-                    denomPower = [self readIntFrom:data offset:(offset + 1) length:1];
-                    denom = pow(2, denomPower);
-                    int idx = ([[staff getMeasures] count] - 1);
-                    if (idx > 0) {
-                        [song setTimeSignature:[TimeSignature timeSignatureWithTop:num bottom:denom]
-                                       atIndex:idx];
-                    }
-                    
-                    break;
-                    
-                case 0x59: //key signature
-                    //TODO: end the current measure (by changing its time signature)
-                    sharpsOrFlats = [self readIntFrom:data offset:(offset) length:1];
-                    minor = [self readIntFrom:data offset:(offset + 1) length:1];
-                    if (sharpsOrFlats >= 0) {
-                        [[[staff getMeasures] lastObject] setKeySignature:[KeySignature getSignatureWithSharps:sharpsOrFlats minor:(minor > 0)]];
-                    }
-                    else {
-                        [[[staff getMeasures] lastObject] setKeySignature:[KeySignature getSignatureWithFlats:-sharpsOrFlats minor:(minor > 0)]];
-                    }
-                    break;
-            }
-            offset += eventLength;
-        }
-        else {
-            //MIDI event
-            int param1;
-            if (eventTypeAndChannel & 0x80) {
-                type = eventTypeAndChannel & 0xF0;
-                channel = eventTypeAndChannel & 0x0F;
-                param1 = [self readIntFrom:data offset:(offset) length:1];
-                offset++;
-            }
-            else {
-                param1 = eventTypeAndChannel;
-            }
-            NSNumber *ch = [NSNumber numberWithInt:channel];
-            int param2 = [self readIntFrom:data offset:(offset) length:1];
-            offset++;
-            if (type == 0x80 || type == 0x90) {
-                Staff *staff;
-                if ([staffs count] == 0 && extraStaff != nil) {
-                    staff = extraStaff;
-                    [staff setChannel:(channel + 1)];
-                    [staffs setObject:staff forKey:ch];
-                }
-                else {
-                    staff = [staffs objectForKey:ch];
-                    if (staff == nil) {
-                        staff = [song addStaff];
-                        [staff setChannel:(channel + 1)];
-                        [staffs setObject:staff forKey:ch];
-                    }
-                }
-                NSMutableArray *openNoteArray = [openNotes objectForKey:ch];
-                if (openNoteArray == nil) {
-                    openNoteArray = [NSMutableArray array];
-                    [openNotes setObject:openNoteArray forKey:ch];
-                }
-                Note *newNote;
-                Measure *measure;
-                KeySignature *keySig;
-                int pitch, octave, acc;
-                NSNumber *prevAcc;
-                NSEnumerator *openNotesEnum;
-                NSDictionary *accidentals;
-                id openNote;
-                NSNumber *lastEventTime = [lastEventTimes objectForKey:ch];
-                float lastEvent;
-                if (lastEventTime == nil) {
-                    [lastEventTimes setObject:[NSNumber numberWithFloat:0] forKey:ch];
-                    lastEvent = 0;
-                }
-                else {
-                    lastEvent = [lastEventTime floatValue];
-                }
-                measure = [staff getLastMeasure];
-                if (deltaBeats > 0) {
-                    if ([openNoteArray count] == 0) {
-                        //add rests
-                        float restsToCreate = deltaBeats * 3 / 4;
-                        while (restsToCreate > 0) {
-                            Rest *rest = [[Rest alloc] initWithDuration:0 dotted:NO onStaff:staff];
-                            if (![rest tryToFill:restsToCreate]) {
-                                break;
-                            }
-                            restsToCreate -= [rest getEffectiveDuration];
-                            NSArray *arr = [measure.notes copy];
-                            [measure addNote:rest atIndex:([arr count] - 0.5) tieToPrev:NO];
-                            measure = [staff getLastMeasure];
-                        }
-                    }
-                    else {
-                        //increase duration of open notes
-                        openNotesEnum = [openNoteArray objectEnumerator];
-                        while (openNote = [openNotesEnum nextObject]) {
-                            [openNote tryToFill:([openNote getEffectiveDuration] + deltaBeats * 3 / 4)];
-                        }
-                    }
-                    deltaBeats = 0;
-                }
-                keySig = [measure getEffectiveKeySignature];
-                switch (type) {
-                    case 0x80: //note off
-                        openNotesEnum = [[openNoteArray copy] objectEnumerator];
-                        while (openNote = [openNotesEnum nextObject]) {
-                            if ([openNote getEffectivePitchWithKeySignature:keySig priorAccidentals:[measure getAccidentalsAtPosition:[measure.notes count]]] == param1) {
-                                [openNoteArray removeObject:openNote];
-                            }
-                        }
-                        break;
-                        
-                    case 0x90: //note on
-                        pitch = [keySig positionForPitch:(param1 % 12) preferAccidental:0];
-                        octave = (param1 / 12);
-                        acc = [keySig accidentalForPitch:(param1 % 12) atPosition:pitch];
-                        if (acc == NO_ACC) {
-                            accidentals = [measure getAccidentalsAtPosition:[measure.notes count]];
-                            prevAcc = [accidentals objectForKey:[NSNumber numberWithInt:(octave * 7 + pitch)]];
-                            if (prevAcc != nil && [prevAcc intValue] != NO_ACC) {
-                                acc = NATURAL;
-                            }
-                        }
-                        newNote = [[Note alloc] initWithPitch:pitch octave:octave duration:0 dotted:NO
-                                                   accidental:acc onStaff:staff];
-                        if ([openNoteArray count] != 0) {
-                            Chord *newChord = [[Chord alloc] initWithStaff:staff withNotes:[NSMutableArray arrayWithObject:newNote]];
-                            openNotesEnum = [openNoteArray objectEnumerator];
-                            BOOL replacing = NO;
-                            while (openNote = [openNotesEnum nextObject]) {
-                                if ([openNote getDuration] > 0) {
-                                    NSArray *notes;
-                                    if ([openNote respondsToSelector:@selector(getNotes)]) {
-                                        notes = [openNote getNotes];
-                                    }
-                                    else {
-                                        notes = [NSArray arrayWithObject:openNote];
-                                    }
-                                    NSEnumerator *openNoteEnum = [notes objectEnumerator];
-                                    id subnote;
-                                    while (subnote = [openNoteEnum nextObject]) {
-                                        Note *noteCopy = [subnote copy];
-                                        [noteCopy setDuration:0];
-                                        [noteCopy setDottedSilently:NO];
-                                        [subnote tieTo:noteCopy];
-                                        [noteCopy tieFrom:subnote];
-                                        [newChord addNote:subnote];
-                                    }
-                                }
-                                else {
-                                    replacing = YES;
-                                    [newChord addNote:openNote];
-                                }
-                            }
-                            [openNoteArray addObject:newNote];
-                            newNote = newChord;
-                            if (replacing) {
-                                [staff removeLastNote];
-                            }
-                        }
-                        else {
-                            [openNoteArray addObject:newNote];
-                        }
-                        [measure addNote:newNote atIndex:([measure.notes count] - 0.5) tieToPrev:NO];
-                        break;
-                }
-                [lastEventTimes setObject:[NSNumber numberWithFloat:(lastEvent + deltaBeats)] forKey:ch];
-            }
-        }
-    }
-    NSEnumerator *staffsEnum = [[[song staffs] copy]objectEnumerator];
-    id staff;
-    while (staff = [staffsEnum nextObject]) {
-        NSArray *measures = [staff getMeasures];
-        NSLog(@"measure:%@", measures);
-        Measure *measure = [measures objectAtIndex:0];
-        if ([measures count] > 1 || ([measures count] == 1 && [measure.notes count] > 0)) {
-            NSEnumerator *measuresEnum = [measures objectEnumerator];
-            id measure;
-            while (measure = [measuresEnum nextObject]) {
-                //                [measure grabNotesFromNextMeasure];
-                //                [measure refreshNotes:nil];
-            }
-        }
-        else {
-            [song removeStaff:staff];
-        }
-    }
-    return trackSize + 8;
-}
-
-+ (void)readSong:(Song *)song fromMIDI:(NSData *)data {
-    int format = [self readIntFrom:data offset:(8) length:2];
-    if (format > 1) {
-        NSException *e = [NSException exceptionWithName:@"MIDIException" reason:@"MIDI file was an unsupported format type, must be 0 or 1." userInfo:nil];
-        @throw e;
-    }
-    int numTracks = [self readIntFrom:data offset:(10) length:2];
-    int resolution;
-    int rawRes = [self readIntFrom:data offset:(12) length:2];
-    if (!(rawRes & 0x8000)) {
-        resolution = rawRes;
-    }
-    else {
-        NSException *e = [NSException exceptionWithName:@"MIDIException" reason:@"MIDI file specifies resolution in frames per second.  Import of this type of file has not yet been implemented." userInfo:nil];
-        @throw e;
-    }
-    int i, offset = 14;
-    for (i = 0; i < numTracks; i++) {
-        NSLog(@"resolution:%d", resolution);
-        offset += [self readTrackFrom:data into:song atOffset:offset withResolution:resolution];
-    }
-    while ([[song staffs] count] > 1) {
-        [song removeStaff:[[song staffs] lastObject]];
-    }
-}
-*/
 @end
