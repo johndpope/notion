@@ -59,18 +59,19 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
 @end
 
 @implementation MIDIUtil
+#define MIKMIDISequencerDefaultTempo            120
 
-+ (void)saveMIDIForStylePart:(StylePart *)style currentPart:(CurrentPart)part instrument:(int)instrument{
++ (void)saveMIDIForStylePart:(StylePart *)style currentPart:(CurrentPart)part instrument:(int)instrument tempo:(int)tempo{
 
     MIDIClock *clock =  [[MIDIClock alloc]init];
+    [clock setMusicTimeStamp:0 withTempo:tempo atMIDITimeStamp:0];
     MusicSequence s;
     NewMusicSequence(&s);
     
-   // NSLog(@"injecting 120 tempo track");
     MusicTrack tempoTrack;
     MusicSequenceGetTempoTrack(s, &tempoTrack);
     MusicTimeStamp timestamp = 0;
-    OSStatus err = MusicTrackNewExtendedTempoEvent(tempoTrack, timestamp, 120);
+    OSStatus err = MusicTrackNewExtendedTempoEvent(tempoTrack, timestamp, tempo);
     
     // create a new track
     MusicTrack tmpTrack;
@@ -82,12 +83,25 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
         // NSLog(@"duration:%f", message.duration);
         MIDINoteMessage noteMessage;
         noteMessage.channel = message.channel;
-        noteMessage.note = message.note;
-        noteMessage.velocity = message.velocity;
-        noteMessage.duration = message.duration;
+        noteMessage.note = message.note;        noteMessage.velocity = message.velocity;
+        noteMessage.duration = message.duration/tempo;
         
-        MusicTimeStamp musicTimeStamp = [clock musicTimeStampForMIDITimeStamp:message.timeStamp];
-        MusicTrackNewMIDINoteEvent(tmpTrack, musicTimeStamp, &noteMessage);
+        /// <param name="RawTime">The timestamp in ticks</param>
+        /// <param name="Bar">The bar value of the timestamp</param>
+        /// <param name="Beat">The beat value of the timestamp</param>
+        /// <param name="CPT">The Clock Pulse Time (CPT) value of the timestamp</param>
+        //public StyleTime(int RawTime, int Bar, int Beat, int CPT) {
+//        
+//        TotalTime,
+//        TotalTime / 120 / Measure.Numerator + 1,
+//        (TotalTime % (120 * Measure.Numerator)) / 120 + 1,
+//        TotalTime % 120
+        
+        //NSLog(@"ticks:%f",t);
+      // MusicTimeStamp musicTimeStamp = [clock midiTimeStampForMusicTimeStamp:message.timeStamp];
+//        MusicTrackNewMIDINoteEvent(tmpTrack, musicTimeStamp, &noteMessage);
+        MusicTrackNewMIDINoteEvent(tmpTrack,message.timeStamp/tempo, &noteMessage);
+        
     }];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -100,11 +114,21 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
     if (![[NSFileManager defaultManager] fileExistsAtPath:directory])
         [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:NO attributes:nil error:&error];     //Create main directory
 
-    NSString *midiPath = [NSString stringWithFormat:@"%@/%d-%d-%d.mid", directory,instrument,part, style.part];
+      NSString *subDirectory = [directory stringByAppendingPathComponent:@"Instruments"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:subDirectory])
+        [[NSFileManager defaultManager] createDirectoryAtPath:subDirectory withIntermediateDirectories:NO attributes:nil error:&error];     //Create main directory
+    
+    NSString *instrumentDirectory = [NSString stringWithFormat:@"%d",instrument];
+    NSString *subSubDirectory = [directory stringByAppendingPathComponent:instrumentDirectory];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:subSubDirectory])
+        [[NSFileManager defaultManager] createDirectoryAtPath:subSubDirectory withIntermediateDirectories:NO attributes:nil error:&error];     //Create main directory
+    
+    NSString *midiPath = [NSString stringWithFormat:@"%@/%d-%d.mid", subSubDirectory,part, style.part];
     
     NSLog(@"midiPath:%@", midiPath);
     NSURL *midiURL = [[NSURL alloc] initFileURLWithPath:midiPath];
-    MusicSequenceFileCreate(s, CFBridgingRetain(midiURL), kMusicSequenceFile_MIDIType, kMusicSequenceFileFlags_EraseFile, (SInt16)960);
+    SInt16 resolution =960 /4;
+    MusicSequenceFileCreate(s, CFBridgingRetain(midiURL), kMusicSequenceFile_MIDIType, kMusicSequenceFileFlags_EraseFile, resolution);
     MusicSequenceDisposeTrack(s, tmpTrack);
 
 }
@@ -151,6 +175,7 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
     //int DivBy = System.Net.IPAddress.HostToNetworkOrder(BitConverter.ToInt16(this.FileContents, 0x14));
     // this._tempo = 500000 / DivBy;
     NSLog(@" tempo:%d", 500000 / t1);
+    int t3 =500000 / t1;
     
     int numerator = [self readIntFrom:data offset:0x18 length:1];
     NSLog(@"numerator:%d", numerator);
@@ -164,8 +189,8 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
     NSMutableDictionary *advancedAddresses = [[NSMutableDictionary alloc]init];
     int CurrentInstrument = 0;
     for (int16_t StartOffset = 0x3A; StartOffset <= 0x639; StartOffset += 192, CurrentInstrument++) {
-        [self readData:data instrumentAddress:StartOffset instrument:CurrentInstrument targetDict:basicAddresses];
-        [self readData:data instrumentAddress:(StartOffset + 96) instrument:CurrentInstrument targetDict:advancedAddresses];
+        [self readData:data instrumentAddress:StartOffset instrument:CurrentInstrument targetDict:basicAddresses tempo:t3];
+        [self readData:data instrumentAddress:(StartOffset + 96) instrument:CurrentInstrument targetDict:advancedAddresses  tempo:t3];
     }
     NSLog(@"basicAddresses:%@",basicAddresses);
     NSLog(@"advancedAddresses:%@",advancedAddresses);
@@ -200,7 +225,7 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
 //    }
 //
 
-+ (void)readData:(NSData *)data instrumentAddress:(int16_t)InstrStartOffset instrument:(int16_t)instrument0 targetDict:(NSMutableDictionary *)targetDict {
++ (void)readData:(NSData *)data instrumentAddress:(int16_t)InstrStartOffset instrument:(int16_t)instrument0 targetDict:(NSMutableDictionary *)targetDict tempo:(int)tempo {
     
     NSMutableArray *arr = [NSMutableArray array];
     
@@ -213,14 +238,14 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
         int16_t minor = [data big_rw_int16AtOffset:offset + 4 ];
         int16_t seventh = [data big_rw_int16AtOffset:offset +  8];
         
-     // NSLog(@" major:%d minor:%d seventh:%d",major, minor, seventh);
+    //  NSLog(@" major:%d minor:%d seventh:%d",major, minor, seventh);
         StylePart *style = [[StylePart alloc]init];
         style.address  =[[InstrumentAddress alloc]initWithMajor:major minor:minor seventh:seventh];
         style.part =CurrentPart;
          [self addMidiMessagesFromData:data instrument:style.address chordType:Major];
         [arr addObject:style];
 
-        [MIDIUtil saveMIDIForStylePart:style currentPart:CurrentPart instrument:instrument0];
+        [MIDIUtil saveMIDIForStylePart:style currentPart:CurrentPart instrument:instrument0 tempo:tempo];
     }
     NSString *instrument = [NSString stringWithFormat:@"%d",instrument0];
     [targetDict setValue:arr forKey:instrument];
@@ -256,7 +281,7 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
         Byte *bytePtr = (Byte *)[d1 bytes];
 
       
-      //  NSLog(@"deltaTime  %hhu note : %hhu  channel: %hhu %hhu %hhu %hhu ", bytePtr[0],bytePtr[1],bytePtr[2],bytePtr[3],bytePtr[4],bytePtr[5]);
+        NSLog(@"deltaTime  %hhu note : %hhu  channel: %hhu %hhu %hhu %hhu ", bytePtr[0],bytePtr[1],bytePtr[2],bytePtr[3],bytePtr[4],bytePtr[5]);
         JPNoteEvent *note = [[JPNoteEvent alloc]init];
         [note setMessageType:bytePtr[1]];
         note.timeStamp = time  +bytePtr[0];

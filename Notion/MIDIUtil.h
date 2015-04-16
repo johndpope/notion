@@ -42,8 +42,8 @@ typedef enum {
 
 @interface MIDIUtil : NSObject {
 }
-+ (void)saveMIDIForStylePart:(StylePart *)style currentPart:(CurrentPart)part;
-+ (void)parseMidiData:(NSData *)data intoSong:(Song *)song;
++ (void)saveMIDIForStylePart:(StylePart *)style currentPart:(CurrentPart)part instrument:(int)instrument;
+
 + (void)readSong:(Song *)song fromMIDI:(NSData *)data;
 + (NSData *)writeSequenceToData:(MusicSequence)seq;
 + (void)processMidiFileWithName:(NSString *)name;
