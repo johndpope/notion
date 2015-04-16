@@ -206,9 +206,8 @@ typedef enum {
         StylePart *style = [[StylePart alloc]init];
         style.address  =[[InstrumentAddress alloc]initWithMajor:major minor:minor seventh:seventh];
         style.part =CurrentPart;
+         [self addMidiMessagesFromData:data instrument:style.address chordType:Major];
         [arr addObject:style];
-        [self addMidiMessagesFromData:data instrument:style.address chordType:Major];
-        
     }
     NSString *instrument = [NSString stringWithFormat:@"%d",instrument0];
     [targetDict setValue:arr forKey:instrument];
@@ -239,24 +238,20 @@ typedef enum {
         if (dx == 0x8F) {
             break;
         }
-        // 0 / 230 / 0 / 0 / 10 /64
-//         int16_t channel = [data big_rw_int16AtOffset: Offset];
-//        NSLog(@"channel %d", channel);
-//
-        //MidiMessageType
+       
        NSData *d1 = [data subdataWithRange:NSMakeRange(Offset, 6)];
-       // NSLog(@"d1:%lu",(unsigned long)d1.length);
         Byte *bytePtr = (Byte *)[d1 bytes];
-       // MidiMessageType type = (MidiMessageType)bytePtr[1];
-        
+
+      
       //  NSLog(@"deltaTime  %hhu note : %hhu  channel: %hhu %hhu %hhu %hhu ", bytePtr[0],bytePtr[1],bytePtr[2],bytePtr[3],bytePtr[4],bytePtr[5]);
         JPNoteEvent *note = [[JPNoteEvent alloc]init];
         [note setMessageType:bytePtr[1]];
-        note.timeStamp = noteTime  +bytePtr[0];
+        note.timeStamp = time  +bytePtr[0];
         note.note =bytePtr[1];
         note.channel =bytePtr[2];
         note.velocity =bytePtr[3];
         note.duration =bytePtr[5]+1;
+        
         
         
         /*
@@ -272,14 +267,15 @@ typedef enum {
         
         if (note.msgType == Note) {
             [instrumentAddress.notes addObject:note];
+               time =time + noteTime;
         }else{
-       //     NSLog(@"discarding:%d",note.messageType);
+       
         }
-    
-        
-
     }
-        NSLog(@":%@",instrumentAddress.notes);
+//    NSSortDescriptor *earliestNotes = [NSSortDescriptor sortDescriptorWithKey:@"timeStamp" ascending:YES];
+//    [instrumentAddress.notes sortUsingDescriptors:[NSArray arrayWithObject:earliestNotes]];
+    
+    NSLog(@":%@",instrumentAddress.notes);
 
 }
 

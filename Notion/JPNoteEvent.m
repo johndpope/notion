@@ -54,8 +54,12 @@
         return;
     }
     
-    if (messageType >= 0 && messageType <= 127)
-        _msgType = Note;
+    if (messageType >= 20 && messageType <= 127){
+         _msgType = Note;
+        return;
+    }
+    
+    _msgType =  Unknown;
     
     
 }
