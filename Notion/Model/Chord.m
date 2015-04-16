@@ -13,7 +13,7 @@
 @class ChordController;
 
 @implementation Chord
-
+/*
 - (id)initWithStaff:(Staff *)_staff {
     if (self = [super init]) {
         self.staff = _staff;
@@ -326,5 +326,5 @@
 - (void)dealloc {
     notes = nil;
 }
-
+*/
 @end

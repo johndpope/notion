@@ -7,21 +7,21 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>83D3AF81-50F8-4348-8F57-808328E49536</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Notion</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>1FC43E63761A8C14804E865F6C1023C73016C92C</key>
-		<string>github.com:johndpope/senorstaff.git</string>
+		<string>github.com:johndpope/notion.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Notion/Notion.xcodeproj</string>
+	<string>Notion/Notion.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1FC43E63761A8C14804E865F6C1023C73016C92C</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:johndpope/senorstaff.git</string>
+	<string>github.com:johndpope/notion.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>1FC43E63761A8C14804E865F6C1023C73016C92C</string>
 			<key>IDESourceControlWCCName</key>
-			<string>senorstaff</string>
+			<string>notion</string>
 		</dict>
 	</array>
 </dict>

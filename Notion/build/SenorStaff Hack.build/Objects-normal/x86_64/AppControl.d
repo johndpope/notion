@@ -39,4 +39,5 @@ dependencies: \
   /Users/johnpope/Documents/gitWorkspace/notion/Notion/Frameworks/FScript.framework/Headers/Array_fscript.h \
   /Users/johnpope/Documents/gitWorkspace/notion/Notion/Frameworks/FScript.framework/Headers/Block_fscript.h \
   /Users/johnpope/Documents/gitWorkspace/notion/Notion/Frameworks/FScript.framework/Headers/Number_fscript.h \
-  /Users/johnpope/Documents/gitWorkspace/notion/Notion/MIDIUtil.h
+  /Users/johnpope/Documents/gitWorkspace/notion/Notion/MIDIUtil.h \
+  /Users/johnpope/Documents/gitWorkspace/notion/Notion/NSData+SnapAdditions.h

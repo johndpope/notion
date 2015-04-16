@@ -7,6 +7,7 @@
 //
 
 #import "TempoData.h"
+#import "Song.h"
 
 
 @implementation TempoData

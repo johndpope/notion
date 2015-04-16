@@ -5,12 +5,14 @@
 //  Created by Scott Gardner on 12/19/12.
 //  Copyright (c) 2012 inyago LLC. All rights reserved.
 //
+#import <Cocoa/Cocoa.h>
 
 @interface NSData (SnapAdditions)
 
 - (char)rw_int8AtOffset:(size_t)offset;
 - (short)rw_int16AtOffset:(size_t)offset; //assumes the data is in network byte-order (big endian) int value = 0x11223344   [11][22][33][44]
 - (int)rw_int32AtOffset:(size_t)offset;
+- (short)big_rw_int16AtOffset:(size_t)offset;
 - (NSString *)rw_stringAtOffset:(size_t)offset bytesRead:(size_t *)amount;
 
 @end

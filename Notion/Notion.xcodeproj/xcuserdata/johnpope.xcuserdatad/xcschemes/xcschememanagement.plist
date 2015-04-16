@@ -7,7 +7,7 @@
 		<key>DemoApp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Notion 2.xcscheme</key>
 		<dict>
@@ -18,6 +18,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>Test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -38,6 +43,16 @@
 			<true/>
 		</dict>
 		<key>5D40D94E1A6CC45600252285</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D8EAE3C1ADF20B700B0B9D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D8EAE4E1ADF20B700B0B9D7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -69,53 +69,53 @@ static NSArray *allDrums;
 - (NSString *)nameAt:(int)position {
     return [[drums objectAtIndex:([drums count] - position - 1)] shortName];
 }
-
-- (NSString *)lilypondStringForPitch:(int)pitch octave:(int)octave {
-    NSEnumerator *drumsEnum = [drums objectEnumerator];
-    id drum;
-    while (drum = [drumsEnum nextObject]) {
-        if ([drum pitch] == pitch && [drum octave] == octave) {
-            return [drum lilypondString];
-        }
-    }
-    return nil;
-}
-
-- (NSString *)musicXMLStringForPitch:(int)pitch octave:(int)octave {
-    NSEnumerator *drumsEnum = [drums objectEnumerator];
-    id drum;
-    while (drum = [drumsEnum nextObject]) {
-        if ([drum pitch] == pitch && [drum octave] == octave) {
-            return [drum musicXMLString];
-        }
-    }
-    return nil;
-}
-
-- (void)appendMusicXMLHeaderToString:(NSMutableString *)string {
-    [[drums do] appendMusicXMLHeaderToString:string];
-}
-
-- (NSMutableArray *)drums {
-    return drums;
-}
-
-- (void)setDrums:(NSMutableArray *)_drums {
-    [[[staff undoManager] prepareWithInvocationTarget:self] setDrums:drums];
-    [[staff undoManager] setActionName:@"editing drum kit"];
-    if (![_drums isEqualToArray:drums]) {
-        drums = _drums;
-        [self sendChangeNotification];
-    }
-}
-
-- (Staff *)staff {
-    return staff;
-}
-
-- (void)setStaff:(Staff *)_staff {
-    staff = _staff;
-}
+//
+//- (NSString *)lilypondStringForPitch:(int)pitch octave:(int)octave {
+//    NSEnumerator *drumsEnum = [drums objectEnumerator];
+//    id drum;
+//    while (drum = [drumsEnum nextObject]) {
+//        if ([drum pitch] == pitch && [drum octave] == octave) {
+//            return [drum lilypondString];
+//        }
+//    }
+//    return nil;
+//}
+//
+//- (NSString *)musicXMLStringForPitch:(int)pitch octave:(int)octave {
+//    NSEnumerator *drumsEnum = [drums objectEnumerator];
+//    id drum;
+//    while (drum = [drumsEnum nextObject]) {
+//        if ([drum pitch] == pitch && [drum octave] == octave) {
+//            return [drum musicXMLString];
+//        }
+//    }
+//    return nil;
+//}
+//
+//- (void)appendMusicXMLHeaderToString:(NSMutableString *)string {
+//    [[drums do] appendMusicXMLHeaderToString:string];
+//}
+//
+//- (NSMutableArray *)drums {
+//    return drums;
+//}
+//
+//- (void)setDrums:(NSMutableArray *)_drums {
+//    [[[staff undoManager] prepareWithInvocationTarget:self] setDrums:drums];
+//    [[staff undoManager] setActionName:@"editing drum kit"];
+//    if (![_drums isEqualToArray:drums]) {
+//        drums = _drums;
+//        [self sendChangeNotification];
+//    }
+//}
+//
+//- (Staff *)staff {
+//    return staff;
+//}
+//
+//- (void)setStaff:(Staff *)_staff {
+//    staff = _staff;
+//}
 
 //
 //- (NSWindow *)editDialog {

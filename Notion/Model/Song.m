@@ -558,7 +558,7 @@ int enableMIDI = 1;
     [self cleanMIDI];
     return data;
 }
-
+/*
 - (NSData *)asLilypond {
     NSMutableString *string = [NSMutableString string];
     [string appendString:@"\\version \"2.10.25\"\n"];
@@ -631,6 +631,6 @@ int enableMIDI = 1;
     NSMutableString *str = [NSMutableString string];
     [[self doSelf] appendMusicXMLToString:str forStaff:[staffs each]];
     return str;
-}
+}**/
 
 @end

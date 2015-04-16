@@ -1,16 +1,99 @@
 #import "MIDIUtil.h"
-#import "Song.h"
-#import "Staff.h"
-#import "TimeSignature.h"
-#import "TempoData.h"
-#import "NoteBase.h"
-#import "Note.h"
-#import "Rest.h"
-#import "Measure.h"
-#import <AudioToolbox/MusicPlayer.h>
-#import "Chord.h"
+//#import "Song.h"
+//#import "Staff.h"
+//#import "TimeSignature.h"
+//#import "TempoData.h"
+//#import "NoteBase.h"
+//#import "Note.h"
+//#import "Rest.h"
+//#import "Measure.h"
+//#import <AudioToolbox/MusicPlayer.h>
+//#import "Chord.h"
+#import "JPNoteEvent.h"
+
 
 const int RESOLUTION =  480; // this will dynamically get adjusted below to match midi file
+
+typedef enum {
+    Intro      = 0,
+    Original      = 1,
+    Variation     = 2,
+    Variation2     = 3,
+    FillToOriginal             = 4,
+    FillToVariation = 5,
+    FillToVariation2 = 6,
+    Ending = 7
+} CurrentPart;
+
+typedef enum {
+    Major      = 0,
+    Minor      = 1,
+    Seventh     = 2,
+} ChordType;
+
+@interface InstrumentAddress :NSObject;
+-(int)addressForChordType:(ChordType)type;
+@property(nonatomic) int16_t major;
+@property(nonatomic) int16_t minor;
+@property(nonatomic) int16_t seventh;
+@property(nonatomic,strong) NSMutableArray *notes;
+-(id)initWithMajor:(int)major minor:(int)minor seventh:(int)seventh;
+-(BOOL)isAvailableChordType:(ChordType)type;
+@end
+
+@implementation InstrumentAddress
+
+-(int)addressForChordType:(ChordType)type{
+    if (type == Major) {
+        return self.major;
+    }
+    if (type == Minor) {
+        return self.minor;
+    }
+    if (type == Seventh) {
+        return self.seventh;
+    }
+    return -1;
+}
+-(id)initWithMajor:(int)major minor:(int)minor seventh:(int)seventh{
+    self = [super init];
+    self.minor =minor;
+    self.major =major;
+    self.seventh =seventh;
+    return self;
+}
+-(BOOL)isAvailableChordType:(ChordType)type{
+    if (type == Major) {
+        if (self.major > 0) {
+            return YES;
+        }
+    }
+    if (type == Minor) {
+        if (self.minor > 0) {
+            return YES;
+        }
+    }
+    if (type == Seventh ) {
+        if (self.seventh > 0) {
+            return YES;
+        }
+    }
+    return NO;
+}
+@end
+
+
+@interface StylePart : NSObject
+@property(nonatomic,strong) InstrumentAddress *address;
+@property(nonatomic) CurrentPart part;
+
+@end
+
+@implementation StylePart
+
+
+
+@end
 
 @implementation MIDIUtil
 
@@ -46,9 +129,6 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
     NSString *style = [[NSBundle mainBundle] pathForResource:@"12-8Bal_SFF" ofType:@"STL"];
     NSData *data = [NSData dataWithContentsOfFile:style];
     // NSLog(@"data:%@", data);
-    //  [self dumpData:data];
-    //  po (NSString *)[[NSString alloc] initWithData:buffer encoding:4]
-    
     
     NSString *signature = [self readStringFrom:data range:NSMakeRange(0x0, 0x1)];
     NSLog(@"signature:%@", signature);
@@ -65,36 +145,24 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
     NSLog(@"numerator:%d", numerator);
     int denominator = [self readIntFrom:data offset:0x19 length:1];
     NSLog(@"Denominator:%d", denominator * denominator);
-    
-    return;
+
+   // return;
     /// Reads the addresses from the file (0x3A - 0x639)
     /// </summary>
     NSMutableDictionary *basicAddresses = [[NSMutableDictionary alloc]init];
     NSMutableDictionary *advancedAddresses = [[NSMutableDictionary alloc]init];
     int CurrentInstrument = 0;
-    for (int StartOffset = 0x3A; StartOffset <= 0x639; StartOffset += 192, CurrentInstrument++) {
-        // NSString *test = [self readStringFrom:data range:NSMakeRange(0x0, 0x1)];
+    for (int16_t StartOffset = 0x3A; StartOffset <= 0x639; StartOffset += 192, CurrentInstrument++) {
         [self readData:data instrumentAddress:StartOffset instrument:CurrentInstrument targetDict:basicAddresses];
         [self readData:data instrumentAddress:(StartOffset + 96) instrument:CurrentInstrument targetDict:advancedAddresses];
     }
+    NSLog(@"basicAddresses:%@",basicAddresses);
+    NSLog(@"advancedAddresses:%@",advancedAddresses);
+    
+
+    
 }
 
-- (NSArray *)arrayOfBytesFromData:(NSData *)data {
-    if (data.length > 0) {
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:data.length];
-        NSUInteger i = 0;
-        
-        for (int i = 0; i < data.length; i++) {
-            unsigned char byteFromArray = data.bytes[i];
-            [array addObject:[NSValue valueWithBytes:&byteFromArray
-                                            objCType:@encode(unsigned char)]];
-        }
-        
-        return [NSArray arrayWithArray:array];
-    }
-    
-    return nil;
-}
 
 /// <summary>
 /// Reads up the addresses of a given instrument
@@ -102,68 +170,117 @@ const int RESOLUTION =  480; // this will dynamically get adjusted below to matc
 /// <param name="InstrStartOffset">The start offset of the data</param>
 /// <param name="Instr">Which instrument to read</param>
 /// <param name="TargetDict">The target dictionary to store the address data</param>
+/// <param name="InstrStartOffset">The start offset of the data</param>
+/// <param name="Instr">Which instrument to read</param>
+//    /// <param name="TargetDict">The target dictionary to store the address data</param>
+//    private void ReadInstrumentAddress(int InstrStartOffset, Instrument Instr, Dictionary<Instrument, Dictionary<StylePart, InstrumentAddress>> TargetDict) {
+//        for (int CurrentPart = 0; CurrentPart < 8; CurrentPart++) {
+//            int PartStart = CurrentPart * 12;
+//
+//            int Major = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart);
+//            int Minor = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart + 4);
+//            int Seventh = BitConverter.ToInt16(this.FileContents, InstrStartOffset + PartStart + 8);
+//
+//            TargetDict[Instr].Add(
+//                                  (StylePart)CurrentPart,
+//                                  new InstrumentAddress(Major, Minor, Seventh)
+//                                  );
+//        }
+//    }
+//
 
-
-//CurrentPart
-enum {
-    Intro      = 0,
-    Original      = 1,
-    Variation     = 2,
-    Variation2     = 3,
-    FillToOriginal             = 4,
-    FillToVariation = 5,
-    FillToVariation2 = 6,
-    Ending = 7
-};
-
-
-+ (void)readData:(NSData *)data instrumentAddress:(int)InstrStartOffset instrument:(int)instrument0 targetDict:(NSMutableDictionary *)targetDict {
++ (void)readData:(NSData *)data instrumentAddress:(int16_t)InstrStartOffset instrument:(int16_t)instrument0 targetDict:(NSMutableDictionary *)targetDict {
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    
     for (int CurrentPart = 0; CurrentPart < 8; CurrentPart++) {
         int PartStart = CurrentPart * 12;
-        NSLog(@"instrument:%d", instrument0);
-        int major = [self readIntFrom:data offset:InstrStartOffset + PartStart length:1];
-        int minor = [self readIntFrom:data offset:InstrStartOffset + PartStart + 4 length:1];
-        int seventh = [self readIntFrom:data offset:InstrStartOffset + PartStart +  8 length:1];
+
+        //data bytes = 60434
+        int offset =InstrStartOffset + PartStart;
+        int16_t major = [data big_rw_int16AtOffset: offset]; // 3194 exe app - isLittleEndian = false / BIG ENDIAN style file format
+        int16_t minor = [data big_rw_int16AtOffset:offset + 4 ];
+        int16_t seventh = [data big_rw_int16AtOffset:offset +  8];
         
-        NSLog(@"major:%d minor:%d seventh:%d", major, minor, seventh);
-        //
-        //        TargetDict[Instr].Add(   (StylePart)CurrentPart,  new InstrumentAddress(Major, Minor, Seventh)  );
-        [self getMidiMessagesFromData:data instrument:0 chordType:0];
+     // NSLog(@" major:%d minor:%d seventh:%d",major, minor, seventh);
+        StylePart *style = [[StylePart alloc]init];
+        style.address  =[[InstrumentAddress alloc]initWithMajor:major minor:minor seventh:seventh];
+        style.part =CurrentPart;
+        [arr addObject:style];
+        [self addMidiMessagesFromData:data instrument:style.address chordType:Major];
+        
     }
+    NSString *instrument = [NSString stringWithFormat:@"%d",instrument0];
+    [targetDict setValue:arr forKey:instrument];
+    
 }
 
-+ (NSArray *)getMidiMessagesFromData:(NSData *)data instrument:(int)instrumentAddress chordType:(int)chordType {
-    int Addr;
-    //
-    //        if (Address.IsAvailable(CType) && Address[CType] < this.FileContents.Length) {
-    //            Addr = Address[CType];
-    //        }
-    //        else
-    //            yield break;
+
+
++ (void )addMidiMessagesFromData:(NSData *)data instrument:(InstrumentAddress*)instrumentAddress chordType:(ChordType)chordType {
+
+    if (![instrumentAddress isAvailableChordType:chordType]) {
+        return;
+    }
+    if ( [instrumentAddress addressForChordType:chordType] >data.length){
+        return;
+        
+    }
+   int Addr  = [instrumentAddress addressForChordType:chordType];
     
-    int totalTime = 0;
+    int time = 0;
+    instrumentAddress.notes = [NSMutableArray array];
+    
     for (int Offset = Addr; true; Offset += 6) {
-        int totalTime = [self readIntFrom:data offset:Offset length:1];
+        //    MIDIPacket *packet = (MIDIPacket *)pktlist->packet;
+      //   int16_t noteTime = [data big_rw_int16AtOffset: Offset];
+        int noteTime = [self readIntFrom:data offset:Offset length:1];
         int dx = [self readIntFrom:data offset:Offset + 1 length:1];
         if (dx == 0x8F) {
             break;
         }
+        // 0 / 230 / 0 / 0 / 10 /64
+//         int16_t channel = [data big_rw_int16AtOffset: Offset];
+//        NSLog(@"channel %d", channel);
+//
+        //MidiMessageType
+       NSData *d1 = [data subdataWithRange:NSMakeRange(Offset, 6)];
+       // NSLog(@"d1:%lu",(unsigned long)d1.length);
+        Byte *bytePtr = (Byte *)[d1 bytes];
+       // MidiMessageType type = (MidiMessageType)bytePtr[1];
         
-        NSLog(@"dx:%d totalTime:%d", dx, totalTime);
+      //  NSLog(@"deltaTime  %hhu note : %hhu  channel: %hhu %hhu %hhu %hhu ", bytePtr[0],bytePtr[1],bytePtr[2],bytePtr[3],bytePtr[4],bytePtr[5]);
+        JPNoteEvent *note = [[JPNoteEvent alloc]init];
+        [note setMessageType:bytePtr[1]];
+        note.timeStamp = noteTime  +bytePtr[0];
+        note.note =bytePtr[1];
+        note.channel =bytePtr[2];
+        note.velocity =bytePtr[3];
+        note.duration =bytePtr[5]+1;
         
-        NSData *d1 = [data subdataWithRange:NSMakeRange(Offset, 6)];
         
-        // dtNSLog(@"d1:%@", d1);
+        /*
+         /// <para>0x11 - Bass</para>
+         /// <para>0x19 - Drum</para>
+         /// <para>0x10 - Acc1</para>
+         /// <para>0x12 - Acc2</para>
+         /// <para>0x14 - Acc3</para>
+         /// <para>0x16 - Acc4</para>
+         /// <para>0x18 - Acc5</para>
+         /// <para>0x20 - Acc6</para>
+         */
         
-        //Array.Copy(       this.FileContents,   Offset,  Data,  0,  6   );
-        //int end = [self readIntFrom:data offset:Offset + 1 length:1];
-        //
-        //        MidiMessage msg = MidiMessage.CreateFromData(Data, Time);
-        //        Time += this.FileContents[Offset];
-        //
-        //        yield return msg;
+        if (note.msgType == Note) {
+            [instrumentAddress.notes addObject:note];
+        }else{
+       //     NSLog(@"discarding:%d",note.messageType);
+        }
+    
+        
+
     }
-    return @[];
+        NSLog(@":%@",instrumentAddress.notes);
+
 }
 
 /*
@@ -340,7 +457,9 @@ enum {
     free(bytes);
     return rtn;
 }
-
++ (int16_t)endian16_readInt16From:(NSData *)data offset:(unsigned int)offset length:(unsigned int)length {
+   return  EndianS16_BtoN([MIDIUtil readInt16From:data offset:offset length:length] );
+}
 + (int16_t)readInt16From:(NSData *)data offset:(unsigned int)offset length:(unsigned int)length {
     NSRange range = NSMakeRange(offset, length);
     unsigned char *bytes = (unsigned char *)malloc(range.length);
@@ -825,6 +944,7 @@ const char *noteForMidiNumber(int midiNumber) {
     return noteArraySharps[midiNumber];
 }
 
+/*
 + (int)readTrackFrom:(NSData *)data into:(Song *)song atOffset:(int)offset withResolution:(int)resolution {
     int trackSize = [self readIntFrom:data offset:(offset + 4) length:4];
     offset += 8;
@@ -1099,5 +1219,5 @@ const char *noteForMidiNumber(int midiNumber) {
         [song removeStaff:[[song staffs] lastObject]];
     }
 }
-
+*/
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "NSData+SnapAdditions.h"
+#import <Cocoa/Cocoa.h>
+
 
 @implementation NSData (SnapAdditions)
 
@@ -20,6 +22,10 @@
 - (short)rw_int16AtOffset:(size_t)offset {
     const short *shortBytes = (const short *)[self bytes];
     return ntohs(shortBytes[offset / 2]);
+}
+- (short)big_rw_int16AtOffset:(size_t)offset {
+    const short *shortBytes = (const short *)[self bytes];
+    return (shortBytes[offset / 2]);
 }
 
 - (int)rw_int32AtOffset:(size_t)offset {

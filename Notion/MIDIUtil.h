@@ -13,5 +13,6 @@
 + (NSData *)writeSequenceToData:(MusicSequence)seq;
 + (void)processMidiFileWithName:(NSString *)name;
 + (void)readStylesFromFile:(NSData *)data;
++ (int16_t)endian16_readInt16From:(NSData *)data offset:(unsigned int)offset length:(unsigned int)length;
 + (void)readStylesFromFile;
 @end
